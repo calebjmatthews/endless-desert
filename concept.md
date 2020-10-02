@@ -55,33 +55,33 @@ Researches (see spredsheet):
   - Mysticism
 
 Leaders:
-- Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
-- Favorite activity: exploration, Secret wish: to see the legendary crystal sea
-- Favorite activity: animal husbandry, Secret wish: to own a cat
-- Favorite activity: animal husbandry, Secret wish: to raise a sun ox
-- Favorite activity: entertainment, Secret wish: to play music at a year's end festival
-- Favorite activity: entertainment, Secret wish: to fly [via transformation into a bird]
-- Favorite activity: cooking, Secret wish: to eat every kind of dish
-- Favorite activity: cooking, Secret wish: to live in the same city as [other leader]
-- Favorite activity: crafting, Secret wish: to weave an exquisite tapestry
-- Favorite activity: crafting, Secret wish: to wear a robe of golden thread
+  - Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
+  - Favorite activity: exploration, Secret wish: to see the legendary crystal sea
+  - Favorite activity: animal husbandry, Secret wish: to own a cat
+  - Favorite activity: animal husbandry, Secret wish: to raise a sun ox
+  - Favorite activity: entertainment, Secret wish: to play music at a year's end festival
+  - Favorite activity: entertainment, Secret wish: to fly [via transformation into a bird]
+  - Favorite activity: cooking, Secret wish: to eat every kind of dish
+  - Favorite activity: cooking, Secret wish: to live in the same city as [other leader]
+  - Favorite activity: crafting, Secret wish: to weave an exquisite tapestry
+  - Favorite activity: crafting, Secret wish: to wear a robe of golden thread
 
 Caches:
-- Give random amounts of relics and valuable resources
-- After creating a new file an "Heirloom Cache" is available for super cheap ($0.50?)
-- Otherwise a "Mysterious Cache" is available every week for $1 and a "Grand Cache" is available every month for $5. Grand Caches include a clue that leads to a unique mysticism research and series of explorations
+  - Give random amounts of relics and valuable resources
+  - After creating a new file an "Heirloom Cache" is available for super cheap ($0.50?)
+  - Otherwise a "Mysterious Cache" is available every week for $1 and a "Grand Cache" is available every month for $5. Grand Caches include a clue that leads to a unique mysticism research and series of explorations
 
 Tabs:
-- Map, showing locations of each building and the river running through the middle
-- Buildings, with an expandable list of buildings with the resources consumed/produced by each
-- Resources, with a list of all items and their current production rate
-- Teams, with a list of each team and their current activity
-- Research, with current research (if active) and research options (if not active)
-- Exploration, with current expedition (if active) and expedition options (if not active)
-- The Dreaming, with a map for each of the temporary settlements made in The Dreaming
+  - Map, showing locations of each building and the river running through the middle
+  - Buildings, with an expandable list of buildings with the resources consumed/produced by each
+  - Resources, with a list of all items and their current production rate
+  - Teams, with a list of each team and their current activity
+  - Research, with current research (if active) and research options (if not active)
+  - Exploration, with current expedition (if active) and expedition options (if not active)
+  - The Dreaming, with a map for each of the temporary settlements made in The Dreaming
 
 Starting game state:
-  - Buildings: one trading post, one house, one cistern, one lentil field
+  - Buildings: one trading post, one hut, one cistern, one lentil field
 
 Example game state:
   - Buildings: one town center, four houses, one cistern, one lentil field, two wheat field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
