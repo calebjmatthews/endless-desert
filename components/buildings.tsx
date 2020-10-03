@@ -2,22 +2,20 @@ import React from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { styles } from '../styles';
 
+import Building from '../models/building';
+
 function BuildingDescription(props: any) {
   return (
     <View>
-      <Text>{props.building.item.name}</Text>
+      <Text>{props.building.item.buildingType}</Text>
     </View>
   );
 }
 
-export default function Building() {
-  const buildings = [
-    { id: 0, name: "Trading Post", quantity: 1 },
-    { id: 1, name: "House", quantity: 1 },
-    { id: 2, name: "Cistern", quantity: 1 },
-    { id: 3, name: "Lentil Field", quantity: 1 }
-  ];
-
+export default function BuildingsComponent(props: BuildingsProps) {
+  const buildingsArray = Object.keys(props.buildings).map((id) => {
+    return props.buildings[id];
+  });
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} />
   }
@@ -28,10 +26,14 @@ export default function Building() {
         <Text style={styles.heading1}>Buildings</Text>
       </View>
       <FlatList
-        data={buildings}
+        data={buildingsArray}
         renderItem={renderBuilding}
         keyExtractor={building => building.id.toString()}>
       </FlatList>
     </View>
   );
+}
+
+interface BuildingsProps {
+  buildings: { [id: string] : Building }
 }
