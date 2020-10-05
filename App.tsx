@@ -4,18 +4,20 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import BuildingsComponent from './components/buildings';
 import ResourcesComponent from './components/resources';
+import ResearchesComponent from './components/researches';
 import { styles } from './styles';
 
 import Hourglass from './models/hourglass';
 import Vault from './models/vault';
 import Resource from './models/resource';
 import { buildingsStarting } from './instances/buildings_starting';
+import { researches } from './instances/researches';
 
 export default function App() {
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [vault, setVault] = useState(new Vault({ resources: {} }));
-  const [selectedTab, selectTab] = useState('Resources');
-  let tab = <ResourcesComponent vault={vault} />;
+  const [selectedTab, selectTab] = useState('Researches');
+  let tab = <ResearchesComponent researches={researches} />;
 
   useEffect(() => {
     const timeout = setTimeout(() => {

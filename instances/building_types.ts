@@ -30,4 +30,10 @@ buildingTypes[BUILDING_TYPES.LENTIL_FIELD] = new BuildingType({
   consumption: [new BuildingConsumption({consumes: RESOURCE_TYPES.WATER, rate: 10})]
 });
 
+buildingTypes[BUILDING_TYPES.REED_DELTA] = new BuildingType({
+  name: BUILDING_TYPES.REED_DELTA,
+  production: [new BuildingProduction({produces: RESOURCE_TYPES.REEDS, rate: 10})],
+  consumption: [new BuildingConsumption({consumes: RESOURCE_TYPES.WATER, rate: 5})]
+});
+
 export { buildingTypes }
