@@ -7,7 +7,7 @@ researches[RESEARCHES.SCHOLARSHIP] = new Research({
   name: RESEARCHES.SCHOLARSHIP,
   beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 0,
+  knowledgeReq: 10,
   unlocksBuilding: null
 });
 
@@ -31,7 +31,7 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
   beginsCompleted: false,
   prereq: [RESEARCHES.BOTANY],
-  knowledgeReq: 100,
+  knowledgeReq: 50,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 

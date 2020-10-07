@@ -12,12 +12,14 @@ import Vault from './models/vault';
 import Resource from './models/resource';
 import { buildingsStarting } from './instances/buildings';
 import { researchStatusStarting } from './instances/research_status';
+import { vaultStarting } from './instances/vault';
 
 export default function App() {
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
-  const [vault, setVault] = useState(new Vault({ resources: {} }));
+  const [vault, setVault] = useState(vaultStarting);
   const [selectedTab, selectTab] = useState('Researches');
-  let tab = <ResearchesComponent researchStatus={researchStatusStarting} />;
+  let tab = <ResearchesComponent researchStatus={researchStatusStarting}
+    vault={vault} />;
 
   useEffect(() => {
     const timeout = setTimeout(() => {

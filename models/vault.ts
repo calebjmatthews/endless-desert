@@ -11,7 +11,7 @@ export default class Vault {
   //  the resources map if one does not already exist. Return a resource representing
   //  an increase event if the amount of a resource has tripped the threshold,
   //  e.g. by going from 3.92 to 4.02
-  increaseResource(r: Resource) {
+  increaseResource(r: {type: string, quantity: number}) {
     if (!this.resources[r.type]) {
       this.resources[r.type] = new Resource({type: r.type, quantity: 0});
     }
@@ -28,7 +28,7 @@ export default class Vault {
   //  the resources map if one does not already exist. Return a resource representing
   //  a decrease event if the amount of a resource has tripped the threshold,
   //  e.g. by going from 1.01 to 0.98
-  consumeResource(r: Resource) {
+  consumeResource(r: {type: string, quantity: number}) {
     if (!this.resources[r.type]) {
       this.resources[r.type] = new Resource({type: r.type, quantity: 0});
     }
