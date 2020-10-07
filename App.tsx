@@ -10,14 +10,14 @@ import { styles } from './styles';
 import Hourglass from './models/hourglass';
 import Vault from './models/vault';
 import Resource from './models/resource';
-import { buildingsStarting } from './instances/buildings_starting';
-import { researches } from './instances/researches';
+import { buildingsStarting } from './instances/buildings';
+import { researchStatusStarting } from './instances/research_status';
 
 export default function App() {
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [vault, setVault] = useState(new Vault({ resources: {} }));
   const [selectedTab, selectTab] = useState('Researches');
-  let tab = <ResearchesComponent researches={researches} />;
+  let tab = <ResearchesComponent researchStatus={researchStatusStarting} />;
 
   useEffect(() => {
     const timeout = setTimeout(() => {
