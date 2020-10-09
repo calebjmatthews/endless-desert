@@ -12,3 +12,18 @@ export function consumeResource(vault: Vault, r: {type: string, quantity: number
     })]
   }
 }
+
+export function increaseResources(vault: Vault, rs: {type: string, quantity: number}[]) {
+  let resources: Resource[] = []
+  rs.map((r) => {
+    vault.increaseResource(r);
+    resources.push(new Resource({
+      type: r.type,
+      quantity: vault.resources[r.type].quantity
+    }));
+  });
+  return {
+    type: SET_RESOURCES,
+    resources: resources
+  }
+}

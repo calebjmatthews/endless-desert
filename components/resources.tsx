@@ -1,5 +1,8 @@
 import React from 'react';
 import { Text, View, FlatList } from 'react-native';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import RootState from '../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import ResourceType from '../models/resource_type';
@@ -14,9 +17,10 @@ function ResourceDescription(props: any) {
   );
 }
 
-export default function ResourcesComponent(props: ResourcesProps) {
-  const resourcesArray = Object.keys(props.vault.resources).map((type) => {
-    return props.vault.resources[type];
+export default function ResourcesComponent() {
+  const vault = useTypedSelector(state => state.vault);
+  const resourcesArray = Object.keys(vault.resources).map((type) => {
+    return vault.resources[type];
   });
   function renderResource(resource: any) {
     return <ResourceDescription resource={resource} />
@@ -34,8 +38,4 @@ export default function ResourcesComponent(props: ResourcesProps) {
       </FlatList>
     </View>
   );
-}
-
-interface ResourcesProps {
-  vault: Vault;
 }
