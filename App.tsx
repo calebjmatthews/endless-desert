@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
+import { StyleSheet, Text, View } from 'react-native';
 
 import rootReducer from './reducers';
 const store = createStore(rootReducer);
@@ -22,8 +22,7 @@ export default function App() {
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [vault, setVault] = useState(vaultStarting);
   const [selectedTab, selectTab] = useState('Researches');
-  let tab = <ResearchesComponent researchStatus={researchStatusStarting}
-    vault={vault} />;
+  let tab = <ResearchesComponent />;
 
   useEffect(() => {
     const timeout = setTimeout(() => {

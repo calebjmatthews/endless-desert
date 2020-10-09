@@ -4,6 +4,7 @@ import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { consumeResource } from '../actions/vault';
+import { completeResearch } from '../actions/research_status';
 import { styles } from '../styles';
 
 import Research from '../models/research';
@@ -12,11 +13,12 @@ import Vault from '../models/vault';
 import { researches } from '../instances/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 
-export default function ResearchesComponent(props: ResearchProps) {
+export default function ResearchesComponent() {
   const dispatch = useDispatch();
-  const vault = useTypedSelector(state => state.vault)
-  const researchArray = Object.keys(props.researchStatus.status).map((name) => {
-    return {name: name, status: props.researchStatus.status[name]}
+  const vault = useTypedSelector(state => state.vault);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
+  const researchArray = Object.keys(researchStatus.status).map((name) => {
+    return {name: name, status: researchStatus.status[name]}
   });
 
   function startClick(researchStatus: {name: string, status: string}, vault: Vault) {
@@ -27,6 +29,7 @@ export default function ResearchesComponent(props: ResearchProps) {
         type: RESOURCE_TYPES.KNOWLEDGE,
         quantity: research.knowledgeReq
       }));
+      dispatch(completeResearch(researchStatus.name));
       researchStatus.status = 'completed';
     }
     else {
@@ -89,9 +92,4 @@ function ResearchDescription(props: {research: any, vault: Vault,
       </View>
     </View>
   );
-}
-
-interface ResearchProps {
-  researchStatus: ResearchStatus,
-  vault: Vault
 }
