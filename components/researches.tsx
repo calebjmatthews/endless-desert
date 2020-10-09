@@ -1,5 +1,9 @@
 import React from 'react';
 import { Text, View, FlatList, Button } from 'react-native';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import RootState from '../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { consumeResource } from '../actions/vault';
 import { styles } from '../styles';
 
 import Research from '../models/research';
@@ -8,7 +12,48 @@ import Vault from '../models/vault';
 import { researches } from '../instances/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 
-function ResearchDescription(props: {research: any, vault: Vault}) {
+export default function ResearchesComponent(props: ResearchProps) {
+  const dispatch = useDispatch();
+  const vault = useTypedSelector(state => state.vault)
+  const researchArray = Object.keys(props.researchStatus.status).map((name) => {
+    return {name: name, status: props.researchStatus.status[name]}
+  });
+
+  function startClick(researchStatus: {name: string, status: string}, vault: Vault) {
+    let research = researches[researchStatus.name];
+    let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity;
+    if (quantity >= research.knowledgeReq) {
+      dispatch(consumeResource(vault, {
+        type: RESOURCE_TYPES.KNOWLEDGE,
+        quantity: research.knowledgeReq
+      }));
+      researchStatus.status = 'completed';
+    }
+    else {
+      console.log('Not enough knowledge!');
+    }
+  }
+
+  function renderResearch(research: any, vault: Vault, startClick: Function) {
+    return <ResearchDescription research={research} vault={vault}
+      startClick={startClick} />
+  }
+  return (
+    <View style={styles.container}>
+      <View><Text style={styles.heading1}>Research</Text></View>
+      <View><Text>{vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
+          + ' available knowledge'}</Text></View>
+      <FlatList
+        data={researchArray}
+        renderItem={(item) => renderResearch(item, vault, startClick)}
+        keyExtractor={research => research.name}>
+      </FlatList>
+    </View>
+  );
+}
+
+function ResearchDescription(props: {research: any, vault: Vault,
+  startClick: Function}) {
   const researchStatus = props.research.item;
 
   function renderButton(researchStatus: {name: string, status: string}, vault: Vault) {
@@ -21,8 +66,8 @@ function ResearchDescription(props: {research: any, vault: Vault}) {
     }
     return (
       <View style={styles.buttonResearchWrapper}>
-        <Button title="Start" color="#841584"
-          onPress={() => startClick(researchStatus, vault)} />
+        <Button title="Ready" color="#841584"
+          onPress={() => props.startClick(researchStatus, vault)} />
       </View>
     );
   }
@@ -35,25 +80,6 @@ function ResearchDescription(props: {research: any, vault: Vault}) {
     return null;
   }
 
-  function startClick(researchStatus: {name: string, status: string}, vault: Vault) {
-    console.log('researchStatus');
-    console.log(researchStatus);
-    console.log('vault');
-    console.log(vault);
-    let research = researches[researchStatus.name];
-    let quantity = props.vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity;
-    if (quantity >= research.knowledgeReq) {
-      vault.consumeResource({
-        type: RESOURCE_TYPES.KNOWLEDGE,
-        quantity: research.knowledgeReq
-      });
-      researchStatus.status = 'completed';
-    }
-    else {
-      console.log('Not enough knowledge!');
-    }
-  }
-
   return (
     <View style={styles.panelFlex}>
       {renderButton(researchStatus, props.vault)}
@@ -61,28 +87,6 @@ function ResearchDescription(props: {research: any, vault: Vault}) {
         <View><Text>{researchStatus.name}</Text></View>
         {renderCost(researchStatus)}
       </View>
-    </View>
-  );
-}
-
-export default function ResearchesComponent(props: ResearchProps) {
-  const researchArray = Object.keys(props.researchStatus.status).map((name) => {
-    return {name: name, status: props.researchStatus.status[name]}
-  });
-  function renderResearch(research: any, vault: Vault) {
-    return <ResearchDescription research={research} vault={vault} />
-  }
-
-  return (
-    <View style={styles.container}>
-      <View><Text style={styles.heading1}>Research</Text></View>
-      <View><Text>{props.vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
-          + ' available knowledge'}</Text></View>
-      <FlatList
-        data={researchArray}
-        renderItem={(item) => renderResearch(item, props.vault)}
-        keyExtractor={research => research.name}>
-      </FlatList>
     </View>
   );
 }

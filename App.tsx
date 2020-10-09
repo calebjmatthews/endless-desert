@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
+import rootReducer from './reducers';
+const store = createStore(rootReducer);
 import BuildingsComponent from './components/buildings';
 import ResourcesComponent from './components/resources';
 import ResearchesComponent from './components/researches';
@@ -46,10 +50,12 @@ export default function App() {
   }, [selectedTab])
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.statusBarSpacer}></View>
-      {tab}
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <View style={styles.statusBarSpacer}></View>
+        {tab}
+      </View>
+    </Provider>
   );
 }
