@@ -1,11 +1,38 @@
 import * as random from 'random';
 
 class Utils {
+  constructor() {
+    let seedFunction = this.hash(new Date(Date.now()).valueOf().toString());
+    this.random = this.mulberry32(seedFunction());
+  }
+
+  random: Function;
+
+  hash(seed: string) {
+    for(var i = 0, h = 1779033703 ^ seed.length; i < seed.length; i++)
+        h = Math.imul(h ^ seed.charCodeAt(i), 3432918353),
+        h = h << 13 | h >>> 19;
+    return function() {
+        h = Math.imul(h ^ h >>> 16, 2246822507);
+        h = Math.imul(h ^ h >>> 13, 3266489909);
+        return (h ^= h >>> 16) >>> 0;
+    }
+  }
+
+  mulberry32(a: number) {
+    return function() {
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+  }
+  
   randHex(len: number) {
     let maxlen = 8;
     let min = Math.pow(16,Math.min(len,maxlen)-1);
     let max = Math.pow(16,Math.min(len,maxlen)) - 1;
-    let n = Math.floor( random.float() * (max-min+1) ) + min;
+    let n = Math.floor( this.random() * (max-min+1) ) + min;
     let r = n.toString(16);
     while (r.length < len) {
       r = r + this.randHex( len - maxlen );
