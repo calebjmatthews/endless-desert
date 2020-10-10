@@ -22,9 +22,17 @@ function ResourceDescription(props: any) {
         foregroundColor={resourceType.foregroundColor}
         backgroundColor={resourceType.backgroundColor}
         iconSize={18} />
-      <Text>
-        {props.resource.item.type} x {Math.floor(props.resource.item.quantity)}
-      </Text>
+      <View style={styles.stretch}>
+        <View>
+          <Text>
+            {props.resource.item.type}
+          </Text>
+        </View>
+        <View style={styles.quantityContainer}>
+          <Text style={{fontSize: 20}}>{Math.floor(props.resource.item.quantity)}</Text>
+        </View>
+      </View>
+
     </View>
   );
 }
