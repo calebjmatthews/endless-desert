@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import { StyleSheet, Text, View, Button, FlatList, TouchableOpacity }
   from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import IconEntypo from 'react-native-vector-icons/Entypo';
 
 import rootReducer from './reducers';
 const store = createStore(rootReducer);
@@ -12,6 +13,7 @@ import HourglassComponent from './components/hourglass';
 import BuildingsComponent from './components/buildings';
 import ResourcesComponent from './components/resources';
 import ResearchesComponent from './components/researches';
+import IconComponent from './components/icon';
 import { styles } from './styles';
 
 import { buildingsStarting } from './instances/buildings';
@@ -64,15 +66,17 @@ export default function App() {
   return (
     <Provider store={store}>
       <LinearGradient
-        colors={['#f58f7d', '#6a41b4', '#0034aa']}
+        colors={["#f58f7d", "#6a41b4", "#0034aa"]}
         style={styles.container}>
         <HourglassComponent />
         <StatusBar style="auto" />
         <View style={styles.statusBarSpacer}></View>
         {renderTab(selectedTab)}
         <View style={styles.buttonTabWrapper}>
-          <Button title="T" color="#000"
-            onPress={() => { dropdownSet(!dropdownExpanded) }} />
+          <TouchableOpacity style={styles.button}
+            onPress={() => { dropdownSet(!dropdownExpanded) }} >
+            <IconComponent provider="Entypo" name="menu" color="#fff" size={30} />
+          </TouchableOpacity>
         </View>
         {renderDropdown(dropdownExpanded, dropdownPress)}
       </LinearGradient>

@@ -49,6 +49,11 @@ export const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: {width: 0, height: 1}
   },
+  button: {
+    backgroundColor: '#000',
+    color: '#fff',
+    borderRadius: 2
+  },
 
   statusBarSpacer: {
     height: 50

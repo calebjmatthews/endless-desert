@@ -5,14 +5,25 @@ import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
+import IconComponent from './icon';
+
 import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';
 import Vault from '../models/vault';
+import { resourceTypes } from '../instances/resource_types';
 
 function ResourceDescription(props: any) {
+  let resourceType = resourceTypes[props.resource.item.type];
   return (
     <View style={styles.panelFlex}>
-      <Text>{props.resource.item.type} x {Math.floor(props.resource.item.quantity)}</Text>
+      <IconComponent
+        provider={resourceType.icon.provider}
+        name={resourceType.icon.name}
+        color={"#000"}
+        size={undefined} />
+      <Text>
+        {props.resource.item.type} x {Math.floor(props.resource.item.quantity)}
+      </Text>
     </View>
   );
 }

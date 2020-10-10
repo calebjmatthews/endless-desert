@@ -13,6 +13,7 @@ Ideas:
   - Group leaders can equip clothing, a pack (that goes on the back), and a tool. These can affect their quantity of products created, quality of products created, amount of resources consumed when creating a product, bonus when entertaining the town, speed when traveling to an exploration site, ability to disarm traps when exploring, and resilience to damage when exploring
   - Group-specific happiness influenced by quality of house; kind and quality of food, drink, clothing, presence of cats, and treasure; desirability of job. Happiness has a large effect on work performance, is displayed prominently, and can lead to special events.
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
+  - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -110,6 +111,3 @@ Calculating timestep:
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and wheat (tier 1, increased by 1)
   - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Lower tiered products are given priority. For example, if there was not enough water to fulfill all buildings, a kitchen could be producing bread at 100% capacity but another kitchen could only be producing honeyed bread at 67% capacity (assuming 2/min water was available out of 3/min water requirement)
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
-
-
-  Thank you for booking with Showcase Photographers! Your photoshoot has been scheduled for 359 Station Cir Tullahoma, TN 37388. Please visit https://showcasetalk.com/cc/1/98922611 to confirm the details.
