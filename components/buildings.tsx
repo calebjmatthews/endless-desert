@@ -2,11 +2,21 @@ import React from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { styles } from '../styles';
 
+import BadgeComponent from './badge';
+
 import Building from '../models/building';
+import { buildingTypes } from '../instances/building_types';
 
 function BuildingDescription(props: any) {
+  let buildingType = buildingTypes[props.building.item.buildingType];
   return (
     <View style={styles.panelFlex}>
+      <BadgeComponent
+        provider={buildingType.icon.provider}
+        name={buildingType.icon.name}
+        foregroundColor={buildingType.foregroundColor}
+        backgroundColor={buildingType.backgroundColor}
+        iconSize={18} />
       <Text>{props.building.item.buildingType}</Text>
     </View>
   );
