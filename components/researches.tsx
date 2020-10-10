@@ -69,13 +69,13 @@ function ResearchDescription(props: {research: any, vault: Vault,
     if (researchStatus.status == 'completed') {
       return (
         <View style={styles.buttonResearchWrapper}>
-          <Button title="Completed" color="#000" disabled onPress={() => {}} />
+          <Button title="Completed" color="#071f56" disabled onPress={() => {}} />
         </View>
       );
     }
     return (
       <View style={styles.buttonResearchWrapper}>
-        <Button title="Ready" color="#000"
+        <Button title="Ready" color="#071f56"
           onPress={() => props.startClick(researchStatus, vault)} />
       </View>
     );

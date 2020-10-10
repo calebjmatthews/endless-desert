@@ -5,7 +5,7 @@ import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
-import IconComponent from './icon';
+import BadgeComponent from './badge';
 
 import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';
@@ -16,11 +16,12 @@ function ResourceDescription(props: any) {
   let resourceType = resourceTypes[props.resource.item.type];
   return (
     <View style={styles.panelFlex}>
-      <IconComponent
+      <BadgeComponent
         provider={resourceType.icon.provider}
         name={resourceType.icon.name}
-        color={"#000"}
-        size={undefined} />
+        foregroundColor={resourceType.foregroundColor}
+        backgroundColor={resourceType.backgroundColor}
+        iconSize={18} />
       <Text>
         {props.resource.item.type} x {Math.floor(props.resource.item.quantity)}
       </Text>

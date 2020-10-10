@@ -28,14 +28,17 @@ export const styles = StyleSheet.create({
     right: 20,
     opacity: 0.95,
     backgroundColor: '#fff',
-    borderRadius: 2
+    borderRadius: 2,
+    shadowColor: '#00000080',
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 2}
   },
   dropdownListItem: {
     padding: 8,
     margin: -1,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#000'
+    borderColor: '#071f56'
   },
   heading1: {
     fontSize: 20,
@@ -50,7 +53,7 @@ export const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 1}
   },
   button: {
-    backgroundColor: '#000',
+    backgroundColor: '#071f56',
     color: '#fff',
     borderRadius: 2
   },

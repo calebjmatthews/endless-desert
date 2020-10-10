@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
-import { StyleSheet, Text, View, Button, FlatList, TouchableOpacity }
-  from 'react-native';
+import { Text, View, Button, FlatList, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 
