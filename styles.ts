@@ -6,6 +6,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  containerStretch: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
   panelFlex: {
     display: 'flex',
     flexDirection: 'row',
@@ -56,9 +63,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#071f56',
     color: '#fff',
     borderRadius: 2
-  },
-  stretch: {
-    flexGrow: 1
   },
 
   statusBarSpacer: {
