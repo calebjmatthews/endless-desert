@@ -7,5 +7,9 @@ vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.KNOWLEDGE,
   quantity: 100
 }));
+vaultStarting.increaseResource(new Resource({
+  type: RESOURCE_TYPES.SEEDS,
+  quantity: 20
+}));
 
 export { vaultStarting };
