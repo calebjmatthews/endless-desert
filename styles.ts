@@ -57,6 +57,9 @@ export const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 2
   },
+  stretch: {
+    flexGrow: 1
+  },
 
   statusBarSpacer: {
     height: 50
@@ -73,5 +76,12 @@ export const styles = StyleSheet.create({
   buttonResearchWrapper: {
     width: 110,
     marginRight: 10
+  },
+  quantityContainer: {
+    alignSelf: 'stretch',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
   }
 });
