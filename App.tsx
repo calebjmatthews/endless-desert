@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, TouchableOpacity }
+  from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import rootReducer from './reducers';
 const store = createStore(rootReducer);
@@ -15,27 +17,65 @@ import { styles } from './styles';
 import { buildingsStarting } from './instances/buildings';
 
 export default function App() {
-  const [selectedTab, selectTab] = useState('Resources');
-  let tab = <ResourcesComponent />;
+  const [selectedTab, selectTab] = useState("Resources");
+  const [dropdownExpanded, dropdownSet] = useState(false);
 
-  useEffect(() => {
-    switch(selectedTab) {
-      case 'Buildings':
-      tab = <BuildingsComponent buildings={buildingsStarting} />;
-      case 'Resources':
-      tab = <ResourcesComponent />
-      break;
+  function renderDropdown(expanded: boolean, dropdownPress: Function) {
+    if (expanded) {
+      return (
+        <FlatList
+          style={styles.dropdownList}
+          data={["Buildings", "Resources", "Researches"]}
+          renderItem={(item) => renderDropdownItem(item, dropdownPress)}
+          keyExtractor={item => item}>
+        </FlatList>
+      );
     }
-  }, [selectedTab])
+    return null;
+  }
+
+  function renderDropdownItem(itemData: any, dropdownPress: Function) {
+    return (
+      <TouchableOpacity style={styles.dropdownListItem}
+        onPress={() => dropdownPress(itemData.item)} >
+        <Text>{itemData.item}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  function dropdownPress(tabName: string) {
+    selectTab(tabName);
+    dropdownSet(false);
+  }
+
+  function renderTab(tabName: string) {
+    switch(tabName) {
+      case "Buildings":
+      return <BuildingsComponent buildings={buildingsStarting} />;
+      case "Resources":
+      return <ResourcesComponent />
+      case "Researches":
+      return <ResearchesComponent />
+      default:
+      return null;
+    }
+  }
 
   return (
     <Provider store={store}>
-      <View style={styles.container}>
+      <LinearGradient
+        colors={['#f58f7d', '#6a41b4', '#0034aa']}
+        style={styles.container}>
         <HourglassComponent />
         <StatusBar style="auto" />
         <View style={styles.statusBarSpacer}></View>
-        {tab}
-      </View>
+        {renderTab(selectedTab)}
+        <View style={styles.buttonTabWrapper}>
+          <Button title="T" color="#000"
+            onPress={() => { dropdownSet(!dropdownExpanded) }} />
+        </View>
+        {renderDropdown(dropdownExpanded, dropdownPress)}
+      </LinearGradient>
     </Provider>
   );
 }

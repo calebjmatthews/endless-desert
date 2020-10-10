@@ -11,7 +11,7 @@ import Vault from '../models/vault';
 
 function ResourceDescription(props: any) {
   return (
-    <View>
+    <View style={styles.panelFlex}>
       <Text>{props.resource.item.type} x {Math.floor(props.resource.item.quantity)}</Text>
     </View>
   );
@@ -28,7 +28,7 @@ export default function ResourcesComponent() {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.headingWrapper}>
         <Text style={styles.heading1}>Resources</Text>
       </View>
       <FlatList

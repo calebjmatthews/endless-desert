@@ -6,7 +6,7 @@ import Building from '../models/building';
 
 function BuildingDescription(props: any) {
   return (
-    <View>
+    <View style={styles.panelFlex}>
       <Text>{props.building.item.buildingType}</Text>
     </View>
   );
@@ -22,7 +22,7 @@ export default function BuildingsComponent(props: BuildingsProps) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.headingWrapper}>
         <Text style={styles.heading1}>Buildings</Text>
       </View>
       <FlatList

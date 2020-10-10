@@ -43,9 +43,15 @@ export default function ResearchesComponent() {
   }
   return (
     <View style={styles.container}>
-      <View><Text style={styles.heading1}>Research</Text></View>
-      <View><Text>{vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
-          + ' available knowledge'}</Text></View>
+      <View style={styles.headingWrapper}>
+        <Text style={styles.heading1}>Research</Text>
+      </View>
+      <View>
+        <Text style={styles.bareText}>
+          {vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
+            + ' available knowledge'}
+        </Text>
+      </View>
       <FlatList
         data={researchArray}
         renderItem={(item) => renderResearch(item, vault, startClick)}
@@ -63,13 +69,13 @@ function ResearchDescription(props: {research: any, vault: Vault,
     if (researchStatus.status == 'completed') {
       return (
         <View style={styles.buttonResearchWrapper}>
-          <Button title="Completed" color="#841584" disabled onPress={() => {}} />
+          <Button title="Completed" color="#000" disabled onPress={() => {}} />
         </View>
       );
     }
     return (
       <View style={styles.buttonResearchWrapper}>
-        <Button title="Ready" color="#841584"
+        <Button title="Ready" color="#000"
           onPress={() => props.startClick(researchStatus, vault)} />
       </View>
     );
