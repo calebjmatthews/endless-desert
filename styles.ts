@@ -64,6 +64,31 @@ export const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 2
   },
+  modalContainer: {
+    zIndex: 100,
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%'
+  },
+  modalBackground: {
+    position: 'absolute',
+    opacity: 0.5,
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000',
+  },
+  modal: {
+    minWidth: '60%',
+    minHeight: '40%',
+    backgroundColor: '#fff'
+  },
 
   statusBarSpacer: {
     height: 50

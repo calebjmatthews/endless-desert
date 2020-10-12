@@ -12,6 +12,7 @@ import HourglassComponent from './components/hourglass';
 import BuildingsComponent from './components/buildings';
 import ResourcesComponent from './components/resources';
 import ResearchesComponent from './components/researches';
+import ModalHandlerComponent from './components/modal_handler';
 import IconComponent from './components/icon';
 import { styles } from './styles';
 
@@ -68,6 +69,7 @@ export default function App() {
         colors={["#f58f7d", "#6a41b4", "#0034aa"]}
         style={styles.container}>
         <HourglassComponent />
+        <ModalHandlerComponent />
         <StatusBar style="auto" />
         <View style={styles.statusBarSpacer}></View>
         {renderTab(selectedTab)}
