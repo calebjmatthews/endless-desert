@@ -1,13 +1,11 @@
-import BuildingProduction from './building_production';
-import BuildingConsumption from './building_consumption';
-
 export default class BuildingType {
   name: string = '';
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
-  production: BuildingProduction[]|null = null;
-  consumption: BuildingConsumption[]|null = null;
+  cost: {resource: string, quantity: number}[]|null = null;
+  production: {produces: string, rate: number}[]|null = null;
+  consumption: {consumes: string, rate: number}[]|null = null;
 
   constructor(buildingType: BuildingType) {
     Object.assign(this, buildingType);

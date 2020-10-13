@@ -3,6 +3,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 
 export default function IconComponent(props: IconProps) {
   switch(props.provider) {
@@ -13,15 +14,19 @@ export default function IconComponent(props: IconProps) {
     case 'FontAwesome':
     return (
       <IconFontAwesome name={props.name} color={props.color} size={props.size} />
-    )
+    );
     case 'FontAwesome5':
     return (
       <IconFontAwesome5 name={props.name} color={props.color} size={props.size} />
-    )
+    );
     case 'MaterialCommunityIcons':
     return (
       <IconMaterialCommunity name={props.name} color={props.color} size={props.size} />
-    )
+    );
+    case 'MaterialIcons':
+    return (
+      <IconMaterial name={props.name} color={props.color} size={props.size} />
+    );
     default:
     return null;
   }

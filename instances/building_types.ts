@@ -1,6 +1,4 @@
 import BuildingType from '../models/building_type';
-import BuildingProduction from '../models/building_production';
-import BuildingConsumption from '../models/building_consumption';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 
@@ -11,6 +9,7 @@ buildingTypes[BUILDING_TYPES.TRADING_POST] = new BuildingType({
   icon: {provider: 'FontAwesome', name: 'exchange'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff',
+  cost: null,
   production: null,
   consumption: null
 });
@@ -20,6 +19,7 @@ buildingTypes[BUILDING_TYPES.HUT] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'window-closed'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff',
+  cost: null,
   production: null,
   consumption: null
 });
@@ -29,7 +29,8 @@ buildingTypes[BUILDING_TYPES.CISTERN] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
   foregroundColor: '#2196f3',
   backgroundColor: '#fff',
-  production: [new BuildingProduction({produces: RESOURCE_TYPES.WATER, rate: 100})],
+  cost: null,
+  production: [{produces: RESOURCE_TYPES.WATER, rate: 100}],
   consumption: null
 });
 
@@ -38,17 +39,21 @@ buildingTypes[BUILDING_TYPES.LENTIL_FIELD] = new BuildingType({
   icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#76c716',
   backgroundColor: '#fff',
-  production: [new BuildingProduction({produces: RESOURCE_TYPES.LENTILS, rate: 10})],
-  consumption: [new BuildingConsumption({consumes: RESOURCE_TYPES.WATER, rate: 10})]
+  cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
+    {resource: RESOURCE_TYPES.WATER, quantity: 100}],
+  production: [{produces: RESOURCE_TYPES.LENTILS, rate: 10}],
+  consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 10}]
 });
 
 buildingTypes[BUILDING_TYPES.REED_DELTA] = new BuildingType({
   name: BUILDING_TYPES.REED_DELTA,
-  icon: {provider: 'MaterialCommunityIcons', name: 'palm-tree'},
+  icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#76c716',
   backgroundColor: '#fff',
-  production: [new BuildingProduction({produces: RESOURCE_TYPES.REEDS, rate: 10})],
-  consumption: [new BuildingConsumption({consumes: RESOURCE_TYPES.WATER, rate: 5})]
+  cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
+    {resource: RESOURCE_TYPES.WATER, quantity: 10}],
+  production: [{produces: RESOURCE_TYPES.REEDS, rate: 10}],
+  consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 5}]
 });
 
 export { buildingTypes }

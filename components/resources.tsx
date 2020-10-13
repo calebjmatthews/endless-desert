@@ -55,7 +55,7 @@ function ResourceDescription(props: any) {
         foregroundColor={resourceType.foregroundColor}
         backgroundColor={resourceType.backgroundColor}
         iconSize={18} />
-      <View style={styles.containerStretch}>
+      <View style={styles.containerStretchRow}>
         <View>
           <Text>
             {props.resource.item.type}

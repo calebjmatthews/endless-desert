@@ -3,9 +3,11 @@ import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';
 
 import { displayModal } from '../actions/ui';
+import BuildComponent from './build';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -20,7 +22,7 @@ export default function ModalHandlerComponent() {
     return null;
   }
   return (
-    <View style={styles.modalContainer} >
+    <View style={styles.modalContainer}>
       <TouchableOpacity style={styles.modalBackground}
         onPress={() => modalCancel()}>
       </TouchableOpacity>
@@ -33,9 +35,10 @@ function renderModal(modalType: string) {
   switch (modalType) {
     case MODALS.BUILD:
     return (
-      <View style={styles.modal}>
-        <Text>Build!</Text>
-      </View>
+      <LinearGradient style={styles.modal}
+        colors={["#f58f7d", "#6a41b4", "#0034aa"]}>
+        <BuildComponent />
+      </LinearGradient>
     )
     default:
     return null;
