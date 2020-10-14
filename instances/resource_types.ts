@@ -31,4 +31,11 @@ resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
+  name: RESOURCE_TYPES.REEDS,
+  icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
+  foregroundColor: '#76c716',
+  backgroundColor: '#fff',
+});
+
 export { resourceTypes }

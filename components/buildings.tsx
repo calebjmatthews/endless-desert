@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import RootState from '../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, FlatList, Button } from 'react-native';
 import { styles } from '../styles';
 
@@ -10,10 +12,11 @@ import Building from '../models/building';
 import { buildingTypes } from '../instances/building_types';
 import { MODALS } from '../enums/modals';
 
-export default function BuildingsComponent(props: BuildingsProps) {
+export default function BuildingsComponent() {
   const dispatch = useDispatch();
-  const buildingsArray = Object.keys(props.buildings).map((id) => {
-    return props.buildings[id];
+  const buildings = useTypedSelector(state => state.buildings);
+  const buildingsArray = Object.keys(buildings).map((id) => {
+    return buildings[id];
   });
 
   function startBuilding() {
@@ -55,8 +58,4 @@ function BuildingDescription(props: any) {
       <Text>{props.building.item.buildingType}</Text>
     </View>
   );
-}
-
-interface BuildingsProps {
-  buildings: { [id: string] : Building }
 }

@@ -1,5 +1,3 @@
-import * as random from 'random';
-
 class Utils {
   constructor() {
     let seedFunction = this.hash(new Date(Date.now()).valueOf().toString());
@@ -27,7 +25,7 @@ class Utils {
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     }
   }
-  
+
   randHex(len: number) {
     let maxlen = 8;
     let min = Math.pow(16,Math.min(len,maxlen)-1);
@@ -133,6 +131,151 @@ class Utils {
       return aString.slice(0, 1).toUpperCase() + aString.slice(1);
     }
     return null;
+  }
+
+  // Returns a maximum of two units of time, e.g. '1d 4h ' or '3m 45s ', with
+  //  seconds being the smallest unit
+  formatDuration(milliseconds: number, units: number = 0, long: boolean = false):
+    string {
+    if (units < 2) {
+      if (milliseconds > (1000 * 60 * 60 * 24)) {
+        let days: number = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
+        units++;
+        return ((days + (long ? ' days ' : 'd ') +
+          this.formatDuration(milliseconds % (1000 * 60 * 60 * 24), units, long)));
+      }
+      if (milliseconds > (1000 * 60 * 60)) {
+        let days: number  = Math.floor(milliseconds / (1000 * 60 * 60));
+        units++;
+        return ((days + (long ? ' hours ' : 'h ') +
+          this.formatDuration(milliseconds % (1000 * 60 * 60), units, long)));
+      }
+      if (milliseconds > (1000 * 60)) {
+        let days: number  = Math.floor(milliseconds / (1000 * 60));
+        units++;
+        return ((days + (long ? ' minutes ' : 'm ') +
+          this.formatDuration(milliseconds % (1000 * 60), units, long)));
+      }
+      else if (milliseconds > (1000)) {
+        let days: number  = Math.floor(milliseconds / (1000));
+        units++;
+        return ((days + (long ? ' seconds ' : 's ') +
+          this.formatDuration(milliseconds % (1000), units, long)));
+      }
+      if (units == 0) {
+        return (long ? '0 seconds ' : '0s ');
+      }
+    }
+    return '';
+  }
+
+  // 1234567890 -> 1,234,567,890
+  formatNumberLong(number: number): string {
+    let strNumber = Math.round(number).toString();
+    let commaNumber = '';
+    let digitCount = 0;
+    for (let iii = (strNumber.length-1); iii >= 0; iii--) {
+      digitCount++;
+      if (digitCount % 3 == 0) {
+        commaNumber = (',' + strNumber[iii] + commaNumber);
+      }
+      else {
+        commaNumber = (strNumber[iii] + commaNumber);
+      }
+    }
+    if (commaNumber.slice(0, 1) == ',') {
+      return commaNumber.slice(1);
+    }
+    return commaNumber;
+  }
+
+  // 1234567890 -> 1.23B
+  formatNumberShort(number: number): string {
+    const exponents: {[power: number] : string} = {
+      3: 'K',
+      6: 'M',
+      9: 'B',
+      12: 'T',
+      15: 'Qa',
+      18: 'Qi',
+      21: 'Sx',
+      23: 'Sp',
+      25: 'Oc',
+      28: 'No',
+      30: 'De'
+    };
+    if (number < 1000) {
+      return Math.round(number).toString();
+    }
+    let powers = Object.keys(exponents);
+    let strNumber = '';
+    for (let iii = 0; iii < (powers.length-2); iii++) {
+      let power = parseInt(powers[iii]);
+      if (number >= Math.pow(10, power)) {
+        strNumber = (number / Math.pow(10, power)).toFixed(2) + exponents[power];
+      }
+    }
+    return strNumber;
+  }
+
+  numberToRoman(num: number): string {
+    let roman: { [roman: string] : number } = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    };
+    let str = '';
+
+    for (var i of Object.keys(roman)) {
+      var q = Math.floor(num / roman[i]);
+      num -= q * roman[i];
+      str += i.repeat(q);
+    }
+
+    return str;
+  }
+
+  romanToNumber (romanNumeral: string): number|null {
+    var DIGIT_VALUES: { [roman: string] : number } = {
+      I: 1,
+      V: 5,
+      X: 10,
+      L: 50,
+      C: 100,
+      D: 500,
+      M: 1000
+    };
+
+    let result = 0;
+    let input = romanNumeral.split('');
+
+    for (var i = 0; i < input.length; i++) {
+      var currentLetter = DIGIT_VALUES[input[i]];
+      var nextLetter = DIGIT_VALUES[input[i + 1]];
+      if (currentLetter === undefined) {
+        return null;
+      }
+      else {
+        if (currentLetter < nextLetter) {
+          result += nextLetter - currentLetter;
+          i++;
+        } else {
+          result += currentLetter;
+        }
+      }
+    };
+
+    return result;
   }
 }
 

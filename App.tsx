@@ -16,8 +16,6 @@ import ModalHandlerComponent from './components/modal_handler';
 import IconComponent from './components/icon';
 import { styles } from './styles';
 
-import { buildingsStarting } from './instances/buildings';
-
 export default function App() {
   const [selectedTab, selectTab] = useState("Resources");
   const [dropdownExpanded, dropdownSet] = useState(false);
@@ -53,7 +51,7 @@ export default function App() {
   function renderTab(tabName: string) {
     switch(tabName) {
       case "Buildings":
-      return <BuildingsComponent buildings={buildingsStarting} />;
+      return <BuildingsComponent />;
       case "Resources":
       return <ResourcesComponent />
       case "Researches":

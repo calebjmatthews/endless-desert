@@ -3,7 +3,7 @@ import { Text, View, FlatList, Button } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { consumeResource } from '../actions/vault';
+import { consumeResources } from '../actions/vault';
 import { completeResearch } from '../actions/research_status';
 import { styles } from '../styles';
 
@@ -25,10 +25,10 @@ export default function ResearchesComponent() {
     let research = researches[researchStatus.name];
     let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity;
     if (quantity >= research.knowledgeReq) {
-      dispatch(consumeResource(vault, {
+      dispatch(consumeResources(vault, [{
         type: RESOURCE_TYPES.KNOWLEDGE,
         quantity: research.knowledgeReq
-      }));
+      }]));
       dispatch(completeResearch(researchStatus.name));
       researchStatus.status = 'completed';
     }

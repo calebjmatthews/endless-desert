@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import RootState from '../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, FlatList, Button, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import { displayModal } from '../actions/ui';
+import { addBuilding } from '../actions/buildings';
+import { consumeResources } from '../actions/vault';
+import { setRates } from '../actions/rates';
 
 import Building from '../models/building';
 import BuildingType from '../models/building_type';
+import Hourglass from '../models/hourglass';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
 export default function BuildComponent() {
   const dispatch = useDispatch();
+  const buildings = useTypedSelector(state => state.buildings);
+  const vault = useTypedSelector(state => state.vault);
   let buildingsArray = Object.keys(buildingTypes).map((id) => {
     return buildingTypes[id];
   });
@@ -23,8 +32,60 @@ export default function BuildComponent() {
     }
   });
 
+  function build(buildingType: BuildingType) {
+    console.log('buildingType');
+    console.log(buildingType);
+
+    let enoughResources = true;
+    if (buildingType.cost == null) { return null; }
+    let resourceCost: {type: string, quantity: number}[] = [];
+    buildingType.cost.map((aCost) => {
+      if (vault.resources[aCost.resource].quantity < aCost.quantity) {
+        enoughResources = false;
+      }
+      resourceCost.push({type: aCost.resource, quantity: aCost.quantity});
+    });
+    if (enoughResources) {
+      dispatch(consumeResources(vault, resourceCost));
+      
+      let count = countBuildings(buildingType.name, buildings);
+      let suffix = 1;
+      let name = buildingType.name;
+      if (count > 0) {
+        suffix = count+1;
+        name += (' ' + utils.numberToRoman(suffix));
+      }
+      let building = new Building({
+        id: utils.randHex(16),
+        buildingType: buildingType.name,
+        suffix: suffix,
+        name: name
+      });
+      dispatch(addBuilding(building));
+
+      let tempBuildings = Object.assign({}, buildings);
+      tempBuildings[building.id] = building;
+      let newRates = new Hourglass().setRates(tempBuildings);
+      dispatch(setRates(newRates));
+    }
+    else {
+      console.log('Not enough resources!');
+    }
+
+    function countBuildings(buildingName: string,
+      buildings: { [id: string] : Building }) {
+      let count = 0;
+      Object.keys(buildings).map((id) => {
+        if (buildings[id].buildingType == buildingName) {
+          count++;
+        }
+      });
+      return count;
+    }
+  }
+
   function renderBuilding(building: any) {
-    return <BuildingDescription building={building} />
+    return <BuildingDescription building={building} build={build} />
   }
   return (
     <View style={styles.container}>
@@ -56,7 +117,8 @@ function BuildingDescription(props: any) {
         <Text>{buildingType.name}</Text>
         <Text>{renderCost(buildingType.cost)}</Text>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonRowItem}>
+          <TouchableOpacity style={styles.buttonRowItem}
+            onPress={() => props.build(buildingType)}  >
             <Text style={styles.buttonText}>Build</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonRowItem}>
