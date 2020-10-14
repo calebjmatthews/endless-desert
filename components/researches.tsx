@@ -19,8 +19,13 @@ export default function ResearchesComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
-  const researchArray = Object.keys(researchStatus.status).map((name) => {
+  let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
+  });
+  researchArray = researchArray.filter((r) => {
+    if (r.status == 'visible' || r.status == 'completed') {
+      return r;
+    }
   });
 
   function startClick(researchStatus: {name: string, status: string}, vault: Vault) {
