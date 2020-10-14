@@ -5,7 +5,7 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 let vaultStarting = new Vault({ resources: {} });
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.KNOWLEDGE,
-  quantity: 100
+  quantity: 10
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.SEEDS,

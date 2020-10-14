@@ -122,7 +122,7 @@ function BuildingDescription(props: any) {
             <Text style={styles.buttonText}>{' Start'}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonRowItem}>
-            <IconComponent provider="MaterialCommunityIcons" name="magnify"
+            <IconComponent provider="FontAwesome5" name="angle-down"
               color="#fff" size={16} style={styles.headingIcon} />
             <Text style={styles.buttonText}>{' Info'}</Text>
           </TouchableOpacity>

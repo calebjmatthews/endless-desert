@@ -98,6 +98,9 @@ export const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 2
   },
+  buttonDisabled: {
+    backgroundColor: '#97a4c3'
+  },
   buttonText: {
     textAlign: 'center',
     fontSize: 14,

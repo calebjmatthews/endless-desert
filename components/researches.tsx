@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, View, FlatList, Button } from 'react-native';
+import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet }
+  from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import { consumeResources } from '../actions/vault';
 import { completeResearch } from '../actions/research_status';
+import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { styles } from '../styles';
 
@@ -72,39 +74,59 @@ export default function ResearchesComponent() {
 
 function ResearchDescription(props: {research: any, vault: Vault,
   startClick: Function}) {
-  const researchStatus = props.research.item;
+  const researchStatus: {name: string, status: string} = props.research.item;
+  const research = researches[researchStatus.name];
 
-  function renderButton(researchStatus: {name: string, status: string}, vault: Vault) {
-    if (researchStatus.status == 'completed') {
-      return (
-        <View style={styles.buttonResearchWrapper}>
-          <Button title="Completed" color="#071f56" disabled onPress={() => {}} />
+  return (
+    <View style={styles.panelFlex}>
+      <BadgeComponent
+        provider={research.icon.provider}
+        name={research.icon.name}
+        foregroundColor={research.foregroundColor}
+        backgroundColor={research.backgroundColor}
+        iconSize={18} />
+      <View style={styles.containerStretchColumn}>
+        <Text>{research.name}</Text>
+        <Text>{renderCost(researchStatus)}</Text>
+        <View style={styles.buttonRow}>
+          {renderStart()}
+          <TouchableOpacity style={styles.buttonRowItem}>
+            <IconComponent provider="FontAwesome5" name="angle-down"
+              color="#fff" size={16} />
+            <Text style={styles.buttonText}>{' Info'}</Text>
+          </TouchableOpacity>
         </View>
-      );
-    }
-    return (
-      <View style={styles.buttonResearchWrapper}>
-        <Button title="Ready" color="#071f56"
-          onPress={() => props.startClick(researchStatus, vault)} />
       </View>
-    );
-  }
+    </View>
+  );
 
   function renderCost(researchStatus: {name: string, status: string}) {
     const research = researches[researchStatus.name];
     if (researchStatus.status == 'visible') {
-      return <View><Text>{'Cost: ' + research.knowledgeReq + ' knowledge'}</Text></View>;
+      return <View><Text>{'To start: ' + research.knowledgeReq + ' knowledge'}</Text></View>;
     }
     return null;
   }
 
-  return (
-    <View style={styles.panelFlex}>
-      {renderButton(researchStatus, props.vault)}
-      <View>
-        <View><Text>{researchStatus.name}</Text></View>
-        {renderCost(researchStatus)}
-      </View>
-    </View>
-  );
+  function renderStart() {
+    if (researchStatus.status == 'visible') {
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => {props.startClick(researchStatus, props.vault)}} >
+          <IconComponent provider="MaterialCommunityIcons" name="feather"
+            color="#fff" size={16} />
+          <Text style={styles.buttonText}>{' Start'}</Text>
+        </TouchableOpacity>
+      );
+    }
+    let buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
+    return (
+      <TouchableOpacity style={buttonStyle}
+        onPress={() => {}} disabled >
+        <IconComponent provider="FontAwesome5" name="check"
+          color="#fff" size={16} />
+        <Text style={styles.buttonText}>{' Done'}</Text>
+      </TouchableOpacity>
+    );
+  }
 }

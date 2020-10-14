@@ -5,14 +5,42 @@ import { BUILDING_TYPES } from '../enums/building_types';
 let researches: { [name: string] : Research } = {};
 researches[RESEARCHES.SCHOLARSHIP] = new Research({
   name: RESEARCHES.SCHOLARSHIP,
+  icon: {provider: 'FontAwesome5', name: 'graduation-cap'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff',
   beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 10,
+  knowledgeReq: 0,
+  unlocksBuilding: null
+});
+
+researches[RESEARCHES.STUDY] = new Research({
+  name: RESEARCHES.STUDY,
+  icon: {provider: 'MaterialCommunityIcons', name: 'magnify'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff',
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SCHOLARSHIP],
+  knowledgeReq: 0,
+  unlocksBuilding: null
+});
+
+researches[RESEARCHES.ANALYSIS] = new Research({
+  name: RESEARCHES.ANALYSIS,
+  icon: {provider: 'MaterialCommunityIcons', name: 'magnify-close'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff',
+  beginsCompleted: false,
+  prereq: [RESEARCHES.STUDY],
+  knowledgeReq: 0,
   unlocksBuilding: null
 });
 
 researches[RESEARCHES.BOTANY] = new Research({
   name: RESEARCHES.BOTANY,
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#76c716',
+  backgroundColor: '#fff',
   beginsCompleted: true,
   prereq: null,
   knowledgeReq: 0,
@@ -21,6 +49,9 @@ researches[RESEARCHES.BOTANY] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
   name: RESEARCHES.LENTIL_FARMING,
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  foregroundColor: '#76c716',
+  backgroundColor: '#fff',
   beginsCompleted: true,
   prereq: [RESEARCHES.BOTANY],
   knowledgeReq: 0,
@@ -29,6 +60,9 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
+  icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
+  foregroundColor: '#76c716',
+  backgroundColor: '#fff',
   beginsCompleted: false,
   prereq: [RESEARCHES.BOTANY],
   knowledgeReq: 50,
