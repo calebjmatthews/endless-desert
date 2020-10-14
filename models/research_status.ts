@@ -28,20 +28,25 @@ export default class ResearchStatus implements ResearchStatusInterface {
   checkAndSetVisible(researches: { [name : string] : Research }) {
     Object.keys(researches).map((name) => {
       let research = researches[name];
-      if (this.status[name] != 'completed') {
-        if (research.prereq == null) {
+      if (research.prereq == null) {
+        if (this.status[name] != 'completed') {
           this.status[name] = 'visible';
         }
-        else {
-          let allCompleted = true;
-          research.prereq.map((prereqName) => {
-            if (this.status[prereqName] != 'completed') {
-              allCompleted = false;
-            }
-          });
-          if (allCompleted == true) {
+      }
+      else {
+        let allCompleted = true;
+        research.prereq.map((prereqName) => {
+          if (this.status[prereqName] != 'completed') {
+            allCompleted = false;
+          }
+        });
+        if (allCompleted == true) {
+          if (this.status[name] != 'completed') {
             this.status[name] = 'visible';
           }
+        }
+        else {
+          this.status[name] = 'hidden';
         }
       }
     });

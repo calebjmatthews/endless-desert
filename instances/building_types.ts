@@ -16,8 +16,8 @@ buildingTypes[BUILDING_TYPES.TRADING_POST] = new BuildingType({
 
 buildingTypes[BUILDING_TYPES.HUT] = new BuildingType({
   name: BUILDING_TYPES.HUT,
-  icon: {provider: 'MaterialCommunityIcons', name: 'window-closed'},
-  foregroundColor: '#2b2b2d',
+  icon: {provider: 'FontAwesome5', name: 'store-alt'},
+  foregroundColor: '#795548',
   backgroundColor: '#fff',
   cost: null,
   production: null,

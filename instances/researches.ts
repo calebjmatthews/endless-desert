@@ -41,9 +41,9 @@ researches[RESEARCHES.BOTANY] = new Research({
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#76c716',
   backgroundColor: '#fff',
-  beginsCompleted: true,
+  beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 0,
+  knowledgeReq: 20,
   unlocksBuilding: null
 });
 
@@ -63,9 +63,9 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#76c716',
   backgroundColor: '#fff',
-  beginsCompleted: false,
+  beginsCompleted: true,
   prereq: [RESEARCHES.BOTANY],
-  knowledgeReq: 50,
+  knowledgeReq: 0,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 
