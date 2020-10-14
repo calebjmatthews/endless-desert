@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, Button } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import IconComponent from './icon';
 import { displayModal } from '../actions/ui';
 
 import Building from '../models/building';
@@ -29,12 +30,18 @@ export default function BuildingsComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <Text style={styles.heading1}>Buildings</Text>
+        <IconComponent provider="FontAwesome5" name="building" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Buildings'}</Text>
       </View>
       <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
         marginLeft: 10}}>
-        <Button title="+ Build" color="#071f56"
-          onPress={() => startBuilding()} />
+        <TouchableOpacity style={styles.buttonLarge}
+          onPress={() => startBuilding()} >
+          <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
+            style={styles.headingIcon} />
+          <Text style={styles.buttonTextLarge}>{' Build'}</Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={buildingsArray}

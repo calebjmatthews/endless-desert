@@ -49,6 +49,9 @@ export const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2}
   },
   dropdownListItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 8,
     margin: -1,
     borderWidth: 1,
@@ -65,12 +68,32 @@ export const styles = StyleSheet.create({
   heading1Inverse: {
     color: '#071f56'
   },
+  headingIcon: {
+    textShadowColor: '#00000080',
+    textShadowRadius: 2,
+    textShadowOffset: {width: 0, height: 2}
+  },
   bareText: {
     color: '#fff',
     textShadowColor: '#000',
     textShadowOffset: {width: 0, height: 1}
   },
   button: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#071f56',
+    color: '#fff',
+    borderRadius: 2
+  },
+  buttonLarge: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingLeft: 16,
     backgroundColor: '#071f56',
     color: '#fff',
     borderRadius: 2
@@ -78,6 +101,12 @@ export const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontSize: 14,
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    color: '#fff'
+  },
+  buttonTextLarge: {
+    textAlign: 'center',
+    fontSize: 16,
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     color: '#fff'
   },
@@ -90,6 +119,10 @@ export const styles = StyleSheet.create({
   },
   buttonRowItem: {
     flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 5,
     marginRight: 5,
     padding: 2,
@@ -130,6 +163,9 @@ export const styles = StyleSheet.create({
     height: 50
   },
   headingWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItem: 'center',
     marginTop: 5,
     marginBottom: 20
   },

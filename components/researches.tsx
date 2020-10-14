@@ -3,8 +3,10 @@ import { Text, View, FlatList, Button } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+
 import { consumeResources } from '../actions/vault';
 import { completeResearch } from '../actions/research_status';
+import IconComponent from './icon';
 import { styles } from '../styles';
 
 import Research from '../models/research';
@@ -44,7 +46,9 @@ export default function ResearchesComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <Text style={styles.heading1}>Research</Text>
+        <IconComponent provider="FontAwesome" name="book" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Research'}</Text>
       </View>
       <View>
         <Text style={styles.bareText}>

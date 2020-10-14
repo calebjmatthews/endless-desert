@@ -25,9 +25,13 @@ export default function App() {
       return (
         <FlatList
           style={styles.dropdownList}
-          data={["Buildings", "Resources", "Researches"]}
+          data={[
+            {name: "Buildings", provider: "FontAwesome5", icon: "building"},
+            {name: "Resources", provider: "FontAwesome5", icon: "cubes"},
+            {name: "Researches", provider: "FontAwesome", icon: "book"}
+          ]}
           renderItem={(item) => renderDropdownItem(item, dropdownPress)}
-          keyExtractor={item => item}>
+          keyExtractor={item => item.name}>
         </FlatList>
       );
     }
@@ -35,10 +39,12 @@ export default function App() {
   }
 
   function renderDropdownItem(itemData: any, dropdownPress: Function) {
+    let i = itemData.item;
     return (
       <TouchableOpacity style={styles.dropdownListItem}
-        onPress={() => dropdownPress(itemData.item)} >
-        <Text>{itemData.item}</Text>
+        onPress={() => dropdownPress(i.name)} >
+        <IconComponent provider={i.provider} name={i.icon} color="#000" size={14} />
+        <Text>{' ' + i.name}</Text>
       </TouchableOpacity>
     );
   }

@@ -5,6 +5,7 @@ import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
+import IconComponent from './icon';
 import BadgeComponent from './badge';
 
 import ResourceType from '../models/resource_type';
@@ -25,7 +26,9 @@ export default function ResourcesComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <Text style={styles.heading1}>Resources</Text>
+        <IconComponent provider="FontAwesome5" name="cubes" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Resources'}</Text>
       </View>
       <FlatList
         data={resourcesArray}
@@ -42,7 +45,7 @@ function ResourceDescription(props: any) {
   if (props.rates.netRates[props.resource.item.type]) {
     let sign = '+';
     if (rate < 0) { sign = '-'; }
-    rate = (sign + (rate / 60).toFixed(1) + '/s');
+    rate = (sign + (Math.round(rate)) + '/m');
   }
   else {
     rate = '-';

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, Button, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import IconComponent from './icon';
 import { displayModal } from '../actions/ui';
 import { addBuilding } from '../actions/buildings';
 import { consumeResources } from '../actions/vault';
@@ -33,9 +34,6 @@ export default function BuildComponent() {
   });
 
   function build(buildingType: BuildingType) {
-    console.log('buildingType');
-    console.log(buildingType);
-
     let enoughResources = true;
     if (buildingType.cost == null) { return null; }
     let resourceCost: {type: string, quantity: number}[] = [];
@@ -47,7 +45,7 @@ export default function BuildComponent() {
     });
     if (enoughResources) {
       dispatch(consumeResources(vault, resourceCost));
-      
+
       let count = countBuildings(buildingType.name, buildings);
       let suffix = 1;
       let name = buildingType.name;
@@ -90,9 +88,9 @@ export default function BuildComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <Text style={styles.heading1}>
-          Build
-        </Text>
+        <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Build'}</Text>
       </View>
       <FlatList
         data={buildingsArray}
@@ -119,10 +117,14 @@ function BuildingDescription(props: any) {
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonRowItem}
             onPress={() => props.build(buildingType)}  >
-            <Text style={styles.buttonText}>Build</Text>
+            <IconComponent provider="MaterialIcons" name="build"
+              color="#fff" size={16} style={styles.headingIcon} />
+            <Text style={styles.buttonText}>{' Start'}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonRowItem}>
-            <Text style={styles.buttonText}>Info</Text>
+            <IconComponent provider="MaterialCommunityIcons" name="magnify"
+              color="#fff" size={16} style={styles.headingIcon} />
+            <Text style={styles.buttonText}>{' Info'}</Text>
           </TouchableOpacity>
         </View>
       </View>

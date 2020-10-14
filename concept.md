@@ -15,6 +15,8 @@ Ideas:
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
   - Chemistry research for Perfumery, need original perfume to be able to duplicate
+  - Logistics research that increases building output if located next to the source of its consumption resources
+  - Logistics research that increases output if group leader lives next to where he/she is working
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.

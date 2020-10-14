@@ -9,23 +9,28 @@ export default function IconComponent(props: IconProps) {
   switch(props.provider) {
     case 'Entypo':
     return (
-      <IconEntypo name={props.name} color={props.color} size={props.size} />
+      <IconEntypo name={props.name} color={props.color} size={props.size}
+        style={props.style} />
     );
     case 'FontAwesome':
     return (
-      <IconFontAwesome name={props.name} color={props.color} size={props.size} />
+      <IconFontAwesome name={props.name} color={props.color} size={props.size}
+        style={props.style} />
     );
     case 'FontAwesome5':
     return (
-      <IconFontAwesome5 name={props.name} color={props.color} size={props.size} />
+      <IconFontAwesome5 name={props.name} color={props.color} size={props.size}
+        style={props.style} />
     );
     case 'MaterialCommunityIcons':
     return (
-      <IconMaterialCommunity name={props.name} color={props.color} size={props.size} />
+      <IconMaterialCommunity name={props.name} color={props.color} size={props.size}
+        style={props.style} />
     );
     case 'MaterialIcons':
     return (
-      <IconMaterial name={props.name} color={props.color} size={props.size} />
+      <IconMaterial name={props.name} color={props.color} size={props.size}
+        style={props.style} />
     );
     default:
     return null;
@@ -36,5 +41,6 @@ interface IconProps {
   provider: string,
   name: string,
   color: string,
-  size: number|undefined
+  size: number|undefined,
+  style?: any
 }
