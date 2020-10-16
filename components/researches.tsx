@@ -7,6 +7,8 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import { consumeResources } from '../actions/vault';
 import { completeResearch } from '../actions/research_status';
+import { startResearch } from '../actions/research_option_decks';
+import { selectTab } from '../actions/ui';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { styles } from '../styles';
@@ -21,6 +23,8 @@ export default function ResearchesComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const researchOptionDecks =
+    useTypedSelector(state => state.researchOptionDecks);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -38,8 +42,8 @@ export default function ResearchesComponent() {
         type: RESOURCE_TYPES.KNOWLEDGE,
         quantity: research.knowledgeReq
       }]));
-      dispatch(completeResearch(researchStatus.name));
-      researchStatus.status = 'completed';
+      dispatch(startResearch(researchStatus.name));
+      dispatch(selectTab("Researching", researchStatus.name));
     }
     else {
       console.log('Not enough knowledge!');

@@ -3,6 +3,7 @@ import VaultReducer from './vault';
 import ResearchStatusReducer from './research_status';
 import RatesReducer from './rates';
 import BuildingsReducer from './buildings';
+import ResearchOptionDecksReducer from './research_option_decks';
 import UIReducer from './ui';
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   researchStatus: ResearchStatusReducer,
   rates: RatesReducer,
   buildings: BuildingsReducer,
+  researchOptionDecks: ResearchOptionDecksReducer,
   ui: UIReducer
 });
 

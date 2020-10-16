@@ -1,0 +1,5 @@
+export enum OPTION_SPECIFICITY {
+  EXACT = 'EXACT',
+  CATEGORY = 'CATEGORY',
+  TAG = 'TAG'
+}
