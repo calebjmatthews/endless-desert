@@ -3,7 +3,7 @@ export default class ResearchOption {
   appliesTo: string = '';
   difficulty: number = 0;
   description: string = '';
-  cost: {specificity: string, type: string, quantity: number}[]|null = null;
+  cost: {specificity: string, type: string, quantity: number}[] = [];
 
   constructor(researchOption: ResearchOption) {
     Object.assign(this, researchOption);

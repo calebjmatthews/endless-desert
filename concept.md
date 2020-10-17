@@ -59,6 +59,40 @@ Researches (see spredsheet):
     - Questline around magic lamp with Djinn inside
   - Mysticism
 
+Research options:
+  - Scholarship:
+    - Use knowledge
+    - Use any material
+    - Use water
+    - Use lentils + water
+    - Use any field notes
+  - General:
+    - Take a break: get new options
+    - Reconsider progress: go back one step in exchange for twice value in knowledge (min 10)
+    - Use knowledge for an extra option for remainder of research
+    - Use knowledge (proportional)
+    - Use high knowledge to produce field notes
+    - Use high knowledge + field notes to reveal hidden research
+    - Use food (proportional)
+    - Use coffee
+  - Botany
+    - Use lentils
+    - Use seeds
+    - Use water
+    - Use any plant
+    - Use sand
+    - Use clay
+    - Use field notes on landscape
+    - Use field notes on plants
+    - Use field notes on animals
+
+Research option flow:
+  - Pull the options specific to the research, then the options for its category and difficulty
+  - Remove the options that have already been used as part of this research
+  - Look at the number of remaining steps: if there are <= steps as research-specific options, only choose from those
+  - If there are >, choose from any in the pool
+  - If there are no options remaining in the pool, restore all previously used options
+
 Leaders:
   - Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
   - Favorite activity: exploration, Secret wish: to see the legendary crystal sea

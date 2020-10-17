@@ -27,7 +27,7 @@ researchOptions[RESEARCH_OPTIONS.A_GUESS] = new ResearchOption({
   appliesTo: RESEARCHES.SCHOLARSHIP,
   difficulty: 0,
   description: ('It\'s not exactly that you\'ve thought this through before, '
-    + 'you know the answer can\'t be too far away.'),
+    + 'but you know the answer can\'t be too far away.'),
   cost: [{specificity: OS.EXACT, type: RTY.KNOWLEDGE, quantity: 8}]
 });
 

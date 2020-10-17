@@ -1,5 +1,7 @@
 export default class Research {
   name: string = '';
+  unlocks: string = '';
+  description: string = '';
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';

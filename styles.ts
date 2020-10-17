@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     opacity: 0.9,
     minWidth: 280,
+    maxWidth: 280,
     minHeight: 50,
     padding: 5,
     margin: 5,
@@ -36,6 +37,32 @@ export const styles = StyleSheet.create({
     shadowColor: '#00000080',
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 2}
+  },
+  panelFlexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    opacity: 0.9,
+    minWidth: 280,
+    maxWidth: 280,
+    minHeight: 50,
+    padding: 5,
+    margin: 5,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    shadowColor: '#00000080',
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 2}
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  column: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   dropdownList: {
     position: 'absolute',
@@ -58,6 +85,17 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#071f56'
   },
+  bodyText: {
+    marginTop: 5,
+    marginBottom: 5,
+    fontSize: 13
+  },
+  bodyTextMed: {
+    maxWidth: 220,
+    marginTop: 5,
+    marginBottom: 5,
+    fontSize: 13
+  },
   heading1: {
     fontSize: 20,
     color: '#fff',
@@ -66,7 +104,11 @@ export const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 2}
   },
   heading1Inverse: {
-    color: '#071f56'
+    color: '#071f56',
+    textShadowColor: '#00000000'
+  },
+  heading2: {
+    fontSize: 16
   },
   headingIcon: {
     textShadowColor: '#00000080',
@@ -161,6 +203,12 @@ export const styles = StyleSheet.create({
     borderColor: '#fff',
     borderRadius: 2
   },
+  emphasis: {
+    fontStyle: 'italic'
+  },
+  break: {
+    marginTop: 10
+  },
 
   statusBarSpacer: {
     height: 50
@@ -187,5 +235,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
+  },
+  headingBadge: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 30,
+    width: 30,
+    margin: 5,
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#071f56',
+    borderRadius: 2
   }
 });
