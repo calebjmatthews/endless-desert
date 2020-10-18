@@ -12,6 +12,7 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
   generalOptions: { [name: string] : boolean } = {};
   viewedOptions: { [name: string] : boolean } = {};
   currentOptions: { [name: string] : boolean } = {};
+  paidCosts: { [optionName: string] : string[] } = {};
 
   constructor(researchOptionDeck: ResearchOptionDeckInterface) {
     Object.assign(this, researchOptionDeck);
@@ -67,13 +68,31 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
     return combinedPool[Math.floor(utils.random() * combinedPool.length)];
   }
 
-  finishStep() {
+  costPaid(resourceName: string, optionName: string) {
+    if (!this.paidCosts[optionName]) {
+      this.paidCosts[optionName] = [];
+    }
+    this.paidCosts[optionName].push(resourceName);
+    const cost = researchOptions[optionName].cost;
+    let allCostsPaid = true;
+    cost.map((aCost) => {
+      if (!this.paidCosts[optionName].includes(aCost.type)) {
+        allCostsPaid = false;
+      }
+    });
+    if (allCostsPaid) {
+      return 'option completed';
+    }
+    return 'option in progress';
+  }
+
+  completeStep() {
     this.stepsCompleted++;
     if (this.stepsCompleted >= this.stepsNeeded) {
-      return 'completed';
+      return 'step completed';
     }
     this.currentOptions = {};
-    return 'in progress';
+    return 'step in progress';
   }
 }
 
@@ -89,4 +108,5 @@ interface ResearchOptionDeckInterface {
   generalOptions: { [name: string] : boolean };
   viewedOptions: { [name: string] : boolean };
   currentOptions: { [name: string] : boolean };
+  paidCosts: { [optionName: string] : string[] };
 }

@@ -7,8 +7,8 @@ import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
-import { OPTION_SPECIFICITY } from '../enums/option_specificity';
-const OS = OPTION_SPECIFICITY;
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+const OS = RESOURCE_SPECIFICITY;
 
 let researchOptions: { [name: string] : ResearchOption } = {};
 

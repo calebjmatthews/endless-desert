@@ -11,13 +11,21 @@ export function startResearch(researchName: string) {
     preferredOptions: {},
     generalOptions: {},
     viewedOptions: {},
-    currentOptions: {}
+    currentOptions: {},
+    paidCosts: {}
   });
   newROD.beginStep(1);
 
   return {
     type: UPSERT_RESEARCH_OPTION_DECK,
     researchOptionDeck: newROD
+  };
+}
+
+export function updateResearchOptionDeck(rod: ResearchOptionDeck) {
+  return {
+    type: UPSERT_RESEARCH_OPTION_DECK,
+    researchOptionDeck: rod
   };
 }
 

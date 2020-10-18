@@ -1,4 +1,6 @@
 import Resource from './resource';
+import { resourceTypes } from '../instances/resource_types';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default class Vault {
   resources: { [type: string] : Resource } = {};
@@ -42,6 +44,46 @@ export default class Vault {
       return new Resource({type: r.type, quantity: diff})
     }
     return null;
+  }
+
+  getQuantity(specificity: string, type: string) {
+    switch(specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      return this.getTypeQuantity(type);
+
+      case RESOURCE_SPECIFICITY.TAG:
+      return this.getTagQuantity(type);
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      return this.getCategoryQuantity(type);
+
+      default:
+      return this.getTypeQuantity(type);
+    }
+  }
+
+  getTypeQuantity(name: string) {
+    return this.resources[name].quantity;
+  }
+
+  getTagQuantity(tagName: string) {
+    let quantity = 0;
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].tags.includes(tagName)) {
+        quantity += this.resources[resourceName].quantity;
+      }
+    });
+    return quantity;
+  }
+
+  getCategoryQuantity(catName: string) {
+    let quantity = 0;
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].category == catName) {
+        quantity += this.resources[resourceName].quantity;
+      }
+    });
+    return quantity;
   }
 }
 

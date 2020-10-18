@@ -159,8 +159,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
-    alignSelf: 'stretch',
-    marginTop: 2
+    alignSelf: 'stretch'
   },
   buttonRowItem: {
     flexGrow: 1,
@@ -168,6 +167,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 2,
     marginLeft: 5,
     marginRight: 5,
     padding: 2,

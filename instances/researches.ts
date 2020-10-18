@@ -77,7 +77,7 @@ researches[RESEARCHES.BOTANY] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
   name: RESEARCHES.LENTIL_FARMING,
-  unlocks: ('Unlocks lentil fields.'),
+  unlocks: ('Researching this unlocks lentil fields.'),
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
   icon: {provider: 'FontAwesome', name: 'pagelines'},
@@ -94,7 +94,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
-  unlocks: ('Unlocks reed deltas.'),
+  unlocks: ('Researching this unlocks reed deltas.'),
   description: ('Reeds grow in river mud, and are incredibly useful. '
     + 'They can be a fuel source, thatch for roofs, raw material for rough fabirc, '
     + 'pulp for papyrus, and probably other things you haven\'t even heard of.'),

@@ -8,34 +8,35 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { displayModal } from '../actions/ui';
+import { consumeResources } from '../actions/vault';
+import { updateResearchOptionDeck } from '../actions/research_option_decks';
+import { completeResearch } from '../actions/research_status';
 
 import ResearchOption from '../models/research_option';
 import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import ResourceCategory from '../models/resource_category';
+import Vault from '../models/vault';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
-import { OPTION_SPECIFICITY } from '../enums/option_specificity';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default function ResearchingComponent() {
   const dispatch = useDispatch();
   const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const valueSelected = useTypedSelector(state => state.ui.valueSelected);
+  const vault = useTypedSelector(state => state.vault);
   const research = researches[valueSelected];
   const rod = researchOptionDecks[valueSelected];
-  console.log('rod');
-  console.log(rod);
   let optionsArray: ResearchOption[] = Object.keys(rod.currentOptions).map((name) => {
     return researchOptions[name];
   });
-  console.log('optionsArray');
-  console.log(optionsArray);
 
   function renderOption(option: any) {
-    return <OptionDescription option={option} />
+    return <OptionDescription option={option} vault={vault} applyCost={applyCost} />
   }
   return (
     <View style={styles.container}>
@@ -72,11 +73,34 @@ export default function ResearchingComponent() {
       </FlatList>
     </View>
   );
+
+  function applyCost(aCost: {specificity: string, type: string, quantity: number},
+    optionName: string) {
+    console.log('aCost');
+    console.log(aCost);
+    if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
+      dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+      afterApplyCost(aCost, optionName);
+    }
+  }
+
+  function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
+    optionName: string) {
+    let rod = researchOptionDecks[valueSelected];
+    const oResult = rod.costPaid(aCost.type, optionName);
+    if (oResult == 'option completed') {
+      const sResult = rod.completeStep();
+      if (sResult == 'step completed') {
+        if (rod.stepsNeeded <= rod.stepsCompleted) {
+          dispatch(completeResearch(valueSelected));
+        }
+      }
+    }
+    dispatch(updateResearchOptionDeck(rod));
+  }
 }
 
 function OptionDescription(props: any) {
-  console.log('props');
-  console.log(props);
   let option: ResearchOption = props.option.item;
   return (
     <View style={styles.panelFlexColumn}>
@@ -86,26 +110,38 @@ function OptionDescription(props: any) {
       <View>
         <Text style={styles.bodyText}>{option.description}</Text>
         <Text>{'Cost:'}</Text>
-        <View style={styles.buttonRow}>
-          {renderCost(option.cost)}
+        <View>
+          {renderCost(option.cost, props.vault, props.applyCost, option.name)}
         </View>
       </View>
     </View>
   );
 
-  function renderCost(cost: {specificity: string, type: string, quantity: number}[]) {
+  function renderCost(cost: {specificity: string, type: string, quantity: number}[],
+    vault: Vault, applyCost: Function, optionName: string) {
     return cost.map((aCost) => {
       let resource = getMatchingResource(aCost.specificity, aCost.type);
+      let resourceQuantity =
+        Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
+      let buttonStyle = styles.buttonRowItem;
+      let buttonDisabled = false;
+      if (resourceQuantity < aCost.quantity) {
+        // @ts-ignore
+        buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
+        buttonDisabled = true;
+      }
       return (
-        <TouchableOpacity key={aCost.type} style={styles.buttonRowItem}
-          onPress={() => {}}  >
+        <TouchableOpacity key={aCost.type} style={buttonStyle}
+          disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
           <BadgeComponent
             provider={resource.icon.provider}
             name={resource.icon.name}
             foregroundColor={resource.foregroundColor}
             backgroundColor={resource.backgroundColor}
             iconSize={16} />
-          <Text style={styles.buttonText}>{aCost.quantity + ' ' + resource.name}</Text>
+          <Text style={styles.buttonText}>
+            {aCost.quantity + ' (of ' + resourceQuantity + ') ' + resource.name}
+          </Text>
         </TouchableOpacity>
       );
     })
@@ -115,13 +151,13 @@ function OptionDescription(props: any) {
   function getMatchingResource(specificity: string, type: string):
     ResourceType|ResourceTag|ResourceCategory {
     switch(specificity) {
-      case OPTION_SPECIFICITY.EXACT:
+      case RESOURCE_SPECIFICITY.EXACT:
       return resourceTypes[type];
 
-      case OPTION_SPECIFICITY.TAG:
+      case RESOURCE_SPECIFICITY.TAG:
       return resourceTags[type];
 
-      case OPTION_SPECIFICITY.CATEGORY:
+      case RESOURCE_SPECIFICITY.CATEGORY:
       return resourceCategories[type];
 
       default:

@@ -1,4 +1,4 @@
-export enum OPTION_SPECIFICITY {
+export enum RESOURCE_SPECIFICITY {
   EXACT = 'EXACT',
   CATEGORY = 'CATEGORY',
   TAG = 'TAG'
