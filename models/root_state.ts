@@ -10,7 +10,8 @@ export default interface RootState {
     netRates: Rate };
   buildings: { [id: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
-  ui: {tabSelected: string, valueSelected: string, modalDisplayed: string|null};
+  ui: {tabSelected: string, valueSelected: any, modalDisplayed: string|null,
+    modalStage: string, modalValue: any};
 }
 
 interface Rate { [resourceName: string] : number };

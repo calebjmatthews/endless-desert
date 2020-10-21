@@ -55,12 +55,37 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 2}
   },
-  row: {
+  tileContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  panelTile: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    opacity: 0.9,
+    minWidth: 130,
+    maxWidth: 130,
+    minHeight: 50,
+    padding: 5,
+    margin: 5,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    shadowColor: '#00000080',
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 2}
+  },
+
+  rows: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
   },
-  column: {
+  columns: {
     display: 'flex',
     flexDirection: 'column',
   },
@@ -108,7 +133,8 @@ export const styles = StyleSheet.create({
     textShadowColor: '#00000000'
   },
   heading2: {
-    fontSize: 16
+    fontSize: 16,
+    textAlign: 'center'
   },
   headingIcon: {
     textShadowColor: '#00000080',
@@ -124,9 +150,12 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#071f56',
     color: '#fff',
-    borderRadius: 2
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#071f56'
   },
   buttonLarge: {
     display: 'flex',
@@ -138,10 +167,18 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     backgroundColor: '#071f56',
     color: '#fff',
-    borderRadius: 2
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#071f56'
   },
   buttonDisabled: {
-    backgroundColor: '#97a4c3'
+    backgroundColor: '#97a4c3',
+    borderColor: '#97a4c3'
+  },
+  buttonLight: {
+    backgroundColor: '#fff',
+    borderColor: '#071f56'
   },
   buttonText: {
     textAlign: 'center',
@@ -154,6 +191,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     color: '#fff'
+  },
+  buttonTextDark: {
+    color: '#071f56'
   },
   buttonRow: {
     display: 'flex',
@@ -173,6 +213,9 @@ export const styles = StyleSheet.create({
     padding: 2,
     backgroundColor: '#071f56',
     color: '#fff',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '#071f56',
     borderRadius: 2
   },
   modalContainer: {
@@ -196,7 +239,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   modal: {
-    minWidth: '60%',
+    minWidth: 280,
     minHeight: '40%',
     borderWidth: 2,
     borderStyle: 'solid',

@@ -85,6 +85,26 @@ export default class Vault {
     });
     return quantity;
   }
+
+  getTagResources(tagName: string) {
+    let resources: Resource[] = [];
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].tags.includes(tagName)) {
+        resources.push(this.resources[resourceName]);
+      }
+    });
+    return resources;
+  }
+
+  getCategoryResources(catName: string) {
+    let resources: Resource[] = [];
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].category == catName) {
+        resources.push(this.resources[resourceName]);
+      }
+    });
+    return resources;
+  }
 }
 
 interface VaultInterface {

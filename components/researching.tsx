@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -7,7 +7,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { displayModal } from '../actions/ui';
+import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
@@ -23,17 +23,29 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { MODALS } from '../enums/modals';
 
 export default function ResearchingComponent() {
   const dispatch = useDispatch();
   const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const valueSelected = useTypedSelector(state => state.ui.valueSelected);
+  const modalStage = useTypedSelector(state => state.ui.modalStage);
+  const modalValue = useTypedSelector(state => state.ui.modalValue);
   const vault = useTypedSelector(state => state.vault);
   const research = researches[valueSelected];
   const rod = researchOptionDecks[valueSelected];
   let optionsArray: ResearchOption[] = Object.keys(rod.currentOptions).map((name) => {
     return researchOptions[name];
   });
+
+  useEffect(() => {
+    if (modalStage == 'resolving') {
+      console.log('modalValue');
+      console.log(modalValue);
+      afterApplyCost(modalValue.aCost, modalValue.optionName);
+      dispatch(displayModalValue(null, 'closed', null));
+    }
+  }, [modalStage]);
 
   function renderOption(option: any) {
     return <OptionDescription option={option} vault={vault} applyCost={applyCost} />
@@ -46,7 +58,7 @@ export default function ResearchingComponent() {
         <Text style={styles.heading1}>{' Step ' + (rod.stepsCompleted+1)}</Text>
       </View>
       <View style={styles.panelFlexColumn}>
-        <View style={styles.row}>
+        <View style={styles.rows}>
           <BadgeComponent
             provider={research.icon.provider}
             name={research.icon.name}
@@ -82,14 +94,24 @@ export default function ResearchingComponent() {
       dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
       afterApplyCost(aCost, optionName);
     }
+    else {
+      dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open', {aCost, optionName}));
+    }
   }
 
   function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
+    console.log('inside afterApplyCost');
     let rod = researchOptionDecks[valueSelected];
+    console.log('rod');
+    console.log(rod);
     const oResult = rod.costPaid(aCost.type, optionName);
+    console.log('oResult');
+    console.log(oResult);
     if (oResult == 'option completed') {
       const sResult = rod.completeStep();
+      console.log('sResult');
+      console.log(sResult);
       if (sResult == 'step completed') {
         if (rod.stepsNeeded <= rod.stepsCompleted) {
           dispatch(completeResearch(valueSelected));
@@ -140,7 +162,8 @@ function OptionDescription(props: any) {
             backgroundColor={resource.backgroundColor}
             iconSize={16} />
           <Text style={styles.buttonText}>
-            {aCost.quantity + ' (of ' + resourceQuantity + ') ' + resource.name}
+            {aCost.quantity + ' (of ' + Math.floor(resourceQuantity) + ') '
+              + resource.name}
           </Text>
         </TouchableOpacity>
       );

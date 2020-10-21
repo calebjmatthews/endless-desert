@@ -1,3 +1,4 @@
 export enum MODALS {
-  BUILD = 'Build'
+  BUILD = 'Build',
+  RESOURCE_SELECT = 'Resource Select'
 }

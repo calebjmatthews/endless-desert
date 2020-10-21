@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
+import ResourceSelectComponent from './resource_select';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -26,7 +27,10 @@ export default function ModalHandlerComponent() {
       <TouchableOpacity style={styles.modalBackground}
         onPress={() => modalCancel()}>
       </TouchableOpacity>
-      {renderModal(modalType)}
+      <LinearGradient style={styles.modal}
+        colors={["#f58f7d", "#6a41b4", "#0034aa"]}>
+        {renderModal(modalType)}
+      </LinearGradient>
     </View>
   );
 }
@@ -34,12 +38,11 @@ export default function ModalHandlerComponent() {
 function renderModal(modalType: string) {
   switch (modalType) {
     case MODALS.BUILD:
-    return (
-      <LinearGradient style={styles.modal}
-        colors={["#f58f7d", "#6a41b4", "#0034aa"]}>
-        <BuildComponent />
-      </LinearGradient>
-    )
+    return <BuildComponent />;
+
+    case MODALS.RESOURCE_SELECT:
+    return <ResourceSelectComponent />;
+
     default:
     return null;
   }
