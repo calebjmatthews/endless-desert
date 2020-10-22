@@ -16,6 +16,7 @@ import { styles } from '../styles';
 import Research from '../models/research';
 import ResearchStatus from '../models/research_status';
 import Vault from '../models/vault';
+import ResearchOptionDeck from '../models/research_option_deck';
 import { researches } from '../instances/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 
@@ -34,10 +35,14 @@ export default function ResearchesComponent() {
     }
   });
 
-  function startClick(researchStatus: {name: string, status: string}, vault: Vault) {
+  function startClick(researchStatus: {name: string, status: string}, vault: Vault,
+    resume: boolean = false) {
     let research = researches[researchStatus.name];
     let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity;
-    if (quantity >= research.knowledgeReq) {
+    if (resume) {
+      dispatch(selectTab("Researching", researchStatus.name));
+    }
+    else if (quantity >= research.knowledgeReq) {
       dispatch(consumeResources(vault, [{
         type: RESOURCE_TYPES.KNOWLEDGE,
         quantity: research.knowledgeReq
@@ -52,7 +57,7 @@ export default function ResearchesComponent() {
 
   function renderResearch(research: any, vault: Vault, startClick: Function) {
     return <ResearchDescription research={research} vault={vault}
-      startClick={startClick} />
+      startClick={startClick} rods={researchOptionDecks} />
   }
   return (
     <View style={styles.container}>
@@ -77,7 +82,8 @@ export default function ResearchesComponent() {
 }
 
 function ResearchDescription(props: {research: any, vault: Vault,
-  startClick: Function}) {
+  startClick: Function,
+  rods: { [researchName: string] : ResearchOptionDeck}}) {
   const researchStatus: {name: string, status: string} = props.research.item;
   const research = researches[researchStatus.name];
 
@@ -94,10 +100,11 @@ function ResearchDescription(props: {research: any, vault: Vault,
         <Text>{renderCost(researchStatus)}</Text>
         <View style={styles.buttonRow}>
           {renderStart()}
-          <TouchableOpacity style={styles.buttonRowItem}>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+            styles.buttonLight])}>
             <IconComponent provider="FontAwesome5" name="angle-down"
-              color="#fff" size={16} />
-            <Text style={styles.buttonText}>{' Info'}</Text>
+              color="#17265d" size={16} />
+            <Text style={styles.buttonTextDark}>{' Info'}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -113,6 +120,19 @@ function ResearchDescription(props: {research: any, vault: Vault,
   }
 
   function renderStart() {
+    if (props.rods[researchStatus.name]) {
+      let rod = props.rods[researchStatus.name];
+      if (rod.stepsCompleted < rod.stepsNeeded) {
+        return (
+          <TouchableOpacity style={styles.buttonRowItem}
+            onPress={() => {props.startClick(researchStatus, props.vault, true)}} >
+            <IconComponent provider="MaterialCommunityIcons" name="feather"
+              color="#fff" size={16} />
+            <Text style={styles.buttonText}>{' Resume'}</Text>
+          </TouchableOpacity>
+        );
+      }
+    }
     if (researchStatus.status == 'visible') {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
