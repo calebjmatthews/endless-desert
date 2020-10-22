@@ -17,6 +17,7 @@ import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import ResourceCategory from '../models/resource_category';
 import Vault from '../models/vault';
+import ResearchOptionDeck from '../models/research_option_deck';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
@@ -40,22 +41,22 @@ export default function ResearchingComponent() {
 
   useEffect(() => {
     if (modalStage == 'resolving') {
-      console.log('modalValue');
-      console.log(modalValue);
       afterApplyCost(modalValue.aCost, modalValue.optionName);
       dispatch(displayModalValue(null, 'closed', null));
     }
   }, [modalStage]);
 
-  function renderOption(option: any) {
-    return <OptionDescription option={option} vault={vault} applyCost={applyCost} />
+  let title = (' Step ' + (rod.stepsCompleted+1));
+  if (rod.stepsCompleted >= rod.stepsNeeded) {
+    title = 'Completed!';
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
         <IconComponent provider="MaterialCommunityIcons" name="feather"
           color="#fff" size={20} style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Step ' + (rod.stepsCompleted+1)}</Text>
+        <Text style={styles.heading1}>{title}</Text>
       </View>
       <View style={styles.panelFlexColumn}>
         <View style={styles.rows}>
@@ -86,10 +87,13 @@ export default function ResearchingComponent() {
     </View>
   );
 
+  function renderOption(option: any) {
+    return <OptionDescription option={option} vault={vault} applyCost={applyCost}
+      rod={rod} />
+  }
+
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
-    console.log('aCost');
-    console.log(aCost);
     if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
       dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
       afterApplyCost(aCost, optionName);
@@ -101,21 +105,17 @@ export default function ResearchingComponent() {
 
   function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
-    console.log('inside afterApplyCost');
     let rod = researchOptionDecks[valueSelected];
-    console.log('rod');
-    console.log(rod);
     const oResult = rod.costPaid(aCost.type, optionName);
-    console.log('oResult');
-    console.log(oResult);
     if (oResult == 'option completed') {
       const sResult = rod.completeStep();
-      console.log('sResult');
-      console.log(sResult);
       if (sResult == 'step completed') {
         if (rod.stepsNeeded <= rod.stepsCompleted) {
           dispatch(completeResearch(valueSelected));
         }
+      }
+      else {
+        rod.beginStep(1);
       }
     }
     dispatch(updateResearchOptionDeck(rod));
@@ -133,25 +133,34 @@ function OptionDescription(props: any) {
         <Text style={styles.bodyText}>{option.description}</Text>
         <Text>{'Cost:'}</Text>
         <View>
-          {renderCost(option.cost, props.vault, props.applyCost, option.name)}
+          {renderCost(option.cost, props.vault, props.applyCost, option.name,
+            props.rod)}
         </View>
       </View>
     </View>
   );
 
   function renderCost(cost: {specificity: string, type: string, quantity: number}[],
-    vault: Vault, applyCost: Function, optionName: string) {
+    vault: Vault, applyCost: Function, optionName: string, rod: ResearchOptionDeck) {
     return cost.map((aCost) => {
       let resource = getMatchingResource(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;
       let buttonDisabled = false;
-      if (resourceQuantity < aCost.quantity) {
+      let paidCost = false;
+      if (rod.paidCosts[optionName]) {
+        rod.paidCosts[optionName].map((cn) => {if (cn == aCost.type) paidCost = true});
+      }
+
+      if (resourceQuantity < aCost.quantity || paidCost) {
         // @ts-ignore
         buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
         buttonDisabled = true;
       }
+      let costText = (aCost.quantity + ' (of ' + Math.floor(resourceQuantity) + ') '
+        + resource.name);
+      if (paidCost) { costText = 'Paid'; }
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
@@ -162,8 +171,7 @@ function OptionDescription(props: any) {
             backgroundColor={resource.backgroundColor}
             iconSize={16} />
           <Text style={styles.buttonText}>
-            {aCost.quantity + ' (of ' + Math.floor(resourceQuantity) + ') '
-              + resource.name}
+            {costText}
           </Text>
         </TouchableOpacity>
       );

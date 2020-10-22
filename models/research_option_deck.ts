@@ -92,6 +92,7 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
       return 'step completed';
     }
     this.currentOptions = {};
+    this.paidCosts = {};
     return 'step in progress';
   }
 }

@@ -93,6 +93,17 @@ Research option flow:
   - If there are >, choose from any in the pool
   - If there are no options remaining in the pool, restore all previously used options
 
+Option cost application:
+  - If specificity is exact, deduct material at once
+  - If specificity is tag or category, open resource selection modal
+  - Check if all costs have been fulfilled, if so mark research completed and change component to "Finished!"
+  - If not, add research option paid (research option name -> cost type) cost object to research options deck
+
+Resource selection:
+  - Only show matching resources, sorted with highest quantity first
+  - If only one matching resource exists, have it auto-selected
+  - Can manually enter in quantity after selecting, but auto-fills to cost quantity
+
 Leaders:
   - Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
   - Favorite activity: exploration, Secret wish: to see the legendary crystal sea
