@@ -3,5 +3,6 @@ export enum RESEARCH_OPTIONS {
   A_GUESS = 'A Guess',
   PRODUCTIVE_DESTRUCTION = 'Productive Destruction',
   VARIETY_IN_APPROACH = 'Variety in Approach',
-  A_SNACK = 'A Snack'
+  A_SNACK = 'A Snack',
+  CASUAL_INSPECTION = 'Casual Inspection'
 }

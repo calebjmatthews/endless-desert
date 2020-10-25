@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet }
+import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet, ScrollView }
   from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
@@ -8,7 +8,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { consumeResources } from '../actions/vault';
 import { completeResearch } from '../actions/research_status';
 import { startResearch } from '../actions/research_option_decks';
-import { selectTab } from '../actions/ui';
+import { selectTab, displayModalValue } from '../actions/ui';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { styles } from '../styles';
@@ -19,6 +19,8 @@ import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
 import { researches } from '../instances/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+import { MODALS } from '../enums/modals';
+import { RESEARCHES } from '../enums/researches';
 
 export default function ResearchesComponent() {
   const dispatch = useDispatch();
@@ -34,6 +36,80 @@ export default function ResearchesComponent() {
       return r;
     }
   });
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.headingWrapper}>
+        <IconComponent provider="FontAwesome" name="book" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Research'}</Text>
+      </View>
+      {renderActions()}
+      <View>
+        <Text style={styles.bareText}>
+          {vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
+            + ' available knowledge'}
+        </Text>
+      </View>
+      <FlatList
+        data={researchArray}
+        renderItem={(item) => renderResearch(item, startClick)}
+        keyExtractor={research => research.name}>
+      </FlatList>
+    </View>
+  );
+
+  function renderResearch(research: any, startClick: Function) {
+    return <ResearchDescription research={research} vault={vault}
+      startClick={startClick} rods={researchOptionDecks} />
+  }
+
+  function renderActions() {
+    let actions = researchStatus.actions['Researches'];
+    if (actions) {
+      return (
+        <ScrollView>
+          {renderActionItems(actions)}
+        </ScrollView>
+      );
+    }
+    return null;
+  }
+
+  function renderActionItems(actionNames: string[]) {
+    return actionNames.map((actionName) => {
+      let research = researches[actionName];
+      let label = 'Start';
+      if (actionName == RESEARCHES.STUDY) { label = 'Examine'; }
+      else if (actionName == RESEARCHES.ANALYSIS) { label = 'Analyze'; }
+      return (
+        <View key={actionName} style={styles.panelFlex}>
+          <View style={styles.containerStretchColumn}>
+            <View style={{width: '100%'}}>
+              <Text style={{textAlign: 'center'}}>
+                {'Action: ' + research.name}
+              </Text>
+            </View>
+            <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.buttonRowItem}
+              onPress={() => { actionClick(actionName) }}>
+              <IconComponent provider={research.icon.provider}
+                name={research.icon.name}
+                color="#fff" size={16} />
+              <Text style={styles.buttonText}>{label}</Text>
+            </TouchableOpacity>
+              <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+                styles.buttonLight])}>
+                <IconComponent provider="FontAwesome5" name="angle-down"
+                  color="#17265d" size={16} />
+                <Text style={styles.buttonTextDark}>{' Info'}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      );
+    });
+  }
 
   function startClick(researchStatus: {name: string, status: string}, vault: Vault,
     resume: boolean = false) {
@@ -55,30 +131,10 @@ export default function ResearchesComponent() {
     }
   }
 
-  function renderResearch(research: any, vault: Vault, startClick: Function) {
-    return <ResearchDescription research={research} vault={vault}
-      startClick={startClick} rods={researchOptionDecks} />
+  function actionClick(actionName: string) {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
+      actionName));
   }
-  return (
-    <View style={styles.container}>
-      <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome" name="book" color="#fff" size={20}
-          style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Research'}</Text>
-      </View>
-      <View>
-        <Text style={styles.bareText}>
-          {vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
-            + ' available knowledge'}
-        </Text>
-      </View>
-      <FlatList
-        data={researchArray}
-        renderItem={(item) => renderResearch(item, vault, startClick)}
-        keyExtractor={research => research.name}>
-      </FlatList>
-    </View>
-  );
 }
 
 function ResearchDescription(props: {research: any, vault: Vault,

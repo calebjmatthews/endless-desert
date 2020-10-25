@@ -9,6 +9,7 @@ import { styles } from '../styles';
 import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
+import ResourceSelectOneComponent from './resource_select_one';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -42,6 +43,9 @@ function renderModal(modalType: string) {
 
     case MODALS.RESOURCE_SELECT:
     return <ResourceSelectComponent />;
+
+    case MODALS.RESOURCE_SELECT_ONE:
+    return <ResourceSelectOneComponent />;
 
     default:
     return null;

@@ -60,4 +60,14 @@ researchOptions[RESEARCH_OPTIONS.A_SNACK] = new ResearchOption({
     {specificity: OS.TAG, type: RTA.DRINK, quantity: 10}]
 });
 
+researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.CASUAL_INSPECTION,
+  appliesTo: RESEARCHES.STUDY,
+  difficulty: 0,
+  description: ('At least it starts as a casual inspection. '
+    + 'The closer you look at these lentils, this single bushel of dried beans, '
+    + 'the more you discover. Who knew?'),
+  cost: [{specificity: OS.EXACT, type: RTY.LENTILS, quantity: 1}]
+});
+
 export { researchOptions };

@@ -1,18 +1,20 @@
-import { COMPLETE_RESEARCH } from '../actions/research_status';
+import { COMPLETE_RESEARCH, STUDY_RESOURCE } from '../actions/research_status';
 import ResearchStatus from '../models/research_status';
 
 import { researchStatusStarting } from '../instances/research_status';
-import { researches } from '../instances/researches';
 
 export default function (researchStatus: ResearchStatus = researchStatusStarting,
   action: any = null) {
 	switch(action.type) {
     case COMPLETE_RESEARCH:
-    let newRS = new ResearchStatus(researchStatus);
-    newRS.status[action.name] = 'completed';
-    newRS.checkAndSetVisible(researches);
-    return newRS;
-    break;
+    let newResearchRS = new ResearchStatus(researchStatus);
+    newResearchRS.setCompleted(action.name);
+    return newResearchRS;
+
+    case STUDY_RESOURCE:
+    let newResourceRS = new ResearchStatus(researchStatus);
+    newResourceRS.studyResource(action.resourceName);
+    return newResourceRS;
 
 		default:
 		return researchStatus;
