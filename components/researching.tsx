@@ -7,6 +7,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import ProgressBarComponent from './progress_bar';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
@@ -68,7 +69,6 @@ export default function ResearchingComponent() {
             iconSize={18} />
           <Text style={styles.heading2}>{rod.researchName}</Text>
         </View>
-
         <View>
           <View>
             <Text style={styles.emphasis}>{research.unlocks}</Text>
@@ -76,6 +76,7 @@ export default function ResearchingComponent() {
             <Text style={styles.bodyText}>{research.description}</Text>
           </View>
         </View>
+        <ProgressBarComponent numer={rod.stepsCompleted} denom={rod.stepsNeeded} />
       </View>
       <View style={styles.break}></View>
       <Text style={styles.bareText}>{'- Options -'}</Text>

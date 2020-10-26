@@ -291,5 +291,33 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#071f56',
     borderRadius: 2
+  },
+
+  progressBarContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  progressBarWrapper: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    width: '100%',
+    height: 14,
+    padding: 2,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#071f56',
+    borderRadius: 5
+  },
+  progressBar: {
+    height: 6,
+    backgroundColor: '#071f56',
+    borderRadius: 3
+  },
+  progressBarLabel: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
   }
 });
