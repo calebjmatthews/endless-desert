@@ -4,7 +4,8 @@ import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { createStore } from 'redux';
-import { Text, View, Button, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, Button, FlatList, TouchableOpacity, ScrollView }
+  from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab } from '../actions/ui';
@@ -80,7 +81,11 @@ export default function App() {
       <ModalHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
-      {renderTab(tabSelected)}
+      <View style={styles.scrollWrapper}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, height: 480}}>
+          {renderTab(tabSelected)}
+        </ScrollView>
+      </View>
       <View style={styles.buttonTabWrapper}>
         <TouchableOpacity style={styles.button}
           onPress={() => { dropdownSet(!dropdownExpanded) }} >

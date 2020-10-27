@@ -68,9 +68,9 @@ export default function ResearchesComponent() {
     let actions = researchStatus.actions['Researches'];
     if (actions) {
       return (
-        <ScrollView>
+        <View>
           {renderActionItems(actions)}
-        </ScrollView>
+        </View>
       );
     }
     return null;

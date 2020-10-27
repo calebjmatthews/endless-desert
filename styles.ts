@@ -21,6 +21,9 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center'
   },
+  scrollWrapper: {
+    flex: 1
+  },
   panelFlex: {
     display: 'flex',
     flexDirection: 'row',
@@ -259,7 +262,7 @@ export const styles = StyleSheet.create({
   headingWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    alignItem: 'center',
+    alignItems: 'center',
     marginTop: 5,
     marginBottom: 20
   },
