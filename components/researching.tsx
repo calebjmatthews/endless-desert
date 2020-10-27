@@ -8,7 +8,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
-import { displayModalValue } from '../actions/ui';
+import { displayModalValue, selectTab } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
@@ -53,7 +53,8 @@ export default function ResearchingComponent() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={StyleSheet.flatten([styles.container,
+      {'justifyContent': 'flex-start'}])}>
       <View style={styles.headingWrapper}>
         <IconComponent provider="MaterialCommunityIcons" name="feather"
           color="#fff" size={20} style={styles.headingIcon} />
@@ -79,14 +80,37 @@ export default function ResearchingComponent() {
         <ProgressBarComponent numer={rod.stepsCompleted} denom={rod.stepsNeeded} />
       </View>
       <View style={styles.break}></View>
-      <Text style={styles.bareText}>{'- Options -'}</Text>
-      <FlatList
-        data={optionsArray}
-        renderItem={renderOption}
-        keyExtractor={option => option.name}>
-      </FlatList>
+      {renderOptions()}
     </View>
   );
+
+  function renderOptions() {
+    if (rod.stepsCompleted < rod.stepsNeeded) {
+      return (
+        <>
+          <Text style={styles.bareText}>{'- Options -'}</Text>
+          <FlatList
+            data={optionsArray}
+            renderItem={renderOption}
+            keyExtractor={option => option.name}>
+          </FlatList>
+        </>
+      );
+    }
+    return (
+      <View style={styles.panelFlex}>
+        <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+          {'justifyContent': 'center'}])}
+          onPress={() => { backClick(); }} >
+          <IconComponent provider="FontAwesome5" name="arrow-left"
+            color="#fff" size={16} style={styles.headingIcon} />
+          <Text style={styles.buttonText}>
+            {' Back'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 
   function renderOption(option: any) {
     return <OptionDescription option={option} vault={vault} applyCost={applyCost}
@@ -120,6 +144,10 @@ export default function ResearchingComponent() {
       }
     }
     dispatch(updateResearchOptionDeck(rod));
+  }
+
+  function backClick() {
+    dispatch(selectTab('Researches'));
   }
 }
 
