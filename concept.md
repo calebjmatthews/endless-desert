@@ -2,7 +2,7 @@ Incremental idle game about exploration and discovery in an endless desert
 
 Ideas:
   - Basic resources: water, reeds, clay, sand, influence as currency.
-  - Foods: Wheat, lentils, figs, dates, fish, bread, beer, onions, garlic, cheese, butter, spices.
+  - Foods: Grain, lentils, figs, dates, fish, bread, beer, onions, garlic, cheese, butter, spices.
   - Animals: Oxen, hens, fish, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
   - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, and gunpowder.
@@ -17,6 +17,7 @@ Ideas:
   - Chemistry research for Perfumery, need original perfume to be able to duplicate
   - Logistics research that increases building output if located next to the source of its consumption resources
   - Logistics research that increases output if group leader lives next to where he/she is working
+  - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -147,15 +148,15 @@ Starting game state:
   - Buildings: one trading post, one hut, one cistern, one lentil field
 
 Example game state:
-  - Buildings: one town center, four houses, one cistern, one lentil field, two wheat field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
-  - Initial products are: 110 water, 11 lentils, 11 wheat, 11 oxen, 11 fish, 33 reeds, 11 clay, 22 sand
-  - Intermediate consumption is: 10 water -> 11 lentils, 20 water -> 22 wheat, 30 water + 10 wheat -> 11 oxen, 10 water -> 11 fish, 2 oxen + 5 water -> 16 cheese, 10 lentils + 2 water + 2 reeds -> 11 lentil soup, 10 wheat + 2 water + 2 reeds -> 11 bread, 10 fish + 2 reeds -> 11 baked fish, 10 reeds -> 11 roofing, 10 reeds -> 11 papyrus, 10 clay -> 11 bricks, 10 sand + 2 reeds -> 11 glass, 10 glass + 2 reeds -> 16 lenses
-  - Final products are -19 water, 1 lentils, 2 wheat, 9 oxen, 1 fish, 3 reeds, 1 clay, 12 sand, 6 cheese, 1 lentil soup, 1 bread, 1 baked fish, 11 papyrus, 11 roofing, 11 clay bricks, 1 glass, 16 lenses
+  - Buildings: one town center, four houses, one cistern, one lentil field, two grain field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
+  - Initial products are: 110 water, 11 lentils, 11 grain, 11 oxen, 11 fish, 33 reeds, 11 clay, 22 sand
+  - Intermediate consumption is: 10 water -> 11 lentils, 20 water -> 22 grain, 30 water + 10 grain -> 11 oxen, 10 water -> 11 fish, 2 oxen + 5 water -> 16 cheese, 10 lentils + 2 water + 2 reeds -> 11 lentil soup, 10 grain + 2 water + 2 reeds -> 11 bread, 10 fish + 2 reeds -> 11 baked fish, 10 reeds -> 11 roofing, 10 reeds -> 11 papyrus, 10 clay -> 11 bricks, 10 sand + 2 reeds -> 11 glass, 10 glass + 2 reeds -> 16 lenses
+  - Final products are -19 water, 1 lentils, 2 grain, 9 oxen, 1 fish, 3 reeds, 1 clay, 12 sand, 6 cheese, 1 lentil soup, 1 bread, 1 baked fish, 11 papyrus, 11 roofing, 11 clay bricks, 1 glass, 16 lenses
   - Four groups are eating cheese, lentil soup, bread, baked fish, and drinking water; one exploring, one cheese making, one lens crafting, one playing music.
 
 Calculating timestep:
   - "Hourglass" class used to calculate tick related events
   - Production/consumption always calculated using a diff between two timestamps
-  - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and wheat (tier 1, increased by 1)
+  - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
   - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Lower tiered products are given priority. For example, if there was not enough water to fulfill all buildings, a kitchen could be producing bread at 100% capacity but another kitchen could only be producing honeyed bread at 67% capacity (assuming 2/min water was available out of 3/min water requirement)
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted

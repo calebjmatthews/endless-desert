@@ -17,8 +17,7 @@ researches[RESEARCHES.SCHOLARSHIP] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 0,
-  unlocksBuilding: null
+  knowledgeReq: 0
 });
 
 researches[RESEARCHES.STUDY] = new Research({
@@ -35,8 +34,7 @@ researches[RESEARCHES.STUDY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 0,
-  unlocksBuilding: null
+  knowledgeReq: 0
 });
 
 researches[RESEARCHES.ANALYSIS] = new Research({
@@ -54,25 +52,39 @@ researches[RESEARCHES.ANALYSIS] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
-  knowledgeReq: 0,
-  unlocksBuilding: null
+  knowledgeReq: 0
+});
+
+researches[RESEARCHES.CONJECTURE] = new Research({
+  name: RESEARCHES.CONJECTURE,
+  unlocks: ('Researching this gives one more option when researching.'),
+  description: ('As you\'ve grown more experienced you increasingly see '
+    + 'more than one answer to the questions you\'re asking.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'cloud-question'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.SCHOLARSHIP,
+  difficulty: 0,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.STUDY],
+  knowledgeReq: 100
 });
 
 researches[RESEARCHES.BOTANY] = new Research({
   name: RESEARCHES.BOTANY,
   unlocks: ('Researching this opens up new areas of study about life and cultivation.'),
-  description: ('If your settlement is going to support any real number of people '
-    + 'you\'ll have to learn about crops and livestock. Better get started.'),
+  description: ('If your settlement is going to support a serious number of people '
+    + 'you\'ll have to learn about crops. Better get started.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff',
   category: RESEARCHES.BOTANY,
-  difficulty: 0,
+  difficulty: 1,
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 20,
-  unlocksBuilding: null
+  knowledgeReq: 20
 });
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
@@ -81,33 +93,119 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
   icon: {provider: 'FontAwesome', name: 'pagelines'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff',
   category: RESEARCHES.BOTANY,
-  difficulty: 0,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: true,
+  prereq: [RESEARCHES.BOTANY],
+  knowledgeReq: 0
+});
+
+researches[RESEARCHES.SIMPLIFIED_LENTIL_FARMING] = new Research({
+  name: RESEARCHES.SIMPLIFIED_LENTIL_FARMING,
+  unlocks: ('Researching this allows lentil fields to be run without a leader.'),
+  description: ('You\'ve got lentils figured out, now they practically grow '
+    + 'themselves.'),
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  foregroundColor: '#59a500',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BOTANY,
+  difficulty: 1,
   stepsNeeded: 1,
   beginsCompleted: true,
   prereq: [RESEARCHES.BOTANY],
-  knowledgeReq: 0,
-  unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
+  knowledgeReq: 50,
+  simplifiedBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
   unlocks: ('Researching this unlocks reed deltas.'),
   description: ('Reeds grow in river mud, and are incredibly useful. '
-    + 'They can be a fuel source, thatch for roofs, raw material for rough fabirc, '
+    + 'They can be a fuel source, thatch for roofs, raw material for rough fabric, '
     + 'pulp for papyrus, and probably other things you haven\'t even heard of.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff',
   category: RESEARCHES.BOTANY,
-  difficulty: 0,
+  difficulty: 1,
   stepsNeeded: 1,
-  beginsCompleted: true,
+  beginsCompleted: false,
   prereq: [RESEARCHES.BOTANY],
-  knowledgeReq: 0,
+  knowledgeReq: 35,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
+});
+
+researches[RESEARCHES.GRAIN_FARMING] = new Research({
+  name: RESEARCHES.GRAIN_FARMING,
+  unlocks: ('Researching this unlocks grain fields.'),
+  description: ('Grain is more difficult to grow than lentils, and takes grinding '
+    + 'before it can be eaten. But it is useful both as flour and animal feed.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
+  foregroundColor: '#d8be04',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BOTANY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BOTANY],
+  knowledgeReq: 100,
+  unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
+});
+
+researches[RESEARCHES.SIMPLIFIED_GRAIN_FARMING] = new Research({
+  name: RESEARCHES.SIMPLIFIED_GRAIN_FARMING,
+  unlocks: ('Researching this allows grain fields to be run without a leader.'),
+  description: ('You\'ve perfected the tools and learned the tricks, with some '
+    + 'quick instructions a total novice can grow perfect grain.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
+  foregroundColor: '#d8be04',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BOTANY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GRAIN_FARMING],
+  knowledgeReq: 200,
+  simplifiedBuilding: [BUILDING_TYPES.GRAIN_FIELD]
+});
+
+researches[RESEARCHES.OLIVE_FARMING] = new Research({
+  name: RESEARCHES.OLIVE_FARMING,
+  unlocks: ('Researching this unlocks olive groves.'),
+  description: ('You\'ve come across a variety of olive trees that love the '
+    + 'sun and the dry heat. And they can be pressed into an oil that\'s absolutely '
+    + 'delicious.'),
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BOTANY,
+  difficulty: 1,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GRAIN_FARMING],
+  knowledgeReq: 200,
+  unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
+});
+
+researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
+  name: RESEARCHES.SIMPLIFIED_OLIVE_FARMING,
+  unlocks: ('Researching this unlocks olive groves.'),
+  description: ('It was mostly a matter of figuring out grafting and training the '
+    + 'saplings, but you\'ve put together an olive grove that requires almost no '
+    + 'supervision.'),
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BOTANY,
+  difficulty: 1,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.OLIVE_FARMING],
+  knowledgeReq: 400,
+  unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
 export { researches }

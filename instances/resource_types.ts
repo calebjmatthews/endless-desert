@@ -31,7 +31,7 @@ resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD],
   value: 10,
   icon: {provider: 'FontAwesome', name: 'pagelines'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
 
@@ -41,7 +41,7 @@ resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
   tags: [RESOURCE_TAGS.PLANT],
   value: 40,
   icon: {provider: 'MaterialCommunityIcons', name: 'seed'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
 
@@ -51,7 +51,27 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION],
   value: 4,
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
+  name: RESOURCE_TYPES.GRAIN,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.PLANT],
+  value: 15,
+  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
+  foregroundColor: '#d8be04',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
+  name: RESOURCE_TYPES.OLIVES,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.PLANT],
+  value: 25,
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#97c701',
   backgroundColor: '#fff',
 });
 

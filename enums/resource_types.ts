@@ -3,5 +3,7 @@ export enum RESOURCE_TYPES {
   WATER = "Water",
   LENTILS = "Lentils",
   REEDS = "Reeds",
-  SEEDS = "Seeds"
+  SEEDS = "Seeds",
+  GRAIN = "Grain",
+  OLIVES = "Olives"
 }

@@ -37,7 +37,7 @@ buildingTypes[BUILDING_TYPES.CISTERN] = new BuildingType({
 buildingTypes[BUILDING_TYPES.LENTIL_FIELD] = new BuildingType({
   name: BUILDING_TYPES.LENTIL_FIELD,
   icon: {provider: 'FontAwesome', name: 'pagelines'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
     {resource: RESOURCE_TYPES.WATER, quantity: 100}],
@@ -48,12 +48,34 @@ buildingTypes[BUILDING_TYPES.LENTIL_FIELD] = new BuildingType({
 buildingTypes[BUILDING_TYPES.REED_DELTA] = new BuildingType({
   name: BUILDING_TYPES.REED_DELTA,
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
-  foregroundColor: '#76c716',
+  foregroundColor: '#59a500',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
     {resource: RESOURCE_TYPES.WATER, quantity: 10}],
   production: [{produces: RESOURCE_TYPES.REEDS, rate: 10}],
   consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 5}]
+});
+
+buildingTypes[BUILDING_TYPES.GRAIN_FIELD] = new BuildingType({
+  name: BUILDING_TYPES.GRAIN_FIELD,
+  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
+  foregroundColor: '#d8be04',
+  backgroundColor: '#fff',
+  cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
+    {resource: RESOURCE_TYPES.WATER, quantity: 200}],
+  production: [{produces: RESOURCE_TYPES.GRAIN, rate: 10}],
+  consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 15}]
+});
+
+buildingTypes[BUILDING_TYPES.OLIVE_GROVE] = new BuildingType({
+  name: BUILDING_TYPES.OLIVE_GROVE,
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+  cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
+    {resource: RESOURCE_TYPES.WATER, quantity: 300}],
+  production: [{produces: RESOURCE_TYPES.OLIVES, rate: 10}],
+  consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 20}]
 });
 
 export { buildingTypes }

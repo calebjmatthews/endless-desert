@@ -66,6 +66,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   }
 
   setResearchedActions() {
+    this.actions = {};
     let actionRelated: { [researchName : string] : string } = {};
     actionRelated[RESEARCHES.STUDY] = 'Researches';
     actionRelated[RESEARCHES.ANALYSIS] = 'Researches';
