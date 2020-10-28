@@ -22,6 +22,7 @@ Ideas:
     - A double-critical is also possible: 110% change of quality product would = 90% chance of "quality" and 10% change of "exquisite"
     - A "quality" product is worth 10x the value of a normal product, and has the sentence "The quality is impressive." added to the end of the description
     - An "exquisite" product is worth 100x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description
+  - Exploring requires a specific set of provisions: initially this just includes food and drink, but later can include things like rope, medicine, shovels, camels, and special clothing.
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
 
 Where is the bottleneck?
