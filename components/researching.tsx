@@ -51,6 +51,9 @@ export default function ResearchingComponent() {
   if (rod.stepsCompleted >= rod.stepsNeeded) {
     title = 'Completed!';
   }
+  let progress = Math.floor(rod.stepsCompleted / rod.stepsNeeded * 100);
+  let pBarLabel = (progress.toString() + '% (' + rod.stepsCompleted
+    + '/' + rod.stepsNeeded + ')');
 
   return (
     <View style={StyleSheet.flatten([styles.container,
@@ -77,7 +80,7 @@ export default function ResearchingComponent() {
             <Text style={styles.bodyText}>{research.description}</Text>
           </View>
         </View>
-        <ProgressBarComponent numer={rod.stepsCompleted} denom={rod.stepsNeeded} />
+        <ProgressBarComponent progress={progress} label={pBarLabel} />
       </View>
       <View style={styles.break}></View>
       {renderOptions()}
