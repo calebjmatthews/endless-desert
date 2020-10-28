@@ -1,5 +1,6 @@
 import Building from './building';
 import BuildingType from './building_type';
+import Timer from './timer';
 import { buildingTypes } from '../instances/building_types';
 const MS_IN_MIN = 60000;
 
@@ -25,6 +26,21 @@ export default class Hourglass {
     })
 
     return {productionSum, consumptionSum};
+  }
+
+  timerTick(timers: { [name: string] : Timer }) {
+    let resolvedTimers: Timer[] = [];
+    Object.keys(timers).map((timerName) => {
+      let timer = timers[timerName];
+      if (timer.endsAt <= new Date(Date.now()).valueOf()) {
+        resolvedTimers.push(timer);
+      }
+      else {
+        timer.setProgress();
+        timer.setRemainingLabel();
+      }
+    });
+    return resolvedTimers;
   }
 
   setRates(buildings: { [id: string] : Building }) {

@@ -11,10 +11,12 @@ import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources, increaseResources } from '../actions/vault';
 import { studyResource } from '../actions/research_status';
+import { addTimer } from '../actions/timers';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
+import Timer from '../models/timer';
 import { resourceTypes } from '../instances/resource_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -83,11 +85,22 @@ export default function ResourceSelectComponent() {
     if (resourceSelected != null) {
       let resourceType = resourceTypes[resourceSelected];
       if (resourceType.value != null) {
-        let rsConsume = [{type: resourceSelected, quantity: 1}];
         let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE,
           quantity: (resourceType.value)}];
-        dispatch(consumeResources(vault, rsConsume));
-        dispatch(increaseResources(vault, rsIncrease))
+        let duration = (resourceType.value / 10) * 1000;
+        if (duration < 1000) { duration = 1000; }
+        let timer = new Timer({
+          name: RESEARCHES.STUDY,
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + duration),
+          progress: 0,
+          remainingLabel: '',
+          resourcesToIncrease: rsIncrease,
+          resourcesToConsume: [{type: resourceSelected, quantity: 1}],
+          messageToDisplay: (resourceSelected + ' studied for '
+            + resourceType.value + ' knowledge.')
+        });
+        dispatch(addTimer(timer));
         dispatch(studyResource(resourceSelected));
         dispatch(displayModalValue(null, 'closed', null));
       }
