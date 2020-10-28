@@ -11,6 +11,7 @@ import { startResearch } from '../actions/research_option_decks';
 import { selectTab, displayModalValue } from '../actions/ui';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import ProgressBarComponent from './progress_bar';
 import { styles } from '../styles';
 
 import Research from '../models/research';
@@ -28,6 +29,7 @@ export default function ResearchesComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const researchOptionDecks =
     useTypedSelector(state => state.researchOptionDecks);
+  const timers = useTypedSelector(state => state.timers);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -79,36 +81,50 @@ export default function ResearchesComponent() {
   function renderActionItems(actionNames: string[]) {
     return actionNames.map((actionName) => {
       let research = researches[actionName];
-      let label = 'Start';
-      if (actionName == RESEARCHES.STUDY) { label = 'Examine'; }
-      else if (actionName == RESEARCHES.ANALYSIS) { label = 'Analyze'; }
+      let buttonDisabled = false;
+      let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
+        {'flexGrow': 10}]);
+      if (timers[RESEARCHES.STUDY]) {
+        buttonDisabled = true;
+        buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
+          {'flexGrow': 10}]);
+      }
       return (
         <View key={actionName} style={styles.panelFlex}>
           <View style={styles.containerStretchColumn}>
-            <View style={{width: '100%'}}>
-              <Text style={{textAlign: 'center'}}>
-                {'Action: ' + research.name}
-              </Text>
-            </View>
             <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.buttonRowItem}
+            <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
               onPress={() => { actionClick(actionName) }}>
               <IconComponent provider={research.icon.provider}
                 name={research.icon.name}
                 color="#fff" size={16} />
-              <Text style={styles.buttonText}>{label}</Text>
+              <Text style={styles.buttonText}>{' ' + research.name}</Text>
             </TouchableOpacity>
               <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
                 styles.buttonLight])}>
-                <IconComponent provider="FontAwesome5" name="angle-down"
+                <IconComponent provider="FontAwesome5" name="question-circle"
                   color="#17265d" size={16} />
-                <Text style={styles.buttonTextDark}>{' Info'}</Text>
+                <Text style={styles.buttonTextDark}>{' Help'}</Text>
               </TouchableOpacity>
             </View>
+            {renderActionProgressBar(actionName)}
           </View>
         </View>
       );
     });
+  }
+
+  function renderActionProgressBar(actionName: string) {
+    if (timers[actionName]) {
+      return (
+        <>
+          <View style={styles.break} />
+          <ProgressBarComponent progress={timers[actionName].progress}
+            label={timers[actionName].remainingLabel} />
+        </>
+      );
+    }
+    return null;
   }
 
   function startClick(researchStatus: {name: string, status: string}, vault: Vault,

@@ -22,10 +22,10 @@ export default class Timer implements TimerInterface {
     let diff = this.endsAt - new Date(Date.now()).valueOf();
     if (diff > 0) {
       let oDiff = this.endsAt - this.startedAt;
-      this.progress = 1 - diff / oDiff;
+      this.progress = (1 - diff / oDiff) * 100;
     }
     else {
-      this.progress = 1;
+      this.progress = 100;
     }
   }
 
