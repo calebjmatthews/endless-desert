@@ -51,8 +51,10 @@ export default function ResearchingComponent() {
   if (rod.stepsCompleted >= rod.stepsNeeded) {
     title = 'Completed!';
   }
-  let progress = Math.floor(rod.stepsCompleted / rod.stepsNeeded * 100);
-  let pBarLabel = (progress.toString() + '% (' + rod.stepsCompleted
+  let lastProgress = (rod.stepsCompleted - 1) / rod.stepsNeeded;
+  if (lastProgress < 0) { lastProgress = 0; }
+  let progress = rod.stepsCompleted / rod.stepsNeeded;
+  let pBarLabel = (Math.floor(progress * 100).toString() + '% (' + rod.stepsCompleted
     + '/' + rod.stepsNeeded + ')');
 
   return (
@@ -80,7 +82,9 @@ export default function ResearchingComponent() {
             <Text style={styles.bodyText}>{research.description}</Text>
           </View>
         </View>
-        <ProgressBarComponent progress={progress} label={pBarLabel} />
+        <ProgressBarComponent startingProgress={lastProgress}
+          endingProgress={progress} duration={1000}
+          label={pBarLabel} />
       </View>
       <View style={styles.break}></View>
       {renderOptions()}

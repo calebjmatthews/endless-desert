@@ -1,7 +1,7 @@
 Incremental idle game about exploration and discovery in an endless desert
 
 Ideas:
-  - Basic resources: water, reeds, clay, sand, influence as currency.
+  - Basic resources: water, reeds, clay, and sand.
   - Foods: Grain, lentils, figs, dates, fish, bread, beer, onions, garlic, cheese, butter, spices.
   - Animals: Oxen, hens, fish, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
@@ -10,19 +10,23 @@ Ideas:
   - Find artifacts by sending out teams of explorers.
   - Groups lead by a named character with various traits that can be persuaded to stay in your settlement by using up influence or gifts.
   - Group leaders have a favorite food, favorite activity, and a secret wish. Fulfilling the secret wish gives a permanent boost to happiness.
-  - Group leaders can equip clothing, a pack (that goes on the back), and a tool. These can affect their quantity of products created, quality of products created, amount of resources consumed when creating a product, bonus when entertaining the town, speed when traveling to an exploration site, ability to disarm traps when exploring, and resilience to damage when exploring
+  - Group leaders can equip clothing, a pack (that goes on the back), and a tool. These can affect their quantity of products created, quality of products created, amount of resources consumed when creating a product, bonus when entertaining the town, speed when traveling to an exploration site, ability to disarm traps when exploring, and resilience to damage when exploring.
   - Group-specific happiness influenced by quality of house; kind and quality of food, drink, clothing, presence of cats, and treasure; desirability of job. Happiness has a large effect on work performance, is displayed prominently, and can lead to special events.
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
-  - Chemistry research for Perfumery, need original perfume to be able to duplicate
-  - Logistics research that increases building output if located next to the source of its consumption resources
-  - Logistics research that increases output if group leader lives next to where he/she is working
+  - Chemistry research for Perfumery, need original perfume to be able to duplicate.
+  - Logistics research that increases building output if located next to the source of its consumption resources.
+  - Logistics research that increases output if group leader lives next to where he/she is working.
   - Product quality:
-    - Products can have something akin to a critical success that produces a "quality" version of the resource
-    - A double-critical is also possible: 110% change of quality product would = 90% chance of "quality" and 10% change of "exquisite"
-    - A "quality" product is worth 10x the value of a normal product, and has the sentence "The quality is impressive." added to the end of the description
-    - An "exquisite" product is worth 100x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description
+    - Products can have something akin to a critical success that produces a "quality" version of the resource.
+    - A double-critical is also possible: 110% change of quality product would = 90% chance of "quality" and 10% change of "exquisite".
+    - A "quality" product is worth 10x the value of a normal product, and has the sentence "The quality is impressive." added to the end of the description.
+    - An "exquisite" product is worth 100x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description.
   - Exploring requires a specific set of provisions: initially this just includes food and drink, but later can include things like rope, medicine, shovels, camels, and special clothing.
+  - Rendering extracts from various materials for perfumery/other uses
+    - Rendering occurs at a crucible. The user can create a repeating pattern of ingredients, and each has set duration to render.
+    - Rendering many things in a short time increases the crucible heat from gentle -> moderate -> strong -> incinerating, where a higher heat can produce a higher quality extract but has a higher chance of destroying the ingredient.
+    -  Strong heat has the best ratio, and while incinerating technically has a higher chance to return a quality extract, it is almost certain to destroy the item.
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
 
 Where is the bottleneck?

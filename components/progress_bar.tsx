@@ -5,21 +5,12 @@ import { styles } from '../styles';
 const MAX_WIDTH = 262;
 
 export default function ProgressBarComponent(props: ProgressBarProps) {
-  const widthAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.timing(
-      widthAnim, { toValue: MAX_WIDTH, duration: 1000, useNativeDriver: false }
-    ).start();
-  }, [widthAnim])
-
-  let percent = (props.progress + '%');
-  let widthStyle = {width: percent};
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarWrapper}>
-        <Animated.View style={{...StyleSheet.flatten([styles.progressBar]),
-          width: widthAnim}} />
+        <Bar startingProgress={props.startingProgress}
+          endingProgress={props.endingProgress}
+          duration={props.duration} />
       </View>
       <View style={styles.progressBarLabel}>
         <Text>{props.label}</Text>
@@ -28,8 +19,37 @@ export default function ProgressBarComponent(props: ProgressBarProps) {
   );
 }
 
+function Bar(props: BarProps) {
+  const widthAnim = useRef(new Animated
+    .Value(props.startingProgress * MAX_WIDTH)).current;
+  console.log('props.startingProgress');
+  console.log(props.startingProgress);
+
+  useEffect(() => {
+    Animated.timing(
+      widthAnim, {
+        toValue: (props.endingProgress * MAX_WIDTH),
+        duration: props.duration,
+        useNativeDriver: true }
+    ).start();
+  }, [props.endingProgress, widthAnim]);
+
+  return (
+    <Animated.View style={{...StyleSheet.flatten([styles.progressBar]),
+      width: widthAnim}} />
+  );
+}
+
 interface ProgressBarProps {
-  progress: number;
+  startingProgress: number;
+  endingProgress: number;
+  duration: number;
   label: string;
+  color?: string;
+}
+interface BarProps {
+  startingProgress: number;
+  endingProgress: number;
+  duration: number;
   color?: string;
 }

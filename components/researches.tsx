@@ -119,7 +119,9 @@ export default function ResearchesComponent() {
       return (
         <>
           <View style={styles.break} />
-          <ProgressBarComponent progress={timers[actionName].progress}
+          <ProgressBarComponent startingProgress={timers[actionName].progress}
+            endingProgress={1}
+            duration={timers[actionName].endsAt - new Date(Date.now()).valueOf()}
             label={timers[actionName].remainingLabel} />
         </>
       );
