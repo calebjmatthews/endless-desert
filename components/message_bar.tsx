@@ -14,12 +14,6 @@ export default function MessageBarComponent() {
   const messages = useTypedSelector(state => state.ui.messages);
   let message = messages[messages.length-1];
   if (!message) {
-    // text: string = '';
-    // type: string = '';
-    // timestamp: Date = new Date(Date.now());
-    // icon: {provider: string, name: string} = {provider: '', name: ''};
-    // foregroundColor: string = '#000';
-    // backgroundColor: string = '#fff';
     message = new Message({
       text: 'The air smells like the white sand, baking in the sun.',
       type: '',

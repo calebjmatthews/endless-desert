@@ -8,7 +8,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
-import { displayModalValue, selectTab } from '../actions/ui';
+import { displayModalValue, selectTab, addMessage } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
@@ -19,6 +19,7 @@ import ResourceTag from '../models/resource_tag';
 import ResourceCategory from '../models/resource_category';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
+import Message from '../models/message';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
@@ -138,12 +139,21 @@ export default function ResearchingComponent() {
   function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
     let rod = researchOptionDecks[valueSelected];
+    let research = researches[rod.researchName];
     const oResult = rod.costPaid(aCost.type, optionName);
     if (oResult == 'option completed') {
       const sResult = rod.completeStep();
       if (sResult == 'step completed') {
         if (rod.stepsNeeded <= rod.stepsCompleted) {
           dispatch(completeResearch(valueSelected));
+          dispatch(addMessage(new Message({
+            text: ('I finished researching ' + research.name + '.'),
+            type: '',
+            timestamp: new Date(Date.now()),
+            icon: research.icon,
+            foregroundColor: research.foregroundColor,
+            backgroundColor: research.backgroundColor
+          })));
         }
       }
       else {
