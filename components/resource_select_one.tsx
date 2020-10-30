@@ -97,6 +97,7 @@ export default function ResourceSelectComponent() {
           remainingLabel: '',
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected, quantity: 1}],
+          buildingToBuild: null,
           messageToDisplay: ('I studied ' + resourceSelected + ' for '
             + resourceType.value + ' knowledge.'),
           iconToDisplay: resourceType.icon,

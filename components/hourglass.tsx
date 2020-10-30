@@ -5,18 +5,23 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { increaseResources, consumeResources } from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { removeTimer } from '../actions/timers';
+import { addBuilding } from '../actions/buildings';
 import { addMessage } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
 import Message from '../models/message';
+import Building from '../models/building';
 import { buildingsStarting } from '../instances/buildings';
+import { buildingTypes } from '../instances/building_types';
+import { utils } from '../utils';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
   const timers = useTypedSelector(state => state.timers);
+  const buildings = useTypedSelector(state => state.buildings);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const hourglass = new Hourglass();
 
@@ -31,6 +36,8 @@ export default function HourglassComponent() {
       let rti: {type: string, quantity: number}[] = [];
       // Resources to consume
       let rtc: {type: string, quantity: number}[] = [];
+      let recalcRates: boolean = false;
+      let tempBuildings = Object.assign({}, buildings);
       if (rates) {
         const results = hourglass.calculate(rates, lastTimestamp);
         let resourceDiffs: {type: string, quantity: number}[] = [];
@@ -46,6 +53,25 @@ export default function HourglassComponent() {
         }
         if (timer.resourcesToConsume.length > 0) {
           rtc = combineResources(rtc, timer.resourcesToConsume);
+        }
+        if (timer.buildingToBuild) {
+          let buildingType = buildingTypes[timer.buildingToBuild];
+          let count = countBuildings(buildingType.name, buildings);
+          let suffix = 1;
+          let name = buildingType.name;
+          if (count > 0) {
+            suffix = count+1;
+            name += (' ' + utils.numberToRoman(suffix));
+          }
+          let building = new Building({
+            id: utils.randHex(16),
+            buildingType: buildingType.name,
+            suffix: suffix,
+            name: name
+          });
+          dispatch(addBuilding(building));
+          tempBuildings[building.id] = building;
+          recalcRates = true;
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({
@@ -65,6 +91,10 @@ export default function HourglassComponent() {
       }
       if (rtc.length > 0) {
         dispatch(consumeResources(vault, rtc));
+      }
+      if (recalcRates) {
+        let newRates = new Hourglass().setRates(tempBuildings);
+        dispatch(setRates(newRates));
       }
       setLastTimestamp(new Date(Date.now()).valueOf());
     }, 100);
@@ -88,4 +118,15 @@ function combineResources(resources: {type: string, quantity: number}[],
     }
   });
   return resources;
+}
+
+function countBuildings(buildingName: string,
+  buildings: { [id: string] : Building }) {
+  let count = 0;
+  Object.keys(buildings).map((id) => {
+    if (buildings[id].buildingType == buildingName) {
+      count++;
+    }
+  });
+  return count;
 }

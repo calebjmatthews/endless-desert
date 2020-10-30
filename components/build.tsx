@@ -11,10 +11,12 @@ import { displayModal } from '../actions/ui';
 import { addBuilding } from '../actions/buildings';
 import { consumeResources } from '../actions/vault';
 import { setRates } from '../actions/rates';
+import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
 import BuildingType from '../models/building_type';
 import Hourglass from '../models/hourglass';
+import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -37,48 +39,32 @@ export default function BuildComponent() {
     let enoughResources = true;
     if (buildingType.cost == null) { return null; }
     let resourceCost: {type: string, quantity: number}[] = [];
+    let totalValue = 0;
     buildingType.cost.map((aCost) => {
       if (vault.resources[aCost.resource].quantity < aCost.quantity) {
         enoughResources = false;
       }
       resourceCost.push({type: aCost.resource, quantity: aCost.quantity});
     });
-    if (enoughResources) {
-      dispatch(consumeResources(vault, resourceCost));
-
-      let count = countBuildings(buildingType.name, buildings);
-      let suffix = 1;
-      let name = buildingType.name;
-      if (count > 0) {
-        suffix = count+1;
-        name += (' ' + utils.numberToRoman(suffix));
-      }
-      let building = new Building({
-        id: utils.randHex(16),
-        buildingType: buildingType.name,
-        suffix: suffix,
-        name: name
-      });
-      dispatch(addBuilding(building));
-
-      let tempBuildings = Object.assign({}, buildings);
-      tempBuildings[building.id] = building;
-      let newRates = new Hourglass().setRates(tempBuildings);
-      dispatch(setRates(newRates));
+    if (enoughResources && buildingType.duration) {
+      dispatch(addTimer(new Timer({
+        name: 'Build',
+        startedAt: new Date(Date.now()).valueOf(),
+        endsAt: (new Date(Date.now()).valueOf() + buildingType.duration * 1000),
+        progress: 0,
+        remainingLabel: '',
+        resourcesToIncrease: [],
+        resourcesToConsume: resourceCost,
+        buildingToBuild: buildingType.name,
+        messageToDisplay: ('We built a new ' + buildingType.name + '.'),
+        iconToDisplay: buildingType.icon,
+        iconForegroundColor: buildingType.foregroundColor,
+        iconBackgroundColor: buildingType.backgroundColor
+      })));
+      dispatch(displayModal(null));
     }
     else {
       console.log('Not enough resources!');
-    }
-
-    function countBuildings(buildingName: string,
-      buildings: { [id: string] : Building }) {
-      let count = 0;
-      Object.keys(buildings).map((id) => {
-        if (buildings[id].buildingType == buildingName) {
-          count++;
-        }
-      });
-      return count;
     }
   }
 

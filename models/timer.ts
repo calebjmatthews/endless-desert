@@ -12,6 +12,7 @@ export default class Timer implements TimerInterface {
   remainingLabel: string = '';
   resourcesToIncrease: {type: string, quantity: number}[] = [];
   resourcesToConsume: {type: string, quantity: number}[] = [];
+  buildingToBuild: string|null = null;
   messageToDisplay: string|null = null;
   iconToDisplay: {provider: string, name: string}|null = null;
   iconForegroundColor: string|null = null;
@@ -51,6 +52,7 @@ interface TimerInterface {
   remainingLabel: string;
   resourcesToIncrease: {type: string, quantity: number}[];
   resourcesToConsume: {type: string, quantity: number}[];
+  buildingToBuild: string|null;
   messageToDisplay: string|null;
   iconToDisplay: {provider: string, name: string}|null;
   iconForegroundColor: string|null;
