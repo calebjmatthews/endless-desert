@@ -13,6 +13,9 @@ export default class Timer implements TimerInterface {
   resourcesToIncrease: {type: string, quantity: number}[] = [];
   resourcesToConsume: {type: string, quantity: number}[] = [];
   messageToDisplay: string|null = null;
+  iconToDisplay: {provider: string, name: string}|null = null;
+  iconForegroundColor: string|null = null;
+  iconBackgroundColor: string|null = null;
 
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
@@ -49,4 +52,7 @@ interface TimerInterface {
   resourcesToIncrease: {type: string, quantity: number}[];
   resourcesToConsume: {type: string, quantity: number}[];
   messageToDisplay: string|null;
+  iconToDisplay: {provider: string, name: string}|null;
+  iconForegroundColor: string|null;
+  iconBackgroundColor: string|null;
 }

@@ -22,8 +22,6 @@ export default function ProgressBarComponent(props: ProgressBarProps) {
 function Bar(props: BarProps) {
   const widthAnim = useRef(new Animated
     .Value(props.startingProgress * MAX_WIDTH)).current;
-  console.log('props.startingProgress');
-  console.log(props.startingProgress);
 
   useEffect(() => {
     Animated.timing(

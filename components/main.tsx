@@ -16,6 +16,7 @@ import ResourcesComponent from '../components/resources';
 import ResearchesComponent from '../components/researches';
 import ResearchingComponent from '../components/researching';
 import ModalHandlerComponent from '../components/modal_handler';
+import MessageBarComponent from '../components/message_bar';
 import IconComponent from '../components/icon';
 import { styles } from '../styles';
 
@@ -76,16 +77,17 @@ export default function App() {
   return (
     <LinearGradient
       colors={["#f58f7d", "#6a41b4", "#0034aa"]}
-      style={styles.container}>
+      style={styles.mainContainer}>
       <HourglassComponent />
       <ModalHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
-        <ScrollView contentContainerStyle={{flexGrow: 1, height: 480}}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
           {renderTab(tabSelected)}
         </ScrollView>
       </View>
+      <MessageBarComponent />
       <View style={styles.buttonTabWrapper}>
         <TouchableOpacity style={styles.button}
           onPress={() => { dropdownSet(!dropdownExpanded) }} >

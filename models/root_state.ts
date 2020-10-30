@@ -3,6 +3,7 @@ import ResearchStatus from './research_status';
 import Building from './building';
 import ResearchOptionDeck from './research_option_deck';
 import Timer from './timer';
+import Message from './message';
 
 export default interface RootState {
   vault: Vault;
@@ -12,8 +13,9 @@ export default interface RootState {
   buildings: { [id: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };
-  ui: {tabSelected: string, valueSelected: any, modalDisplayed: string|null,
-    modalStage: string, modalValue: any};
+  ui: {tabSelected: string, valueSelected: any,
+    modalDisplayed: string|null, modalStage: string, modalValue: any,
+    messages: Message[]};
 }
 
 interface Rate { [resourceName: string] : number };

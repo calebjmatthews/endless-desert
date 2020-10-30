@@ -22,7 +22,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   scrollWrapper: {
-    flex: 1
+    flex: 1,
+    maxHeight: 473
   },
   panelFlex: {
     display: 'flex',
@@ -83,6 +84,13 @@ export const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2}
   },
 
+  mainContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: '100%',
+    width: '100%'
+  },
   rows: {
     display: 'flex',
     flexDirection: 'row',
@@ -322,5 +330,39 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%'
+  },
+
+  messageBarContainer: {
+    zIndex: 50,
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: 20
+  },
+  messageBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: 20,
+    width: '100%',
+    paddingHorizontal: 10,
+    overflow: 'hidden'
+  },
+  messageBarText: {
+    fontSize: 10,
+    color: '#fff'
+  },
+  messageBarBackground: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 20,
+    backgroundColor: '#000',
+    opacity: 0.35
   }
 });

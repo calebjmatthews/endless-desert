@@ -98,7 +98,10 @@ export default function ResourceSelectComponent() {
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected, quantity: 1}],
           messageToDisplay: (resourceSelected + ' studied for '
-            + resourceType.value + ' knowledge.')
+            + resourceType.value + ' knowledge.'),
+          iconToDisplay: resourceType.icon,
+          iconForegroundColor: resourceType.foregroundColor,
+          iconBackgroundColor: resourceType.backgroundColor
         });
         dispatch(addTimer(timer));
         dispatch(studyResource(resourceSelected));

@@ -5,9 +5,11 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { increaseResources, consumeResources } from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { removeTimer } from '../actions/timers';
+import { addMessage } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
+import Message from '../models/message';
 import { buildingsStarting } from '../instances/buildings';
 
 export default function HourglassComponent() {
@@ -45,8 +47,16 @@ export default function HourglassComponent() {
         if (timer.resourcesToConsume.length > 0) {
           rtc = combineResources(rtc, timer.resourcesToConsume);
         }
-        console.log('timer.messageToDisplay');
-        console.log(timer.messageToDisplay);
+        if (timer.messageToDisplay) {
+          dispatch(addMessage(new Message({
+            text: timer.messageToDisplay,
+            type: '',
+            timestamp: new Date(Date.now()),
+            icon: timer.iconToDisplay,
+            foregroundColor: timer.iconForegroundColor,
+            backgroundColor: timer.iconBackgroundColor
+          })));
+        }
         dispatch(removeTimer(timer));
       });
 

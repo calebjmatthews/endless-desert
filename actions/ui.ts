@@ -1,3 +1,5 @@
+import Message from '../models/message';
+
 export const SELECT_TAB = 'SELECT_TAB';
 export function selectTab(tabSelected: string, valueSelected: any = '') {
   return {
@@ -24,4 +26,12 @@ export function displayModalValue(modalType: string|null, modalStage: string,
     modalStage: modalStage,
     modalValue: modalValue
   };
+}
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export function addMessage(message: Message) {
+  return {
+    type: ADD_MESSAGE,
+    message: message
+  }
 }
