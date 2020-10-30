@@ -341,7 +341,8 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     width: '100%',
-    height: 20
+    height: 20,
+    opacity: 0.95
   },
   messageBar: {
     display: 'flex',

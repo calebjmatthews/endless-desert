@@ -29,7 +29,7 @@ export default function ModalHandlerComponent() {
         onPress={() => modalCancel()}>
       </TouchableOpacity>
       <LinearGradient style={styles.modal}
-        colors={["#f58f7d", "#6a41b4", "#0034aa"]}>
+        colors={["#0034aa", "#6a41b4", "#f58f7d"]}>
         {renderModal(modalType)}
       </LinearGradient>
     </View>

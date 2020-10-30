@@ -76,7 +76,7 @@ export default function App() {
 
   return (
     <LinearGradient
-      colors={["#f58f7d", "#6a41b4", "#0034aa"]}
+      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
       style={styles.mainContainer}>
       <HourglassComponent />
       <ModalHandlerComponent />

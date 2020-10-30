@@ -15,11 +15,11 @@ export default function MessageBarComponent() {
   let message = messages[messages.length-1];
   if (!message) {
     message = new Message({
-      text: 'The air smells like the white sand, baking in the sun.',
+      text: 'The sun sets and the air cools. Finally, some relief.',
       type: '',
       timestamp: new Date(Date.now()),
       icon: {provider: 'FontAwesome5', name: 'sun'},
-      foregroundColor: '#ff6b00',
+      foregroundColor: '#da8088',
       backgroundColor: '#fff'
     })
   }
@@ -29,7 +29,7 @@ export default function MessageBarComponent() {
         <View style={styles.messageBarBackground} />
         <View style={styles.messageBar}>
           {renderBadge(message)}
-          <Text style={styles.messageBarText}>{message.text}</Text>
+          <Text style={styles.messageBarText}>{' ' + message.text}</Text>
         </View>
       </View>
     );
@@ -46,7 +46,8 @@ export default function MessageBarComponent() {
           name={message.icon.name}
           foregroundColor={message.foregroundColor}
           backgroundColor={message.backgroundColor}
-          iconSize={16} />
+          iconSize={16}
+          borderless={true} />
       );
     }
     return null;
