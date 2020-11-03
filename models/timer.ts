@@ -20,6 +20,8 @@ export default class Timer implements TimerInterface {
 
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
+    this.setProgress();
+    this.setRemainingLabel();
   }
 
   setProgress() {

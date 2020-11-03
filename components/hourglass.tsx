@@ -4,7 +4,7 @@ import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { increaseResources, consumeResources } from '../actions/vault';
 import { setRates } from '../actions/rates';
-import { removeTimer } from '../actions/timers';
+import { removeTimer, updateTimers } from '../actions/timers';
 import { addBuilding } from '../actions/buildings';
 import { addMessage } from '../actions/ui';
 
@@ -46,7 +46,8 @@ export default function HourglassComponent() {
         });
         rti = resourceDiffs;
       }
-      let resolvedTimers = hourglass.timerTick(timers);
+      let nTimers = Object.assign({}, timers);
+      let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
         if (timer.resourcesToIncrease.length > 0) {
           rti = combineResources(rti, timer.resourcesToIncrease);
@@ -85,6 +86,7 @@ export default function HourglassComponent() {
         }
         dispatch(removeTimer(timer));
       });
+      dispatch(updateTimers(nTimers));
 
       if (rti.length > 0) {
         dispatch(increaseResources(vault, rti));
@@ -96,6 +98,7 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().setRates(tempBuildings);
         dispatch(setRates(newRates));
       }
+      // Need dispatch for timer label update
       setLastTimestamp(new Date(Date.now()).valueOf());
     }, 100);
   }, [lastTimestamp]);

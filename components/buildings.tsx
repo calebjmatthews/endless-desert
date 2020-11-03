@@ -7,15 +7,18 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import ProgressBarComponent from './progress_bar';
 import { displayModal } from '../actions/ui';
 
 import Building from '../models/building';
+import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
 import { MODALS } from '../enums/modals';
 
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const buildTimer = useTypedSelector(state => state.timers['Build']);
   const buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
   });
@@ -43,6 +46,7 @@ export default function BuildingsComponent() {
           <Text style={styles.buttonTextLarge}>{' Build'}</Text>
         </TouchableOpacity>
       </View>
+      {renderBuildTimer(buildTimer)}
       <FlatList
         data={buildingsArray}
         renderItem={renderBuilding}
@@ -50,6 +54,23 @@ export default function BuildingsComponent() {
       </FlatList>
     </View>
   );
+
+  function renderBuildTimer(timer: Timer) {
+    if (timer) {
+      if (timer.buildingToBuild) {
+        return (
+          <View style={styles.panelFlexColumn}>
+            <Text>{'Building ' + timer.buildingToBuild}</Text>
+            <ProgressBarComponent startingProgress={timer.progress}
+              endingProgress={1}
+              duration={timer.endsAt - new Date(Date.now()).valueOf()}
+              label={timer.remainingLabel} />
+          </View>
+        )
+      }
+    }
+    return null;
+  }
 }
 
 function BuildingDescription(props: any) {

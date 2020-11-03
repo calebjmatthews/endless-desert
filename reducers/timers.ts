@@ -1,5 +1,5 @@
-import { ADD_TIMER, REMOVE_TIMER } from '../actions/timers';
-import Timer from '../models/building';
+import { ADD_TIMER, REMOVE_TIMER, UPDATE_TIMERS } from '../actions/timers';
+import Timer from '../models/timer';
 
 let timersStarting: { [name: string] : Timer } = {};
 export default function (timers = timersStarting, action: any = null) {
@@ -13,6 +13,13 @@ export default function (timers = timersStarting, action: any = null) {
     let newRTimers = Object.assign({}, timers);
     delete newRTimers[action.timer.name];
     return newRTimers;
+
+		case UPDATE_TIMERS:
+		let newULTimers: { [name: string] : Timer } = {};
+		Object.keys(timers).map((timerName) => {
+			newULTimers[timerName] = new Timer(timers[timerName]);
+		});
+		return newULTimers;
 
 		default:
 		return timers;

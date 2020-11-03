@@ -29,7 +29,7 @@ export default function ResearchesComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const researchOptionDecks =
     useTypedSelector(state => state.researchOptionDecks);
-  const timers = useTypedSelector(state => state.timers);
+  const studyTimer = useTypedSelector(state => state.timers[RESEARCHES.STUDY]);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -84,7 +84,7 @@ export default function ResearchesComponent() {
       let buttonDisabled = false;
       let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
         {'flexGrow': 10}]);
-      if (timers[RESEARCHES.STUDY]) {
+      if (studyTimer) {
         buttonDisabled = true;
         buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
           {'flexGrow': 10}]);
@@ -115,14 +115,14 @@ export default function ResearchesComponent() {
   }
 
   function renderActionProgressBar(actionName: string) {
-    if (timers[actionName]) {
+    if (studyTimer) {
       return (
         <>
           <View style={styles.break} />
-          <ProgressBarComponent startingProgress={timers[actionName].progress}
+          <ProgressBarComponent startingProgress={studyTimer.progress}
             endingProgress={1}
-            duration={timers[actionName].endsAt - new Date(Date.now()).valueOf()}
-            label={timers[actionName].remainingLabel} />
+            duration={studyTimer.endsAt - new Date(Date.now()).valueOf()}
+            label={studyTimer.remainingLabel} />
         </>
       );
     }

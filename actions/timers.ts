@@ -15,3 +15,11 @@ export function removeTimer(timer: Timer) {
     timer: timer
   }
 }
+
+export const UPDATE_TIMERS = 'UPDATE_TIMERS';
+export function updateTimers(timers: { [name: string] : Timer }) {
+  return {
+    type: UPDATE_TIMERS,
+    timers: timers
+  }
+}
