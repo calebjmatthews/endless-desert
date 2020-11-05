@@ -26,11 +26,13 @@ export default function BuildComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
   const vault = useTypedSelector(state => state.vault);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   let buildingsArray = Object.keys(buildingTypes).map((id) => {
     return buildingTypes[id];
   });
   buildingsArray = buildingsArray.filter((buildingType) => {
-    if (buildingType.cost != null) {
+    if (buildingType.cost != null
+      && researchStatus.buildingsAvailable[buildingType.name]) {
       return buildingType;
     }
   });
@@ -78,6 +80,7 @@ export default function BuildComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Build'}</Text>
       </View>
+      {renderNothingMessage(buildingsArray)}
       <FlatList
         data={buildingsArray}
         renderItem={renderBuilding}
@@ -85,6 +88,15 @@ export default function BuildComponent() {
       </FlatList>
     </View>
   );
+
+  function renderNothingMessage(buildingsArray: BuildingType[]) {
+    if (buildingsArray.length == 0) {
+      return (
+        <Text style={styles.bareText}>- Nothing available to build -</Text>
+      );
+    }
+    return null;
+  }
 }
 
 function BuildingDescription(props: any) {

@@ -98,9 +98,10 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   category: RESEARCHES.BOTANY,
   difficulty: 1,
   stepsNeeded: 3,
-  beginsCompleted: true,
+  beginsCompleted: false,
   prereq: [RESEARCHES.BOTANY],
-  knowledgeReq: 0
+  knowledgeReq: 0,
+  unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
 
 researches[RESEARCHES.SIMPLIFIED_LENTIL_FARMING] = new Research({
