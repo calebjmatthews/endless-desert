@@ -27,7 +27,13 @@ Ideas:
     - Rendering occurs at a crucible. The user can create a repeating pattern of ingredients, and each has set duration to render.
     - Rendering many things in a short time increases the crucible heat from gentle -> moderate -> strong -> incinerating, where a higher heat can produce a higher quality extract but has a higher chance of destroying the ingredient.
     -  Strong heat has the best ratio, and while incinerating technically has a higher chance to return a quality extract, it is almost certain to destroy the item.
+    -  Perfumes/other products are created by account-specific combinations of extracts.
+    -  Extract types include: Sweet, Sour, Bitter, Brackish, Savory, Spicy, Cooling, Herbal, Earthy, Fungal, Rich, Airy
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
+  - Temporary settlements can be made in the Dreaming, last 24 hours (?) before evaporating and allowing the player to claim one single resource.
+    - These can have unusual resources, such as iron or wood.
+    - They can also be unusually small or large.
+    - Some is way to apply extreme, but selective, benefits. These could include increasing dream build time x 1000, increasing one resource production x 100 (but can't claim that resource), randomizing the output from a certain building, etc.
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -128,14 +134,26 @@ Leaders:
   - Favorite activity: crafting, Secret wish: to wear a robe of golden thread
 
 Caches:
-  - Give random amounts of relics and valuable resources
+  - Give random amounts of relics, which are resources used to construct cosmetics
   - After creating a new file an "Heirloom Cache" is available for super cheap ($0.50?)
-  - Otherwise a "Mysterious Cache" is available every week for $1 and a "Grand Cache" is available every month for $5. Grand Caches include a clue that leads to a unique mysticism research and series of explorations
+  - Otherwise a "Mysterious Cache" is available every week for $1 and a "Grand Cache" is available every month for $5. Grand Caches include a clue that leads to a unique mysticism research and series of explorations that result in more relics
 
 Research:
   - Study action, inspect an item that has not been studied before to gain knowledge
   - Analyse action, Gain knowledge by destroying a resource and studying its parts
   - Field notes are brought back by explorers, even when an exploration fails. There are also ways of gathering field notes about the town itself. Example field notes are "Notes on the Western Stars", "Notes on the Waning Moon", "Notes on Flowing Water", "Notes on Caves Beneath the Sand", etc.
+  - Research difficulty works as follows:
+    - Easiest difficulty uses very small amounts of knowledge, water, and lentils
+    - Easy difficulty uses
+
+Traders:
+  - Individual trader ideas:
+    - European traders that give metals
+    - Scholarly trader that receives knowledge and parchment
+    - Explorering trader that receive food, drink, and exploration supplies
+  - Very early traders: give seeds, wood; receive water, lentils, reeds
+  - Early traders
+  - Middle traders: give iron, gold; receive glass
 
 Tabs:
   - Map, showing locations of each building and the river running through the middle
@@ -170,3 +188,13 @@ Calculating timestep:
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
   - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Lower tiered products are given priority. For example, if there was not enough water to fulfill all buildings, a kitchen could be producing bread at 100% capacity but another kitchen could only be producing honeyed bread at 67% capacity (assuming 2/min water was available out of 3/min water requirement)
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
+
+Beginning of game:
+  - Start with only the "Buildings" tab, but no buildings except "Broken cistern", "Decaying study", "Ruined hut", "Fallow field", "Shattered gate", and "Abandoned market"
+  - Some messages to introduce setting
+  - First action is in the "Build" button: "Repair cistern", which creates the cistern building and unlocks the "Resources" tab
+  - Second action: "Refurbish housing", which creates one hut and the study, which unlocks the "Research" tab
+  - Third action: "Restore field", which creates one lentil field
+  - Event where one leader moves in and unlocks the "Leaders" tab
+  - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
+  - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab

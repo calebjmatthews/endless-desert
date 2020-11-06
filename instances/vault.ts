@@ -28,5 +28,9 @@ vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.LENTILS,
   quantity: 1000
 }));
+vaultStarting.increaseResource(new Resource({
+  type: RESOURCE_TYPES.WOOD_OAK,
+  quantity: 1000
+}));
 
 export { vaultStarting };

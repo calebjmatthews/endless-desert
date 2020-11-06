@@ -75,4 +75,74 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   backgroundColor: '#fff',
 });
 
+resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_OAK,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.WOOD],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#790f0f',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
+  name: RESOURCE_TYPES.CLAY_RED,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.CLAY],
+  value: 15,
+  icon: {provider: 'FontAwesome5', name: 'splotch'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
+  name: RESOURCE_TYPES.BRICKS_RED,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.WOOD],
+  value: 80,
+  icon: {provider: 'FontAwesome', name: 'cubes'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
+  name: RESOURCE_TYPES.THATCH,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [RESOURCE_TAGS.CONSTRUCTION],
+  value: 40,
+  icon: {provider: 'MaterialIcons', name: 'menu'},
+  foregroundColor: '#ceb903',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
+  name: RESOURCE_TYPES.SAND_YELLOW,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.SAND],
+  value: 1,
+  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  foregroundColor: '#f7ea78',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
+  name: RESOURCE_TYPES.GLASS,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [RESOURCE_TAGS.GLASS],
+  value: 120,
+  icon: {provider: 'FontAwesome5', name: 'solar-panel'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
+  name: RESOURCE_TYPES.OLIVE_OIL,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.OIL],
+  value: 250,
+  icon: {provider: 'FontAwesome5', name: 'oil-can'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+});
+
 export { resourceTypes }

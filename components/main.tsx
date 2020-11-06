@@ -32,7 +32,7 @@ export default function App() {
           style={styles.dropdownList}
           data={[
             {name: "Buildings", provider: "FontAwesome5", icon: "building"},
-            {name: "Resources", provider: "FontAwesome5", icon: "cubes"},
+            {name: "Resources", provider: "FontAwesome", icon: "cube"},
             {name: "Researches", provider: "FontAwesome", icon: "book"}
           ]}
           renderItem={(item) => renderDropdownItem(item, dropdownPress)}

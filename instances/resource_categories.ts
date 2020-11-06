@@ -12,7 +12,7 @@ resourceCategories[RESOURCE_CATEGORIES.ETHERIAL] = new ResourceCategory({
 
 resourceCategories[RESOURCE_CATEGORIES.MATERIAL] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.MATERIAL,
-  icon: {provider: 'FontAwesome5', name: 'cubes'},
+  icon: {provider: 'FontAwesome', name: 'cube'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff'
 });

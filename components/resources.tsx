@@ -26,7 +26,7 @@ export default function ResourcesComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome5" name="cubes" color="#fff" size={20}
+        <IconComponent provider="FontAwesome" name="cube" color="#fff" size={20}
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Resources'}</Text>
       </View>
