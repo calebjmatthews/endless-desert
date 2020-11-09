@@ -7,6 +7,7 @@ export enum BUILDING_TYPES {
   GRAIN_FIELD = "Grain Field",
   OLIVE_GROVE = "Olive Grove",
   CLAY_PIT = "Clay Pit",
+  SAND_PIT = "Sand Pit",
   DRYING_YARD = "Drying Yard",
   PRESS = "Press",
   FURNACE = "Furnace"

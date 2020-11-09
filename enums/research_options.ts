@@ -7,7 +7,7 @@ export enum RESEARCH_OPTIONS {
   A_SNACK = 'A Snack',
   CASUAL_INSPECTION = 'Casual Inspection',
 
-  // Botany Lv 1
+  // Biology Lv 1
   LEGUME_DISSECTION = 'Legume Dissection',
   WATER_UNDER_THE_SUN = 'Water Under the Sun',
   BOTANICAL_HEARSAY = 'Botanical Hearsay',

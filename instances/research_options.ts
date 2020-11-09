@@ -72,7 +72,7 @@ researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
   name: RESEARCH_OPTIONS.LEGUME_DISSECTION,
-  appliesTo: RESEARCHES.BOTANY,
+  appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 1,
   description: ('You\'ll need a fair number of lentils you can use as '
     + 'study subjects. And to grow other crops you\'ll need to know about '
@@ -82,7 +82,7 @@ researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.WATER_UNDER_THE_SUN] = new ResearchOption({
   name: RESEARCH_OPTIONS.WATER_UNDER_THE_SUN,
-  appliesTo: RESEARCHES.BOTANY,
+  appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 1,
   description: ('Growing food in a desert means water is your most valuable '
     + 'resource, and the relentlessly burning sun is your greatest enemy.'),
@@ -91,7 +91,7 @@ researchOptions[RESEARCH_OPTIONS.WATER_UNDER_THE_SUN] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.BOTANICAL_HEARSAY] = new ResearchOption({
   name: RESEARCH_OPTIONS.BOTANICAL_HEARSAY,
-  appliesTo: RESEARCHES.BOTANY,
+  appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 1,
   description: ('In the course of your recent research you\'ve picked up an '
     + 'array of general plant knowledge. Now you just need to put it together '
@@ -101,10 +101,10 @@ researchOptions[RESEARCH_OPTIONS.BOTANICAL_HEARSAY] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.GERMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.GERMINATION,
-  appliesTo: RESEARCHES.BOTANY,
+  appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 1,
   description: ('Many of the seeds you plant never do anything, and you don\'t '
-    + 'know why. But with enough experimentation, you suspect you could figure '
+    + 'know why. But with enough experimentation, you could figure '
     + 'it out.'),
   cost: [{specificity: OS.EXACT, type: RTY.SEEDS, quantity: 2},
     {specificity: OS.EXACT, type: RTY.WATER, quantity: 50}]

@@ -94,9 +94,20 @@ buildingTypes[BUILDING_TYPES.CLAY_PIT] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff',
-  cost: [{resource: RESOURCE_TYPES.WOOD_OAK, quantity: 50}],
+  cost: [{resource: RESOURCE_TYPES.REEDS, quantity: 100},
+    {resource: RESOURCE_TYPES.WATER, quantity: 500}],
   production: [{produces: RESOURCE_TYPES.CLAY_RED, rate: 10}],
   consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 10}]
+});
+
+buildingTypes[BUILDING_TYPES.SAND_PIT] = new BuildingType({
+  name: BUILDING_TYPES.SAND_PIT,
+  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  foregroundColor: '#f7ea78',
+  backgroundColor: '#fff',
+  cost: [{resource: RESOURCE_TYPES.BRICKS_RED, quantity: 100}],
+  production: [{produces: RESOURCE_TYPES.SAND_YELLOW, rate: 10}],
+  consumption: null
 });
 
 buildingTypes[BUILDING_TYPES.DRYING_YARD] = new BuildingType({

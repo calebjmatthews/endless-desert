@@ -3,7 +3,7 @@ export enum RESEARCHES {
   STUDY = "Study",
   ANALYSIS = "Analysis",
   CONJECTURE = "Conjecture",
-  BOTANY = "Botany",
+  BIOLOGY = "Biology",
   LENTIL_FARMING = "Lentil Farming",
   SIMPLIFIED_LENTIL_FARMING = "Simplified Lentil Farming",
   REED_CULTIVATION = "Reed Cultivation",
@@ -11,5 +11,12 @@ export enum RESEARCHES {
   SIMPLIFIED_GRAIN_FARMING = "Simplified Grain Farming",
   OLIVE_FARMING = "Olive Farming",
   SIMPLIFIED_OLIVE_FARMING = "Simplified Olive Farming",
-  MULCH = "Mulch"
+  MULCH = "Mulch",
+  PHYSICS = "Physics",
+  CLAY_EXCAVATION = "Clay Excavation",
+  SAND_EXCAVATION = "Sand Excavation",
+  COMPACTION = "Compaction",
+  CHEMISTRY = "Chemistry",
+  DEHYDRATION = "Dehydration",
+  COMBUSTION = "Combustion"
 }

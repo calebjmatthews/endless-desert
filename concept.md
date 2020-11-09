@@ -6,7 +6,7 @@ Ideas:
   - Animals: Oxen, hens, fish, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
   - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, and gunpowder.
-  - Research system that uses lenses to break down any item into concepts, ties together concepts into a completed theory. Research categories: philosophy (general knowledge), botany (farming), zoology (ranching), anthropology (music, entertainment, culture), physics (crafting), astrology (new exploration areas), chemistry (crafting), exaltation (mysteriously enhancing humans), and mysticism (contact with beings from another plane).
+  - Research system that uses lenses to break down any item into concepts, ties together concepts into a completed theory. Research categories: philosophy (general knowledge), biology (farming), zoology (ranching), anthropology (music, entertainment, culture), physics (crafting), astrology (new exploration areas), chemistry (crafting), exaltation (mysteriously enhancing humans), and mysticism (contact with beings from another plane).
   - Find artifacts by sending out teams of explorers.
   - Groups lead by a named character with various traits that can be persuaded to stay in your settlement by using up influence or gifts.
   - Group leaders have a favorite food, favorite activity, and a secret wish. Fulfilling the secret wish gives a permanent boost to happiness.
@@ -44,7 +44,7 @@ Researches (see spredsheet):
 - Start with:
   - Philosophy
     - Analysis
-    - Botany
+    - Biology
       - Lentil Farming
       - Reed Trenching
     - Physics
@@ -53,7 +53,7 @@ Researches (see spredsheet):
       - Clay Digging
 - Philosophy
   - Analysis: Break down new item to gain knowledge
-  - Botany
+  - Biology
     - Lentil Farming
       - Simplified Lentil Farming
     - Reed Growth
@@ -92,7 +92,7 @@ Research options:
     - Use high knowledge + field notes to reveal hidden research
     - Use food (proportional)
     - Use coffee
-  - Botany
+  - Biology
     - Use lentils
     - Use seeds
     - Use water
@@ -150,7 +150,8 @@ Traders:
   - Individual trader ideas:
     - European traders that give metals
     - Scholarly trader that receives knowledge and parchment
-    - Explorering trader that receive food, drink, and exploration supplies
+    - Explorering trader that receives food, drink, and exploration supplies
+    - "Dragon" trader that receives precious metals and jewels
   - Very early traders: give seeds, wood; receive water, lentils, reeds
   - Early traders
   - Middle traders: give iron, gold; receive glass
@@ -190,7 +191,7 @@ Calculating timestep:
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
 
 Beginning of game:
-  - Start with only the "Buildings" tab, but no buildings except "Broken cistern", "Decaying study", "Ruined hut", "Fallow field", "Shattered gate", and "Abandoned market"
+  - Start with only the "Buildings" tab, but no buildings except "Broken cistern", "Decaying shack", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
   - Some messages to introduce setting
   - First action is in the "Build" button: "Repair cistern", which creates the cistern building and unlocks the "Resources" tab
   - Second action: "Refurbish housing", which creates one hut and the study, which unlocks the "Research" tab

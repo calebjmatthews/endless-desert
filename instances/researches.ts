@@ -71,15 +71,15 @@ researches[RESEARCHES.CONJECTURE] = new Research({
   knowledgeReq: 100
 });
 
-researches[RESEARCHES.BOTANY] = new Research({
-  name: RESEARCHES.BOTANY,
+researches[RESEARCHES.BIOLOGY] = new Research({
+  name: RESEARCHES.BIOLOGY,
   unlocks: ('Researching this opens up new areas of study about life and cultivation.'),
   description: ('If your settlement is going to support a serious number of people '
     + 'you\'ll have to learn about crops. Better get started.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 2,
   beginsCompleted: false,
@@ -95,11 +95,11 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BOTANY],
+  prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 0,
   unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
@@ -112,11 +112,11 @@ researches[RESEARCHES.SIMPLIFIED_LENTIL_FARMING] = new Research({
   icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 1,
   beginsCompleted: true,
-  prereq: [RESEARCHES.BOTANY],
+  prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 50,
   simplifiedBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
@@ -130,11 +130,11 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 1,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BOTANY],
+  prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 35,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
@@ -147,11 +147,11 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BOTANY],
+  prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 100,
   unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
 });
@@ -164,7 +164,7 @@ researches[RESEARCHES.SIMPLIFIED_GRAIN_FARMING] = new Research({
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
@@ -182,7 +182,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 5,
   beginsCompleted: false,
@@ -193,20 +193,145 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
 
 researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
   name: RESEARCHES.SIMPLIFIED_OLIVE_FARMING,
-  unlocks: ('Researching this unlocks olive groves.'),
+  unlocks: ('Researching this allows olive groves to be run without a leader.'),
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
     + 'supervision.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
-  category: RESEARCHES.BOTANY,
+  category: RESEARCHES.BIOLOGY,
   difficulty: 1,
   stepsNeeded: 5,
   beginsCompleted: false,
   prereq: [RESEARCHES.OLIVE_FARMING],
   knowledgeReq: 400,
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
+});
+
+researches[RESEARCHES.PHYSICS] = new Research({
+  name: RESEARCHES.PHYSICS,
+  unlocks: ('Researching this opens up new areas of study.'),
+  description: ('Altered materials, new tools, grand architecture, it all feels '
+    + 'tantalizingly close.'),
+  icon: {provider: 'FontAwesome5', name: 'balance-scale'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SCHOLARSHIP],
+  knowledgeReq: 50,
+});
+
+researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
+  name: RESEARCHES.CLAY_EXCAVATION,
+  unlocks: ('Researching this unlocks clay pits.'),
+  description: ('The soil in desert is a dry, cracking clay. But careful application '
+    + 'of water produces a building material for everything from bricks to '
+    + 'ornamental figurines.'),
+  icon: {provider: 'FontAwesome5', name: 'splotch'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.PHYSICS],
+  knowledgeReq: 100,
+  unlocksBuilding: [BUILDING_TYPES.CLAY_PIT]
+});
+
+researches[RESEARCHES.SAND_EXCAVATION] = new Research({
+  name: RESEARCHES.SAND_EXCAVATION,
+  unlocks: ('Researching this unlocks sand pits.'),
+  description: ('You suspect the key to harvesting sand is keeping the pit '
+    + 'from collapsing on your workers, and you\'re working on sturdy brick walls '
+    + 'that should do the trick.'),
+  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  foregroundColor: '#f7ea78',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.PHYSICS],
+  knowledgeReq: 180,
+  unlocksBuilding: [BUILDING_TYPES.SAND_PIT]
+});
+
+researches[RESEARCHES.COMPACTION] = new Research({
+  name: RESEARCHES.COMPACTION,
+  unlocks: ('Researching this unlocks presses.'),
+  description: ('Reeds are useful as they are, but you\'ve heard '
+    + 'that pressing them into a dense sheet makes a good roofing material. '
+    + 'Once you figure out how to do it, you wonder if a thorough compacting may '
+    + 'have even more uses.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.PHYSICS],
+  knowledgeReq: 250,
+  unlocksBuilding: [BUILDING_TYPES.PRESS]
+});
+
+researches[RESEARCHES.CHEMISTRY] = new Research({
+  name: RESEARCHES.CHEMISTRY,
+  unlocks: ('Researching this opens up new areas of study.'),
+  description: ('You\'ve stumbled across a disclipline you call Chemistry. '
+    + 'It involves a lot of careful separation of liquids and salts, and the results '
+    + 'so far aren\'t too impressive. Still, compared with the flashier "Alchemy", '
+    + 'it seems to actually work.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'test-tube'},
+  foregroundColor: '#97c701',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY, RESEARCHES.PHYSICS],
+  knowledgeReq: 80,
+});
+
+researches[RESEARCHES.DEHYDRATION] = new Research({
+  name: RESEARCHES.DEHYDRATION,
+  unlocks: ('Researching this unlocks drying yards.'),
+  description: ('You\'ve surmised that many materials are stronger or easier to '
+    + 'work with when dry. And there\'s a special salt that\'s left once your '
+    + 'cistern\'s water has evaporated you think could help in the process...'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
+  foregroundColor: '#ff0000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.CHEMISTRY],
+  knowledgeReq: 180,
+  unlocksBuilding: [BUILDING_TYPES.DRYING_YARD]
+});
+
+researches[RESEARCHES.COMBUSTION] = new Research({
+  name: RESEARCHES.COMBUSTION,
+  unlocks: ('Researching this unlocks furnaces.'),
+  description: ('You\'ll need more than fire. You\'ll need useful fire. '
+    + 'But if you can get the temperature and air flow high enough, you could start '
+    + 'turning sand into glass! Gods know there\'s enough sand around.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
+  foregroundColor: '#b02727',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.CHEMISTRY],
+  knowledgeReq: 320,
+  unlocksBuilding: [BUILDING_TYPES.FURNACE]
 });
 
 export { researches }
