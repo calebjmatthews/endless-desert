@@ -17,4 +17,18 @@ resourceCategories[RESOURCE_CATEGORIES.MATERIAL] = new ResourceCategory({
   backgroundColor: '#fff'
 });
 
+resourceCategories[RESOURCE_CATEGORIES.MATERIAL_REFINED] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.MATERIAL,
+  icon: {provider: 'MaterialCommunityIcons', name: 'gold'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff'
+});
+
+resourceCategories[RESOURCE_CATEGORIES.ARTISAN_GOOD] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.MATERIAL,
+  icon: {provider: 'MaterialCommunityIcons', name: 'bottle-wine'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff'
+});
+
 export { resourceCategories }

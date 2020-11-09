@@ -152,7 +152,7 @@ Traders:
     - Scholarly trader that receives knowledge and parchment
     - Explorering trader that receives food, drink, and exploration supplies
     - "Dragon" trader that receives precious metals and jewels
-  - Very early traders: give seeds, wood; receive water, lentils, reeds
+  - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
   - Early traders
   - Middle traders: give iron, gold; receive glass
 

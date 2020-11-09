@@ -83,7 +83,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   difficulty: 1,
   stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: null,
+  prereq: [RESEARCHES.SCHOLARSHIP],
   knowledgeReq: 20
 });
 
@@ -92,7 +92,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   unlocks: ('Researching this unlocks lentil fields.'),
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
@@ -109,7 +109,7 @@ researches[RESEARCHES.SIMPLIFIED_LENTIL_FARMING] = new Research({
   unlocks: ('Researching this allows lentil fields to be run without a leader.'),
   description: ('You\'ve got lentils figured out, now they practically grow '
     + 'themselves.'),
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
@@ -179,7 +179,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   description: ('You\'ve come across a variety of olive trees that love the '
     + 'sun and the dry heat. And they can be pressed into an oil that\'s absolutely '
     + 'delicious.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
@@ -197,7 +197,7 @@ researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
     + 'supervision.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
@@ -214,8 +214,8 @@ researches[RESEARCHES.PHYSICS] = new Research({
   unlocks: ('Researching this opens up new areas of study.'),
   description: ('Altered materials, new tools, grand architecture, it all feels '
     + 'tantalizingly close.'),
-  icon: {provider: 'FontAwesome5', name: 'balance-scale'},
-  foregroundColor: '#97c701',
+  icon: {provider: 'FontAwesome', name: 'balance-scale'},
+  foregroundColor: '#000',
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 1,
@@ -250,7 +250,7 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
     + 'from collapsing on your workers, and you\'re working on sturdy brick walls '
     + 'that should do the trick.'),
   icon: {provider: 'FontAwesome5', name: 'mountain'},
-  foregroundColor: '#f7ea78',
+  foregroundColor: '#f9df00',
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 1,

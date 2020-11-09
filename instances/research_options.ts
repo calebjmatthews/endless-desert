@@ -110,4 +110,88 @@ researchOptions[RESEARCH_OPTIONS.GERMINATION] = new ResearchOption({
     {specificity: OS.EXACT, type: RTY.WATER, quantity: 50}]
 });
 
+researchOptions[RESEARCH_OPTIONS.EARLY_PRINCIPLES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.EARLY_PRINCIPLES,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  description: ('Combing through your past wanderings, you can recall '
+    + 'a variety of simple patterns: repeating dark whorls in sandstone, '
+    + 'the consistent bell-shape of a nomad\'s tent, and the ark a hawk makes '
+    + 'as it flies toward prey.'),
+  cost: [{specificity: OS.EXACT, type: RTY.KNOWLEDGE, quantity: 80}]
+});
+
+researchOptions[RESEARCH_OPTIONS.SAND_AND_SOIL] = new ResearchOption({
+  name: RESEARCH_OPTIONS.SAND_AND_SOIL,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  description: ('In this part of the desert, you\'ve got sand, and clay under that. '
+    + 'Time to start seeing what you can make with blends of the two.'),
+  cost: [{specificity: OS.TAG, type: RTA.SAND, quantity: 10},
+    {specificity: OS.TAG, type: RTA.CLAY, quantity: 10},
+    {specificity: OS.EXACT, type: RTY.WATER, quantity: 10}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BORROWED_CLUES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BORROWED_CLUES,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  description: ('You don\'t have much of a connection with the great scholars elsewhere '
+    + 'in the desert, but you\'ve heard rumors of some of their conclusions: '
+    + 'laws that can predict both the path of stars through the skies and the '
+    + 'path of water in a basin.'),
+  cost: [{specificity: OS.EXACT, type: RTY.KNOWLEDGE, quantity: 100}]
+});
+
+researchOptions[RESEARCH_OPTIONS.TO_BUILD_A_HOME] = new ResearchOption({
+  name: RESEARCH_OPTIONS.TO_BUILD_A_HOME,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  description: ('You can do better than a loose collection of scrap to hide from '
+    + 'the sun and wind. Time to experiment with tools and materials to build '
+    + 'something more comfortable.'),
+  cost: [{specificity: OS.TAG, type: RTA.WOOD, quantity: 10},
+    {specificity: OS.EXACT, type: RTY.REEDS, quantity: 40}]
+});
+
+researchOptions[RESEARCH_OPTIONS.HINTS_FROM_ALCHEMY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.HINTS_FROM_ALCHEMY,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  description: ('For centuries, alchemists have been trying to turn lead into gold '
+    + 'and create elixers that give everlasting youth. You think it\'s mostly '
+    + 'nonsense, but you have learned a few useful things from their attempts.'),
+  cost: [{specificity: OS.EXACT, type: RTY.KNOWLEDGE, quantity: 90}]
+});
+
+researchOptions[RESEARCH_OPTIONS.DISTILLATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.DISTILLATION,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  description: ('Your attempts to purity water have primarily resulted in '
+    + 'wasting large amounts of water, but have revealed some interesting '
+    + 'salts and minerals left behind.'),
+  cost: [{specificity: OS.EXACT, type: RTY.WATER, quantity: 200}]
+});
+
+researchOptions[RESEARCH_OPTIONS.FIRE_STARTING] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FIRE_STARTING,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  description: ('Fire is the oldest (and most interesting) chemical change. '
+    + 'Starting one isn\'t hard, but you want to learn how to start one quickly, '
+    + 'and to make it burn hot and fast.'),
+  cost: [{specificity: OS.EXACT, type: RTY.REEDS, quantity: 50}]
+});
+
+researchOptions[RESEARCH_OPTIONS.HIDDEN_IN_THE_SAND] = new ResearchOption({
+  name: RESEARCH_OPTIONS.HIDDEN_IN_THE_SAND,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  description: ('The sand around you looks clean and white, but studying it '
+    + 'further shows a spectrum of impurities. There are metals, salts, '
+    + 'minerals, bits of bone, and things you don\'t even have a name for.'),
+  cost: [{specificity: OS.EXACT, type: RTA.SAND, quantity: 100}]
+});
+
 export { researchOptions };

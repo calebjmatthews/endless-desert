@@ -45,4 +45,46 @@ resourceTags[RESOURCE_TAGS.PLANT] = new ResourceTag({
   backgroundColor: '#fff'
 });
 
+resourceTags[RESOURCE_TAGS.WOOD] = new ResourceTag({
+  name: RESOURCE_TAGS.WOOD,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#790f0f',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.CLAY] = new ResourceTag({
+  name: RESOURCE_TAGS.CLAY,
+  icon: {provider: 'FontAwesome5', name: 'splotch'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.BRICK] = new ResourceTag({
+  name: RESOURCE_TAGS.BRICK,
+  icon: {provider: 'FontAwesome', name: 'cubes'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.SAND] = new ResourceTag({
+  name: RESOURCE_TAGS.SAND,
+  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  foregroundColor: '#f9df00',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.OIL] = new ResourceTag({
+  name: RESOURCE_TAGS.OIL,
+  icon: {provider: 'FontAwesome5', name: 'oil-can'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+});
+
+resourceTags[RESOURCE_TAGS.GLASS] = new ResourceTag({
+  name: RESOURCE_TAGS.GLASS,
+  icon: {provider: 'FontAwesome5', name: 'solar-panel'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff'
+});
+
 export { resourceTags }

@@ -30,7 +30,7 @@ resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD],
   value: 10,
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
@@ -52,7 +52,7 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   value: 4,
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
@@ -62,7 +62,7 @@ resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
   value: 15,
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
@@ -70,9 +70,9 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT],
   value: 25,
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
@@ -82,7 +82,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   value: 50,
   icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
   foregroundColor: '#790f0f',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
@@ -92,7 +92,7 @@ resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
   value: 15,
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
@@ -102,7 +102,7 @@ resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
   value: 80,
   icon: {provider: 'FontAwesome', name: 'cubes'},
   foregroundColor: '#a91f1f',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
@@ -112,7 +112,7 @@ resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
   value: 40,
   icon: {provider: 'MaterialIcons', name: 'menu'},
   foregroundColor: '#ceb903',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
@@ -121,8 +121,8 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   tags: [RESOURCE_TAGS.SAND],
   value: 1,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
-  foregroundColor: '#f7ea78',
-  backgroundColor: '#fff',
+  foregroundColor: '#f9df00',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
@@ -132,7 +132,7 @@ resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   value: 120,
   icon: {provider: 'FontAwesome5', name: 'solar-panel'},
   foregroundColor: '#33cee2',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
@@ -142,7 +142,7 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   value: 250,
   icon: {provider: 'FontAwesome5', name: 'oil-can'},
   foregroundColor: '#97c701',
-  backgroundColor: '#fff',
+  backgroundColor: '#fff'
 });
 
 export { resourceTypes }

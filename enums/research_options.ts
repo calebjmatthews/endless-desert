@@ -11,5 +11,17 @@ export enum RESEARCH_OPTIONS {
   LEGUME_DISSECTION = 'Legume Dissection',
   WATER_UNDER_THE_SUN = 'Water Under the Sun',
   BOTANICAL_HEARSAY = 'Botanical Hearsay',
-  GERMINATION = 'Germination'
+  GERMINATION = 'Germination',
+
+  // Physics Lv 1
+  EARLY_PRINCIPLES = 'Early Principles',
+  SAND_AND_SOIL = 'Sand and Soil',
+  BORROWED_CLUES = 'Borrow Clues',
+  TO_BUILD_A_HOME = 'To Build a Home',
+
+  // Chemistry Lv 1
+  HINTS_FROM_ALCHEMY = 'Hints from Alchemy',
+  DISTILLATION = 'Distillation',
+  FIRE_STARTING = 'Fire Starting',
+  HIDDEN_IN_THE_SAND = 'Hidden in the Sand'
 }

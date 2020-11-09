@@ -36,7 +36,7 @@ buildingTypes[BUILDING_TYPES.CISTERN] = new BuildingType({
 
 buildingTypes[BUILDING_TYPES.LENTIL_FIELD] = new BuildingType({
   name: BUILDING_TYPES.LENTIL_FIELD,
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
@@ -69,18 +69,7 @@ buildingTypes[BUILDING_TYPES.GRAIN_FIELD] = new BuildingType({
 
 buildingTypes[BUILDING_TYPES.OLIVE_GROVE] = new BuildingType({
   name: BUILDING_TYPES.OLIVE_GROVE,
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff',
-  cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
-    {resource: RESOURCE_TYPES.WATER, quantity: 300}],
-  production: [{produces: RESOURCE_TYPES.OLIVES, rate: 10}],
-  consumption: [{consumes: RESOURCE_TYPES.WATER, rate: 20}]
-});
-
-buildingTypes[BUILDING_TYPES.OLIVE_GROVE] = new BuildingType({
-  name: BUILDING_TYPES.OLIVE_GROVE,
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 10},
@@ -103,7 +92,7 @@ buildingTypes[BUILDING_TYPES.CLAY_PIT] = new BuildingType({
 buildingTypes[BUILDING_TYPES.SAND_PIT] = new BuildingType({
   name: BUILDING_TYPES.SAND_PIT,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
-  foregroundColor: '#f7ea78',
+  foregroundColor: '#f9df00',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.BRICKS_RED, quantity: 100}],
   production: [{produces: RESOURCE_TYPES.SAND_YELLOW, rate: 10}],

@@ -63,7 +63,10 @@ export default class Vault {
   }
 
   getTypeQuantity(name: string) {
-    return this.resources[name].quantity;
+    if (this.resources[name]) {
+      return this.resources[name].quantity;
+    }
+    return 0;
   }
 
   getTagQuantity(tagName: string) {
