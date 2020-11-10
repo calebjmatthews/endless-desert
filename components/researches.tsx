@@ -18,6 +18,7 @@ import Research from '../models/research';
 import ResearchStatus from '../models/research_status';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
+import Timer from '../models/timer';
 import { researches } from '../instances/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { MODALS } from '../enums/modals';
@@ -30,6 +31,7 @@ export default function ResearchesComponent() {
   const researchOptionDecks =
     useTypedSelector(state => state.researchOptionDecks);
   const studyTimer = useTypedSelector(state => state.timers[RESEARCHES.STUDY]);
+  const analysisTimer = useTypedSelector(state => state.timers[RESEARCHES.ANALYSIS]);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -115,14 +117,24 @@ export default function ResearchesComponent() {
   }
 
   function renderActionProgressBar(actionName: string) {
-    if (studyTimer) {
+    let matchingTimer: Timer|null = null;
+    switch(actionName) {
+      case RESEARCHES.STUDY:
+      matchingTimer = studyTimer;
+      break;
+
+      case RESEARCHES.ANALYSIS:
+      matchingTimer = analysisTimer;
+      break;
+    }
+    if (matchingTimer) {
       return (
         <>
           <View style={styles.break} />
-          <ProgressBarComponent startingProgress={studyTimer.progress}
+          <ProgressBarComponent startingProgress={matchingTimer.progress}
             endingProgress={1}
-            duration={studyTimer.endsAt - new Date(Date.now()).valueOf()}
-            label={studyTimer.remainingLabel} />
+            duration={matchingTimer.endsAt - new Date(Date.now()).valueOf()}
+            label={matchingTimer.remainingLabel} />
         </>
       );
     }

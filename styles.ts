@@ -83,6 +83,14 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 2}
   },
+  inputBox: {
+    paddingHorizontal: 5,
+    maxWidth: 100,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#9ea0bd',
+    borderRadius: 4
+  },
 
   mainContainer: {
     display: 'flex',

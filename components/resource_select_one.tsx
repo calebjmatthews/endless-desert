@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, ScrollView, TouchableOpacity, StyleSheet }
+import { Text, View, ScrollView, TouchableOpacity, StyleSheet, TextInput }
   from 'react-native';
 import { styles } from '../styles';
 
@@ -23,6 +23,7 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCHES } from '../enums/researches';
 
 export default function ResourceSelectComponent() {
+  const [quantitySelected, setQuantitySelected] = useState('1');
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const modalValue: string = useTypedSelector(state => state.ui.modalValue);
@@ -44,7 +45,8 @@ export default function ResourceSelectComponent() {
           {renderResources(resourcesArray, resourceSelect)}
         </View>
       </ScrollView>
-      <View style={styles.panelFlex}>
+      <View style={styles.panelFlexColumn}>
+        {renderQuantityInput()}
         <View style={styles.buttonRow}>
           {renderSubmitButton()}
         </View>
@@ -59,6 +61,19 @@ export default function ResourceSelectComponent() {
         resourceSelected={resourceSelected} vault={vault}
         setResourceSelected={setResourceSelected} />;
     });
+  }
+
+  function renderQuantityInput() {
+    if (modalValue == RESEARCHES.ANALYSIS) {
+      return (
+        <View style={styles.rows}>
+          <Text>{'Selecting: '}</Text>
+          <TextInput style={styles.inputBox} value={quantitySelected}
+            onChangeText={ (text) => setQuantitySelected(text) } />
+        </View>
+      );
+    }
+    return null;
   }
 
   function renderSubmitButton() {
@@ -82,6 +97,18 @@ export default function ResourceSelectComponent() {
   }
 
   function submit() {
+    switch(modalValue) {
+      case RESEARCHES.STUDY:
+      actionStudy();
+      break;
+
+      case RESEARCHES.ANALYSIS:
+      actionAnalysis();
+      break;
+    }
+  }
+
+  function actionStudy() {
     if (resourceSelected != null) {
       let resourceType = resourceTypes[resourceSelected];
       if (resourceType.value != null) {
@@ -111,10 +138,44 @@ export default function ResourceSelectComponent() {
     }
   }
 
+  function actionAnalysis() {
+    if (resourceSelected != null) {
+      let resourceType = resourceTypes[resourceSelected];
+      if (resourceType.value != null) {
+        let rValue = ((resourceType.value * parseInt(quantitySelected)) / 4);
+        let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quantity: rValue}];
+        let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
+        if (duration < 1000) { duration = 1000; }
+        let timer = new Timer({
+          name: RESEARCHES.ANALYSIS,
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + duration),
+          progress: 0,
+          remainingLabel: '',
+          resourcesToIncrease: rsIncrease,
+          resourcesToConsume: [{type: resourceSelected,
+            quantity: parseInt(quantitySelected)}],
+          buildingToBuild: null,
+          messageToDisplay: ('I analyzed ' + quantitySelected + ' ' + resourceSelected
+            + ' for ' + rValue + ' knowledge.'),
+          iconToDisplay: resourceType.icon,
+          iconForegroundColor: resourceType.foregroundColor,
+          iconBackgroundColor: resourceType.backgroundColor
+        });
+        dispatch(addTimer(timer));
+        dispatch(studyResource(resourceSelected));
+        dispatch(displayModalValue(null, 'closed', null));
+      }
+    }
+  }
+
   function getResourcesArray() {
     switch(modalValue) {
       case RESEARCHES.STUDY:
       return researchStatus.getResourcesToStudy(vault);
+
+      case RESEARCHES.ANALYSIS:
+      return vault.getValuedResources();
 
       default:
       return [];

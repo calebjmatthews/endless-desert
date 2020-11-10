@@ -99,6 +99,17 @@ export default class Vault {
     return resources;
   }
 
+  getValuedResources() {
+    let resources: Resource[] = [];
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].value != null
+        && this.resources[resourceName].quantity >= 1) {
+        resources.push(this.resources[resourceName]);
+      }
+    });
+    return resources;
+  }
+
   getCategoryResources(catName: string) {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((resourceName) => {
