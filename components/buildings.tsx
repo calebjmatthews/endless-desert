@@ -61,8 +61,8 @@ export default function BuildingsComponent() {
         return (
           <View style={styles.panelFlexColumn}>
             <Text>{'Building ' + timer.buildingToBuild}</Text>
-            <ProgressBarComponent startingProgress={timer.progress}
-              endingProgress={1}
+            <ProgressBarComponent staticDuration={true}
+              startingProgress={timer.progress} endingProgress={1}
               duration={timer.endsAt - new Date(Date.now()).valueOf()}
               label={timer.remainingLabel} />
           </View>
