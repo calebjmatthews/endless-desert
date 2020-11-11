@@ -89,10 +89,28 @@ export default class Vault {
     return quantity;
   }
 
+  getExactResources(resourceName: string) {
+    let resources: Resource[] = [];
+    if (this.resources[resourceName]) {
+      resources.push(this.resources[resourceName]);
+    }
+    return resources;
+  }
+
   getTagResources(tagName: string) {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((resourceName) => {
       if (resourceTypes[resourceName].tags.includes(tagName)) {
+        resources.push(this.resources[resourceName]);
+      }
+    });
+    return resources;
+  }
+
+  getCategoryResources(catName: string) {
+    let resources: Resource[] = [];
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].category == catName) {
         resources.push(this.resources[resourceName]);
       }
     });
@@ -104,16 +122,6 @@ export default class Vault {
     Object.keys(this.resources).map((resourceName) => {
       if (resourceTypes[resourceName].value != null
         && this.resources[resourceName].quantity >= 1) {
-        resources.push(this.resources[resourceName]);
-      }
-    });
-    return resources;
-  }
-
-  getCategoryResources(catName: string) {
-    let resources: Resource[] = [];
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].category == catName) {
         resources.push(this.resources[resourceName]);
       }
     });

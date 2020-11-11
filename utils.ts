@@ -277,6 +277,22 @@ class Utils {
 
     return result;
   }
+
+  randomWeightedSelect(anArray: any[], weightName: string = 'weight') {
+    let weightSum = 0;
+    let buckets: number[] = [];
+    anArray.map((aMember, index) => {
+      weightSum += aMember[weightName];
+      buckets.push(weightSum);
+    });
+    let roll = this.random() * weightSum;
+    for (let index = 0; index < anArray.length; index++) {
+      if (roll < buckets[index]) {
+        return anArray[index];
+      }
+    }
+    return anArray[0];
+  }
 }
 
 export let utils = new Utils();

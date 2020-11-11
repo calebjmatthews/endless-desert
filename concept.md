@@ -173,6 +173,18 @@ Tabs:
   - Exploration, with current expedition (if active) and expedition options (if not active)
   - The Dreaming, with a map for each of the temporary settlements made in The Dreaming
 
+Useful icons:
+  Entypo: 500px (infinity), address (post), bell, flower, lab-flask, mask,
+    round-brush, swarm (bee)
+  Fontawesome: leaf, bolt, building-o, beer, medkit, paw, diamond, snowflake
+  Fontawesome5: anchor, ankh, archway, bahai, book-dead, broom, burn, campground, cat,
+    carrot, cheese, chess, church, cloud, coins, crow, crown, dharmachakra, dice,
+    disease, dna, dog, dove, dragon, drum, dungeon, egg, fan, fist, frog,
+    gopuram (building), guitar, hamsa, hand, hat-wizard, hippo, holly-berry, horse,
+    hospital, hotel, icicles, igloo, kaaba (building), kiwi-bird, landmark (building),
+    lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
+    spa, stroopwafel, theater, torii-gate, vihara (building)
+
 Starting game state:
   - Buildings: one trading post, one hut, one cistern, one lentil field
 

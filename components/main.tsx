@@ -33,7 +33,8 @@ export default function App() {
           data={[
             {name: "Buildings", provider: "FontAwesome5", icon: "building"},
             {name: "Resources", provider: "FontAwesome", icon: "cube"},
-            {name: "Researches", provider: "FontAwesome", icon: "book"}
+            {name: "Researches", provider: "FontAwesome", icon: "book"},
+            {name: "Trading", provider: "Entypo", icon: "address"}
           ]}
           renderItem={(item) => renderDropdownItem(item, dropdownPress)}
           keyExtractor={item => item.name}>
