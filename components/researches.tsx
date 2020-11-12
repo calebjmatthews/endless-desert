@@ -92,16 +92,17 @@ export default function ResearchesComponent() {
           {'flexGrow': 10}]);
       }
       return (
-        <View key={actionName} style={styles.panelFlex}>
+        <View key={actionName} style={StyleSheet.flatten([styles.panelFlex,
+          {minHeight: 0}])}>
           <View style={styles.containerStretchColumn}>
             <View style={styles.buttonRow}>
-            <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
-              onPress={() => { actionClick(actionName) }}>
-              <IconComponent provider={research.icon.provider}
-                name={research.icon.name}
-                color="#fff" size={16} />
-              <Text style={styles.buttonText}>{' ' + research.name}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
+                onPress={() => { actionClick(actionName) }}>
+                <IconComponent provider={research.icon.provider}
+                  name={research.icon.name}
+                  color="#fff" size={16} />
+                <Text style={styles.buttonText}>{' ' + research.name}</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
                 styles.buttonLight])}>
                 <IconComponent provider="FontAwesome5" name="question-circle"
@@ -163,7 +164,7 @@ export default function ResearchesComponent() {
 
   function actionClick(actionName: string) {
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
-      actionName));
+      {type: actionName}));
   }
 }
 

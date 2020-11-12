@@ -24,9 +24,9 @@ tradingPartnerTypes[TRADING_PARTNERS.ASCETICS] = new TradingPartnerType({
   description: ('Journeying ascetics on a pilgrimage to a sea of blue-green fire. '
     + 'Will trade materials they\'ve picked up in their travels for simple food '
     + 'and drink.'),
-  icon: {provider: 'Fontawesome', name: 'fire'},
+  icon: {provider: 'FontAwesome', name: 'fire'},
   foregroundColor: '#84f9e4',
-  backgroundColor: '#024839',
+  backgroundColor: '#008a71',
   tradeValue: 200,
   givesPool: [
     {specificity: RSP.TAG, type: RTA.WOOD, weight: 100},

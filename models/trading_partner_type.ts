@@ -1,6 +1,7 @@
 import TradingPartner from './trading_partner';
 import Vault from './vault';
 import Resource from './resource';
+import Trade from './trade';
 import { resourceTypes } from '../instances/resource_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
@@ -24,19 +25,26 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     const roll = Math.random();
     if (roll < 0.1) { tCount = 4; }
     else if (roll < 0.35) { tCount = 2; }
-    let trades: Trade[] = [];
+    let trades: { [id: string] : Trade} = {};
     let pGives: {specificity: string, type: string, weight: number}[] = [];
 
     for (let loop = 0; loop < tCount; loop++) {
       let newTradeResult = this.createNewTrade(pGives, vault);
       pGives.push(newTradeResult.pGive);
-      trades.push({ give: newTradeResult.give, receive: newTradeResult.receive });
+      const newTrade = new Trade ({
+        id: utils.randHex(8),
+        tradingPartnerType: this.name,
+        give: newTradeResult.give,
+        receive: newTradeResult.receive
+      });
+      trades[newTrade.id] = newTrade;
     }
 
     return new TradingPartner({
       name: this.name,
       trades: trades,
-      traded: {}
+      traded: {},
+      arrived: new Date(Date.now())
     });
   }
 
@@ -111,9 +119,4 @@ interface TradingPartnerTypeInterface {
   tradeValue: number;
   givesPool: {specificity: string, type: string, weight: number}[];
   receivesPool: {specificity: string, type: string, weight: number}[];
-}
-
-interface Trade {
-  give: {type: string, quantity: number};
-  receive: {specificity: string, type: string};
 }

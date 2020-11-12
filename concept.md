@@ -144,7 +144,10 @@ Research:
   - Field notes are brought back by explorers, even when an exploration fails. There are also ways of gathering field notes about the town itself. Example field notes are "Notes on the Western Stars", "Notes on the Waning Moon", "Notes on Flowing Water", "Notes on Caves Beneath the Sand", etc.
   - Research difficulty works as follows:
     - Easiest difficulty uses very small amounts of knowledge, water, and lentils
-    - Easy difficulty uses
+    - Easy difficulty uses small amounts of knowledge water, lentils, clay, sand, wood, and reeds
+    - Moderate difficulty uses early refined materials such as glass and bricks, more advanced dishes, as well as papyrus and ink
+    - Higher difficulty uses field notes and higher refined materials
+    - High difficulty uses rarer field notes, high-quality dishes complex refined materials, and rarer exploration rewards
 
 Traders:
   - Individual trader ideas:

@@ -22,15 +22,22 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCHES } from '../enums/researches';
 
-export default function ResourceSelectComponent() {
+export default function ResourceSelectOneComponent() {
   const [quantitySelected, setQuantitySelected] = useState('1');
+  const [quantityGiven, setQuantityGiven] = useState(calcQuantityGiven('1'));
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: string = useTypedSelector(state => state.ui.modalValue);
+  const modalValue: any = useTypedSelector(state => state.ui.modalValue);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const tradingStatus = useTypedSelector(state => state.tradingStatus);
   let resourcesArray = getResourcesArray();
 
-  function setStartingSelected(): string|null { return null; }
+  function setStartingSelected(): string|null {
+    if (resourcesArray.length == 1) {
+      return resourcesArray[0].type;
+    }
+    return null;
+  }
   const [resourceSelected, resourceSelect] = useState(setStartingSelected());
 
   return (
@@ -64,7 +71,7 @@ export default function ResourceSelectComponent() {
   }
 
   function renderQuantityInput() {
-    if (modalValue == RESEARCHES.ANALYSIS) {
+    if (modalValue.type == RESEARCHES.ANALYSIS) {
       return (
         <View style={styles.rows}>
           <Text>{'Selecting: '}</Text>
@@ -73,7 +80,28 @@ export default function ResourceSelectComponent() {
         </View>
       );
     }
+    else if (modalValue.type == 'Trading') {
+      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
+        .trades[modalValue.tradeId];
+      return (
+        <View style={styles.columns}>
+          <View style={styles.rows}>
+            <Text>{'Proposing: '}</Text>
+            <TextInput style={styles.inputBox} value={quantitySelected}
+              onChangeText={ (text) => changeTradeQuantity(text) } />
+          </View>
+          <Text>{'Offer:'}</Text>
+          <Text>{quantitySelected + ' ' + resourceSelected + ' for ' +
+            quantityGiven + ' ' + trade.give.type }</Text>
+        </View>
+      );
+    }
     return null;
+  }
+
+  function changeTradeQuantity(text: string) {
+    setQuantitySelected(text);
+    setQuantityGiven(calcQuantityGiven(text));
   }
 
   function renderSubmitButton() {
@@ -97,13 +125,17 @@ export default function ResourceSelectComponent() {
   }
 
   function submit() {
-    switch(modalValue) {
+    switch(modalValue.type) {
       case RESEARCHES.STUDY:
       actionStudy();
       break;
 
       case RESEARCHES.ANALYSIS:
       actionAnalysis();
+      break;
+
+      case 'Trading':
+      actionTrading();
       break;
     }
   }
@@ -169,17 +201,81 @@ export default function ResourceSelectComponent() {
     }
   }
 
+  function actionTrading() {
+    if (resourceSelected != null) {
+      let resourceType = resourceTypes[resourceSelected];
+      if (resourceType.value != null) {
+        let rValue = ((resourceType.value * parseInt(quantitySelected)) / 4);
+        let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quantity: rValue}];
+        let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
+        if (duration < 1000) { duration = 1000; }
+        let timer = new Timer({
+          name: RESEARCHES.ANALYSIS,
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + duration),
+          progress: 0,
+          remainingLabel: '',
+          resourcesToIncrease: rsIncrease,
+          resourcesToConsume: [{type: resourceSelected,
+            quantity: parseInt(quantitySelected)}],
+          buildingToBuild: null,
+          messageToDisplay: ('I analyzed ' + quantitySelected + ' ' + resourceSelected
+            + ' for ' + rValue + ' knowledge.'),
+          iconToDisplay: resourceType.icon,
+          iconForegroundColor: resourceType.foregroundColor,
+          iconBackgroundColor: resourceType.backgroundColor
+        });
+        dispatch(addTimer(timer));
+        dispatch(studyResource(resourceSelected));
+        dispatch(displayModalValue(null, 'closed', null));
+      }
+    }
+  }
+
   function getResourcesArray() {
-    switch(modalValue) {
+    switch(modalValue.type) {
       case RESEARCHES.STUDY:
       return researchStatus.getResourcesToStudy(vault);
 
       case RESEARCHES.ANALYSIS:
       return vault.getValuedResources();
 
+      case 'Trading':
+      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
+        .trades[modalValue.tradeId];
+      switch(trade.receive.specificity) {
+        case RESOURCE_SPECIFICITY.EXACT:
+        return vault.getExactResources(trade.receive.type);
+
+        case RESOURCE_SPECIFICITY.TAG:
+        return vault.getTagResources(trade.receive.type);
+
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        return vault.getCategoryResources(trade.receive.type);
+      }
+
       default:
       return [];
     }
+  }
+
+  function calcQuantityGiven(qSelected: string) {
+    if (!modalValue) { return 0; }
+    if (modalValue.type == 'Trading' && resourceSelected) {
+      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
+        .trades[modalValue.tradeId];
+      const rResourceType = resourceTypes[resourceSelected];
+      const gResourceType = resourceTypes[trade.give.type];
+      if (rResourceType.value != null && gResourceType.value != null) {
+        let qGiven = Math.floor((rResourceType.value * parseInt(qSelected))
+          / (gResourceType.value));
+        if (qGiven > trade.give.quantity) {
+          qGiven = trade.give.quantity;
+        }
+        return qGiven;
+      }
+    }
+    return 0;
   }
 }
 

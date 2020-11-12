@@ -1,8 +1,10 @@
+import Trade from './trade';
+
 export default class TradingPartner implements TradingPartnerInterface {
   name: string = '';
-  trades: { give: {type: string, quantity: number},
-    receive: {specificity: string, type: string} }[] = [];
-  traded: { [typeName: string] : boolean } = {};
+  trades: { [id: string] : Trade } = {};
+  traded: { [id: string] : boolean } = {};
+  arrived: Date = new Date(Date.now());
 
   constructor(tradingPartner: TradingPartnerInterface) {
     Object.assign(this, tradingPartner);
@@ -11,7 +13,7 @@ export default class TradingPartner implements TradingPartnerInterface {
 
 interface TradingPartnerInterface {
   name: string;
-  trades: { give: {type: string, quantity: number},
-    receive: {specificity: string, type: string} }[];
-  traded: { [typeName: string] : boolean };
+  trades: { [id: string] : Trade };
+  traded: { [id: string] : boolean };
+  arrived: Date;
 }

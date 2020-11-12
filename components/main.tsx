@@ -17,6 +17,7 @@ import ResearchesComponent from '../components/researches';
 import ResearchingComponent from '../components/researching';
 import ModalHandlerComponent from '../components/modal_handler';
 import MessageBarComponent from '../components/message_bar';
+import TradingComponent from '../components/trading';
 import IconComponent from '../components/icon';
 import { styles } from '../styles';
 
@@ -70,6 +71,8 @@ export default function App() {
       return <ResearchesComponent />
       case "Researching":
       return <ResearchingComponent />
+      case "Trading":
+      return <TradingComponent />
       default:
       return null;
     }

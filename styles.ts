@@ -12,14 +12,16 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    alignSelf: 'stretch'
   },
   containerStretchColumn: {
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignSelf: 'stretch'
   },
   scrollWrapper: {
     flex: 1,
