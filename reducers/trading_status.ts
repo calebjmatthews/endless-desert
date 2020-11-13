@@ -13,7 +13,7 @@ export default function (tradingStatus: TradingStatus = tradingStatusStarting,
 
     case COMPLETE_TRADE:
     let newCTTradingStatus = new TradingStatus(tradingStatus);
-    newCTTradingStatus.completeTrade(action.trade);
+    newCTTradingStatus.completeTrade(action.traded);
     return newCTTradingStatus;
 
     case DISMISS_TRADING_PARTNER:

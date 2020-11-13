@@ -16,8 +16,13 @@ export default class TradingStatus implements TradingStatusInterface {
     delete this.tradingPartners[tradingPartner.name];
   }
 
-  completeTrade(trade: Trade) {
-    this.tradingPartners[trade.tradingPartnerType].traded[trade.id] = true;
+  completeTrade(traded: {
+    id: string,
+    tradingPartnerType: string,
+    given: { type: string, quantity: number },
+    received: { type: string, quantity: number }
+  }) {
+    this.tradingPartners[traded.tradingPartnerType].traded[traded.id] = traded;
   }
 }
 

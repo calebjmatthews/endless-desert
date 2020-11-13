@@ -18,9 +18,14 @@ export function dismissTradingPartner(tradingPartner: TradingPartner) {
 }
 
 export const COMPLETE_TRADE = 'COMPLETE_TRADE';
-export function completeTrade(trade: Trade) {
+export function completeTrade(traded: {
+  id: string,
+  tradingPartnerType: string,
+  given: { type: string, quantity: number },
+  received: { type: string, quantity: number }
+}) {
   return {
     type: COMPLETE_TRADE,
-    trade: trade
+    traded: traded
   }
 }

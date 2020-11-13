@@ -11,6 +11,7 @@ import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources, increaseResources } from '../actions/vault';
 import { studyResource } from '../actions/research_status';
+import { completeTrade } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
 
 import Resource from '../models/resource';
@@ -86,11 +87,10 @@ export default function ResourceSelectOneComponent() {
       return (
         <View style={styles.columns}>
           <View style={styles.rows}>
-            <Text>{'Proposing: '}</Text>
+            <Text>{'Offer: '}</Text>
             <TextInput style={styles.inputBox} value={quantitySelected}
               onChangeText={ (text) => changeTradeQuantity(text) } />
           </View>
-          <Text>{'Offer:'}</Text>
           <Text>{quantitySelected + ' ' + resourceSelected + ' for ' +
             quantityGiven + ' ' + trade.give.type }</Text>
         </View>
@@ -100,8 +100,32 @@ export default function ResourceSelectOneComponent() {
   }
 
   function changeTradeQuantity(text: string) {
-    setQuantitySelected(text);
-    setQuantityGiven(calcQuantityGiven(text));
+    const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
+      .trades[modalValue.tradeId];
+    let tInt = parseInt(text);
+
+    if (resourceSelected != null) {
+      if (tInt > vault.resources[resourceSelected].quantity) {
+        tInt = vault.resources[resourceSelected].quantity;
+      }
+
+      const rResourceType = resourceTypes[resourceSelected];
+      const gResourceType = resourceTypes[trade.give.type];
+      if (rResourceType.value != null && gResourceType.value != null
+        && (tInt ? true : false)) {
+        let qReceived = Math.ceil((gResourceType.value * trade.give.quantity)
+          / (rResourceType.value));
+        if (tInt > qReceived) {
+          tInt = qReceived;
+        }
+      }
+    }
+
+    let pText = '0';
+    if (tInt ? true : false) { pText = tInt.toString(); }
+    setQuantitySelected(pText);
+    setQuantityGiven(calcQuantityGiven(pText));
+
   }
 
   function renderSubmitButton() {
@@ -203,32 +227,19 @@ export default function ResourceSelectOneComponent() {
 
   function actionTrading() {
     if (resourceSelected != null) {
-      let resourceType = resourceTypes[resourceSelected];
-      if (resourceType.value != null) {
-        let rValue = ((resourceType.value * parseInt(quantitySelected)) / 4);
-        let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quantity: rValue}];
-        let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
-        if (duration < 1000) { duration = 1000; }
-        let timer = new Timer({
-          name: RESEARCHES.ANALYSIS,
-          startedAt: new Date(Date.now()).valueOf(),
-          endsAt: (new Date(Date.now()).valueOf() + duration),
-          progress: 0,
-          remainingLabel: '',
-          resourcesToIncrease: rsIncrease,
-          resourcesToConsume: [{type: resourceSelected,
-            quantity: parseInt(quantitySelected)}],
-          buildingToBuild: null,
-          messageToDisplay: ('I analyzed ' + quantitySelected + ' ' + resourceSelected
-            + ' for ' + rValue + ' knowledge.'),
-          iconToDisplay: resourceType.icon,
-          iconForegroundColor: resourceType.foregroundColor,
-          iconBackgroundColor: resourceType.backgroundColor
-        });
-        dispatch(addTimer(timer));
-        dispatch(studyResource(resourceSelected));
-        dispatch(displayModalValue(null, 'closed', null));
-      }
+      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
+        .trades[modalValue.tradeId];
+      dispatch(increaseResources(vault, [{type: trade.give.type,
+        quantity: quantityGiven}]));
+      dispatch(consumeResources(vault, [{type: resourceSelected,
+        quantity: parseInt(quantitySelected)}]));
+      dispatch(completeTrade({
+        id: trade.id,
+        tradingPartnerType: trade.tradingPartnerType,
+        given: { type: trade.give.type, quantity: quantityGiven },
+        received: { type: resourceSelected, quantity: parseInt(quantitySelected) }
+      }));
+      dispatch(displayModalValue(null, 'closed', null));
     }
   }
 
@@ -266,7 +277,9 @@ export default function ResourceSelectOneComponent() {
         .trades[modalValue.tradeId];
       const rResourceType = resourceTypes[resourceSelected];
       const gResourceType = resourceTypes[trade.give.type];
-      if (rResourceType.value != null && gResourceType.value != null) {
+
+      if (rResourceType.value != null && gResourceType.value != null
+        && (parseInt(qSelected) ? true : false)) {
         let qGiven = Math.floor((rResourceType.value * parseInt(qSelected))
           / (gResourceType.value));
         if (qGiven > trade.give.quantity) {

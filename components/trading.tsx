@@ -101,7 +101,8 @@ function TradingPartnerDescription(props: any) {
   );
 
   function renderTrades(trades: { [id: string] : Trade}, vault: Vault,
-    traded: { [id: string] : boolean }, tradeClick: Function) {
+    traded: { [id: string] : {given: { type: string, quantity: number },
+      received: { type: string, quantity: number }} }, tradeClick: Function) {
     return Object.keys(trades).map((tradeId) => {
       const trade = trades[tradeId];
       let give = resourceTypes[trade.give.type];
