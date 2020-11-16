@@ -27,7 +27,7 @@ tradingPartnerTypes[TRADING_PARTNERS.ASCETICS] = new TradingPartnerType({
   icon: {provider: 'FontAwesome', name: 'fire'},
   foregroundColor: '#84f9e4',
   backgroundColor: '#008a71',
-  tradeValue: 200,
+  tradeValue: 800,
   givesPool: [
     {specificity: RSP.TAG, type: RTA.WOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.CLAY, weight: 100},

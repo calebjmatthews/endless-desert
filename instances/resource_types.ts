@@ -19,7 +19,7 @@ resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   name: RESOURCE_TYPES.WATER,
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK],
-  value: 2,
+  value: 5,
   icon: {provider: 'FontAwesome5', name: 'water'},
   foregroundColor: '#2196f3',
   backgroundColor: '#fff'
@@ -49,7 +49,7 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   name: RESOURCE_TYPES.REEDS,
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION],
-  value: 4,
+  value: 8,
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
@@ -119,7 +119,7 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   name: RESOURCE_TYPES.SAND_YELLOW,
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.SAND],
-  value: 1,
+  value: 3,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
   backgroundColor: '#fff'
