@@ -206,11 +206,12 @@ Calculating timestep:
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
 
 Beginning of game:
-  - Start with only the "Buildings" tab, but no buildings except "Broken cistern", "Decaying shack", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
   - Some messages to introduce setting
-  - First action is in the "Build" button: "Repair cistern", which creates the cistern building and unlocks the "Resources" tab
-  - Second action: "Refurbish housing", which creates one hut and the study, which unlocks the "Research" tab
-  - Third action: "Restore field", which creates one lentil field
+  - Start with no tabs, just a single button that says "Look around". Clicking this displays another introductory message, unlocks the "Resources" and "Buildings" tabs, and gives a small quantity of water, lentils, seeds, clay, and sand
+  - Inside the "Buildings" tab have "Broken cistern", "Decaying shack", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
+  - Second action is in the "Build" button: "Repair cistern", which creates the cistern building and gives a large amount of water
+  - Third action: "Refurbish housing", which creates one hut and the study, which unlocks the "Research" tab
+  - Fourth action: "Restore field", which creates one lentil field
   - Event where one leader moves in and unlocks the "Leaders" tab
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab

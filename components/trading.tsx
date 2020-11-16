@@ -105,46 +105,75 @@ function TradingPartnerDescription(props: any) {
       received: { type: string, quantity: number }} }, tradeClick: Function) {
     return Object.keys(trades).map((tradeId) => {
       const trade = trades[tradeId];
-      let give = resourceTypes[trade.give.type];
-      let receive = getMatchingResource(trade.receive.specificity, trade.receive.type);
+      const wasTraded = traded[tradeId];
 
-      let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
-        styles.buttonLight]);
-      let buttonDisabled = false;
-      let wasTraded = traded[trade.id] ? true : false;
-
-      if (wasTraded) {
-        buttonStyle = StyleSheet.flatten([styles.buttonRowItem,
-          styles.buttonDisabled]);
-        buttonDisabled = true;
+      if (!wasTraded) {
+        return renderTrade(trade, tradeClick);
       }
-
-      return (
-        <TouchableOpacity key={trade.id} style={StyleSheet.flatten([buttonStyle,
-          {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
-          disabled={buttonDisabled}
-          onPress={() => { tradeClick(trade.tradingPartnerType, trade.id) }} >
-          <BadgeComponent
-            provider={give.icon.provider}
-            name={give.icon.name}
-            foregroundColor={give.foregroundColor}
-            backgroundColor={give.backgroundColor}
-            iconSize={16} />
-          <Text style={styles.buttonTextDark}>
-            {' ' + give.name + ' (' + trade.give.quantity + ') for '}
-          </Text>
-          <BadgeComponent
-            provider={receive.icon.provider}
-            name={receive.icon.name}
-            foregroundColor={receive.foregroundColor}
-            backgroundColor={receive.backgroundColor}
-            iconSize={16} />
-          <Text style={styles.buttonTextDark}>
-            {receive.name}
-          </Text>
-        </TouchableOpacity>
-      );
+      return renderWasTraded(trade, wasTraded);
     });
+  }
+
+  function renderTrade(trade: Trade, tradeClick: Function) {
+    const give = resourceTypes[trade.give.type];
+    const receive = getMatchingResource(trade.receive.specificity, trade.receive.type);
+
+    return (
+      <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
+        styles.buttonLight, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
+        onPress={() => { tradeClick(trade.tradingPartnerType, trade.id) }} >
+        <BadgeComponent
+          provider={give.icon.provider}
+          name={give.icon.name}
+          foregroundColor={give.foregroundColor}
+          backgroundColor={give.backgroundColor}
+          iconSize={16} />
+        <Text style={styles.buttonTextDark}>
+          {' ' + give.name + ' (' + trade.give.quantity + ') for '}
+        </Text>
+        <BadgeComponent
+          provider={receive.icon.provider}
+          name={receive.icon.name}
+          foregroundColor={receive.foregroundColor}
+          backgroundColor={receive.backgroundColor}
+          iconSize={16} />
+        <Text style={styles.buttonTextDark}>
+          {receive.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+
+  function renderWasTraded(trade: Trade, wasTraded:
+    {given: { type: string, quantity: number },
+    received: { type: string, quantity: number }} ) {
+    const give = resourceTypes[wasTraded.given.type];
+    const receive = resourceTypes[wasTraded.received.type];
+
+    return (
+      <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
+        styles.buttonDisabled, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
+        disabled >
+        <BadgeComponent
+          provider={give.icon.provider}
+          name={give.icon.name}
+          foregroundColor={give.foregroundColor}
+          backgroundColor={give.backgroundColor}
+          iconSize={16} />
+        <Text style={styles.buttonTextDark}>
+          {give.name + ' x' + wasTraded.given.quantity + ' for '}
+        </Text>
+        <BadgeComponent
+          provider={receive.icon.provider}
+          name={receive.icon.name}
+          foregroundColor={receive.foregroundColor}
+          backgroundColor={receive.backgroundColor}
+          iconSize={16} />
+        <Text style={styles.buttonTextDark}>
+          {receive.name + ' x' + wasTraded.received.quantity}
+        </Text>
+      </TouchableOpacity>
+    );
   }
 
   function getMatchingResource(specificity: string, type: string):
