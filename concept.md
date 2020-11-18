@@ -188,6 +188,12 @@ Useful icons:
     lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
     spa, stroopwafel, theater, torii-gate, vihara (building)
 
+Time cycle:
+  - The desert transitions from day to night over the course of an hour.
+  - Morning is from :00 - :15, day from :15 - :30, evening from :30 - :45, and night from :45 - :00
+  - Night is from :50 - :05, morning from :05 - :20, day from :20 - :35, evening from :35 - :50.
+  - Twenty four days consitute a month, and twenty eight to thirty one days consistute a year.
+
 Starting game state:
   - Buildings: one trading post, one hut, one cistern, one lentil field
 

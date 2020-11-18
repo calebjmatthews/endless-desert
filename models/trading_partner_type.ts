@@ -12,6 +12,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
+  paddingHorizontal: number = 11;
+  paddingVertical: number = 8;
   tradeValue: number = 0;
   givesPool: {specificity: string, type: string, weight: number}[] = [];
   receivesPool: {specificity: string, type: string, weight: number}[] = [];
@@ -28,16 +30,23 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     let trades: { [id: string] : Trade} = {};
     let pGives: {specificity: string, type: string, weight: number}[] = [];
 
+    let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
       let newTradeResult = this.createNewTrade(pGives, vault);
-      pGives.push(newTradeResult.pGive);
-      const newTrade = new Trade ({
-        id: utils.randHex(8),
-        tradingPartnerType: this.name,
-        give: newTradeResult.give,
-        receive: newTradeResult.receive
-      });
-      trades[newTrade.id] = newTrade;
+      if (newTradeResult) {
+        pGives.push(newTradeResult.pGive);
+        const newTrade = new Trade ({
+          id: utils.randHex(8),
+          tradingPartnerType: this.name,
+          give: newTradeResult.give,
+          receive: newTradeResult.receive
+        });
+        trades[newTrade.id] = newTrade;
+      }
+      else if (retryLimit > 0) {
+        loop--;
+        retryLimit--;
+      }
     }
 
     return new TradingPartner({
@@ -52,9 +61,12 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     vault: Vault) {
     const pGive = this.choosePGive(pGives);
     const give = this.createGive(pGive, vault);
-    const pReceive = this.choosePReceive(give);
-    const receive = { specificity: pReceive.specificity, type: pReceive.type };
-    return { pGive, give, receive }
+    if (give) {
+      const pReceive = this.choosePReceive(give);
+      const receive = { specificity: pReceive.specificity, type: pReceive.type };
+      return { pGive, give, receive }
+    }
+    return null;
   }
 
   choosePGive(pGives: {specificity: string, type: string, weight: number}[]) {
@@ -90,7 +102,14 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
       break;
     }
 
-    const resourceName = resources[Math.floor(utils.random() * resources.length)].type;
+    let resourceName = '';
+    const resource = resources[Math.floor(utils.random() * resources.length)];
+    if (resource) {
+      resourceName = resource.type;
+    }
+    else {
+      return null;
+    }
     const resourceType = resourceTypes[resourceName];
     let baseQuantity = (this.tradeValue / (resourceType.value||1))
     let quantity = Math.ceil(baseQuantity
@@ -116,6 +135,8 @@ interface TradingPartnerTypeInterface {
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;
+  paddingHorizontal: number;
+  paddingVertical: number;
   tradeValue: number;
   givesPool: {specificity: string, type: string, weight: number}[];
   receivesPool: {specificity: string, type: string, weight: number}[];

@@ -13,6 +13,7 @@ export default class Timer implements TimerInterface {
   resourcesToIncrease: {type: string, quantity: number}[] = [];
   resourcesToConsume: {type: string, quantity: number}[] = [];
   buildingToBuild: string|null = null;
+  tradingPartnerToArrive: string|null = null;
   messageToDisplay: string|null = null;
   iconToDisplay: {provider: string, name: string}|null = null;
   iconForegroundColor: string|null = null;
@@ -55,6 +56,7 @@ interface TimerInterface {
   resourcesToIncrease: {type: string, quantity: number}[];
   resourcesToConsume: {type: string, quantity: number}[];
   buildingToBuild: string|null;
+  tradingPartnerToArrive: string|null;
   messageToDisplay: string|null;
   iconToDisplay: {provider: string, name: string}|null;
   iconForegroundColor: string|null;

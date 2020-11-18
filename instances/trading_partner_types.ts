@@ -11,22 +11,16 @@ const RSP = RESOURCE_SPECIFICITY;
 
 let tradingPartnerTypes: { [name: string] : TradingPartnerType } = {};
 
-// name: string = '';
-// description: string = '';
-// icon: {provider: string, name: string} = {provider: '', name: ''};
-// foregroundColor: string = '#000';
-// backgroundColor: string = '#fff';
-// tradeValue: number = 0;
-// givesPool: {specificity: string, type: string, weight: number}[] = [];
-// receivesPool: {specificity: string, type: string, weight: number}[] = [];
-tradingPartnerTypes[TRADING_PARTNERS.ASCETICS] = new TradingPartnerType({
-  name: TRADING_PARTNERS.ASCETICS,
+tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType({
+  name: TRADING_PARTNERS.FOXFIRE_ASCETICS,
   description: ('Journeying ascetics on a pilgrimage to a sea of blue-green fire. '
     + 'Will trade materials they\'ve picked up in their travels for simple food '
     + 'and drink.'),
   icon: {provider: 'FontAwesome', name: 'fire'},
   foregroundColor: '#84f9e4',
   backgroundColor: '#008a71',
+  paddingHorizontal: 11,
+  paddingVertical: 8,
   tradeValue: 800,
   givesPool: [
     {specificity: RSP.TAG, type: RTA.WOOD, weight: 100},
@@ -37,6 +31,29 @@ tradingPartnerTypes[TRADING_PARTNERS.ASCETICS] = new TradingPartnerType({
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 100}
+  ]
+});
+
+tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerType({
+  name: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
+  description: ('Traders from distant northern kingdom of rolling grassy hills.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'cards-club'},
+  foregroundColor: '#27b327',
+  backgroundColor: '#0d5f0d',
+  paddingHorizontal: 9,
+  paddingVertical: 8,
+  tradeValue: 1200,
+  givesPool: [
+    {specificity: RSP.TAG, type: RTA.WOOD, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.GRAIN, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 50}
+  ],
+  receivesPool: [
+    {specificity: RSP.EXACT, type: RTY.REEDS, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]
 });
 

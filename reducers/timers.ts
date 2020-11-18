@@ -1,7 +1,7 @@
 import { ADD_TIMER, REMOVE_TIMER, UPDATE_TIMERS } from '../actions/timers';
 import Timer from '../models/timer';
+import { timersStarting } from '../instances/timers';
 
-let timersStarting: { [name: string] : Timer } = {};
 export default function (timers = timersStarting, action: any = null) {
 	switch(action.type) {
     case ADD_TIMER:

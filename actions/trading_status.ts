@@ -1,18 +1,25 @@
 import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
 
-export const ADD_TRADING_PARTNER = 'ADD_TRADING_PARTNER';
-export function addTradingPartner(tradingPartner: TradingPartner) {
+export const ADD_PENDING_TRADING_PARTNER = 'ADD_PENDING_TRADING_PARTNER';
+export function addPendingTradingPartner(tradingPartner: TradingPartner) {
   return {
-    type: ADD_TRADING_PARTNER,
+    type: ADD_PENDING_TRADING_PARTNER,
     tradingPartner: tradingPartner
+  }
+}
+
+export const WELCOME_PENDING_TRADING_PARTNER = 'WELCOME_PENDING_TRADING_PARTNER';
+export function welcomePendingTradingPartner() {
+  return {
+    type: WELCOME_PENDING_TRADING_PARTNER
   }
 }
 
 export const DISMISS_TRADING_PARTNER = 'DISMISS_TRADING_PARTNER';
 export function dismissTradingPartner(tradingPartner: TradingPartner) {
   return {
-    type: ADD_TRADING_PARTNER,
+    type: DISMISS_TRADING_PARTNER,
     tradingPartner: tradingPartner
   }
 }
