@@ -36,7 +36,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
 
 tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerType({
   name: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
-  description: ('Traders from distant northern kingdom of rolling grassy hills.'),
+  description: ('Traders from a distant northern kingdom of rolling grassy hills.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'cards-club'},
   foregroundColor: '#27b327',
   backgroundColor: '#0d5f0d',

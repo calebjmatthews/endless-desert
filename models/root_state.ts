@@ -15,7 +15,7 @@ export default interface RootState {
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;
-  ui: {tabSelected: string, valueSelected: any,
+  ui: {globalState: string, tabSelected: string, valueSelected: any,
     modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[]};
 }

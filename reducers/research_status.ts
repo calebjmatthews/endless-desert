@@ -1,4 +1,4 @@
-import { COMPLETE_RESEARCH, STUDY_RESOURCE } from '../actions/research_status';
+import { SET_RESEARCH_STATUS,  COMPLETE_RESEARCH, STUDY_RESOURCE } from '../actions/research_status';
 import ResearchStatus from '../models/research_status';
 
 import { researchStatusStarting } from '../instances/research_status';
@@ -6,6 +6,11 @@ import { researchStatusStarting } from '../instances/research_status';
 export default function (researchStatus: ResearchStatus = researchStatusStarting,
   action: any = null) {
 	switch(action.type) {
+    case SET_RESEARCH_STATUS:
+    console.log('action.researchStatus');
+    console.log(action.researchStatus);
+    return new ResearchStatus(action.researchStatus);
+
     case COMPLETE_RESEARCH:
     let newResearchRS = new ResearchStatus(researchStatus);
     newResearchRS.setCompleted(action.name);

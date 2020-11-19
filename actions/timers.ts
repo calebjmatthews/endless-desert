@@ -1,5 +1,13 @@
 import Timer from '../models/timer';
 
+export const SET_TIMERS = 'SET_TIMERS';
+export function setTimers(timers: { [name: string] : Timer }) {
+  return {
+    type: SET_TIMERS,
+    timers: timers
+  }
+}
+
 export const ADD_TIMER = 'ADD_TIMER';
 export function addTimer(timer: Timer) {
   return {

@@ -28,6 +28,8 @@ export default function ResearchesComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  console.log('researchStatus');
+  console.log(researchStatus);
   const researchOptionDecks =
     useTypedSelector(state => state.researchOptionDecks);
   const studyTimer = useTypedSelector(state => state.timers[RESEARCHES.STUDY]);

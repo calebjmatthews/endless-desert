@@ -1,3 +1,13 @@
+import ResearchStatus from '../models/research_status';
+
+export const SET_RESEARCH_STATUS = 'SET_RESEARCH_STATUS';
+export function setResearchStatus(researchStatus: ResearchStatus) {
+  return {
+    type: SET_RESEARCH_STATUS,
+    researchStatus: researchStatus
+  }
+}
+
 export const COMPLETE_RESEARCH = 'COMPLETE_RESEARCH';
 export function completeResearch(name: string) {
   return {

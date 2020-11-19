@@ -1,9 +1,12 @@
-import { ADD_TIMER, REMOVE_TIMER, UPDATE_TIMERS } from '../actions/timers';
+import { SET_TIMERS, ADD_TIMER, REMOVE_TIMER, UPDATE_TIMERS } from '../actions/timers';
 import Timer from '../models/timer';
 import { timersStarting } from '../instances/timers';
 
 export default function (timers = timersStarting, action: any = null) {
 	switch(action.type) {
+		case SET_TIMERS:
+		return Object.assign({}, timers);
+
     case ADD_TIMER:
     let newATimers = Object.assign({}, timers);
     newATimers[action.timer.name] = action.timer;

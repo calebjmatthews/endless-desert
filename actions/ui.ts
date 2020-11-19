@@ -1,5 +1,13 @@
 import Message from '../models/message';
 
+export const SET_GLOBAL_STATE = 'SET_GLOBAL_STATE';
+export function setGlobalState(globalState: string) {
+  return {
+    type: SET_GLOBAL_STATE,
+    globalState: globalState
+  }
+}
+
 export const SELECT_TAB = 'SELECT_TAB';
 export function selectTab(tabSelected: string, valueSelected: any = '') {
   return {

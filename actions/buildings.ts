@@ -1,7 +1,18 @@
 import Building from '../models/building';
 
-export const ADD_BUILDING = 'ADD_BUILDING';
+export const SET_BUILDINGS = 'SET_BUILDINGS';
+export function setBuildings(buildings: { [id: string] : Building }) {
+  let newBuildings: { [id: string] : Building } = {};
+  Object.keys(buildings).map((buildingId) => {
+    newBuildings[buildingId] = new Building(buildings[buildingId]);
+  });
+  return {
+    type: SET_BUILDINGS,
+    buildings: buildings
+  }
+}
 
+export const ADD_BUILDING = 'ADD_BUILDING';
 export function addBuilding(building: Building) {
   return {
     type: ADD_BUILDING,

@@ -1,6 +1,15 @@
 import ResearchOptionDeck from '../models/research_option_deck';
 import { researches } from '../instances/researches';
 
+export const SET_RESEARCH_OPTION_DECKS = 'SET_RESEARCH_OPTION_DECKS';
+export function setResearchOptionDecks(researchOptionDecks:
+  { [researchName: string] : ResearchOptionDeck}) {
+  return {
+    type: SET_RESEARCH_OPTION_DECKS,
+    researchOptionDecks: researchOptionDecks
+  };
+}
+
 export const UPSERT_RESEARCH_OPTION_DECK = 'UPSERT_RESEARCH_OPTION_DECK';
 export function startResearch(researchName: string) {
   let research = researches[researchName];

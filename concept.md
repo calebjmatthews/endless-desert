@@ -221,3 +221,12 @@ Beginning of game:
   - Event where one leader moves in and unlocks the "Leaders" tab
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
+
+Commands:
+USE `endless_desert`;
+DELETE FROM `buildings`;
+DELETE FROM `research_option_decks`;
+DELETE FROM `research_status`;
+DELETE FROM `timers`;
+DELETE FROM `trading_status`;
+DELETE FROM `vault`;

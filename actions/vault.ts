@@ -1,6 +1,14 @@
 import Vault from '../models/vault';
 import Resource from '../models/resource';
 
+export const SET_VAULT = 'SET_VAULT';
+export function setVault(vault: Vault) {
+  return {
+    type: SET_VAULT,
+    vault: vault
+  }
+}
+
 export const SET_RESOURCES = 'SET_RESOURCES';
 export function consumeResources(vault: Vault, rs: {type: string, quantity: number}[]) {
   let resources: Resource[] = []

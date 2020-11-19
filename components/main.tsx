@@ -19,12 +19,57 @@ import ModalHandlerComponent from '../components/modal_handler';
 import MessageBarComponent from '../components/message_bar';
 import TradingComponent from '../components/trading';
 import IconComponent from '../components/icon';
+import StorageHandlerComponent from '../components/storage_handler';
 import { styles } from '../styles';
 
 export default function App() {
   const dispatch = useDispatch();
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
+  const globalState = useTypedSelector(state => state.ui.globalState);
   const [dropdownExpanded, dropdownSet] = useState(false);
+
+  if (globalState == 'loading') {
+    return (
+      <LinearGradient
+        colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+        style={styles.mainContainer}>
+        <StorageHandlerComponent />
+        <StatusBar style="auto" />
+        <View style={styles.statusBarSpacer}></View>
+        <View style={styles.scrollWrapper}>
+          <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
+            <Text style={styles.bareText}>{'Loading...'}</Text>
+          </ScrollView>
+        </View>
+        <MessageBarComponent />
+      </LinearGradient>
+    );
+  }
+
+  return (
+    <LinearGradient
+      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+      style={styles.mainContainer}>
+      <HourglassComponent />
+      <ModalHandlerComponent />
+      <StorageHandlerComponent />
+      <StatusBar style="auto" />
+      <View style={styles.statusBarSpacer}></View>
+      <View style={styles.scrollWrapper}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
+          {renderTab(tabSelected)}
+        </ScrollView>
+      </View>
+      <MessageBarComponent />
+      <View style={styles.buttonTabWrapper}>
+        <TouchableOpacity style={styles.button}
+          onPress={() => { dropdownSet(!dropdownExpanded) }} >
+          <IconComponent provider="Entypo" name="menu" color="#fff" size={30} />
+        </TouchableOpacity>
+      </View>
+      {renderDropdown(dropdownExpanded, dropdownPress)}
+    </LinearGradient>
+  );
 
   function renderDropdown(expanded: boolean, dropdownPress: Function) {
     if (expanded) {
@@ -77,28 +122,4 @@ export default function App() {
       return null;
     }
   }
-
-  return (
-    <LinearGradient
-      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
-      style={styles.mainContainer}>
-      <HourglassComponent />
-      <ModalHandlerComponent />
-      <StatusBar style="auto" />
-      <View style={styles.statusBarSpacer}></View>
-      <View style={styles.scrollWrapper}>
-        <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
-          {renderTab(tabSelected)}
-        </ScrollView>
-      </View>
-      <MessageBarComponent />
-      <View style={styles.buttonTabWrapper}>
-        <TouchableOpacity style={styles.button}
-          onPress={() => { dropdownSet(!dropdownExpanded) }} >
-          <IconComponent provider="Entypo" name="menu" color="#fff" size={30} />
-        </TouchableOpacity>
-      </View>
-      {renderDropdown(dropdownExpanded, dropdownPress)}
-    </LinearGradient>
-  );
 }

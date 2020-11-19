@@ -1,5 +1,14 @@
 import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
+import TradingStatus from '../models/trading_status';
+
+export const SET_TRADING_STATUS = 'SET_TRADING_STATUS';
+export function setTradingStatus(tradingStatus: TradingStatus) {
+  return {
+    type: SET_TRADING_STATUS,
+    tradingStatus: tradingStatus
+  }
+}
 
 export const ADD_PENDING_TRADING_PARTNER = 'ADD_PENDING_TRADING_PARTNER';
 export function addPendingTradingPartner(tradingPartner: TradingPartner) {

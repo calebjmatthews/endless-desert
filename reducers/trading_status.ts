@@ -1,11 +1,15 @@
 import TradingStatus from '../models/trading_status';
 import { tradingStatusStarting } from '../instances/trading_status';
-import { ADD_PENDING_TRADING_PARTNER, WELCOME_PENDING_TRADING_PARTNER,
-  DISMISS_TRADING_PARTNER, COMPLETE_TRADE } from '../actions/trading_status';
+import { SET_TRADING_STATUS, ADD_PENDING_TRADING_PARTNER,
+  WELCOME_PENDING_TRADING_PARTNER, DISMISS_TRADING_PARTNER, COMPLETE_TRADE }
+  from '../actions/trading_status';
 
 export default function (tradingStatus: TradingStatus = tradingStatusStarting,
   action: any = null) {
 	switch(action.type) {
+    case SET_TRADING_STATUS:
+    return new TradingStatus(action.tradingStatus);
+
     case ADD_PENDING_TRADING_PARTNER:
     let newAPTPTradingStatus = new TradingStatus(tradingStatus);
     newAPTPTradingStatus.addPendingTradingPartner(action.tradingPartner);
