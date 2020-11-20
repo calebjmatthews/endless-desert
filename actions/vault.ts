@@ -39,3 +39,11 @@ export function increaseResources(vault: Vault, rs: {type: string, quantity: num
     resources: resources
   }
 }
+
+export const SET_LAST_TIMESTAMP = 'SET_LAST_TIMESTAMP';
+export function setLastTimestamp(timestamp: number) {
+  return {
+    type: SET_LAST_TIMESTAMP,
+    timestamp: timestamp
+  }
+}

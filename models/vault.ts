@@ -3,6 +3,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default class Vault {
+  lastTimestamp: number = new Date(Date.now()).valueOf();
   resources: { [type: string] : Resource } = {};
 
   constructor(vault: VaultInterface) {
@@ -130,5 +131,6 @@ export default class Vault {
 }
 
 interface VaultInterface {
+  lastTimestamp: number;
   resources: { [type: string] : Resource };
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { increaseResources, consumeResources } from '../actions/vault';
+import { increaseResources, consumeResources, setLastTimestamp } from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers } from '../actions/timers';
 import { addBuilding } from '../actions/buildings';
@@ -22,8 +22,9 @@ export default function HourglassComponent() {
   const rates = useTypedSelector(state => state.rates);
   const timers = useTypedSelector(state => state.timers);
   const buildings = useTypedSelector(state => state.buildings);
-  const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const hourglass = new Hourglass();
+  const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
+  const [callCalc, setCallCalc] = useState(false);
 
   useEffect(() => {
     const newRates = hourglass.setRates(buildingsStarting);
@@ -32,6 +33,14 @@ export default function HourglassComponent() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      setCallCalc(true);
+      setLocalTimestamp(new Date(Date.now()).valueOf());
+    }, 100);
+  }, [localTimestamp]);
+
+  useEffect(() => {
+    if (callCalc) {
+      setCallCalc(false);
       // Resources to increase
       let rti: {type: string, quantity: number}[] = [];
       // Resources to consume
@@ -39,7 +48,7 @@ export default function HourglassComponent() {
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
-        const results = hourglass.calculate(rates, lastTimestamp);
+        const results = hourglass.calculate(rates, vault.lastTimestamp);
         let resourceDiffs: {type: string, quantity: number}[] = [];
         Object.keys(results.productionSum).map((type) => {
           resourceDiffs.push({type: type, quantity: results.productionSum[type]});
@@ -98,10 +107,9 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().setRates(tempBuildings);
         dispatch(setRates(newRates));
       }
-      // Need dispatch for timer label update
-      setLastTimestamp(new Date(Date.now()).valueOf());
-    }, 100);
-  }, [lastTimestamp]);
+      dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
+    }
+  }, [callCalc]);
 
   return <></>
 }
