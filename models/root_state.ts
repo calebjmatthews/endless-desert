@@ -5,6 +5,7 @@ import ResearchOptionDeck from './research_option_deck';
 import Timer from './timer';
 import Message from './message';
 import TradingStatus from './trading_status';
+import Account from './account';
 
 export default interface RootState {
   vault: Vault;
@@ -15,6 +16,7 @@ export default interface RootState {
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;
+  account: Account;
   ui: {globalState: string, tabSelected: string, valueSelected: any,
     modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[]};

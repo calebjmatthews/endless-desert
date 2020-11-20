@@ -28,12 +28,12 @@ export default function ResearchesComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
-  console.log('researchStatus');
-  console.log(researchStatus);
   const researchOptionDecks =
     useTypedSelector(state => state.researchOptionDecks);
   const studyTimer = useTypedSelector(state => state.timers[RESEARCHES.STUDY]);
   const analysisTimer = useTypedSelector(state => state.timers[RESEARCHES.ANALYSIS]);
+  const showCompletedResearches =
+    useTypedSelector(state => state.account.showCompletedResearches);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -67,7 +67,8 @@ export default function ResearchesComponent() {
 
   function renderResearch(research: any, startClick: Function) {
     return <ResearchDescription research={research} vault={vault}
-      startClick={startClick} rods={researchOptionDecks} />
+      startClick={startClick} rods={researchOptionDecks}
+      showCompletedResearches={showCompletedResearches} />
   }
 
   function renderActions() {
@@ -171,10 +172,14 @@ export default function ResearchesComponent() {
 }
 
 function ResearchDescription(props: {research: any, vault: Vault,
-  startClick: Function,
+  startClick: Function, showCompletedResearches: boolean,
   rods: { [researchName: string] : ResearchOptionDeck}}) {
   const researchStatus: {name: string, status: string} = props.research.item;
   const research = researches[researchStatus.name];
+
+  if (!props.showCompletedResearches && researchStatus.status != 'visible') {
+    return null;
+  }
 
   return (
     <View style={styles.panelFlex}>
