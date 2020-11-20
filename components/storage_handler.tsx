@@ -32,6 +32,7 @@ export default function StorageHandlerComponent() {
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const globalState = useTypedSelector(state => state.ui.globalState);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
+  const [callSave, setCallSave] = useState(false);
 
   useEffect(() => {
     if (globalState == 'loading') {
@@ -52,12 +53,8 @@ export default function StorageHandlerComponent() {
         if (dataRes.data) {
           Object.keys(TABLE_SETTERS).map((tableName) => {
             if (dataRes.data[tableName]) {
-              console.log('tableName');
-              console.log(tableName);
               try {
                 let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
-                console.log('jsonValue');
-                console.log(jsonValue);
                 dispatch(TABLE_SETTERS[tableName](jsonValue));
               }
               catch {}
@@ -80,10 +77,17 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      saveIntoStorage();
+      setCallSave(true);
       setLastTimestamp(new Date(Date.now()).valueOf());
     }, SAVE_INTERVAL);
   }, [lastTimestamp]);
+
+  useEffect(() => {
+    if (callSave) {
+      saveIntoStorage();
+      setCallSave(false);
+    }
+  }), [callSave];
 
   function saveIntoStorage() {
     fetch('http://localhost:8080/api/storage/5', {

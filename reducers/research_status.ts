@@ -7,8 +7,6 @@ export default function (researchStatus: ResearchStatus = researchStatusStarting
   action: any = null) {
 	switch(action.type) {
     case SET_RESEARCH_STATUS:
-    console.log('action.researchStatus');
-    console.log(action.researchStatus);
     return new ResearchStatus(action.researchStatus);
 
     case COMPLETE_RESEARCH:
