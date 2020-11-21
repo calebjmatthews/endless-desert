@@ -1,4 +1,4 @@
-import { CHANGE_SETTING } from '../actions/account';
+import { SET_ACCOUNT, CHANGE_SETTING } from '../actions/account';
 import Account from '../models/account';
 
 import { buildingsStarting } from '../instances/buildings';
@@ -8,6 +8,9 @@ let accountStarting = new Account({id: 5, showCompletedResearches: false});
 export default function (account: Account = accountStarting,
   action: any = null) {
 	switch(action.type) {
+    case SET_ACCOUNT:
+    return new Account(action.account);
+
     case CHANGE_SETTING:
     let newCSAccount = new Account(account);
     // @ts-ignore

@@ -9,6 +9,7 @@ import { setBuildings } from '../actions/buildings';
 import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
+import { setAccount } from '../actions/account';
 import { setGlobalState } from '../actions/ui';
 
 const SAVE_INTERVAL = 60000;
@@ -18,7 +19,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'buildings': setBuildings,
   'research_option_decks': setResearchOptionDecks,
   'timers': setTimers,
-  'trading_status': setTradingStatus
+  'trading_status': setTradingStatus,
+  'account': setAccount
 }
 
 export default function StorageHandlerComponent() {
@@ -30,6 +32,7 @@ export default function StorageHandlerComponent() {
   const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const timers = useTypedSelector(state => state.timers);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
+  const account = useTypedSelector(state => state.account);
   const globalState = useTypedSelector(state => state.ui.globalState);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
@@ -41,7 +44,7 @@ export default function StorageHandlerComponent() {
   }, []);
 
   function fetchFromStorage(): Promise<boolean> {
-    return fetch('http://localhost:8080/api/storage/5')
+    return fetch('http://localhost:8080/api/storage/' + account.id)
     .then((dataRes) => {
       if (dataRes) {
         return dataRes.json()
@@ -90,7 +93,7 @@ export default function StorageHandlerComponent() {
   }), [callSave];
 
   function saveIntoStorage() {
-    fetch('http://localhost:8080/api/storage/5', {
+    fetch(('http://localhost:8080/api/storage/' + account.id), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -98,11 +101,11 @@ export default function StorageHandlerComponent() {
       body: JSON.stringify({
         vault: vault,
         research_status: researchStatus,
-        rate: rates,
         buildings: buildings,
         research_option_decks: researchOptionDecks,
         timers: timers,
-        trading_status: tradingStatus
+        trading_status: tradingStatus,
+        accounts: account
       })
     })
     .then((res) => {
