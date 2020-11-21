@@ -132,9 +132,10 @@ export const styles = StyleSheet.create({
     borderColor: '#071f56'
   },
   dropdownHeading: {
-    padding: 5,
+    paddingTop: 5,
+    paddingHorizontal: 5,
     fontSize: 12,
-    fontStyle: 'italics'
+    fontStyle: 'italic'
   },
   bodyText: {
     marginTop: 5,
