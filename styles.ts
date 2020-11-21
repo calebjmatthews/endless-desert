@@ -131,6 +131,11 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#071f56'
   },
+  dropdownHeading: {
+    padding: 5,
+    fontSize: 12,
+    fontStyle: 'italics'
+  },
   bodyText: {
     marginTop: 5,
     marginBottom: 5,

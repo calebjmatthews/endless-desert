@@ -9,7 +9,7 @@ import { Text, View, Button, FlatList, TouchableOpacity, ScrollView }
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab } from '../actions/ui';
-
+import { changeSetting } from '../actions/account';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -22,10 +22,13 @@ import IconComponent from '../components/icon';
 import StorageHandlerComponent from '../components/storage_handler';
 import { styles } from '../styles';
 
+import { tabs, tabsArray } from '../instances/tabs';
+
 export default function App() {
   const dispatch = useDispatch();
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
   const globalState = useTypedSelector(state => state.ui.globalState);
+  const account = useTypedSelector(state => state.account);
   const [dropdownExpanded, dropdownSet] = useState(false);
 
   if (globalState == 'loading') {
@@ -74,36 +77,87 @@ export default function App() {
   function renderDropdown(expanded: boolean, dropdownPress: Function) {
     if (expanded) {
       return (
-        <FlatList
-          style={styles.dropdownList}
-          data={[
-            {name: "Buildings", provider: "FontAwesome5", icon: "building"},
-            {name: "Resources", provider: "FontAwesome", icon: "cube"},
-            {name: "Researches", provider: "FontAwesome", icon: "book"},
-            {name: "Trading", provider: "Entypo", icon: "address"}
-          ]}
-          renderItem={(item) => renderDropdownItem(item, dropdownPress)}
-          keyExtractor={item => item.name}>
-        </FlatList>
+        <View style={styles.dropdownList}>
+          {renderDropdownTabsSection()}
+          {renderTabSettingsSection()}
+        </View>
       );
     }
     return null;
   }
 
-  function renderDropdownItem(itemData: any, dropdownPress: Function) {
-    let i = itemData.item;
+  function renderDropdownTabsSection() {
+    let tab = tabs[tabSelected];
+    let sectionHeading = null;
+    if (tab.settings.length > 0) {
+      sectionHeading = <Text style={styles.dropdownHeading}>{'Go to:'}</Text>
+    }
     return (
-      <TouchableOpacity style={styles.dropdownListItem}
-        onPress={() => dropdownPress(i.name)} >
-        <IconComponent provider={i.provider} name={i.icon} color="#000" size={14} />
-        <Text>{' ' + i.name}</Text>
-      </TouchableOpacity>
+      <>
+        {sectionHeading}
+        {renderDropdownTabs()}
+      </>
     );
+  }
+
+  function renderDropdownTabs() {
+    return tabsArray.map((tab) => {
+      return (
+        <TouchableOpacity key={tab.name} style={styles.dropdownListItem}
+          onPress={() => dropdownPress(tab.name)} >
+          <IconComponent provider={tab.icon.provider} name={tab.icon.name}
+            color="#000" size={14} />
+          <Text>{' ' + tab.name}</Text>
+        </TouchableOpacity>
+      )
+    })
+  }
+
+  function renderTabSettingsSection() {
+    let tab = tabs[tabSelected];
+    if (tab.settings.length > 0) {
+      let sectionHeading = <Text style={styles.dropdownHeading}>{'Settings:'}</Text>
+      return (
+        <>
+          {sectionHeading}
+          {renderTabSettings()}
+        </>
+      );
+    }
+    return null;
+  }
+
+  function renderTabSettings() {
+    let tab = tabs[tabSelected];
+    return tab.settings.map((setting) => {
+      return (
+        <TouchableOpacity key={setting.name} style={styles.dropdownListItem}
+          onPress={() => settingPress(setting)} >
+          <IconComponent provider={setting.icon.provider} name={setting.icon.name}
+            color="#000" size={14} />
+          <Text>{' ' + setting.displayName}</Text>
+        </TouchableOpacity>
+      )
+    });
   }
 
   function dropdownPress(tabName: string) {
     dispatch(selectTab(tabName));
     dropdownSet(false);
+  }
+
+  function settingPress(setting: {name: string, displayName: string, type: string,
+    icon: {provider: string, name: string}}) {
+    switch(setting.type) {
+      case 'toggle':
+      // @ts-ignore
+      dispatch(changeSetting(setting.name, !(account[setting.name])));
+      dropdownSet(false);
+      break;
+
+      default:
+      break;
+    }
   }
 
   function renderTab(tabName: string) {
@@ -112,7 +166,7 @@ export default function App() {
       return <BuildingsComponent />;
       case "Resources":
       return <ResourcesComponent />
-      case "Researches":
+      case "Research":
       return <ResearchesComponent />
       case "Researching":
       return <ResearchingComponent />
