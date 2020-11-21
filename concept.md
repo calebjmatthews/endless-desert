@@ -132,6 +132,8 @@ Leaders:
   - Favorite activity: cooking, Secret wish: to live in the same city as [other leader]
   - Favorite activity: crafting, Secret wish: to weave an exquisite tapestry
   - Favorite activity: crafting, Secret wish: to wear a robe of golden thread
+  - Old friend of player, first leader but then disappears
+  - Old friend's second in command
 
 Caches:
   - Give random amounts of relics, which are resources used to construct cosmetics
@@ -213,7 +215,10 @@ Calculating timestep:
 
 Beginning of game:
   - Some messages to introduce setting
+    - "Rumors say anything can be found in the desert: ancient knowledge, buried jade, even a path back from the land of the dead. But perhaps it was foolish to run towards its center on your own."
+    - "Your food and water are long gone, your breath gasping and your steps slow, when you find a ruined village."
   - Start with no tabs, just a single button that says "Look around". Clicking this displays another introductory message, unlocks the "Resources" and "Buildings" tabs, and gives a small quantity of water, lentils, seeds, clay, and sand
+    - "There are signs of conflict here: a shattered gate, broken doors, and ransacked huts. But there aren't any bodies. Maybe the villagers fled as the raiders approached. You find some meager leavings in the rubble."
   - Inside the "Buildings" tab have "Broken cistern", "Decaying shack", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
   - Second action is in the "Build" button: "Repair cistern", which creates the cistern building and gives a large amount of water
   - Third action: "Refurbish housing", which creates one hut and the study, which unlocks the "Research" tab

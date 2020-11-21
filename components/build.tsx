@@ -59,7 +59,7 @@ export default function BuildComponent() {
         resourcesToConsume: resourceCost,
         buildingToBuild: buildingType.name,
         tradingPartnerToArrive: null,
-        messageToDisplay: ('We built a new ' + buildingType.name + '.'),
+        messageToDisplay: ('You built a new ' + buildingType.name + '.'),
         iconToDisplay: buildingType.icon,
         iconForegroundColor: buildingType.foregroundColor,
         iconBackgroundColor: buildingType.backgroundColor

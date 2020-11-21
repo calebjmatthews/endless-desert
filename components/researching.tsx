@@ -147,7 +147,7 @@ export default function ResearchingComponent() {
         if (rod.stepsNeeded <= rod.stepsCompleted) {
           dispatch(completeResearch(valueSelected));
           dispatch(addMessage(new Message({
-            text: ('I finished researching ' + research.name + '.'),
+            text: ('You finished researching ' + research.name + '.'),
             type: '',
             timestamp: new Date(Date.now()),
             icon: research.icon,
