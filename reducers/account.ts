@@ -1,9 +1,15 @@
 import { SET_ACCOUNT, CHANGE_SETTING } from '../actions/account';
+
 import Account from '../models/account';
-
 import { buildingsStarting } from '../instances/buildings';
+import { INTRO_STATES } from '../enums/intro_states';
 
-let accountStarting = new Account({id: 5, showCompletedResearches: false});
+let accountStarting = new Account({
+  id: 5,
+  introState: INTRO_STATES.LOOK_AROUND,
+  tabsUnloked: [],
+  showCompletedResearches: false
+});
 
 export default function (account: Account = accountStarting,
   action: any = null) {

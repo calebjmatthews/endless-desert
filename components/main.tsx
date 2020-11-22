@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
@@ -6,6 +5,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { createStore } from 'redux';
 import { Text, View, Button, FlatList, TouchableOpacity, ScrollView }
   from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab } from '../actions/ui';
@@ -20,9 +20,11 @@ import MessageBarComponent from '../components/message_bar';
 import TradingComponent from '../components/trading';
 import IconComponent from '../components/icon';
 import StorageHandlerComponent from '../components/storage_handler';
+import LookAroundComponent from '../components/look_around';
 import { styles } from '../styles';
 
 import { tabs, tabsArray } from '../instances/tabs';
+import { INTRO_STATES } from '../enums/intro_states';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -47,6 +49,10 @@ export default function App() {
         <MessageBarComponent />
       </LinearGradient>
     );
+  }
+
+  else if (account.introState == INTRO_STATES.LOOK_AROUND) {
+    return <LookAroundComponent />
   }
 
   return (
