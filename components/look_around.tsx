@@ -11,6 +11,7 @@ import { styles } from '../styles';
 import MessageBarComponent from '../components/message_bar';
 import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
+import ProgressBarComponent from '../components/progress_bar';
 import { setIntroState } from '../actions/account';
 import { addMemos } from '../actions/ui';
 
@@ -20,6 +21,7 @@ import { INTRO_STATES } from '../enums/intro_states';
 
 export default function LookAroundComponent() {
   const dispatch = useDispatch();
+  const [looking, setLooking] = useState(false);
 
   return (
     <LinearGradient
@@ -36,21 +38,39 @@ export default function LookAroundComponent() {
               {'The paths are faded and the buildings are broken. What happened here?'}
             </Text>
             <View style={styles.break} />
-            <TouchableOpacity style={styles.buttonLarge}
-              onPress={() => {lookAround()}} >
-              <IconComponent provider="FontAwesome" name="eye" color="#fff" size={16}
-                style={styles.headingIcon} />
-              <Text style={styles.buttonTextLarge}>{' Look around'}</Text>
-            </TouchableOpacity>
+            {renderButtonBar()}
           </View>
         </ScrollView>
       </View>
     </LinearGradient>
   );
 
+  function renderButtonBar() {
+    if (!looking) {
+      return (
+        <TouchableOpacity style={styles.buttonLarge}
+          onPress={() => {lookAround()}} >
+          <IconComponent provider="FontAwesome" name="eye" color="#fff" size={16}
+            style={styles.headingIcon} />
+          <Text style={styles.buttonTextLarge}>{' Look around'}</Text>
+        </TouchableOpacity>
+      );
+    }
+    else {
+      return (
+        <ProgressBarComponent startingProgress={0}
+          endingProgress={1} duration={3000}
+          label={'Searching...'} />
+      );
+    }
+  }
+
   function lookAround() {
-    dispatch(addMemos([memos[MEMOS.LOOK_AROUND], memos[MEMOS.LOOK_AROUND_LOOT],
-      memos[MEMOS.LOOK_AROUND_REPAIR]]));
-    dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
+    setLooking(true);
+    setTimeout(() => {
+      dispatch(addMemos([memos[MEMOS.LOOK_AROUND], memos[MEMOS.LOOK_AROUND_LOOT],
+        memos[MEMOS.LOOK_AROUND_REPAIR]]));
+      dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
+    }, 3000);
   }
 }

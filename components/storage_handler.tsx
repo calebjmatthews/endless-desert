@@ -44,8 +44,6 @@ export default function StorageHandlerComponent() {
     if (globalState == 'loading') {
       fetchFromStorage()
       .then((fetchRes) => {
-        console.log('fetchRes');
-        console.log(fetchRes);
         if (!fetchRes) {
           dispatch(addMemos([memos[MEMOS.INTRO_ONE], memos[MEMOS.INTRO_TWO]]));
         }
