@@ -9,9 +9,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';
 
 import MessageBarComponent from '../components/message_bar';
+import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import { setIntroState } from '../actions/account';
+import { addMemos } from '../actions/ui';
 
+import { memos } from '../instances/memos';
+import { MEMOS } from '../enums/memos';
 import { INTRO_STATES } from '../enums/intro_states';
 
 export default function LookAroundComponent() {
@@ -21,6 +25,7 @@ export default function LookAroundComponent() {
     <LinearGradient
       colors={["#0034aa", "#6a41b4", "#f58f7d"]}
       style={styles.mainContainer}>
+      <ModalHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
@@ -40,11 +45,12 @@ export default function LookAroundComponent() {
           </View>
         </ScrollView>
       </View>
-      <MessageBarComponent />
     </LinearGradient>
   );
 
   function lookAround() {
+    dispatch(addMemos([memos[MEMOS.LOOK_AROUND], memos[MEMOS.LOOK_AROUND_LOOT],
+      memos[MEMOS.LOOK_AROUND_REPAIR]]));
     dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
   }
 }

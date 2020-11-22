@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import RootState from '../models/root_state';
@@ -10,14 +10,24 @@ import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
+import MemoComponent from './memo';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
   const dispatch = useDispatch();
   const modalType = useTypedSelector(state => state.ui.modalDisplayed);
+  const memos = useTypedSelector(state => state.ui.memos);
+
+  useEffect(() => {
+    if (memos.length > 0) {
+      dispatch(displayModal(MODALS.MEMO));
+    }
+  }, [memos])
 
   function modalCancel() {
-    dispatch(displayModal(null));
+    if (modalType != MODALS.MEMO) {
+      dispatch(displayModal(null));
+    }
   }
 
   if (modalType == null) {
@@ -46,6 +56,9 @@ function renderModal(modalType: string) {
 
     case MODALS.RESOURCE_SELECT_ONE:
     return <ResourceSelectOneComponent />;
+
+    case MODALS.MEMO:
+    return <MemoComponent />;
 
     default:
     return null;

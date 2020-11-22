@@ -1,7 +1,8 @@
 export default class Memo {
-  text: string = '';
+  name: string = '';
   title: string = '';
-  timestamp: Date = new Date(Date.now());
+  text: string = '';
+  timestamp?: Date = new Date(Date.now());
 
   constructor(memo: Memo) {
     Object.assign(this, memo);

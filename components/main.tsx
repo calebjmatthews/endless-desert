@@ -46,7 +46,6 @@ export default function App() {
             <Text style={styles.bareText}>{'Loading...'}</Text>
           </ScrollView>
         </View>
-        <MessageBarComponent />
       </LinearGradient>
     );
   }

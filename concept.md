@@ -219,7 +219,7 @@ Beginning of game:
     * "Your food and water are long gone, your breath gasping and your steps slow, when you find a ruined village."
   - Start with no tabs, just a single button that says "Look around". Clicking this displays another introductory message, unlocks the "Resources" and "Buildings" tabs, and gives a small quantity of water, lentils, seeds, clay, wood, and sand
     * "There are signs of conflict here: a shattered gate, broken doors, and ransacked huts. But there aren't any bodies. Maybe the villagers fled as the raiders approached. You find some meager leavings in the rubble."
-  - Inside the "Buildings" tab have "Broken cistern", "Decaying shack", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
+  - Inside the "Buildings" tab have "Broken cistern", "Decaying study", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
   - Second action is in the "Build" button: "Repair cistern", which creates the cistern building and gives a large amount of water
     * Repairing the broken cistern isn't difficult, and the results are well worth it. Instead of streaming through the cracked side, water begins steadily filling the gigantic basin.
   - Third action: "Refurbish housing", which creates one hut and the study, and unlocks the "Research" tab
@@ -238,3 +238,4 @@ DELETE FROM `research_status`;
 DELETE FROM `timers`;
 DELETE FROM `trading_status`;
 DELETE FROM `vault`;
+DELETE FROM `accounts`;

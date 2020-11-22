@@ -10,7 +10,10 @@ import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
 import { setAccount } from '../actions/account';
-import { setGlobalState } from '../actions/ui';
+import { setGlobalState, addMemos } from '../actions/ui';
+
+import { memos } from '../instances/memos';
+import { MEMOS } from '../enums/memos';
 
 const SAVE_INTERVAL = 60000;
 const TABLE_SETTERS : { [tableName: string] : Function} = {
@@ -39,7 +42,14 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (globalState == 'loading') {
-      fetchFromStorage();
+      fetchFromStorage()
+      .then((fetchRes) => {
+        console.log('fetchRes');
+        console.log(fetchRes);
+        if (!fetchRes) {
+          dispatch(addMemos([memos[MEMOS.INTRO_ONE], memos[MEMOS.INTRO_TWO]]));
+        }
+      });
     }
   }, []);
 
@@ -52,19 +62,23 @@ export default function StorageHandlerComponent() {
       return false;
     })
     .then((dataRes) => {
-      if (dataRes) {
-        if (dataRes.data) {
-          Object.keys(TABLE_SETTERS).map((tableName) => {
-            if (dataRes.data[tableName]) {
-              try {
-                let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
-                dispatch(TABLE_SETTERS[tableName](jsonValue));
-              }
-              catch {}
-            }
-          });
-          return true;
+      try {
+        if (dataRes.data.accounts.length == 0) {
+          return false;
         }
+        Object.keys(TABLE_SETTERS).map((tableName) => {
+          if (dataRes.data[tableName]) {
+            try {
+              let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
+              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            }
+            catch {}
+          }
+        });
+        return true;
+      }
+      catch {
+        return false;
       }
       return false;
     })
@@ -87,7 +101,7 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (callSave) {
-      saveIntoStorage();
+      // saveIntoStorage();
       setCallSave(false);
     }
   }), [callSave];

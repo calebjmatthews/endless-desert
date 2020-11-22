@@ -1,4 +1,5 @@
 import Message from '../models/message';
+import Memo from '../models/memo';
 
 export const SET_GLOBAL_STATE = 'SET_GLOBAL_STATE';
 export function setGlobalState(globalState: string) {
@@ -41,5 +42,20 @@ export function addMessage(message: Message) {
   return {
     type: ADD_MESSAGE,
     message: message
+  }
+}
+
+export const ADD_MEMOS = 'ADD_MEMOS';
+export function addMemos(memos: Memo[]) {
+  return {
+    type: ADD_MEMOS,
+    memos: memos
+  }
+}
+
+export const DISMISS_MEMO = 'DISMISS_MEMO';
+export function dismissMemo() {
+  return {
+    type: DISMISS_MEMO
   }
 }
