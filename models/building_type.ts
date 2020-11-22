@@ -26,6 +26,7 @@ export default class BuildingType implements BuildingTypeInterface {
         }
       });
     }
+    if (newDuration <= 0) { newDuration = 3; }
     this.duration = newDuration;
   }
 }

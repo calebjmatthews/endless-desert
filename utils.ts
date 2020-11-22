@@ -93,6 +93,25 @@ class Utils {
     return true;
   }
 
+  arrayIncludes(anArray: any[], anItem: any, anId: any = null) {
+    let included = false;
+    if (anId != null) {
+      anArray.map((aMember) => {
+        if (aMember[anId] == anItem[anId]) {
+          included = true;
+        }
+      });
+    }
+    else {
+      anArray.map((aMember) => {
+        if (aMember == anItem) {
+          included = true;
+        }
+      });
+    }
+    return included;
+  }
+
   // Take in a string of various format and output an internationally formatted string
   phoneNumberIn(rawNum: string) {
     if (!rawNum) { return null; }

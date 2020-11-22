@@ -93,7 +93,7 @@ export default function BuildComponent() {
   function renderNothingMessage(buildingsArray: BuildingType[]) {
     if (buildingsArray.length == 0) {
       return (
-        <Text style={styles.bareText}>- Nothing available to build -</Text>
+        <Text style={styles.bareText}>{'- Nothing available to build -'}</Text>
       );
     }
     return null;
