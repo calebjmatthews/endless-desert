@@ -15,9 +15,11 @@ function startingFactory(buildingType: string) {
   buildingsStarting[startingBuilding.id] = startingBuilding;
 }
 
-startingFactory(BUILDING_TYPES.TRADING_POST);
-startingFactory(BUILDING_TYPES.HUT);
-startingFactory(BUILDING_TYPES.CISTERN);
-startingFactory(BUILDING_TYPES.LENTIL_FIELD);
+startingFactory(BUILDING_TYPES.BROKEN_CISTERN);
+startingFactory(BUILDING_TYPES.DECAYING_STUDY);
+startingFactory(BUILDING_TYPES.RUINED_HUTS);
+startingFactory(BUILDING_TYPES.FALLOW_FIELD);
+startingFactory(BUILDING_TYPES.SHATTERED_GATE);
+startingFactory(BUILDING_TYPES.ABANDONED_MARKET);
 
 export { buildingsStarting }

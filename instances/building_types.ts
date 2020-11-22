@@ -4,9 +4,75 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 
 let buildingTypes: { [name: string] : BuildingType } = {};
 
-buildingTypes[BUILDING_TYPES.TRADING_POST] = new BuildingType({
-  name: BUILDING_TYPES.TRADING_POST,
-  icon: {provider: 'FontAwesome', name: 'exchange'},
+buildingTypes[BUILDING_TYPES.BROKEN_CISTERN] = new BuildingType({
+  name: BUILDING_TYPES.BROKEN_CISTERN,
+  icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
+  foregroundColor: '#93c5ec',
+  backgroundColor: '#fff',
+  cost: null,
+  production: [{produces: RESOURCE_TYPES.WATER, rate: 10}],
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.CISTERN
+});
+
+buildingTypes[BUILDING_TYPES.DECAYING_STUDY] = new BuildingType({
+  name: BUILDING_TYPES.DECAYING_STUDY,
+  icon: {provider: 'FontAwesome5', name: 'book-open'},
+  foregroundColor: '#797979',
+  backgroundColor: '#fff',
+  cost: null,
+  production: null,
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.STUDY
+});
+
+buildingTypes[BUILDING_TYPES.RUINED_HUTS] = new BuildingType({
+  name: BUILDING_TYPES.RUINED_HUTS,
+  icon: {provider: 'FontAwesome5', name: 'store-alt'},
+  foregroundColor: '#d0b2a7',
+  backgroundColor: '#fff',
+  cost: null,
+  production: null,
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.HUTS
+});
+
+buildingTypes[BUILDING_TYPES.FALLOW_FIELD] = new BuildingType({
+  name: BUILDING_TYPES.FALLOW_FIELD,
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#bbdc94',
+  backgroundColor: '#fff',
+  cost: null,
+  production: [{produces: RESOURCE_TYPES.LENTILS, rate: 1}],
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.LENTIL_FIELD
+});
+
+buildingTypes[BUILDING_TYPES.SHATTERED_GATE] = new BuildingType({
+  name: BUILDING_TYPES.SHATTERED_GATE,
+  icon: {provider: 'FontAwesome5', name: 'dungeon'},
+  foregroundColor: '#797979',
+  backgroundColor: '#fff',
+  cost: null,
+  production: null,
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.GATE
+});
+
+buildingTypes[BUILDING_TYPES.ABANDONED_MARKET] = new BuildingType({
+  name: BUILDING_TYPES.ABANDONED_MARKET,
+  icon: {provider: 'FontAwesome5', name: 'store'},
+  foregroundColor: '#797979',
+  backgroundColor: '#fff',
+  cost: null,
+  production: null,
+  consumption: null,
+  upgradesInto: BUILDING_TYPES.MARKET
+});
+
+buildingTypes[BUILDING_TYPES.MARKET] = new BuildingType({
+  name: BUILDING_TYPES.MARKET,
+  icon: {provider: 'MaterialIcons', name: 'storefront'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff',
   cost: null,
@@ -14,8 +80,8 @@ buildingTypes[BUILDING_TYPES.TRADING_POST] = new BuildingType({
   consumption: null
 });
 
-buildingTypes[BUILDING_TYPES.HUT] = new BuildingType({
-  name: BUILDING_TYPES.HUT,
+buildingTypes[BUILDING_TYPES.HUTS] = new BuildingType({
+  name: BUILDING_TYPES.HUTS,
   icon: {provider: 'FontAwesome5', name: 'store-alt'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',

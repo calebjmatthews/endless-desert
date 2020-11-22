@@ -16,3 +16,11 @@ export function changeSetting(name: string, value: any) {
     value: value
   }
 }
+
+export const SET_INTRO_STATE = 'SET_INTRO_STATE';
+export function setIntroState(introState: string) {
+  return {
+    type: SET_INTRO_STATE,
+    introState: introState
+  }
+}

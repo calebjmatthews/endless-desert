@@ -8,6 +8,7 @@ export default class BuildingType implements BuildingTypeInterface {
   cost: {resource: string, quantity: number}[]|null = null;
   production: {produces: string, rate: number}[]|null = null;
   consumption: {consumes: string, rate: number}[]|null = null;
+  upgradesInto?: string;
   duration?: number = 0;
 
   constructor(buildingType: BuildingTypeInterface) {
@@ -37,5 +38,6 @@ interface BuildingTypeInterface {
   cost: {resource: string, quantity: number}[]|null;
   production: {produces: string, rate: number}[]|null;
   consumption: {consumes: string, rate: number}[]|null;
+  upgradesInto?: string;
   duration?: number;
 }

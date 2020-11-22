@@ -1,4 +1,4 @@
-import { SET_ACCOUNT, CHANGE_SETTING } from '../actions/account';
+import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE } from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
@@ -22,6 +22,11 @@ export default function (account: Account = accountStarting,
     // @ts-ignore
     newCSAccount[action.name] = action.value;
     return newCSAccount;
+
+    case SET_INTRO_STATE:
+    let newSISAccount = new Account(account);
+    newSISAccount.introState = action.introState;
+    return newSISAccount;
 
 		default:
 		return account;
