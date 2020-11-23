@@ -10,10 +10,10 @@ export default class Timer implements TimerInterface {
   progress: number = 0;
   // Human readable amount of time remaining
   remainingLabel: string = '';
-  resourcesToIncrease: {type: string, quantity: number}[] = [];
-  resourcesToConsume: {type: string, quantity: number}[] = [];
-  buildingToBuild: string|null = null;
-  tradingPartnerToArrive: string|null = null;
+  resourcesToIncrease?: {type: string, quantity: number}[] = [];
+  resourcesToConsume?: {type: string, quantity: number}[] = [];
+  buildingToBuild?: string|null = null;
+  tradingPartnerToArrive?: string|null = null;
   messageToDisplay: string|null = null;
   iconToDisplay: {provider: string, name: string}|null = null;
   iconForegroundColor: string|null = null;
@@ -21,6 +21,8 @@ export default class Timer implements TimerInterface {
 
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
+    if (!timer.resourcesToIncrease) { this.resourcesToIncrease = []; }
+    if (!timer.resourcesToConsume) { this.resourcesToConsume = []; }
     this.setProgress();
     this.setRemainingLabel();
   }
@@ -53,10 +55,10 @@ interface TimerInterface {
   endsAt: number;
   progress: number;
   remainingLabel: string;
-  resourcesToIncrease: {type: string, quantity: number}[];
-  resourcesToConsume: {type: string, quantity: number}[];
-  buildingToBuild: string|null;
-  tradingPartnerToArrive: string|null;
+  resourcesToIncrease?: {type: string, quantity: number}[];
+  resourcesToConsume?: {type: string, quantity: number}[];
+  buildingToBuild?: string|null;
+  tradingPartnerToArrive?: string|null;
   messageToDisplay: string|null;
   iconToDisplay: {provider: string, name: string}|null;
   iconForegroundColor: string|null;

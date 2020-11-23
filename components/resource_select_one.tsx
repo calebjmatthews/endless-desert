@@ -180,8 +180,6 @@ export default function ResourceSelectOneComponent() {
           remainingLabel: '',
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected, quantity: 1}],
-          buildingToBuild: null,
-          tradingPartnerToArrive: null,
           messageToDisplay: ('You studied ' + resourceSelected + ' for '
             + resourceType.value + ' knowledge.'),
           iconToDisplay: resourceType.icon,
@@ -212,8 +210,6 @@ export default function ResourceSelectOneComponent() {
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected,
             quantity: parseInt(quantitySelected)}],
-          buildingToBuild: null,
-          tradingPartnerToArrive: null,
           messageToDisplay: ('You analyzed ' + quantitySelected + ' ' + resourceSelected
             + ' for ' + rValue + ' knowledge.'),
           iconToDisplay: resourceType.icon,
