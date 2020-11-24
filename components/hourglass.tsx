@@ -5,7 +5,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { increaseResources, consumeResources, setLastTimestamp } from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers } from '../actions/timers';
-import { addBuilding } from '../actions/buildings';
+import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addMessage } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
@@ -58,11 +58,15 @@ export default function HourglassComponent() {
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
-        if (timer.resourcesToIncrease.length > 0) {
-          rti = combineResources(rti, timer.resourcesToIncrease);
+        if (timer.resourcesToIncrease) {
+          if (timer.resourcesToIncrease.length > 0) {
+            rti = combineResources(rti, timer.resourcesToIncrease);
+          }
         }
-        if (timer.resourcesToConsume.length > 0) {
-          rtc = combineResources(rtc, timer.resourcesToConsume);
+        if (timer.resourcesToConsume) {
+          if (timer.resourcesToConsume.length > 0) {
+            rtc = combineResources(rtc, timer.resourcesToConsume);
+          }
         }
         if (timer.buildingToBuild) {
           let buildingType = buildingTypes[timer.buildingToBuild];
@@ -82,6 +86,29 @@ export default function HourglassComponent() {
           dispatch(addBuilding(building));
           tempBuildings[building.id] = building;
           recalcRates = true;
+        }
+        if (timer.buildingToUpgrade) {
+          let building = buildings[timer.buildingToUpgrade];
+          let buildingType = buildingTypes[building.buildingType];
+          if (buildingType.upgradesInto) {
+            let upgBuildingType = buildingTypes[buildingType.upgradesInto];
+            let count = countBuildings(upgBuildingType.name, buildings);
+            let suffix = 1;
+            let name = upgBuildingType.name;
+            if (count > 0) {
+              suffix = count+1;
+              name += (' ' + utils.numberToRoman(suffix));
+            }
+            let upgBuilding = new Building({
+              id: building.id,
+              buildingType: buildingType.upgradesInto,
+              suffix: suffix,
+              name: name
+            });
+            dispatch(replaceBuilding(upgBuilding));
+            tempBuildings[building.id] = upgBuilding;
+            recalcRates = true;
+          }
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({

@@ -20,6 +20,14 @@ export function addBuilding(building: Building) {
   }
 }
 
+export const REPLACE_BUILDING = 'REPLACE_BUILDING';
+export function replaceBuilding(building: Building) {
+  return {
+    type: REPLACE_BUILDING,
+    building: building
+  }
+}
+
 function countBuildings(buildingName: string, buildings: { [id: string] : Building }) {
   let count = 0;
   Object.keys(buildings).map((id) => {

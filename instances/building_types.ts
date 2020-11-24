@@ -10,6 +10,8 @@ buildingTypes[BUILDING_TYPES.BROKEN_CISTERN] = new BuildingType({
   foregroundColor: '#93c5ec',
   backgroundColor: '#fff',
   cost: null,
+  upgradeCost: [{resource: RESOURCE_TYPES.CLAY_RED, quantity: 2},
+    {resource: RESOURCE_TYPES.SAND_YELLOW, quantity: 20}],
   production: [{produces: RESOURCE_TYPES.WATER, rate: 10}],
   consumption: null,
   upgradesInto: BUILDING_TYPES.CISTERN
@@ -18,9 +20,11 @@ buildingTypes[BUILDING_TYPES.BROKEN_CISTERN] = new BuildingType({
 buildingTypes[BUILDING_TYPES.DECAYING_STUDY] = new BuildingType({
   name: BUILDING_TYPES.DECAYING_STUDY,
   icon: {provider: 'FontAwesome5', name: 'book-open'},
-  foregroundColor: '#797979',
+  foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
   cost: null,
+  upgradeCost: [{resource: RESOURCE_TYPES.CLAY_RED, quantity: 1},
+    {resource: RESOURCE_TYPES.SAND_YELLOW, quantity: 10}],
   production: null,
   consumption: null,
   upgradesInto: BUILDING_TYPES.STUDY
@@ -32,6 +36,8 @@ buildingTypes[BUILDING_TYPES.RUINED_HUTS] = new BuildingType({
   foregroundColor: '#d0b2a7',
   backgroundColor: '#fff',
   cost: null,
+  upgradeCost: [{resource: RESOURCE_TYPES.CLAY_RED, quantity: 3},
+    {resource: RESOURCE_TYPES.SAND_YELLOW, quantity: 30}],
   production: null,
   consumption: null,
   upgradesInto: BUILDING_TYPES.HUTS
@@ -43,6 +49,8 @@ buildingTypes[BUILDING_TYPES.FALLOW_FIELD] = new BuildingType({
   foregroundColor: '#bbdc94',
   backgroundColor: '#fff',
   cost: null,
+  upgradeCost: [{resource: RESOURCE_TYPES.SEEDS, quantity: 4},
+    {resource: RESOURCE_TYPES.WATER, quantity: 20}],
   production: [{produces: RESOURCE_TYPES.LENTILS, rate: 1}],
   consumption: null,
   upgradesInto: BUILDING_TYPES.LENTIL_FIELD
@@ -51,7 +59,7 @@ buildingTypes[BUILDING_TYPES.FALLOW_FIELD] = new BuildingType({
 buildingTypes[BUILDING_TYPES.SHATTERED_GATE] = new BuildingType({
   name: BUILDING_TYPES.SHATTERED_GATE,
   icon: {provider: 'FontAwesome5', name: 'dungeon'},
-  foregroundColor: '#797979',
+  foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
   cost: null,
   production: null,
@@ -62,7 +70,7 @@ buildingTypes[BUILDING_TYPES.SHATTERED_GATE] = new BuildingType({
 buildingTypes[BUILDING_TYPES.ABANDONED_MARKET] = new BuildingType({
   name: BUILDING_TYPES.ABANDONED_MARKET,
   icon: {provider: 'FontAwesome5', name: 'store'},
-  foregroundColor: '#797979',
+  foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
   cost: null,
   production: null,

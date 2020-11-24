@@ -1,4 +1,4 @@
-import { SET_BUILDINGS, ADD_BUILDING } from '../actions/buildings';
+import { SET_BUILDINGS, ADD_BUILDING, REPLACE_BUILDING } from '../actions/buildings';
 import Building from '../models/building';
 
 import { buildingsStarting } from '../instances/buildings';
@@ -13,7 +13,11 @@ export default function (buildings: { [id: string] : Building } = buildingsStart
     let newABuildings = Object.assign({}, buildings);
     newABuildings[action.building.id] = action.building;
     return newABuildings;
-    break;
+
+    case REPLACE_BUILDING:
+    let newRBuildings = Object.assign({}, buildings);
+    newRBuildings[action.building.id] = action.building;
+    return newRBuildings;
 
 		default:
 		return buildings;

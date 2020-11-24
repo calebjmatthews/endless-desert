@@ -9,9 +9,11 @@ import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
 import { displayModal } from '../actions/ui';
+import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
 import Timer from '../models/timer';
+import BuildingType from '../models/building_type';
 import { buildingTypes } from '../instances/building_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
@@ -25,6 +27,7 @@ const BUILDINGS_TO_REPAIR = [BUILDING_TYPES.ABANDONED_MARKET,
 
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
+  const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
   const buildTimer = useTypedSelector(state => state.timers['Build']);
   const researchStatus = useTypedSelector(state => state.researchStatus);
@@ -47,7 +50,8 @@ export default function BuildingsComponent() {
   }
 
   function renderBuilding(building: any) {
-    return <BuildingDescription building={building} introState={introState} />
+    return <BuildingDescription building={building} introState={introState}
+      upgradePress={upgradePress} />
   }
   return (
     <View style={styles.container}>
@@ -86,10 +90,16 @@ export default function BuildingsComponent() {
 
   function renderBuildTimer(timer: Timer) {
     if (timer) {
-      if (timer.buildingToBuild) {
+      if (timer.buildingToBuild || timer.buildingToUpgrade) {
+        let label = ('Building ' + timer.buildingToBuild);
+        if (timer.buildingToUpgrade) {
+          let buildingType =
+            buildingTypes[buildings[timer.buildingToUpgrade].buildingType]
+          label = ('Upgrading ' + buildingType.name);
+        }
         return (
           <View style={styles.panelFlexColumn}>
-            <Text>{'Building ' + timer.buildingToBuild}</Text>
+            <Text>{label}</Text>
             <ProgressBarComponent staticDuration={true}
               startingProgress={timer.progress} endingProgress={1}
               duration={timer.endsAt - new Date(Date.now()).valueOf()}
@@ -99,6 +109,45 @@ export default function BuildingsComponent() {
       }
     }
     return null;
+  }
+
+  function upgradePress(building: Building) {
+    let buildingType = buildingTypes[building.buildingType];
+    let enoughResources = true;
+    if (buildingType.upgradeCost == null) { return null; }
+    let resourceCost: {type: string, quantity: number}[] = [];
+    let totalValue = 0;
+    buildingType.upgradeCost.map((aCost) => {
+      if (vault.resources[aCost.resource].quantity < aCost.quantity) {
+        enoughResources = false;
+      }
+      resourceCost.push({type: aCost.resource, quantity: aCost.quantity});
+    });
+    if (buildingType.upgradesInto && buildingTypes[buildingType.upgradesInto]) {
+      let upgType = buildingTypes[buildingType.upgradesInto];
+      if (upgType.upgradeDuration) {
+        if (enoughResources && buildingType.duration) {
+          dispatch(addTimer(new Timer({
+            name: 'Build',
+            startedAt: new Date(Date.now()).valueOf(),
+            endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
+            progress: 0,
+            remainingLabel: '',
+            resourcesToConsume: resourceCost,
+            buildingToUpgrade: building.id,
+            messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
+              + upgType.name + '.'),
+            iconToDisplay: buildingType.icon,
+            iconForegroundColor: buildingType.foregroundColor,
+            iconBackgroundColor: buildingType.backgroundColor
+          })));
+          dispatch(displayModal(null));
+        }
+      }
+    }
+    else {
+      console.log('Not enough resources!');
+    }
   }
 }
 
@@ -115,6 +164,9 @@ function BuildingDescription(props: any) {
     upgradeDisabled = true;
     upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]);
   }
+  if (!buildingType.upgradesInto) {
+    upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, {opacity: 0}]);
+  }
 
   return (
     <View style={styles.panelFlex}>
@@ -126,8 +178,10 @@ function BuildingDescription(props: any) {
         iconSize={18} />
       <View style={styles.containerStretchColumn}>
         <Text>{props.building.item.buildingType}</Text>
+        <Text>{renderCost(buildingType.upgradeCost)}</Text>
         <View style={styles.buttonRow}>
-        <TouchableOpacity style={upgradeStyle} disabled={upgradeDisabled}>
+        <TouchableOpacity style={upgradeStyle} disabled={upgradeDisabled}
+          onPress={() => props.upgradePress(props.building.item)} >
           <IconComponent provider="FontAwesome5" name="hammer"
             color="#fff" size={16} />
           <Text style={styles.buttonText}>{upgradeLabel}</Text>
@@ -142,4 +196,18 @@ function BuildingDescription(props: any) {
       </View>
     </View>
   );
+
+  function renderCost(cost: {resource: string, quantity: number}[]|null|undefined) {
+    if (!cost) {
+      return null;
+    }
+    let costString = 'Cost: ';
+    cost.map((aCost) => {
+      costString += (aCost.quantity + ' ' + aCost.resource + ', ');
+    });
+    costString = costString.slice(0, -2);
+    return (
+      <Text>{costString}</Text>
+    )
+  }
 }

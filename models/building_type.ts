@@ -6,17 +6,19 @@ export default class BuildingType implements BuildingTypeInterface {
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
   cost: {resource: string, quantity: number}[]|null = null;
+  upgradeCost?: {resource: string, quantity: number}[]|null = null;
   production: {produces: string, rate: number}[]|null = null;
   consumption: {consumes: string, rate: number}[]|null = null;
   upgradesInto?: string;
   duration?: number = 0;
+  upgradeDuration?: number = 0;
 
   constructor(buildingType: BuildingTypeInterface) {
     Object.assign(this, buildingType);
-    this.setDuration();
+    this.setDurations();
   }
 
-  setDuration() {
+  setDurations() {
     let newDuration = 0;
     if (this.cost) {
       this.cost.map((aCost) => {
@@ -26,8 +28,19 @@ export default class BuildingType implements BuildingTypeInterface {
         }
       });
     }
+    let newUpgradeDuration = 0;
+    if (this.upgradeCost) {
+      this.upgradeCost.map((aCost) => {
+        let resourceType = resourceTypes[aCost.resource];
+        if (resourceType.value) {
+          newUpgradeDuration += ((resourceType.value * aCost.quantity) / 10);
+        }
+      });
+    }
     if (newDuration <= 0) { newDuration = 3; }
     this.duration = newDuration;
+    if (newUpgradeDuration <= 0) { newUpgradeDuration = 3; }
+    this.upgradeDuration = newUpgradeDuration
   }
 }
 
@@ -37,8 +50,10 @@ interface BuildingTypeInterface {
   foregroundColor: string;
   backgroundColor: string;
   cost: {resource: string, quantity: number}[]|null;
+  upgradeCost?: {resource: string, quantity: number}[]|null;
   production: {produces: string, rate: number}[]|null;
   consumption: {consumes: string, rate: number}[]|null;
   upgradesInto?: string;
   duration?: number;
+  upgradeDuration? :number;
 }

@@ -221,7 +221,7 @@ Beginning of game:
     * "There are signs of conflict here: a shattered gate, broken doors, and ransacked huts. But there aren't any bodies. Maybe the villagers fled as the raiders approached. You find some meager leavings in the rubble."
   - Inside the "Buildings" tab have "Broken cistern", "Decaying study", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
   - Second action is in the "Build" button: "Repair cistern", which creates the cistern building and gives a large amount of water
-    * Repairing the broken cistern isn't difficult, and the results are well worth it. Instead of streaming through the cracked side, water begins steadily filling the gigantic basin.
+    * Repairing the broken cistern wasn't difficult, and the results are well worth it. Instead of streaming through the cracked side, water begins steadily filling the gigantic basin.
   - Third action: "Refurbish housing", which creates one hut and the study, and unlocks the "Research" tab
     * With some effort, you fix the broken doors, sweep out the sand, and patch the walls to keep out howling winds. There are now a handful of tiny but livable huts, and a small study you can use for your own purposes.
   - Fourth action: "Restore field", which creates one lentil field
