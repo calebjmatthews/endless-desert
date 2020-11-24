@@ -23,7 +23,9 @@ import StorageHandlerComponent from '../components/storage_handler';
 import LookAroundComponent from '../components/look_around';
 import { styles } from '../styles';
 
-import { tabs, tabsArray } from '../instances/tabs';
+import Tab from '../models/tab';
+import { tabs } from '../instances/tabs';
+import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 
 export default function App() {
@@ -32,6 +34,15 @@ export default function App() {
   const globalState = useTypedSelector(state => state.ui.globalState);
   const account = useTypedSelector(state => state.account);
   const [dropdownExpanded, dropdownSet] = useState(false);
+
+  let tabsArray = Object.keys(tabs).map((tabName) => {
+    return tabs[tabName];
+  });
+  tabsArray = tabsArray.filter((tab) => {
+    if (utils.arrayIncludes(account.tabsUnloked, tab.name)) {
+      return tab;
+    }
+  });
 
   if (globalState == 'loading') {
     return (
@@ -94,8 +105,10 @@ export default function App() {
   function renderDropdownTabsSection() {
     let tab = tabs[tabSelected];
     let sectionHeading = null;
-    if (tab.settings.length > 0) {
-      sectionHeading = <Text style={styles.dropdownHeading}>{'Go to:'}</Text>
+    if (tab) {
+      if (tab.settings.length > 0) {
+        sectionHeading = <Text style={styles.dropdownHeading}>{'Go to:'}</Text>
+      }
     }
     return (
       <>
@@ -120,14 +133,16 @@ export default function App() {
 
   function renderTabSettingsSection() {
     let tab = tabs[tabSelected];
-    if (tab.settings.length > 0) {
-      let sectionHeading = <Text style={styles.dropdownHeading}>{'Settings:'}</Text>
-      return (
-        <>
-          {sectionHeading}
-          {renderTabSettings()}
-        </>
-      );
+    if (tab) {
+      if (tab.settings.length > 0) {
+        let sectionHeading = <Text style={styles.dropdownHeading}>{'Settings:'}</Text>
+        return (
+          <>
+            {sectionHeading}
+            {renderTabSettings()}
+          </>
+        );
+      }
     }
     return null;
   }

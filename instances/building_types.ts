@@ -88,6 +88,16 @@ buildingTypes[BUILDING_TYPES.MARKET] = new BuildingType({
   consumption: null
 });
 
+buildingTypes[BUILDING_TYPES.STUDY] = new BuildingType({
+  name: BUILDING_TYPES.STUDY,
+  icon: {provider: 'FontAwesome5', name: 'book-open'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  cost: null,
+  production: null,
+  consumption: null
+});
+
 buildingTypes[BUILDING_TYPES.HUTS] = new BuildingType({
   name: BUILDING_TYPES.HUTS,
   icon: {provider: 'FontAwesome5', name: 'store-alt'},

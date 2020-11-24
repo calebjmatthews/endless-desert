@@ -7,7 +7,7 @@ import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addMessage, addMemos } from '../actions/ui';
-import { setIntroState } from '../actions/account';
+import { setIntroState, unlockTab } from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
@@ -21,6 +21,7 @@ import { MEMOS } from '../enums/memos';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { TABS } from '../enums/tabs';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -121,6 +122,9 @@ export default function HourglassComponent() {
           else if (buildingType.name == BUILDING_TYPES.FALLOW_FIELD) {
             fieldRepaired();
           }
+          else if (buildingType.name == BUILDING_TYPES.DECAYING_STUDY) {
+            studyRepaired();
+          }
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({
@@ -163,6 +167,12 @@ export default function HourglassComponent() {
   function fieldRepaired() {
     dispatch(addMemos([memos[MEMOS.FIELD_REPAIRED], memos[MEMOS.FIELD_REPAIRED_NEXT]]));
     dispatch(setIntroState(INTRO_STATES.REFURBISH_STUDY));
+  }
+
+  function studyRepaired() {
+    dispatch(addMemos([memos[MEMOS.STUDY_REPAIRED], memos[MEMOS.STUDY_REPAIRED_NEXT]]));
+    dispatch(setIntroState(INTRO_STATES.REFURBISH_HUTS));
+    dispatch(unlockTab(TABS.RESEARCH));
   }
 }
 

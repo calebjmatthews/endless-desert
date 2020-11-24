@@ -170,6 +170,10 @@ function BuildingDescription(props: any) {
     && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
     setDisabled();
   }
+  else if (props.introState == INTRO_STATES.REFURBISH_STUDY
+    && buildingType.name != BUILDING_TYPES.DECAYING_STUDY) {
+    setDisabled();
+  }
   function setDisabled() {
     upgradeDisabled = true;
     upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]);

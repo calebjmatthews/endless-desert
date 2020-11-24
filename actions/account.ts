@@ -24,3 +24,11 @@ export function setIntroState(introState: string) {
     introState: introState
   }
 }
+
+export const UNLOCK_TAB = 'UNLOCK_TAB';
+export function unlockTab(tabName: string) {
+  return {
+    type: UNLOCK_TAB,
+    tabName: tabName
+  }
+}

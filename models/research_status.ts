@@ -72,8 +72,8 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setResearchedActions() {
     this.actions = {};
     let actionRelated: { [researchName : string] : string } = {};
-    actionRelated[RESEARCHES.STUDY] = 'Researches';
-    actionRelated[RESEARCHES.ANALYSIS] = 'Researches';
+    actionRelated[RESEARCHES.STUDY] = 'Research';
+    actionRelated[RESEARCHES.ANALYSIS] = 'Research';
 
     Object.keys(this.status).map((name) => {
       if (this.status[name] == 'completed') {

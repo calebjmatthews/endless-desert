@@ -27,6 +27,7 @@ import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
+import { TABS } from '../enums/tabs';
 
 export default function ResearchingComponent() {
   const dispatch = useDispatch();
@@ -164,7 +165,7 @@ export default function ResearchingComponent() {
   }
 
   function backClick() {
-    dispatch(selectTab('Researches'));
+    dispatch(selectTab(TABS.RESEARCH));
   }
 }
 

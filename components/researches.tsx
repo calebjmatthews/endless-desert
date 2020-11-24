@@ -72,7 +72,7 @@ export default function ResearchesComponent() {
   }
 
   function renderActions() {
-    let actions = researchStatus.actions['Researches'];
+    let actions = researchStatus.actions['Research'];
     if (actions) {
       return (
         <View>

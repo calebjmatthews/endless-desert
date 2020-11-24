@@ -1,13 +1,15 @@
-import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE } from '../actions/account';
+import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB }
+  from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
 import { INTRO_STATES } from '../enums/intro_states';
+import { TABS } from '../enums/tabs';
 
 let accountStarting = new Account({
   id: 5,
   introState: INTRO_STATES.LOOK_AROUND,
-  tabsUnloked: [],
+  tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
   showCompletedResearches: false
 });
 
@@ -27,6 +29,11 @@ export default function (account: Account = accountStarting,
     let newSISAccount = new Account(account);
     newSISAccount.introState = action.introState;
     return newSISAccount;
+
+    case UNLOCK_TAB:
+    let newUTAccount = new Account(account);
+    newUTAccount.tabsUnloked.push(action.tabName);
+    return newUTAccount;
 
 		default:
 		return account;

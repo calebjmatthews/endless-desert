@@ -23,7 +23,7 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'research_option_decks': setResearchOptionDecks,
   'timers': setTimers,
   'trading_status': setTradingStatus,
-  'account': setAccount
+  'accounts': setAccount
 }
 
 export default function StorageHandlerComponent() {
@@ -66,11 +66,8 @@ export default function StorageHandlerComponent() {
         }
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
-            try {
-              let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
-            }
-            catch {}
+            let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
+            dispatch(TABLE_SETTERS[tableName](jsonValue));
           }
         });
         return true;
@@ -99,7 +96,7 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (callSave) {
-      // saveIntoStorage();
+      saveIntoStorage();
       setCallSave(false);
     }
   }), [callSave];

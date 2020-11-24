@@ -7,5 +7,7 @@ export enum MEMOS {
   CISTERN_REPAIRED = "Cistern Built",
   CISTERN_REPAIRED_NEXT = "Cistern Built Next",
   FIELD_REPAIRED = "Field Repaired",
-  FIELD_REPAIRED_NEXT = "Field Repaired Next"
+  FIELD_REPAIRED_NEXT = "Field Repaired Next",
+  STUDY_REPAIRED = "Study Repaired",
+  STUDY_REPAIRED_NEXT = "Study Repaired Next",
 }
