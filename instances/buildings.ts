@@ -16,9 +16,9 @@ function startingFactory(buildingType: string) {
 }
 
 startingFactory(BUILDING_TYPES.BROKEN_CISTERN);
+startingFactory(BUILDING_TYPES.FALLOW_FIELD);
 startingFactory(BUILDING_TYPES.DECAYING_STUDY);
 startingFactory(BUILDING_TYPES.RUINED_HUTS);
-startingFactory(BUILDING_TYPES.FALLOW_FIELD);
 startingFactory(BUILDING_TYPES.SHATTERED_GATE);
 startingFactory(BUILDING_TYPES.ABANDONED_MARKET);
 

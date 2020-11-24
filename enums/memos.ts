@@ -4,6 +4,8 @@ export enum MEMOS {
   LOOK_AROUND = "Look Around",
   LOOK_AROUND_LOOT = "Look Around Loot",
   LOOK_AROUND_REPAIR = "Look Around Repair",
-  CISTERN_BUILT = "Cistern Built",
-  CISTERN_BUILT_NEXT = "Cistern Built Next"
+  CISTERN_REPAIRED = "Cistern Built",
+  CISTERN_REPAIRED_NEXT = "Cistern Built Next",
+  FIELD_REPAIRED = "Field Repaired",
+  FIELD_REPAIRED_NEXT = "Field Repaired Next"
 }

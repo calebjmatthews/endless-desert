@@ -51,7 +51,7 @@ export default function BuildingsComponent() {
 
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
-      upgradePress={upgradePress} />
+      upgradePress={upgradePress} buildTimer={buildTimer} />
   }
   return (
     <View style={styles.container}>
@@ -159,8 +159,18 @@ function BuildingDescription(props: any) {
   }
   let upgradeDisabled = false;
   let upgradeStyle: any = styles.buttonRowItem;
-  if (props.introState == INTRO_STATES.REPAIR_CISTERN
+  if (props.buildTimer) {
+    setDisabled();
+  }
+  else if (props.introState == INTRO_STATES.REPAIR_CISTERN
     && buildingType.name != BUILDING_TYPES.BROKEN_CISTERN) {
+    setDisabled();
+  }
+  else if (props.introState == INTRO_STATES.RESTORE_FIELD
+    && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
+    setDisabled();
+  }
+  function setDisabled() {
     upgradeDisabled = true;
     upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]);
   }

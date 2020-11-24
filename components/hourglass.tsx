@@ -118,6 +118,9 @@ export default function HourglassComponent() {
           if (buildingType.name == BUILDING_TYPES.BROKEN_CISTERN) {
             cisternRepaired();
           }
+          else if (buildingType.name == BUILDING_TYPES.FALLOW_FIELD) {
+            fieldRepaired();
+          }
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({
@@ -150,10 +153,16 @@ export default function HourglassComponent() {
   return <></>;
 
   function cisternRepaired() {
-    dispatch(addMemos([memos[MEMOS.CISTERN_BUILT], memos[MEMOS.CISTERN_BUILT_NEXT]]));
+    dispatch(addMemos([memos[MEMOS.CISTERN_REPAIRED],
+      memos[MEMOS.CISTERN_REPAIRED_NEXT]]));
     dispatch(increaseResources(vault,
       [{ type: RESOURCE_TYPES.WATER, quantity: 2080 }]));
     dispatch(setIntroState(INTRO_STATES.RESTORE_FIELD));
+  }
+
+  function fieldRepaired() {
+    dispatch(addMemos([memos[MEMOS.FIELD_REPAIRED], memos[MEMOS.FIELD_REPAIRED_NEXT]]));
+    dispatch(setIntroState(INTRO_STATES.REFURBISH_STUDY));
   }
 }
 

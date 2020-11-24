@@ -33,16 +33,28 @@ memos[MEMOS.LOOK_AROUND_REPAIR] = new Memo({
   text: "And there's a cracked and leaking cistern at the back of the village. You'll have to repair it to have any hope of survival."
 });
 
-memos[MEMOS.CISTERN_BUILT] = new Memo({
-  name: MEMOS.CISTERN_BUILT,
+memos[MEMOS.CISTERN_REPAIRED] = new Memo({
+  name: MEMOS.CISTERN_REPAIRED,
   title: "Flowing Water",
-  text: "The tributary that flows into the cistern now makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls, you can climb down and access the reminant of the village's stored water:\n+ 2080 Water"
+  text: "The tributary that flows into the cistern now makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls of the gigantic basin, you can climb down and access the reminant of the village's stored water:\n+ 2080 Water"
 });
 
-memos[MEMOS.CISTERN_BUILT_NEXT] = new Memo({
-  name: MEMOS.CISTERN_BUILT_NEXT,
+memos[MEMOS.CISTERN_REPAIRED_NEXT] = new Memo({
+  name: MEMOS.CISTERN_REPAIRED_NEXT,
   title: "Flowing Water",
-  text: "You're not going to die of thirst any time soon, but you could use a reliable food source. There's a crop field that has run wild, but could be beaten back into shape."
+  text: "You're not going to die of thirst any time soon, but you could use a reliable food source. There's some sort of crop field that has run wild, but could be beaten back into shape."
+});
+
+memos[MEMOS.FIELD_REPAIRED] = new Memo({
+  name: MEMOS.FIELD_REPAIRED,
+  title: "Lentis, Hmm",
+  text: "You'd never tilled the ground before, and it wasn't pleasant. But there were enough leftover bags of seed and fallow lentil plants to make a productive field. Lentils aren't inspiring, but they grow fast and they'll keep you alive."
+});
+
+memos[MEMOS.FIELD_REPAIRED_NEXT] = new Memo({
+  name: MEMOS.FIELD_REPAIRED_NEXT,
+  title: "Lentis, Hmm",
+  text: "Now, shelter. After patching holes in sandstone and tearing woody weeds from the rock-hard soil, what you need is a place to rest."
 });
 
 export { memos };
