@@ -6,7 +6,8 @@ import { increaseResources, consumeResources, setLastTimestamp } from '../action
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
-import { addMessage } from '../actions/ui';
+import { addMessage, addMemos } from '../actions/ui';
+import { setIntroState } from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
@@ -14,7 +15,12 @@ import Message from '../models/message';
 import Building from '../models/building';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
+import { memos } from '../instances/memos';
 import { utils } from '../utils';
+import { MEMOS } from '../enums/memos';
+import { RESOURCE_TYPES } from '../enums/resource_types';
+import { INTRO_STATES } from '../enums/intro_states';
+import { BUILDING_TYPES } from '../enums/building_types';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -109,6 +115,9 @@ export default function HourglassComponent() {
             tempBuildings[building.id] = upgBuilding;
             recalcRates = true;
           }
+          if (buildingType.name == BUILDING_TYPES.BROKEN_CISTERN) {
+            cisternRepaired();
+          }
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({
@@ -138,7 +147,14 @@ export default function HourglassComponent() {
     }
   }, [callCalc]);
 
-  return <></>
+  return <></>;
+
+  function cisternRepaired() {
+    dispatch(addMemos([memos[MEMOS.CISTERN_BUILT], memos[MEMOS.CISTERN_BUILT_NEXT]]));
+    dispatch(increaseResources(vault,
+      [{ type: RESOURCE_TYPES.WATER, quantity: 2080 }]));
+    dispatch(setIntroState(INTRO_STATES.RESTORE_FIELD));
+  }
 }
 
 function combineResources(resources: {type: string, quantity: number}[],

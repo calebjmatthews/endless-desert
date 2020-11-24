@@ -24,13 +24,25 @@ memos[MEMOS.LOOK_AROUND] = new Memo({
 memos[MEMOS.LOOK_AROUND_LOOT] = new Memo({
   name: MEMOS.LOOK_AROUND_LOOT,
   title: "An Apparent Struggle",
-  text: "You find some meager leavings in the rubble:\n\n- 22 Seeds\n- 223 Water\n- 51 Lentils\n -12 Oak Wood\n -287 Yellow Sand\n -17 Red Clay"
+  text: "You find some meager leavings in the rubble:\n\n+ 22 Seeds\n+ 8 Water\n+ 51 Lentils\n +12 Oak Wood\n +287 Yellow Sand\n +17 Red Clay"
 });
 
 memos[MEMOS.LOOK_AROUND_REPAIR] = new Memo({
   name: MEMOS.LOOK_AROUND_REPAIR,
   title: "An Apparent Struggle",
   text: "And there's a cracked and leaking cistern at the back of the village. You'll have to repair it to have any hope of survival."
+});
+
+memos[MEMOS.CISTERN_BUILT] = new Memo({
+  name: MEMOS.CISTERN_BUILT,
+  title: "Flowing Water",
+  text: "The tributary that flows into the cistern now makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls, you can climb down and access the reminant of the village's stored water:\n+ 2080 Water"
+});
+
+memos[MEMOS.CISTERN_BUILT_NEXT] = new Memo({
+  name: MEMOS.CISTERN_BUILT_NEXT,
+  title: "Flowing Water",
+  text: "You're not going to die of thirst any time soon, but you could use a reliable food source. There's a crop field that has run wild, but could be beaten back into shape."
 });
 
 export { memos };

@@ -15,7 +15,7 @@ vaultStarting.increaseResource(new Resource({
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.WATER,
-  quantity: 223
+  quantity: 8
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.LENTILS,
