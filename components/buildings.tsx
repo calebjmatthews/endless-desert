@@ -60,7 +60,7 @@ export default function BuildingsComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Buildings'}</Text>
       </View>
-      {renderBuildTimer(buildTimer)}
+      {renderBuildHeader()}
       <FlatList
         data={buildingsArray}
         renderItem={renderBuilding}
@@ -68,6 +68,15 @@ export default function BuildingsComponent() {
       </FlatList>
     </View>
   );
+
+  function renderBuildHeader() {
+    if (buildTimer) {
+      return <>{renderBuildTimer(buildTimer)}</>;
+    }
+    else {
+      return <>{renderBuildButton()}</>;
+    }
+  }
 
   function renderBuildButton() {
     if (toBuildArray.length > 0) {
