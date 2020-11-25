@@ -4,9 +4,14 @@ import { researches } from '../instances/researches';
 export const SET_RESEARCH_OPTION_DECKS = 'SET_RESEARCH_OPTION_DECKS';
 export function setResearchOptionDecks(researchOptionDecks:
   { [researchName: string] : ResearchOptionDeck}) {
+  let newResearchOptionDecks: { [researchName: string] : ResearchOptionDeck} = {};
+  Object.keys(researchOptionDecks).map((researchName) => {
+    newResearchOptionDecks[researchName] =
+      new ResearchOptionDeck(researchOptionDecks[researchName]);
+  })
   return {
     type: SET_RESEARCH_OPTION_DECKS,
-    researchOptionDecks: researchOptionDecks
+    researchOptionDecks: newResearchOptionDecks
   };
 }
 

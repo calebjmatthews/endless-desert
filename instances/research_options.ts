@@ -150,7 +150,7 @@ researchOptions[RESEARCH_OPTIONS.TO_BUILD_A_HOME] = new ResearchOption({
   description: ('You can do better than a loose collection of scrap to hide from '
     + 'the sun and wind. Time to experiment with tools and materials to build '
     + 'something more comfortable.'),
-  cost: [{specificity: OS.TAG, type: RTA.WOOD, quantity: 10},
+  cost: [{specificity: OS.TAG, type: RTA.WOOD, quantity: 2},
     {specificity: OS.EXACT, type: RTY.REEDS, quantity: 40}]
 });
 
@@ -191,7 +191,7 @@ researchOptions[RESEARCH_OPTIONS.HIDDEN_IN_THE_SAND] = new ResearchOption({
   description: ('The sand around you looks clean and white, but studying it '
     + 'further shows a spectrum of impurities. There are metals, salts, '
     + 'minerals, bits of bone, and things you don\'t even have a name for.'),
-  cost: [{specificity: OS.EXACT, type: RTA.SAND, quantity: 100}]
+  cost: [{specificity: OS.TAG, type: RTA.SAND, quantity: 100}]
 });
 
 export { researchOptions };
