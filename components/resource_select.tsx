@@ -125,6 +125,9 @@ export default function ResourceSelectComponent() {
       case RESOURCE_SPECIFICITY.TAG:
       return vault.getTagResources(modalValue.aCost.type);
 
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      return vault.getSubcategoryResources(modalValue.aCost.type);
+
       case RESOURCE_SPECIFICITY.CATEGORY:
       return vault.getCategoryResources(modalValue.aCost.type);
 

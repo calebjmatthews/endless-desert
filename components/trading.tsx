@@ -22,6 +22,7 @@ import Timer from '../models/timer';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
+import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -317,6 +318,9 @@ function TradingPartnerDescription(props: any) {
 
       case RESOURCE_SPECIFICITY.TAG:
       return resourceTags[type];
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      return resourceSubcategories[type];
 
       case RESOURCE_SPECIFICITY.CATEGORY:
       return resourceCategories[type];

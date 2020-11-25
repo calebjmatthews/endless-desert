@@ -1,7 +1,8 @@
 import ResourceType from '../models/resource_type';
 import { RESOURCE_TYPES } from '../enums/resource_types';
-import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 
 let resourceTypes: { [name: string] : ResourceType } = {};
 
@@ -77,8 +78,9 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   name: RESOURCE_TYPES.WOOD_OAK,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.WOOD],
+  tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 50,
   icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
   foregroundColor: '#790f0f',
@@ -87,8 +89,9 @@ resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
   name: RESOURCE_TYPES.CLAY_RED,
+  subcategory: RESOURCE_SUBCATEGORIES.CLAY,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.CLAY],
+  tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 15,
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
@@ -97,8 +100,9 @@ resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
   name: RESOURCE_TYPES.BRICKS_RED,
+  subcategory: RESOURCE_SUBCATEGORIES.BRICK,
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.WOOD],
+  tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 80,
   icon: {provider: 'FontAwesome', name: 'cubes'},
   foregroundColor: '#a91f1f',
@@ -117,8 +121,9 @@ resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   name: RESOURCE_TYPES.SAND_YELLOW,
+  subcategory: RESOURCE_SUBCATEGORIES.SAND,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.SAND],
+  tags: [],
   value: 3,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
@@ -127,8 +132,9 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   name: RESOURCE_TYPES.GLASS,
+  subcategory: RESOURCE_SUBCATEGORIES.GLASS,
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.GLASS],
+  tags: [],
   value: 120,
   icon: {provider: 'FontAwesome5', name: 'solar-panel'},
   foregroundColor: '#33cee2',
@@ -137,8 +143,9 @@ resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   name: RESOURCE_TYPES.OLIVE_OIL,
+  subcategory: RESOURCE_SUBCATEGORIES.OIL,
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.OIL],
+  tags: [],
   value: 250,
   icon: {provider: 'FontAwesome5', name: 'oil-can'},
   foregroundColor: '#97c701',

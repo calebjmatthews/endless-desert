@@ -55,6 +55,9 @@ export default class Vault {
       case RESOURCE_SPECIFICITY.TAG:
       return this.getTagQuantity(type);
 
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      return this.getSubcategoryQuantity(type);
+
       case RESOURCE_SPECIFICITY.CATEGORY:
       return this.getCategoryQuantity(type);
 
@@ -74,6 +77,16 @@ export default class Vault {
     let quantity = 0;
     Object.keys(this.resources).map((resourceName) => {
       if (resourceTypes[resourceName].tags.includes(tagName)) {
+        quantity += this.resources[resourceName].quantity;
+      }
+    });
+    return quantity;
+  }
+
+  getSubcategoryQuantity(subcatName: string) {
+    let quantity = 0;
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].subcategory == subcatName) {
         quantity += this.resources[resourceName].quantity;
       }
     });
@@ -102,6 +115,16 @@ export default class Vault {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((resourceName) => {
       if (resourceTypes[resourceName].tags.includes(tagName)) {
+        resources.push(this.resources[resourceName]);
+      }
+    });
+    return resources;
+  }
+
+  getSubcategoryResources(subcatName: string) {
+    let resources: Resource[] = [];
+    Object.keys(this.resources).map((resourceName) => {
+      if (resourceTypes[resourceName].subcategory == subcatName) {
         resources.push(this.resources[resourceName]);
       }
     });

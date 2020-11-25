@@ -259,6 +259,9 @@ export default function ResourceSelectOneComponent() {
         case RESOURCE_SPECIFICITY.TAG:
         return vault.getTagResources(trade.receive.type);
 
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        return vault.getSubcategoryResources(trade.receive.type);
+
         case RESOURCE_SPECIFICITY.CATEGORY:
         return vault.getCategoryResources(trade.receive.type);
       }

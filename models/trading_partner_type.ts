@@ -89,16 +89,20 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   createGive(pGive: {specificity: string, type: string, weight: number}, vault: Vault) {
     let resources: Resource[] = [];
     switch(pGive.specificity) {
-      case RESOURCE_SPECIFICITY.CATEGORY:
-      resources = vault.getCategoryResources(pGive.type);
+      case RESOURCE_SPECIFICITY.EXACT:
+      resources = vault.getExactResources(pGive.type);
       break;
 
       case RESOURCE_SPECIFICITY.TAG:
       resources = vault.getTagResources(pGive.type);
       break;
 
-      case RESOURCE_SPECIFICITY.EXACT:
-      resources = vault.getExactResources(pGive.type);
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      resources = vault.getSubcategoryResources(pGive.type);
+      break;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      resources = vault.getCategoryResources(pGive.type);
       break;
     }
 

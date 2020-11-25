@@ -16,6 +16,7 @@ import { completeResearch } from '../actions/research_status';
 import ResearchOption from '../models/research_option';
 import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
+import ResourceSubcategory from '../models/resource_subcategory';
 import ResourceCategory from '../models/resource_category';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
@@ -24,6 +25,7 @@ import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
+import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -227,13 +229,16 @@ function OptionDescription(props: any) {
   }
 
   function getMatchingResource(specificity: string, type: string):
-    ResourceType|ResourceTag|ResourceCategory {
+    ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
     switch(specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
       return resourceTypes[type];
 
       case RESOURCE_SPECIFICITY.TAG:
       return resourceTags[type];
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      return resourceSubcategories[type];
 
       case RESOURCE_SPECIFICITY.CATEGORY:
       return resourceCategories[type];
