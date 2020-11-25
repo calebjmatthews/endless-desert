@@ -12,6 +12,7 @@ import { displayModalValue, selectTab, addMessage } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
+import { unlockTab } from '../actions/account';
 
 import ResearchOption from '../models/research_option';
 import ResourceType from '../models/resource_type';
@@ -148,15 +149,7 @@ export default function ResearchingComponent() {
       const sResult = rod.completeStep();
       if (sResult == 'step completed') {
         if (rod.stepsNeeded <= rod.stepsCompleted) {
-          dispatch(completeResearch(valueSelected));
-          dispatch(addMessage(new Message({
-            text: ('You finished researching ' + research.name + '.'),
-            type: '',
-            timestamp: new Date(Date.now()),
-            icon: research.icon,
-            foregroundColor: research.foregroundColor,
-            backgroundColor: research.backgroundColor
-          })));
+          callCompleteResearch();
         }
       }
       else {
@@ -164,6 +157,23 @@ export default function ResearchingComponent() {
       }
     }
     dispatch(updateResearchOptionDeck(rod));
+  }
+
+  function callCompleteResearch() {
+    dispatch(completeResearch(valueSelected));
+    dispatch(addMessage(new Message({
+      text: ('You finished researching ' + research.name + '.'),
+      type: '',
+      timestamp: new Date(Date.now()),
+      icon: research.icon,
+      foregroundColor: research.foregroundColor,
+      backgroundColor: research.backgroundColor
+    })));
+
+    switch (research.unlocksTab) {
+      case TABS.TRADING:
+      dispatch(unlockTab(TABS.TRADING));
+    }
   }
 
   function backClick() {

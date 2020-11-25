@@ -4,11 +4,5 @@ export enum RESOURCE_TAGS {
   DRINK = 'Drink',
   PLANT = 'Plant',
   FOOD = 'Food',
-  CONSTRUCTION = 'Construction',
-  WOOD = 'Wood',
-  CLAY = 'Clay',
-  BRICK = 'Brick',
-  SAND = 'Sand',
-  OIL = 'Oil',
-  GLASS = 'Glass'
+  CONSTRUCTION = 'Construction'
 }

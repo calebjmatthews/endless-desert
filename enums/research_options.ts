@@ -13,6 +13,12 @@ export enum RESEARCH_OPTIONS {
   BOTANICAL_HEARSAY = 'Botanical Hearsay',
   GERMINATION = 'Germination',
 
+  // Anthropology Lv 1
+  REMEMBERED_MEETINGS = 'Remembered Meetings',
+  LINGUISTIC_GUESSWORK = 'Linguistic Guesswork',
+  FAMILIAR_CUISINE = 'Familiar Cuisine',
+  SANDY_LIMERICKS = 'Sandy Limericks',
+
   // Physics Lv 1
   EARLY_PRINCIPLES = 'Early Principles',
   SAND_AND_SOIL = 'Sand and Soil',

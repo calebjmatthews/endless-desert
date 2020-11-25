@@ -15,6 +15,7 @@ import { setGlobalState, addMemos } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
+import ResearchStatus from '../models/research_status';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
@@ -71,11 +72,20 @@ export default function StorageHandlerComponent() {
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
-            dispatch(TABLE_SETTERS[tableName](jsonValue));
-
-            if (tableName == 'buildings' && jsonValue) {
+            if (tableName != 'research_status' && jsonValue) {
+              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            }
+            else if (tableName == 'research_status' && jsonValue) {
+              let researchStatus = new ResearchStatus(jsonValue);
+              researchStatus.checkAndSetVisible();
+              researchStatus.setResearchedActions();
+              researchStatus.setBuildingsAvailable();
+              dispatch(setResearchStatus(researchStatus));
+            }
+            else if (tableName == 'buildings' && jsonValue) {
               const newRates = hourglass.setRates(jsonValue);
               dispatch(setRates(newRates));
+              dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
           }
         });

@@ -1,6 +1,7 @@
 import Research from '../models/research';
 import { RESEARCHES } from '../enums/researches';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { TABS } from '../enums/tabs';
 
 let researches: { [name: string] : Research } = {};
 researches[RESEARCHES.SCHOLARSHIP] = new Research({
@@ -207,6 +208,39 @@ researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
   prereq: [RESEARCHES.OLIVE_FARMING],
   knowledgeReq: 400,
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
+});
+
+researches[RESEARCHES.ANTHROPOLOGY] = new Research({
+  name: RESEARCHES.ANTHROPOLOGY,
+  unlocks: ('Researching this opens up new areas of study.'),
+  description: ('Hundreds of different cultures make their own ways through the vast '
+    + 'emptiness of the desert. And they\'ve each learned different ways to thrive.'),
+  icon: {provider: 'FontAwesome5', name: 'users'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SCHOLARSHIP],
+  knowledgeReq: 20,
+});
+
+researches[RESEARCHES.TRADING] = new Research({
+  name: RESEARCHES.TRADING,
+  unlocks: ('Researching this allows trading with peoples from across the desert.'),
+  description: ('Being able to trade your resources for those you can\'t make '
+    + 'would open up an enormous amount of opportunity.'),
+  icon: {provider: 'FontAwesome5', name: 'exchange-alt'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANTHROPOLOGY],
+  knowledgeReq: 20,
+  unlocksTab: TABS.TRADING
 });
 
 researches[RESEARCHES.PHYSICS] = new Research({

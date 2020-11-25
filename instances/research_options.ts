@@ -3,10 +3,12 @@ import { RESEARCH_OPTIONS } from '../enums/research_options';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
-import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
-const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RS = RESOURCE_SPECIFICITY;
 
@@ -110,6 +112,46 @@ researchOptions[RESEARCH_OPTIONS.GERMINATION] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 50}]
 });
 
+researchOptions[RESEARCH_OPTIONS.REMEMBERED_MEETINGS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.REMEMBERED_MEETINGS,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  description: ('You\'ve never been an especially social person, but in your '
+    + 'father\'s hookah lounge you unavoidably met a number of colorful people. '
+    + 'If you had known you\'d eventually need the knowledge you would have paid '
+    + 'better attention.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 60}]
+});
+
+researchOptions[RESEARCH_OPTIONS.LINGUISTIC_GUESSWORK] = new ResearchOption({
+  name: RESEARCH_OPTIONS.LINGUISTIC_GUESSWORK,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  description: ('Now that you have need of some knowledge of languages, you try '
+    + 'to remember every example of unfamiliar speech you\'ve heard. The curse words '
+    + 'come back easily enough.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 40}]
+});
+
+researchOptions[RESEARCH_OPTIONS.FAMILIAR_CUISINE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FAMILIAR_CUISINE,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  description: ('You\'ve only got simple materials on hand, but a culinary '
+    + 'exploration of the cultures you recall could be useful.'),
+  cost: [{specificity: RS.TAG, type: RTA.FOOD, quantity: 20}]
+});
+
+researchOptions[RESEARCH_OPTIONS.SANDY_LIMERICKS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.SANDY_LIMERICKS,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  description: ('There\'s a series of playful limericks you\'ve heard repeated '
+    + 'a hundred times in a dozen different languages. They describe an ugly man '
+    + 'who tries to make himself a wife out of sand; now how do they start?'),
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.SAND, quantity: 50}]
+});
+
 researchOptions[RESEARCH_OPTIONS.EARLY_PRINCIPLES] = new ResearchOption({
   name: RESEARCH_OPTIONS.EARLY_PRINCIPLES,
   appliesTo: RESEARCHES.PHYSICS,
@@ -127,8 +169,8 @@ researchOptions[RESEARCH_OPTIONS.SAND_AND_SOIL] = new ResearchOption({
   difficulty: 1,
   description: ('In this part of the desert, you\'ve got sand, and clay under that. '
     + 'Time to start seeing what you can make with blends of the two.'),
-  cost: [{specificity: RS.SUBCATEGORY, type: RTA.SAND, quantity: 10},
-    {specificity: RS.SUBCATEGORY, type: RTA.CLAY, quantity: 10},
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.SAND, quantity: 10},
+    {specificity: RS.SUBCATEGORY, type: RSC.CLAY, quantity: 10},
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 10}]
 });
 
@@ -150,7 +192,7 @@ researchOptions[RESEARCH_OPTIONS.TO_BUILD_A_HOME] = new ResearchOption({
   description: ('You can do better than a loose collection of scrap to hide from '
     + 'the sun and wind. Time to experiment with tools and materials to build '
     + 'something more comfortable.'),
-  cost: [{specificity: RS.SUBCATEGORY, type: RTA.WOOD, quantity: 2},
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.WOOD, quantity: 2},
     {specificity: RS.EXACT, type: RTY.REEDS, quantity: 40}]
 });
 
@@ -191,7 +233,7 @@ researchOptions[RESEARCH_OPTIONS.HIDDEN_IN_THE_SAND] = new ResearchOption({
   description: ('The sand around you looks clean and white, but studying it '
     + 'further shows a spectrum of impurities. There are metals, salts, '
     + 'minerals, bits of bone, and things you don\'t even have a name for.'),
-  cost: [{specificity: RS.SUBCATEGORY, type: RTA.SAND, quantity: 100}]
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.SAND, quantity: 100}]
 });
 
 export { researchOptions };

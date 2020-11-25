@@ -13,6 +13,7 @@ export default class Research {
   knowledgeReq: number = 0;
   unlocksBuilding?: string[] = undefined;
   simplifiedBuilding?: string[] = undefined;
+  unlocksTab?: string = undefined;
 
   constructor(research: Research) {
     Object.assign(this, research);

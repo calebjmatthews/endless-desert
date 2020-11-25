@@ -12,6 +12,8 @@ export enum RESEARCHES {
   OLIVE_FARMING = "Olive Farming",
   SIMPLIFIED_OLIVE_FARMING = "Simplified Olive Farming",
   MULCH = "Mulch",
+  ANTHROPOLOGY = "Anthropology",
+  TRADING = "Trading",
   PHYSICS = "Physics",
   CLAY_EXCAVATION = "Clay Excavation",
   SAND_EXCAVATION = "Sand Excavation",
