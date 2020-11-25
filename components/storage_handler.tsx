@@ -10,8 +10,12 @@ import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
 import { setAccount } from '../actions/account';
+import { setRates } from '../actions/rates';
 import { setGlobalState, addMemos } from '../actions/ui';
 
+import Hourglass from '../models/hourglass';
+const hourglass = new Hourglass();
+import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 
@@ -68,6 +72,11 @@ export default function StorageHandlerComponent() {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
             dispatch(TABLE_SETTERS[tableName](jsonValue));
+
+            if (tableName == 'buildings' && jsonValue) {
+              const newRates = hourglass.setRates(jsonValue);
+              dispatch(setRates(newRates));
+            }
           }
         });
         return true;
@@ -78,6 +87,10 @@ export default function StorageHandlerComponent() {
       return false;
     })
     .then((booleanRes) => {
+      if (booleanRes == false) {
+        const newRates = hourglass.setRates(buildingsStarting);
+        dispatch(setRates(newRates));
+      }
       dispatch(setGlobalState('loaded'));
       return booleanRes;
     })

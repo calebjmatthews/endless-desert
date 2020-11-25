@@ -34,11 +34,6 @@ export default function HourglassComponent() {
   const [callCalc, setCallCalc] = useState(false);
 
   useEffect(() => {
-    const newRates = hourglass.setRates(buildingsStarting);
-    dispatch(setRates(newRates));
-  }, [])
-
-  useEffect(() => {
     const timeout = setTimeout(() => {
       setCallCalc(true);
       setLocalTimestamp(new Date(Date.now()).valueOf());
