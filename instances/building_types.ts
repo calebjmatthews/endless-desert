@@ -178,7 +178,7 @@ buildingTypes[BUILDING_TYPES.SAND_PIT] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
   backgroundColor: '#fff',
-  cost: [{resource: RESOURCE_TYPES.BRICKS_RED, quantity: 100}],
+  cost: [{resource: RESOURCE_TYPES.CLAY_RED, quantity: 100}],
   production: [{produces: RESOURCE_TYPES.SAND_YELLOW, rate: 10}],
   consumption: null
 });
@@ -189,8 +189,8 @@ buildingTypes[BUILDING_TYPES.DRYING_YARD] = new BuildingType({
   foregroundColor: '#ff0000',
   backgroundColor: '#fff',
   cost: [{resource: RESOURCE_TYPES.WOOD_OAK, quantity: 50}],
-  production: [{produces: RESOURCE_TYPES.THATCH, rate: 10}],
-  consumption: [{consumes: RESOURCE_TYPES.REEDS, rate: 10}]
+  production: [{produces: RESOURCE_TYPES.BRICKS_RED, rate: 10}],
+  consumption: [{consumes: RESOURCE_TYPES.CLAY_RED, rate: 10}]
 });
 
 buildingTypes[BUILDING_TYPES.PRESS] = new BuildingType({
@@ -201,7 +201,7 @@ buildingTypes[BUILDING_TYPES.PRESS] = new BuildingType({
   cost: [{resource: RESOURCE_TYPES.BRICKS_RED, quantity: 40},
     {resource: RESOURCE_TYPES.WOOD_OAK, quantity: 40}],
   production: [{produces: RESOURCE_TYPES.THATCH, rate: 10}],
-  consumption: null
+  consumption: [{consumes: RESOURCE_TYPES.REEDS, rate: 10}]
 });
 
 buildingTypes[BUILDING_TYPES.FURNACE] = new BuildingType({
