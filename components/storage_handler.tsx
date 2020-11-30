@@ -72,7 +72,8 @@ export default function StorageHandlerComponent() {
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
-            if (tableName != 'research_status' && jsonValue) {
+            if (tableName != 'research_status'
+              && tableName != 'buildings' && jsonValue) {
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
             else if (tableName == 'research_status' && jsonValue) {
