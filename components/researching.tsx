@@ -219,7 +219,7 @@ function OptionDescription(props: any) {
         buttonDisabled = true;
       }
       let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
-        + Math.floor(resourceQuantity) + ') ' + resource.name);
+        + utils.formatNumberShort(resourceQuantity) + ') ' + resource.name);
       if (paidCost) { costText = 'Paid'; }
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
