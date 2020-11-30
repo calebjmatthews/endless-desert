@@ -2,9 +2,13 @@ import Timer from '../models/timer';
 
 export const SET_TIMERS = 'SET_TIMERS';
 export function setTimers(timers: { [name: string] : Timer }) {
+  let newTimers: { [name: string] : Timer } = {};
+  Object.keys(timers).map((name) => {
+    newTimers[name] = new Timer(timers[name]);
+  });
   return {
     type: SET_TIMERS,
-    timers: timers
+    timers: newTimers
   }
 }
 

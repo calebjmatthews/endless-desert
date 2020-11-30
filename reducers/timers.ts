@@ -5,7 +5,7 @@ import { timersStarting } from '../instances/timers';
 export default function (timers = timersStarting, action: any = null) {
 	switch(action.type) {
 		case SET_TIMERS:
-		return Object.assign({}, timers);
+		return Object.assign({}, action.timers);
 
     case ADD_TIMER:
     let newATimers = Object.assign({}, timers);
