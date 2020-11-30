@@ -27,6 +27,7 @@ import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
+import { utils } from '../utils';
 import { resourceCategories } from '../instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -217,8 +218,8 @@ function OptionDescription(props: any) {
         buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
         buttonDisabled = true;
       }
-      let costText = (aCost.quantity + ' (of ' + Math.floor(resourceQuantity) + ') '
-        + resource.name);
+      let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
+        + Math.floor(resourceQuantity) + ') ' + resource.name);
       if (paidCost) { costText = 'Paid'; }
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}

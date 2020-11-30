@@ -20,6 +20,7 @@ import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
 import Timer from '../models/timer';
 import { researches } from '../instances/researches';
+import { utils } from '../utils';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { MODALS } from '../enums/modals';
 import { RESEARCHES } from '../enums/researches';
@@ -53,7 +54,7 @@ export default function ResearchesComponent() {
       {renderActions()}
       <View>
         <Text style={styles.bareText}>
-          {vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity
+          {utils.formatNumberShort(vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity)
             + ' available knowledge'}
         </Text>
       </View>

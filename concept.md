@@ -147,7 +147,7 @@ Research:
   - Research difficulty works as follows:
     - Easiest difficulty uses very small amounts of knowledge, water, and lentils
     - Easy difficulty uses small amounts of knowledge water, lentils, clay, sand, wood, and reeds
-    - Moderate difficulty uses early refined materials such as glass and bricks, more advanced dishes, as well as papyrus and ink
+    - Moderate dif`ficulty uses early refined materials such as glass and bricks, more advanced dishes, as well as papyrus and ink
     - Higher difficulty uses field notes and higher refined materials
     - High difficulty uses rarer field notes, high-quality dishes complex refined materials, and rarer exploration rewards
 

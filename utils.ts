@@ -231,7 +231,11 @@ class Utils {
     for (let iii = 0; iii < (powers.length-2); iii++) {
       let power = parseInt(powers[iii]);
       if (number >= Math.pow(10, power)) {
-        strNumber = (number / Math.pow(10, power)).toFixed(2) + exponents[power];
+        let fNumber = number / Math.pow(10, power);
+        let dPlace = 2;
+        if (fNumber > 100) { dPlace = 0; }
+        else if (fNumber > 10) { dPlace = 1; }
+        strNumber = fNumber.toFixed(dPlace) + exponents[power];
       }
     }
     return strNumber;

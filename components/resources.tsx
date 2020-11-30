@@ -12,6 +12,7 @@ import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';
 import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 
 export default function ResourcesComponent() {
   const vault = useTypedSelector(state => state.vault);
@@ -68,7 +69,9 @@ function ResourceDescription(props: any) {
           </Text>
         </View>
         <View style={styles.quantityContainer}>
-          <Text style={{fontSize: 20}}>{Math.floor(props.resource.item.quantity)}</Text>
+          <Text style={{fontSize: 20}}>
+            {utils.formatNumberShort(props.resource.item.quantity)}
+          </Text>
         </View>
       </View>
 

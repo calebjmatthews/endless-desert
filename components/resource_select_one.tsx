@@ -19,6 +19,7 @@ import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCHES } from '../enums/researches';
@@ -91,8 +92,9 @@ export default function ResourceSelectOneComponent() {
             <TextInput style={styles.inputBox} value={quantitySelected}
               onChangeText={ (text) => changeTradeQuantity(text) } />
           </View>
-          <Text>{quantitySelected + ' ' + resourceSelected + ' for ' +
-            quantityGiven + ' ' + trade.give.type }</Text>
+          <Text>{utils.formatNumberShort(parseInt(quantitySelected)) + ' '
+            + resourceSelected  + ' for ' + utils.formatNumberShort(quantityGiven)
+            + ' ' + trade.give.type }</Text>
         </View>
       );
     }
@@ -181,7 +183,7 @@ export default function ResourceSelectOneComponent() {
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected, quantity: 1}],
           messageToDisplay: ('You studied ' + resourceSelected + ' for '
-            + resourceType.value + ' knowledge.'),
+            + utils.formatNumberShort(resourceType.value) + ' knowledge.'),
           iconToDisplay: resourceType.icon,
           iconForegroundColor: resourceType.foregroundColor,
           iconBackgroundColor: resourceType.backgroundColor
@@ -210,8 +212,10 @@ export default function ResourceSelectOneComponent() {
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: [{type: resourceSelected,
             quantity: parseInt(quantitySelected)}],
-          messageToDisplay: ('You analyzed ' + quantitySelected + ' ' + resourceSelected
-            + ' for ' + rValue + ' knowledge.'),
+          messageToDisplay: ('You analyzed '
+            + utils.formatNumberShort(parseInt(quantitySelected)) + ' '
+            + resourceSelected + ' for '
+            + utils.formatNumberShort(rValue) + ' knowledge.'),
           iconToDisplay: resourceType.icon,
           iconForegroundColor: resourceType.foregroundColor,
           iconBackgroundColor: resourceType.backgroundColor
@@ -309,7 +313,7 @@ function ResourceSelector(props: {resource: Resource,
       <View>
         <Text style={optionTextStyle}>{resourceType.name}</Text>
         <Text style={StyleSheet.flatten([{textAlign: 'right'}, optionTextStyle])}>
-          {Math.floor(props.resource.quantity)}
+          {utils.formatNumberShort(props.resource.quantity)}
         </Text>
         {renderButton(props.resource, props.resourceSelected,
           props.vault, props.setResourceSelected)}

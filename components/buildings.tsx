@@ -226,7 +226,8 @@ function BuildingDescription(props: any) {
     }
     let costString = 'Cost: ';
     cost.map((aCost) => {
-      costString += (aCost.quantity + ' ' + aCost.resource + ', ');
+      costString += (utils.formatNumberShort(aCost.quantity) + ' '
+      + aCost.resource + ', ');
     });
     costString = costString.slice(0, -2);
     return (

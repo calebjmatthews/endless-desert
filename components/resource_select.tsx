@@ -15,6 +15,7 @@ import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default function ResourceSelectComponent() {
@@ -77,8 +78,8 @@ export default function ResourceSelectComponent() {
               iconSize={16} />
             <Text>
               {resourcesSelected[resourceName] + ' (of '
-                + Math.floor(vault.resources[resourceName].quantity) + ') '
-                + resourceName}
+                + utils.formatNumberShort(vault.resources[resourceName].quantity)
+                + ') ' + resourceName}
             </Text>
           </View>
         );
@@ -163,7 +164,7 @@ function ResourceSelector(props: {resource: Resource,
       <View>
         <Text style={optionTextStyle}>{resourceType.name}</Text>
         <Text style={StyleSheet.flatten([{textAlign: 'right'}, optionTextStyle])}>
-          {Math.floor(props.resource.quantity)}
+          {utils.formatNumberShort(props.resource.quantity)}
         </Text>
         {renderButton(props.resource, props.resourcesSelected, props.aCost,
           props.vault, props.setResourcesSelected)}

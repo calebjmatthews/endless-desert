@@ -24,6 +24,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 
@@ -233,7 +234,8 @@ function TradingPartnerDescription(props: any) {
           backgroundColor={give.backgroundColor}
           iconSize={16} />
         <Text style={styles.buttonTextDark}>
-          {' ' + give.name + ' (' + trade.give.quantity + ') for '}
+          {' ' + give.name + ' (' + utils.formatNumberShort(trade.give.quantity) 
+          + ') for '}
         </Text>
         <BadgeComponent
           provider={receive.icon.provider}
@@ -265,7 +267,8 @@ function TradingPartnerDescription(props: any) {
           backgroundColor={give.backgroundColor}
           iconSize={16} />
         <Text style={styles.buttonTextDark}>
-          {give.name + ' x' + wasTraded.given.quantity + ' for '}
+          {give.name + ' x' + utils.formatNumberShort(wasTraded.given.quantity)
+          + ' for '}
         </Text>
         <BadgeComponent
           provider={receive.icon.provider}
@@ -274,7 +277,7 @@ function TradingPartnerDescription(props: any) {
           backgroundColor={receive.backgroundColor}
           iconSize={16} />
         <Text style={styles.buttonTextDark}>
-          {receive.name + ' x' + wasTraded.received.quantity}
+          {receive.name + ' x' + utils.formatNumberShort(wasTraded.received.quantity)}
         </Text>
       </TouchableOpacity>
     );
