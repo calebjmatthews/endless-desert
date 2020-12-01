@@ -3,6 +3,7 @@ export default class Building {
   buildingType: string = '';
   suffix: number = 1;
   name: string|null = null;
+  recipeSelected?: number = 0;
 
   constructor(building: Building) {
     Object.assign(this, building);

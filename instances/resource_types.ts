@@ -114,7 +114,7 @@ resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 40,
-  icon: {provider: 'MaterialIcons', name: 'menu'},
+  icon: {provider: 'MaterialCommunityIcons', name: 'pound-box'},
   foregroundColor: '#ceb903',
   backgroundColor: '#fff'
 });
@@ -149,6 +149,28 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   value: 250,
   icon: {provider: 'FontAwesome5', name: 'oil-can'},
   foregroundColor: '#97c701',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
+  name: RESOURCE_TYPES.OLIVE_OIL,
+  subcategory: RESOURCE_SUBCATEGORIES.OIL,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 250,
+  icon: {provider: 'FontAwesome', name: 'certificate'},
+  foregroundColor: '#e6dab8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
+  name: RESOURCE_TYPES.OLIVE_OIL,
+  subcategory: RESOURCE_SUBCATEGORIES.OIL,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 250,
+  icon: {provider: 'FontAwesome5', name: 'newspaper'},
+  foregroundColor: '#e6dab8',
   backgroundColor: '#fff'
 });
 

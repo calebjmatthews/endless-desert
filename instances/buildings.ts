@@ -12,6 +12,9 @@ function startingFactory(buildingType: string) {
     suffix: 1,
     name: null
   });
+  if (buildingTypes[buildingType].recipes) {
+    startingBuilding.recipeSelected = 0;
+  }
   buildingsStarting[startingBuilding.id] = startingBuilding;
 }
 

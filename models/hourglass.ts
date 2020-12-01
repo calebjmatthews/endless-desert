@@ -51,29 +51,33 @@ export default class Hourglass {
     Object.keys(buildings).map((id) => {
       let building = buildings[id];
       let buildingType = buildingTypes[building.buildingType];
-      if (buildingType.production) {
-        buildingType.production.map((production) => {
-          if (!productionRates[production.produces]) {
-            productionRates[production.produces] = 0;
-          }
-          if (!netRates[production.produces]) {
-            netRates[production.produces] = 0;
-          }
-          productionRates[production.produces] += production.rate;
-          netRates[production.produces] += production.rate;
-        });
-      }
-      if (buildingType.consumption) {
-        buildingType.consumption.map((consumption) => {
-          if (!consumptionRates[consumption.consumes]) {
-            consumptionRates[consumption.consumes] = 0;
-          }
-          if (!netRates[consumption.consumes]) {
-            netRates[consumption.consumes] = 0;
-          }
-          consumptionRates[consumption.consumes] += consumption.rate;
-          netRates[consumption.consumes] -= consumption.rate;
-        });
+      if (buildingType.recipes) {
+        let recipeSelected = building.recipeSelected || 0;
+        let recipe = buildingType.recipes[recipeSelected];
+        if (recipe.produces) {
+          recipe.produces.map((production) => {
+            if (!productionRates[production.type]) {
+              productionRates[production.type] = 0;
+            }
+            if (!netRates[production.type]) {
+              netRates[production.type] = 0;
+            }
+            productionRates[production.type] += production.quantity;
+            netRates[production.type] += production.quantity;
+          });
+        }
+        if (recipe.consumes) {
+          recipe.consumes.map((consumption) => {
+            if (!consumptionRates[consumption.type]) {
+              consumptionRates[consumption.type] = 0;
+            }
+            if (!netRates[consumption.type]) {
+              netRates[consumption.type] = 0;
+            }
+            consumptionRates[consumption.type] += consumption.quantity;
+            netRates[consumption.type] -= consumption.quantity;
+          });
+        }
       }
     });
 

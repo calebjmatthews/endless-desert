@@ -1,3 +1,4 @@
+import BuildingRecipe from './building_recipe';
 import { resourceTypes } from '../instances/resource_types';
 
 export default class BuildingType implements BuildingTypeInterface {
@@ -7,8 +8,7 @@ export default class BuildingType implements BuildingTypeInterface {
   backgroundColor: string = '#fff';
   cost: {resource: string, quantity: number}[]|null = null;
   upgradeCost?: {resource: string, quantity: number}[]|null = null;
-  production: {produces: string, rate: number}[]|null = null;
-  consumption: {consumes: string, rate: number}[]|null = null;
+  recipes: BuildingRecipe[]|null = null;
   upgradesInto?: string;
   duration?: number = 0;
   upgradeDuration?: number = 0;
@@ -51,8 +51,7 @@ interface BuildingTypeInterface {
   backgroundColor: string;
   cost: {resource: string, quantity: number}[]|null;
   upgradeCost?: {resource: string, quantity: number}[]|null;
-  production: {produces: string, rate: number}[]|null;
-  consumption: {consumes: string, rate: number}[]|null;
+  recipes: BuildingRecipe[]|null;
   upgradesInto?: string;
   duration?: number;
   upgradeDuration? :number;

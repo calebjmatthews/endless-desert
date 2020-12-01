@@ -12,5 +12,7 @@ export enum RESOURCE_TYPES {
   THATCH = 'Thatch',
   SAND_YELLOW = 'Yellow Sand',
   OLIVE_OIL = 'Olive Oil',
-  GLASS = 'Glass'
+  GLASS = 'Glass',
+  PULP = 'Pulp',
+  PAPYRUS = 'Papyrus'
 }
