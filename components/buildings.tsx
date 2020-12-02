@@ -21,11 +21,6 @@ import { BUILDING_TYPES } from '../enums/building_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { utils } from '../utils';
 
-const BUILDINGS_TO_REPAIR = [BUILDING_TYPES.ABANDONED_MARKET,
-  BUILDING_TYPES.BROKEN_CISTERN, BUILDING_TYPES.DECAYING_STUDY,
-  BUILDING_TYPES.FALLOW_FIELD, BUILDING_TYPES.RUINED_HUTS,
-  BUILDING_TYPES.SHATTERED_GATE];
-
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
@@ -53,7 +48,7 @@ export default function BuildingsComponent() {
 
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
-      upgradePress={upgradePress} buildTimer={buildTimer} rates={rates} />
+      vault={vault} buildTimer={buildTimer} rates={rates} />
   }
   return (
     <View style={styles.container}>
@@ -121,75 +116,11 @@ export default function BuildingsComponent() {
     }
     return null;
   }
-
-  function upgradePress(building: Building) {
-    let buildingType = buildingTypes[building.buildingType];
-    let enoughResources = true;
-    if (buildingType.upgradeCost == null) { return null; }
-    let resourceCost: {type: string, quantity: number}[] = [];
-    let totalValue = 0;
-    buildingType.upgradeCost.map((aCost) => {
-      if (vault.resources[aCost.resource].quantity < aCost.quantity) {
-        enoughResources = false;
-      }
-      resourceCost.push({type: aCost.resource, quantity: aCost.quantity});
-    });
-    if (buildingType.upgradesInto && buildingTypes[buildingType.upgradesInto]) {
-      let upgType = buildingTypes[buildingType.upgradesInto];
-      if (upgType.upgradeDuration) {
-        if (enoughResources && buildingType.duration) {
-          dispatch(addTimer(new Timer({
-            name: 'Build',
-            startedAt: new Date(Date.now()).valueOf(),
-            endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
-            progress: 0,
-            remainingLabel: '',
-            resourcesToConsume: resourceCost,
-            buildingToUpgrade: building.id,
-            messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
-              + upgType.name + '.'),
-            iconToDisplay: buildingType.icon,
-            iconForegroundColor: buildingType.foregroundColor,
-            iconBackgroundColor: buildingType.backgroundColor
-          })));
-          dispatch(displayModal(null));
-        }
-      }
-    }
-    else {
-      console.log('Not enough resources!');
-    }
-  }
 }
 
 function BuildingDescription(props: any) {
   const building: Building = props.building.item;
   const buildingType: BuildingType = buildingTypes[building.buildingType];
-  let upgradeLabel = ' Upgrade';
-  if (utils.arrayIncludes(BUILDINGS_TO_REPAIR, buildingType.name)) {
-    upgradeLabel = ' Repair';
-  }
-  let upgradeDisabled = false;
-  let upgradeStyle: any = styles.buttonRowItem;
-  if (props.buildTimer) {
-    setDisabled();
-  }
-  else if (props.introState == INTRO_STATES.REPAIR_CISTERN
-    && buildingType.name != BUILDING_TYPES.BROKEN_CISTERN) {
-    setDisabled();
-  }
-  else if (props.introState == INTRO_STATES.RESTORE_FIELD
-    && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
-    setDisabled();
-  }
-  else if (props.introState == INTRO_STATES.REFURBISH_STUDY
-    && buildingType.name != BUILDING_TYPES.DECAYING_STUDY) {
-    setDisabled();
-  }
-  function setDisabled() {
-    upgradeDisabled = true;
-    upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]);
-  }
 
   return (
     <View style={styles.panelFlex}>
@@ -202,21 +133,50 @@ function BuildingDescription(props: any) {
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
           <Text>{props.building.item.buildingType}</Text>
-          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItemSmall,
-            styles.buttonLight])}>
-            <IconComponent provider="FontAwesome5" name="angle-down"
-              color="#17265d" size={14} />
-            <Text style={StyleSheet.flatten([styles.buttonTextSmall,
-              styles.buttonTextDark])}>
-              {' More'}
-            </Text>
-          </TouchableOpacity>
+          {renderMoreButton()}
         </View>
-        <Text>{renderCost(buildingType.upgradeCost)}</Text>
         <Text>{renderRateContainer()}</Text>
       </View>
     </View>
   );
+
+  function renderMoreButton() {
+    let buttonStyle = StyleSheet.flatten([styles.buttonRowItemSmall,
+      styles.buttonLight]);
+    let textStyle = StyleSheet.flatten([styles.buttonTextSmall,
+      styles.buttonTextDark]);
+    let iconColor = '#17265d';
+    let iconName = 'angle-down';
+    if (areResourcesEnough(building)) {
+      buttonStyle = styles.buttonRowItemSmall;
+      textStyle = styles.buttonTextSmall;
+      iconName = 'exclamation-circle';
+      iconColor = '#fff';
+    }
+    return (
+      <TouchableOpacity style={buttonStyle}>
+        <IconComponent provider="FontAwesome5" name={iconName}
+          color={iconColor} size={14} />
+        <Text style={textStyle}>
+          {' More'}
+        </Text>
+      </TouchableOpacity>
+    );
+
+    function areResourcesEnough(building: Building) {
+      let buildingType = buildingTypes[building.buildingType];
+      let enoughResources = true;
+      if (buildingType.upgradeCost == null) { return false; }
+      let resourceCost: {type: string, quantity: number}[] = [];
+      let totalValue = 0;
+      buildingType.upgradeCost.map((aCost) => {
+        if (props.vault.resources[aCost.resource].quantity < aCost.quantity) {
+          enoughResources = false;
+        }
+      });
+      return enoughResources;
+    }
+  }
 
   function renderCost(cost: {resource: string, quantity: number}[]|null|undefined) {
     if (!cost) {

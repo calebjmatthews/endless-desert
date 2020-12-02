@@ -257,6 +257,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     maxHeight: 19,
+    minWidth: 55,
     paddingHorizontal: 2,
     backgroundColor: '#071f56',
     color: '#fff',
