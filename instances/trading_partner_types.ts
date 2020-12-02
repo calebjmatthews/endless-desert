@@ -4,6 +4,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -23,9 +25,9 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   paddingVertical: 8,
   tradeValue: 800,
   givesPool: [
-    {specificity: RSP.SUBCATEGORY, type: RTA.WOOD, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RTA.CLAY, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RTA.SAND, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
   ],
   receivesPool: [
@@ -44,7 +46,7 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   paddingVertical: 8,
   tradeValue: 1200,
   givesPool: [
-    {specificity: RSP.SUBCATEGORY, type: RTA.WOOD, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
     {specificity: RSP.EXACT, type: RTY.GRAIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 50}
