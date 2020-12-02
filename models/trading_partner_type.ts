@@ -1,6 +1,6 @@
 import TradingPartner from './trading_partner';
-import Vault from './vault';
 import Resource from './resource';
+import ResourceType from './resource_type';
 import Trade from './trade';
 import { resourceTypes } from '../instances/resource_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -22,7 +22,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     Object.assign(this, tradingPartnerType);
   }
 
-  createTradingPartner(vault: Vault) {
+  createTradingPartner() {
     let tCount = 3;
     const roll = Math.random();
     if (roll < 0.1) { tCount = 4; }
@@ -32,7 +32,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
 
     let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
-      let newTradeResult = this.createNewTrade(pGives, vault);
+      let newTradeResult = this.createNewTrade(pGives);
       if (newTradeResult) {
         pGives.push(newTradeResult.pGive);
         const newTrade = new Trade ({
@@ -57,10 +57,9 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     });
   }
 
-  createNewTrade(pGives: {specificity: string, type: string, weight: number}[],
-    vault: Vault) {
+  createNewTrade(pGives: {specificity: string, type: string, weight: number}[]) {
     const pGive = this.choosePGive(pGives);
-    const give = this.createGive(pGive, vault);
+    const give = this.createGive(pGive);
     if (give) {
       const pReceive = this.choosePReceive(give);
       const receive = { specificity: pReceive.specificity, type: pReceive.type };
@@ -86,39 +85,53 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return this.givesPool[0];
   }
 
-  createGive(pGive: {specificity: string, type: string, weight: number}, vault: Vault) {
-    let resources: Resource[] = [];
+  createGive(pGive: {specificity: string, type: string, weight: number}) {
+    let typeNames: string[] = [];
     switch(pGive.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
-      resources = vault.getExactResources(pGive.type);
+      typeNames = [resourceTypes[pGive.type].name];
       break;
 
       case RESOURCE_SPECIFICITY.TAG:
-      resources = vault.getTagResources(pGive.type);
+      Object.keys(resourceTypes).map((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (utils.arrayIncludes(resourceType.tags, pGive.type)) {
+          typeNames.push(typeName);
+        }
+      });
       break;
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      resources = vault.getSubcategoryResources(pGive.type);
+      Object.keys(resourceTypes).map((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (resourceType.subcategory == pGive.type) {
+          typeNames.push(typeName);
+        }
+      });
       break;
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      resources = vault.getCategoryResources(pGive.type);
+      Object.keys(resourceTypes).map((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (resourceType.category == pGive.type) {
+          typeNames.push(typeName);
+        }
+      });
       break;
     }
 
-    let resourceName = '';
-    const resource = resources[Math.floor(utils.random() * resources.length)];
-    if (resource) {
-      resourceName = resource.type;
+    let resourceType: ResourceType|null = null;
+    let typeName = typeNames[Math.floor(utils.random() * typeNames.length)];
+    if (typeName) {
+      resourceType = resourceTypes[typeName];
     }
     else {
       return null;
     }
-    const resourceType = resourceTypes[resourceName];
     let baseQuantity = (this.tradeValue / (resourceType.value||1))
     let quantity = Math.ceil(baseQuantity
       + (baseQuantity * utils.random() - (baseQuantity / 2)));
-    return { type: resourceName, quantity: quantity };
+    return { type: typeName, quantity: quantity };
   }
 
   choosePReceive(give: {type: string, quantity: number}) {

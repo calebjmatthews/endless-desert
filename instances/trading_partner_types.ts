@@ -25,9 +25,9 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   paddingVertical: 8,
   tradeValue: 800,
   givesPool: [
-    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
   ],
   receivesPool: [
@@ -46,7 +46,7 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   paddingVertical: 8,
   tradeValue: 1200,
   givesPool: [
-    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
     {specificity: RSP.EXACT, type: RTY.GRAIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 50}

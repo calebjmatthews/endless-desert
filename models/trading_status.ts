@@ -1,6 +1,5 @@
 import TradingPartner from './trading_partner';
 import Trade from './trade';
-import Vault from './vault';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { utils } from '../utils';
 
@@ -12,9 +11,9 @@ export default class TradingStatus implements TradingStatusInterface {
     Object.assign(this, tradingStatus);
   }
 
-  createPendingTradingPartner(vault: Vault) {
+  createPendingTradingPartner() {
     let tpName = selectTradingPartner(this.tradingPartners);
-    return tradingPartnerTypes[tpName].createTradingPartner(vault);
+    return tradingPartnerTypes[tpName].createTradingPartner();
 
     function selectTradingPartner(ctps: { [name: string] : TradingPartner }) {
       let tps = Object.keys(tradingPartnerTypes);

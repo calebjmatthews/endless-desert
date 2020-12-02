@@ -6,11 +6,11 @@ import { TRADING_PARTNERS } from '../enums/trading_partners';
 
 let tradingPartners: { [name: string] : TradingPartner } = {};
 tradingPartners[TRADING_PARTNERS.FOXFIRE_ASCETICS] =
-  tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS].createTradingPartner(vaultStarting);
+  tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS].createTradingPartner();
 
 let tpPending: TradingPartner[] = [];
 tpPending.push(
-  tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL].createTradingPartner(vaultStarting));
+  tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL].createTradingPartner());
 
 let tradingStatusStarting = new TradingStatus({ tradingPartners, tpPending });
 

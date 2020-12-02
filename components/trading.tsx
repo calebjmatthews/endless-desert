@@ -70,7 +70,7 @@ export default function TradingComponent() {
   }
 
   function welcomeClick() {
-    let newTradingPartner = tradingStatus.createPendingTradingPartner(vault);
+    let newTradingPartner = tradingStatus.createPendingTradingPartner();
     let newTimer = new Timer({
       name: ('Trading' + 0),
       startedAt: new Date(Date.now()).valueOf(),
@@ -234,7 +234,7 @@ function TradingPartnerDescription(props: any) {
           backgroundColor={give.backgroundColor}
           iconSize={16} />
         <Text style={styles.buttonTextDark}>
-          {' ' + give.name + ' (' + utils.formatNumberShort(trade.give.quantity) 
+          {' ' + give.name + ' (' + utils.formatNumberShort(trade.give.quantity)
           + ') for '}
         </Text>
         <BadgeComponent

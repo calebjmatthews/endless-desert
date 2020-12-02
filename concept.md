@@ -42,6 +42,34 @@ Ideas:
       - Highly beneficial trades arrive each hour, but must be completed within five minutes or the island vanishes
       - Leaders who are incredibly effective at a single task, and vanish after working for one hour
 
+Resource Subcategories:
+  - Sand
+    * Yellow: Savory
+    * Dune: Sweet
+    * Pale: Cooling
+    * Volcanic: Spicy
+    * Coral: Brackish
+    * Olivine: Herbal
+    * Black: Bitter
+    * Ochre: Sour
+    * Shining: Airy
+    * Purple: Fungal
+    * Golden: Rich
+    * Bone: Earthy
+  - Wood
+    * Oak: Bitter
+    * Rowan: Herbal
+    * Walnut: Sour
+    * Alder: Spicy
+    * Maple: Bitter
+    * Willow: Brackish
+    * Ash: Savory
+    * Spruce: Cooling
+    * Mahogany: Rich
+    * Mangrove: Fungal
+    * Ebony: Earthy
+    * Lignum Vitae: Airy
+
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
   - It should be relatively easy to sustain an existing settlement, and easy to expand by adding buildings, but without much value to be gained by stockpiling huge numbers of basic resources. Adding new groups should be difficult, and trading should have relatively low maximum numbers of resources, so the player cannot succeed by trading huge quantities of sand, for example.
@@ -162,7 +190,7 @@ Traders:
   - Individual trader ideas:
     - European traders that give metals
     - Scholarly trader that receives knowledge and parchment
-    - Explorering trader that receives food, drink, and exploration supplies
+    - Exploring trader that receives food, drink, and exploration supplies
     - "Dragon" trader that receives precious metals and jewels
   - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
   - Early traders

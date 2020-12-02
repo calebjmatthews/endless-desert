@@ -80,10 +80,87 @@ resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   name: RESOURCE_TYPES.WOOD_OAK,
   subcategory: RESOURCE_SUBCATEGORIES.WOOD,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION],
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BITTER],
   value: 50,
   icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
   foregroundColor: '#790f0f',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_ROWAN] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_ROWAN,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.HERBAL],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#95a53c',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_WALNUT] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_WALNUT,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SOUR],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#927150',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_ALDER] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_ALDER,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SPICY],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#a5104e',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_MAPLE,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SWEET],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#d2734f',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_WILLOW,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BRACKISH],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#e87b7b',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_ASH] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_ASH,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SAVORY],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#ffcd8f',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.WOOD_SPRUCE] = new ResourceType({
+  name: RESOURCE_TYPES.WOOD_SPRUCE,
+  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.COOLING],
+  value: 50,
+  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  foregroundColor: '#633c02',
   backgroundColor: '#fff'
 });
 
@@ -91,7 +168,7 @@ resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
   name: RESOURCE_TYPES.CLAY_RED,
   subcategory: RESOURCE_SUBCATEGORIES.CLAY,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION],
+  tags: [RESOURCE_TAGS.EARTH],
   value: 15,
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
@@ -123,7 +200,7 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   name: RESOURCE_TYPES.SAND_YELLOW,
   subcategory: RESOURCE_SUBCATEGORIES.SAND,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [],
+  tags: [RESOURCE_TAGS.EARTH],
   value: 3,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
@@ -134,7 +211,7 @@ resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   name: RESOURCE_TYPES.GLASS,
   subcategory: RESOURCE_SUBCATEGORIES.GLASS,
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+  tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 120,
   icon: {provider: 'FontAwesome5', name: 'solar-panel'},
   foregroundColor: '#33cee2',
