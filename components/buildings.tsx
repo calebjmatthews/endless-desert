@@ -15,6 +15,7 @@ import Building from '../models/building';
 import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import { buildingTypes } from '../instances/building_types';
+import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { INTRO_STATES } from '../enums/intro_states';
@@ -32,6 +33,7 @@ export default function BuildingsComponent() {
   const buildTimer = useTypedSelector(state => state.timers['Build']);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const introState = useTypedSelector(state => state.account.introState);
+  const rates = useTypedSelector(state => state.rates);
   const buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
   });
@@ -51,7 +53,7 @@ export default function BuildingsComponent() {
 
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
-      upgradePress={upgradePress} buildTimer={buildTimer} />
+      upgradePress={upgradePress} buildTimer={buildTimer} rates={rates} />
   }
   return (
     <View style={styles.container}>
@@ -161,7 +163,8 @@ export default function BuildingsComponent() {
 }
 
 function BuildingDescription(props: any) {
-  const buildingType = buildingTypes[props.building.item.buildingType];
+  const building: Building = props.building.item;
+  const buildingType: BuildingType = buildingTypes[building.buildingType];
   let upgradeLabel = ' Upgrade';
   if (utils.arrayIncludes(BUILDINGS_TO_REPAIR, buildingType.name)) {
     upgradeLabel = ' Repair';
@@ -187,9 +190,6 @@ function BuildingDescription(props: any) {
     upgradeDisabled = true;
     upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]);
   }
-  if (!buildingType.upgradesInto) {
-    upgradeStyle = StyleSheet.flatten([styles.buttonRowItem, {opacity: 0}]);
-  }
 
   return (
     <View style={styles.panelFlex}>
@@ -200,22 +200,20 @@ function BuildingDescription(props: any) {
         backgroundColor={buildingType.backgroundColor}
         iconSize={18} />
       <View style={styles.containerStretchColumn}>
-        <Text>{props.building.item.buildingType}</Text>
-        <Text>{renderCost(buildingType.upgradeCost)}</Text>
-        <View style={styles.buttonRow}>
-        <TouchableOpacity style={upgradeStyle} disabled={upgradeDisabled}
-          onPress={() => props.upgradePress(props.building.item)} >
-          <IconComponent provider="FontAwesome5" name="hammer"
-            color="#fff" size={16} />
-          <Text style={styles.buttonText}>{upgradeLabel}</Text>
-        </TouchableOpacity>
-          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+        <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
+          <Text>{props.building.item.buildingType}</Text>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItemSmall,
             styles.buttonLight])}>
             <IconComponent provider="FontAwesome5" name="angle-down"
-              color="#17265d" size={16} />
-            <Text style={styles.buttonTextDark}>{' Info'}</Text>
+              color="#17265d" size={14} />
+            <Text style={StyleSheet.flatten([styles.buttonTextSmall,
+              styles.buttonTextDark])}>
+              {' More'}
+            </Text>
           </TouchableOpacity>
         </View>
+        <Text>{renderCost(buildingType.upgradeCost)}</Text>
+        <Text>{renderRateContainer()}</Text>
       </View>
     </View>
   );
@@ -233,5 +231,49 @@ function BuildingDescription(props: any) {
     return (
       <Text>{costString}</Text>
     )
+  }
+
+  function renderRateContainer() {
+    let rates: { [resourceName: string] : number } =
+      props.rates.buildingRates[building.id];
+    if (rates) {
+      return (
+        <View style={styles.rows}>
+          {renderRates(rates)}
+        </View>
+      );
+    }
+    else {
+      return null;
+    }
+  }
+
+  function renderRates(rates: { [resourceName: string] : number }) {
+    return Object.keys(rates).map((resourceName) => {
+      return renderRate(resourceName, rates[resourceName])
+    });
+  }
+
+  function renderRate(resourceName: string, rate: number) {
+    const resource = resourceTypes[resourceName];
+    let sign = '+';
+    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19 };
+    if (rate < 0) {
+      sign = '';
+      rateStyle.background = '#ffb4b1';
+    }
+    return (
+      <View key={resourceName} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+        <Text>{sign + rate}</Text>
+        <BadgeComponent
+          provider={resource.icon.provider}
+          name={resource.icon.name}
+          foregroundColor={resource.foregroundColor}
+          backgroundColor={resource.backgroundColor}
+          iconSize={12} />
+        <Text>{'/m '}</Text>
+      </View>
+    )
+
   }
 }

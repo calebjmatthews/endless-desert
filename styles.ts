@@ -219,6 +219,12 @@ export const styles = StyleSheet.create({
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     color: '#fff'
   },
+  buttonTextSmall: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    color: '#fff'
+  },
   buttonTextDark: {
     color: '#071f56'
   },
@@ -244,6 +250,27 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#071f56',
     borderRadius: 2
+  },
+  buttonRowItemSmall: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxHeight: 19,
+    paddingHorizontal: 2,
+    backgroundColor: '#071f56',
+    color: '#fff',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '#071f56',
+    borderRadius: 2
+  },
+  buttonTextRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexGrow: 1,
+    alignSelf: 'stretch'
   },
   modalContainer: {
     zIndex: 100,

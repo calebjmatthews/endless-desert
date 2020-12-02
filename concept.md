@@ -33,7 +33,14 @@ Ideas:
   - Temporary settlements can be made in the Dreaming, last 24 hours (?) before evaporating and allowing the player to claim one single resource.
     - These can have unusual resources, such as iron or wood.
     - They can also be unusually small or large.
-    - Some is way to apply extreme, but selective, benefits. These could include increasing dream build time x 1000, increasing one resource production x 100 (but can't claim that resource), randomizing the output from a certain building, etc.
+    - Some way to apply extreme benefits, often with drawbacks. These could include:
+      - Dream build time x 1000 in large island that is continuously shrinking
+      - One resource production x 100 (but can't claim that resource)
+      - Randomizing the output of resource with a subcategory
+      - Broad availability of raw resources, but no leaders can be found
+      - Buildings produce much more, but can only be built once and only work for an hour before vanishing
+      - Highly beneficial trades arrive each hour, but must be completed within five minutes or the island vanishes
+      - Leaders who are incredibly effective at a single task, and vanish after working for one hour
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -212,6 +219,11 @@ Calculating timestep:
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
   - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Lower tiered products are given priority. For example, if there was not enough water to fulfill all buildings, a kitchen could be producing bread at 100% capacity but another kitchen could only be producing honeyed bread at 67% capacity (assuming 2/min water was available out of 3/min water requirement)
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
+
+Building display:
+  - Start by going through each building, and creating an array the building types with duplicates
+  - Go through each building again, creating a display object that can be either a building group or a single building, with a building group for those with duplicates
+  - Pull the building specific or building group rates from the rate reducer
 
 Beginning of game:
   - Some messages to introduce setting

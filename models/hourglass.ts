@@ -47,41 +47,70 @@ export default class Hourglass {
     let productionRates: { [resourceName: string] : number } = {};
     let consumptionRates: { [resourceName: string] : number } = {};
     let netRates: { [resourceName: string] : number } = {};
+    let buildingRates: { [buildingId: string] :
+      { [resourceName: string] : number } } = {};
+    let bGroupRates: { [typeName: string] :
+      { [resourceName: string] : number } } = {};
+
+    let multiBT = getMultiBT(buildings);
 
     Object.keys(buildings).map((id) => {
       let building = buildings[id];
+      if (buildingRates[id] == undefined) {
+        buildingRates[id] = {};
+      }
+      if (multiBT[building.buildingType] == true
+        && bGroupRates[building.buildingType] == undefined) {
+        bGroupRates[building.buildingType] = {};
+      }
       let buildingType = buildingTypes[building.buildingType];
       if (buildingType.recipes) {
         let recipeSelected = building.recipeSelected || 0;
         let recipe = buildingType.recipes[recipeSelected];
         if (recipe.produces) {
           recipe.produces.map((production) => {
-            if (!productionRates[production.type]) {
-              productionRates[production.type] = 0;
-            }
-            if (!netRates[production.type]) {
-              netRates[production.type] = 0;
-            }
-            productionRates[production.type] += production.quantity;
-            netRates[production.type] += production.quantity;
+            mapAdd(productionRates, production.type, production.quantity);
+            mapAdd(buildingRates[id], production.type, production.quantity);
+            mapAdd(bGroupRates[building.buildingType], production.type,
+              production.quantity);
+            mapAdd(netRates, production.type, production.quantity);
           });
         }
         if (recipe.consumes) {
           recipe.consumes.map((consumption) => {
-            if (!consumptionRates[consumption.type]) {
-              consumptionRates[consumption.type] = 0;
-            }
-            if (!netRates[consumption.type]) {
-              netRates[consumption.type] = 0;
-            }
-            consumptionRates[consumption.type] += consumption.quantity;
-            netRates[consumption.type] -= consumption.quantity;
+            mapAdd(consumptionRates, consumption.type, consumption.quantity);
+            mapAdd(buildingRates[id], consumption.type, (consumption.quantity * -1));
+            mapAdd(bGroupRates[building.buildingType], consumption.type,
+              (consumption.quantity * -1));
+            mapAdd(netRates, consumption.type, (consumption.quantity * -1));
           });
         }
       }
     });
 
-    return {productionRates, consumptionRates, netRates};
+    return {productionRates, consumptionRates, buildingRates, bGroupRates, netRates};
+
+    function mapAdd(map: any, property: string, quantity: number) {
+      if (map != undefined) {
+        if (map[property] == undefined) {
+          map[property] = 0;
+        }
+        map[property] += quantity;
+      }
+    }
+
+    function getMultiBT(buildings: { [id: string] : Building }) {
+      let multiBT: { [typeName: string] : boolean } = {};
+      let alreadyFound: { [typeName: string] : boolean } = {};
+      Object.keys(buildings).map((id) => {
+        let building = buildings[id];
+        if (alreadyFound[building.buildingType]) {
+          multiBT[building.buildingType] = true;
+        }
+        alreadyFound[building.buildingType] = true;
+      });
+      return multiBT;
+    }
   }
 }
 
