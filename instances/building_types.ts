@@ -11,6 +11,8 @@ let buildingTypes: { [name: string] : BuildingType } = {};
 
 buildingTypes[BTY.BROKEN_CISTERN] = new BuildingType({
   name: BTY.BROKEN_CISTERN,
+  description: ('Water trickles through cracks in the wall, above a reservoir '
+    + 'you cannot reach'),
   icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
   foregroundColor: '#93c5ec',
   backgroundColor: '#fff',
@@ -25,6 +27,7 @@ buildingTypes[BTY.BROKEN_CISTERN] = new BuildingType({
 
 buildingTypes[BTY.DECAYING_STUDY] = new BuildingType({
   name: BTY.DECAYING_STUDY,
+  description: 'A dusty, crooked room with a small desk in the corner',
   icon: {provider: 'FontAwesome5', name: 'book-open'},
   foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
@@ -37,6 +40,7 @@ buildingTypes[BTY.DECAYING_STUDY] = new BuildingType({
 
 buildingTypes[BTY.RUINED_HUTS] = new BuildingType({
   name: BTY.RUINED_HUTS,
+  description: 'A handful of tiny, abandoned houses',
   icon: {provider: 'FontAwesome5', name: 'store-alt'},
   foregroundColor: '#d0b2a7',
   backgroundColor: '#fff',
@@ -49,6 +53,7 @@ buildingTypes[BTY.RUINED_HUTS] = new BuildingType({
 
 buildingTypes[BTY.FALLOW_FIELD] = new BuildingType({
   name: BTY.FALLOW_FIELD,
+  description: 'As it stands, it\'s primarily growing weeds and rocks',
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#bbdc94',
   backgroundColor: '#fff',
@@ -63,6 +68,7 @@ buildingTypes[BTY.FALLOW_FIELD] = new BuildingType({
 
 buildingTypes[BTY.SHATTERED_GATE] = new BuildingType({
   name: BTY.SHATTERED_GATE,
+  description: 'Two vast and trunkless legs of stone',
   icon: {provider: 'FontAwesome5', name: 'dungeon'},
   foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
@@ -73,6 +79,8 @@ buildingTypes[BTY.SHATTERED_GATE] = new BuildingType({
 
 buildingTypes[BTY.ABANDONED_MARKET] = new BuildingType({
   name: BTY.ABANDONED_MARKET,
+  description: ('There\'s a smell of spices in the air, so faint you might '
+    + 'be imagining it'),
   icon: {provider: 'FontAwesome5', name: 'store'},
   foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
@@ -83,6 +91,8 @@ buildingTypes[BTY.ABANDONED_MARKET] = new BuildingType({
 
 buildingTypes[BTY.MARKET] = new BuildingType({
   name: BTY.MARKET,
+  description: ('Only large enough for a single stall, but a start to commerce '
+    + 'in your settlement'),
   icon: {provider: 'MaterialIcons', name: 'storefront'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff',
@@ -92,6 +102,8 @@ buildingTypes[BTY.MARKET] = new BuildingType({
 
 buildingTypes[BTY.STUDY] = new BuildingType({
   name: BTY.STUDY,
+  description: ('Your home, with the bed you ignore nightly while you pour over '
+    + 'writings'),
   icon: {provider: 'FontAwesome5', name: 'book-open'},
   foregroundColor: '#000',
   backgroundColor: '#fff',
@@ -101,6 +113,7 @@ buildingTypes[BTY.STUDY] = new BuildingType({
 
 buildingTypes[BTY.HUTS] = new BuildingType({
   name: BTY.HUTS,
+  description: 'Unglamorous but liveable shacks, clustered together',
   icon: {provider: 'FontAwesome5', name: 'store-alt'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',
@@ -110,6 +123,7 @@ buildingTypes[BTY.HUTS] = new BuildingType({
 
 buildingTypes[BTY.CISTERN] = new BuildingType({
   name: BTY.CISTERN,
+  description: 'The only thing standing between you and desiccation',
   icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
   foregroundColor: '#2196f3',
   backgroundColor: '#fff',
@@ -121,6 +135,7 @@ buildingTypes[BTY.CISTERN] = new BuildingType({
 
 buildingTypes[BTY.LENTIL_FIELD] = new BuildingType({
   name: BTY.LENTIL_FIELD,
+  description: 'Lentils grow in curly, bushy rows',
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
@@ -133,6 +148,7 @@ buildingTypes[BTY.LENTIL_FIELD] = new BuildingType({
 
 buildingTypes[BTY.REED_DELTA] = new BuildingType({
   name: BTY.REED_DELTA,
+  description: 'Reeds cluster along the muddy banks',
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
@@ -145,6 +161,7 @@ buildingTypes[BTY.REED_DELTA] = new BuildingType({
 
 buildingTypes[BTY.GRAIN_FIELD] = new BuildingType({
   name: BTY.GRAIN_FIELD,
+  description: 'If it\'s knee-cover by mid summer you know it\'s growing well',
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
   backgroundColor: '#fff',
@@ -157,6 +174,7 @@ buildingTypes[BTY.GRAIN_FIELD] = new BuildingType({
 
 buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
   name: BTY.OLIVE_GROVE,
+  description: 'The lines of olive trees smell rich and sweet',
   icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
@@ -169,6 +187,7 @@ buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
 
 buildingTypes[BTY.CLAY_PIT] = new BuildingType({
   name: BTY.CLAY_PIT,
+  description: 'Small amounts of previous water mixing with the dry under-soil',
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff',
@@ -181,6 +200,8 @@ buildingTypes[BTY.CLAY_PIT] = new BuildingType({
 
 buildingTypes[BTY.SAND_PIT] = new BuildingType({
   name: BTY.SAND_PIT,
+  description: ('Sand is everywhere, the trick is keeping it from collapsing as you '
+    + 'remove it'),
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
   backgroundColor: '#fff',
@@ -192,6 +213,7 @@ buildingTypes[BTY.SAND_PIT] = new BuildingType({
 
 buildingTypes[BTY.DRYING_YARD] = new BuildingType({
   name: BTY.DRYING_YARD,
+  description: 'The pitiless sun is an ally, for once',
   icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
   foregroundColor: '#ff0000',
   backgroundColor: '#fff',
@@ -210,6 +232,7 @@ buildingTypes[BTY.DRYING_YARD] = new BuildingType({
 
 buildingTypes[BTY.PRESS] = new BuildingType({
   name: BTY.PRESS,
+  description: 'Great slabs of brick groan as they press together',
   icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',
@@ -225,6 +248,7 @@ buildingTypes[BTY.PRESS] = new BuildingType({
 
 buildingTypes[BTY.FURNACE] = new BuildingType({
   name: BTY.FURNACE,
+  description: 'At night the furnace glows red, and the air shimmers around it',
   icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
   foregroundColor: '#b02727',
   backgroundColor: '#fff',

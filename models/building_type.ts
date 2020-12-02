@@ -3,6 +3,7 @@ import { resourceTypes } from '../instances/resource_types';
 
 export default class BuildingType implements BuildingTypeInterface {
   name: string = '';
+  description: string = '';
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
@@ -46,6 +47,7 @@ export default class BuildingType implements BuildingTypeInterface {
 
 interface BuildingTypeInterface {
   name: string;
+  description: string;
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;
