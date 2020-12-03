@@ -1,4 +1,5 @@
-import { SET_BUILDINGS, ADD_BUILDING, REPLACE_BUILDING } from '../actions/buildings';
+import { SET_BUILDINGS, ADD_BUILDING, REPLACE_BUILDING, SELECT_BUILDING_RECIPE }
+  from '../actions/buildings';
 import Building from '../models/building';
 
 import { buildingsStarting } from '../instances/buildings';
@@ -18,6 +19,11 @@ export default function (buildings: { [id: string] : Building } = buildingsStart
     let newRBuildings = Object.assign({}, buildings);
     newRBuildings[action.building.id] = action.building;
     return newRBuildings;
+
+    case SELECT_BUILDING_RECIPE:
+    let newSBRBuildings = Object.assign({}, buildings);
+    newSBRBuildings[action.building.id].recipeSelected = action.recipeIndex;
+    return newSBRBuildings;
 
 		default:
 		return buildings;

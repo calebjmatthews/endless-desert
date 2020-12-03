@@ -8,7 +8,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
-import { displayModal } from '../actions/ui';
+import { displayModal, displayModalValue } from '../actions/ui';
 import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
@@ -48,7 +48,7 @@ export default function BuildingsComponent() {
 
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
-      vault={vault} buildTimer={buildTimer} rates={rates} />
+      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress} />
   }
   return (
     <View style={styles.container}>
@@ -116,6 +116,10 @@ export default function BuildingsComponent() {
     }
     return null;
   }
+
+  function morePress(building: Building) {
+    dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
+  }
 }
 
 function BuildingDescription(props: any) {
@@ -154,7 +158,7 @@ function BuildingDescription(props: any) {
       iconColor = '#fff';
     }
     return (
-      <TouchableOpacity style={buttonStyle}>
+      <TouchableOpacity style={buttonStyle} onPress={() => props.morePress(building)}>
         <IconComponent provider="FontAwesome5" name={iconName}
           color={iconColor} size={14} />
         <Text style={textStyle}>
@@ -176,21 +180,6 @@ function BuildingDescription(props: any) {
       });
       return enoughResources;
     }
-  }
-
-  function renderCost(cost: {resource: string, quantity: number}[]|null|undefined) {
-    if (!cost) {
-      return null;
-    }
-    let costString = 'Cost: ';
-    cost.map((aCost) => {
-      costString += (utils.formatNumberShort(aCost.quantity) + ' '
-      + aCost.resource + ', ');
-    });
-    costString = costString.slice(0, -2);
-    return (
-      <Text>{costString}</Text>
-    )
   }
 
   function renderRateContainer() {
@@ -233,7 +222,6 @@ function BuildingDescription(props: any) {
           iconSize={12} />
         <Text>{'/m '}</Text>
       </View>
-    )
-
+    );
   }
 }

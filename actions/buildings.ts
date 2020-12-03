@@ -28,6 +28,15 @@ export function replaceBuilding(building: Building) {
   }
 }
 
+export const SELECT_BUILDING_RECIPE = 'SELECT_BUILDING_RECIPE';
+export function selectBuildingRecipe(building: Building, recipeIndex: number) {
+  return {
+    type: SELECT_BUILDING_RECIPE,
+    building: building,
+    recipeIndex: recipeIndex
+  }
+}
+
 function countBuildings(buildingName: string, buildings: { [id: string] : Building }) {
   let count = 0;
   Object.keys(buildings).map((id) => {

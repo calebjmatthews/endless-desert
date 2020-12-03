@@ -230,7 +230,7 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
 });
 
 resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
-  name: RESOURCE_TYPES.OLIVE_OIL,
+  name: RESOURCE_TYPES.PULP,
   subcategory: RESOURCE_SUBCATEGORIES.OIL,
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
@@ -241,7 +241,7 @@ resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
 });
 
 resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
-  name: RESOURCE_TYPES.OLIVE_OIL,
+  name: RESOURCE_TYPES.PAPYRUS,
   subcategory: RESOURCE_SUBCATEGORIES.OIL,
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],

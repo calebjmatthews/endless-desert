@@ -187,7 +187,7 @@ buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
 
 buildingTypes[BTY.CLAY_PIT] = new BuildingType({
   name: BTY.CLAY_PIT,
-  description: 'Small amounts of previous water mixing with the dry under-soil',
+  description: 'Small amounts of precious water mixing with the dry under-soil',
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff',
@@ -241,7 +241,7 @@ buildingTypes[BTY.PRESS] = new BuildingType({
   recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
-    new BuildingRecipe({index: 2, produces:
+    new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ]
 });

@@ -12,7 +12,8 @@ export default interface RootState {
   vault: Vault;
   researchStatus: ResearchStatus;
   rates: { productionRates: Rate, consumptionRates: Rate,
-    netRates: Rate };
+    buildingRates: { [buildingId: string] : Rate },
+    bGroupRates: { [typeName: string] : Rate }, netRates: Rate };
   buildings: { [id: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };

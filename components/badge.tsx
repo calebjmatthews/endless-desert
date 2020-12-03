@@ -36,6 +36,10 @@ export default function BadgeComponent(props: BadgeProps) {
         badgeStyle.width = 24;
         badgeStyle.margin = 2;
       }
+      else if (iconSize > 18) {
+        badgeStyle.height = 38;
+        badgeStyle.width = 38;
+      }
     }
     if (borderless) {
       badgeStyle.borderWidth = 0;

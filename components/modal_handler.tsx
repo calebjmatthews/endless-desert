@@ -11,6 +11,7 @@ import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
 import MemoComponent from './memo';
+import BuildingDetailComponent from './building_detail'
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -59,6 +60,9 @@ function renderModal(modalType: string) {
 
     case MODALS.MEMO:
     return <MemoComponent />;
+
+    case MODALS.BUILDING_DETAIL:
+    return <BuildingDetailComponent />;
 
     default:
     return null;

@@ -273,6 +273,15 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     alignSelf: 'stretch'
   },
+  sideButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    marginBottom: 10
+  },
+  sideButton: {
+    minWidth: 40
+  },
   modalContainer: {
     zIndex: 100,
     position: 'absolute',
@@ -295,7 +304,9 @@ export const styles = StyleSheet.create({
   },
   modal: {
     minWidth: 280,
+    maxWidth: 280,
     minHeight: '40%',
+    maxHeight: '80%',
     borderWidth: 2,
     borderStyle: 'solid',
     borderColor: '#fff',
@@ -409,5 +420,16 @@ export const styles = StyleSheet.create({
     height: 20,
     backgroundColor: '#000',
     opacity: 0.35
+  },
+  descriptionBand: {
+    width: 280,
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    opacity: 0.95
+  },
+  descriptionBandText: {
+    textAlign: 'center',
+    fontStyle: 'italic'
   }
 });
