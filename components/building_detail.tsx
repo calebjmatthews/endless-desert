@@ -7,20 +7,32 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { selectBuildingRecipe } from '../actions/buildings';
+import { selectBuildingRecipe, payBuildingUpgradeCost } from '../actions/buildings';
 import { setRates } from '../actions/rates';
-import { displayModal } from '../actions/ui';
+import { addTimer } from '../actions/timers';
+import { displayModal, displayModalValue, addMessage } from '../actions/ui';
+import { consumeResources } from '../actions/vault';
 
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
 import Hourglass from '../models/hourglass';
+import Vault from '../models/vault';
+import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
+import { INTRO_STATES } from '../enums/intro_states';
+import { BUILDING_TYPES } from '../enums/building_types';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { MODALS } from '../enums/modals';
 
 export default function BuildDetailComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const introState = useTypedSelector(state => state.account.introState);
   const modalValue: Building = useTypedSelector(state => state.ui.modalValue);
+  const vault: Vault = useTypedSelector(state => state.vault);
+  const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const building = buildings[modalValue.id];
   const buildingType = buildingTypes[building.buildingType];
 
@@ -38,9 +50,143 @@ export default function BuildDetailComponent() {
       <View style={styles.descriptionBand}>
         <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
       </View>
+      {renderUpgradeCostContainer()}
       {renderRecipeContainer()}
     </View>
   );
+
+  function renderUpgradeCostContainer() {
+    const buildingType = buildingTypes[building.buildingType];
+
+    if (!buildingType.upgradesInto || !buildingType.upgradeCost) { return null; }
+
+    let disabledMessage: string|null = null;
+    let upgradeStyle: any = styles.buttonRowItem;
+    if (buildTimer) {
+      disabledMessage = ('We can\'t upgrade this, we\'re already building '
+        + 'something else');
+    }
+    else if (introState == INTRO_STATES.REPAIR_CISTERN
+      && buildingType.name != BUILDING_TYPES.BROKEN_CISTERN) {
+      disabledMessage = ('I shouldn\'t spend time on this, '
+        + 'a source of water is more important.');
+    }
+    else if (introState == INTRO_STATES.RESTORE_FIELD
+      && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
+        disabledMessage = ('I shouldn\'t spend time on this, '
+          + 'reliable food is more important.');
+    }
+    else if (introState == INTRO_STATES.REFURBISH_STUDY
+      && buildingType.name != BUILDING_TYPES.DECAYING_STUDY) {
+        disabledMessage = ('I shouldn\'t spend time on this, '
+          + 'I need somewhere to sleep and plan.');
+    }
+
+    // Disable upgrade button if all costs are not paid
+    let costsPaid = true;
+    buildingType.upgradeCost.map((aCost) => {
+      if (!building.paidUpgradeCosts[aCost.type]) {
+        costsPaid = false;
+      }
+    });
+
+    if (!disabledMessage) {
+      return (
+        <View>
+          <Text>{'To upgrade:'}</Text>
+          {renderUpgradeButton()}
+          {renderUpgradeCosts()}
+        </View>
+      );
+    }
+    return (
+      <Text style={styles.bareText}>{disabledMessage}</Text>
+    );
+  }
+
+  function renderUpgradeButton() {
+    return <Text>{'Upgrade!'}</Text>;
+  }
+
+  function renderUpgradeCosts() {
+    const buildingType = buildingTypes[building.buildingType];
+    if (!buildingType.upgradeCost) { return null; }
+
+    return buildingType.upgradeCost.map((aCost) => {
+      let resource = utils.getMatchingResource(aCost.specificity, aCost.type);
+      let resourceQuantity =
+        Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
+      let buttonStyle = styles.buttonRowItem;
+      let buttonDisabled = false;
+      let paidCost = building.paidUpgradeCosts[aCost.type];
+
+      if (resourceQuantity < aCost.quantity || paidCost) {
+        // @ts-ignore
+        buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
+        buttonDisabled = true;
+      }
+      let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
+        + utils.formatNumberShort(resourceQuantity) + ') ' + resource.name);
+      if (paidCost) { costText = 'Paid'; }
+      return (
+        <TouchableOpacity key={aCost.type} style={buttonStyle}
+          disabled={buttonDisabled} onPress={() => { applyCost(aCost); }} >
+          <BadgeComponent
+            provider={resource.icon.provider}
+            name={resource.icon.name}
+            foregroundColor={resource.foregroundColor}
+            backgroundColor={resource.backgroundColor}
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {costText}
+          </Text>
+        </TouchableOpacity>
+      );
+    });
+  }
+
+  function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
+    if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
+      dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+      payBuildingUpgradeCost(building, aCost, [aCost]);
+    }
+    else {
+      dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
+        {type: 'Building detail', aCost, building}));
+    }
+  }
+
+  function upgradePress(building: Building) {
+    let buildingType = buildingTypes[building.buildingType];
+    let enoughResources = true;
+    if (buildingType.upgradeCost == null) { return null; }
+    let resourceCost: {type: string, quantity: number}[] = [];
+
+    if (buildingType.upgradesInto && buildingTypes[buildingType.upgradesInto]) {
+      let upgType = buildingTypes[buildingType.upgradesInto];
+      if (upgType.upgradeDuration) {
+        if (enoughResources && buildingType.duration) {
+          dispatch(addTimer(new Timer({
+            name: 'Build',
+            startedAt: new Date(Date.now()).valueOf(),
+            endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
+            progress: 0,
+            remainingLabel: '',
+            buildingToUpgrade: building.id,
+            messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
+              + upgType.name + '.'),
+            iconToDisplay: buildingType.icon,
+            iconForegroundColor: buildingType.foregroundColor,
+            iconBackgroundColor: buildingType.backgroundColor
+          })));
+          dispatch(displayModal(null));
+        }
+      }
+    }
+    else {
+      console.log('Not enough resources!');
+    }
+  }
 
   function renderRecipeContainer() {
     const buildingType = buildingTypes[building.buildingType];

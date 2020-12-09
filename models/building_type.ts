@@ -1,5 +1,6 @@
 import BuildingRecipe from './building_recipe';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 
 export default class BuildingType implements BuildingTypeInterface {
   name: string = '';
@@ -7,8 +8,8 @@ export default class BuildingType implements BuildingTypeInterface {
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
-  cost: {resource: string, quantity: number}[]|null = null;
-  upgradeCost?: {resource: string, quantity: number}[]|null = null;
+  cost: {specificity: string, type: string, quantity: number}[]|null = null;
+  upgradeCost?: {specificity: string, type: string, quantity: number}[]|null = null;
   recipes: BuildingRecipe[]|null = null;
   upgradesInto?: string;
   duration?: number = 0;
@@ -23,7 +24,11 @@ export default class BuildingType implements BuildingTypeInterface {
     let newDuration = 0;
     if (this.cost) {
       this.cost.map((aCost) => {
-        let resourceType = resourceTypes[aCost.resource];
+        let resourceType = utils.getMatchingResource(aCost.specificity, aCost.type);
+        if (!resourceType) {
+          console.log('aCost');
+          console.log(aCost);
+        }
         if (resourceType.value) {
           newDuration += ((resourceType.value * aCost.quantity) / 10);
         }
@@ -32,7 +37,11 @@ export default class BuildingType implements BuildingTypeInterface {
     let newUpgradeDuration = 0;
     if (this.upgradeCost) {
       this.upgradeCost.map((aCost) => {
-        let resourceType = resourceTypes[aCost.resource];
+        let resourceType = utils.getMatchingResource(aCost.specificity, aCost.type);
+        if (!resourceType) {
+          console.log('aCost');
+          console.log(aCost);
+        }
         if (resourceType.value) {
           newUpgradeDuration += ((resourceType.value * aCost.quantity) / 10);
         }
@@ -51,8 +60,8 @@ interface BuildingTypeInterface {
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;
-  cost: {resource: string, quantity: number}[]|null;
-  upgradeCost?: {resource: string, quantity: number}[]|null;
+  cost: {specificity: string, type: string, quantity: number}[]|null;
+  upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null;
   upgradesInto?: string;
   duration?: number;

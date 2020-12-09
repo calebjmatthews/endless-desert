@@ -27,8 +27,8 @@ import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
-import { utils } from '../utils';
 import { resourceCategories } from '../instances/resource_categories';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 import { TABS } from '../enums/tabs';
@@ -203,7 +203,7 @@ function OptionDescription(props: any) {
   function renderCost(cost: {specificity: string, type: string, quantity: number}[],
     vault: Vault, applyCost: Function, optionName: string, rod: ResearchOptionDeck) {
     return cost.map((aCost) => {
-      let resource = getMatchingResource(aCost.specificity, aCost.type);
+      let resource = utils.getMatchingResource(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;
@@ -239,23 +239,5 @@ function OptionDescription(props: any) {
     return null;
   }
 
-  function getMatchingResource(specificity: string, type: string):
-    ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
-    switch(specificity) {
-      case RESOURCE_SPECIFICITY.EXACT:
-      return resourceTypes[type];
 
-      case RESOURCE_SPECIFICITY.TAG:
-      return resourceTags[type];
-
-      case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return resourceSubcategories[type];
-
-      case RESOURCE_SPECIFICITY.CATEGORY:
-      return resourceCategories[type];
-
-      default:
-      return resourceTypes[type];
-    }
-  }
 }

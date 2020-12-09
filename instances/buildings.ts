@@ -10,7 +10,11 @@ function startingFactory(buildingType: string) {
     id: utils.randHex(16),
     buildingType: buildingType,
     suffix: 1,
-    name: null
+    name: null,
+    paidCosts: {},
+    paidResources: [],
+    paidUpgradeCosts: {},
+    paidUpgradeResources: []
   });
   if (buildingTypes[buildingType].recipes) {
     startingBuilding.recipeSelected = 0;

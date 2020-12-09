@@ -4,6 +4,12 @@ import { BUILDING_TYPES } from '../enums/building_types';
 const BTY = BUILDING_TYPES;
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
+import { RESOURCE_TAGS } from '../enums/resource_tags';
+const RTA = RESOURCE_TAGS;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 
@@ -17,8 +23,8 @@ buildingTypes[BTY.BROKEN_CISTERN] = new BuildingType({
   foregroundColor: '#93c5ec',
   backgroundColor: '#fff',
   cost: null,
-  upgradeCost: [{resource: RTY.CLAY_RED, quantity: 2},
-    {resource: RTY.SAND_YELLOW, quantity: 20}],
+  upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 2},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 20}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10, probability: 1}],
     consumes: null}) ],
@@ -32,8 +38,8 @@ buildingTypes[BTY.DECAYING_STUDY] = new BuildingType({
   foregroundColor: '#b1b1b1',
   backgroundColor: '#fff',
   cost: null,
-  upgradeCost: [{resource: RTY.CLAY_RED, quantity: 1},
-    {resource: RTY.SAND_YELLOW, quantity: 10}],
+  upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 10}],
   recipes: null,
   upgradesInto: BTY.STUDY
 });
@@ -45,8 +51,8 @@ buildingTypes[BTY.RUINED_HUTS] = new BuildingType({
   foregroundColor: '#d0b2a7',
   backgroundColor: '#fff',
   cost: null,
-  upgradeCost: [{resource: RTY.CLAY_RED, quantity: 3},
-    {resource: RTY.SAND_YELLOW, quantity: 30}],
+  upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 3},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 30}],
   recipes: null,
   upgradesInto: BTY.HUTS
 });
@@ -58,8 +64,8 @@ buildingTypes[BTY.FALLOW_FIELD] = new BuildingType({
   foregroundColor: '#bbdc94',
   backgroundColor: '#fff',
   cost: null,
-  upgradeCost: [{resource: RTY.SEEDS, quantity: 4},
-    {resource: RTY.WATER, quantity: 20}],
+  upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 4},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 1, probability: 1}],
     consumes: null}) ],
@@ -139,8 +145,8 @@ buildingTypes[BTY.LENTIL_FIELD] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.SEEDS, quantity: 10},
-    {resource: RTY.WATER, quantity: 100}],
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 100}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ]
@@ -152,8 +158,8 @@ buildingTypes[BTY.REED_DELTA] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.SEEDS, quantity: 10},
-    {resource: RTY.WATER, quantity: 10}],
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 5}]}) ]
@@ -165,8 +171,8 @@ buildingTypes[BTY.GRAIN_FIELD] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.SEEDS, quantity: 10},
-    {resource: RTY.WATER, quantity: 200}],
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ]
@@ -178,8 +184,8 @@ buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
   icon: {provider: 'FontAwesome', name: 'pagelines'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.SEEDS, quantity: 10},
-    {resource: RTY.WATER, quantity: 300}],
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 300}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ]
@@ -191,8 +197,8 @@ buildingTypes[BTY.CLAY_PIT] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'splotch'},
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.REEDS, quantity: 100},
-    {resource: RTY.WATER, quantity: 500}],
+  cost: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 100},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 500}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ]
@@ -205,7 +211,7 @@ buildingTypes[BTY.SAND_PIT] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.CLAY_RED, quantity: 100}],
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1}],
     consumes: null}) ]
@@ -217,7 +223,7 @@ buildingTypes[BTY.DRYING_YARD] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
   foregroundColor: '#ff0000',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.WOOD_OAK, quantity: 50}],
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 50}],
   recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10},
@@ -236,8 +242,8 @@ buildingTypes[BTY.PRESS] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.BRICKS_RED, quantity: 40},
-    {resource: RTY.WOOD_OAK, quantity: 40}],
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 40},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40}],
   recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
@@ -252,8 +258,8 @@ buildingTypes[BTY.FURNACE] = new BuildingType({
   icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
   foregroundColor: '#b02727',
   backgroundColor: '#fff',
-  cost: [{resource: RTY.BRICKS_RED, quantity: 100},
-    {resource: RTY.WOOD_OAK, quantity: 20}],
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 20}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10}]}) ]

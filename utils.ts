@@ -1,3 +1,13 @@
+import ResourceType from './models/resource_type';
+import ResourceTag from './models/resource_tag';
+import ResourceSubcategory from './models/resource_subcategory';
+import ResourceCategory from './models/resource_category';
+import { resourceTypes } from './instances/resource_types';
+import { resourceTags } from './instances/resource_tags';
+import { resourceSubcategories } from './instances/resource_subcategories';
+import { resourceCategories } from './instances/resource_categories';
+import { RESOURCE_SPECIFICITY } from './enums/resource_specificity';
+
 class Utils {
   constructor() {
     let seedFunction = this.hash(new Date(Date.now()).valueOf().toString());
@@ -315,6 +325,26 @@ class Utils {
       }
     }
     return anArray[0];
+  }
+
+  getMatchingResource(specificity: string, type: string):
+    ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
+    switch(specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      return resourceTypes[type];
+
+      case RESOURCE_SPECIFICITY.TAG:
+      return resourceTags[type];
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      return resourceSubcategories[type];
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      return resourceCategories[type];
+
+      default:
+      return resourceTypes[type];
+    }
   }
 }
 

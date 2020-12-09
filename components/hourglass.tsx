@@ -83,7 +83,11 @@ export default function HourglassComponent() {
             id: utils.randHex(16),
             buildingType: buildingType.name,
             suffix: suffix,
-            name: name
+            name: name,
+            paidCosts: {},
+            paidResources: [],
+            paidUpgradeCosts: {},
+            paidUpgradeResources: []
           });
           dispatch(addBuilding(building));
           tempBuildings[building.id] = building;
@@ -105,7 +109,11 @@ export default function HourglassComponent() {
               id: building.id,
               buildingType: buildingType.upgradesInto,
               suffix: suffix,
-              name: name
+              name: name,
+              paidCosts: {},
+              paidResources: [],
+              paidUpgradeCosts: {},
+              paidUpgradeResources: []
             });
             dispatch(replaceBuilding(upgBuilding));
             tempBuildings[building.id] = upgBuilding;

@@ -37,6 +37,18 @@ export function selectBuildingRecipe(building: Building, recipeIndex: number) {
   }
 }
 
+export const PAY_BUILDING_UPGRADE_COST = 'PAY_BUILDING_UPGRADE_COST';
+export function payBuildingUpgradeCost(building: Building,
+  aCost: {specificity: string, type: string, quantity: number},
+  resources: {type: string, quantity: number}[]) {
+  return {
+    type: PAY_BUILDING_UPGRADE_COST,
+    building: building,
+    aCost: aCost,
+    resources: resources
+  }
+}
+
 function countBuildings(buildingName: string, buildings: { [id: string] : Building }) {
   let count = 0;
   Object.keys(buildings).map((id) => {

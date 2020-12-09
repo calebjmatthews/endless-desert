@@ -21,8 +21,10 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 export default function ResourceSelectComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: {aCost: {specificity: string, type: string, quantity: number},
-    optionName: string} = useTypedSelector(state => state.ui.modalValue);
+  const modalValue: {type?: string,
+    aCost: {specificity: string, type: string, quantity: number},
+    resources?: {type: string, quantity: number}[],
+    optionName?: string} = useTypedSelector(state => state.ui.modalValue);
   let resourcesArray = getResourcesArray();
 
   const [resourcesSelected, resourcesSelect] =
@@ -118,7 +120,18 @@ export default function ResourceSelectComponent() {
       rs.push({type: resourceName, quantity: resourcesSelected[resourceName]});
     });
     dispatch(consumeResources(vault, rs));
-    dispatch(displayModalValue(null, 'resolving', modalValue));
+
+    if (modalValue.type) {
+      switch (modalValue.type) {
+        case 'Building detail':
+        modalValue.resources = rs;
+        dispatch(displayModalValue(null, 'resolving', modalValue));
+        break;
+      }
+    }
+    else {
+      dispatch(displayModalValue(null, 'resolving', modalValue));
+    }
   }
 
   function getResourcesArray() {

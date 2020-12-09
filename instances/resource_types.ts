@@ -10,7 +10,7 @@ resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
   name: RESOURCE_TYPES.KNOWLEDGE,
   category: RESOURCE_CATEGORIES.ETHERIAL,
   tags: [RESOURCE_TAGS.MIND],
-  value: null,
+  value: 1,
   icon: {provider: 'FontAwesome5', name: 'graduation-cap'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff'
@@ -231,10 +231,9 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
   name: RESOURCE_TYPES.PULP,
-  subcategory: RESOURCE_SUBCATEGORIES.OIL,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
-  value: 250,
+  value: 50,
   icon: {provider: 'FontAwesome', name: 'certificate'},
   foregroundColor: '#e6dab8',
   backgroundColor: '#fff'
@@ -242,10 +241,9 @@ resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   name: RESOURCE_TYPES.PAPYRUS,
-  subcategory: RESOURCE_SUBCATEGORIES.OIL,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
-  value: 250,
+  value: 150,
   icon: {provider: 'FontAwesome5', name: 'newspaper'},
   foregroundColor: '#e6dab8',
   backgroundColor: '#fff'

@@ -89,9 +89,10 @@ Researches (see spredsheet):
 - Philosophy
   - Analysis: Break down new item to gain knowledge
   - Biology
-    - Lentil Farming
+    - Lentil Farming: Upgrades simplify, then lower water usage and increase production
       - Simplified Lentil Farming
-    - Reed Growth
+    - Reed Growth: Begins simplified, further upgrades lower water usage and dramatically increase production
+    - Grain
   - Zoology
   - Anthropology
     - Music

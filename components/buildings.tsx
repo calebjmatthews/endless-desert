@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -9,6 +9,7 @@ import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
 import { displayModal, displayModalValue } from '../actions/ui';
+import { payBuildingUpgradeCost } from '../actions/buildings';
 import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
@@ -29,6 +30,8 @@ export default function BuildingsComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const introState = useTypedSelector(state => state.account.introState);
   const rates = useTypedSelector(state => state.rates);
+  const modalStage = useTypedSelector(state => state.ui.modalStage);
+  const modalValue = useTypedSelector(state => state.ui.modalValue);
   const buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
   });
@@ -42,14 +45,14 @@ export default function BuildingsComponent() {
     }
   });
 
-  function startBuilding() {
-    dispatch(displayModal(MODALS.BUILD));
-  }
+  useEffect(() => {
+    if (modalStage == 'resolving') {
+      dispatch(payBuildingUpgradeCost(modalValue.building, modalValue.aCost,
+        modalValue.resources));
+      dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', modalValue.building));
+    }
+  }, [modalStage]);
 
-  function renderBuilding(building: any) {
-    return <BuildingDescription building={building} introState={introState}
-      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress} />
-  }
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
@@ -65,6 +68,11 @@ export default function BuildingsComponent() {
       </FlatList>
     </View>
   );
+
+  function renderBuilding(building: any) {
+    return <BuildingDescription building={building} introState={introState}
+      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress} />
+  }
 
   function renderBuildHeader() {
     if (buildTimer) {
@@ -92,6 +100,10 @@ export default function BuildingsComponent() {
     else {
       return null;
     }
+  }
+
+  function startBuilding() {
+    dispatch(displayModal(MODALS.BUILD));
   }
 
   function renderBuildTimer(timer: Timer) {
@@ -167,6 +179,7 @@ function BuildingDescription(props: any) {
       </TouchableOpacity>
     );
 
+    // To do: look at entire category when cost is other than "exact"
     function areResourcesEnough(building: Building) {
       let buildingType = buildingTypes[building.buildingType];
       let enoughResources = true;
@@ -174,7 +187,13 @@ function BuildingDescription(props: any) {
       let resourceCost: {type: string, quantity: number}[] = [];
       let totalValue = 0;
       buildingType.upgradeCost.map((aCost) => {
-        if (props.vault.resources[aCost.resource].quantity < aCost.quantity) {
+        const resource = utils.getMatchingResource(aCost.specificity, aCost.type);
+        if (props.vault.resources[resource.name]) {
+          if (props.vault.resources[resource.name].quantity < aCost.quantity) {
+            enoughResources = false;
+          }
+        }
+        else {
           enoughResources = false;
         }
       });
