@@ -82,20 +82,16 @@ export default function BuildDetailComponent() {
           + 'I need somewhere to sleep and plan.');
     }
 
-    // Disable upgrade button if all costs are not paid
-    let costsPaid = true;
-    buildingType.upgradeCost.map((aCost) => {
-      if (!building.paidUpgradeCosts[aCost.type]) {
-        costsPaid = false;
-      }
-    });
-
     if (!disabledMessage) {
       return (
         <View>
-          <Text>{'To upgrade:'}</Text>
-          {renderUpgradeButton()}
-          {renderUpgradeCosts()}
+          <Text style={styles.bareText}>{'To upgrade:'}</Text>
+          <View style={styles.rows}>
+            {renderUpgradeButton()}
+            <View>
+              {renderUpgradeCosts()}
+            </View>
+          </View>
         </View>
       );
     }
@@ -105,7 +101,28 @@ export default function BuildDetailComponent() {
   }
 
   function renderUpgradeButton() {
-    return <Text>{'Upgrade!'}</Text>;
+    const buildingType = buildingTypes[building.buildingType];
+
+    let costsPaid = true;
+    if (buildingType.upgradeCost) {
+      buildingType.upgradeCost.map((aCost) => {
+        if (!building.paidUpgradeCosts[aCost.type]) {
+          costsPaid = false;
+        }
+      });
+
+      if (costsPaid) {
+        return (
+          <TouchableOpacity style={styles.buttonLarge}
+            onPress={() => upgradePress(building)} >
+            <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
+              style={styles.headingIcon} />
+            <Text style={styles.buttonTextLarge}>{' Upgrade'}</Text>
+          </TouchableOpacity>
+        );
+      }
+    }
+    return null;
   }
 
   function renderUpgradeCosts() {
@@ -148,7 +165,7 @@ export default function BuildDetailComponent() {
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
     if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
       dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
-      payBuildingUpgradeCost(building, aCost, [aCost]);
+      dispatch(payBuildingUpgradeCost(building, aCost, [aCost]));
     }
     else {
       dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
