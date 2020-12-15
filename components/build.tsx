@@ -7,8 +7,9 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { displayModal } from '../actions/ui';
+import { displayModal, displayModalValue } from '../actions/ui';
 import { addBuilding } from '../actions/buildings';
+import { addBuildingConstruction } from '../actions/buildings_construction';
 import { consumeResources } from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
@@ -25,6 +26,7 @@ import { MODALS } from '../enums/modals';
 export default function BuildComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   let buildingsArray = Object.keys(buildingTypes).map((id) => {
@@ -37,41 +39,6 @@ export default function BuildComponent() {
     }
   });
 
-  function build(buildingType: BuildingType) {
-    let enoughResources = true;
-    if (buildingType.cost == null) { return null; }
-    let resourceCost: {type: string, quantity: number}[] = [];
-    let totalValue = 0;
-    buildingType.cost.map((aCost) => {
-      if (vault.resources[aCost.resource].quantity < aCost.quantity) {
-        enoughResources = false;
-      }
-      resourceCost.push({type: aCost.resource, quantity: aCost.quantity});
-    });
-    if (enoughResources && buildingType.duration) {
-      dispatch(addTimer(new Timer({
-        name: 'Build',
-        startedAt: new Date(Date.now()).valueOf(),
-        endsAt: (new Date(Date.now()).valueOf() + buildingType.duration * 1000),
-        progress: 0,
-        remainingLabel: '',
-        resourcesToConsume: resourceCost,
-        buildingToBuild: buildingType.name,
-        messageToDisplay: ('You built a new ' + buildingType.name + '.'),
-        iconToDisplay: buildingType.icon,
-        iconForegroundColor: buildingType.foregroundColor,
-        iconBackgroundColor: buildingType.backgroundColor
-      })));
-      dispatch(displayModal(null));
-    }
-    else {
-      console.log('Not enough resources!');
-    }
-  }
-
-  function renderBuilding(building: any) {
-    return <BuildingDescription building={building} build={build} />
-  }
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
@@ -88,6 +55,10 @@ export default function BuildComponent() {
     </View>
   );
 
+  function renderBuilding(building: any) {
+    return <BuildingDescription building={building} buildPress={buildPress} />
+  }
+
   function renderNothingMessage(buildingsArray: BuildingType[]) {
     if (buildingsArray.length == 0) {
       return (
@@ -95,6 +66,32 @@ export default function BuildComponent() {
       );
     }
     return null;
+  }
+
+  function buildPress(buildingType: BuildingType) {
+    let buildingCon = buildingsConstruction[buildingType.name];
+    if (!buildingCon) {
+      let count = countBuildings(buildingType.name, buildings);
+      let suffix = 1;
+      let name = buildingType.name;
+      if (count > 0) {
+        suffix = count+1;
+        name += (' ' + utils.numberToRoman(suffix));
+      }
+      buildingCon = new Building({
+        id: utils.randHex(16),
+        buildingType: buildingType.name,
+        suffix: suffix,
+        name: name,
+        paidCosts: {},
+        paidResources: [],
+        paidUpgradeCosts: {},
+        paidUpgradeResources: []
+      });
+      dispatch(addBuildingConstruction(buildingCon));
+    }
+
+    dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', buildingCon));
   }
 }
 
@@ -113,7 +110,7 @@ function BuildingDescription(props: any) {
         <Text>{renderCost(buildingType.cost)}</Text>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonRowItem}
-            onPress={() => props.build(buildingType)}  >
+            onPress={() => props.buildPress(buildingType)}  >
             <IconComponent provider="MaterialIcons" name="build"
               color="#fff" size={16} style={styles.headingIcon} />
             <Text style={styles.buttonText}>{' Start'}</Text>
@@ -129,17 +126,29 @@ function BuildingDescription(props: any) {
   );
 }
 
-function renderCost(cost: {resource: string, quantity: number}[]|null) {
+function renderCost(cost: {specificity: string, type: string,
+  quantity: number}[]|null) {
   if (cost == null) {
     return null;
   }
   let costString = 'Cost: ';
   cost.map((aCost) => {
     costString += (utils.formatNumberShort(aCost.quantity) + ' '
-    + aCost.resource + ', ');
+    + aCost.type + ', ');
   });
   costString = costString.slice(0, -2);
   return (
     <Text>{costString}</Text>
   )
+}
+
+function countBuildings(buildingName: string,
+  buildings: { [id: string] : Building }) {
+  let count = 0;
+  Object.keys(buildings).map((id) => {
+    if (buildings[id].buildingType == buildingName) {
+      count++;
+    }
+  });
+  return count;
 }

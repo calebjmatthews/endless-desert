@@ -124,6 +124,7 @@ export default function ResourceSelectComponent() {
     if (modalValue.type) {
       switch (modalValue.type) {
         case 'Building detail':
+        case 'Build detail':
         modalValue.resources = rs;
         dispatch(displayModalValue(null, 'resolving', modalValue));
         break;

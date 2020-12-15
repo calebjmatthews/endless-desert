@@ -274,6 +274,7 @@ Beginning of game:
 Commands:
 USE `endless_desert`;
 DELETE FROM `buildings`;
+DELETE FROM `buildings_construction`;
 DELETE FROM `research_option_decks`;
 DELETE FROM `research_status`;
 DELETE FROM `timers`;

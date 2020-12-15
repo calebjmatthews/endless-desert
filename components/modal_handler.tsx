@@ -62,6 +62,7 @@ function renderModal(modalType: string) {
     return <MemoComponent />;
 
     case MODALS.BUILDING_DETAIL:
+    case MODALS.BUILD_DETAIL:
     return <BuildingDetailComponent />;
 
     default:

@@ -8,6 +8,8 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { selectBuildingRecipe, payBuildingUpgradeCost } from '../actions/buildings';
+import { payBuildingCost, removeBuildingConstruction }
+  from '../actions/buildings_construction';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
 import { displayModal, displayModalValue, addMessage } from '../actions/ui';
@@ -29,11 +31,13 @@ import { MODALS } from '../enums/modals';
 export default function BuildDetailComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
   const introState = useTypedSelector(state => state.account.introState);
+  const modalDisplayed = useTypedSelector(state => state.ui.modalDisplayed);
   const modalValue: Building = useTypedSelector(state => state.ui.modalValue);
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
-  const building = buildings[modalValue.id];
+  let building: Building = modalValue;
   const buildingType = buildingTypes[building.buildingType];
 
   return (
@@ -58,12 +62,13 @@ export default function BuildDetailComponent() {
   function renderUpgradeCostContainer() {
     const buildingType = buildingTypes[building.buildingType];
 
-    if (!buildingType.upgradesInto || !buildingType.upgradeCost) { return null; }
+    if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
+      || !buildingType.upgradeCost)) { return null; }
+    if (modalDisplayed == MODALS.BUILD_DETAIL && !buildingType.cost) { return null; }
 
     let disabledMessage: string|null = null;
-    let upgradeStyle: any = styles.buttonRowItem;
     if (buildTimer) {
-      disabledMessage = ('We can\'t upgrade this, we\'re already building '
+      disabledMessage = ('We can\'t work on this, we\'re already building '
         + 'something else');
     }
     else if (introState == INTRO_STATES.REPAIR_CISTERN
@@ -83,13 +88,15 @@ export default function BuildDetailComponent() {
     }
 
     if (!disabledMessage) {
+      let text = 'To upgrade:';
+      if (modalDisplayed == MODALS.BUILD_DETAIL) { text = 'To build:'; }
       return (
         <View>
-          <Text style={styles.bareText}>{'To upgrade:'}</Text>
+          <Text style={styles.bareText}>{text}</Text>
           <View style={styles.rows}>
-            {renderUpgradeButton()}
+            {renderBuildButton()}
             <View>
-              {renderUpgradeCosts()}
+              {renderBuildCosts()}
             </View>
           </View>
         </View>
@@ -100,13 +107,24 @@ export default function BuildDetailComponent() {
     );
   }
 
-  function renderUpgradeButton() {
+  function renderBuildButton() {
     const buildingType = buildingTypes[building.buildingType];
 
     let costsPaid = true;
-    if (buildingType.upgradeCost) {
-      buildingType.upgradeCost.map((aCost) => {
-        if (!building.paidUpgradeCosts[aCost.type]) {
+    let cost = buildingType.upgradeCost;
+    let buttonText = ' Upgrade';
+    if (modalDisplayed == MODALS.BUILD_DETAIL) {
+      cost = buildingType.cost;
+      buttonText = ' Build';
+    }
+    if (cost) {
+      cost.map((aCost) => {
+        if (modalDisplayed == MODALS.BUILDING_DETAIL
+          && !building.paidUpgradeCosts[aCost.type]) {
+          costsPaid = false;
+        }
+        else if (modalDisplayed == MODALS.BUILD_DETAIL
+          && !building.paidCosts[aCost.type]) {
           costsPaid = false;
         }
       });
@@ -114,10 +132,10 @@ export default function BuildDetailComponent() {
       if (costsPaid) {
         return (
           <TouchableOpacity style={styles.buttonLarge}
-            onPress={() => upgradePress(building)} >
+            onPress={() => buildPress(building)} >
             <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
               style={styles.headingIcon} />
-            <Text style={styles.buttonTextLarge}>{' Upgrade'}</Text>
+            <Text style={styles.buttonTextLarge}>{buttonText}</Text>
           </TouchableOpacity>
         );
       }
@@ -125,17 +143,27 @@ export default function BuildDetailComponent() {
     return null;
   }
 
-  function renderUpgradeCosts() {
+  function renderBuildCosts() {
     const buildingType = buildingTypes[building.buildingType];
-    if (!buildingType.upgradeCost) { return null; }
+    let cost = buildingType.upgradeCost;
+    if (modalDisplayed == MODALS.BUILD_DETAIL) {
+      cost = buildingType.cost;
+    }
+    if (!cost) { return null; }
 
-    return buildingType.upgradeCost.map((aCost) => {
+    return cost.map((aCost) => {
       let resource = utils.getMatchingResource(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;
       let buttonDisabled = false;
-      let paidCost = building.paidUpgradeCosts[aCost.type];
+      let paidCost = false;
+      if (modalDisplayed == MODALS.BUILDING_DETAIL) {
+        paidCost = building.paidUpgradeCosts[aCost.type];
+      }
+      else if (modalDisplayed == MODALS.BUILD_DETAIL) {
+        paidCost = building.paidCosts[aCost.type];
+      }
 
       if (resourceQuantity < aCost.quantity || paidCost) {
         // @ts-ignore
@@ -163,45 +191,69 @@ export default function BuildDetailComponent() {
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
-    if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
-      dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
-      dispatch(payBuildingUpgradeCost(building, aCost, [aCost]));
+    if (modalDisplayed == MODALS.BUILDING_DETAIL) {
+      if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
+        dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+        dispatch(payBuildingUpgradeCost(building, aCost, [aCost]));
+      }
+      else {
+        dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
+          {type: 'Building detail', aCost, building}));
+      }
     }
-    else {
-      dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
-        {type: 'Building detail', aCost, building}));
+    else if (modalDisplayed == MODALS.BUILD_DETAIL) {
+      if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
+        dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+        dispatch(payBuildingCost(building, aCost, [aCost]));
+      }
+      else {
+        dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
+          {type: 'Build detail', aCost, building}));
+      }
     }
   }
 
-  function upgradePress(building: Building) {
+  function buildPress(building: Building) {
     let buildingType = buildingTypes[building.buildingType];
-    let enoughResources = true;
-    if (buildingType.upgradeCost == null) { return null; }
-    let resourceCost: {type: string, quantity: number}[] = [];
 
-    if (buildingType.upgradesInto && buildingTypes[buildingType.upgradesInto]) {
+    if (modalDisplayed == MODALS.BUILDING_DETAIL && buildingType.upgradesInto
+      && buildingTypes[buildingType.upgradesInto]) {
       let upgType = buildingTypes[buildingType.upgradesInto];
       if (upgType.upgradeDuration) {
-        if (enoughResources && buildingType.duration) {
-          dispatch(addTimer(new Timer({
-            name: 'Build',
-            startedAt: new Date(Date.now()).valueOf(),
-            endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
-            progress: 0,
-            remainingLabel: '',
-            buildingToUpgrade: building.id,
-            messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
-              + upgType.name + '.'),
-            iconToDisplay: buildingType.icon,
-            iconForegroundColor: buildingType.foregroundColor,
-            iconBackgroundColor: buildingType.backgroundColor
-          })));
-          dispatch(displayModal(null));
-        }
+        dispatch(addTimer(new Timer({
+          name: 'Build',
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
+          progress: 0,
+          remainingLabel: '',
+          buildingToUpgrade: building.id,
+          messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
+            + upgType.name + '.'),
+          iconToDisplay: buildingType.icon,
+          iconForegroundColor: buildingType.foregroundColor,
+          iconBackgroundColor: buildingType.backgroundColor
+        })));
+        dispatch(displayModal(null));
       }
     }
-    else {
-      console.log('Not enough resources!');
+    else if (modalDisplayed == MODALS.BUILD_DETAIL) {
+      const buildingType = buildingTypes[building.buildingType];
+      if (buildingType.duration) {
+        dispatch(addTimer(new Timer({
+          name: 'Build',
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + buildingType.duration * 1000),
+          progress: 0,
+          remainingLabel: '',
+          buildingToBuild: building.buildingType,
+          messageToDisplay: ('You built a new ' + buildingType.name + '.'),
+          iconToDisplay: buildingType.icon,
+          iconForegroundColor: buildingType.foregroundColor,
+          iconBackgroundColor: buildingType.backgroundColor
+        })));
+        dispatch(removeBuildingConstruction(building));
+        dispatch(displayModal(null));
+      }
     }
   }
 

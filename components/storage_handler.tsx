@@ -6,6 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { setVault } from '../actions/vault';
 import { setResearchStatus } from '../actions/research_status';
 import { setBuildings } from '../actions/buildings';
+import { setBuildingsConstruction } from '../actions/buildings_construction';
 import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
@@ -25,6 +26,7 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,
   'buildings': setBuildings,
+  'buildings_construction': setBuildingsConstruction,
   'research_option_decks': setResearchOptionDecks,
   'timers': setTimers,
   'trading_status': setTradingStatus,
@@ -37,6 +39,7 @@ export default function StorageHandlerComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const rates = useTypedSelector(state => state.rates);
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
   const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const timers = useTypedSelector(state => state.timers);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
@@ -135,6 +138,7 @@ export default function StorageHandlerComponent() {
         vault: vault,
         research_status: researchStatus,
         buildings: buildings,
+        buildings_construction: buildingsConstruction,
         research_option_decks: researchOptionDecks,
         timers: timers,
         trading_status: tradingStatus,

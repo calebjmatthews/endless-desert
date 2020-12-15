@@ -15,6 +15,7 @@ export default interface RootState {
     buildingRates: { [buildingId: string] : Rate },
     bGroupRates: { [typeName: string] : Rate }, netRates: Rate };
   buildings: { [id: string] : Building };
+  buildingsConstruction: { [typeName: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;
