@@ -207,6 +207,17 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({
+  name: RESOURCE_TYPES.SALT,
+  subcategory: RESOURCE_SUBCATEGORIES.SPICE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.BRACKISH],
+  value: 20,
+  icon: {provider: 'FontAwesome5', name: 'wine-bottle'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   name: RESOURCE_TYPES.GLASS,
   subcategory: RESOURCE_SUBCATEGORIES.GLASS,
@@ -246,6 +257,26 @@ resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   value: 150,
   icon: {provider: 'FontAwesome5', name: 'newspaper'},
   foregroundColor: '#e6dab8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.LENTIL_SOUP] = new ResourceType({
+  name: RESOURCE_TYPES.LENTIL_SOUP,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 80,
+  icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
+  foregroundColor: '#59a500',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
+  name: RESOURCE_TYPES.BREAD,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 200,
+  icon: {provider: 'MaterialCommunityIcons', name: 'baguette'},
+  foregroundColor: '#790f0f',
   backgroundColor: '#fff'
 });
 

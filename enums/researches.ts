@@ -20,5 +20,6 @@ export enum RESEARCHES {
   COMPACTION = "Compaction",
   CHEMISTRY = "Chemistry",
   DEHYDRATION = "Dehydration",
-  COMBUSTION = "Combustion"
+  COMBUSTION = "Combustion",
+  COOKING = "Cooking"
 }

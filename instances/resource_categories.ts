@@ -20,15 +20,15 @@ resourceCategories[RESOURCE_CATEGORIES.MATERIAL] = new ResourceCategory({
 });
 
 resourceCategories[RESOURCE_CATEGORIES.MATERIAL_REFINED] = new ResourceCategory({
-  name: RESOURCE_CATEGORIES.MATERIAL,
+  name: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   value: 40,
-  icon: {provider: 'MaterialCommunityIcons', name: 'gold'},
+  icon: {provider: 'FontAwesome5', name: 'coins'},
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff'
 });
 
 resourceCategories[RESOURCE_CATEGORIES.ARTISAN_GOOD] = new ResourceCategory({
-  name: RESOURCE_CATEGORIES.MATERIAL,
+  name: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   value: 200,
   icon: {provider: 'MaterialCommunityIcons', name: 'bottle-wine'},
   foregroundColor: '#2b2b2d',

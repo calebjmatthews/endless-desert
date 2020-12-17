@@ -368,4 +368,21 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.FURNACE]
 });
 
+researches[RESEARCHES.COOKING] = new Research({
+  name: RESEARCHES.COOKING,
+  unlocks: ('Researching this unlocks kitchens.'),
+  description: ('Eating raw lentils gets old fast. Real, enjoyable food will be '
+    + 'a crucial part of making your settlement a livable place.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 1,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION],
+  knowledgeReq: 320,
+  unlocksBuilding: [BUILDING_TYPES.KITCHEN]
+});
+
 export { researches }

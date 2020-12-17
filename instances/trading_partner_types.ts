@@ -25,10 +25,10 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   paddingVertical: 8,
   tradeValue: 800,
   givesPool: [
-    {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 50},
   ],
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
@@ -46,14 +46,39 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   paddingVertical: 8,
   tradeValue: 1200,
   givesPool: [
-    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
     {specificity: RSP.EXACT, type: RTY.GRAIN, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 50}
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50}
   ],
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.REEDS, weight: 100},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
+  ]
+});
+
+tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType({
+  name: TRADING_PARTNERS.RED_CROW_TRADERS,
+  description: ('They\'re loud, rowdy, and argumentative; based on the rumours '
+    + 'you\'ve heard, "Red Crow Raiders" would be a more accurate name.'),
+  icon: {provider: 'FontAwesome5', name: 'crow'},
+  foregroundColor: '#ff2626',
+  backgroundColor: '#4a0000',
+  paddingHorizontal: 8,
+  paddingVertical: 8,
+  tradeValue: 1200,
+  givesPool: [
+    {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50}
+  ],
+  receivesPool: [
+    {specificity: RSP.CATEGORY, type: RCA.ARTISAN_GOOD, weight: 100},
+    {specificity: RSP.CATEGORY, type: RCA.MATERIAL_REFINED, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]

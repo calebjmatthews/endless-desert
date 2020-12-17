@@ -245,11 +245,11 @@ buildingTypes[BTY.PRESS] = new BuildingType({
   cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 40},
     {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40}],
   recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
-    new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ]
+    [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
+  new BuildingRecipe({index: 1, produces:
+    [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ]
 });
 
 buildingTypes[BTY.FURNACE] = new BuildingType({
@@ -263,6 +263,27 @@ buildingTypes[BTY.FURNACE] = new BuildingType({
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10}]}) ]
+});
+
+buildingTypes[BTY.KITCHEN] = new BuildingType({
+  name: BTY.KITCHEN,
+  description: 'People are always hanging around outside, for some reason',
+  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 200},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 50},
+    {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 50}],
+  recipes: [ new BuildingRecipe({index: 0, produces:
+    [{specificity: RSP.EXACT, type: RTY.LENTIL_SOUP, quantity: 10, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 10},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10},
+      {specificity: RSP.EXACT, type: RTY.SALT, quantity: 1} ]}),
+  new BuildingRecipe({index: 1, produces:
+    [{specificity: RSP.EXACT, type: RTY.BREAD, quantity: 10, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 10},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 5},
+      {specificity: RSP.EXACT, type: RTY.SALT, quantity: 1} ]})]
 });
 
 export { buildingTypes }

@@ -16,10 +16,13 @@ export enum RESOURCE_TYPES {
   WOOD_SPRUCE = "Spruce Wood",
   CLAY_RED = "Red Clay",
   BRICKS_RED = "Red Bricks",
-  THATCH = 'Thatch',
-  SAND_YELLOW = 'Yellow Sand',
-  OLIVE_OIL = 'Olive Oil',
-  GLASS = 'Glass',
-  PULP = 'Pulp',
-  PAPYRUS = 'Papyrus'
+  THATCH = "Thatch",
+  SAND_YELLOW = "Yellow Sand",
+  SALT = "Salt",
+  OLIVE_OIL = "Olive Oil",
+  GLASS = "Glass",
+  PULP = "Pulp",
+  PAPYRUS = "Papyrus",
+  LENTIL_SOUP = "Lentil Soup",
+  BREAD = "Bread"
 }
