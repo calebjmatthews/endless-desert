@@ -10,6 +10,7 @@ import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
 import { displayModal, displayModalValue } from '../actions/ui';
 import { payBuildingUpgradeCost } from '../actions/buildings';
+import { payBuildingCost } from '../actions/buildings_construction';
 import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
@@ -46,10 +47,15 @@ export default function BuildingsComponent() {
   });
 
   useEffect(() => {
-    if (modalStage == 'resolving') {
+    if (modalStage == 'resolving Building detail') {
       dispatch(payBuildingUpgradeCost(modalValue.building, modalValue.aCost,
         modalValue.resources));
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', modalValue.building));
+    }
+    else if (modalStage == 'resolving Build detail') {
+      dispatch(payBuildingCost(modalValue.building, modalValue.aCost,
+        modalValue.resources));
+      dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', modalValue.building));
     }
   }, [modalStage]);
 
