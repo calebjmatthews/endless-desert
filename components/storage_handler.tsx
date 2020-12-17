@@ -22,6 +22,8 @@ import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 
 const SAVE_INTERVAL = 60000;
+// const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
+const STORAGE_URL = 'http://localhost:8080/api/storage/'
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,
@@ -60,7 +62,7 @@ export default function StorageHandlerComponent() {
   }, []);
 
   function fetchFromStorage(): Promise<boolean> {
-    return fetch('http://localhost:8080/api/storage/' + account.id)
+    return fetch(STORAGE_URL + account.id)
     .then((dataRes) => {
       if (dataRes) {
         return dataRes.json()
@@ -129,7 +131,7 @@ export default function StorageHandlerComponent() {
   }), [callSave];
 
   function saveIntoStorage() {
-    fetch(('http://localhost:8080/api/storage/' + account.id), {
+    fetch((STORAGE_URL + account.id), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

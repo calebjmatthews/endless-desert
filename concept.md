@@ -1,11 +1,14 @@
 Incremental idle game about exploration and discovery in an endless desert
 
+ssh -i newsummer cmatthews@64.225.48.128
+scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@64.225.48.128:/home/cmatthews/
+
 Ideas:
   - Basic resources: water, reeds, clay, and sand.
   - Foods: Grain, lentils, figs, dates, fish, bread, beer, onions, garlic, cheese, butter, spices.
-  - Animals: Oxen, hens, fish, scarabs (for dye), cats.
+  - Animals: Oxen, hens, fish, bees, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
-  - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, and gunpowder.
+  - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, wax, and gunpowder.
   - Research system that uses lenses to break down any item into concepts, ties together concepts into a completed theory. Research categories: philosophy (general knowledge), biology (farming), zoology (ranching), anthropology (music, entertainment, culture), physics (crafting), astrology (new exploration areas), chemistry (crafting), exaltation (mysteriously enhancing humans), and mysticism (contact with beings from another plane).
   - Find artifacts by sending out teams of explorers.
   - Groups lead by a named character with various traits that can be persuaded to stay in your settlement by using up influence or gifts.
@@ -158,6 +161,10 @@ Resource selection:
   - Can manually enter in quantity after selecting, but auto-fills to cost quantity
 
 Leaders:
+  - Need open housing for leader+crew to move in
+  - "Leaders" tab that shows each leader with equipment selection, what building they're assigned to
+  - Section on
+  - Kinds:
   - Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
   - Favorite activity: exploration, Secret wish: to see the legendary crystal sea
   - Favorite activity: animal husbandry, Secret wish: to own a cat
