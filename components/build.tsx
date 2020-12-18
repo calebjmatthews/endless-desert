@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
@@ -29,6 +29,7 @@ export default function BuildComponent() {
   const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let buildingsArray = Object.keys(buildingTypes).map((id) => {
     return buildingTypes[id];
   });
@@ -56,7 +57,8 @@ export default function BuildComponent() {
   );
 
   function renderBuilding(building: any) {
-    return <BuildingDescription building={building} buildPress={buildPress} />
+    return <BuildingDescription building={building} buildPress={buildPress}
+      positioner={positioner} />
   }
 
   function renderNothingMessage(buildingsArray: BuildingType[]) {
@@ -98,7 +100,9 @@ export default function BuildComponent() {
 function BuildingDescription(props: any) {
   let buildingType: BuildingType = props.building.item;
   return (
-    <View style={styles.panelFlex}>
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent
         provider={buildingType.icon.provider}
         name={buildingType.icon.name}

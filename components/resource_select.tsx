@@ -14,6 +14,7 @@ import { consumeResources } from '../actions/vault';
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
+import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -25,6 +26,7 @@ export default function ResourceSelectComponent() {
     aCost: {specificity: string, type: string, quantity: number},
     resources?: {type: string, quantity: number}[],
     optionName?: string} = useTypedSelector(state => state.ui.modalValue);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
   const [resourcesSelected, resourcesSelect] =
@@ -43,7 +45,8 @@ export default function ResourceSelectComponent() {
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {alignItems: 'flex-start'}])}>
+        {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth,
+          alignItems: 'flex-start'}])} >
         <Text style={StyleSheet.flatten([styles.heading2, {alignSelf: 'center'}])}>
           {'Using:'}
         </Text>
@@ -61,7 +64,7 @@ export default function ResourceSelectComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={resource.type} resource={resource}
         aCost={modalValue.aCost} resourcesSelected={resourcesSelected} vault={vault}
-        setResourcesSelected={setResourcesSelected} />;
+        setResourcesSelected={setResourcesSelected} positioner={positioner} />;
     });
   }
 
@@ -164,7 +167,7 @@ export default function ResourceSelectComponent() {
 function ResourceSelector(props: {resource: Resource,
   resourcesSelected: {[resourceName: string] : number},
   aCost: {specificity: string, type: string, quantity: number},
-  vault: Vault, setResourcesSelected: Function}) {
+  vault: Vault, setResourcesSelected: Function, positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (

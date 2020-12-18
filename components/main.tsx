@@ -3,12 +3,12 @@ import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { createStore } from 'redux';
-import { Text, View, Button, FlatList, TouchableOpacity, ScrollView }
-  from 'react-native';
+import { Text, View, Button, FlatList, TouchableOpacity, ScrollView, Dimensions,
+  ScaledSize } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { selectTab } from '../actions/ui';
+import { selectTab, setPositioner } from '../actions/ui';
 import { changeSetting } from '../actions/account';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
@@ -24,16 +24,37 @@ import LookAroundComponent from '../components/look_around';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
+import Positioner from '../models/positioner';
 import { tabs } from '../instances/tabs';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
+
+const window = Dimensions.get('window');
 
 export default function App() {
   const dispatch = useDispatch();
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
   const globalState = useTypedSelector(state => state.ui.globalState);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const account = useTypedSelector(state => state.account);
   const [dropdownExpanded, dropdownSet] = useState(false);
+  const [positionerInit, setPositionerInit] = useState(false);
+
+  useEffect(() => {
+    if (!positionerInit) {
+      setPositionerInit(true);
+      dispatch(setPositioner(new Positioner(window.width, window.height)));
+    }
+    Dimensions.addEventListener("change", onWindowChange);
+    return () => {
+      Dimensions.removeEventListener("change", onWindowChange);
+    };
+  });
+
+  const onWindowChange = ({window, screen}:
+    {window: ScaledSize, screen: ScaledSize}) => {
+    dispatch(setPositioner(new Positioner(window.width, window.height)));
+  }
 
   let tabsArray = Object.keys(tabs).map((tabName) => {
     return tabs[tabName];
@@ -53,7 +74,8 @@ export default function App() {
         <StatusBar style="auto" />
         <View style={styles.statusBarSpacer}></View>
         <View style={styles.scrollWrapper}>
-          <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
+          <ScrollView contentContainerStyle={{flexGrow: 1,
+            height: positioner.bodyHeight}}>
             <Text style={styles.bareText}>{'Loading...'}</Text>
           </ScrollView>
         </View>
@@ -62,7 +84,8 @@ export default function App() {
   }
 
   else if (account.introState == INTRO_STATES.LOOK_AROUND) {
-    return <LookAroundComponent />
+    return <LookAroundComponent height={positioner.bodyHeight}
+      panelWidth={positioner.majorWidth} />
   }
 
   return (
@@ -75,7 +98,8 @@ export default function App() {
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
-        <ScrollView contentContainerStyle={{flexGrow: 1, height: 473}}>
+        <ScrollView contentContainerStyle={{flexGrow: 1,
+          height: positioner.bodyHeight}}>
           {renderTab(tabSelected)}
         </ScrollView>
       </View>

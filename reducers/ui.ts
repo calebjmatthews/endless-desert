@@ -1,15 +1,16 @@
 import { SET_GLOBAL_STATE, SELECT_TAB, DISPLAY_MODAL, DISPLAY_MODAL_VALUE, ADD_MESSAGE,
-  ADD_MEMOS, DISMISS_MEMO } from '../actions/ui';
+  ADD_MEMOS, DISMISS_MEMO, SET_POSITIONER } from '../actions/ui';
 
 import Message from '../models/message';
 import Memo from '../models/memo';
+import Positioner from '../models/positioner';
 
 export default function (ui: { globalState: string, tabSelected: string,
   valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
-  messages: Message[], memos: Memo[] } =
+  messages: Message[], memos: Memo[], positioner: Positioner } =
   { globalState: 'loading', tabSelected: "Resources", valueSelected: null,
   modalDisplayed: null, modalStage: 'closed', modalValue: null, messages: [],
-  memos: [] },
+  memos: [], positioner: new Positioner() },
   action: any = null) {
 	switch(action.type) {
     case SET_GLOBAL_STATE:
@@ -34,6 +35,9 @@ export default function (ui: { globalState: string, tabSelected: string,
 
     case DISMISS_MEMO:
     return Object.assign({}, ui, {memos: [...ui.memos.slice(1)]});
+
+    case SET_POSITIONER:
+    return Object.assign({}, ui, {positioner: action.positioner});
 
 		default:
 		return ui;

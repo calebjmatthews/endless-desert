@@ -33,6 +33,7 @@ export default function BuildingsComponent() {
   const rates = useTypedSelector(state => state.rates);
   const modalStage = useTypedSelector(state => state.ui.modalStage);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
   });
@@ -77,7 +78,8 @@ export default function BuildingsComponent() {
 
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
-      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress} />
+      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
+      positioner={positioner} />
   }
 
   function renderBuildHeader() {
@@ -122,7 +124,9 @@ export default function BuildingsComponent() {
           label = ('Upgrading ' + buildingType.name);
         }
         return (
-          <View style={styles.panelFlexColumn}>
+          <View style={StyleSheet.flatten([styles.panelFlexColumn,
+            {minWidth: positioner.majorWidth,
+              maxWidth: positioner.majorWidth}])}>
             <Text>{label}</Text>
             <ProgressBarComponent staticDuration={true}
               startingProgress={timer.progress} endingProgress={1}
@@ -145,7 +149,9 @@ function BuildingDescription(props: any) {
   const buildingType: BuildingType = buildingTypes[building.buildingType];
 
   return (
-    <View style={styles.panelFlex}>
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent
         provider={buildingType.icon.provider}
         name={buildingType.icon.name}

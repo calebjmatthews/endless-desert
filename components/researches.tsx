@@ -19,6 +19,7 @@ import ResearchStatus from '../models/research_status';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
 import Timer from '../models/timer';
+import Positioner from '../models/positioner';
 import { researches } from '../instances/researches';
 import { utils } from '../utils';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -35,6 +36,7 @@ export default function ResearchesComponent() {
   const analysisTimer = useTypedSelector(state => state.timers[RESEARCHES.ANALYSIS]);
   const showCompletedResearches =
     useTypedSelector(state => state.account.showCompletedResearches);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
@@ -68,7 +70,7 @@ export default function ResearchesComponent() {
 
   function renderResearch(research: any, startClick: Function) {
     return <ResearchDescription research={research} vault={vault}
-      startClick={startClick} rods={researchOptionDecks}
+      startClick={startClick} rods={researchOptionDecks} positioner={positioner}
       showCompletedResearches={showCompletedResearches} />
   }
 
@@ -96,8 +98,10 @@ export default function ResearchesComponent() {
           {'flexGrow': 10}]);
       }
       return (
-        <View key={actionName} style={StyleSheet.flatten([styles.panelFlex,
-          {minHeight: 0}])}>
+        <View key={actionName}
+          style={StyleSheet.flatten([styles.panelFlex,
+            {minWidth: positioner.majorWidth,
+              maxWidth: positioner.majorWidth, minHeight: 0}])} >
           <View style={styles.containerStretchColumn}>
             <View style={styles.buttonRow}>
               <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
@@ -174,7 +178,7 @@ export default function ResearchesComponent() {
 
 function ResearchDescription(props: {research: any, vault: Vault,
   startClick: Function, showCompletedResearches: boolean,
-  rods: { [researchName: string] : ResearchOptionDeck}}) {
+  rods: { [researchName: string] : ResearchOptionDeck}, positioner: Positioner}) {
   const researchStatus: {name: string, status: string} = props.research.item;
   const research = researches[researchStatus.name];
 
@@ -183,7 +187,9 @@ function ResearchDescription(props: {research: any, vault: Vault,
   }
 
   return (
-    <View style={styles.panelFlex}>
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])} >
       <BadgeComponent
         provider={research.icon.provider}
         name={research.icon.name}

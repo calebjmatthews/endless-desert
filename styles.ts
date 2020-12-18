@@ -87,7 +87,7 @@ export const styles = StyleSheet.create({
   },
   inputBox: {
     paddingHorizontal: 5,
-    maxWidth: 100,
+    maxWidth: 130,
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#9ea0bd',

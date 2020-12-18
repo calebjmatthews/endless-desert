@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -17,11 +17,13 @@ import { utils } from '../utils';
 export default function ResourcesComponent() {
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const resourcesArray = Object.keys(vault.resources).map((type) => {
     return vault.resources[type];
   });
   function renderResource(resource: any) {
-    return <ResourceDescription resource={resource} rates={rates} />
+    return <ResourceDescription resource={resource} rates={rates}
+      positioner={positioner} />
   }
 
   return (
@@ -52,7 +54,9 @@ function ResourceDescription(props: any) {
     rate = '-';
   }
   return (
-    <View style={styles.panelFlex}>
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent
         provider={resourceType.icon.provider}
         name={resourceType.icon.name}

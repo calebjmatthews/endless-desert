@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { LinearGradient } from 'expo-linear-gradient';
@@ -18,6 +18,7 @@ export default function ModalHandlerComponent() {
   const dispatch = useDispatch();
   const modalType = useTypedSelector(state => state.ui.modalDisplayed);
   const memos = useTypedSelector(state => state.ui.memos);
+  const positioner = useTypedSelector(state => state.ui.positioner);
 
   useEffect(() => {
     if (memos.length > 0) {
@@ -39,7 +40,8 @@ export default function ModalHandlerComponent() {
       <TouchableOpacity style={styles.modalBackground}
         onPress={() => modalCancel()}>
       </TouchableOpacity>
-      <LinearGradient style={styles.modal}
+      <LinearGradient style={StyleSheet.flatten([styles.modal,
+        {minWidth: positioner.modalWidth, maxWidth: positioner.modalWidth}])}
         colors={["#0034aa", "#6a41b4", "#f58f7d"]}>
         {renderModal(modalType)}
       </LinearGradient>

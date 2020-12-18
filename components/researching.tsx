@@ -42,6 +42,7 @@ export default function ResearchingComponent() {
   const vault = useTypedSelector(state => state.vault);
   const research = researches[valueSelected];
   const rod = researchOptionDecks[valueSelected];
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let optionsArray: ResearchOption[] = Object.keys(rod.currentOptions).map((name) => {
     return researchOptions[name];
   });
@@ -71,7 +72,9 @@ export default function ResearchingComponent() {
           color="#fff" size={20} style={styles.headingIcon} />
         <Text style={styles.heading1}>{title}</Text>
       </View>
-      <View style={styles.panelFlexColumn}>
+      <View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {minWidth: positioner.majorWidth,
+          maxWidth: positioner.majorWidth}])}>
         <View style={styles.rows}>
           <BadgeComponent
             provider={research.icon.provider}
@@ -111,7 +114,9 @@ export default function ResearchingComponent() {
       );
     }
     return (
-      <View style={styles.panelFlex}>
+      <View style={StyleSheet.flatten([styles.panelFlex,
+        {minWidth: positioner.majorWidth,
+          maxWidth: positioner.majorWidth}])}>
         <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
           {'justifyContent': 'center'}])}
           onPress={() => { backClick(); }} >
@@ -127,7 +132,7 @@ export default function ResearchingComponent() {
 
   function renderOption(option: any) {
     return <OptionDescription option={option} vault={vault} applyCost={applyCost}
-      rod={rod} />
+      rod={rod} positioner={positioner} />
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
@@ -185,7 +190,9 @@ export default function ResearchingComponent() {
 function OptionDescription(props: any) {
   let option: ResearchOption = props.option.item;
   return (
-    <View style={styles.panelFlexColumn}>
+    <View style={StyleSheet.flatten([styles.panelFlexColumn,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <Text style={styles.heading2}>
         {'#' + (props.option.index+1) + ': ' + option.name}
       </Text>

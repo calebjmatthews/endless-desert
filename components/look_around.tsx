@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, TouchableOpacity, ScrollView }
+import { Text, View, TouchableOpacity, ScrollView, StyleSheet }
   from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,7 +19,7 @@ import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 import { INTRO_STATES } from '../enums/intro_states';
 
-export default function LookAroundComponent() {
+export default function LookAroundComponent(props: {height: number, panelWidth: number}) {
   const dispatch = useDispatch();
   const [looking, setLooking] = useState(false);
 
@@ -32,8 +32,9 @@ export default function LookAroundComponent() {
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
         <ScrollView contentContainerStyle={{display: 'flex', justifyContent: 'center',
-          alignItems: 'center', flexGrow: 1, height: 473}}>
-          <View style={styles.panelFlexColumn}>
+          alignItems: 'center', flexGrow: 1, height: props.height}}>
+          <View style={StyleSheet.flatten([styles.panelFlexColumn,
+            {minWidth: props.panelWidth, maxWidth: props.panelWidth}])}>
             <Text style={{textAlign: 'center'}}>
               {'The paths are faded and the buildings are broken. What happened here?'}
             </Text>

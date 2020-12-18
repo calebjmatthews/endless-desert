@@ -31,6 +31,7 @@ import { MODALS } from '../enums/modals';
 export default function TradingComponent() {
   const dispatch = useDispatch();
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const tradingPartnerArray = Object.keys(tradingStatus.tradingPartners).map((name) => {
     return tradingStatus.tradingPartners[name];
   });
@@ -55,7 +56,7 @@ export default function TradingComponent() {
   function renderTradingPartners(tradingPartnerArray: TradingPartner[]) {
     return tradingPartnerArray.map((tradingPartner) => {
       return <TradingPartnerDescription key={tradingPartner.name}
-        tradingPartner={tradingPartner}
+        tradingPartner={tradingPartner} positioner={positioner}
         vault={vault} tradeClick={tradeClick} dismissClick={dismissClick} />
     });
   }
@@ -138,7 +139,9 @@ export default function TradingComponent() {
       }
 
       return (
-        <View style={styles.panelFlexColumn}>
+        <View style={StyleSheet.flatten([styles.panelFlexColumn,
+          {minWidth: positioner.majorWidth,
+            maxWidth: positioner.majorWidth}])}>
           <View style={styles.containerStretchRow}>
             <View style={{width: 40, height: 40}}>
               <IconComponent style={{position: 'absolute'}}
@@ -169,7 +172,9 @@ function TradingPartnerDescription(props: any) {
   let tradingPartnerType = tradingPartnerTypes[tradingPartner.name];
 
   return (
-    <View style={styles.panelFlexColumn}>
+    <View style={StyleSheet.flatten([styles.panelFlexColumn,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.containerStretchRow}>
         <View style={{width: 40, height: 40}}>
           <IconComponent style={{position: 'absolute'}}

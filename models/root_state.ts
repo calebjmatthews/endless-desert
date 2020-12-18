@@ -7,6 +7,7 @@ import Message from './message';
 import TradingStatus from './trading_status';
 import Account from './account';
 import Memo from './memo';
+import Positioner from './positioner';
 
 export default interface RootState {
   vault: Vault;
@@ -22,7 +23,7 @@ export default interface RootState {
   account: Account;
   ui: { globalState: string, tabSelected: string,
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
-    messages: Message[], memos: Memo[] };
+    messages: Message[], memos: Memo[], positioner: Positioner };
 }
 
 interface Rate { [resourceName: string] : number };

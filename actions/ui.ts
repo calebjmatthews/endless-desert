@@ -1,5 +1,6 @@
 import Message from '../models/message';
 import Memo from '../models/memo';
+import Positioner from '../models/positioner';
 
 export const SET_GLOBAL_STATE = 'SET_GLOBAL_STATE';
 export function setGlobalState(globalState: string) {
@@ -57,5 +58,13 @@ export const DISMISS_MEMO = 'DISMISS_MEMO';
 export function dismissMemo() {
   return {
     type: DISMISS_MEMO
+  }
+}
+
+export const SET_POSITIONER = 'SET_POSITIONER';
+export function setPositioner(positioner: Positioner) {
+  return {
+    type: SET_POSITIONER,
+    positioner: positioner
   }
 }

@@ -18,6 +18,7 @@ import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
+import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -32,6 +33,7 @@ export default function ResourceSelectOneComponent() {
   const modalValue: any = useTypedSelector(state => state.ui.modalValue);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
   function setStartingSelected(): string|null {
@@ -54,7 +56,9 @@ export default function ResourceSelectOneComponent() {
           {renderResources(resourcesArray, resourceSelect)}
         </View>
       </ScrollView>
-      <View style={styles.panelFlexColumn}>
+      <View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {minWidth: positioner.majorWidth,
+          maxWidth: positioner.majorWidth}])}>
         {renderQuantityInput()}
         <View style={styles.buttonRow}>
           {renderSubmitButton()}
@@ -68,7 +72,8 @@ export default function ResourceSelectOneComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={resource.type} resource={resource}
         resourceSelected={resourceSelected} vault={vault}
-        setResourceSelected={setResourceSelected} />;
+        setResourceSelected={setResourceSelected}
+        positioner={positioner} />;
     });
   }
 
@@ -299,11 +304,13 @@ export default function ResourceSelectOneComponent() {
 
 function ResourceSelector(props: {resource: Resource,
   resourceSelected: string|null,
-  vault: Vault, setResourceSelected: Function}) {
+  vault: Vault, setResourceSelected: Function, positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
-    <View style={styles.panelTile} >
+    <View style={StyleSheet.flatten([styles.panelTile,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent
         provider={resourceType.icon.provider}
         name={resourceType.icon.name}
