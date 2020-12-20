@@ -8,6 +8,7 @@ import ResearchOptionDecksReducer from './research_option_decks';
 import TimersReducer from './timers';
 import TradingStatusReducer from './trading_status';
 import AccountReducer from './account';
+import LeadersReducer from './leaders';
 import UIReducer from './ui';
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   timers: TimersReducer,
   tradingStatus: TradingStatusReducer,
   account: AccountReducer,
+  leaders: LeadersReducer,
   ui: UIReducer
 });
 

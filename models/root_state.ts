@@ -8,6 +8,7 @@ import TradingStatus from './trading_status';
 import Account from './account';
 import Memo from './memo';
 import Positioner from './positioner';
+import Leader from './leader';
 
 export default interface RootState {
   vault: Vault;
@@ -21,6 +22,7 @@ export default interface RootState {
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;
   account: Account;
+  leaders: { [id: string] : Leader };
   ui: { globalState: string, tabSelected: string,
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[], memos: Memo[], positioner: Positioner };

@@ -8,7 +8,7 @@ export function setBuildings(buildings: { [id: string] : Building }) {
   });
   return {
     type: SET_BUILDINGS,
-    buildings: buildings
+    buildings: newBuildings
   }
 }
 

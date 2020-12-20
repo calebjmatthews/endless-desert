@@ -163,20 +163,22 @@ Resource selection:
 Leaders:
   - Need open housing for leader+crew to move in
   - "Leaders" tab that shows each leader with equipment selection, what building they're assigned to
-  - Section on
+  - Section on buildings description to assign a leader
+  - Changes to Hourglass method to account for leader happiness boost
+  - Stats: Production+ category specific (animal husbandry, entertainment, cooking, etc), Production+ product specific (grain, glass, etc), Quality+ category specific, Quality+ resource specific, Efficiency+ (use less of consumed resources), Health+ for exploring, Trap resistance for exploring, Speed for exploring, Bonus rewards for exploring, Increase settlement happiness
   - Kinds:
-  - Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
-  - Favorite activity: exploration, Secret wish: to see the legendary crystal sea
-  - Favorite activity: animal husbandry, Secret wish: to own a cat
-  - Favorite activity: animal husbandry, Secret wish: to raise a sun ox
-  - Favorite activity: entertainment, Secret wish: to play music at a year's end festival
-  - Favorite activity: entertainment, Secret wish: to fly [via transformation into a bird]
-  - Favorite activity: cooking, Secret wish: to eat every kind of dish
-  - Favorite activity: cooking, Secret wish: to live in the same city as [other leader]
-  - Favorite activity: crafting, Secret wish: to weave an exquisite tapestry
-  - Favorite activity: crafting, Secret wish: to wear a robe of golden thread
-  - Old friend of player, first leader but then disappears
-  - Old friend's second in command
+    * Favorite activity: exploration, Secret wish: to learn what happened to their mother (exploration/mysticism quests)
+    * Favorite activity: exploration, Secret wish: to see the legendary crystal sea
+    * Favorite activity: animal husbandry, Secret wish: to own a cat
+    * Favorite activity: animal husbandry, Secret wish: to raise a sun ox
+    * Favorite activity: entertainment, Secret wish: to play music at a year's end festival
+    * Favorite activity: entertainment, Secret wish: to fly [via transformation into a bird]
+    * Favorite activity: cooking, Secret wish: to eat every kind of dish
+    * Favorite activity: cooking, Secret wish: to live in the same city as [other leader]
+    * Favorite activity: crafting, Secret wish: to weave an exquisite tapestry
+    * Favorite activity: crafting, Secret wish: to wear a robe of golden thread
+    * Old friend of player, first leader but then disappears
+    * Old friend's second in command
 
 Caches:
   - Give random amounts of relics, which are resources used to construct cosmetics
@@ -288,3 +290,4 @@ DELETE FROM `timers`;
 DELETE FROM `trading_status`;
 DELETE FROM `vault`;
 DELETE FROM `accounts`;
+DELETE FROM `leaders`;

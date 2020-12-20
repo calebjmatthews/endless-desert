@@ -36,6 +36,13 @@ tabs[TABS.TRADING] = new Tab({
   settings: []
 });
 
+tabs[TABS.LEADERS] = new Tab({
+  name: TABS.LEADERS,
+  order: 4,
+  icon: {provider: "FontAwesome5", name: "user-circle"},
+  settings: []
+});
+
 let tabsArray: Tab[] = Object.keys(tabs).map((tabName) => {
   return tabs[tabName];
 });

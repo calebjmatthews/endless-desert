@@ -431,5 +431,12 @@ export const styles = StyleSheet.create({
   descriptionBandText: {
     textAlign: 'center',
     fontStyle: 'italic'
+  },
+
+  leaderCircle: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 10
   }
 });

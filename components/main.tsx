@@ -21,6 +21,7 @@ import TradingComponent from '../components/trading';
 import IconComponent from '../components/icon';
 import StorageHandlerComponent from '../components/storage_handler';
 import LookAroundComponent from '../components/look_around';
+import LeadersComponent from '../components/leaders';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -60,7 +61,7 @@ export default function App() {
     return tabs[tabName];
   });
   tabsArray = tabsArray.filter((tab) => {
-    if (utils.arrayIncludes(account.tabsUnloked, tab.name)) {
+    if (utils.arrayIncludes(account.tabsUnloked, tab.name) || tab.name == 'Leaders') {
       return tab;
     }
   });
@@ -216,6 +217,8 @@ export default function App() {
       return <ResearchingComponent />
       case "Trading":
       return <TradingComponent />
+      case "Leaders":
+      return <LeadersComponent />
       default:
       return null;
     }
