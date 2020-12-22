@@ -435,8 +435,8 @@ export const styles = StyleSheet.create({
 
   leaderCircle: {
     position: 'absolute',
-    width: 20,
-    height: 20,
-    borderRadius: 10
+    width: 30,
+    height: 30,
+    borderRadius: 15
   }
 });

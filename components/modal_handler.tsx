@@ -11,7 +11,8 @@ import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
 import MemoComponent from './memo';
-import BuildingDetailComponent from './building_detail'
+import BuildingDetailComponent from './building_detail';
+import LeaderDetailComponent from './leader_detail';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -66,6 +67,9 @@ function renderModal(modalType: string) {
     case MODALS.BUILDING_DETAIL:
     case MODALS.BUILD_DETAIL:
     return <BuildingDetailComponent />;
+
+    case MODALS.LEADER_DETAIL:
+    return <LeaderDetailComponent />;
 
     default:
     return null;

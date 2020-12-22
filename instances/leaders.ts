@@ -16,7 +16,7 @@ function startingFactory() {
     backEquipped: null,
     eating: null,
     drinking: null,
-    icon: {provider: 'MaterialCommunityIcons', name: 'star-four-points-outline'},
+    icon: {provider: 'MaterialCommunityIcons', name: 'star-four-points'},
     foregroundColor: '#dc2222',
     backgroundColor: '#3e37a0',
     paddingVertical: 8,

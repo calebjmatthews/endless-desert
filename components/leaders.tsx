@@ -7,9 +7,11 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Positioner from '../models/positioner';
+import { MODALS } from '../enums/modals';
 
 export default function LeadersComponent() {
   const dispatch = useDispatch();
@@ -35,12 +37,19 @@ export default function LeadersComponent() {
   function renderLeaders(leaderArray: Leader[]) {
     return leaderArray.map((leader) => {
       return <LeaderDescription key={leader.id}
-        leader={leader} positioner={positioner} />
+        leader={leader} positioner={positioner} morePress={morePress} />
     });
+  }
+
+  function morePress(leader: Leader) {
+    console.log('inside morePress with ');
+    console.log(leader);
+    dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', leader));
   }
 }
 
-function LeaderDescription(props: {leader: Leader, positioner: Positioner}) {
+function LeaderDescription(props: {leader: Leader, positioner: Positioner,
+  morePress: Function}) {
   const leader: Leader = props.leader;
   const circleBgColor = leader.backgroundColor;
 
@@ -49,12 +58,11 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner}) {
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.containerStretchRow}>
-        <View style={{width: 40, height: 40}}>
+        <View style={{width: 40, height: 40, display: 'flex',
+          justifyContent: 'center', alignItems: 'center'}}>
           <View style={StyleSheet.flatten([styles.leaderCircle,
             {backgroundColor: circleBgColor}])} />
-          <IconComponent style={{position: 'absolute',
-              paddingHorizontal: leader.paddingHorizontal,
-              paddingVertical: leader.paddingVertical}}
+          <IconComponent style={{position: 'absolute'}}
             provider={leader.icon.provider}
             name={leader.icon.name}
             color={leader.foregroundColor}
@@ -66,7 +74,7 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner}) {
           </Text>
           <View style={styles.buttonRow}>
             <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-              styles.buttonLight])}>
+              styles.buttonLight])} onPress={() => props.morePress(leader)} >
               <IconComponent provider="FontAwesome5" name="question-circle"
                 color="#071f56" size={16} />
               <Text style={styles.buttonTextDark}>{' Info'}</Text>
