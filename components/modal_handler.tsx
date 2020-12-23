@@ -10,6 +10,7 @@ import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
+import BuildingSelectComponent from './building_select';
 import MemoComponent from './memo';
 import BuildingDetailComponent from './building_detail';
 import LeaderDetailComponent from './leader_detail';
@@ -60,6 +61,9 @@ function renderModal(modalType: string) {
 
     case MODALS.RESOURCE_SELECT_ONE:
     return <ResourceSelectOneComponent />;
+
+    case MODALS.BUILDING_SELECT:
+    return <BuildingSelectComponent />;
 
     case MODALS.MEMO:
     return <MemoComponent />;

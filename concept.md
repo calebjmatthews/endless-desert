@@ -44,6 +44,14 @@ Ideas:
       - Buildings produce much more, but can only be built once and only work for an hour before vanishing
       - Highly beneficial trades arrive each hour, but must be completed within five minutes or the island vanishes
       - Leaders who are incredibly effective at a single task, and vanish after working for one hour
+      - No resource can be claimed, but resources can be used towards a single dream expedition one of whose rewards can be claimed
+  - Random events:
+    - Entertainer will perform in settlement, in exchange for several options of items (food, drink, gold, etc)
+    - Traveling scholar will offer progress in a started research, or a random research if none are started
+    - Explorer offers to unusually good randomly generated expedition
+    - Gain of small amount of unusual resource
+    - Wanderer offers tip
+    - Natural phenomena (animal migration, plant blooming after rain, atrological event) with small knowledge gain
 
 Resource Subcategories:
   - Sand

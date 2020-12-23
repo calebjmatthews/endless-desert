@@ -29,10 +29,10 @@ export function removeLeader(leader: Leader) {
 }
 
 export const ASSIGN_TO_BUILDING = 'ASSIGN_TO_BUILDING';
-export function assignToBuilding(leader: Leader, assignTo: string) {
+export function assignToBuilding(leader: Leader, assignedTo: string) {
   return {
     type: ASSIGN_TO_BUILDING,
     leader: leader,
-    assignTo: assignTo
+    assignedTo: assignedTo
   }
 }

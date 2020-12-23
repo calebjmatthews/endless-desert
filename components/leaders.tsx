@@ -42,8 +42,6 @@ export default function LeadersComponent() {
   }
 
   function morePress(leader: Leader) {
-    console.log('inside morePress with ');
-    console.log(leader);
     dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', leader));
   }
 }

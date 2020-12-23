@@ -5,5 +5,6 @@ export enum MODALS {
   LEADER_DETAIL = "Leader Detail",
   RESOURCE_SELECT = "Resource Select",
   RESOURCE_SELECT_ONE = "Resource Select One",
+  BUILDING_SELECT = "Building Select",
   MEMO = "Memo",
 }
