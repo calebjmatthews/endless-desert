@@ -77,11 +77,13 @@ export default function StorageHandlerComponent() {
         if (dataRes.data.accounts.length == 0) {
           return false;
         }
+        let buildings = {};
+        let leaders = {};
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
             if (tableName != 'research_status'
-              && tableName != 'buildings' && jsonValue) {
+              && tableName != 'buildings' && tableName != 'leaders' && jsonValue) {
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
             else if (tableName == 'research_status' && jsonValue) {
@@ -92,12 +94,17 @@ export default function StorageHandlerComponent() {
               dispatch(setResearchStatus(researchStatus));
             }
             else if (tableName == 'buildings' && jsonValue) {
-              const newRates = hourglass.setRates(jsonValue);
-              dispatch(setRates(newRates));
+              buildings = jsonValue;
+              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            }
+            else if (tableName == 'leaders' && jsonValue) {
+              leaders = jsonValue;
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
           }
         });
+        const newRates = hourglass.setRates(buildings, leaders);
+        dispatch(setRates(newRates));
         return true;
       }
       catch {
@@ -107,7 +114,7 @@ export default function StorageHandlerComponent() {
     })
     .then((booleanRes) => {
       if (booleanRes == false) {
-        const newRates = hourglass.setRates(buildingsStarting);
+        const newRates = hourglass.setRates(buildingsStarting, {});
         dispatch(setRates(newRates));
       }
       dispatch(setGlobalState('loaded'));

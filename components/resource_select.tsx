@@ -171,7 +171,9 @@ function ResourceSelector(props: {resource: Resource,
   let resourceType = resourceTypes[props.resource.type];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
-    <View style={styles.panelTile} >
+    <View style={StyleSheet.flatten([styles.panelTile,
+      {minWidth: props.positioner.minorWidth,
+        maxWidth: props.positioner.minorWidth}])}>
       <BadgeComponent
         provider={resourceType.icon.provider}
         name={resourceType.icon.name}

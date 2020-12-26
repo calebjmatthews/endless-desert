@@ -29,6 +29,7 @@ export default function HourglassComponent() {
   const rates = useTypedSelector(state => state.rates);
   const timers = useTypedSelector(state => state.timers);
   const buildings = useTypedSelector(state => state.buildings);
+  const leaders = useTypedSelector(state => state.leaders);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callCalc, setCallCalc] = useState(false);
@@ -150,7 +151,7 @@ export default function HourglassComponent() {
         dispatch(consumeResources(vault, rtc));
       }
       if (recalcRates) {
-        let newRates = new Hourglass().setRates(tempBuildings);
+        let newRates = new Hourglass().setRates(tempBuildings, leaders);
         dispatch(setRates(newRates));
       }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));

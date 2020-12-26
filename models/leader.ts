@@ -9,6 +9,10 @@ export default class Leader implements LeaderInterface {
   backEquipped: string|null = null;
   eating: string = '';
   drinking: string = '';
+  happiness: number = 50;
+  productionPlus: number = 0;
+  qualityPlus: number = 0;
+  efficiencyPlus: number = 0;
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
@@ -17,6 +21,11 @@ export default class Leader implements LeaderInterface {
 
   constructor(leader: LeaderInterface) {
     Object.assign(this, leader);
+    this.setPluses();
+  }
+
+  setPluses() {
+    this.productionPlus = this.happiness;
   }
 }
 
@@ -31,6 +40,10 @@ interface LeaderInterface {
   backEquipped: string|null;
   eating: string|null;
   drinking: string|null;
+  happiness: number;
+  productionPlus: number;
+  qualityPlus: number;
+  efficiencyPlus: number;
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;

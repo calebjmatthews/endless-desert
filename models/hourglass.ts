@@ -1,6 +1,7 @@
 import Building from './building';
 import BuildingType from './building_type';
 import Timer from './timer';
+import Leader from './leader';
 import { buildingTypes } from '../instances/building_types';
 const MS_IN_MIN = 60000;
 
@@ -43,7 +44,8 @@ export default class Hourglass {
     return resolvedTimers;
   }
 
-  setRates(buildings: { [id: string] : Building }) {
+  setRates(buildings: { [id: string] : Building },
+    leaders: { [id: string] : Leader }) {
     let productionRates: { [resourceName: string] : number } = {};
     let consumptionRates: { [resourceName: string] : number } = {};
     let netRates: { [resourceName: string] : number } = {};
@@ -52,7 +54,8 @@ export default class Hourglass {
     let bGroupRates: { [typeName: string] :
       { [resourceName: string] : number } } = {};
 
-    let multiBT = getMultiBT(buildings);
+    const multiBT = getMultiBT(buildings);
+    const buildingLeaders = getBuildingLeaders(buildings, leaders);
 
     Object.keys(buildings).map((id) => {
       let building = buildings[id];
@@ -65,15 +68,18 @@ export default class Hourglass {
       }
       let buildingType = buildingTypes[building.buildingType];
       if (buildingType.recipes) {
-        let recipeSelected = building.recipeSelected || 0;
+        let recipeSelected = building.recipeSelected || 0;``
         let recipe = buildingType.recipes[recipeSelected];
         if (recipe.produces) {
           recipe.produces.map((production) => {
-            mapAdd(productionRates, production.type, production.quantity);
-            mapAdd(buildingRates[id], production.type, production.quantity);
-            mapAdd(bGroupRates[building.buildingType], production.type,
-              production.quantity);
-            mapAdd(netRates, production.type, production.quantity);
+            let prodQuantity = production.quantity;
+            if (buildingLeaders[building.id]) {
+              prodQuantity *= (1 + (buildingLeaders[building.id].productionPlus / 100));
+            }
+            mapAdd(productionRates, production.type, prodQuantity);
+            mapAdd(buildingRates[id], production.type, prodQuantity);
+            mapAdd(bGroupRates[building.buildingType], production.type, prodQuantity);
+            mapAdd(netRates, production.type, prodQuantity);
           });
         }
         if (recipe.consumes) {
@@ -110,6 +116,21 @@ export default class Hourglass {
         alreadyFound[building.buildingType] = true;
       });
       return multiBT;
+    }
+
+    function getBuildingLeaders(buildings: { [id: string] : Building },
+      leaders: { [id: string] : Leader }) {
+      let buildingLeaders: { [buildingId: string] : Leader } = {};
+      if (leaders) {
+
+      }
+      Object.keys(leaders).map((leaderId) => {
+        let leader = leaders[leaderId];
+        if (leader.assignedTo) {
+          buildingLeaders[leader.assignedTo] = leader;
+        }
+      });
+      return buildingLeaders;
     }
   }
 }

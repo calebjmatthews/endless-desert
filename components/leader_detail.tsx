@@ -18,6 +18,7 @@ export default function LeaderDetailComponent() {
   const modalValue: Leader = useTypedSelector(state => state.ui.modalValue);
   const leader = modalValue;
   const buildings = useTypedSelector(state => state.buildings);
+  const positioner = useTypedSelector(state => state.ui.positioner);
 
   return (
     <View style={styles.container}>
@@ -30,7 +31,9 @@ export default function LeaderDetailComponent() {
           iconSize={24} />
         <Text style={styles.heading1}>{leader.name}</Text>
       </View>
-      <View style={styles.descriptionBand}>
+      <View style={StyleSheet.flatten([styles.descriptionBand,
+        {minWidth: positioner.modalWidth,
+          maxWidth: positioner.modalWidth}])}>
         <Text style={styles.descriptionBandText}>{leader.description}</Text>
       </View>
       <View>

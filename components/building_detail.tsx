@@ -37,6 +37,8 @@ export default function BuildDetailComponent() {
   const modalValue: Building = useTypedSelector(state => state.ui.modalValue);
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
+  const leaders = useTypedSelector(state => state.leaders);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let building: Building = modalValue;
   const buildingType = buildingTypes[building.buildingType];
 
@@ -51,7 +53,9 @@ export default function BuildDetailComponent() {
           iconSize={24} />
         <Text style={styles.heading1}>{building.name}</Text>
       </View>
-      <View style={styles.descriptionBand}>
+      <View style={StyleSheet.flatten([styles.descriptionBand,
+        {minWidth: positioner.modalWidth,
+          maxWidth: positioner.modalWidth}])}>
         <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
       </View>
       {renderUpgradeCostContainer()}
@@ -319,7 +323,7 @@ export default function BuildDetailComponent() {
       tempBuildings[id] = new Building(buildings[id]);
     });
     tempBuildings[building.id].recipeSelected = recipeIndex;
-    const newRates = new Hourglass().setRates(tempBuildings);
+    const newRates = new Hourglass().setRates(tempBuildings, leaders);
     dispatch(setRates(newRates));
   }
 

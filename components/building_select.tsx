@@ -9,10 +9,12 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { assignToBuilding } from '../actions/leaders';
+import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
 
 import Building from '../models/building';
 import Leader from '../models/leader';
+import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { buildingTypes } from '../instances/building_types';
 import { MODALS } from '../enums/modals';
@@ -20,6 +22,7 @@ import { MODALS } from '../enums/modals';
 export default function BuildingSelectComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
@@ -95,6 +98,10 @@ export default function BuildingSelectComponent() {
   function submit() {
     if (buildingSelected) {
       dispatch(assignToBuilding(modalValue.leader, buildingSelected));
+      let tempLeaders = Object.assign({}, leaders);
+      tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
+      let newRates = new Hourglass().setRates(buildings, tempLeaders);
+      dispatch(setRates(newRates));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
     }
   }
@@ -106,8 +113,8 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
     <View style={StyleSheet.flatten([styles.panelTile,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+      {minWidth: props.positioner.minorWidth,
+        maxWidth: props.positioner.minorWidth}])}>
       <BadgeComponent
         provider={buildingType.icon.provider}
         name={buildingType.icon.name}
