@@ -93,7 +93,7 @@ export default function LeaderDetailComponent() {
       const buildingType = buildingTypes[building.buildingType];
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { assignedToPress() }} >
+          onPress={() => { livingAtPress() }} >
           <BadgeComponent
             provider={buildingType.icon.provider}
             name={buildingType.icon.name}
