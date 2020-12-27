@@ -8,7 +8,8 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { assignToBuilding } from '../actions/leaders';
+import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, liveAtBuilding }
+  from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
 
@@ -24,15 +25,19 @@ export default function BuildingSelectComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const modalValue: {type: string, leader: Leader} =
+  const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
   let buildingsArray = Object.keys(buildings).map((buildingId) => {
     return buildings[buildingId];
   });
   buildingsArray = buildingsArray.filter((building) => {
-    if (modalValue.type == MODALS.LEADER_DETAIL) {
+    if (modalValue.subType == ASSIGN_TO_BUILDING) {
       const buildingType = buildingTypes[building.buildingType];
       if (buildingType.recipes) { return building; }
+    }
+    else if (modalValue.subType == LIVE_AT_BUILDING) {
+      const buildingType = buildingTypes[building.buildingType];
+      if (buildingType.livingHappiness != undefined) { return building; }
     }
     else { return building; }
   });
@@ -97,12 +102,23 @@ export default function BuildingSelectComponent() {
 
   function submit() {
     if (buildingSelected) {
-      dispatch(assignToBuilding(modalValue.leader, buildingSelected));
-      let tempLeaders = Object.assign({}, leaders);
-      tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
-      let newRates = new Hourglass().setRates(buildings, tempLeaders);
-      dispatch(setRates(newRates));
-      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
+      if (modalValue.subType == ASSIGN_TO_BUILDING) {
+        dispatch(assignToBuilding(modalValue.leader, buildingSelected));
+        let tempLeaders = Object.assign({}, leaders);
+        tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
+        let newRates = new Hourglass().setRates(buildings, tempLeaders);
+        dispatch(setRates(newRates));
+        dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
+      }
+      else if (modalValue.subType == LIVE_AT_BUILDING) {
+        dispatch(liveAtBuilding(modalValue.leader, buildingSelected));
+        let tempLeaders = Object.assign({}, leaders);
+        tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
+        tempLeaders[modalValue.leader.id].setPluses();
+        let newRates = new Hourglass().setRates(buildings, tempLeaders);
+        dispatch(setRates(newRates));
+        dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
+      }
     }
   }
 }

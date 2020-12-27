@@ -1,4 +1,4 @@
-import { SET_LEADERS, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING }
+import { SET_LEADERS, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
   from '../actions/leaders';
 
 import Leader from '../models/leader';
@@ -24,6 +24,11 @@ export default function (leaders: { [id: string] : Leader } = leadersStarting,
     let newATBLeaders = Object.assign({}, leaders);
     newATBLeaders[action.leader.id].assignedTo = action.assignedTo;
     return newATBLeaders;
+
+    case LIVE_AT_BUILDING:
+    let newLABLeaders = Object.assign({}, leaders);
+    newLABLeaders[action.leader.id].livingAt = action.livingAt;
+    return newLABLeaders;
 
 		default:
 		return leaders;

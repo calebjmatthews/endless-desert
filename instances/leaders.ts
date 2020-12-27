@@ -11,6 +11,7 @@ function startingFactory() {
       + 'You\'ve known Samannoud as long as you can remember.'),
     speechType: 'Samannoud',
     assignedTo: null,
+    livingAt: null,
     toolEquipped: null,
     clothingEquipped: null,
     backEquipped: null,

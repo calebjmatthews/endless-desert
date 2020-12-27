@@ -36,3 +36,12 @@ export function assignToBuilding(leader: Leader, assignedTo: string) {
     assignedTo: assignedTo
   }
 }
+
+export const LIVE_AT_BUILDING = 'LIVE_AT_BUILDING';
+export function liveAtBuilding(leader: Leader, livingAt: string) {
+  return {
+    type: LIVE_AT_BUILDING,
+    leader: leader,
+    livingAt: livingAt
+  }
+}

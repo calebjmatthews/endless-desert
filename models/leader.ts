@@ -4,6 +4,7 @@ export default class Leader implements LeaderInterface {
   description: string = '';
   speechType: string = '';
   assignedTo: string|null = null;
+  livingAt: string|null = null;
   toolEquipped: string|null = null;
   clothingEquipped: string|null = null;
   backEquipped: string|null = null;
@@ -35,6 +36,7 @@ interface LeaderInterface {
   description: string;
   speechType: string;
   assignedTo: string|null;
+  livingAt: string|null;
   toolEquipped: string|null;
   clothingEquipped: string|null;
   backEquipped: string|null;

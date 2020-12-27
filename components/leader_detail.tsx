@@ -7,6 +7,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
@@ -36,8 +37,15 @@ export default function LeaderDetailComponent() {
           maxWidth: positioner.modalWidth}])}>
         <Text style={styles.descriptionBandText}>{leader.description}</Text>
       </View>
-      <View>
-        {renderAssignedTo()}
+      <View style={styles.rows}>
+        <View>
+          <Text>Working at:</Text>
+          {renderAssignedTo()}
+        </View>
+        <View>
+          <Text>Living at:</Text>
+          {renderLivingAt()}
+        </View>
       </View>
     </View>
   );
@@ -79,8 +87,50 @@ export default function LeaderDetailComponent() {
     }
   }
 
+  function renderLivingAt() {
+    if (leader.livingAt) {
+      const building = buildings[leader.livingAt];
+      const buildingType = buildingTypes[building.buildingType];
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { assignedToPress() }} >
+          <BadgeComponent
+            provider={buildingType.icon.provider}
+            name={buildingType.icon.name}
+            foregroundColor={buildingType.foregroundColor}
+            backgroundColor={buildingType.backgroundColor}
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {buildingType.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    else {
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { livingAtPress() }} >
+          <BadgeComponent
+            provider='MaterialCommunityIcons'
+            name='tent'
+            foregroundColor='#000'
+            backgroundColor='#fff'
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {'Nowhere'}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+  }
+
   function assignedToPress() {
     dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
-      {type: MODALS.LEADER_DETAIL, leader: leader}));
+      {type: MODALS.LEADER_DETAIL, subType: ASSIGN_TO_BUILDING, leader: leader}));
+  }
+
+  function livingAtPress() {
+    dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: LIVE_AT_BUILDING, leader: leader}));
   }
 }

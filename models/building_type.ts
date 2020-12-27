@@ -9,11 +9,12 @@ export default class BuildingType implements BuildingTypeInterface {
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
   cost: {specificity: string, type: string, quantity: number}[]|null = null;
-  upgradeCost?: {specificity: string, type: string, quantity: number}[]|null = null;
+  upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null = null;
   upgradesInto?: string;
-  duration?: number = 0;
-  upgradeDuration?: number = 0;
+  duration?: number;
+  upgradeDuration?: number;
+  livingHappiness?: number;
 
   constructor(buildingType: BuildingTypeInterface) {
     Object.assign(this, buildingType);
@@ -65,5 +66,6 @@ interface BuildingTypeInterface {
   recipes: BuildingRecipe[]|null;
   upgradesInto?: string;
   duration?: number;
-  upgradeDuration? :number;
+  upgradeDuration?: number;
+  livingHappiness?: number;
 }

@@ -124,7 +124,8 @@ buildingTypes[BTY.HUTS] = new BuildingType({
   foregroundColor: '#795548',
   backgroundColor: '#fff',
   cost: null,
-  recipes: null
+  recipes: null,
+  livingHappiness: 0
 });
 
 buildingTypes[BTY.CISTERN] = new BuildingType({
