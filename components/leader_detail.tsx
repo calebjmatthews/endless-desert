@@ -46,20 +46,23 @@ export default function LeaderDetailComponent() {
           color={'#de0202'} label={(leader.happiness + '%')} />
       </View>
       <View style={styles.rows}>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
-            maxWidth: positioner.modalThird}])}>
-          <Text style={styles.bareText}>Production</Text>
-          <Text style={styles.bareText}>+50%</Text>
+        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+          positioner.modalThird, maxWidth: positioner.modalThird,
+          flexDirection: 'column'}])}>
+          <Text>Production</Text>
+          <Text>+50%</Text>
         </View>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
-            maxWidth: positioner.modalThird}])}>
-          <Text style={styles.bareText}>Quality</Text>
-          <Text style={styles.bareText}>+0%</Text>
+        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+          positioner.modalThird, maxWidth: positioner.modalThird,
+          flexDirection: 'column'}])}>
+          <Text>Quality</Text>
+          <Text>+0%</Text>
         </View>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
-            maxWidth: positioner.modalThird}])}>
-          <Text style={styles.bareText}>Efficiency</Text>
-          <Text style={styles.bareText}>+0%</Text>
+        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+          positioner.modalThird, maxWidth: positioner.modalThird,
+          flexDirection: 'column'}])}>
+          <Text>Efficiency</Text>
+          <Text>+0%</Text>
         </View>
       </View>
       <View style={styles.rows}>
