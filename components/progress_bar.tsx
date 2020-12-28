@@ -7,16 +7,19 @@ const MAX_WIDTH = 262;
 // When the duration is expected to change every tick (staticDuration == false),
 //  only use the initially given props and ignore future updates
 export default function ProgressBarComponent(props: ProgressBarProps) {
+  let labelStyle = {};
+  if (props.labelStyle) { labelStyle = props.labelStyle; }
+
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarWrapper}>
         <Bar staticDuration={props.staticDuration}
           startingProgress={props.startingProgress}
-          endingProgress={props.endingProgress}
-          duration={props.duration} />
+          endingProgress={props.endingProgress} duration={props.duration}
+          color={props.color} labelStyle={props.labelStyle} />
       </View>
       <View style={styles.progressBarLabel}>
-        <Text>{props.label}</Text>
+        <Text style={labelStyle}>{props.label}</Text>
       </View>
     </View>
   );
@@ -50,10 +53,13 @@ function Bar(props: BarProps) {
         useNativeDriver: true }
     ).start();
   }, [barProps.endingProgress, widthAnim]);
-  
+
+  let color = '#071f56';
+  if (props.color) { color = props.color; }
+
   return (
     <Animated.View style={{...StyleSheet.flatten([styles.progressBar]),
-      width: widthAnim}} />
+      width: widthAnim, backgroundColor: color}} />
   );
 }
 
@@ -63,6 +69,7 @@ interface ProgressBarProps {
   duration: number;
   label: string;
   color?: string;
+  labelStyle?: any;
   staticDuration?: boolean;
   starting?: boolean;
 }
@@ -71,6 +78,7 @@ interface BarProps {
   endingProgress: number;
   duration: number;
   color?: string;
+  labelStyle?: any;
   staticDuration?: boolean;
   starting?: boolean;
 }

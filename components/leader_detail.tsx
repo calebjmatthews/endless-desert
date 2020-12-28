@@ -7,6 +7,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import ProgressBarComponent from '../components/progress_bar';
 import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 import { displayModalValue } from '../actions/ui';
 
@@ -37,13 +38,39 @@ export default function LeaderDetailComponent() {
           maxWidth: positioner.modalWidth}])}>
         <Text style={styles.descriptionBandText}>{leader.description}</Text>
       </View>
+      <View style={{width: (positioner.modalWidth - 40)}}>
+        <Text style={styles.bareText}>Happiness:</Text>
+        <ProgressBarComponent startingProgress={0}
+          endingProgress={(leader.happiness / 100)} duration={1000}
+          labelStyle={styles.bareText}
+          color={'#de0202'} label={(leader.happiness + '%')} />
+      </View>
       <View style={styles.rows}>
-        <View>
-          <Text>Working at:</Text>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
+            maxWidth: positioner.modalThird}])}>
+          <Text style={styles.bareText}>Production</Text>
+          <Text style={styles.bareText}>+50%</Text>
+        </View>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
+            maxWidth: positioner.modalThird}])}>
+          <Text style={styles.bareText}>Quality</Text>
+          <Text style={styles.bareText}>+0%</Text>
+        </View>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalThird,
+            maxWidth: positioner.modalThird}])}>
+          <Text style={styles.bareText}>Efficiency</Text>
+          <Text style={styles.bareText}>+0%</Text>
+        </View>
+      </View>
+      <View style={styles.rows}>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+            maxWidth: positioner.modalHalf}])}>
+          <Text style={styles.bareText}>Working at:</Text>
           {renderAssignedTo()}
         </View>
-        <View>
-          <Text>Living at:</Text>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+            maxWidth: positioner.modalHalf}])}>
+          <Text style={styles.bareText}>Living at:</Text>
           {renderLivingAt()}
         </View>
       </View>
