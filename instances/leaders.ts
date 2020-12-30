@@ -1,7 +1,18 @@
 import Leader from '../models/leader';
+import Equipment from '../models/equipment';
+import { equipmentTypes } from './equipment_types';
 import { utils } from '../utils';
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 
 let leadersStarting: { [id: string] : Leader } = {};
+let equipmentStarting: { [id: string] : Equipment } = {};
+
+const fourPointBangle =
+  equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE].createEquipment();
+equipmentStarting[fourPointBangle.id] = fourPointBangle;
+const simpleRobe =
+  equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE].createEquipment();
+equipmentStarting[simpleRobe.id] = simpleRobe;
 
 function startingFactory() {
   let startingLeader = new Leader({
@@ -12,8 +23,8 @@ function startingFactory() {
     speechType: 'Samannoud',
     assignedTo: null,
     livingAt: null,
-    toolEquipped: null,
-    clothingEquipped: null,
+    toolEquipped: fourPointBangle.id,
+    clothingEquipped: simpleRobe.id,
     backEquipped: null,
     eating: null,
     drinking: null,
@@ -32,4 +43,4 @@ function startingFactory() {
 
 startingFactory();
 
-export { leadersStarting }
+export { leadersStarting, equipmentStarting }

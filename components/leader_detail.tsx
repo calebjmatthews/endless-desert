@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet, ScrollView }
+  from 'react-native';
 import { styles } from '../styles';
 
 import IconComponent from './icon';
@@ -13,7 +14,11 @@ import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
+import { equipmentTypes } from '../instances/equipment_types';
+import { equipmentStarting } from '../instances/leaders';
 import { MODALS } from '../enums/modals';
+
+enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
 
 export default function LeaderDetailComponent() {
   const dispatch = useDispatch();
@@ -21,9 +26,10 @@ export default function LeaderDetailComponent() {
   const leader = modalValue;
   const buildings = useTypedSelector(state => state.buildings);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headingWrapper}>
         <BadgeComponent
           provider={leader.icon.provider}
@@ -45,6 +51,7 @@ export default function LeaderDetailComponent() {
           labelStyle={styles.bareText}
           color={'#de0202'} label={(leader.happiness + '%')} />
       </View>
+      <View style={styles.break} />
       <View style={styles.rows}>
         <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
           positioner.modalThird, maxWidth: positioner.modalThird,
@@ -65,6 +72,7 @@ export default function LeaderDetailComponent() {
           <Text>+0%</Text>
         </View>
       </View>
+      <View style={styles.break} />
       <View style={styles.rows}>
         <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
             maxWidth: positioner.modalHalf}])}>
@@ -77,7 +85,18 @@ export default function LeaderDetailComponent() {
           {renderLivingAt()}
         </View>
       </View>
-    </View>
+      <View style={styles.break} />
+      <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
+          maxWidth: positioner.modalMajor}])}>
+        <Text style={styles.bareText}>{'Equipment:'}</Text>
+        <View style={StyleSheet.flatten([styles.panelFlexColumn,
+          {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor}])}>
+          {slots.map((slot) => {
+            return renderSlot(slot);
+          })}
+        </View>
+      </View>
+    </ScrollView>
   );
 
   function renderAssignedTo() {
@@ -150,6 +169,55 @@ export default function LeaderDetailComponent() {
             {'Nowhere'}
           </Text>
         </TouchableOpacity>
+      );
+    }
+  }
+
+  function renderSlot(slot: string) {
+    let equipmentSlot = leader.toolEquipped;
+    if (slot == SLOTS.CLOTHING) { equipmentSlot = leader.clothingEquipped; }
+    else if (slot == SLOTS.BACK) { equipmentSlot = leader.backEquipped; }
+
+    if (equipmentSlot) {
+      const equipment = equipmentStarting[equipmentSlot];
+      const equipmentType = equipmentTypes[equipment.typeName];
+      return (
+        <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
+          maxWidth: positioner.modalMajor}])} key={slot}>
+          <Text style={{minWidth: 90, maxWidth: 90, textAlign: 'right'}}>
+            {slot + ':'}
+          </Text>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+            {alignSelf: 'stretch'}])} onPress={() => { }} >
+            <BadgeComponent
+              provider={equipmentType.icon.provider}
+              name={equipmentType.icon.name}
+              foregroundColor={equipmentType.foregroundColor}
+              backgroundColor={equipmentType.backgroundColor}
+              iconSize={16} />
+            <Text style={styles.buttonText}>
+              {equipmentType.name}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else {
+      return (
+        <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
+          maxWidth: positioner.modalMajor}])} key={slot}>
+          <Text style={{minWidth: 90, maxWidth: 90}}>{slot + ':'}</Text>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+            {alignSelf: 'stretch'}])} onPress={() => { }} >
+            <BadgeComponent
+              provider="FontAwesome5"
+              name="minus-circle"
+              foregroundColor="#000"
+              backgroundColor="#fff"
+              iconSize={16} />
+            <Text style={styles.buttonText}>{'Nothing'}</Text>
+          </TouchableOpacity>
+        </View>
       );
     }
   }
