@@ -21,9 +21,9 @@ Ideas:
   - Logistics research that increases building output if located next to the source of its consumption resources.
   - Logistics research that increases output if group leader lives next to where he/she is working.
   - Product quality:
-    - Products can have something akin to a critical success that produces a "quality" version of the resource.
-    - A double-critical is also possible: 110% change of quality product would = 90% chance of "quality" and 10% change of "exquisite".
-    - A "quality" product is worth 10x the value of a normal product, and has the sentence "The quality is impressive." added to the end of the description.
+    - Products can have something akin to a critical success that produces a "fine" version of the resource.
+    - A double-critical is also possible: 110% change of quality product would = 90% chance of "fine" and 10% change of "exquisite".
+    - A "fine" product is worth 10x the value of a normal product, and has the sentence "It's of fine quality." added to the end of the description.
     - An "exquisite" product is worth 100x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description.
   - Exploring requires a specific set of provisions: initially this just includes food and drink, but later can include things like rope, medicine, shovels, camels, and special clothing.
   - Rendering extracts from various materials for perfumery/other uses
@@ -51,7 +51,9 @@ Ideas:
     - Explorer offers to unusually good randomly generated expedition
     - Gain of small amount of unusual resource
     - Wanderer offers tip
-    - Natural phenomena (animal migration, plant blooming after rain, atrological event) with small knowledge gain
+    - Natural phenomena (animal migration, plant blooming after rain, atrological event) with small knowledge gain and travel notes later
+    - Exploring craftsman gives you blueprints
+    - Crafting-type leader has an inspiration for a craft, and requires specific resources to create
 
 Resource Subcategories:
   - Sand
@@ -299,3 +301,4 @@ DELETE FROM `trading_status`;
 DELETE FROM `vault`;
 DELETE FROM `accounts`;
 DELETE FROM `leaders`;
+DELETE FROM `equipment`;

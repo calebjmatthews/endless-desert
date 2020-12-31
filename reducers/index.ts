@@ -9,6 +9,7 @@ import TimersReducer from './timers';
 import TradingStatusReducer from './trading_status';
 import AccountReducer from './account';
 import LeadersReducer from './leaders';
+import EquipmentReducer from './equipment';
 import UIReducer from './ui';
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   tradingStatus: TradingStatusReducer,
   account: AccountReducer,
   leaders: LeadersReducer,
+  equipment: EquipmentReducer,
   ui: UIReducer
 });
 

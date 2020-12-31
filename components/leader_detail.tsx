@@ -15,7 +15,6 @@ import { displayModalValue } from '../actions/ui';
 import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
-import { equipmentStarting } from '../instances/leaders';
 import { MODALS } from '../enums/modals';
 
 enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
@@ -25,6 +24,7 @@ export default function LeaderDetailComponent() {
   const modalValue: Leader = useTypedSelector(state => state.ui.modalValue);
   const leader = modalValue;
   const buildings = useTypedSelector(state => state.buildings);
+  const equipment = useTypedSelector(state => state.equipment);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
@@ -179,8 +179,8 @@ export default function LeaderDetailComponent() {
     else if (slot == SLOTS.BACK) { equipmentSlot = leader.backEquipped; }
 
     if (equipmentSlot) {
-      const equipment = equipmentStarting[equipmentSlot];
-      const equipmentType = equipmentTypes[equipment.typeName];
+      const anEquipment = equipment[equipmentSlot];
+      const equipmentType = equipmentTypes[anEquipment.typeName];
       return (
         <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
           maxWidth: positioner.modalMajor}])} key={slot}>
@@ -206,7 +206,9 @@ export default function LeaderDetailComponent() {
       return (
         <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
           maxWidth: positioner.modalMajor}])} key={slot}>
-          <Text style={{minWidth: 90, maxWidth: 90}}>{slot + ':'}</Text>
+          <Text style={{minWidth: 90, maxWidth: 90, textAlign: 'right'}}>
+            {slot + ':'}
+          </Text>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
             {alignSelf: 'stretch'}])} onPress={() => { }} >
             <BadgeComponent

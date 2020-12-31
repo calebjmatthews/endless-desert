@@ -13,6 +13,7 @@ import { setTradingStatus } from '../actions/trading_status';
 import { setAccount } from '../actions/account';
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
+import { setEquipment } from '../actions/equipment';
 import { setGlobalState, addMemos } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
@@ -34,7 +35,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'timers': setTimers,
   'trading_status': setTradingStatus,
   'accounts': setAccount,
-  'leaders': setLeaders
+  'leaders': setLeaders,
+  'equipment': setEquipment
 }
 
 export default function StorageHandlerComponent() {
@@ -49,6 +51,7 @@ export default function StorageHandlerComponent() {
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const account = useTypedSelector(state => state.account);
   const leaders = useTypedSelector(state => state.leaders);
+  const equipment = useTypedSelector(state => state.equipment);
   const globalState = useTypedSelector(state => state.ui.globalState);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
@@ -155,7 +158,8 @@ export default function StorageHandlerComponent() {
         timers: timers,
         trading_status: tradingStatus,
         accounts: account,
-        leaders: leaders
+        leaders: leaders,
+        equipment: equipment
       })
     })
     .then((res) => {
