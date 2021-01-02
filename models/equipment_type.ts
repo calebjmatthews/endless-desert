@@ -6,7 +6,7 @@ export default class EquipmentType implements EquipmentTypeInterface {
   name: string = '';
   description: string = '';
   slot: string = '';
-  effects: EquipmentEffect[] = [];
+  effects: { [quality: string] : EquipmentEffect }|null = null;
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
@@ -28,7 +28,7 @@ interface EquipmentTypeInterface {
   name: string;
   description: string;
   slot: string;
-  effects: EquipmentEffect[];
+  effects: { [quality: string] : EquipmentEffect }|null;
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;

@@ -1,3 +1,6 @@
+import Equipment from './equipment';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
+
 export default class Leader implements LeaderInterface {
   id: string = '';
   name: string = '';
@@ -10,7 +13,7 @@ export default class Leader implements LeaderInterface {
   backEquipped: string|null = null;
   eating: string = '';
   drinking: string = '';
-  happiness: number = 50;
+  happiness: number = 10;
   productionPlus: number = 0;
   qualityPlus: number = 0;
   efficiencyPlus: number = 0;
@@ -22,11 +25,21 @@ export default class Leader implements LeaderInterface {
 
   constructor(leader: LeaderInterface) {
     Object.assign(this, leader);
-    this.setPluses();
   }
 
-  setPluses() {
-    this.productionPlus = this.happiness;
+  setPluses(equipment: { [id: string] : Equipment }) {
+    this.productionPlus = 100 + this.happiness;
+
+    if (this.toolEquipped) {
+      const tool = equipment[this.toolEquipped];
+      if (tool.effects) {
+        if (tool.effects[LEADER_QUALITIES.PRODUCTION]) {
+          const change = tool.effects[LEADER_QUALITIES.PRODUCTION].change;
+          this.productionPlus *= (1 + (change / 100));
+        }
+      }
+    }
+    this.productionPlus -= 100;
   }
 }
 

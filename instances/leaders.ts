@@ -28,7 +28,7 @@ function startingFactory() {
     backEquipped: null,
     eating: null,
     drinking: null,
-    happiness: 50,
+    happiness: 10,
     productionPlus: 0,
     qualityPlus: 0,
     efficiencyPlus: 0,
@@ -38,6 +38,7 @@ function startingFactory() {
     paddingVertical: 8,
     paddingHorizontal: 10
   });
+  startingLeader.setPluses(equipmentStarting);
   leadersStarting[startingLeader.id] = startingLeader;
 }
 
