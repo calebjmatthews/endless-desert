@@ -57,19 +57,19 @@ export default function LeaderDetailComponent() {
           positioner.modalThird, maxWidth: positioner.modalThird,
           flexDirection: 'column'}])}>
           <Text>Production</Text>
-          <Text>+50%</Text>
+          <Text>+{Math.round(leader.productionPlus) + '%'}</Text>
         </View>
         <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
           positioner.modalThird, maxWidth: positioner.modalThird,
           flexDirection: 'column'}])}>
           <Text>Quality</Text>
-          <Text>+0%</Text>
+          <Text>+{Math.round(leader.qualityPlus) + '%'}</Text>
         </View>
         <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
           positioner.modalThird, maxWidth: positioner.modalThird,
           flexDirection: 'column'}])}>
           <Text>Efficiency</Text>
-          <Text>+0%</Text>
+          <Text>+{Math.round(leader.efficiencyPlus) + '%'}</Text>
         </View>
       </View>
       <View style={styles.break} />
