@@ -3,5 +3,6 @@ export enum TABS {
   BUILDINGS = "Buildings",
   RESEARCH = "Research",
   TRADING = "Trading",
-  LEADERS = "Leaders"
+  LEADERS = "Leaders",
+  FORTUITY = "Fortuity"
 }

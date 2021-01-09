@@ -2,20 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { increaseResources, consumeResources, setLastTimestamp } from '../actions/vault';
+import { increaseResources, consumeResources, setLastTimestamp }
+  from '../actions/vault';
 import { setRates } from '../actions/rates';
-import { removeTimer, updateTimers } from '../actions/timers';
+import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addMessage, addMemos } from '../actions/ui';
-import { setIntroState, unlockTab } from '../actions/account';
+import { setIntroState, unlockTab, setCurrentFortuity } from '../actions/account';
 
 import Hourglass from '../models/hourglass';
+import Timer from '../models/timer';
 import Vault from '../models/vault';
 import Message from '../models/message';
 import Building from '../models/building';
+import Fortuity from '../models/fortuity';
+import Memo from '../models/memo';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
+import { fortuities } from '../instances/fortuities';1
 import { utils } from '../utils';
 import { MEMOS } from '../enums/memos';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -26,10 +31,16 @@ import { TABS } from '../enums/tabs';
 export default function HourglassComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   const rates = useTypedSelector(state => state.rates);
-  const timers = useTypedSelector(state => state.timers);
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
+  const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
+  const timers = useTypedSelector(state => state.timers);
+  const tradingStatus = useTypedSelector(state => state.tradingStatus);
+  const account = useTypedSelector(state => state.account);
   const leaders = useTypedSelector(state => state.leaders);
+  const equipment = useTypedSelector(state => state.equipment);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callCalc, setCallCalc] = useState(false);
@@ -129,6 +140,9 @@ export default function HourglassComponent() {
           else if (buildingType.name == BUILDING_TYPES.DECAYING_STUDY) {
             studyRepaired();
           }
+          else if (buildingType.name == BUILDING_TYPES.RUINED_HUTS) {
+            hutsRepaired();
+          }
         }
         if (timer.messageToDisplay) {
           dispatch(addMessage(new Message({
@@ -139,6 +153,16 @@ export default function HourglassComponent() {
             foregroundColor: timer.iconForegroundColor,
             backgroundColor: timer.iconBackgroundColor
           })));
+        }
+        if (timer.fortuityCheck) {
+          const fortuity = fortuityCheck();
+          if (fortuity) {
+            console.log('before setting fortuity');
+            dispatch(setCurrentFortuity(fortuity));
+          }
+          else {
+            console.log('reset timer');
+          }
         }
         dispatch(removeTimer(timer));
       });
@@ -160,6 +184,24 @@ export default function HourglassComponent() {
 
   return <></>;
 
+  function fortuityCheck() {
+    let fortuityPool: Fortuity[] = [];
+    Object.keys(fortuities).map((fName) => {
+      const fortuity = fortuities[fName];
+      if (fortuity.repeatable || account.fortuitiesSeen[fName] == undefined) {
+        if (fortuity.available({ vault, researchStatus, rates, buildings,
+          buildingsConstruction, researchOptionDecks, timers, tradingStatus, account, leaders, equipment })) {
+          fortuityPool.push(fortuity);
+        }
+      }
+    });
+
+    if (fortuityPool.length > 0) {
+      return utils.randomWeightedSelect(fortuityPool);
+    }
+    return null;
+  }
+
   function cisternRepaired() {
     dispatch(addMemos([memos[MEMOS.CISTERN_REPAIRED],
       memos[MEMOS.CISTERN_REPAIRED_NEXT]]));
@@ -177,6 +219,22 @@ export default function HourglassComponent() {
     dispatch(addMemos([memos[MEMOS.STUDY_REPAIRED], memos[MEMOS.STUDY_REPAIRED_NEXT]]));
     dispatch(setIntroState(INTRO_STATES.REFURBISH_HUTS));
     dispatch(unlockTab(TABS.RESEARCH));
+  }
+
+  function hutsRepaired() {
+    dispatch(setIntroState(INTRO_STATES.DONE));
+    dispatch(addTimer(new Timer({
+      name: 'Fortuity',
+      startedAt: new Date(Date.now()).valueOf(),
+      endsAt: (new Date(Date.now()).valueOf() + 10000),
+      progress: 0,
+      fortuityCheck: true,
+      remainingLabel: '',
+      messageToDisplay: null,
+      iconToDisplay: null,
+      iconForegroundColor: null,
+      iconBackgroundColor: null
+    })));
   }
 }
 

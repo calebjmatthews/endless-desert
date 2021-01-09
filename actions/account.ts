@@ -1,4 +1,5 @@
 import Account from '../models/account';
+import Fortuity from '../models/fortuity';
 
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 export function setAccount(account: Account) {
@@ -30,5 +31,13 @@ export function unlockTab(tabName: string) {
   return {
     type: UNLOCK_TAB,
     tabName: tabName
+  }
+}
+
+export const SET_CURRENT_FORTUITY = 'SET_CURRENT_FORTUITY';
+export function setCurrentFortuity(fortuity: Fortuity|null) {
+  return {
+    type: SET_CURRENT_FORTUITY,
+    fortuity: fortuity
   }
 }

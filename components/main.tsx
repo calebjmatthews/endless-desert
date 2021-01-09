@@ -8,8 +8,10 @@ import { Text, View, Button, FlatList, TouchableOpacity, ScrollView, Dimensions,
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { selectTab, setPositioner } from '../actions/ui';
-import { changeSetting } from '../actions/account';
+import { selectTab, setPositioner, addMemos } from '../actions/ui';
+import { changeSetting, setCurrentFortuity, unlockTab } from '../actions/account';
+import { addLeader } from '../actions/leaders';
+import { addEquipment } from '../actions/equipment';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -26,9 +28,14 @@ import { styles } from '../styles';
 
 import Tab from '../models/tab';
 import Positioner from '../models/positioner';
+import Memo from '../models/memo';
+import LeaderType from '../models/leader_type';
 import { tabs } from '../instances/tabs';
+import { leaderTypes } from '../instances/leader_types';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
+import { TABS } from '../enums/tabs';
+import { LEADER_TYPES } from '../enums/leader_types';
 
 const window = Dimensions.get('window');
 
@@ -61,10 +68,18 @@ export default function App() {
     return tabs[tabName];
   });
   tabsArray = tabsArray.filter((tab) => {
-    if (utils.arrayIncludes(account.tabsUnloked, tab.name) || tab.name == 'Leaders') {
+    if (utils.arrayIncludes(account.tabsUnloked, tab.name)) {
       return tab;
     }
   });
+  if (account.fortuityCurrent) {
+    tabsArray = [new Tab({
+      name: TABS.FORTUITY,
+      order: -1,
+      icon: {provider: 'FontAwesome5', name: 'exclamation-circle'},
+      settings: []
+    }), ...tabsArray];
+  }
 
   if (globalState == 'loading') {
     return (
@@ -187,7 +202,27 @@ export default function App() {
   }
 
   function dropdownPress(tabName: string) {
-    dispatch(selectTab(tabName));
+    if (tabName != TABS.FORTUITY) {
+      dispatch(selectTab(tabName));
+    }
+    else {
+      if (account.fortuityCurrent) {
+        dispatch(addMemos(account.fortuityCurrent.memos));
+        if (account.fortuityCurrent.leaderJoins) {
+          if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
+            dispatch(unlockTab(TABS.LEADERS));
+          }
+          const leaderCreateRes = leaderTypes[LEADER_TYPES.SAMANNOUD].createLeader();
+          dispatch(addLeader(leaderCreateRes.leader));
+          leaderCreateRes.equipment.map((equip) => {
+            if (equip) {
+              dispatch(addEquipment(equip));
+            }
+          });
+        }
+        dispatch(setCurrentFortuity(null));
+      }
+    }
     dropdownSet(false);
   }
 

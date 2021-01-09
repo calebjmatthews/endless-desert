@@ -2,9 +2,8 @@ import { SET_LEADERS, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING, LIVE_AT_BUI
   from '../actions/leaders';
 
 import Leader from '../models/leader';
-import { leadersStarting } from '../instances/leaders';
 
-export default function (leaders: { [id: string] : Leader } = leadersStarting,
+export default function (leaders: { [id: string] : Leader } = {},
   action: any = null) {
 	switch(action.type) {
     case SET_LEADERS:

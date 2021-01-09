@@ -54,6 +54,7 @@ Ideas:
     - Natural phenomena (animal migration, plant blooming after rain, atrological event) with small knowledge gain and travel notes later
     - Exploring craftsman gives you blueprints
     - Crafting-type leader has an inspiration for a craft, and requires specific resources to create
+  - Thief sound stealing food/water at your settlement and can either be kicked out or allowed to stay, if allowed to stay will become a trader whose merchandise you can select
 
 Resource Subcategories:
   - Sand
@@ -74,7 +75,7 @@ Resource Subcategories:
     * Rowan: Herbal
     * Walnut: Sour
     * Alder: Spicy
-    * Maple: Bitter
+    * Maple: Sweet
     * Willow: Brackish
     * Ash: Savory
     * Spruce: Cooling

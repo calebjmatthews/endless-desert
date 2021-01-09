@@ -7,3 +7,11 @@ export function setEquipment(equipment: { [ id: string ] : Equipment }) {
     equipment: equipment
   };
 }
+
+export const ADD_EQUIPMENT = 'ADD_EQUIPMENT';
+export function addEquipment(equipment: Equipment) {
+  return {
+    type: ADD_EQUIPMENT,
+    equipment: equipment
+  }
+}

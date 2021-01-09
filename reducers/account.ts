@@ -1,4 +1,4 @@
-import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB }
+import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB, SET_CURRENT_FORTUITY }
   from '../actions/account';
 
 import Account from '../models/account';
@@ -10,6 +10,8 @@ let accountStarting = new Account({
   id: 5,
   introState: INTRO_STATES.LOOK_AROUND,
   tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
+  fortuityCurrent: null,
+  fortuitiesSeen: {},
   showCompletedResearches: false
 });
 
@@ -34,6 +36,11 @@ export default function (account: Account = accountStarting,
     let newUTAccount = new Account(account);
     newUTAccount.tabsUnloked.push(action.tabName);
     return newUTAccount;
+
+    case SET_CURRENT_FORTUITY:
+    let newSCFAccount = new Account(account);
+    newSCFAccount.fortuityCurrent = action.fortuity;
+    return newSCFAccount;
 
 		default:
 		return account;
