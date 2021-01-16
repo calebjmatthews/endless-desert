@@ -41,3 +41,11 @@ export function setCurrentFortuity(fortuity: Fortuity|null) {
     fortuity: fortuity
   }
 }
+
+export const FORTUITY_SEEN = 'FORTUITY_SEEN';
+export function fortuitySeen(fortuityName: string) {
+  return {
+    type: FORTUITY_SEEN,
+    fortuityName: fortuityName
+  }
+}

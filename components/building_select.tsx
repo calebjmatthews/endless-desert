@@ -25,6 +25,7 @@ export default function BuildingSelectComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  const equipment = useTypedSelector(state => state.equipment);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
   let buildingsArray = Object.keys(buildings).map((buildingId) => {
@@ -114,7 +115,7 @@ export default function BuildingSelectComponent() {
         dispatch(liveAtBuilding(modalValue.leader, buildingSelected));
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
-        tempLeaders[modalValue.leader.id].setPluses();
+        tempLeaders[modalValue.leader.id].setPluses(equipment);
         let newRates = new Hourglass().setRates(buildings, tempLeaders);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));

@@ -9,6 +9,7 @@ export default class Fortuity implements FortuityInterface {
   repeatable: boolean = false;
   weight: number = 100;
   leaderJoins?: string;
+  gainResources?: {specificity: string, type: string, value: number}[];
 
   constructor(fortuity: FortuityInterface) {
     Object.assign(this, fortuity);
@@ -28,6 +29,7 @@ interface FortuityInterface {
   repeatable: boolean;
   weight: number;
   leaderJoins?: string;
+  gainResources?: {specificity: string, type: string, value: number}[];
 
   available(fState: FortuityState): boolean;
 }

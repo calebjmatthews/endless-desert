@@ -6,6 +6,7 @@ import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 
 export default class LeaderType implements LeaderTypeInterface {
   name: string = '';
+  title: string = '';
   description: string = '';
   speechType: string = '';
   toolStarting: string|null = null;
@@ -66,6 +67,7 @@ export default class LeaderType implements LeaderTypeInterface {
 
 interface LeaderTypeInterface {
   name: string;
+  title: string;
   description: string;
   speechType: string;
   toolStarting: string|null;

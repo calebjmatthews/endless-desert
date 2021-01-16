@@ -5,8 +5,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 Ideas:
   - Basic resources: water, reeds, clay, and sand.
-  - Foods: Grain, lentils, figs, dates, fish, bread, beer, onions, garlic, cheese, butter, spices.
-  - Animals: Oxen, hens, fish, bees, scarabs (for dye), cats.
+  - Foods: Grain, lentils, figs, dates, goards, fish, bread, beer, onions, garlic, cheese, butter, spices (coriander, cinnamon, carob, garlic, chicory).
+  - Animals: Oxen, quail, fish, bees, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
   - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, wax, and gunpowder.
   - Research system that uses lenses to break down any item into concepts, ties together concepts into a completed theory. Research categories: philosophy (general knowledge), biology (farming), zoology (ranching), anthropology (music, entertainment, culture), physics (crafting), astrology (new exploration areas), chemistry (crafting), exaltation (mysteriously enhancing humans), and mysticism (contact with beings from another plane).
@@ -59,7 +59,7 @@ Ideas:
 Resource Subcategories:
   - Sand
     * Yellow: Savory
-    * Dune: Sweet
+    * Pure: Sweet
     * Pale: Cooling
     * Volcanic: Spicy
     * Coral: Brackish
@@ -83,6 +83,19 @@ Resource Subcategories:
     * Mangrove: Fungal
     * Ebony: Earthy
     * Lignum Vitae: Airy
+  - Herbs
+    * Cinnamon: Savory
+    * Carob: Sweet
+    * Mint: Cooling
+    * Peppercorn: Spicy
+    * Salt: Brackish
+    * Coriander: Herbal
+    * Chicory: Bitter
+    * Lemongrass: Sour
+    * Saffron: Airy
+    * Truffle: Fungal
+    * Melange: Rich
+    * : Earthy
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.

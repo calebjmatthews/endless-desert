@@ -4,6 +4,7 @@ import { LEADER_QUALITIES } from '../enums/leader_qualities';
 export default class Leader implements LeaderInterface {
   id: string = '';
   name: string = '';
+  title: string = '';
   description: string = '';
   speechType: string = '';
   assignedTo: string|null = null;
@@ -46,6 +47,7 @@ export default class Leader implements LeaderInterface {
 interface LeaderInterface {
   id: string;
   name: string;
+  title: string;
   description: string;
   speechType: string;
   assignedTo: string|null;

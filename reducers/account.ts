@@ -1,5 +1,5 @@
-import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB, SET_CURRENT_FORTUITY }
-  from '../actions/account';
+import { SET_ACCOUNT, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB, SET_CURRENT_FORTUITY,
+  FORTUITY_SEEN } from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
@@ -41,6 +41,11 @@ export default function (account: Account = accountStarting,
     let newSCFAccount = new Account(account);
     newSCFAccount.fortuityCurrent = action.fortuity;
     return newSCFAccount;
+
+    case FORTUITY_SEEN:
+    let newFSAccount = new Account(account);
+    newFSAccount.fortuitiesSeen[action.fortuityName] = new Date(Date.now()).valueOf();
+    return newFSAccount;
 
 		default:
 		return account;

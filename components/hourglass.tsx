@@ -8,7 +8,8 @@ import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addMessage, addMemos } from '../actions/ui';
-import { setIntroState, unlockTab, setCurrentFortuity } from '../actions/account';
+import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen }
+  from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Timer from '../models/timer';
@@ -27,6 +28,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
+
+const FORTUITY_BASE = 10000;
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -157,11 +160,23 @@ export default function HourglassComponent() {
         if (timer.fortuityCheck) {
           const fortuity = fortuityCheck();
           if (fortuity) {
-            console.log('before setting fortuity');
             dispatch(setCurrentFortuity(fortuity));
+            dispatch(fortuitySeen(fortuity.name));
           }
           else {
-            console.log('reset timer');
+            dispatch(addTimer(new Timer({
+              name: 'Fortuity',
+              startedAt: new Date(Date.now()).valueOf(),
+              endsAt: (new Date(Date.now()).valueOf()
+                + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
+              progress: 0,
+              fortuityCheck: true,
+              remainingLabel: '',
+              messageToDisplay: null,
+              iconToDisplay: null,
+              iconForegroundColor: null,
+              iconBackgroundColor: null
+            })));
           }
         }
         dispatch(removeTimer(timer));
@@ -226,7 +241,8 @@ export default function HourglassComponent() {
     dispatch(addTimer(new Timer({
       name: 'Fortuity',
       startedAt: new Date(Date.now()).valueOf(),
-      endsAt: (new Date(Date.now()).valueOf() + 10000),
+      endsAt: (new Date(Date.now()).valueOf()
+        + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
       progress: 0,
       fortuityCheck: true,
       remainingLabel: '',

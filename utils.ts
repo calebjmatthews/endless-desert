@@ -346,6 +346,53 @@ class Utils {
       return resourceTypes[type];
     }
   }
+
+  getMatchingResourceQuantity(resReq: {specificity: string, type: string,
+    value: number}, forbiddenRT: string[] = []) {
+    let resourcePool: ResourceType[] = [];
+    if (resReq.specificity == RESOURCE_SPECIFICITY.EXACT) {
+      resourcePool = [resourceTypes[resReq.type]];
+    }
+    else {
+      Object.keys(resourceTypes).map((resourceTypeName) => {
+        const rt = resourceTypes[resourceTypeName];
+        if (rt.value) {
+          switch(resReq.specificity) {
+            case RESOURCE_SPECIFICITY.TAG:
+            if (utils.arrayIncludes(rt.tags, resReq.type)
+              && rt.value <= (resReq.value * 2)
+              && !utils.arrayIncludes(forbiddenRT, rt.name)) {
+              resourcePool.push(rt);
+            }
+            break;
+
+            case RESOURCE_SPECIFICITY.SUBCATEGORY:
+            if (rt.subcategory == resReq.type
+              && rt.value <= (resReq.value * 2)
+              && !utils.arrayIncludes(forbiddenRT, rt.name)) {
+              resourcePool.push(rt);
+            }
+            break;
+
+            case RESOURCE_SPECIFICITY.SUBCATEGORY:
+            if (rt.category == resReq.type
+              && rt.value <= (resReq.value * 2)
+              && !utils.arrayIncludes(forbiddenRT, rt.name)) {
+              resourcePool.push(rt);
+            }
+            break;
+          }
+        }
+      });
+    }
+
+    const rtSel = resourcePool[Math.floor(utils.random() * (resourcePool.length-1))];
+    let quantity = 1;
+    if (rtSel.value) {
+      quantity = Math.ceil(resReq.value / rtSel.value);
+    }
+    return { type: rtSel.name, quantity: quantity };
+  }
 }
 
 export let utils = new Utils();
