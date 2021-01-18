@@ -19,7 +19,7 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
   memos: [
     new Memo({
       name: (FORTUITIES.FAMILIAR_FIGURE + '0'),
-      title: 'Someone familiar',
+      title: 'Someone Familiar',
       text: ('Samannoud: "Yeah, I followed you all the way out here. What, did you '
         + 'think I was just going to let you run off into the desert after Dani '
         + 'and end up dead? Gods knew what you were thinking, although your '
@@ -27,10 +27,11 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
     }),
     new Memo({
       name: (FORTUITIES.FAMILIAR_FIGURE + '1'),
-      title: 'Someone familiar',
+      title: 'Someone Familiar',
       text: ('Samannoud: "From now on it\'ll be me doing the exploring, and '
         + 'you doing the reading and counting and such. '
-        + 'Less likely you\'ll get yourself killed that way."')
+        + 'Less likely you\'ll get yourself killed that way."'),
+      leaderJoined: LEADER_TYPES.SAMANNOUD
     })
   ],
   type: 'Conversation',
@@ -63,7 +64,8 @@ fortuities[FORTUITIES.DOWNCAST_FIGURE] = new Fortuity({
       title: 'A Downcast Figure',
       text: ('|name|: "Please. I can till a field, I can raise a building, '
         + 'I can help an animal to give birth. Show mercy, if you can. '
-        + 'Allow me to stay."')
+        + 'Allow me to stay."'),
+      leaderJoined: LEADER_TYPES.FOXFIRE_HERETIC
     })
   ],
   type: 'Conversation',

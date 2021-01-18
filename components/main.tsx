@@ -212,6 +212,7 @@ export default function App() {
     }
     else {
       if (account.fortuityCurrent) {
+        let memos = account.fortuityCurrent.memos.slice();
         if (account.fortuityCurrent.leaderJoins) {
           if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
             dispatch(unlockTab(TABS.LEADERS));
@@ -235,8 +236,7 @@ export default function App() {
             resourcesGained.push(rToGain);
             resourceNames.push(rToGain.type);
           }
-          console.log('resourcesGained');
-          console.log(resourcesGained);
+          memos[memos.length-1].resourcesGained = resourcesGained;
           dispatch(increaseResources(vault, resourcesGained));
         }
         dispatch(addMemos(account.fortuityCurrent.memos));
