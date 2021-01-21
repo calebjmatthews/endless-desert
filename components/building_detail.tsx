@@ -195,22 +195,43 @@ export default function BuildDetailComponent() {
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
-    if (modalDisplayed == MODALS.BUILDING_DETAIL) {
-      if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
-        dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+    let rTypePool: string[] = [];
+    switch(aCost.specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      rTypePool = [aCost.type];
+      break;
+
+      case RESOURCE_SPECIFICITY.TAG:
+      let tagPool = vault.getTagResources(aCost.type);
+      rTypePool = tagPool.map((resource) => { return resource.type; });
+      break;
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      let scPool = vault.getSubcategoryResources(aCost.type);
+      rTypePool = scPool.map((resource) => { return resource.type; });
+      break;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      let catPool = vault.getCategoryResources(aCost.type);
+      rTypePool = catPool.map((resource) => { return resource.type; });
+      break;
+    }
+
+    if (rTypePool.length == 1) {
+      dispatch(consumeResources(vault, [{type: rTypePool[0], quantity: aCost.quantity}]));
+      if (modalDisplayed == MODALS.BUILDING_DETAIL) {
         dispatch(payBuildingUpgradeCost(building, aCost, [aCost]));
       }
-      else {
+      else if (modalDisplayed == MODALS.BUILD_DETAIL) {
+        dispatch(payBuildingCost(building, aCost, [aCost]));
+      }
+    }
+    else {
+      if (modalDisplayed == MODALS.BUILDING_DETAIL) {
         dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
           {type: 'Building detail', aCost, building}));
       }
-    }
-    else if (modalDisplayed == MODALS.BUILD_DETAIL) {
-      if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
-        dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
-        dispatch(payBuildingCost(building, aCost, [aCost]));
-      }
-      else {
+      else if (modalDisplayed == MODALS.BUILD_DETAIL) {
         dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
           {type: 'Build detail', aCost, building}));
       }

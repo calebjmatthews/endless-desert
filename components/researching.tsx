@@ -137,8 +137,30 @@ export default function ResearchingComponent() {
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
-    if (aCost.specificity == RESOURCE_SPECIFICITY.EXACT) {
-      dispatch(consumeResources(vault, [{type: aCost.type, quantity: aCost.quantity}]));
+    let rTypePool: string[] = [];
+    switch(aCost.specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      rTypePool = [aCost.type];
+      break;
+
+      case RESOURCE_SPECIFICITY.TAG:
+      let tagPool = vault.getTagResources(aCost.type);
+      rTypePool = tagPool.map((resource) => { return resource.type; });
+      break;
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      let scPool = vault.getSubcategoryResources(aCost.type);
+      rTypePool = scPool.map((resource) => { return resource.type; });
+      break;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      let catPool = vault.getCategoryResources(aCost.type);
+      rTypePool = catPool.map((resource) => { return resource.type; });
+      break;
+    }
+
+    if (rTypePool.length == 1) {
+      dispatch(consumeResources(vault, [{type: rTypePool[0], quantity: aCost.quantity}]));
       afterApplyCost(aCost, optionName);
     }
     else {
