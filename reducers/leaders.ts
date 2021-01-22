@@ -1,8 +1,10 @@
 import { SET_LEADERS, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING,
-  SET_EATING, SET_DRINKING }
+  SET_EATING, SET_DRINKING, DON_EQUIPMENT }
   from '../actions/leaders';
 
 import Leader from '../models/leader';
+import { equipmentTypes } from '../instances/equipment_types';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 
 export default function (leaders: { [id: string] : Leader } = {},
   action: any = null) {
@@ -39,6 +41,22 @@ export default function (leaders: { [id: string] : Leader } = {},
     let newLABLeaders = Object.assign({}, leaders);
     newLABLeaders[action.leader.id].livingAt = action.livingAt;
     return newLABLeaders;
+
+    case DON_EQUIPMENT:
+    const equipmentType = equipmentTypes[action.equipment.typeName];
+    let newSEqLeaders = Object.assign({}, leaders);
+    if (equipmentType) {
+      if (equipmentType.slot == EQUIPMENT_SLOTS.TOOL) {
+        newSEqLeaders[action.leader.id].toolEquipped = action.equipment.id;
+      }
+      else if (equipmentType.slot == EQUIPMENT_SLOTS.CLOTHING) {
+        newSEqLeaders[action.leader.id].clothingEquipped = action.equipment.id;
+      }
+      else if (equipmentType.slot == EQUIPMENT_SLOTS.BACK) {
+        newSEqLeaders[action.leader.id].backEquipped = action.equipment.id;
+      }
+    }
+    return newSEqLeaders;
 
 		default:
 		return leaders;

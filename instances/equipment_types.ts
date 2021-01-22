@@ -29,4 +29,17 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
   backgroundColor: '#fff'
 });
 
+const laborersSatchelEffects: { [quality: string] : EquipmentEffect } = {};
+laborersSatchelEffects[LEADER_QUALITIES.PRODUCTION] =
+  new EquipmentEffect({ quality: LEADER_QUALITIES.PRODUCTION, change: 10 });
+equipmentTypes[EQUIPMENT_TYPES.LABORERS_SATCHEL] = new EquipmentType({
+  name: EQUIPMENT_TYPES.LABORERS_SATCHEL,
+  description: 'A pack filled with basic worker\'s equipment',
+  slot: EQUIPMENT_SLOTS.BACK,
+  effects: laborersSatchelEffects,
+  icon: {provider: 'FontAwesome5', name: 'toolbox'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 export { equipmentTypes };

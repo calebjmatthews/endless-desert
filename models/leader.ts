@@ -32,15 +32,24 @@ export default class Leader implements LeaderInterface {
     this.productionPlus = 100 + this.happiness;
 
     if (this.toolEquipped) {
-      const tool = equipment[this.toolEquipped];
-      if (tool.effects) {
-        if (tool.effects[LEADER_QUALITIES.PRODUCTION]) {
-          const change = tool.effects[LEADER_QUALITIES.PRODUCTION].change;
-          this.productionPlus *= (1 + (change / 100));
-        }
-      }
+      this.handleEquipment(equipment[this.toolEquipped]);
+    }
+    if (this.clothingEquipped) {
+      this.handleEquipment(equipment[this.clothingEquipped]);
+    }
+    if (this.backEquipped) {
+      this.handleEquipment(equipment[this.backEquipped]);
     }
     this.productionPlus -= 100;
+  }
+
+  handleEquipment(anEquipment: Equipment) {
+    if (anEquipment.effects) {
+      if (anEquipment.effects[LEADER_QUALITIES.PRODUCTION]) {
+        const change = anEquipment.effects[LEADER_QUALITIES.PRODUCTION].change;
+        this.productionPlus *= (1 + (change / 100));
+      }
+    }
   }
 }
 

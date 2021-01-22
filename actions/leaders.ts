@@ -1,4 +1,5 @@
 import Leader from '../models/leader';
+import Equipment from '../models/equipment';
 
 export const SET_LEADERS = 'SET_LEADERS';
 export function setLeaders(leaders: { [id: string] : Leader }) {
@@ -61,5 +62,14 @@ export function liveAtBuilding(leader: Leader, livingAt: string) {
     type: LIVE_AT_BUILDING,
     leader: leader,
     livingAt: livingAt
+  }
+}
+
+export const DON_EQUIPMENT = 'DON_EQUIPMENT';
+export function donEquipment(leader: Leader, equipment: Equipment) {
+  return {
+    type: DON_EQUIPMENT,
+    leader: leader,
+    equipment: equipment
   }
 }

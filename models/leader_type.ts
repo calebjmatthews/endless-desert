@@ -27,6 +27,7 @@ export default class LeaderType implements LeaderTypeInterface {
     let leader = new Leader({
       id: utils.randHex(16),
       name: this.name,
+      title: this.title,
       description: this.description,
       speechType: this.speechType,
       assignedTo: null,
@@ -47,20 +48,25 @@ export default class LeaderType implements LeaderTypeInterface {
       paddingHorizontal: this.paddingHorizontal
     });
     let tool: Equipment|null = null;
+    let startingEquipment: { [id: string] : Equipment } = {};
     if (this.toolStarting) {
       tool = equipmentTypes[this.toolStarting].createEquipment();
+      startingEquipment[tool.id] = tool;
       leader.toolEquipped = tool.id;
     }
     let clothing: Equipment|null = null;
     if (this.clothingStarting) {
       clothing = equipmentTypes[this.clothingStarting].createEquipment();
+      startingEquipment[clothing.id] = clothing;
       leader.clothingEquipped = clothing.id;
     }
     let back: Equipment|null = null;
     if (this.backStarting) {
       back = equipmentTypes[this.backStarting].createEquipment();
+      startingEquipment[back.id] = back;
       leader.backEquipped = back.id;
     }
+    leader.setPluses(startingEquipment);
     return { leader: leader, equipment: [tool, clothing, back] };
   }
 }

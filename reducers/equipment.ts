@@ -2,7 +2,9 @@ import { SET_EQUIPMENT, ADD_EQUIPMENT } from '../actions/equipment';
 
 import Equipment from '../models/equipment';
 
-export default function (equipment: { [id: string] : Equipment } = {},
+let startingEquipment: { [id: string] : Equipment } = {};
+
+export default function (equipment: { [id: string] : Equipment } = startingEquipment,
   action: any = null) {
 	switch(action.type) {
     case SET_EQUIPMENT:

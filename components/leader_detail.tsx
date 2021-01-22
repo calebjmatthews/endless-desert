@@ -311,7 +311,8 @@ export default function LeaderDetailComponent() {
           </Text>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
             {alignSelf: 'stretch', flexDirection: 'column',
-            alignItems: 'flex-start'}])} onPress={() => { }} >
+            alignItems: 'flex-start'}])}
+            onPress={() => { equipmentPress(slot) }} >
             <View style={styles.rows}>
               <BadgeComponent
                 provider={equipmentType.icon.provider}
@@ -337,11 +338,11 @@ export default function LeaderDetailComponent() {
           </Text>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
             {alignSelf: 'stretch', justifyContent: 'flex-start'}])}
-            onPress={() => { }} >
+            onPress={() => { equipmentPress(slot) }} >
             <BadgeComponent
               provider='FontAwesome5'
               name='minus-circle'
-              foregroundColor='#888'
+              foregroundColor='#b1b1b1'
               backgroundColor='#fff'
               iconSize={16} />
             <Text style={styles.buttonText}>{'Nothing'}</Text>
@@ -402,15 +403,8 @@ export default function LeaderDetailComponent() {
       {type: MODALS.LEADER_DETAIL, subType: LIVE_AT_BUILDING, leader: leader}));
   }
 
-  function toolPress() {
-
-  }
-
-  function clothingPress() {
-
-  }
-
-  function backPress() {
-
+  function equipmentPress(slot: string) {
+    dispatch(displayModalValue(MODALS.EQUIPMENT_SELECT, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: slot, leader: leader}));
   }
 }
