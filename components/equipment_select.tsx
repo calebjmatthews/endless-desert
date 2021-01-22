@@ -14,6 +14,7 @@ import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Equipment from '../models/equipment';
+import EquipmentType from '../models/equipment_type';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { equipmentTypes } from '../instances/equipment_types';
@@ -123,9 +124,9 @@ function EquipmentSelector(props: {anEquipment: Equipment,
   let equipmentType = equipmentTypes[props.anEquipment.typeName];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
-    <View style={StyleSheet.flatten([styles.panelTile,
-      {minWidth: props.positioner.minorWidth,
-        maxWidth: props.positioner.minorWidth}])}>
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.modalMajor,
+        maxWidth: props.positioner.modalMajor}])}>
       <BadgeComponent
         provider={equipmentType.icon.provider}
         name={equipmentType.icon.name}
@@ -134,6 +135,7 @@ function EquipmentSelector(props: {anEquipment: Equipment,
         iconSize={18} />
       <View>
         <Text style={optionTextStyle}>{equipmentType.name}</Text>
+        {renderEquipmentEffects(equipmentType)}
         {renderButton(props.anEquipment, props.equipmentSelected,
           props.setEquipmentSelected)}
       </View>
@@ -161,6 +163,33 @@ function EquipmentSelector(props: {anEquipment: Equipment,
           styles.buttonTextDark])}>{'Select'}</Text>
       </TouchableOpacity>
     );
+  }
+
+  function renderEquipmentEffects(equipmentType: EquipmentType) {
+    let effectTextStyle = {paddingLeft: 12, paddingRight: 4, fontSize: 12};
+    if (equipmentType.effects) {
+      const effectArray = Object.keys(equipmentType.effects).map((quality) => {
+        if (equipmentType.effects) {
+          return equipmentType.effects[quality];
+        }
+      });
+      return (
+        <View style={styles.columns}>
+          {effectArray.map((effect, index) => {
+            if (effect) {
+              return (
+                <View key={index}>
+                  <Text style={effectTextStyle}>
+                    {effect.quality + ' +' + effect.change + '%'}
+                  </Text>
+                </View>
+              );
+            }
+            return null;
+          })}
+        </View>
+      );
+    }
   }
 
   function equipmentIdUnSelect(setEquipmentSelected: Function) {

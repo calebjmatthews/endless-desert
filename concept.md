@@ -336,10 +336,3 @@ DELETE FROM `vault`;
 DELETE FROM `accounts`;
 DELETE FROM `leaders`;
 DELETE FROM `equipment`;
-
-Equip detail style:
-  color: #fff;
-  background: #404c7d;
-  padding: 0 5px;
-  border-radius: 2px;
-  font-size: 12px;
