@@ -186,40 +186,76 @@ export default function LeaderDetailComponent() {
   }
 
   function renderAssignedTo() {
-    if (leader.assignedTo) {
+    let buttonObj: any = {
+      iconProvider: 'MaterialCommunityIcons',
+      iconName: 'sleep',
+      iconForegroundColor: '#000',
+      iconBackgroundColor: '#fff',
+      text: 'Resting',
+      style: styles.buttonRowItem,
+      disabled: false
+    };
+    if (!leader.eating) {
+      buttonObj = {
+        iconProvider: 'FontAwesome5',
+        iconName: 'paw',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Scavenging',
+        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+        disabled: true
+      };
+    }
+    else if (!leader.drinking) {
+      buttonObj = {
+        iconProvider: 'MaterialCommunityIcons',
+        iconName: 'water-off',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Scavenging',
+        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+        disabled: true
+      };
+    }
+    else if (!leader.livingAt) {
+      buttonObj = {
+        iconProvider: 'MaterialCommunityIcons',
+        iconName: 'tent',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Camping',
+        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+        disabled: true
+      };
+    }
+    else if (leader.assignedTo) {
       const building = buildings[leader.assignedTo];
       const buildingType = buildingTypes[building.buildingType];
-      return (
-        <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { assignedToPress() }} >
-          <BadgeComponent
-            provider={buildingType.icon.provider}
-            name={buildingType.icon.name}
-            foregroundColor={buildingType.foregroundColor}
-            backgroundColor={buildingType.backgroundColor}
-            iconSize={16} />
-          <Text style={styles.buttonText}>
-            {buildingType.name}
-          </Text>
-        </TouchableOpacity>
-      );
+      buttonObj = {
+        iconProvider: buildingType.icon.provider,
+        iconName: buildingType.icon.name,
+        iconForegroundColor: buildingType.foregroundColor,
+        iconBackgroundColor: buildingType.backgroundColor,
+        text: buildingType.name,
+        style: styles.buttonRowItem,
+        disabled: false
+      };
     }
-    else {
-      return (
-        <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { assignedToPress() }} >
-          <BadgeComponent
-            provider='MaterialCommunityIcons'
-            name='sleep'
-            foregroundColor='#000'
-            backgroundColor='#fff'
-            iconSize={16} />
-          <Text style={styles.buttonText}>
-            {'Resting'}
-          </Text>
-        </TouchableOpacity>
-      );
-    }
+
+    return (
+      <TouchableOpacity style={buttonObj.style}
+        onPress={() => { assignedToPress() }} disabled={buttonObj.disabled} >
+        <BadgeComponent
+          provider={buttonObj.iconProvider}
+          name={buttonObj.iconName}
+          foregroundColor={buttonObj.iconForegroundColor}
+          backgroundColor={buttonObj.iconBackgroundColor}
+          iconSize={16} />
+        <Text style={styles.buttonText}>
+          {buttonObj.text}
+        </Text>
+      </TouchableOpacity>
+    );
   }
 
   function renderLivingAt() {
