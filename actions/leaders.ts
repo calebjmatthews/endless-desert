@@ -28,6 +28,24 @@ export function removeLeader(leader: Leader) {
   }
 }
 
+export const SET_EATING = 'SET_EATING';
+export function setEating(leader: Leader, resourceName: string) {
+  return {
+    type: SET_EATING,
+    leader: leader,
+    resourceName: resourceName
+  }
+}
+
+export const SET_DRINKING = 'SET_DRINKING';
+export function setDrinking(leader: Leader, resourceName: string) {
+  return {
+    type: SET_DRINKING,
+    leader: leader,
+    resourceName: resourceName
+  }
+}
+
 export const ASSIGN_TO_BUILDING = 'ASSIGN_TO_BUILDING';
 export function assignToBuilding(leader: Leader, assignedTo: string) {
   return {

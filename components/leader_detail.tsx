@@ -9,12 +9,14 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import ProgressBarComponent from '../components/progress_bar';
-import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
+import { SET_EATING, SET_DRINKING, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
+  from '../actions/leaders';
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
+import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 
 enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
@@ -76,13 +78,25 @@ export default function LeaderDetailComponent() {
       <View style={styles.rows}>
         <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
             maxWidth: positioner.modalHalf}])}>
-          <Text style={styles.bareText}>Working at:</Text>
-          {renderAssignedTo()}
+          <Text style={styles.bareText}>Eating:</Text>
+          {renderEating()}
         </View>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+            maxWidth: positioner.modalHalf}])}>
+          <Text style={styles.bareText}>Drinking:</Text>
+          {renderDrinking()}
+        </View>
+      </View>
+      <View style={styles.rows}>
         <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
             maxWidth: positioner.modalHalf}])}>
           <Text style={styles.bareText}>Living at:</Text>
           {renderLivingAt()}
+        </View>
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+            maxWidth: positioner.modalHalf}])}>
+          <Text style={styles.bareText}>Working at:</Text>
+          {renderAssignedTo()}
         </View>
       </View>
       <View style={styles.break} />
@@ -98,6 +112,78 @@ export default function LeaderDetailComponent() {
       </View>
     </ScrollView>
   );
+
+  function renderEating() {
+    if (leader.eating) {
+      let resourceType = resourceTypes[leader.eating];
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { eatingPress() }} >
+          <BadgeComponent
+            provider={resourceType.icon.provider}
+            name={resourceType.icon.name}
+            foregroundColor={resourceType.foregroundColor}
+            backgroundColor={resourceType.backgroundColor}
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {resourceType.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    else {
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { eatingPress() }} >
+          <BadgeComponent
+            provider='FontAwesome5'
+            name='paw'
+            foregroundColor='#000'
+            backgroundColor='#fff'
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {'Scavenging'}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+  }
+
+  function renderDrinking() {
+    if (leader.drinking) {
+      let resourceType = resourceTypes[leader.drinking];
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { drinkingPress() }} >
+          <BadgeComponent
+            provider={resourceType.icon.provider}
+            name={resourceType.icon.name}
+            foregroundColor={resourceType.foregroundColor}
+            backgroundColor={resourceType.backgroundColor}
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {resourceType.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    else {
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => { drinkingPress() }} >
+          <BadgeComponent
+            provider='MaterialCommunityIcons'
+            name='water-off'
+            foregroundColor='#000'
+            backgroundColor='#fff'
+            iconSize={16} />
+          <Text style={styles.buttonText}>
+            {'Scavenging'}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+  }
 
   function renderAssignedTo() {
     if (leader.assignedTo) {
@@ -222,6 +308,16 @@ export default function LeaderDetailComponent() {
         </View>
       );
     }
+  }
+
+  function eatingPress() {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: SET_EATING, leader: leader}));
+  }
+
+  function drinkingPress() {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: SET_DRINKING, leader: leader}));
   }
 
   function assignedToPress() {

@@ -12,8 +12,8 @@ export default class Leader implements LeaderInterface {
   toolEquipped: string|null = null;
   clothingEquipped: string|null = null;
   backEquipped: string|null = null;
-  eating: string = '';
-  drinking: string = '';
+  eating: string|null = null;
+  drinking: string|null = null;
   happiness: number = 10;
   productionPlus: number = 0;
   qualityPlus: number = 0;

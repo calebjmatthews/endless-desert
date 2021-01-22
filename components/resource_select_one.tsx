@@ -13,6 +13,7 @@ import { consumeResources, increaseResources } from '../actions/vault';
 import { studyResource } from '../actions/research_status';
 import { completeTrade } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
+import { SET_EATING, setEating, SET_DRINKING, setDrinking } from '../actions/leaders';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
@@ -24,6 +25,8 @@ import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCHES } from '../enums/researches';
+import { MODALS } from '../enums/modals';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 
 export default function ResourceSelectOneComponent() {
   const [quantitySelected, setQuantitySelected] = useState('1');
@@ -168,6 +171,15 @@ export default function ResourceSelectOneComponent() {
       case 'Trading':
       actionTrading();
       break;
+
+      case MODALS.LEADER_DETAIL:
+      if (modalValue.subType == SET_EATING) {
+        actionSetEating();
+      }
+      else if (modalValue.subType == SET_DRINKING) {
+        actionSetDrinking();
+      }
+      break;
     }
   }
 
@@ -250,6 +262,20 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
+  function actionSetEating() {
+    if (resourceSelected != null) {
+      dispatch(setEating(modalValue.leader, resourceSelected));
+      dispatch(displayModalValue(null, 'closed', null));
+    }
+  }
+
+  function actionSetDrinking() {
+    if (resourceSelected != null) {
+      dispatch(setDrinking(modalValue.leader, resourceSelected));
+      dispatch(displayModalValue(null, 'closed', null));
+    }
+  }
+
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
@@ -273,6 +299,14 @@ export default function ResourceSelectOneComponent() {
 
         case RESOURCE_SPECIFICITY.CATEGORY:
         return vault.getCategoryResources(trade.receive.type);
+      }
+
+      case MODALS.LEADER_DETAIL:
+      if (modalValue.subType == SET_EATING) {
+        return vault.getTagResources(RESOURCE_TAGS.FOOD);
+      }
+      else if (modalValue.subType == SET_DRINKING) {
+        return vault.getTagResources(RESOURCE_TAGS.DRINK);
       }
 
       default:
