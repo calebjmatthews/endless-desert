@@ -40,7 +40,7 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
 import { LEADER_TYPES } from '../enums/leader_types';
 
-const FORTUITY_BASE = 10000;
+const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
 
 export default function App() {

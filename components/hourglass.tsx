@@ -66,11 +66,17 @@ export default function HourglassComponent() {
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
         const results = hourglass.calculate(rates, vault.lastTimestamp);
-        let resourceDiffs: {type: string, quantity: number}[] = [];
+        let productionDiffs: {type: string, quantity: number}[] = [];
         Object.keys(results.productionSum).map((type) => {
-          resourceDiffs.push({type: type, quantity: results.productionSum[type]});
+          productionDiffs.push({type: type, quantity: results.productionSum[type]});
         });
-        rti = resourceDiffs;
+        rti = productionDiffs;
+        let consumptionDiffs: {type: string, quantity: number}[] = [];
+        Object.keys(results.consumptionSum).map((type) => {
+          consumptionDiffs.push({type: type,
+            quantity: (results.consumptionSum[type] * -1)});
+        });
+        rtc = consumptionDiffs;
       }
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);

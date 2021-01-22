@@ -53,6 +53,8 @@ export default class Hourglass {
       { [resourceName: string] : number } } = {};
     let bGroupRates: { [typeName: string] :
       { [resourceName: string] : number } } = {};
+    let leaderRates: { [leaderId: string] :
+      { [resourceName: string] : number } } = {};
 
     const multiBT = getMultiBT(buildings);
     const buildingLeaders = getBuildingLeaders(buildings, leaders);
@@ -91,6 +93,20 @@ export default class Hourglass {
             mapAdd(netRates, consumption.type, (consumption.quantity * -1));
           });
         }
+      }
+    });
+
+    Object.keys(leaders).map((id) => {
+      const leader = leaders[id];
+      if (leader.eating) {
+        mapAdd(consumptionRates, leader.eating, 10);
+        mapAdd(leaderRates[id], leader.eating, -10);
+        mapAdd(netRates, leader.eating, -10);
+      }
+      if (leader.drinking) {
+        mapAdd(consumptionRates, leader.drinking, 10);
+        mapAdd(leaderRates[id], leader.drinking, -10);
+        mapAdd(netRates, leader.drinking, -10);
       }
     });
 

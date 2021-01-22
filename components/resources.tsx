@@ -47,11 +47,11 @@ function ResourceDescription(props: any) {
   let rate = props.rates.netRates[props.resource.item.type]
   if (props.rates.netRates[props.resource.item.type]) {
     let sign = '+';
-    if (rate < 0) { sign = '-'; }
+    if (rate < 0) { sign = ''; }
     rate = (sign + (Math.round(rate)) + '/m');
   }
   else {
-    rate = '-';
+    rate = '';
   }
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
