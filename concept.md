@@ -55,6 +55,8 @@ Ideas:
     - Exploring craftsman gives you blueprints
     - Crafting-type leader has an inspiration for a craft, and requires specific resources to create
   - Thief sound stealing food/water at your settlement and can either be kicked out or allowed to stay, if allowed to stay will become a trader whose merchandise you can select
+  - Building that refines sand into pure sand+subcategory resource
+  - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
 
 Resource Subcategories:
   - Sand
@@ -102,42 +104,60 @@ Where is the bottleneck?
   - It should be relatively easy to sustain an existing settlement, and easy to expand by adding buildings, but without much value to be gained by stockpiling huge numbers of basic resources. Adding new groups should be difficult, and trading should have relatively low maximum numbers of resources, so the player cannot succeed by trading huge quantities of sand, for example.
   - Advanced products should require a mix of intermediate resources that come from the town and resources that have to be traded for.
 
+Broad gameplay tiers
+  - Beginning: Should happen with almost non-existent wait times
+    * Repair Cistern, Lentil Field, Study, and Huts
+    * Samannoud joins
+    * One other leader joins fortuitously
+    * Research Scholarship, Study, Biology, Lentil Farming, Anthropology, Trading
+    * Three trading partners for early resources
+    * Costs are Knowledge, Water, Lentils, Seeds
+  - Early: Low knowledge requirements require occational analysing, costs sometimes require resources from trading
+    * Research Simplified Lentil Farming, Reed Cultivation, Grain Farming, Olive Farming, Quail Husbandry, Physics, Clay Excavation, Sand Excavation, Compaction, Chemistry, Dehydration, Combustion, Cooking, Basic Education
+    * Three more leaders: one from a trading partner, one random, one from research
+    * One more trading partner from fortuity (after Basic Education)
+    * Costs now include Sand, Clay, Reeds, Wood
+  - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting and more advanced trading
+    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Bountiful Lentil Farming, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
+    * Six more leaders: two from trading partners, one random, one from research, two from exploration
+    * Two more trading partners, both from exploration
+    * Six exploration areas, one initial, four from researches, one from previous exploration
+    * Costs now include Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
+
 Researches (see spredsheet):
 - Start with:
-  - Philosophy
-    - Analysis
-    - Biology
-      - Lentil Farming
-      - Reed Trenching
-    - Physics
-      - Hut Construction
-      - Cistern Water Storage
-      - Clay Digging
-- Philosophy
-  - Analysis: Break down new item to gain knowledge
+  - Analysis
   - Biology
-    - Lentil Farming: Upgrades simplify, then lower water usage and increase production
-      - Simplified Lentil Farming
-    - Reed Growth: Begins simplified, further upgrades lower water usage and dramatically increase production
-    - Grain
-  - Zoology
-  - Anthropology
-    - Music
-    - Theatre
-    - Festivals
+    - Lentil Farming
+    - Reed Trenching
   - Physics
-    - Basic Construction
-    - Water Storage
-    - Clay Excavation
-    - Sand Excavation
-    - Water Condensation
-  - Chemistry
-    - Cooking
-    - Clay Seals: Decreased water usage when cooking
-  - Astrology
-  - Exaltation
-    - Questline around magic lamp with Djinn inside
-  - Mysticism
+    - Hut Construction
+    - Cistern Water Storage
+    - Clay Digging
+- Analysis: Break down new item to gain knowledge
+- Biology
+  - Lentil Farming: Upgrades simplify, then lower water usage and increase production
+    - Simplified Lentil Farming
+  - Reed Growth: Begins simplified, further upgrades lower water usage and dramatically increase production
+  - Grain
+- Zoology
+- Anthropology
+  - Music
+  - Theatre
+  - Festivals
+- Physics
+  - Basic Construction
+  - Water Storage
+  - Clay Excavation
+  - Sand Excavation
+  - Water Condensation
+- Chemistry
+  - Cooking
+  - Clay Seals: Decreased water usage when cooking
+- Astrology
+- Exaltation
+  - Questline around magic lamp with Djinn inside
+- Mysticism
 
 Research options:
   - Scholarship:
@@ -316,3 +336,10 @@ DELETE FROM `vault`;
 DELETE FROM `accounts`;
 DELETE FROM `leaders`;
 DELETE FROM `equipment`;
+
+Equip detail style:
+  color: #fff;
+  background: #404c7d;
+  padding: 0 5px;
+  border-radius: 2px;
+  font-size: 12px;

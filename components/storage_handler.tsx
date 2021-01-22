@@ -71,7 +71,7 @@ export default function StorageHandlerComponent() {
     return fetch(STORAGE_URL + account.id)
     .then((dataRes) => {
       if (dataRes) {
-        return dataRes.json()
+        return dataRes.json();
       }
       return false;
     })
@@ -110,7 +110,8 @@ export default function StorageHandlerComponent() {
         dispatch(setRates(newRates));
         return true;
       }
-      catch {
+      catch(err) {
+        console.log(err);
         return false;
       }
       return false;

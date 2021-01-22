@@ -266,6 +266,16 @@ export const styles = StyleSheet.create({
     borderColor: '#071f56',
     borderRadius: 2
   },
+  buttonRowDetail: {
+    paddingHorizontal: 5,
+    marginLeft: 10,
+    backgroundColor: '#404c7d',
+    borderRadius: 2
+  },
+  buttonRowDetailText: {
+    fontSize: 12,
+    color: '#fff'
+  },
   buttonTextRow: {
     display: 'flex',
     flexDirection: 'row',

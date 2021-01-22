@@ -310,16 +310,20 @@ export default function LeaderDetailComponent() {
             {slot + ':'}
           </Text>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-            {alignSelf: 'stretch'}])} onPress={() => { }} >
-            <BadgeComponent
-              provider={equipmentType.icon.provider}
-              name={equipmentType.icon.name}
-              foregroundColor={equipmentType.foregroundColor}
-              backgroundColor={equipmentType.backgroundColor}
-              iconSize={16} />
-            <Text style={styles.buttonText}>
-              {equipmentType.name}
-            </Text>
+            {alignSelf: 'stretch', flexDirection: 'column',
+            alignItems: 'flex-start'}])} onPress={() => { }} >
+            <View style={styles.rows}>
+              <BadgeComponent
+                provider={equipmentType.icon.provider}
+                name={equipmentType.icon.name}
+                foregroundColor={equipmentType.foregroundColor}
+                backgroundColor={equipmentType.backgroundColor}
+                iconSize={16} />
+              <Text style={styles.buttonText}>
+                {equipmentType.name}
+              </Text>
+            </View>
+            {renderEquipmentEffects(equipmentSlot)}
           </TouchableOpacity>
         </View>
       );
@@ -332,18 +336,50 @@ export default function LeaderDetailComponent() {
             {slot + ':'}
           </Text>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-            {alignSelf: 'stretch'}])} onPress={() => { }} >
+            {alignSelf: 'stretch', justifyContent: 'flex-start'}])}
+            onPress={() => { }} >
             <BadgeComponent
-              provider="FontAwesome5"
-              name="minus-circle"
-              foregroundColor="#000"
-              backgroundColor="#fff"
+              provider='FontAwesome5'
+              name='minus-circle'
+              foregroundColor='#888'
+              backgroundColor='#fff'
               iconSize={16} />
             <Text style={styles.buttonText}>{'Nothing'}</Text>
           </TouchableOpacity>
         </View>
       );
     }
+  }
+
+  function renderEquipmentEffects(equipmentSlot: string) {
+    if (equipmentSlot) {
+      const anEquipment = equipment[equipmentSlot];
+      const equipmentType = equipmentTypes[anEquipment.typeName];
+      if (equipmentType.effects) {
+        const effectArray = Object.keys(equipmentType.effects).map((quality) => {
+          if (equipmentType.effects) {
+            return equipmentType.effects[quality];
+          }
+        });
+        return (
+          <View style={styles.columns}>
+            {effectArray.map((effect, index) => {
+              if (effect) {
+                return (
+                  <View key={index} style={styles.buttonRowDetail}>
+                    <Text style={styles.buttonRowDetailText}>
+                      {effect.quality + ' +' + effect.change + '%'}
+                    </Text>
+                  </View>
+                );
+              }
+              return null;
+            })}
+          </View>
+        );
+      }
+    }
+    return null;
   }
 
   function eatingPress() {
@@ -364,5 +400,17 @@ export default function LeaderDetailComponent() {
   function livingAtPress() {
     dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
       {type: MODALS.LEADER_DETAIL, subType: LIVE_AT_BUILDING, leader: leader}));
+  }
+
+  function toolPress() {
+
+  }
+
+  function clothingPress() {
+
+  }
+
+  function backPress() {
+
   }
 }

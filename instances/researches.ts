@@ -85,7 +85,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 20
+  knowledgeReq: 0
 });
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
