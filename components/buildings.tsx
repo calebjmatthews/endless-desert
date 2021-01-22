@@ -244,7 +244,7 @@ function BuildingDescription(props: any) {
     }
     return (
       <View key={resourceName} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
-        <Text>{sign + rate}</Text>
+        <Text>{sign + utils.formatNumberShort(rate)}</Text>
         <BadgeComponent
           provider={resource.icon.provider}
           name={resource.icon.name}
