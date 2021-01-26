@@ -31,7 +31,7 @@ export default function LeaderDetailComponent() {
   const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
         <BadgeComponent
           provider={leader.icon.provider}
@@ -41,76 +41,79 @@ export default function LeaderDetailComponent() {
           iconSize={24} />
         <Text style={styles.heading1}>{leader.name}</Text>
       </View>
-      <View style={StyleSheet.flatten([styles.descriptionBand,
-        {minWidth: positioner.modalWidth,
-          maxWidth: positioner.modalWidth}])}>
-        <Text style={styles.descriptionBandText}>{leader.description}</Text>
-      </View>
-      <View style={{width: (positioner.modalWidth - 40)}}>
-        <Text style={styles.bareText}>Happiness:</Text>
-        <ProgressBarComponent startingProgress={0}
-          endingProgress={(leader.happiness / 100)} duration={1000}
-          labelStyle={styles.bareText}
-          color={'#de0202'} label={(leader.happiness + '%')} />
-      </View>
-      <View style={styles.break} />
-      <View style={styles.rows}>
-        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-          positioner.modalThird, maxWidth: positioner.modalThird,
-          flexDirection: 'column'}])}>
-          <Text>Production</Text>
-          <Text>+{Math.round(leader.productionPlus) + '%'}</Text>
+      <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
+        <View style={StyleSheet.flatten([styles.descriptionBand,
+          {minWidth: positioner.modalWidth,
+            maxWidth: positioner.modalWidth}])}>
+          <Text style={styles.descriptionBandText}>{leader.description}</Text>
         </View>
-        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-          positioner.modalThird, maxWidth: positioner.modalThird,
-          flexDirection: 'column'}])}>
-          <Text>Quality</Text>
-          <Text>+{Math.round(leader.qualityPlus) + '%'}</Text>
+        <View style={{width: (positioner.modalWidth - 40)}}>
+          <Text style={styles.bareText}>Happiness:</Text>
+          <ProgressBarComponent startingProgress={0}
+            endingProgress={(leader.happiness / 100)} duration={1000}
+            labelStyle={styles.bareText}
+            color={'#de0202'} label={(leader.happiness + '%')} />
         </View>
-        <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-          positioner.modalThird, maxWidth: positioner.modalThird,
-          flexDirection: 'column'}])}>
-          <Text>Efficiency</Text>
-          <Text>+{Math.round(leader.efficiencyPlus) + '%'}</Text>
+        <View style={styles.break} />
+        <View style={styles.rows}>
+          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+            positioner.modalThird, maxWidth: positioner.modalThird,
+            flexDirection: 'column'}])}>
+            <Text>Production</Text>
+            <Text>+{Math.round(leader.productionPlus) + '%'}</Text>
+          </View>
+          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+            positioner.modalThird, maxWidth: positioner.modalThird,
+            flexDirection: 'column'}])}>
+            <Text>Quality</Text>
+            <Text>+{Math.round(leader.qualityPlus) + '%'}</Text>
+          </View>
+          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
+            positioner.modalThird, maxWidth: positioner.modalThird,
+            flexDirection: 'column'}])}>
+            <Text>Efficiency</Text>
+            <Text>+{Math.round(leader.efficiencyPlus) + '%'}</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.break} />
-      <View style={styles.rows}>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
-            maxWidth: positioner.modalHalf}])}>
-          <Text style={styles.bareText}>Eating:</Text>
-          {renderEating()}
+        <View style={styles.break} />
+        <View style={styles.rows}>
+          <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+              maxWidth: positioner.modalHalf}])}>
+            <Text style={styles.bareText}>Eating:</Text>
+            {renderEating()}
+          </View>
+          <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+              maxWidth: positioner.modalHalf}])}>
+            <Text style={styles.bareText}>Drinking:</Text>
+            {renderDrinking()}
+          </View>
         </View>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
-            maxWidth: positioner.modalHalf}])}>
-          <Text style={styles.bareText}>Drinking:</Text>
-          {renderDrinking()}
+        <View style={styles.rows}>
+          <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+              maxWidth: positioner.modalHalf}])}>
+            <Text style={styles.bareText}>Living at:</Text>
+            {renderLivingAt()}
+          </View>
+          <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
+              maxWidth: positioner.modalHalf}])}>
+            <Text style={styles.bareText}>Working at:</Text>
+            {renderAssignedTo()}
+          </View>
         </View>
-      </View>
-      <View style={styles.rows}>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
-            maxWidth: positioner.modalHalf}])}>
-          <Text style={styles.bareText}>Living at:</Text>
-          {renderLivingAt()}
+        <View style={styles.break} />
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}])}>
+          <Text style={styles.bareText}>{'Equipment:'}</Text>
+          <View style={StyleSheet.flatten([styles.panelFlexColumn,
+            {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor}])}>
+            {slots.map((slot) => {
+              return renderSlot(slot);
+            })}
+          </View>
         </View>
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
-            maxWidth: positioner.modalHalf}])}>
-          <Text style={styles.bareText}>Working at:</Text>
-          {renderAssignedTo()}
-        </View>
-      </View>
-      <View style={styles.break} />
-      <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
-          maxWidth: positioner.modalMajor}])}>
-        <Text style={styles.bareText}>{'Equipment:'}</Text>
-        <View style={StyleSheet.flatten([styles.panelFlexColumn,
-          {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor}])}>
-          {slots.map((slot) => {
-            return renderSlot(slot);
-          })}
-        </View>
-      </View>
-    </ScrollView>
+
+      </ScrollView>
+    </View>
   );
 
   function renderEating() {

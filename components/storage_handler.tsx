@@ -24,8 +24,8 @@ import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 
 const SAVE_INTERVAL = 60000;
-// const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
-const STORAGE_URL = 'http://localhost:8080/api/storage/'
+const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
+// const STORAGE_URL = 'http://localhost:8080/api/storage/'
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,

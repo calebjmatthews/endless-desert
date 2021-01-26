@@ -43,7 +43,7 @@ import { LEADER_TYPES } from '../enums/leader_types';
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
 
-export default function App() {
+export default function MainComponent() {
   const dispatch = useDispatch();
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
   const globalState = useTypedSelector(state => state.ui.globalState);
@@ -95,10 +95,7 @@ export default function App() {
         <StatusBar style="auto" />
         <View style={styles.statusBarSpacer}></View>
         <View style={styles.scrollWrapper}>
-          <ScrollView contentContainerStyle={{flexGrow: 1,
-            height: positioner.bodyHeight}}>
-            <Text style={styles.bareText}>{'Loading...'}</Text>
-          </ScrollView>
+          <Text style={styles.bareText}>{'Loading...'}</Text>
         </View>
       </LinearGradient>
     );
@@ -119,10 +116,9 @@ export default function App() {
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
-        <ScrollView contentContainerStyle={{flexGrow: 1,
-          height: positioner.bodyHeight}}>
+        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
           {renderTab(tabSelected)}
-        </ScrollView>
+        </View>
       </View>
       <MessageBarComponent />
       <View style={styles.buttonTabWrapper}>

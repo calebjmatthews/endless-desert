@@ -210,19 +210,19 @@ export const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontSize: 14,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    fontFamily: 'normal',
     color: '#fff'
   },
   buttonTextLarge: {
     textAlign: 'center',
     fontSize: 16,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    fontFamily: 'normal',
     color: '#fff'
   },
   buttonTextSmall: {
     textAlign: 'center',
     fontSize: 12,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    fontFamily: 'normal',
     color: '#fff'
   },
   buttonTextDark: {
@@ -304,6 +304,7 @@ export const styles = StyleSheet.create({
     height: '100%'
   },
   modalBackground: {
+    zIndex: 99,
     position: 'absolute',
     opacity: 0.5,
     top: 0,
@@ -313,6 +314,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   modal: {
+    zIndex: 100,
     minWidth: 300,
     maxWidth: 300,
     minHeight: '40%',
@@ -321,6 +323,12 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#fff',
     borderRadius: 2
+  },
+  modalContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%'
   },
   emphasis: {
     fontStyle: 'italic'

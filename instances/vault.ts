@@ -33,5 +33,9 @@ vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.CLAY_RED,
   quantity: 17
 }));
+vaultStarting.increaseResource(new Resource({
+  type: RESOURCE_TYPES.BRICKS_RED,
+  quantity: 4
+}));
 
 export { vaultStarting };
