@@ -210,19 +210,19 @@ export const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     fontSize: 14,
-    fontFamily: 'normal',
+    fontFamily: 'sans-serif',
     color: '#fff'
   },
   buttonTextLarge: {
     textAlign: 'center',
     fontSize: 16,
-    fontFamily: 'normal',
+    fontFamily: 'sans-serif',
     color: '#fff'
   },
   buttonTextSmall: {
     textAlign: 'center',
     fontSize: 12,
-    fontFamily: 'normal',
+    fontFamily: 'sans-serif',
     color: '#fff'
   },
   buttonTextDark: {

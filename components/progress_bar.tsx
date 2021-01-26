@@ -43,12 +43,12 @@ function Bar(props: BarProps) {
   }, [props]);
 
   const widthAnim = useRef(new Animated
-    .Value(barProps.startingProgress * MAX_WIDTH)).current;
+    .Value(barProps.startingProgress)).current;
 
   useEffect(() => {
     Animated.timing(
       widthAnim, {
-        toValue: (barProps.endingProgress * MAX_WIDTH),
+        toValue: (barProps.endingProgress),
         duration: barProps.duration,
         useNativeDriver: true }
     ).start();
@@ -59,7 +59,8 @@ function Bar(props: BarProps) {
 
   return (
     <Animated.View style={{...StyleSheet.flatten([styles.progressBar]),
-      width: widthAnim, backgroundColor: color}} />
+      width: MAX_WIDTH, backgroundColor: color,
+      transform: [{ scaleX: widthAnim }] }} />
   );
 }
 
