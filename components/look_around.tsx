@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, TouchableOpacity, ScrollView, StyleSheet }
-  from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';
@@ -31,7 +30,7 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>
-        <ScrollView contentContainerStyle={{display: 'flex', justifyContent: 'center',
+        <View style={{display: 'flex', justifyContent: 'center',
           alignItems: 'center', flexGrow: 1, height: props.height}}>
           <View style={StyleSheet.flatten([styles.panelFlexColumn,
             {minWidth: props.panelWidth, maxWidth: props.panelWidth}])}>
@@ -41,7 +40,7 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
             <View style={styles.break} />
             {renderButtonBar()}
           </View>
-        </ScrollView>
+        </View>
       </View>
     </LinearGradient>
   );
