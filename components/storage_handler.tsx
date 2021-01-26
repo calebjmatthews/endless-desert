@@ -24,8 +24,8 @@ import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 
 const SAVE_INTERVAL = 60000;
-const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
-// const STORAGE_URL = 'http://localhost:8080/api/storage/'
+// const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
+const STORAGE_URL = 'http://localhost:8080/api/storage/'
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,
@@ -135,6 +135,8 @@ export default function StorageHandlerComponent() {
       setCallSave(true);
       setLastTimestamp(new Date(Date.now()).valueOf());
     }, SAVE_INTERVAL);
+
+    return () => { clearTimeout(timeout); }
   }, [lastTimestamp]);
 
   useEffect(() => {

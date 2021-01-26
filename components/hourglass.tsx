@@ -53,6 +53,8 @@ export default function HourglassComponent() {
       setCallCalc(true);
       setLocalTimestamp(new Date(Date.now()).valueOf());
     }, 100);
+
+    return () => { clearTimeout(timeout); }
   }, [localTimestamp]);
 
   useEffect(() => {

@@ -68,10 +68,12 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
 
   function lookAround() {
     setLooking(true);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       dispatch(addMemos([memos[MEMOS.LOOK_AROUND], memos[MEMOS.LOOK_AROUND_LOOT],
         memos[MEMOS.LOOK_AROUND_REPAIR]]));
       dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
     }, 3000);
+
+    return () => { clearTimeout(timeout); }
   }
 }
