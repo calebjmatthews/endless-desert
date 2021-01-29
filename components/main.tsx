@@ -26,6 +26,7 @@ import IconComponent from '../components/icon';
 import StorageHandlerComponent from '../components/storage_handler';
 import LookAroundComponent from '../components/look_around';
 import LeadersComponent from '../components/leaders';
+import LandingComponent from '../components/landing';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -99,6 +100,11 @@ export default function MainComponent() {
         </View>
       </LinearGradient>
     );
+  }
+
+  else if (globalState == 'landing') {
+    return <LandingComponent height={positioner.bodyHeight}
+      panelWidth={positioner.majorWidth} />
   }
 
   else if (account.introState == INTRO_STATES.LOOK_AROUND) {

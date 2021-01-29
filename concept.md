@@ -336,3 +336,15 @@ DELETE FROM `vault`;
 DELETE FROM `accounts`;
 DELETE FROM `leaders`;
 DELETE FROM `equipment`;
+
+Create user table:
+CREATE TABLE `endless_desert`.`users` (
+  `id` VARCHAR(8) NOT NULL,
+  `email` VARCHAR(254) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
+  `registered_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
+
+AP8 Dumplings – Chicken (6) or Tofu (8)
+B7 Bún Thịt và Tôm Nướng Pork and Shrimp
+TN4 Pad Kee Mao – Drunken Noodles

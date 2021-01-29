@@ -89,6 +89,7 @@ class Utils {
   }
 
   isEmpty(aValue: any) {
+    if (aValue == 0) { return false; }
     if (aValue) {
       if (typeof aValue == 'string') {
         if (aValue.length > 0) {

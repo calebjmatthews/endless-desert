@@ -9,6 +9,14 @@ export function setAccount(account: Account) {
   }
 }
 
+export const SET_USER_ID = 'SET_USER_ID';
+export function setUserId(userId: string) {
+  return {
+    type: SET_USER_ID,
+    userId: userId
+  }
+}
+
 export const CHANGE_SETTING = 'CHANGE_SETTING';
 export function changeSetting(name: string, value: any) {
   return {

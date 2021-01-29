@@ -14,7 +14,7 @@ import { setAccount } from '../actions/account';
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
 import { setEquipment } from '../actions/equipment';
-import { setGlobalState, addMemos } from '../actions/ui';
+import { setGlobalState } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
@@ -58,17 +58,13 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (globalState == 'loading') {
-      fetchFromStorage()
-      .then((fetchRes) => {
-        if (!fetchRes) {
-          dispatch(addMemos([memos[MEMOS.INTRO_ONE], memos[MEMOS.INTRO_TWO]]));
-        }
-      });
+      console.log('before fetchFromStorage call');
+      fetchFromStorage();
     }
   }, []);
 
   function fetchFromStorage(): Promise<boolean> {
-    return fetch(STORAGE_URL + account.id)
+    return fetch(STORAGE_URL + account.userId)
     .then((dataRes) => {
       if (dataRes) {
         return dataRes.json();
@@ -120,8 +116,11 @@ export default function StorageHandlerComponent() {
       if (booleanRes == false) {
         const newRates = hourglass.setRates(buildingsStarting, {});
         dispatch(setRates(newRates));
+        dispatch(setGlobalState('landing'));
       }
-      dispatch(setGlobalState('loaded'));
+      else {
+        dispatch(setGlobalState('loaded'));
+      }
       return booleanRes;
     })
     .catch((error) => {
@@ -147,7 +146,7 @@ export default function StorageHandlerComponent() {
   }), [callSave];
 
   function saveIntoStorage() {
-    fetch((STORAGE_URL + account.id), {
+    fetch((STORAGE_URL + account.userId), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

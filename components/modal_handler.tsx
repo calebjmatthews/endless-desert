@@ -15,6 +15,8 @@ import EquipmentSelectComponent from './equipment_select';
 import MemoComponent from './memo';
 import BuildingDetailComponent from './building_detail';
 import LeaderDetailComponent from './leader_detail';
+import LoginComponent from './login';
+import SignupComponent from './signup';
 import { MODALS } from '../enums/modals';
 
 export default function ModalHandlerComponent() {
@@ -78,6 +80,12 @@ function renderModal(modalType: string) {
 
     case MODALS.LEADER_DETAIL:
     return <LeaderDetailComponent />;
+
+    case MODALS.LOGIN:
+    return <LoginComponent />;
+
+    case MODALS.SIGNUP:
+    return <SignupComponent />;
 
     default:
     return null;

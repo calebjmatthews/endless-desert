@@ -88,10 +88,14 @@ export const styles = StyleSheet.create({
   inputBox: {
     paddingHorizontal: 5,
     maxWidth: 130,
+    backgroundColor: '#fff',
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#9ea0bd',
     borderRadius: 4
+  },
+  inputBoxLarge: {
+    paddingVertical: 10
   },
 
   mainContainer: {
