@@ -1,5 +1,5 @@
-import { SET_ACCOUNT, SET_USER_ID, CHANGE_SETTING, SET_INTRO_STATE, UNLOCK_TAB,
-  SET_CURRENT_FORTUITY, FORTUITY_SEEN } from '../actions/account';
+import { SET_ACCOUNT, SET_USER_ID, SET_SESSION_ID, CHANGE_SETTING, SET_INTRO_STATE,
+  UNLOCK_TAB, SET_CURRENT_FORTUITY, FORTUITY_SEEN } from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
@@ -7,7 +7,8 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
 
 let accountStarting = new Account({
-  userId: 5,
+  userId: '0',
+  sessionId: '',
   introState: INTRO_STATES.LOOK_AROUND,
   tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
   fortuityCurrent: null,
@@ -25,6 +26,11 @@ export default function (account: Account = accountStarting,
     let newSUIAccount = new Account(account);
     newSUIAccount.userId = action.userId;
     return newSUIAccount;
+
+    case SET_SESSION_ID:
+    let newSSIAccount = new Account(account);
+    newSSIAccount.sessionId = action.sessionId;
+    return newSSIAccount;
 
     case CHANGE_SETTING:
     let newCSAccount = new Account(account);

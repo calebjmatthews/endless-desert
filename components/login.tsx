@@ -5,6 +5,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../styles';
 
 import ModalHandlerComponent from '../components/modal_handler';
@@ -62,11 +63,12 @@ export default function LoginComponent() {
   function renderInvalidMessages() {
     if (invalidMessages.length > 0) {
       return (
-        <View>
+        <View style={{minWidth: positioner.modalMajor,
+          maxWidth: positioner.modalMajor}}>
           {invalidMessages.map((iMessage, index) => {
             return (
               <View key={index}>
-                <Text>
+                <Text style={styles.bareText}>
                   {iMessage}
                 </Text>
               </View>
@@ -102,7 +104,9 @@ export default function LoginComponent() {
               setInvalidMessages([resJson.data.message]);
               return false;
             }
-            if (resJson.data.user) {
+            if (resJson.data.user && resJson.data.sessionId) {
+              AsyncStorage.setItem('@ed_session_id', resJson.data.sessionId);
+              AsyncStorage.setItem('@ed_user_id', resJson.data.user.id);
               dispatch(setUserId(resJson.data.user.id));
               dispatch(setGlobalState('loading'));
               dispatch(displayModal(null));

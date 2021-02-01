@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { setVault } from '../actions/vault';
 import { setResearchStatus } from '../actions/research_status';
@@ -10,7 +11,7 @@ import { setBuildingsConstruction } from '../actions/buildings_construction';
 import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
-import { setAccount } from '../actions/account';
+import { setAccount, setUserId, setSessionId } from '../actions/account';
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
 import { setEquipment } from '../actions/equipment';
@@ -25,7 +26,9 @@ import { MEMOS } from '../enums/memos';
 
 const SAVE_INTERVAL = 60000;
 // const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
-const STORAGE_URL = 'http://localhost:8080/api/storage/'
+const STORAGE_GET_URL = 'http://localhost:8080/api/storage_get/';
+const STORAGE_UPSERT_URL = 'http://localhost:8080/api/storage_upsert/';
+const SESSION_URL = 'http://localhost:8080/api/session_check/';
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,
@@ -58,13 +61,85 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (globalState == 'loading') {
-      console.log('before fetchFromStorage call');
-      fetchFromStorage();
+      sessionCheck()
+      .then((checkRes) => {
+        console.log('checkRes');
+        console.log(checkRes);
+        if (checkRes.succeeded == true) {
+          dispatch(setSessionId(checkRes.sessionId));
+          dispatch(setUserId(checkRes.userId));
+          fetchFromStorage(checkRes.sessionId, checkRes.userId);
+        }
+        else {
+          const newRates = hourglass.setRates(buildingsStarting, {});
+          dispatch(setRates(newRates));
+          dispatch(setGlobalState('landing'));
+        }
+      });
     }
   }, []);
 
-  function fetchFromStorage(): Promise<boolean> {
-    return fetch(STORAGE_URL + account.userId)
+  function sessionCheck(): Promise<any> {
+    let sessionId = '';
+    let userId = '';
+    return Promise.all([
+      AsyncStorage.getItem('@ed_session_id'),
+      AsyncStorage.getItem('@ed_user_id')
+    ])
+    .then((asRes): any => {
+      if (asRes[0] && asRes[1]) {
+        sessionId = asRes[0];
+        userId = asRes[1];
+        console.log('sessionId');
+        console.log(sessionId);
+        return fetch((SESSION_URL), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId, userId })
+        });
+      }
+      return { succeeded: false, message: ('Async storage missing sessionId '
+        + 'or userId.') };
+    })
+    .then((sessionResRaw) => {
+      if (sessionResRaw.succeeded == false) { return sessionResRaw; }
+      if (sessionResRaw) {
+        if (sessionResRaw.json) {
+          return sessionResRaw.json();
+        }
+      }
+      return { succeeded: false, message: ('Session response cannot be parsed.') };
+    })
+    .then((sessionRes) => {
+      if (sessionRes.succeeded == false) { return sessionRes; }
+      if (sessionRes.data) {
+        if (sessionRes.data.succeeded == true) {
+          return { succeeded: true, sessionId: sessionId, userId: userId,
+            message: 'Session accepted.' };
+        }
+        return sessionRes;
+      }
+      return { succeeded: false, message: ('Session response missing data.') };
+    })
+    .catch((error) => {
+      console.error(error);
+      return false;
+    });
+  }
+
+  function fetchFromStorage(sessionId: string|null = null, userId: string|null = null):
+    Promise<boolean> {
+    console.log('arguments');
+    console.log(arguments);
+    if (!sessionId || !userId) {
+      sessionId = account.sessionId;
+      userId = account.userId;
+    }
+    return fetch((STORAGE_GET_URL), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId, userId })
+    })
     .then((dataRes) => {
       if (dataRes) {
         return dataRes.json();
@@ -146,31 +221,35 @@ export default function StorageHandlerComponent() {
   }), [callSave];
 
   function saveIntoStorage() {
-    fetch((STORAGE_URL + account.userId), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        vault: vault,
-        research_status: researchStatus,
-        buildings: buildings,
-        buildings_construction: buildingsConstruction,
-        research_option_decks: researchOptionDecks,
-        timers: timers,
-        trading_status: tradingStatus,
-        accounts: account,
-        leaders: leaders,
-        equipment: equipment
+    if (account.sessionId && account.userId) {
+      fetch((STORAGE_UPSERT_URL), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          vault: vault,
+          research_status: researchStatus,
+          buildings: buildings,
+          buildings_construction: buildingsConstruction,
+          research_option_decks: researchOptionDecks,
+          timers: timers,
+          trading_status: tradingStatus,
+          accounts: account,
+          leaders: leaders,
+          equipment: equipment,
+          sessionId: account.sessionId,
+          userId: account.userId
+        })
       })
-    })
-    .then((res) => {
-      let tDate = new Date(Date.now());
-      console.log('Data saved at ' + tDate.toDateString() + ' ' + tDate.toTimeString());
-    })
-    .catch((error) => {
-      console.error(error);
-    });;
+      .then((res) => {
+        let tDate = new Date(Date.now());
+        console.log('Data saved at ' + tDate.toDateString() + ' ' + tDate.toTimeString());
+      })
+      .catch((error) => {
+        console.error(error);
+      });;
+    }
   }
 
   return <></>;

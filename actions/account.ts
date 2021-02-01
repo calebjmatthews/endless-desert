@@ -17,6 +17,15 @@ export function setUserId(userId: string) {
   }
 }
 
+export const SET_SESSION_ID = 'SET_SESSION_ID';
+export function setSessionId(sessionId: string) {
+  return {
+    type: SET_SESSION_ID,
+    sessionId: sessionId
+  }
+}
+
+
 export const CHANGE_SETTING = 'CHANGE_SETTING';
 export function changeSetting(name: string, value: any) {
   return {

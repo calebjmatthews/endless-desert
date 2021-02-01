@@ -336,6 +336,8 @@ DELETE FROM `vault`;
 DELETE FROM `accounts`;
 DELETE FROM `leaders`;
 DELETE FROM `equipment`;
+DELETE FROM `users`;
+DELETE FROM `sessions`;
 
 Create user table:
 CREATE TABLE `endless_desert`.`users` (
@@ -345,6 +347,8 @@ CREATE TABLE `endless_desert`.`users` (
   `registered_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
-AP8 Dumplings – Chicken (6) or Tofu (8)
-B7 Bún Thịt và Tôm Nướng Pork and Shrimp
-TN4 Pad Kee Mao – Drunken Noodles
+CREATE TABLE `endless_desert`.`sessions` (
+  `id` VARCHAR(16) NOT NULL,
+  `user_id` VARCHAR(8) NOT NULL,
+  `expires_at` BIGINT(32) NOT NULL,
+  PRIMARY KEY (`id`));

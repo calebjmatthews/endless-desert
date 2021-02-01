@@ -5,11 +5,12 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../styles';
 
 import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
-import { setUserId } from '../actions/account';
+import { setUserId, setSessionId } from '../actions/account';
 import { setGlobalState, displayModal } from '../actions/ui';
 
 const SIGNUP_URL = 'http://localhost:8080/api/signup/'
@@ -70,11 +71,12 @@ export default function SignupComponent() {
   function renderInvalidMessages() {
     if (invalidMessages.length > 0) {
       return (
-        <View>
+        <View style={{minWidth: positioner.modalMajor,
+          maxWidth: positioner.modalMajor}}>
           {invalidMessages.map((iMessage, index) => {
             return (
               <View key={index}>
-                <Text>
+                <Text style={styles.bareText}>
                   {iMessage}
                 </Text>
               </View>
@@ -111,6 +113,9 @@ export default function SignupComponent() {
               return false;
             }
             if (resJson.data.userId) {
+              AsyncStorage.setItem('@ed_session_id', resJson.data.sessionId);
+              AsyncStorage.setItem('@ed_user_id', resJson.data.userId);
+              dispatch(setSessionId(resJson.data.sessionId));
               dispatch(setUserId(resJson.data.userId));
               dispatch(setGlobalState('loaded'));
               dispatch(displayModal(null));
