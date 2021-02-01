@@ -63,8 +63,6 @@ export default function StorageHandlerComponent() {
     if (globalState == 'loading') {
       sessionCheck()
       .then((checkRes) => {
-        console.log('checkRes');
-        console.log(checkRes);
         if (checkRes.succeeded == true) {
           dispatch(setSessionId(checkRes.sessionId));
           dispatch(setUserId(checkRes.userId));
@@ -90,8 +88,6 @@ export default function StorageHandlerComponent() {
       if (asRes[0] && asRes[1]) {
         sessionId = asRes[0];
         userId = asRes[1];
-        console.log('sessionId');
-        console.log(sessionId);
         return fetch((SESSION_URL), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -122,15 +118,13 @@ export default function StorageHandlerComponent() {
       return { succeeded: false, message: ('Session response missing data.') };
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error);
       return false;
     });
   }
 
   function fetchFromStorage(sessionId: string|null = null, userId: string|null = null):
     Promise<boolean> {
-    console.log('arguments');
-    console.log(arguments);
     if (!sessionId || !userId) {
       sessionId = account.sessionId;
       userId = account.userId;
@@ -199,7 +193,8 @@ export default function StorageHandlerComponent() {
       return booleanRes;
     })
     .catch((error) => {
-      console.error(error);
+      dispatch(setGlobalState('landing'));
+      console.log(error);
       return false;
     });
   }
@@ -247,7 +242,8 @@ export default function StorageHandlerComponent() {
         console.log('Data saved at ' + tDate.toDateString() + ' ' + tDate.toTimeString());
       })
       .catch((error) => {
-        console.error(error);
+        dispatch(setGlobalState('landing'));
+        console.log(error);
       });;
     }
   }
