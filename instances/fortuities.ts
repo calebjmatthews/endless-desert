@@ -49,20 +49,55 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
   }
 });
 
+fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
+  name: FORTUITIES.SHUDDERING_FIGURE,
+  openLine: 'Someone is waiting to speak to you',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.SHUDDERING_FIGURE + '0'),
+      title: 'A Shuddering Figure',
+      text: ('Da Nang: My name is Da Nang. My people and I have traveled '
+        + 'thousands of miles, '
+        + 'across seas and forests, suffering every step of the way. '
+        + 'But these smooth waves of sand speak of a beginning. And perhaps '
+        + 'we are far enough away, now.')
+    }),
+    new Memo({
+      name: (FORTUITIES.SHUDDERING_FIGURE + '1'),
+      title: 'A Shuddering Figure',
+      text: ('Da Nang: "We will stay here, with you, in the desert. Unless you '
+        + 'remove us by force we will travel no longer."'),
+      leaderJoined: LEADER_TYPES.SHUDDERING_REFUGE
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 20,
+  leaderJoins: LEADER_TYPES.SHUDDERING_REFUGE,
+  available: (fState: FortuityState) => {
+    if (fState.leaders) {
+      if (Object.keys(fState.leaders).length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
 fortuities[FORTUITIES.DOWNCAST_FIGURE] = new Fortuity({
   name: FORTUITIES.DOWNCAST_FIGURE,
   openLine: 'Someone is waiting to speak to you',
   memos: [
     new Memo({
-      name: (FORTUITIES.FAMILIAR_FIGURE + '0'),
+      name: (FORTUITIES.DOWNCAST_FIGURE + '0'),
       title: 'A Downcast Figure',
-      text: ('|name|: "I have been ejected from the ascetics, for... '
+      text: ('Guangzhou: "I have been ejected from the ascetics, for... '
         + 'For betraying my vows. I have no place to go."')
     }),
     new Memo({
-      name: (FORTUITIES.FAMILIAR_FIGURE + '1'),
+      name: (FORTUITIES.DOWNCAST_FIGURE + '1'),
       title: 'A Downcast Figure',
-      text: ('|name|: "Please. I can till a field, I can raise a building, '
+      text: ('Guangzhou: "Please. I can till a field, I can raise a building, '
         + 'I can help an animal to give birth. Show mercy, if you can. '
         + 'Allow me to stay."'),
       leaderJoined: LEADER_TYPES.FOXFIRE_HERETIC

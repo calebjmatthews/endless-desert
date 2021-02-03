@@ -21,10 +21,28 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
   paddingVertical: 11
 });
 
+leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
+  name: LEADER_TYPES.SHUDDERING_REFUGE,
+  title: 'the Shuddering Refuge',
+  description: ('You don\'t see many physical scars, but Da Nang and his people'
+    + 'are a downcast and solumn group. Their nightly singing as the sun goes '
+    + 'down is one of the most sorrowful things you\'ve ever heard.'),
+  speechType: 'Calm',
+  toolStarting: null,
+  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  backStarting: null,
+  happinessStarting: 10,
+  icon: {provider: 'MaterialCommunityIcons', name: 'weather-sunset-down'},
+  foregroundColor: '#ffff00',
+  backgroundColor: '#b50c0c',
+  paddingHorizontal: 8,
+  paddingVertical: 11
+});
+
 leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   name: LEADER_TYPES.FOXFIRE_HERETIC,
   title: 'the Foxfire Heretic',
-  description: ('|name| has been ejected from the Foxfire Ascetics, although there\'s'
+  description: ('Guangzhou has been ejected from the Foxfire Ascetics, although there\'s'
     + 'no explanation as to why. But there are clues: a fierce glint '
     + 'in the eyes, and decidedly non-traditional views on alcohol consumption.'),
   speechType: 'Calm',
@@ -45,7 +63,7 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
   description: ('Apparently, in the Trefoil Kingdoms there is a custom called '
     + '"The Sowing of Wild Oats". Their young men and women spend time living in '
     + 'distant lands for a reason you can\'t quite discern. '
-    + '|name| told you the  "oats" aren\'t literal, so you know that much.'),
+    + 'Louth told you the  "oats" aren\'t literal, so you know that much.'),
   speechType: 'Humorous',
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
