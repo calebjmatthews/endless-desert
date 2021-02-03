@@ -28,7 +28,8 @@ buildingTypes[BTY.BROKEN_CISTERN] = new BuildingType({
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10, probability: 1}],
     consumes: null}) ],
-  upgradesInto: BTY.CISTERN
+  upgradesInto: BTY.CISTERN,
+  requiresLeader: false
 });
 
 buildingTypes[BTY.DECAYING_STUDY] = new BuildingType({
@@ -69,7 +70,8 @@ buildingTypes[BTY.FALLOW_FIELD] = new BuildingType({
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 1, probability: 1}],
     consumes: null}) ],
-  upgradesInto: BTY.LENTIL_FIELD
+  upgradesInto: BTY.LENTIL_FIELD,
+  requiresLeader: false
 });
 
 buildingTypes[BTY.SHATTERED_GATE] = new BuildingType({
@@ -150,7 +152,8 @@ buildingTypes[BTY.LENTIL_FIELD] = new BuildingType({
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 100}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
+  requiresLeader: false
 });
 
 buildingTypes[BTY.REED_DELTA] = new BuildingType({
@@ -163,7 +166,8 @@ buildingTypes[BTY.REED_DELTA] = new BuildingType({
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 5}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 5}]}) ],
+  requiresLeader: false
 });
 
 buildingTypes[BTY.GRAIN_FIELD] = new BuildingType({
@@ -176,7 +180,8 @@ buildingTypes[BTY.GRAIN_FIELD] = new BuildingType({
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
+  requiresLeader: true
 });
 
 buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
@@ -189,7 +194,8 @@ buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 300}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
+  requiresLeader: true
 });
 
 buildingTypes[BTY.CLAY_PIT] = new BuildingType({
@@ -202,7 +208,8 @@ buildingTypes[BTY.CLAY_PIT] = new BuildingType({
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 500}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
+  requiresLeader: false
 });
 
 buildingTypes[BTY.SAND_PIT] = new BuildingType({
@@ -215,7 +222,8 @@ buildingTypes[BTY.SAND_PIT] = new BuildingType({
   cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1}],
-    consumes: null}) ]
+    consumes: null}) ],
+  requiresLeader: false
 });
 
 buildingTypes[BTY.DRYING_YARD] = new BuildingType({
@@ -234,7 +242,8 @@ buildingTypes[BTY.DRYING_YARD] = new BuildingType({
       consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}) ]
+      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}) ],
+  requiresLeader: true
 });
 
 buildingTypes[BTY.PRESS] = new BuildingType({
@@ -250,7 +259,8 @@ buildingTypes[BTY.PRESS] = new BuildingType({
     consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
   new BuildingRecipe({index: 1, produces:
     [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ],
+  requiresLeader: true
 });
 
 buildingTypes[BTY.FURNACE] = new BuildingType({
@@ -263,7 +273,8 @@ buildingTypes[BTY.FURNACE] = new BuildingType({
     {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 20}],
   recipes: [ new BuildingRecipe({index: 0, produces:
     [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10, probability: 1}],
-    consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10}]}) ]
+    consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10}]}) ],
+  requiresLeader: true
 });
 
 buildingTypes[BTY.KITCHEN] = new BuildingType({
@@ -284,7 +295,8 @@ buildingTypes[BTY.KITCHEN] = new BuildingType({
     [{specificity: RSP.EXACT, type: RTY.BREAD, quantity: 10, probability: 1}],
     consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 5},
-      {specificity: RSP.EXACT, type: RTY.SALT, quantity: 1} ]})]
+      {specificity: RSP.EXACT, type: RTY.SALT, quantity: 1} ]})],
+  requiresLeader: true
 });
 
 export { buildingTypes }

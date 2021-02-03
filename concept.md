@@ -250,6 +250,10 @@ Traders:
   - Early traders
   - Middle traders: give iron, gold; receive glass
 
+Equipment:
+  - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
+    * Building specific: mattock (generic), dousing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter)
+
 Tabs:
   - Map, showing locations of each building and the river running through the middle
   - Buildings, with an expandable list of buildings with the resources consumed/produced by each

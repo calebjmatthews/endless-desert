@@ -69,8 +69,12 @@ export default class Hourglass {
         bGroupRates[building.buildingType] = {};
       }
       let buildingType = buildingTypes[building.buildingType];
-      if (buildingType.recipes) {
-        let recipeSelected = building.recipeSelected || 0;``
+      let missingLeader = false;
+      if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
+        missingLeader = true;
+      }
+      if (buildingType.recipes && !missingLeader) {
+        let recipeSelected = building.recipeSelected || 0;
         let recipe = buildingType.recipes[recipeSelected];
         if (recipe.produces) {
           recipe.produces.map((production) => {

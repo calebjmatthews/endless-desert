@@ -15,6 +15,7 @@ export default class BuildingType implements BuildingTypeInterface {
   duration?: number;
   upgradeDuration?: number;
   livingHappiness?: number;
+  requiresLeader?: boolean;
 
   constructor(buildingType: BuildingTypeInterface) {
     Object.assign(this, buildingType);
@@ -68,4 +69,5 @@ interface BuildingTypeInterface {
   duration?: number;
   upgradeDuration?: number;
   livingHappiness?: number;
+  requiresLeader?: boolean;
 }

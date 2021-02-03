@@ -105,23 +105,6 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
 
-researches[RESEARCHES.SIMPLIFIED_LENTIL_FARMING] = new Research({
-  name: RESEARCHES.SIMPLIFIED_LENTIL_FARMING,
-  unlocks: ('Researching this allows lentil fields to be run without a leader.'),
-  description: ('You\'ve got lentils figured out, now they practically grow '
-    + 'themselves.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff',
-  category: RESEARCHES.BIOLOGY,
-  difficulty: 1,
-  stepsNeeded: 1,
-  beginsCompleted: true,
-  prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 50,
-  simplifiedBuilding: [BUILDING_TYPES.LENTIL_FIELD]
-});
-
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
   unlocks: ('Researching this unlocks reed deltas.'),
