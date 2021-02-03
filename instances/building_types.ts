@@ -125,7 +125,8 @@ buildingTypes[BTY.HUTS] = new BuildingType({
   icon: {provider: 'FontAwesome5', name: 'store-alt'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',
-  cost: null,
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 30},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 300}],
   recipes: null,
   livingHappiness: 0
 });

@@ -113,7 +113,7 @@ Broad gameplay tiers
     * Three trading partners for early resources
     * Costs are Knowledge, Water, Lentils, Seeds
   - Early: Low knowledge requirements require occational analysing, costs sometimes require resources from trading
-    * Research Simplified Lentil Farming, Reed Cultivation, Grain Farming, Olive Farming, Quail Husbandry, Physics, Clay Excavation, Sand Excavation, Compaction, Chemistry, Dehydration, Combustion, Cooking, Basic Education
+    * Research Reed Cultivation, Grain Farming, Olive Farming, Quail Husbandry, Physics, Clay Excavation, Sand Excavation, Compaction, Chemistry, Dehydration, Combustion, Cooking, Basic Education
     * Three more leaders: one from a trading partner, one random, one from research
     * One more trading partner from fortuity (after Basic Education)
     * Costs now include Sand, Clay, Reeds, Wood
@@ -253,6 +253,9 @@ Traders:
 Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
     * Building specific: mattock (generic), dousing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter)
+  - Clothing: Usually increases happiness
+    * Ascetic's Robe: Decreases food and drink usage
+  - Back: Varied effects
 
 Tabs:
   - Map, showing locations of each building and the river running through the middle

@@ -16,6 +16,7 @@ export enum RESEARCHES {
   PHYSICS = "Physics",
   CLAY_EXCAVATION = "Clay Excavation",
   SAND_EXCAVATION = "Sand Excavation",
+  HOME_CONSTRUCTION = "Home Construction",
   COMPACTION = "Compaction",
   CHEMISTRY = "Chemistry",
   DEHYDRATION = "Dehydration",

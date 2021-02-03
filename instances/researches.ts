@@ -278,6 +278,23 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.SAND_PIT]
 });
 
+researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
+  name: RESEARCHES.HOME_CONSTRUCTION,
+  unlocks: ('Researching this unlocks huts.'),
+  description: ('Right now you have enough housing for you and one band of people. '
+    + 'Adding more simple huts won\'t be too difficult a task.'),
+  icon: {provider: 'FontAwesome5', name: 'store-alt'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.PHYSICS],
+  knowledgeReq: 200,
+  unlocksBuilding: [BUILDING_TYPES.HUTS]
+});
+
 researches[RESEARCHES.COMPACTION] = new Research({
   name: RESEARCHES.COMPACTION,
   unlocks: ('Researching this unlocks presses.'),
