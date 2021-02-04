@@ -146,7 +146,7 @@ export default class Hourglass {
       }
       Object.keys(leaders).map((leaderId) => {
         let leader = leaders[leaderId];
-        if (leader.assignedTo) {
+        if (leader.assignedTo && leader.eating && leader.drinking && leader.livingAt) {
           buildingLeaders[leader.assignedTo] = leader;
         }
       });

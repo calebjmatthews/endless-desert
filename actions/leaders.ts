@@ -48,7 +48,7 @@ export function setDrinking(leader: Leader, resourceName: string) {
 }
 
 export const ASSIGN_TO_BUILDING = 'ASSIGN_TO_BUILDING';
-export function assignToBuilding(leader: Leader, assignedTo: string) {
+export function assignToBuilding(leader: Leader, assignedTo: string|null) {
   return {
     type: ASSIGN_TO_BUILDING,
     leader: leader,
@@ -57,7 +57,7 @@ export function assignToBuilding(leader: Leader, assignedTo: string) {
 }
 
 export const LIVE_AT_BUILDING = 'LIVE_AT_BUILDING';
-export function liveAtBuilding(leader: Leader, livingAt: string) {
+export function liveAtBuilding(leader: Leader, livingAt: string|null) {
   return {
     type: LIVE_AT_BUILDING,
     leader: leader,

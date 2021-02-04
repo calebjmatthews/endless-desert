@@ -28,6 +28,16 @@ export default function BuildingSelectComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
+  let leadersBuilding: {[buildingId: string] : Leader} = {};
+  Object.keys(leaders).map((leaderId) => {
+    const leader = leaders[leaderId];
+    if (modalValue.subType == ASSIGN_TO_BUILDING && leader.assignedTo) {
+      leadersBuilding[leader.assignedTo] = leader;
+    }
+    else if (modalValue.subType == LIVE_AT_BUILDING && leader.livingAt) {
+      leadersBuilding[leader.livingAt] = leader;
+    }
+  });
   let buildingsArray = Object.keys(buildings).map((buildingId) => {
     return buildings[buildingId];
   });
@@ -74,10 +84,14 @@ export default function BuildingSelectComponent() {
   function renderBuildings(buildingArray: Building[],
     setBuildingSelected: Function) {
     return buildingArray.map((building) => {
+      let buildingLeader: Leader|null = null;
+      if (leadersBuilding[building.id]) {
+        buildingLeader = leadersBuilding[building.id];
+      }
       return <BuildingSelector key={building.id} building={building}
         buildingSelected={buildingSelected}
-        setBuildingSelected={setBuildingSelected}
-        positioner={positioner} />;
+        setBuildingSelected={setBuildingSelected} buildingLeader={buildingLeader}
+        subType={modalValue.subType} positioner={positioner}  />;
     });
   }
 
@@ -107,6 +121,11 @@ export default function BuildingSelectComponent() {
         dispatch(assignToBuilding(modalValue.leader, buildingSelected));
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
+        if (leadersBuilding[buildingSelected]) {
+          dispatch(assignToBuilding(leadersBuilding[buildingSelected], null));
+          tempLeaders[leadersBuilding[buildingSelected].id].assignedTo = null;
+          tempLeaders[leadersBuilding[buildingSelected].id].setPluses(equipment);
+        }
         let newRates = new Hourglass().setRates(buildings, tempLeaders);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
@@ -116,6 +135,11 @@ export default function BuildingSelectComponent() {
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
         tempLeaders[modalValue.leader.id].setPluses(equipment);
+        if (leadersBuilding[buildingSelected]) {
+          dispatch(liveAtBuilding(leadersBuilding[buildingSelected], null));
+          tempLeaders[leadersBuilding[buildingSelected].id].livingAt = null;
+          tempLeaders[leadersBuilding[buildingSelected].id].setPluses(equipment);
+        }
         let newRates = new Hourglass().setRates(buildings, tempLeaders);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
@@ -125,13 +149,14 @@ export default function BuildingSelectComponent() {
 }
 
 function BuildingSelector(props: {building: Building, buildingSelected: string|null,
-  setBuildingSelected: Function, positioner: Positioner}) {
+  setBuildingSelected: Function, buildingLeader: Leader|null, subType: string,
+  positioner: Positioner}) {
   let buildingType = buildingTypes[props.building.buildingType];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
     <View style={StyleSheet.flatten([styles.panelTile,
-      {minWidth: props.positioner.minorWidth,
-        maxWidth: props.positioner.minorWidth}])}>
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent
         provider={buildingType.icon.provider}
         name={buildingType.icon.name}
@@ -140,11 +165,34 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
         iconSize={18} />
       <View>
         <Text style={optionTextStyle}>{buildingType.name}</Text>
+        {renderBuildingLeader(props.buildingLeader, props.subType)}
         {renderButton(props.building, props.buildingSelected,
           props.setBuildingSelected)}
       </View>
     </View>
   );
+
+  function renderBuildingLeader(buildingLeader: Leader|null, subType: string) {
+    let caption = ' is here';
+    if (subType == ASSIGN_TO_BUILDING) { caption = ' is working here'; }
+    else if (subType == LIVE_AT_BUILDING) { caption = ' is living here'; }
+    if (buildingLeader) {
+      return (
+        <View style={styles.rows}>
+          <BadgeComponent
+            provider={buildingLeader.icon.provider}
+            name={buildingLeader.icon.name}
+            foregroundColor={buildingLeader.foregroundColor}
+            backgroundColor={buildingLeader.backgroundColor}
+            iconSize={16} />
+          <Text style={optionTextStyle}>
+            {buildingLeader.name + caption}
+          </Text>
+        </View>
+      )
+    }
+    return null;
+  }
 
   function renderButton(building: Building,
     buildingSelected: string|null, setBuildingSelected: Function) {
