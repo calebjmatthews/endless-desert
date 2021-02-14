@@ -20,6 +20,7 @@ import { setGlobalState } from '../actions/ui';
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
 import ResearchStatus from '../models/research_status';
+import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
@@ -151,7 +152,8 @@ export default function StorageHandlerComponent() {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
             if (tableName != 'research_status'
-              && tableName != 'buildings' && tableName != 'leaders' && jsonValue) {
+              && tableName != 'buildings' && tableName != 'leaders'
+              && tableName != 'accounts' && jsonValue) {
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
             else if (tableName == 'research_status' && jsonValue) {
@@ -169,14 +171,19 @@ export default function StorageHandlerComponent() {
               leaders = jsonValue;
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
+            else if (tableName == 'accounts' && jsonValue) {
+              let account = jsonValue;
+              account.sessionId = sessionId;
+              dispatch(TABLE_SETTERS[tableName](account));
+            }
           }
         });
         const newRates = hourglass.setRates(buildings, leaders);
         dispatch(setRates(newRates));
         return true;
       }
-      catch(err) {
-        console.log(err);
+      catch(error) {
+        console.log(error);
         return false;
       }
       return false;
@@ -217,6 +224,8 @@ export default function StorageHandlerComponent() {
 
   function saveIntoStorage() {
     if (account.sessionId && account.userId) {
+      let accountToSave = new Account(account);
+      delete accountToSave.sessionId;
       fetch((STORAGE_UPSERT_URL), {
         method: 'POST',
         headers: {
@@ -230,7 +239,7 @@ export default function StorageHandlerComponent() {
           research_option_decks: researchOptionDecks,
           timers: timers,
           trading_status: tradingStatus,
-          accounts: account,
+          accounts: accountToSave,
           leaders: leaders,
           equipment: equipment,
           sessionId: account.sessionId,

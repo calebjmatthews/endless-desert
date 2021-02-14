@@ -6,6 +6,8 @@ export enum RESOURCE_TYPES {
   SEEDS = "Seeds",
   GRAIN = "Grain",
   OLIVES = "Olives",
+  QUAIL = "Quail",
+  EGGS = "Eggs",
   WOOD_OAK = "Oak Wood",
   WOOD_ROWAN = "Rowan Wood",
   WOOD_WALNUT = "Walnut Wood",

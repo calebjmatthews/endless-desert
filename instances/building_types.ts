@@ -199,6 +199,26 @@ buildingTypes[BTY.OLIVE_GROVE] = new BuildingType({
   requiresLeader: true
 });
 
+buildingTypes[BTY.QUAIL_PASTURE] = new BuildingType({
+  name: BTY.QUAIL_PASTURE,
+  description: 'Quail frolick around in the dawn and the dusk',
+  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
+  foregroundColor: '#caa096',
+  backgroundColor: '#fff',
+  cost: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 10},
+    {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 100}],
+  recipes: [ new BuildingRecipe({index: 0, produces:
+    [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 2, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
+      {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}),
+  new BuildingRecipe({index: 1, produces:
+    [{specificity: RSP.EXACT, type: RTY.EGGS, quantity: 4, probability: 1}],
+    consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
+      {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}) ],
+  requiresLeader: true
+});
+
 buildingTypes[BTY.CLAY_PIT] = new BuildingType({
   name: BTY.CLAY_PIT,
   description: 'Small amounts of precious water mixing with the dry under-soil',

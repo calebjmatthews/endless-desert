@@ -256,6 +256,19 @@ Equipment:
   - Clothing: Usually increases happiness
     * Ascetic's Robe: Decreases food and drink usage
   - Back: Varied effects
+  - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production
+
+Cooking:
+  - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish
+  - Several things can be used as a main ingredient: Lentils, Meat, Fish, Onion, Dates
+  - Soup = Ingredient + Water
+  - Stew = Ingredient + Milk + Water
+  - Pie = Ingredient + Wheat + Water
+  - Bread = Wheat + Water
+  - Omelet = Ingredient + Egg + Water
+  - Cake = Ingredient + Wheat + Milk + Egg + Water
+  - Oil and spice can be added to any recipe to increase quality
+  - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil. "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Rich Lentil Soup", Fish + Wheat + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
 Tabs:
   - Map, showing locations of each building and the river running through the middle

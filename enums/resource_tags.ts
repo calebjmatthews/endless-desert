@@ -3,6 +3,8 @@ export enum RESOURCE_TAGS {
   LIQUID = 'Liquid',
   DRINK = 'Drink',
   PLANT = 'Plant',
+  ANIMAL = 'Animal',
+  ANIMAL_PRODUCT = 'Animal Product',
   EARTH = 'Earth',
   FOOD = 'Food',
   CONSTRUCTION = 'Construction',

@@ -5,11 +5,14 @@ import { FORTUITIES } from '../enums/fortuities';
 import { LEADER_TYPES } from '../enums/leader_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { RESEARCHES } from '../enums/researches';
 const RSP = RESOURCE_SPECIFICITY;
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 
 let fortuities: { [name: string] : Fortuity } = {};
 
@@ -56,11 +59,11 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
     new Memo({
       name: (FORTUITIES.SHUDDERING_FIGURE + '0'),
       title: 'A Shuddering Figure',
-      text: ('Da Nang: My name is Da Nang. My people and I have traveled '
+      text: ('Da Nang: "My name is Da Nang. My people and I have traveled '
         + 'thousands of miles, '
         + 'across seas and forests, suffering every step of the way. '
         + 'But these smooth waves of sand speak of a beginning. And perhaps '
-        + 'we are far enough away, now.')
+        + 'we are far enough away, now."')
     }),
     new Memo({
       name: (FORTUITIES.SHUDDERING_FIGURE + '1'),
@@ -77,6 +80,41 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
   available: (fState: FortuityState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
+  name: FORTUITIES.SLIGHT_FIGURE,
+  openLine: 'Someone is waiting to speak to you',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.SLIGHT_FIGURE + '0'),
+      title: 'A Slight Figure',
+      text: ('Reims: "Hey boss. Just wanting to say I appreciate the educating. '
+        + 'Never thought I had any use for book learning, but I can\'t keep '
+        + 'from rolling around all of it in my head. Had some thoughts about '
+        + 'that, er, math proof you showed us. Mind taking a look?"')
+    }),
+    new Memo({
+      name: (FORTUITIES.SLIGHT_FIGURE + '1'),
+      title: 'A Slight Figure',
+      text: ('Reims: "Anyway, I\'ve been talking these things over with some '
+        + 'of the young from the trading crews. I might get a crew of my own '
+        + 'going. Assuming that\'d be alright with you, boss."'),
+      leaderJoined: LEADER_TYPES.AUSPICIOUS_WAIF
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 20,
+  leaderJoins: LEADER_TYPES.AUSPICIOUS_WAIF,
+  available: (fState: FortuityState) => {
+    if (fState.researchStatus) {
+      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION]) {
         return true;
       }
     }
@@ -221,7 +259,7 @@ fortuities[FORTUITIES.BURIED_SHIP] = new Fortuity({
     })
   ],
   type: 'Observation',
-  repeatable: false,
+  repeatable: true,
   weight: 5,
   gainResources: [
     {specificity: RSP.TAG, type: RTA.CONSTRUCTION, value: 200},
@@ -231,6 +269,43 @@ fortuities[FORTUITIES.BURIED_SHIP] = new Fortuity({
   available: (fState: FortuityState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.WATERY_CREVICE] = new Fortuity({
+  name: FORTUITIES.WATERY_CREVICE,
+  openLine: 'Education is paying off',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.WATERY_CREVICE + '0'),
+      title: 'A Watery Crevice',
+      text: ('"After that geology lecture you gave us we\'ve been looking at sand '
+        + 'formations-", "And take a look at that!", "Yeah, that\'s a '
+        + '\'downward proclivity\', right?", "Sign that water is underneath, if '
+        + 'I remember my lessons".')
+    }),
+    new Memo({
+      name: (FORTUITIES.WATERY_CREVICE + '1'),
+      title: 'A Watery Crevice',
+      text: ('The crowd around you is enthusiastic, if a little intense. But they\'re '
+        + 'right; a short distance outside your settlement there\'s a telltale '
+        + 'sign of a small pocket of underground water.')
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 10,
+  gainResources: [
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, value: 100},
+    {specificity: RSP.EXACT, type: RTY.WATER, value: 3221},
+  ],
+  available: (fState: FortuityState) => {
+    if (fState.researchStatus) {
+      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION]) {
         return true;
       }
     }

@@ -193,6 +193,24 @@ researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
+researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
+  name: RESEARCHES.QUAIL_HUSBANDRY,
+  unlocks: ('Researching this unlocks quail pastures.'),
+  description: ('These quail hide in dark places during the day\'s heat and the '
+    + 'night\'s cold, but they\'re amusingly active in the dawn and dusk. '
+    + 'Plus, they only need a small amount of grain as feed.'),
+  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
+  foregroundColor: '#caa096',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BIOLOGY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY],
+  knowledgeReq: 200,
+  unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
+});
+
 researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   name: RESEARCHES.ANTHROPOLOGY,
   unlocks: ('Researching this opens up new areas of study.'),
@@ -203,7 +221,7 @@ researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.ANTHROPOLOGY,
   difficulty: 1,
-  stepsNeeded: 2,
+  stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
   knowledgeReq: 20,
@@ -219,11 +237,28 @@ researches[RESEARCHES.TRADING] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.ANTHROPOLOGY,
   difficulty: 1,
-  stepsNeeded: 3,
+  stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY],
   knowledgeReq: 20,
   unlocksTab: TABS.TRADING
+});
+
+researches[RESEARCHES.BASIC_EDUCATION] = new Research({
+  name: RESEARCHES.BASIC_EDUCATION,
+  unlocks: ('Researching this has uncertain benefits.'),
+  description: ('You\'ve always been better informed than most people around you; '
+    + 'that\'s just a fact. How much good could you do if you spread that knowledge '
+    + 'to the wider world?'),
+  icon: {provider: 'FontAwesome5', name: 'book-reader'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANTHROPOLOGY],
+  knowledgeReq: 200
 });
 
 researches[RESEARCHES.PHYSICS] = new Research({

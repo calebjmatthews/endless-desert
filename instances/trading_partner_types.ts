@@ -48,13 +48,13 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   givesPool: [
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.GRAIN, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 100},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SALT, weight: 50}
   ],
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.REEDS, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]

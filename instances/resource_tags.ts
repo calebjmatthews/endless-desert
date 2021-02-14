@@ -57,6 +57,24 @@ resourceTags[RESOURCE_TAGS.PLANT] = new ResourceTag({
   backgroundColor: '#fff'
 });
 
+resourceTags[RESOURCE_TAGS.ANIMAL] = new ResourceTag({
+  name: RESOURCE_TAGS.ANIMAL,
+  value: 5,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'paw'},
+  foregroundColor: '#881919',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.ANIMAL_PRODUCT] = new ResourceTag({
+  name: RESOURCE_TAGS.ANIMAL_PRODUCT,
+  value: 5,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'feather-alt'},
+  foregroundColor: '#01b101',
+  backgroundColor: '#fff'
+});
+
 resourceTags[RESOURCE_TAGS.EARTH] = new ResourceTag({
   name: RESOURCE_TAGS.EARTH,
   value: 5,

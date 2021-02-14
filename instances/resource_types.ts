@@ -76,6 +76,26 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
+  name: RESOURCE_TYPES.QUAIL,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL],
+  value: 200,
+  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
+  foregroundColor: '#caa096',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
+  name: RESOURCE_TYPES.EGGS,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+  value: 80,
+  icon: {provider: 'MaterialCommunityIcons', name: 'egg'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+});
+
 resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   name: RESOURCE_TYPES.WOOD_OAK,
   subcategory: RESOURCE_SUBCATEGORIES.WOOD,

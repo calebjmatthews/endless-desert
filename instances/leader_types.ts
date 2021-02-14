@@ -24,7 +24,7 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
 leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
   name: LEADER_TYPES.SHUDDERING_REFUGE,
   title: 'the Shuddering Refuge',
-  description: ('You don\'t see many physical scars, but Da Nang and his people'
+  description: ('You don\'t see many physical scars, but Da Nang and company '
     + 'are a downcast and solumn group. Their nightly singing as the sun goes '
     + 'down is one of the most sorrowful things you\'ve ever heard.'),
   speechType: 'Calm',
@@ -39,10 +39,30 @@ leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
   paddingVertical: 11
 });
 
+leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
+  name: LEADER_TYPES.AUSPICIOUS_WAIF,
+  title: 'the Auspicious Waif',
+  description: ('Reims joined your settlement early on, as little more than '
+    + 'a child and with no particular skills. But after a taste of education, it '
+    + 'seems to come fast: knowledge of construction, chemistry, languages, and still '
+    + 'hungry for more.'),
+  speechType: 'Humorous',
+  toolStarting: null,
+  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  backStarting: null,
+  happinessStarting: 10,
+  icon: {provider: 'FontAwesome5', name: 'book-medical'},
+  foregroundColor: '#ffb52c',
+  backgroundColor: '#422c05',
+  paddingHorizontal: 8,
+  paddingVertical: 11
+});
+
 leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   name: LEADER_TYPES.FOXFIRE_HERETIC,
   title: 'the Foxfire Heretic',
-  description: ('Guangzhou has been ejected from the Foxfire Ascetics, although there\'s'
+  description: ('Guangzhou has been ejected from the Foxfire Ascetics, '
+    + 'although there\'s'
     + 'no explanation as to why. But there are clues: a fierce glint '
     + 'in the eyes, and decidedly non-traditional views on alcohol consumption.'),
   speechType: 'Calm',

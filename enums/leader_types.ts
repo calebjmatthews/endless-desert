@@ -3,5 +3,6 @@ export enum LEADER_TYPES {
   SHUDDERING_REFUGE = "Da Nang",
   FOXFIRE_HERETIC = "Guangzhou",
   TREFOIL_SOWER = "Louth",
-  SCARRED_SCHOLAR = "Szczecin"
+  SCARRED_SCHOLAR = "Szczecin",
+  AUSPICIOUS_WAIF = "Reims"
 }
