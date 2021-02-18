@@ -11,12 +11,15 @@ import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Positioner from '../models/positioner';
+import Building from '../models/building';
+import { buildingTypes } from '../instances/building_types';
 import { MODALS } from '../enums/modals';
 
 export default function LeadersComponent() {
   const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  const buildings = useTypedSelector(state => state.buildings);
   const leaderArray = Object.keys(leaders).map((id) => {
     return leaders[id];
   });
@@ -37,7 +40,8 @@ export default function LeadersComponent() {
   function renderLeaders(leaderArray: Leader[]) {
     return leaderArray.map((leader) => {
       return <LeaderDescription key={leader.id}
-        leader={leader} positioner={positioner} morePress={morePress} />
+        leader={leader} positioner={positioner}
+        buildings={buildings} morePress={morePress} />
     });
   }
 
@@ -47,8 +51,9 @@ export default function LeadersComponent() {
 }
 
 function LeaderDescription(props: {leader: Leader, positioner: Positioner,
-  morePress: Function}) {
+  buildings: { [id: string] : Building }, morePress: Function}) {
   const leader: Leader = props.leader;
+  const buildings: { [id: string] : Building } = props.buildings;
   const circleBgColor = leader.backgroundColor;
 
   return (
@@ -70,6 +75,9 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
           <Text>
             {leader.name}
           </Text>
+          <View>
+            {renderAssignedTo()}
+          </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
               styles.buttonLight])} onPress={() => props.morePress(leader)} >
@@ -82,4 +90,66 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       </View>
     </View>
   );
+
+  function renderAssignedTo() {
+    let assignedObj: any = {
+      iconProvider: 'MaterialCommunityIcons',
+      iconName: 'sleep',
+      iconForegroundColor: '#000',
+      iconBackgroundColor: '#fff',
+      text: 'Resting'
+    };
+    if (!leader.eating) {
+      assignedObj = {
+        iconProvider: 'FontAwesome5',
+        iconName: 'paw',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Scavenging'
+      };
+    }
+    else if (!leader.drinking) {
+      assignedObj = {
+        iconProvider: 'MaterialCommunityIcons',
+        iconName: 'water-off',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Scavenging'
+      };
+    }
+    else if (!leader.livingAt) {
+      assignedObj = {
+        iconProvider: 'MaterialCommunityIcons',
+        iconName: 'tent',
+        iconForegroundColor: '#000',
+        iconBackgroundColor: '#fff',
+        text: 'Camping'
+      };
+    }
+    else if (leader.assignedTo) {
+      const building = buildings[leader.assignedTo];
+      const buildingType = buildingTypes[building.buildingType];
+      assignedObj = {
+        iconProvider: buildingType.icon.provider,
+        iconName: buildingType.icon.name,
+        iconForegroundColor: buildingType.foregroundColor,
+        iconBackgroundColor: buildingType.backgroundColor,
+        text: buildingType.name
+      };
+    }
+
+    return (
+      <View style={styles.rows}>
+        <BadgeComponent
+          provider={assignedObj.iconProvider}
+          name={assignedObj.iconName}
+          foregroundColor={assignedObj.iconForegroundColor}
+          backgroundColor={assignedObj.iconBackgroundColor}
+          iconSize={16} />
+        <Text>
+          {' ' + assignedObj.text}
+        </Text>
+      </View>
+    );
+  }
 }
