@@ -1,5 +1,6 @@
 import ResourceTag from '../models/resource_tag';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 
 let resourceTags: { [name: string] : ResourceTag } = {};
 
@@ -153,6 +154,15 @@ resourceTags[RESOURCE_TAGS.HERBAL] = new ResourceTag({
   extract: true,
   icon: {provider: 'FontAwesome5', name: 'leaf'},
   foregroundColor: '#4caf50',
+  backgroundColor: '#fff'
+});
+
+resourceTags[EQUIPMENT_SLOTS.CLOTHING] = new ResourceTag({
+  name: EQUIPMENT_SLOTS.CLOTHING,
+  value: 2000,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'tshirt'},
+  foregroundColor: '#000',
   backgroundColor: '#fff'
 });
 

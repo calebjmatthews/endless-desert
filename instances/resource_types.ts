@@ -3,6 +3,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 
 let resourceTypes: { [name: string] : ResourceType } = {};
 
@@ -297,6 +299,16 @@ resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
   value: 200,
   icon: {provider: 'MaterialCommunityIcons', name: 'baguette'},
   foregroundColor: '#790f0f',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.CLOTHING],
+  value: 2000,
+  icon: {provider: 'FontAwesome5', name: 'tshirt'},
+  foregroundColor: '#afc1ec',
   backgroundColor: '#fff'
 });
 

@@ -35,4 +35,12 @@ resourceCategories[RESOURCE_CATEGORIES.ARTISAN_GOOD] = new ResourceCategory({
   backgroundColor: '#fff'
 });
 
+resourceCategories[RESOURCE_CATEGORIES.EQUIPMENT] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.EQUIPMENT,
+  value: 2000,
+  icon: {provider: 'FontAwesome5', name: 'tshirt'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 export { resourceCategories }

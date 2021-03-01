@@ -43,6 +43,13 @@ tabs[TABS.LEADERS] = new Tab({
   settings: []
 });
 
+tabs[TABS.EQUIPMENT] = new Tab({
+  name: TABS.EQUIPMENT,
+  order: 5,
+  icon: {provider: "FontAwesome5", name: "hammer"},
+  settings: []
+});
+
 let tabsArray: Tab[] = Object.keys(tabs).map((tabName) => {
   return tabs[tabName];
 });

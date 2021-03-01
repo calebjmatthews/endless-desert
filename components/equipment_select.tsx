@@ -46,8 +46,8 @@ export default function EquipmentSelectComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome5" name="tshirt" color="#fff" size={20}
-          style={styles.headingIcon} />
+        <IconComponent provider="FontAwesome5" name="hammer"
+          color="#fff" size={20} style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Select ' + modalValue.subType}</Text>
       </View>
       <ScrollView>

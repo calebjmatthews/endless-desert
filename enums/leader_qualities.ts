@@ -1,3 +1,6 @@
 export enum LEADER_QUALITIES {
-  PRODUCTION = "Production"
+  HAPPINESS = "Happiness",
+  PRODUCTION = "Production",
+  QUALITY = "Quality",
+  EFFICIENCY = "Efficiency"
 }

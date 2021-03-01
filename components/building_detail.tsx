@@ -156,7 +156,7 @@ export default function BuildDetailComponent() {
     if (!cost) { return null; }
 
     return cost.map((aCost) => {
-      let resource = utils.getMatchingResource(aCost.specificity, aCost.type);
+      let resource = utils.getMatchingResourceType(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;

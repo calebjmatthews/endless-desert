@@ -199,7 +199,7 @@ function BuildingDescription(props: any) {
       let resourceCost: {type: string, quantity: number}[] = [];
       let totalValue = 0;
       buildingType.upgradeCost.map((aCost) => {
-        const resource = utils.getMatchingResource(aCost.specificity, aCost.type);
+        const resource = utils.getMatchingResourceType(aCost.specificity, aCost.type);
         if (props.vault.resources[resource.name]) {
           if (props.vault.resources[resource.name].quantity < aCost.quantity) {
             enoughResources = false;

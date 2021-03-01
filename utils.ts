@@ -328,7 +328,7 @@ class Utils {
     return anArray[0];
   }
 
-  getMatchingResource(specificity: string, type: string):
+  getMatchingResourceType(specificity: string, type: string):
     ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
     switch(specificity) {
       case RESOURCE_SPECIFICITY.EXACT:

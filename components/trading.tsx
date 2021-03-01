@@ -226,7 +226,8 @@ function TradingPartnerDescription(props: any) {
 
   function renderTrade(trade: Trade, tradeClick: Function) {
     const give = resourceTypes[trade.give.type];
-    const receive = getMatchingResource(trade.receive.specificity, trade.receive.type);
+    const receive = utils.getMatchingResourceType(trade.receive.specificity,
+      trade.receive.type);
 
     return (
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
@@ -315,26 +316,6 @@ function TradingPartnerDescription(props: any) {
           <Text style={styles.buttonText}>{' Farewell'}</Text>
         </TouchableOpacity>
       );
-    }
-  }
-
-  function getMatchingResource(specificity: string, type: string):
-    ResourceType|ResourceTag|ResourceCategory {
-    switch(specificity) {
-      case RESOURCE_SPECIFICITY.EXACT:
-      return resourceTypes[type];
-
-      case RESOURCE_SPECIFICITY.TAG:
-      return resourceTags[type];
-
-      case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return resourceSubcategories[type];
-
-      case RESOURCE_SPECIFICITY.CATEGORY:
-      return resourceCategories[type];
-
-      default:
-      return resourceTypes[type];
     }
   }
 }

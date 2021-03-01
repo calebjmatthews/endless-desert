@@ -31,7 +31,7 @@ Ideas:
     - Rendering many things in a short time increases the crucible heat from gentle -> moderate -> strong -> incinerating, where a higher heat can produce a higher quality extract but has a higher chance of destroying the ingredient.
     -  Strong heat has the best ratio, and while incinerating technically has a higher chance to return a quality extract, it is almost certain to destroy the item.
     -  Perfumes/other products are created by account-specific combinations of extracts.
-    -  Extract types include: Sweet, Sour, Bitter, Brackish, Savory, Spicy, Cooling, Herbal, Earthy, Fungal, Rich, Airy
+    -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Earthy (shining yellow), Fungal (shining purple), Rich (shining green), Airy (shining blue)
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
   - Temporary settlements can be made in the Dreaming, last 24 hours (?) before evaporating and allowing the player to claim one single resource.
     - These can have unusual resources, such as iron or wood.
@@ -253,8 +253,9 @@ Traders:
 Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
     * Building specific: mattock (generic), dousing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter)
-  - Clothing: Usually increases happiness
+  - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
+    * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
   - Back: Varied effects
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production
 

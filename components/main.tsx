@@ -27,6 +27,7 @@ import StorageHandlerComponent from '../components/storage_handler';
 import LookAroundComponent from '../components/look_around';
 import LeadersComponent from '../components/leaders';
 import LandingComponent from '../components/landing';
+import EquipmentComponent from '../components/equipment';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -40,6 +41,7 @@ import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
 import { LEADER_TYPES } from '../enums/leader_types';
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
@@ -86,6 +88,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   if (globalState == 'loading') {
     return (
@@ -209,7 +217,11 @@ export default function MainComponent() {
   }
 
   function dropdownPress(tabName: string) {
-    if (tabName != TABS.FORTUITY) {
+    if (tabName == 'debug') {
+      dispatch(increaseResources(vault,
+        [{ type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"), quantity: 1 }] ));
+    }
+    else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
     }
     else {
@@ -218,9 +230,10 @@ export default function MainComponent() {
         if (account.fortuityCurrent.leaderJoins) {
           if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
             dispatch(unlockTab(TABS.LEADERS));
+            dispatch(unlockTab(TABS.EQUIPMENT));
           }
           const leaderCreateRes =
-            leaderTypes[account.fortuityCurrent.leaderJoins].createLeader();
+            leaderTypes[account.fortuityCurrent.leaderJoins].createLeader(vault);
           dispatch(addLeader(leaderCreateRes.leader));
           leaderCreateRes.equipment.map((equip) => {
             if (equip) {
@@ -289,6 +302,8 @@ export default function MainComponent() {
       return <TradingComponent />
       case "Leaders":
       return <LeadersComponent />
+      case "Equipment":
+      return <EquipmentComponent />
       default:
       return null;
     }

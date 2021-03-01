@@ -26,7 +26,7 @@ export default class BuildingType implements BuildingTypeInterface {
     let newDuration = 0;
     if (this.cost) {
       this.cost.map((aCost) => {
-        let resourceType = utils.getMatchingResource(aCost.specificity, aCost.type);
+        let resourceType = utils.getMatchingResourceType(aCost.specificity, aCost.type);
         if (!resourceType) {
           console.log('aCost');
           console.log(aCost);
@@ -39,7 +39,7 @@ export default class BuildingType implements BuildingTypeInterface {
     let newUpgradeDuration = 0;
     if (this.upgradeCost) {
       this.upgradeCost.map((aCost) => {
-        let resourceType = utils.getMatchingResource(aCost.specificity, aCost.type);
+        let resourceType = utils.getMatchingResourceType(aCost.specificity, aCost.type);
         if (!resourceType) {
           console.log('aCost');
           console.log(aCost);
