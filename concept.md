@@ -258,6 +258,10 @@ Equipment:
     * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
   - Back: Varied effects
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production
+  - Tiers of equipment are from 1 - 5, with probs as follows:
+    * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
+    * Fine unmarked equipment is 80% 2, 18% 3, 2% 4
+    * Exquisite unmarked equipment is 80% 3, 18% 4, 2% 5
 
 Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish

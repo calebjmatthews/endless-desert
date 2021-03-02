@@ -358,26 +358,17 @@ export default function LeaderDetailComponent() {
   function renderEquipmentEffects(equipmentSlot: string) {
     if (equipmentSlot) {
       const anEquipment = equipment[equipmentSlot];
-      const equipmentType = equipmentTypes[anEquipment.typeName];
-      if (equipmentType.effects) {
-        const effectArray = Object.keys(equipmentType.effects).map((quality) => {
-          if (equipmentType.effects) {
-            return equipmentType.effects[quality];
-          }
-        });
+      if (anEquipment.effects) {
         return (
           <View style={styles.columns}>
-            {effectArray.map((effect, index) => {
-              if (effect) {
-                return (
-                  <View key={index} style={styles.buttonRowDetail}>
-                    <Text style={styles.buttonRowDetailText}>
-                      {effect.quality + ' +' + effect.change + '%'}
-                    </Text>
-                  </View>
-                );
-              }
-              return null;
+            {anEquipment.effects.map((effect, index) => {
+              return (
+                <View key={index} style={styles.buttonRowDetail}>
+                  <Text style={styles.buttonRowDetailText}>
+                    {effect.quality + ' +' + effect.change + '%'}
+                  </Text>
+                </View>
+              );
             })}
           </View>
         );

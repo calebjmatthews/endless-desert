@@ -273,6 +273,7 @@ export const styles = StyleSheet.create({
   buttonRowDetail: {
     paddingHorizontal: 5,
     marginLeft: 10,
+    marginVertical: 1,
     backgroundColor: '#404c7d',
     borderRadius: 2
   },
