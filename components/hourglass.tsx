@@ -198,7 +198,7 @@ export default function HourglassComponent() {
         dispatch(consumeResources(vault, rtc));
       }
       if (recalcRates) {
-        let newRates = new Hourglass().setRates(tempBuildings, leaders);
+        let newRates = new Hourglass().calcRates(tempBuildings, leaders, equipment);
         dispatch(setRates(newRates));
       }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));

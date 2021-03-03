@@ -2,7 +2,13 @@ import Building from './building';
 import BuildingType from './building_type';
 import Timer from './timer';
 import Leader from './leader';
+import Equipment from './equipment';
+import EquipmentEffect from './equipment_effect';
 import { buildingTypes } from '../instances/building_types';
+import { resourceTypes } from '../instances/resource_types';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
+const LQ = LEADER_QUALITIES;
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const MS_IN_MIN = 60000;
 
 export default class Hourglass {
@@ -44,8 +50,8 @@ export default class Hourglass {
     return resolvedTimers;
   }
 
-  setRates(buildings: { [id: string] : Building },
-    leaders: { [id: string] : Leader }) {
+  calcRates(buildings: { [id: string] : Building },
+    leaders: { [id: string] : Leader }, equipment: { [id: string] : Equipment }) {
     let productionRates: { [resourceName: string] : number } = {};
     let consumptionRates: { [resourceName: string] : number } = {};
     let netRates: { [resourceName: string] : number } = {};
@@ -80,7 +86,9 @@ export default class Hourglass {
           recipe.produces.map((production) => {
             let prodQuantity = production.quantity;
             if (buildingLeaders[building.id]) {
-              prodQuantity *= (1 + (buildingLeaders[building.id].productionPlus / 100));
+              const leaderMod = findLeaderMod(buildingLeaders[building.id],
+                production.type, equipment, LQ.SPEED);
+              prodQuantity *= (1 + (leaderMod / 100));
             }
             mapAdd(productionRates, production.type, prodQuantity);
             mapAdd(buildingRates[id], production.type, prodQuantity);
@@ -151,6 +159,75 @@ export default class Hourglass {
         }
       });
       return buildingLeaders;
+    }
+
+    function findLeaderMod(leader: any, prodResource: string,
+      equipment: { [id: string] : Equipment }, quality: string) {
+      let leaderMod = 0;
+      let happiness = 0;
+      let happinessAppliesTo: {[quality: string] : boolean} = {};
+      const slots = ['toolEquipped', 'clothingEquipped', 'backEquipped'];
+      slots.map((slot) => {
+        const equipmentId: string = leader[slot];
+        const anEquipment: Equipment = equipment[equipmentId];
+        if (anEquipment) {
+          if (anEquipment.effects) {
+            anEquipment.effects.map((effect) => {
+              switch(effect.quality) {
+                case LQ.HAPPINESS_TO_SPEED:
+                happinessAppliesTo[LQ.SPEED] = true; break;
+                case LQ.HAPPINESS_TO_QUALITY:
+                happinessAppliesTo[LQ.QUALITY] = true; break;
+                case LQ.HAPPINESS_TO_EFFICIENCY:
+                happinessAppliesTo[LQ.EFFICIENCY] = true; break;
+
+                case LQ.HAPPINESS:
+                happiness += effect.change; break;
+
+                default:
+                if (effect.quality == quality && doesResourceMatch(prodResource,
+                  effect)) {
+                  leaderMod += effect.change;
+                }
+                break;
+              }
+            });
+          }
+        }
+      });
+
+      if (happinessAppliesTo[quality]) {
+        leaderMod += happiness;
+      }
+
+      return leaderMod;
+    }
+
+    function doesResourceMatch(prodResource: string, effect: EquipmentEffect) {
+      const resourceType = resourceTypes[prodResource];
+      switch(effect.specificity) {
+        case RESOURCE_SPECIFICITY.EXACT:
+        return (resourceType.name == effect.type);
+
+        case RESOURCE_SPECIFICITY.TAG:
+        for (let index = 0; index < resourceType.tags.length; index++) {
+          if (resourceType.tags[index] == effect.type) {
+            return true;
+          }
+        }
+        return false;
+
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        return (resourceType.subcategory == effect.type);
+
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        return (resourceType.category == effect.type);
+
+        case undefined:
+        return true;
+      }
+      console.log('Unexpected resource specifcity: ' + effect.specificity);
+      return false;
     }
   }
 }

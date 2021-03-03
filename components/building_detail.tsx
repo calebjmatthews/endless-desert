@@ -38,6 +38,7 @@ export default function BuildDetailComponent() {
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
+  const equipment = useTypedSelector(state => state.equipment);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let building: Building = modalValue;
   const buildingType = buildingTypes[building.buildingType];
@@ -344,7 +345,7 @@ export default function BuildDetailComponent() {
       tempBuildings[id] = new Building(buildings[id]);
     });
     tempBuildings[building.id].recipeSelected = recipeIndex;
-    const newRates = new Hourglass().setRates(tempBuildings, leaders);
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, equipment);
     dispatch(setRates(newRates));
   }
 

@@ -262,6 +262,7 @@ Equipment:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
     * Fine unmarked equipment is 80% 2, 18% 3, 2% 4
     * Exquisite unmarked equipment is 80% 3, 18% 4, 2% 5
+  - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
 
 Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish

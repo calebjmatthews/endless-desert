@@ -108,8 +108,7 @@ export default function EquipmentSelectComponent() {
       else if (modalValue.subType == EQUIPMENT_SLOTS.BACK) {
         tempLeaders[modalValue.leader.id].backEquipped = equipmentSelected;
       }
-      tempLeaders[modalValue.leader.id].setPluses(equipment);
-      let newRates = new Hourglass().setRates(buildings, tempLeaders);
+      let newRates = new Hourglass().calcRates(buildings, tempLeaders, equipment);
 
       dispatch(donEquipment(modalValue.leader, anEquipment));
       dispatch(setRates(newRates));

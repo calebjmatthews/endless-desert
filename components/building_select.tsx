@@ -124,9 +124,8 @@ export default function BuildingSelectComponent() {
         if (leadersBuilding[buildingSelected]) {
           dispatch(assignToBuilding(leadersBuilding[buildingSelected], null));
           tempLeaders[leadersBuilding[buildingSelected].id].assignedTo = null;
-          tempLeaders[leadersBuilding[buildingSelected].id].setPluses(equipment);
         }
-        let newRates = new Hourglass().setRates(buildings, tempLeaders);
+        let newRates = new Hourglass().calcRates(buildings, tempLeaders, equipment);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
@@ -134,13 +133,11 @@ export default function BuildingSelectComponent() {
         dispatch(liveAtBuilding(modalValue.leader, buildingSelected));
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
-        tempLeaders[modalValue.leader.id].setPluses(equipment);
         if (leadersBuilding[buildingSelected]) {
           dispatch(liveAtBuilding(leadersBuilding[buildingSelected], null));
           tempLeaders[leadersBuilding[buildingSelected].id].livingAt = null;
-          tempLeaders[leadersBuilding[buildingSelected].id].setPluses(equipment);
         }
-        let newRates = new Hourglass().setRates(buildings, tempLeaders);
+        let newRates = new Hourglass().calcRates(buildings, tempLeaders, equipment);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }

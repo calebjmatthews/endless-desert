@@ -31,7 +31,7 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
       weight: 100
     },
     additionalOptions: [{
-      qualities: [LEADER_QUALITIES.PRODUCTION, LEADER_QUALITIES.EFFICIENCY,
+      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY,
         LEADER_QUALITIES.QUALITY],
       givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
       finalSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
@@ -47,7 +47,7 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
       weight: 100
     },
     additionalOptions: [{
-      qualities: [LEADER_QUALITIES.PRODUCTION, LEADER_QUALITIES.EFFICIENCY,
+      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY,
         LEADER_QUALITIES.QUALITY],
       givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
       finalSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
@@ -68,7 +68,7 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: {
-      qualities: [LEADER_QUALITIES.PRODUCTION],
+      qualities: [LEADER_QUALITIES.SPEED],
       change: 35,
       weight: 100
     },
@@ -86,7 +86,7 @@ equipmentTypes[EQUIPMENT_TYPES.LABORERS_SATCHEL] = new EquipmentType({
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: {
-      qualities: [LEADER_QUALITIES.PRODUCTION],
+      qualities: [LEADER_QUALITIES.SPEED],
       change: 10,
       weight: 100
     },

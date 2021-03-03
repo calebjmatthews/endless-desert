@@ -13,7 +13,6 @@ export default class LeaderType implements LeaderTypeInterface {
   toolStarting: string|null = null;
   clothingStarting: string|null = null;
   backStarting: string|null = null;
-  happinessStarting: number = 10;
   icon: {provider: string, name: string} = { provider: '', name: ''};
   foregroundColor: string = '';
   backgroundColor: string = '';
@@ -38,10 +37,6 @@ export default class LeaderType implements LeaderTypeInterface {
       backEquipped: null,
       eating: null,
       drinking: null,
-      happiness: this.happinessStarting,
-      productionPlus: 0,
-      qualityPlus: 0,
-      efficiencyPlus: 0,
       icon: this.icon,
       foregroundColor: this.foregroundColor,
       backgroundColor: this.backgroundColor,
@@ -67,7 +62,6 @@ export default class LeaderType implements LeaderTypeInterface {
       startingEquipment[back.id] = back;
       leader.backEquipped = back.id;
     }
-    leader.setPluses(startingEquipment);
     return { leader: leader, equipment: [tool, clothing, back] };
   }
 }
@@ -80,7 +74,6 @@ interface LeaderTypeInterface {
   toolStarting: string|null;
   clothingStarting: string|null;
   backStarting: string|null;
-  happinessStarting: number;
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;

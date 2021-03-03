@@ -21,6 +21,8 @@ import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
 import ResearchStatus from '../models/research_status';
 import Account from '../models/account';
+import Leader from '../models/leader';
+import Building from '../models/building';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
@@ -70,7 +72,7 @@ export default function StorageHandlerComponent() {
           fetchFromStorage(checkRes.sessionId, checkRes.userId);
         }
         else {
-          const newRates = hourglass.setRates(buildingsStarting, {});
+          const newRates = hourglass.calcRates(buildingsStarting, {}, {});
           dispatch(setRates(newRates));
           dispatch(setGlobalState('landing'));
         }
@@ -147,13 +149,14 @@ export default function StorageHandlerComponent() {
           return false;
         }
         let buildings = {};
-        let leaders = {};
+        let leaders: { [id: string] : Leader } = {};
+        let equipment = {};
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
             let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
             if (tableName != 'research_status'
               && tableName != 'buildings' && tableName != 'leaders'
-              && tableName != 'accounts' && jsonValue) {
+              && tableName != 'accounts' && tableName != 'equipment' && jsonValue) {
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
             else if (tableName == 'research_status' && jsonValue) {
@@ -171,6 +174,10 @@ export default function StorageHandlerComponent() {
               leaders = jsonValue;
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
+            else if (tableName == 'equipment' && jsonValue) {
+              equipment = jsonValue;
+              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            }
             else if (tableName == 'accounts' && jsonValue) {
               let account = jsonValue;
               account.sessionId = sessionId;
@@ -178,7 +185,10 @@ export default function StorageHandlerComponent() {
             }
           }
         });
-        const newRates = hourglass.setRates(buildings, leaders);
+        Object.keys(leaders).map((id) => {
+          new Leader(leaders[id]).calcEffects(equipment);
+        });
+        const newRates = hourglass.calcRates(buildings, leaders, equipment);
         dispatch(setRates(newRates));
         return true;
       }
@@ -190,7 +200,7 @@ export default function StorageHandlerComponent() {
     })
     .then((booleanRes) => {
       if (booleanRes == false) {
-        const newRates = hourglass.setRates(buildingsStarting, {});
+        const newRates = hourglass.calcRates(buildingsStarting, {}, {});
         dispatch(setRates(newRates));
         dispatch(setGlobalState('landing'));
       }
