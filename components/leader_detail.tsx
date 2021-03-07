@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import EquipmentEffectComponent from './equipment_effect';
 import ProgressBarComponent from '../components/progress_bar';
 import { SET_EATING, SET_DRINKING, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
   from '../actions/leaders';
@@ -53,27 +54,6 @@ export default function LeaderDetailComponent() {
             endingProgress={(leader.happiness / 100)} duration={1000}
             labelStyle={styles.bareText}
             color={'#de0202'} label={(leader.happiness + '%')} />
-        </View>
-        <View style={styles.break} />
-        <View style={styles.rows}>
-          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-            positioner.modalThird, maxWidth: positioner.modalThird,
-            flexDirection: 'column'}])}>
-            <Text>Production</Text>
-            <Text>+{Math.round(leader.productionPlus) + '%'}</Text>
-          </View>
-          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-            positioner.modalThird, maxWidth: positioner.modalThird,
-            flexDirection: 'column'}])}>
-            <Text>Quality</Text>
-            <Text>+{Math.round(leader.qualityPlus) + '%'}</Text>
-          </View>
-          <View style={StyleSheet.flatten([styles.panelTile, {minWidth:
-            positioner.modalThird, maxWidth: positioner.modalThird,
-            flexDirection: 'column'}])}>
-            <Text>Efficiency</Text>
-            <Text>+{Math.round(leader.efficiencyPlus) + '%'}</Text>
-          </View>
         </View>
         <View style={styles.break} />
         <View style={styles.rows}>
@@ -361,14 +341,8 @@ export default function LeaderDetailComponent() {
       if (anEquipment.effects) {
         return (
           <View style={styles.columns}>
-            {anEquipment.effects.map((effect, index) => {
-              return (
-                <View key={index} style={styles.buttonRowDetail}>
-                  <Text style={styles.buttonRowDetailText}>
-                    {effect.quality + ' +' + effect.change + '%'}
-                  </Text>
-                </View>
-              );
+            {anEquipment.effects.map((anEffect, index) => {
+              return <EquipmentEffectComponent anEffect={anEffect} />;
             })}
           </View>
         );

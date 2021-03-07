@@ -8,17 +8,27 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import EquipmentEffectComponent from './equipment_effect';
 import { addEquipment } from '../actions/equipment';
 import { consumeResources } from '../actions/vault';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
+import ResourceTag from '../models/resource_tag';
+import ResourceSubcategory from '../models/resource_subcategory';
+import ResourceCategory from '../models/resource_category';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
+import EquipmentEffect from '../models/equipment_effect';
 import { resourceTypes } from '../instances/resource_types';
+import { resourceTags } from '../instances/resource_tags';
+import { resourceSubcategories } from '../instances/resource_subcategories';
+import { resourceCategories } from '../instances/resource_categories';
 import { equipmentTypes } from '../instances/equipment_types';
+import { leaderQualities } from '../instances/leader_qualities';
 import { utils } from '../utils';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default function EquipmentComponent() {
   const vault = useTypedSelector(state => state.vault);
@@ -201,13 +211,9 @@ function MarkedEquipmentDescription(props: any) {
     if (anEquipment.effects) {
       return (
         <View style={styles.columns}>
-          {anEquipment.effects.map((effect, index) => {
+          {anEquipment.effects.map((anEffect, index) => {
             return (
-              <View key={index} style={styles.buttonRowDetail}>
-                <Text style={styles.buttonRowDetailText}>
-                  {effect.quality + ' +' + effect.change + '%'}
-                </Text>
-              </View>
+              <EquipmentEffectComponent anEffect={anEffect} key={index} />
             );
           })}
         </View>

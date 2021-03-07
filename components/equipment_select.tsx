@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import EquipmentEffectComponent from './equipment_effect';
 import { DON_EQUIPMENT, donEquipment } from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
@@ -134,7 +135,7 @@ function EquipmentSelector(props: {anEquipment: Equipment,
         iconSize={18} />
       <View>
         <Text style={optionTextStyle}>{equipmentType.name}</Text>
-        {renderEquipmentEffects(equipmentType)}
+        {renderEquipmentEffects(props.anEquipment)}
         {renderButton(props.anEquipment, props.equipmentSelected,
           props.setEquipmentSelected)}
       </View>
@@ -164,24 +165,16 @@ function EquipmentSelector(props: {anEquipment: Equipment,
     );
   }
 
-  function renderEquipmentEffects(equipmentType: EquipmentType) {
+  function renderEquipmentEffects(anEquipment: Equipment) {
     let effectTextStyle = {paddingLeft: 12, paddingRight: 4, fontSize: 12};
-    if (equipmentType.effects) {
-      const effectArray = Object.keys(equipmentType.effects).map((quality) => {
-        if (equipmentType.effects) {
-          return equipmentType.effects[quality];
-        }
-      });
+    const equipmentType = equipmentTypes[anEquipment.typeName];
+    if (anEquipment.effects) {
       return (
         <View style={styles.columns}>
-          {effectArray.map((effect, index) => {
-            if (effect) {
+          {anEquipment.effects.map((anEffect, index) => {
+            if (anEffect) {
               return (
-                <View key={index}>
-                  <Text style={effectTextStyle}>
-                    {effect.quality + ' +' + effect.change + '%'}
-                  </Text>
-                </View>
+                <EquipmentEffectComponent anEffect={anEffect} />
               );
             }
             return null;

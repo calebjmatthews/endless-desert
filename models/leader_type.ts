@@ -35,6 +35,8 @@ export default class LeaderType implements LeaderTypeInterface {
       toolEquipped: null,
       clothingEquipped: null,
       backEquipped: null,
+      happiness: 0,
+      effects: [],
       eating: null,
       drinking: null,
       icon: this.icon,

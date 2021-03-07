@@ -462,5 +462,19 @@ export const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15
+  },
+
+  infoBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#eff3ff',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#dce0e8',
+    borderStyle: 'solid',
+    marginVertical: 2,
+    paddingHorizontal: 5,
+    paddingVertical: 1
   }
 });
