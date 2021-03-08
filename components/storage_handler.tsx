@@ -149,7 +149,7 @@ export default function StorageHandlerComponent() {
           return false;
         }
         let buildings = {};
-        let leaders: { [id: string] : Leader } = {};
+        let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
@@ -171,8 +171,7 @@ export default function StorageHandlerComponent() {
               dispatch(TABLE_SETTERS[tableName](jsonValue));
             }
             else if (tableName == 'leaders' && jsonValue) {
-              leaders = jsonValue;
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
+              rawLeaders = jsonValue;
             }
             else if (tableName == 'equipment' && jsonValue) {
               equipment = jsonValue;
@@ -185,9 +184,13 @@ export default function StorageHandlerComponent() {
             }
           }
         });
-        Object.keys(leaders).map((id) => {
-          new Leader(leaders[id]).calcEffects(equipment);
+        let leaders: { [id: string] : Leader } = {};
+        Object.keys(rawLeaders).map((id) => {
+          let leader = new Leader(rawLeaders[id]);
+          leader.calcEffects(equipment);
+          leaders[id] = leader;
         });
+        dispatch(setLeaders(leaders));
         const newRates = hourglass.calcRates(buildings, leaders, equipment);
         dispatch(setRates(newRates));
         return true;

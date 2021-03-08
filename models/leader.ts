@@ -105,8 +105,6 @@ export default class Leader implements LeaderInterface {
       combineObj.effect.change = combineObj.change;
       return new EquipmentEffect(combineObj.effect);
     });
-    console.log('combineArray');
-    console.log(combineArray);
 
     let moddedArray: EquipmentEffect[] = [];
     combineArray.map((effect, index) => {
@@ -114,20 +112,14 @@ export default class Leader implements LeaderInterface {
       for (let cIndex = 0; cIndex < index; cIndex++) {
         const compEffect = combineArray[cIndex];
         if (doesEffectMatch(effect, compEffect)) {
-          console.log('moddedEffect');
-          console.log(moddedEffect);
-          console.log('moddedEffect.change');
-          console.log(moddedEffect.change);
           moddedEffect.change = ((((100 + moddedEffect.change) / 100)
             * ((100 + compEffect.change) / 100)) - 1) * 100;
-          console.log('moddedEffect.change');
-          console.log(moddedEffect.change);
-          console.log('~~~~~~~~~~~');
         }
       }
       moddedArray.push(moddedEffect);
     });
     this.effects = moddedArray;
+    this.happiness = happiness;
     console.log('this leader');
     console.log(this);
 

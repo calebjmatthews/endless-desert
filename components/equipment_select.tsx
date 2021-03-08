@@ -9,7 +9,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import EquipmentEffectComponent from './equipment_effect';
-import { DON_EQUIPMENT, donEquipment } from '../actions/leaders';
+import { DON_EQUIPMENT, setLeaders } from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
 
@@ -99,21 +99,26 @@ export default function EquipmentSelectComponent() {
   function submit() {
     if (equipmentSelected) {
       const anEquipment = equipment[equipmentSelected];
-      let tempLeaders = Object.assign({}, leaders);
-      if (modalValue.subType == EQUIPMENT_SLOTS.TOOL) {
-        tempLeaders[modalValue.leader.id].toolEquipped = equipmentSelected;
-      }
-      else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING) {
-        tempLeaders[modalValue.leader.id].clothingEquipped = equipmentSelected;
-      }
-      else if (modalValue.subType == EQUIPMENT_SLOTS.BACK) {
-        tempLeaders[modalValue.leader.id].backEquipped = equipmentSelected;
-      }
-      let newRates = new Hourglass().calcRates(buildings, tempLeaders, equipment);
-
-      dispatch(donEquipment(modalValue.leader, anEquipment));
+      let newLeaders: { [id: string] : Leader } = {};
+      Object.keys(leaders).map((id) => {
+        let leader = new Leader(leaders[id]);
+        if (modalValue.subType == EQUIPMENT_SLOTS.TOOL) {
+          leader.toolEquipped = equipmentSelected;
+        }
+        else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING) {
+          leader.clothingEquipped = equipmentSelected;
+        }
+        else if (modalValue.subType == EQUIPMENT_SLOTS.BACK) {
+          leader.backEquipped = equipmentSelected;
+        }
+        leader.calcEffects(equipment);
+        newLeaders[id] = leader;
+      });
+      dispatch(setLeaders(newLeaders));
+      let newRates = new Hourglass().calcRates(buildings, newLeaders, equipment);
       dispatch(setRates(newRates));
-      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
+      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
+        newLeaders[modalValue.leader.id]));
     }
   }
 }
@@ -174,7 +179,7 @@ function EquipmentSelector(props: {anEquipment: Equipment,
           {anEquipment.effects.map((anEffect, index) => {
             if (anEffect) {
               return (
-                <EquipmentEffectComponent anEffect={anEffect} />
+                <EquipmentEffectComponent key={index} anEffect={anEffect} />
               );
             }
             return null;

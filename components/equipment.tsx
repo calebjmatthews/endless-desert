@@ -213,7 +213,7 @@ function MarkedEquipmentDescription(props: any) {
         <View style={styles.columns}>
           {anEquipment.effects.map((anEffect, index) => {
             return (
-              <EquipmentEffectComponent anEffect={anEffect} key={index} />
+              <EquipmentEffectComponent key={index} anEffect={anEffect} />
             );
           })}
         </View>

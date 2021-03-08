@@ -342,7 +342,7 @@ export default function LeaderDetailComponent() {
         return (
           <View style={styles.columns}>
             {anEquipment.effects.map((anEffect, index) => {
-              return <EquipmentEffectComponent anEffect={anEffect} />;
+              return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
             })}
           </View>
         );
