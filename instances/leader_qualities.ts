@@ -11,7 +11,7 @@ leaderQualities[LEADER_QUALITIES.HAPPINESS_TO_SPEED] = new LeaderQuality({
 });
 leaderQualities[LEADER_QUALITIES.HAPPINESS_TO_QUALITY] = new LeaderQuality({
   name: LEADER_QUALITIES.HAPPINESS_TO_QUALITY,
-  icon: {provider: 'FontAwesome5', name: 'hand-sparkles'},
+  icon: {provider: 'FontAwesome5', name: 'certificate'},
   foregroundColor: '#efbd03',
   backgroundColor: '#fff'
 });
@@ -35,7 +35,7 @@ leaderQualities[LEADER_QUALITIES.SPEED] = new LeaderQuality({
 });
 leaderQualities[LEADER_QUALITIES.QUALITY] = new LeaderQuality({
   name: LEADER_QUALITIES.QUALITY,
-  icon: {provider: 'FontAwesome5', name: 'hand-sparkles'},
+  icon: {provider: 'FontAwesome5', name: 'certificate'},
   foregroundColor: '#6d6d6d',
   backgroundColor: '#fff'
 });

@@ -68,12 +68,16 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: {
+      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
+      change: 100,
+      weight: 100
+    },
+    additionalOptions: [{
       qualities: [LEADER_QUALITIES.SPEED],
       change: 35,
       weight: 100
-    },
-    additionalOptions: [],
-    count: 1
+    }],
+    count: 2
   })],
   icon: {provider: 'MaterialCommunityIcons', name: 'star-four-points'},
   foregroundColor: '#dc2222',

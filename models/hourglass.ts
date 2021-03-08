@@ -51,7 +51,7 @@ export default class Hourglass {
   }
 
   calcRates(buildings: { [id: string] : Building },
-    leaders: { [id: string] : Leader }, equipment: { [id: string] : Equipment }) {
+    leaders: { [id: string] : Leader }) {
     let productionRates: { [resourceName: string] : number } = {};
     let consumptionRates: { [resourceName: string] : number } = {};
     let netRates: { [resourceName: string] : number } = {};
@@ -87,7 +87,7 @@ export default class Hourglass {
             let prodQuantity = production.quantity;
             if (buildingLeaders[building.id]) {
               const leaderMod = findLeaderMod(buildingLeaders[building.id],
-                production.type, equipment, LQ.SPEED);
+                production.type, LQ.SPEED);
               prodQuantity *= (1 + (leaderMod / 100));
             }
             mapAdd(productionRates, production.type, prodQuantity);
@@ -161,45 +161,14 @@ export default class Hourglass {
       return buildingLeaders;
     }
 
-    function findLeaderMod(leader: any, prodResource: string,
-      equipment: { [id: string] : Equipment }, quality: string) {
+    function findLeaderMod(leader: Leader, prodResource: string, quality: string) {
       let leaderMod = 0;
-      let happiness = 0;
-      let happinessAppliesTo: {[quality: string] : boolean} = {};
-      const slots = ['toolEquipped', 'clothingEquipped', 'backEquipped'];
-      slots.map((slot) => {
-        const equipmentId: string = leader[slot];
-        const anEquipment: Equipment = equipment[equipmentId];
-        if (anEquipment) {
-          if (anEquipment.effects) {
-            anEquipment.effects.map((effect) => {
-              switch(effect.quality) {
-                case LQ.HAPPINESS_TO_SPEED:
-                happinessAppliesTo[LQ.SPEED] = true; break;
-                case LQ.HAPPINESS_TO_QUALITY:
-                happinessAppliesTo[LQ.QUALITY] = true; break;
-                case LQ.HAPPINESS_TO_EFFICIENCY:
-                happinessAppliesTo[LQ.EFFICIENCY] = true; break;
-
-                case LQ.HAPPINESS:
-                happiness += effect.change; break;
-
-                default:
-                if (effect.quality == quality && doesResourceMatch(prodResource,
-                  effect)) {
-                  leaderMod += effect.change;
-                }
-                break;
-              }
-            });
-          }
+      leader.effects.map((anEffect) => {
+        if (anEffect.quality == quality && doesResourceMatch(prodResource,
+          anEffect) && anEffect.change > leaderMod) {
+          leaderMod = anEffect.change;
         }
       });
-
-      if (happinessAppliesTo[quality]) {
-        leaderMod += happiness;
-      }
-
       return leaderMod;
     }
 

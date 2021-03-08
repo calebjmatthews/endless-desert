@@ -34,7 +34,7 @@ export default class Leader implements LeaderInterface {
   calcEffects(equipment: { [id: string] : Equipment }) {
     let effectArray: EquipmentEffect[] = []
     let happiness = 0;
-    let happinessAppliesTo: {[quality: string] : boolean} = {};
+    let happinessAppliesTo: {[quality: string] : number} = {};
     const slots = ['toolEquipped', 'clothingEquipped', 'backEquipped'];
     let leader: any = this;
     slots.map((slot) => {
@@ -45,16 +45,30 @@ export default class Leader implements LeaderInterface {
           anEquipment.effects.map((effect) => {
             switch(effect.quality) {
               case LQ.HAPPINESS_TO_SPEED:
-              effectArray.push(effect);
-              happinessAppliesTo[LQ.SPEED] = true;
+              if (!happinessAppliesTo[LQ.SPEED]) {
+                happinessAppliesTo[LQ.SPEED] = effect.change;
+              }
+              else {
+                happinessAppliesTo[LQ.SPEED] *= (1 + (effect.change/100));
+              }
               break;
+
               case LQ.HAPPINESS_TO_QUALITY:
-              effectArray.push(effect);
-              happinessAppliesTo[LQ.QUALITY] = true;
+              if (!happinessAppliesTo[LQ.QUALITY]) {
+                happinessAppliesTo[LQ.QUALITY] = effect.change;
+              }
+              else {
+                happinessAppliesTo[LQ.QUALITY] *= (1 + (effect.change/100));
+              }
               break;
+
               case LQ.HAPPINESS_TO_EFFICIENCY:
-              effectArray.push(effect);
-              happinessAppliesTo[LQ.EFFICIENCY] = true;
+              if (!happinessAppliesTo[LQ.EFFICIENCY]) {
+                happinessAppliesTo[LQ.EFFICIENCY] = effect.change;
+              }
+              else {
+                happinessAppliesTo[LQ.EFFICIENCY] *= (1 + (effect.change/100));
+              }
               break;
 
               case LQ.HAPPINESS:
@@ -115,6 +129,11 @@ export default class Leader implements LeaderInterface {
           moddedEffect.change = ((((100 + moddedEffect.change) / 100)
             * ((100 + compEffect.change) / 100)) - 1) * 100;
         }
+      }
+      if (happinessAppliesTo[effect.quality]) {
+        moddedEffect.change = ((((100 + moddedEffect.change) / 100)
+          * ((100 + (happiness * (happinessAppliesTo[effect.quality] / 100))) / 100))
+          - 1) * 100;
       }
       moddedArray.push(moddedEffect);
     });

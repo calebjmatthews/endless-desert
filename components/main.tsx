@@ -35,6 +35,8 @@ import Positioner from '../models/positioner';
 import Memo from '../models/memo';
 import LeaderType from '../models/leader_type';
 import Timer from '../models/timer';
+import Equipment from '../models/equipment';
+import Leader from '../models/leader';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { utils } from '../utils';
@@ -234,12 +236,16 @@ export default function MainComponent() {
           }
           const leaderCreateRes =
             leaderTypes[account.fortuityCurrent.leaderJoins].createLeader(vault);
-          dispatch(addLeader(leaderCreateRes.leader));
+          let tempEquipment: { [id: string] : Equipment } = {};
           leaderCreateRes.equipment.map((equip) => {
             if (equip) {
+              tempEquipment[equip.id] = equip;
               dispatch(addEquipment(equip));
             }
           });
+          let leader = new Leader(leaderCreateRes.leader);
+          leader.calcEffects(tempEquipment);
+          dispatch(addLeader(leader));
         }
         if (account.fortuityCurrent.gainResources) {
           const fgr = account.fortuityCurrent.gainResources;

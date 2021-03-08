@@ -115,7 +115,7 @@ export default function EquipmentSelectComponent() {
         newLeaders[id] = leader;
       });
       dispatch(setLeaders(newLeaders));
-      let newRates = new Hourglass().calcRates(buildings, newLeaders, equipment);
+      let newRates = new Hourglass().calcRates(buildings, newLeaders);
       dispatch(setRates(newRates));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
         newLeaders[modalValue.leader.id]));

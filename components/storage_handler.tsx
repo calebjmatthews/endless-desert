@@ -191,7 +191,7 @@ export default function StorageHandlerComponent() {
           leaders[id] = leader;
         });
         dispatch(setLeaders(leaders));
-        const newRates = hourglass.calcRates(buildings, leaders, equipment);
+        const newRates = hourglass.calcRates(buildings, leaders);
         dispatch(setRates(newRates));
         return true;
       }
