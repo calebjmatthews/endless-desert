@@ -19,8 +19,6 @@ export default class EquipmentType implements EquipmentTypeInterface {
 
   createEquipment(tier: number, vault: Vault) {
     let effects = this.effectGenerators[tier].generateEffects(vault);
-    console.log('effects');
-    console.log(effects);
     return new Equipment({
       id: utils.randHex(16),
       typeName: this.name,

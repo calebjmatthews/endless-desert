@@ -98,11 +98,20 @@ export default class Hourglass {
         }
         if (recipe.consumes) {
           recipe.consumes.map((consumption) => {
-            mapAdd(consumptionRates, consumption.type, consumption.quantity);
-            mapAdd(buildingRates[id], consumption.type, (consumption.quantity * -1));
+            let consQuantity = consumption.quantity;
+            if (buildingLeaders[building.id]) {
+              const leaderMod = findLeaderMod(buildingLeaders[building.id],
+                consumption.type, LQ.SPEED);
+              consQuantity *= (1 + (leaderMod / 100));
+              const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
+                consumption.type, LQ.EFFICIENCY);
+              consQuantity *= (1 - (leaderNegMod / 100));
+            }
+            mapAdd(consumptionRates, consumption.type, consQuantity);
+            mapAdd(buildingRates[id], consumption.type, (consQuantity * -1));
             mapAdd(bGroupRates[building.buildingType], consumption.type,
-              (consumption.quantity * -1));
-            mapAdd(netRates, consumption.type, (consumption.quantity * -1));
+              (consQuantity * -1));
+            mapAdd(netRates, consumption.type, (consQuantity * -1));
           });
         }
       }
