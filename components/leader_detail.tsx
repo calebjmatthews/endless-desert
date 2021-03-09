@@ -56,27 +56,39 @@ export default function LeaderDetailComponent() {
             color={'#de0202'} label={(leader.happiness + '%')} />
         </View>
         <View style={styles.break} />
+        <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}])}>
+          <Text style={styles.bareText}>{'Work Effects:'}</Text>
+          <View style={StyleSheet.flatten([styles.panelFlexColumn,
+            {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
+            alignItems: 'flex-start'}])}>
+            {leader.effects.map((anEffect, index) => {
+              return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
+            })}
+          </View>
+        </View>
+        <View style={styles.break} />
         <View style={styles.rows}>
           <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
               maxWidth: positioner.modalHalf}])}>
-            <Text style={styles.bareText}>Eating:</Text>
+            <Text style={styles.bareText}>{'Eating:'}</Text>
             {renderEating()}
           </View>
           <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
               maxWidth: positioner.modalHalf}])}>
-            <Text style={styles.bareText}>Drinking:</Text>
+            <Text style={styles.bareText}>{'Drinking:'}</Text>
             {renderDrinking()}
           </View>
         </View>
         <View style={styles.rows}>
           <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
               maxWidth: positioner.modalHalf}])}>
-            <Text style={styles.bareText}>Living at:</Text>
+            <Text style={styles.bareText}>{'Living at:'}</Text>
             {renderLivingAt()}
           </View>
           <View style={StyleSheet.flatten([{minWidth: positioner.modalHalf,
               maxWidth: positioner.modalHalf}])}>
-            <Text style={styles.bareText}>Working at:</Text>
+            <Text style={styles.bareText}>{'Working at:'}</Text>
             {renderAssignedTo()}
           </View>
         </View>

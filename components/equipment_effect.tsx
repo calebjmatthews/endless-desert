@@ -14,17 +14,35 @@ import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
 import { leaderQualities } from '../instances/leader_qualities';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
+const LQ = LEADER_QUALITIES;
 
 export default function EquipmentEffectComponent(props:
   { anEffect: EquipmentEffect }) {
   return (
     <View style={styles.infoBar}>
-      <Text style={{fontSize: 12}}>{'+' + props.anEffect.change + '% '}</Text>
+      {renderChange(props.anEffect)}
       {renderEffectSpecificity(props.anEffect)}
       {renderEffectQuality(props.anEffect)}
     </View>
   );
+
+  function renderChange(anEffect: EquipmentEffect) {
+    if ((anEffect.quality == LQ.HAPPINESS_TO_SPEED
+      || anEffect.quality == LQ.HAPPINESS_TO_QUALITY
+      || anEffect.quality == LQ.HAPPINESS_TO_EFFICIENCY) && anEffect.change == 100) {
+      return null;
+    }
+    else {
+      return (
+        <Text style={{fontSize: 12}}>
+          {'+' + utils.formatNumberShort(props.anEffect.change) + '% '}
+        </Text>
+      );
+    }
+  }
 
   function renderEffectSpecificity(anEffect: EquipmentEffect) {
     if (anEffect.specificity && anEffect.type) {

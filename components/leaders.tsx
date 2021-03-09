@@ -7,6 +7,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import EquipmentEffectComponent from './equipment_effect';
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
@@ -75,6 +76,11 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
           <Text>
             {leader.name}
           </Text>
+          <View>
+            {leader.effects.map((anEffect, index) => {
+              return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
+            })}
+          </View>
           <View>
             {renderAssignedTo()}
           </View>
@@ -145,8 +151,8 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
           name={assignedObj.iconName}
           foregroundColor={assignedObj.iconForegroundColor}
           backgroundColor={assignedObj.iconBackgroundColor}
-          iconSize={16} />
-        <Text>
+          iconSize={14} />
+        <Text style={{fontSize: 12}}>
           {' ' + assignedObj.text}
         </Text>
       </View>
