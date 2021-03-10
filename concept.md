@@ -54,9 +54,10 @@ Ideas:
     - Natural phenomena (animal migration, plant blooming after rain, atrological event) with small knowledge gain and travel notes later
     - Exploring craftsman gives you blueprints
     - Crafting-type leader has an inspiration for a craft, and requires specific resources to create
-  - Thief sound stealing food/water at your settlement and can either be kicked out or allowed to stay, if allowed to stay will become a trader whose merchandise you can select
+  - Thief found stealing food/water at your settlement and can either be kicked out or allowed to stay, if allowed to stay will become a trader whose merchandise you can select
   - Building that refines sand into pure sand+subcategory resource
   - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
+  - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
 
 Resource Subcategories:
   - Sand
@@ -252,12 +253,15 @@ Traders:
 
 Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic), dousing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dousing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
     * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
-  - Back: Varied effects
-  - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production
+  - Back: Effects are varied and have a negative element, but usually just a single effect per equipment
+    * Journeyman's Haversack: + speed but - quality/efficiency
+    * Journeyman's Gearbag: + efficiency but - quality/speed
+    * Journeyman's Kitpack: + quality but - speed/efficiency
+  - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production, decreased food consumption, increased Knowledge from studying/analysis, decreased build time, special fortuities, increased basic status but decreased happiness
   - Tiers of equipment are from 1 - 5, with probs as follows:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
     * Fine unmarked equipment is 80% 2, 18% 3, 2% 4
@@ -296,8 +300,8 @@ Tabs:
 Useful icons:
   Entypo: 500px (infinity), address (post), bell, flower, lab-flask, mask,
     round-brush, swarm (bee)
-  Fontawesome: leaf, bolt, building-o, beer, medkit, paw, diamond, snowflake
-  Fontawesome5: anchor, ankh, archway, bahai, book-dead, broom, burn, campground, cat,
+  FontAwesome: leaf, bolt, building-o, beer, medkit, paw, diamond, snowflake
+  FontAwesome5: anchor, ankh, archway, bahai, book-dead, broom, burn, campground, cat,
     carrot, cheese, chess, church, cloud, coins, crow, crown, dharmachakra, dice,
     disease, dna, dog, dove, dragon, drum, dungeon, egg, fan, fist, frog,
     gopuram (building), guitar, hamsa, hand, hat-wizard, hippo, holly-berry, horse,

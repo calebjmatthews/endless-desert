@@ -157,12 +157,30 @@ resourceTags[RESOURCE_TAGS.HERBAL] = new ResourceTag({
   backgroundColor: '#fff'
 });
 
+resourceTags[EQUIPMENT_SLOTS.TOOL] = new ResourceTag({
+  name: EQUIPMENT_SLOTS.TOOL,
+  value: 3000,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'tools'},
+  foregroundColor: '#6d6d6d',
+  backgroundColor: '#fff'
+});
+
 resourceTags[EQUIPMENT_SLOTS.CLOTHING] = new ResourceTag({
   name: EQUIPMENT_SLOTS.CLOTHING,
   value: 2000,
   extract: false,
   icon: {provider: 'FontAwesome5', name: 'tshirt'},
-  foregroundColor: '#000',
+  foregroundColor: '#6d6d6d',
+  backgroundColor: '#fff'
+});
+
+resourceTags[EQUIPMENT_SLOTS.BACK] = new ResourceTag({
+  name: EQUIPMENT_SLOTS.BACK,
+  value: 2000,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'toolbox'},
+  foregroundColor: '#6d6d6d',
   backgroundColor: '#fff'
 });
 

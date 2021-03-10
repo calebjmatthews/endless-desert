@@ -302,6 +302,36 @@ resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 4000,
+  icon: {provider: 'MaterialCommunityIcons', name: 'pickaxe'},
+  foregroundColor: '#6d6d6d',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 4000,
+  icon: {provider: 'FontAwesome5', name: 'slash'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 4000,
+  icon: {provider: 'FontAwesome5', name: 'tools'},
+  foregroundColor: '#6d6d6d',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)'),
   category: RESOURCE_CATEGORIES.EQUIPMENT,
@@ -309,6 +339,39 @@ resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType(
   value: 2000,
   icon: {provider: 'FontAwesome5', name: 'tshirt'},
   foregroundColor: '#afc1ec',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.BACK],
+  value: 3000,
+  icon: {provider: 'FontAwesome5', name: 'box'},
+  foregroundColor: '#1a7b1d',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.BACK],
+  value: 3000,
+  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
+  foregroundColor: '#1a457b',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + ' (Unmarked)'),
+  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.BACK],
+  value: 3000,
+  icon: {provider: 'FontAwesome5', name: 'toolbox'},
+  foregroundColor: '#7a1a7b',
   backgroundColor: '#fff'
 });
 

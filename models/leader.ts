@@ -139,8 +139,6 @@ export default class Leader implements LeaderInterface {
     });
     this.effects = moddedArray;
     this.happiness = happiness;
-    console.log('this leader');
-    console.log(this);
 
     function doesEffectMatch(effect: EquipmentEffect, compEffect: EquipmentEffect) {
       if (effect.quality == compEffect.quality) {

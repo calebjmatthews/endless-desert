@@ -36,9 +36,11 @@ export default function EquipmentEffectComponent(props:
       return null;
     }
     else {
+      let sign = '+'
+      if (props.anEffect.change < 0) { sign = ''; }
       return (
         <Text style={{fontSize: 12}}>
-          {'+' + utils.formatNumberShort(props.anEffect.change) + '% '}
+          {sign + utils.formatNumberShort(props.anEffect.change) + '% '}
         </Text>
       );
     }

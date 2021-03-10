@@ -221,7 +221,13 @@ export default function MainComponent() {
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
       dispatch(increaseResources(vault,
-        [{ type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"), quantity: 1 }] ));
+        [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"), quantity: 1 },
+      { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"), quantity: 1 }] ));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
