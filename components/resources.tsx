@@ -37,12 +37,9 @@ export default function ResourcesComponent() {
       return rcoa - rcob;
     }
     const rateA = rates.netRates[a.type + '|' + a.quality];
-    const rateB = rates.netRates[b.type + '|' + a.quality];
+    const rateB = rates.netRates[b.type + '|' + b.quality];
     if (rateA && !rateB) { return -1; }
     if (!rateA && rateB) { return 1; }
-    if (rateA && rateB) {
-      return rateB - rateA;
-    }
     let rsoa = 99;
     if (rta.subcategory) { rsoa = resourceSubcategories[rta.subcategory].order; }
     let rsob = 99;
