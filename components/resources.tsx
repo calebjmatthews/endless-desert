@@ -12,15 +12,47 @@ import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';
 import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
+import { resourceCategories } from '../instances/resource_categories';
+import { resourceSubcategories } from '../instances/resource_subcategories';
 import { utils } from '../utils';
 
 export default function ResourcesComponent() {
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const resourcesArray = Object.keys(vault.resources).map((typeQuality) => {
+  let resourcesArray = Object.keys(vault.resources).map((typeQuality) => {
     return vault.resources[typeQuality];
   });
+  resourcesArray = resourcesArray.filter((resource) => {
+    if (Math.floor(resource.quantity) > 0) {
+       return resource;
+    }
+  });
+  resourcesArray.sort((a, b) => {
+    const rta = resourceTypes[a.type];
+    const rcoa = resourceCategories[rta.category].order;
+    const rtb = resourceTypes[b.type];
+    const rcob = resourceCategories[rtb.category].order;
+    if (rcoa != rcob) {
+      return rcoa - rcob;
+    }
+    const rateA = rates.netRates[a.type + '|' + a.quality];
+    const rateB = rates.netRates[b.type + '|' + a.quality];
+    if (rateA && !rateB) { return -1; }
+    if (!rateA && rateB) { return 1; }
+    if (rateA && rateB) {
+      return rateB - rateA;
+    }
+    let rsoa = 99;
+    if (rta.subcategory) { rsoa = resourceSubcategories[rta.subcategory].order; }
+    let rsob = 99;
+    if (rtb.subcategory) { rsob = resourceSubcategories[rtb.subcategory].order; }
+    if (rsoa != rsob) {
+      return rsoa - rsob;
+    }
+    return (rta.name < rtb.name) ? -1 : 1;
+  });
+
   function renderResource(resource: any) {
     return <ResourceDescription resource={resource} rates={rates}
       positioner={positioner} />

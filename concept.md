@@ -308,6 +308,7 @@ Useful icons:
     hospital, hotel, icicles, igloo, kaaba (building), kiwi-bird, landmark (building),
     lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
     spa, stroopwafel, theater, torii-gate, vihara (building)
+  Value symbol options: ѵ, 2ұ,
 
 Time cycle:
   - The desert transitions from day to night over the course of an hour.
