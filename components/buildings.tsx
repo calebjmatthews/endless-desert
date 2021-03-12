@@ -17,6 +17,7 @@ import Building from '../models/building';
 import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import { buildingTypes } from '../instances/building_types';
+import { buildingCategories } from '../instances/building_categories';
 import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
@@ -34,8 +35,23 @@ export default function BuildingsComponent() {
   const modalStage = useTypedSelector(state => state.ui.modalStage);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const buildingsArray = Object.keys(buildings).map((id) => {
+  let buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
+  });
+  buildingsArray.sort((a, b) => {
+    const bta = buildingTypes[a.buildingType];
+    const btb = buildingTypes[b.buildingType];
+    if (bta.order && !btb.order) { return -1; }
+    if (!bta.order && btb.order) { return 1; }
+    if (bta.order && btb.order) {
+      return bta.order - btb.order;
+    }
+    const bcoa = buildingCategories[bta.category].order;
+    const bcob = buildingCategories[btb.category].order;
+    if (bcoa != bcob) {
+      return bcoa - bcob;
+    }
+    return ((a.name || bta.name) < (b.name || btb.name)) ? -1 : 1;
   });
   let toBuildArray = Object.keys(buildingTypes).map((id) => {
     return buildingTypes[id];
@@ -119,9 +135,9 @@ export default function BuildingsComponent() {
       if (timer.buildingToBuild || timer.buildingToUpgrade) {
         let label = ('Building ' + timer.buildingToBuild);
         if (timer.buildingToUpgrade) {
-          let buildingType =
-            buildingTypes[buildings[timer.buildingToUpgrade].buildingType]
-          label = ('Upgrading ' + buildingType.name);
+          const building = buildings[timer.buildingToUpgrade];
+          const buildingType = buildingTypes[building.buildingType];
+          label = ('Upgrading ' + (building.name || buildingType.name));
         }
         return (
           <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -160,7 +176,7 @@ function BuildingDescription(props: any) {
         iconSize={18} />
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
-          <Text>{props.building.item.buildingType}</Text>
+          <Text>{(props.building.item.name || buildingType.name)}</Text>
           {renderMoreButton()}
         </View>
         <Text>{renderRateContainer()}</Text>

@@ -5,6 +5,8 @@ import { utils } from '../utils';
 export default class BuildingType implements BuildingTypeInterface {
   name: string = '';
   description: string = '';
+  order?: number|undefined;
+  category: string = '';
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
@@ -59,6 +61,8 @@ export default class BuildingType implements BuildingTypeInterface {
 interface BuildingTypeInterface {
   name: string;
   description: string;
+  order?: number|undefined;
+  category: string;
   icon: {provider: string, name: string};
   foregroundColor: string;
   backgroundColor: string;
