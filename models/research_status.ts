@@ -9,7 +9,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   // Each research and whether it is "completed", "visible" or "hidden"
   status: { [name: string] : string } = {};
   actions: { [category: string] : string[] } = {};
-  resourcesStudied: { [resourceName: string] : boolean } = {};
+  resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
 
   constructor(researchStatus: ResearchStatusInterface) {
@@ -86,16 +86,16 @@ export default class ResearchStatus implements ResearchStatusInterface {
     });
   }
 
-  studyResource(resourceName: string) {
-    this.resourcesStudied[resourceName] = true;
+  studyResource(typeQuality: string) {
+    this.resourcesStudied[typeQuality] = true;
   }
 
   getResourcesToStudy(vault: Vault) {
     let rts: Resource[] = [];
-    Object.keys(vault.resources).map((resourceName) => {
-      let resource = vault.resources[resourceName];
-      let resourceType = resourceTypes[resourceName];
-      if (resource.quantity >= 1 && !this.resourcesStudied[resourceName]
+    Object.keys(vault.resources).map((typeQuality) => {
+      let resource = vault.resources[typeQuality];
+      let resourceType = resourceTypes[typeQuality.split('|')[0]];
+      if (resource.quantity >= 1 && !this.resourcesStudied[typeQuality]
         && resourceType.value != null) {
         rts.push(resource);
       }
@@ -118,6 +118,6 @@ export default class ResearchStatus implements ResearchStatusInterface {
 interface ResearchStatusInterface {
   status: { [name: string] : string };
   actions: { [category: string] : string[] };
-  resourcesStudied: { [resourceName: string] : boolean };
+  resourcesStudied: { [typeQuality: string] : boolean };
   buildingsAvailable: { [buildingName: string] : boolean };
 }

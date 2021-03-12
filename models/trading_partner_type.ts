@@ -15,11 +15,15 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   paddingHorizontal: number = 11;
   paddingVertical: number = 8;
   tradeValue: number = 0;
-  givesPool: {specificity: string, type: string, weight: number}[] = [];
+  givesPool: {specificity: string, type: string, quality?: number,
+    weight: number}[] = [];
   receivesPool: {specificity: string, type: string, weight: number}[] = [];
 
   constructor(tradingPartnerType: TradingPartnerTypeInterface) {
     Object.assign(this, tradingPartnerType);
+    this.givesPool.map((give) => {
+      if (!give.quality) { give.quality = 0; }
+    });
   }
 
   createTradingPartner() {
@@ -28,17 +32,23 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     if (roll < 0.1) { tCount = 4; }
     else if (roll < 0.35) { tCount = 2; }
     let trades: { [id: string] : Trade} = {};
-    let pGives: {specificity: string, type: string, weight: number}[] = [];
+    let pGives: {specificity: string, type: string, quality?: number,
+      weight: number}[] = [];
 
     let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
       let newTradeResult = this.createNewTrade(pGives);
       if (newTradeResult) {
         pGives.push(newTradeResult.pGive);
+        let give: {type: string, quality: number, quantity: number} = {
+          type: newTradeResult.give.type,
+          quality: (newTradeResult.give.quality || 0),
+          quantity: newTradeResult.give.quantity
+        };
         const newTrade = new Trade ({
           id: utils.randHex(8),
           tradingPartnerType: this.name,
-          give: newTradeResult.give,
+          give: give,
           receive: newTradeResult.receive
         });
         trades[newTrade.id] = newTrade;
@@ -57,7 +67,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     });
   }
 
-  createNewTrade(pGives: {specificity: string, type: string, weight: number}[]) {
+  createNewTrade(pGives: {specificity: string, type: string, quality?: number,
+    weight: number}[]) {
     const pGive = this.choosePGive(pGives);
     const give = this.createGive(pGive);
     if (give) {
@@ -68,9 +79,11 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return null;
   }
 
-  choosePGive(pGives: {specificity: string, type: string, weight: number}[]) {
+  choosePGive(pGives: {specificity: string, type: string, quality?: number,
+    weight: number}[]) {
     for (let loop = 0; loop < 100; loop++) {
-      let tGive: {specificity: string, type: string, weight: number} =
+      let tGive: {specificity: string, type: string, quality?: number,
+        weight: number} =
         utils.randomWeightedSelect(this.givesPool);
       let alreadyPresent = false;
       pGives.map((pGive) => {
@@ -85,7 +98,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return this.givesPool[0];
   }
 
-  createGive(pGive: {specificity: string, type: string, weight: number}) {
+  createGive(pGive: {specificity: string, type: string, quality?: number,
+    weight: number}) {
     let typeNames: string[] = [];
     switch(pGive.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
@@ -131,10 +145,10 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     let baseQuantity = (this.tradeValue / (resourceType.value||1))
     let quantity = Math.ceil(baseQuantity
       + (baseQuantity * utils.random() - (baseQuantity / 2)));
-    return { type: typeName, quantity: quantity };
+    return { type: typeName, quality: pGive.quality, quantity: quantity };
   }
 
-  choosePReceive(give: {type: string, quantity: number}) {
+  choosePReceive(give: {type: string, quality?: number, quantity: number}) {
     for (let loop = 0; loop < 100; loop++) {
       let tReceive: {specificity: string, type: string, weight: number} =
         utils.randomWeightedSelect(this.receivesPool);
@@ -155,6 +169,6 @@ interface TradingPartnerTypeInterface {
   paddingHorizontal: number;
   paddingVertical: number;
   tradeValue: number;
-  givesPool: {specificity: string, type: string, weight: number}[];
+  givesPool: {specificity: string, type: string, quality?: number, weight: number}[];
   receivesPool: {specificity: string, type: string, weight: number}[];
 }

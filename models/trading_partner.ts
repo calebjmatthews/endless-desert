@@ -1,10 +1,10 @@
 import Trade from './trade';
+import Resource from './resource';
 
 export default class TradingPartner implements TradingPartnerInterface {
   name: string = '';
   trades: { [id: string] : Trade } = {};
-  traded: { [id: string] : {given: { type: string, quantity: number },
-    received: { type: string, quantity: number }} } = {};
+  traded: { [id: string] : {given: Resource, received: Resource} } = {};
   arrived: Date = new Date(Date.now());
 
   constructor(tradingPartner: TradingPartnerInterface) {
@@ -15,7 +15,6 @@ export default class TradingPartner implements TradingPartnerInterface {
 interface TradingPartnerInterface {
   name: string;
   trades: { [id: string] : Trade };
-  traded: { [id: string] : {given: { type: string, quantity: number },
-    received: { type: string, quantity: number }} };
+  traded: { [id: string] : {given: Resource, received: Resource} };
   arrived: Date;
 }

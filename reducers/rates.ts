@@ -16,4 +16,4 @@ export default function (rates: { productionRates: Rate, consumptionRates: Rate,
 	}
 };
 
-interface Rate { [resourceName: string] : number };
+interface Rate { [typeQuality: string] : number };

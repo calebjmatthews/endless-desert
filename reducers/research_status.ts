@@ -16,7 +16,7 @@ export default function (researchStatus: ResearchStatus = researchStatusStarting
 
     case STUDY_RESOURCE:
     let newResourceRS = new ResearchStatus(researchStatus);
-    newResourceRS.studyResource(action.resourceName);
+    newResourceRS.studyResource(action.typeQuality);
     return newResourceRS;
 
 		default:

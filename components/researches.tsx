@@ -56,8 +56,8 @@ export default function ResearchesComponent() {
       {renderActions()}
       <View>
         <Text style={styles.bareText}>
-          {utils.formatNumberShort(vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity)
-            + ' available knowledge'}
+          {utils.formatNumberShort(vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0']
+          .quantity) + ' available knowledge'}
         </Text>
       </View>
       <FlatList
@@ -153,13 +153,14 @@ export default function ResearchesComponent() {
   function startClick(researchStatus: {name: string, status: string}, vault: Vault,
     resume: boolean = false) {
     let research = researches[researchStatus.name];
-    let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE].quantity;
+    let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0'].quantity;
     if (resume) {
       dispatch(selectTab("Researching", researchStatus.name));
     }
     else if (quantity >= research.knowledgeReq) {
       dispatch(consumeResources(vault, [{
         type: RESOURCE_TYPES.KNOWLEDGE,
+        quality: 0,
         quantity: research.knowledgeReq
       }]));
       dispatch(startResearch(researchStatus.name));

@@ -30,20 +30,20 @@ export function removeLeader(leader: Leader) {
 }
 
 export const SET_EATING = 'SET_EATING';
-export function setEating(leader: Leader, resourceName: string) {
+export function setEating(leader: Leader, typeQuality: string) {
   return {
     type: SET_EATING,
     leader: leader,
-    resourceName: resourceName
+    typeQuality: typeQuality
   }
 }
 
 export const SET_DRINKING = 'SET_DRINKING';
-export function setDrinking(leader: Leader, resourceName: string) {
+export function setDrinking(leader: Leader, typeQuality: string) {
   return {
     type: SET_DRINKING,
     leader: leader,
-    resourceName: resourceName
+    typeQuality: typeQuality
   }
 }
 

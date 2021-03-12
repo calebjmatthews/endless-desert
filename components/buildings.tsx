@@ -214,7 +214,7 @@ function BuildingDescription(props: any) {
   }
 
   function renderRateContainer() {
-    let rates: { [resourceName: string] : number } =
+    let rates: { [typeQuality: string] : number } =
       props.rates.buildingRates[building.id];
     if (rates) {
       return (
@@ -228,14 +228,15 @@ function BuildingDescription(props: any) {
     }
   }
 
-  function renderRates(rates: { [resourceName: string] : number }) {
-    return Object.keys(rates).map((resourceName) => {
-      return renderRate(resourceName, rates[resourceName])
+  function renderRates(rates: { [typeQuality: string] : number }) {
+    return Object.keys(rates).map((typeQuality) => {
+      return renderRate(typeQuality, rates[typeQuality])
     });
   }
 
-  function renderRate(resourceName: string, rate: number) {
-    const resource = resourceTypes[resourceName];
+  function renderRate(typeQuality: string, rate: number) {
+    const tqSplit = typeQuality.split('|');
+    const resourceType = resourceTypes[tqSplit[0]];
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19 };
     if (rate < 0) {
@@ -243,13 +244,13 @@ function BuildingDescription(props: any) {
       rateStyle.background = '#ffb4b1';
     }
     return (
-      <View key={resourceName} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+      <View key={typeQuality} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + utils.formatNumberShort(rate)}</Text>
         <BadgeComponent
-          provider={resource.icon.provider}
-          name={resource.icon.name}
-          foregroundColor={resource.foregroundColor}
-          backgroundColor={resource.backgroundColor}
+          provider={resourceType.icon.provider}
+          name={resourceType.icon.name}
+          foregroundColor={resourceType.foregroundColor}
+          backgroundColor={resourceType.backgroundColor}
           iconSize={12} />
         <Text>{'/m '}</Text>
       </View>

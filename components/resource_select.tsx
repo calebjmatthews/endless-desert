@@ -68,13 +68,13 @@ export default function ResourceSelectComponent() {
     });
   }
 
-  function renderSelected(resourcesSelected: {[resourceName: string] : number},
+  function renderSelected(resourcesSelected: {[typeQuality: string] : number},
     vault: Vault) {
     if (Object.keys(resourcesSelected).length > 0) {
-      return Object.keys(resourcesSelected).map((resourceName) => {
-        let resource = resourceTypes[resourceName];
+      return Object.keys(resourcesSelected).map((typeQuality) => {
+        let resource = resourceTypes[typeQuality.split('|')[0]];
         return (
-          <View key={resourceName} style={styles.rows}>
+          <View key={typeQuality} style={styles.rows}>
             <BadgeComponent
               provider={resource.icon.provider}
               name={resource.icon.name}
@@ -82,9 +82,9 @@ export default function ResourceSelectComponent() {
               backgroundColor={resource.backgroundColor}
               iconSize={16} />
             <Text>
-              {resourcesSelected[resourceName] + ' (of '
-                + utils.formatNumberShort(vault.resources[resourceName].quantity)
-                + ') ' + resourceName}
+              {resourcesSelected[typeQuality] + ' (of '
+                + utils.formatNumberShort(vault.resources[typeQuality].quantity)
+                + ') ' + utils.typeQualityName(typeQuality)}
             </Text>
           </View>
         );
@@ -98,8 +98,8 @@ export default function ResourceSelectComponent() {
     let buttonStyle: any = StyleSheet.flatten([styles.buttonLarge,
       styles.buttonRowItem]);
     let resourceSum = 0;
-    Object.keys(resourcesSelected).map((resourceName) => {
-      resourceSum += resourcesSelected[resourceName];
+    Object.keys(resourcesSelected).map((typeQuality) => {
+      resourceSum += resourcesSelected[typeQuality];
     })
     if (resourceSum < modalValue.aCost.quantity) {
       isDisabled = true;
@@ -118,9 +118,11 @@ export default function ResourceSelectComponent() {
   }
 
   function submit() {
-    let rs: {type: string, quantity: number}[] = []
-    Object.keys(resourcesSelected).map((resourceName) => {
-      rs.push({type: resourceName, quantity: resourcesSelected[resourceName]});
+    let rs: Resource[] = []
+    Object.keys(resourcesSelected).map((typeQuality) => {
+      const tqSplit = typeQuality.split('|');
+      rs.push({type: tqSplit[0], quality: parseInt(tqSplit[1]),
+        quantity: resourcesSelected[typeQuality]});
     });
     dispatch(consumeResources(vault, rs));
 
@@ -156,16 +158,17 @@ export default function ResourceSelectComponent() {
 
   function setStartingSelected(resourcesArray: Resource[],
     aCost: {specificity: string, type: string, quantity: number}) {
-    let startingSelected: {[resourceName: string] : number} = {};
+    let startingSelected: {[typeQuality: string] : number} = {};
     if (resourcesArray.length == 1) {
-      startingSelected[resourcesArray[0].type] = aCost.quantity;
+      startingSelected[resourcesArray[0].type + '|' + resourcesArray[0].quality] =
+        aCost.quantity;
     }
     return startingSelected;
   }
 }
 
 function ResourceSelector(props: {resource: Resource,
-  resourcesSelected: {[resourceName: string] : number},
+  resourcesSelected: {[typeQuality: string] : number},
   aCost: {specificity: string, type: string, quantity: number},
   vault: Vault, setResourcesSelected: Function, positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
@@ -192,7 +195,7 @@ function ResourceSelector(props: {resource: Resource,
   );
 
   function renderButton(resource: Resource,
-    resourcesSelected: {[resourceName: string] : number},
+    resourcesSelected: {[typeQuality: string] : number},
     aCost: {specificity: string, type: string, quantity: number},
     vault: Vault, setResourcesSelected: Function) {
 
@@ -200,7 +203,7 @@ function ResourceSelector(props: {resource: Resource,
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
-          onPress={() => {resourceNameUnSelect(resource, resourcesSelected, aCost,
+          onPress={() => {typeQualityUnSelect(resource, resourcesSelected, aCost,
           vault, setResourcesSelected)}} >
           <Text style={styles.buttonText}>{'Selected'}</Text>
         </TouchableOpacity>
@@ -210,7 +213,7 @@ function ResourceSelector(props: {resource: Resource,
       { width: 74 }]);
     return (
       <TouchableOpacity style={buttonStyle}
-      onPress={() => {resourceNameSelect(resource, resourcesSelected, aCost,
+      onPress={() => {typeQualitySelect(resource, resourcesSelected, aCost,
       vault, setResourcesSelected)}} >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
@@ -218,54 +221,56 @@ function ResourceSelector(props: {resource: Resource,
     );
   }
 
-  function resourceNameUnSelect(resource: Resource,
-    resourcesSelected: {[resourceName: string] : number},
+  function typeQualityUnSelect(resource: Resource,
+    resourcesSelected: {[typeQuality: string] : number},
     aCost: {specificity: string, type: string, quantity: number},
     vault: Vault, setResourcesSelected: Function) {
-    let resourceNames = Object.keys(resourcesSelected);
-    resourceNames = resourceNames.filter((resourceName) => {
-      if (resourceName != resource.type) { return resourceName; }
+    let typeQualities = Object.keys(resourcesSelected);
+    typeQualities = typeQualities.filter((typeQuality) => {
+      if (typeQuality != (resource.type + '|' + resource.quality)) {
+        return typeQuality;
+      }
     });
 
-    let rSelected = balanceResources(resourceNames, aCost, vault);
+    let rSelected = balanceResources(typeQualities, aCost, vault);
     setResourcesSelected(rSelected);
   }
-  function resourceNameSelect(resource: Resource,
-    resourcesSelected: {[resourceName: string] : number},
+  function typeQualitySelect(resource: Resource,
+    resourcesSelected: {[typeQuality: string] : number},
     aCost: {specificity: string, type: string, quantity: number},
     vault: Vault, setResourcesSelected: Function) {
-    let resourceNames = Object.keys(resourcesSelected);
-    resourceNames.push(resource.type);
+    let typeQualities = Object.keys(resourcesSelected);
+    typeQualities.push(resource.type + '|' + resource.quality);
 
-    let rSelected = balanceResources(resourceNames, aCost, vault);
+    let rSelected = balanceResources(typeQualities, aCost, vault);
     setResourcesSelected(rSelected);
   }
 
-  function balanceResources(resourceNames: string[],
+  function balanceResources(typeQualities: string[],
     aCost: {specificity: string, type: string, quantity: number},
     vault: Vault) {
-    resourceNames.sort((a, b) => {
+    typeQualities.sort((a, b) => {
       if (vault.resources[a].quantity <= vault.resources[b].quantity) {
         return -1;
       }
       return 1;
     });
 
-    let rSelected: {[resourceName: string] : number} = {};
+    let rSelected: {[typeQuality: string] : number} = {};
     let remainingQty = aCost.quantity;
-    resourceNames.map((resourceName, index) => {
+    typeQualities.map((typeQuality, index) => {
       let rQuantity = 0;
-      if (index < (resourceNames.length-1)) {
-        rQuantity = Math.floor(remainingQty / (resourceNames.length - index));
+      if (index < (typeQualities.length-1)) {
+        rQuantity = Math.floor(remainingQty / (typeQualities.length - index));
       }
       else {
         rQuantity = remainingQty;
       }
-      if (rQuantity > vault.resources[resourceName].quantity) {
-        rQuantity = Math.floor(vault.resources[resourceName].quantity);
+      if (rQuantity > vault.resources[typeQuality].quantity) {
+        rQuantity = Math.floor(vault.resources[typeQuality].quantity);
       }
       remainingQty -= rQuantity;
-      rSelected[resourceName] = rQuantity;
+      rSelected[typeQuality] = rQuantity;
     });
     return rSelected;
   }

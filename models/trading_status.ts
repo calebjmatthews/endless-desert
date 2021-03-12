@@ -1,5 +1,6 @@
 import TradingPartner from './trading_partner';
 import Trade from './trade';
+import Resource from './resource';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { utils } from '../utils';
 
@@ -38,8 +39,8 @@ export default class TradingStatus implements TradingStatusInterface {
   completeTrade(traded: {
     id: string,
     tradingPartnerType: string,
-    given: { type: string, quantity: number },
-    received: { type: string, quantity: number }
+    given: Resource,
+    received: Resource
   }) {
     this.tradingPartners[traded.tradingPartnerType].traded[traded.id] = traded;
   }

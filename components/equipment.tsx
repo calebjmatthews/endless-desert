@@ -36,12 +36,13 @@ export default function EquipmentComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let equipmentArray: any[] = [];
-  Object.keys(vault.resources).map((typeName) => {
-    const resourceType = resourceTypes[typeName];
-    const quantity = vault.resources[typeName].quantity;
+  Object.keys(vault.resources).map((typeQuality) => {
+    const tqSplit = typeQuality.split('|');
+    const resourceType = resourceTypes[tqSplit[0]];
+    const quantity = vault.resources[typeQuality].quantity;
     if (resourceType.category == RESOURCE_CATEGORIES.EQUIPMENT
       && quantity >= 1) {
-      let obj: any = vault.resources[typeName];
+      let obj: any = vault.resources[typeQuality];
       obj.marked = false;
       obj.key = obj.type;
       equipmentArray.push(obj);
@@ -170,7 +171,8 @@ function CleanEquipmentDescription(props: any) {
     console.log(newEquipment);
     dispatch(addEquipment(newEquipment));
     dispatch(consumeResources(props.vault,
-      [{type: equipmentResource.type, quantity: 1}]));
+      [{type: equipmentResource.type, quality: equipmentResource.quality,
+        quantity: 1}]));
   }
 }
 

@@ -1,6 +1,3 @@
-import Vault from '../models/vault';
-import Resource from '../models/resource';
-
 export const SET_RATES = 'SET_RATES';
 export function setRates(rates: { productionRates: Rate, consumptionRates: Rate,
   buildingRates: { [buildingId: string] : Rate },
@@ -11,4 +8,4 @@ export function setRates(rates: { productionRates: Rate, consumptionRates: Rate,
   }
 }
 
-interface Rate { [resourceName: string] : number };
+interface Rate { [typeQuality: string] : number };

@@ -1,8 +1,10 @@
+import Resource from './resource';
+
 export default class Memo {
   name: string = '';
   title: string = '';
   text: string = '';
-  resourcesGained?: { type: string; quantity: number }[]|null = null;
+  resourcesGained?: Resource[]|null = null;
   leaderJoined?: string|null = null;
   timestamp?: Date = new Date(Date.now());
 

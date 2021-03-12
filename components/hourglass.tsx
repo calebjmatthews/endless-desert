@@ -18,6 +18,7 @@ import Message from '../models/message';
 import Building from '../models/building';
 import Fortuity from '../models/fortuity';
 import Memo from '../models/memo';
+import Resource from '../models/resource';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
@@ -61,22 +62,27 @@ export default function HourglassComponent() {
     if (callCalc) {
       setCallCalc(false);
       // Resources to increase
-      let rti: {type: string, quantity: number}[] = [];
+      let rti: Resource[] = [];
       // Resources to consume
-      let rtc: {type: string, quantity: number}[] = [];
+      let rtc: Resource[] = [];
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
         const results = hourglass.calculate(rates, vault.lastTimestamp);
-        let productionDiffs: {type: string, quantity: number}[] = [];
-        Object.keys(results.productionSum).map((type) => {
-          productionDiffs.push({type: type, quantity: results.productionSum[type]});
+        let productionDiffs: Resource[] = [];
+        Object.keys(results.productionSum).map((typeQuality) => {
+          const tqSplit = typeQuality.split('|');
+          productionDiffs.push({type: tqSplit[0],
+            quality: parseInt(tqSplit[1]),
+            quantity: results.productionSum[typeQuality]});
         });
         rti = productionDiffs;
-        let consumptionDiffs: {type: string, quantity: number}[] = [];
-        Object.keys(results.consumptionSum).map((type) => {
-          consumptionDiffs.push({type: type,
-            quantity: (results.consumptionSum[type] * -1)});
+        let consumptionDiffs: Resource[] = [];
+        Object.keys(results.consumptionSum).map((typeQuality) => {
+          const tqSplit = typeQuality.split('|');
+          consumptionDiffs.push({type: tqSplit[0],
+            quality: parseInt(tqSplit[1]),
+            quantity: (results.consumptionSum[typeQuality] * -1)});
         });
         rtc = consumptionDiffs;
       }
@@ -229,7 +235,7 @@ export default function HourglassComponent() {
     dispatch(addMemos([memos[MEMOS.CISTERN_REPAIRED],
       memos[MEMOS.CISTERN_REPAIRED_NEXT]]));
     dispatch(increaseResources(vault,
-      [{ type: RESOURCE_TYPES.WATER, quantity: 2080 }]));
+      [{ type: RESOURCE_TYPES.WATER, quality: 0, quantity: 2080 }]));
     dispatch(setIntroState(INTRO_STATES.RESTORE_FIELD));
   }
 
@@ -262,15 +268,15 @@ export default function HourglassComponent() {
   }
 }
 
-function combineResources(resources: {type: string, quantity: number}[],
-  newResources: {type: string, quantity: number}[]) {
-  let resourceMap: { [type: string] : number} = {};
+function combineResources(resources: Resource[],
+  newResources: Resource[]) {
+  let resourceMap: { [typeQuality: string] : number} = {};
   resources.map((r, index) => {
-    resourceMap[r.type] = index;
+    resourceMap[r.type + '|' + r.quality] = index;
   });
   newResources.map((r) => {
-    if (resourceMap[r.type]) {
-      resources[resourceMap[r.type]].quantity += r.quantity;
+    if (resourceMap[r.type + '|' + r.quality]) {
+      resources[resourceMap[r.type + '|' + r.quality]].quantity += r.quantity;
     }
     else {
       resources.push(r);

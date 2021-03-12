@@ -30,4 +30,4 @@ export default interface RootState {
     messages: Message[], memos: Memo[], positioner: Positioner };
 }
 
-interface Rate { [resourceName: string] : number };
+interface Rate { [typeQuality: string] : number };

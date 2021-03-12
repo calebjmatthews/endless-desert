@@ -1,3 +1,4 @@
+import Resource from './resource';
 import { utils } from '../utils';
 
 export default class Timer implements TimerInterface {
@@ -10,8 +11,8 @@ export default class Timer implements TimerInterface {
   progress: number = 0;
   // Human readable amount of time remaining
   remainingLabel: string = '';
-  resourcesToIncrease?: {type: string, quantity: number}[] = [];
-  resourcesToConsume?: {type: string, quantity: number}[] = [];
+  resourcesToIncrease?: Resource[] = [];
+  resourcesToConsume?: Resource[] = [];
   buildingToBuild?: string|null = null;
   buildingToUpgrade?: string|null = null;
   tradingPartnerToArrive?: string|null = null;
@@ -57,8 +58,8 @@ interface TimerInterface {
   endsAt: number;
   progress: number;
   remainingLabel: string;
-  resourcesToIncrease?: {type: string, quantity: number}[];
-  resourcesToConsume?: {type: string, quantity: number}[];
+  resourcesToIncrease?: Resource[];
+  resourcesToConsume?: Resource[];
   buildingToBuild?: string|null;
   buildingToUpgrade?: string|null;
   tradingPartnerToArrive?: string|null;

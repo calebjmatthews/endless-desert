@@ -18,8 +18,8 @@ export default function ResourcesComponent() {
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const resourcesArray = Object.keys(vault.resources).map((type) => {
-    return vault.resources[type];
+  const resourcesArray = Object.keys(vault.resources).map((typeQuality) => {
+    return vault.resources[typeQuality];
   });
   function renderResource(resource: any) {
     return <ResourceDescription resource={resource} rates={rates}
@@ -36,16 +36,17 @@ export default function ResourcesComponent() {
       <FlatList
         data={resourcesArray}
         renderItem={renderResource}
-        keyExtractor={resource => resource.type}>
+        keyExtractor={resource => (resource.type + '|' + resource.quality)}>
       </FlatList>
     </View>
   );
 }
 
 function ResourceDescription(props: any) {
-  let resourceType = resourceTypes[props.resource.item.type];
-  let rate = props.rates.netRates[props.resource.item.type]
-  if (props.rates.netRates[props.resource.item.type]) {
+  const resource: Resource = props.resource.item;
+  let resourceType = resourceTypes[resource.type];
+  let rate = props.rates.netRates[resource.type + '|' + resource.quality];
+  if (rate) {
     let sign = '+';
     if (rate < 0) { sign = ''; }
     rate = (sign + (Math.round(rate)) + '/m');

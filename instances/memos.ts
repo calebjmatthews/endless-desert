@@ -27,12 +27,12 @@ memos[MEMOS.LOOK_AROUND_LOOT] = new Memo({
   title: "An Apparent Struggle",
   text: "You find some meager leavings in the rubble:",
   resourcesGained: [
-    { type: RESOURCE_TYPES.SEEDS, quantity: 22 },
-    { type: RESOURCE_TYPES.WATER, quantity: 8 },
-    { type: RESOURCE_TYPES.LENTILS, quantity: 51 },
-    { type: RESOURCE_TYPES.WOOD_OAK, quantity: 12 },
-    { type: RESOURCE_TYPES.SAND_YELLOW, quantity: 287 },
-    { type: RESOURCE_TYPES.CLAY_RED, quantity: 17 },
+    { type: RESOURCE_TYPES.SEEDS, quality: 0, quantity: 22 },
+    { type: RESOURCE_TYPES.WATER, quality: 0, quantity: 8 },
+    { type: RESOURCE_TYPES.LENTILS, quality: 0, quantity: 51 },
+    { type: RESOURCE_TYPES.WOOD_OAK, quality: 0, quantity: 12 },
+    { type: RESOURCE_TYPES.SAND_YELLOW, quality: 0, quantity: 287 },
+    { type: RESOURCE_TYPES.CLAY_RED, quality: 0, quantity: 17 },
   ]
 });
 
@@ -46,7 +46,7 @@ memos[MEMOS.CISTERN_REPAIRED] = new Memo({
   name: MEMOS.CISTERN_REPAIRED,
   title: "Flowing Water",
   text: "The tributary that flows into the cistern now makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls of the gigantic basin, you can climb down and access the reminant of the village's stored water:",
-  resourcesGained: [{ type: RESOURCE_TYPES.WATER, quantity: 2080 }]
+  resourcesGained: [{ type: RESOURCE_TYPES.WATER, quality: 0, quantity: 2080 }]
 });
 
 memos[MEMOS.CISTERN_REPAIRED_NEXT] = new Memo({

@@ -1,10 +1,11 @@
 import Resource from './resource';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default class Vault {
   lastTimestamp: number = new Date(Date.now()).valueOf();
-  resources: { [type: string] : Resource } = {};
+  resources: { [typeQuality: string] : Resource } = {};
 
   constructor(vault: VaultInterface) {
     Object.assign(this, vault);
@@ -14,15 +15,17 @@ export default class Vault {
   //  the resources map if one does not already exist. Return a resource representing
   //  an increase event if the amount of a resource has tripped the threshold,
   //  e.g. by going from 3.92 to 4.02
-  increaseResource(r: {type: string, quantity: number}) {
-    if (!this.resources[r.type]) {
-      this.resources[r.type] = new Resource({type: r.type, quantity: 0});
+  increaseResource(r: Resource) {
+    const key = (r.type + '|' + r.quality);
+    if (!this.resources[key]) {
+      this.resources[key] =
+        new Resource({type: r.type, quality: r.quality, quantity: 0});
     }
-    const oldQuantity = Math.floor(this.resources[r.type].quantity);
-    this.resources[r.type].quantity += r.quantity;
-    let diff = Math.floor(this.resources[r.type].quantity) - oldQuantity;
+    const oldQuantity = Math.floor(this.resources[key].quantity);
+    this.resources[key].quantity += r.quantity;
+    let diff = Math.floor(this.resources[key].quantity) - oldQuantity;
     if (diff > 0) {
-      return new Resource({type: r.type, quantity: diff})
+      return new Resource({type: r.type, quality: r.quality, quantity: diff});
     }
     return null;
   }
@@ -31,73 +34,87 @@ export default class Vault {
   //  the resources map if one does not already exist. Return a resource representing
   //  a decrease event if the amount of a resource has tripped the threshold,
   //  e.g. by going from 1.01 to 0.98
-  consumeResource(r: {type: string, quantity: number}) {
-    if (!this.resources[r.type]) {
-      this.resources[r.type] = new Resource({type: r.type, quantity: 0});
+  consumeResource(r: Resource) {
+    const key = (r.type + '|' + r.quality);
+    if (!this.resources[key]) {
+      this.resources[key] = new Resource({type: r.type, quality: r.quality,
+        quantity: 0});
     }
-    const oldQuantity = Math.floor(this.resources[r.type].quantity);
-    this.resources[r.type].quantity -= r.quantity;
-    if (this.resources[r.type].quantity == 0) {
-      this.resources[r.type].quantity = 0;
+    const oldQuantity = Math.floor(this.resources[key].quantity);
+    this.resources[key].quantity -= r.quantity;
+    if (this.resources[key].quantity == 0) {
+      this.resources[key].quantity = 0;
     }
-    let diff = Math.floor(this.resources[r.type].quantity) - oldQuantity;
+    let diff = Math.floor(this.resources[key].quantity) - oldQuantity;
     if (diff < 0) {
-      return new Resource({type: r.type, quantity: diff})
+      return new Resource({type: r.type, quality: r.quality, quantity: diff})
     }
     return null;
   }
 
-  getQuantity(specificity: string, type: string) {
+  getQuantity(specificity: string, type: string, qualityMin: number = 0,
+    qualityMax: number = 2) {
     switch(specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
-      return this.getTypeQuantity(type);
+      return this.getTypeQuantity(type, qualityMin, qualityMax);
 
       case RESOURCE_SPECIFICITY.TAG:
-      return this.getTagQuantity(type);
+      return this.getTagQuantity(type, qualityMin, qualityMax);
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return this.getSubcategoryQuantity(type);
+      return this.getSubcategoryQuantity(type, qualityMin, qualityMax);
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      return this.getCategoryQuantity(type);
+      return this.getCategoryQuantity(type, qualityMin, qualityMax);
 
       default:
-      return this.getTypeQuantity(type);
+      return this.getTypeQuantity(type, qualityMin, qualityMax);
     }
   }
 
-  getTypeQuantity(name: string) {
-    if (this.resources[name]) {
-      return this.resources[name].quantity;
-    }
-    return 0;
-  }
-
-  getTagQuantity(tagName: string) {
+  getTypeQuantity(typeName: string, qualityMin: number, qualityMax: number) {
     let quantity = 0;
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].tags.includes(tagName)) {
-        quantity += this.resources[resourceName].quantity;
+    utils.range(qualityMin, qualityMax).map((quality) => {
+      const key = (typeName + '|' + quality);
+      if (this.resources[key]) {
+        quantity += this.resources[key].quantity;
+      }
+    })
+
+    return quantity;
+  }
+
+  getTagQuantity(tagName: string, qualityMin: number, qualityMax: number) {
+    let quantity = 0;
+    Object.keys(this.resources).map((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      if (resourceTypes[typeQuality.split('|')[0]].tags.includes(tagName)
+        && resource.quality >= qualityMin && resource.quality <= qualityMax) {
+        quantity += this.resources[typeQuality].quantity;
       }
     });
     return quantity;
   }
 
-  getSubcategoryQuantity(subcatName: string) {
+  getSubcategoryQuantity(subcatName: string, qualityMin: number, qualityMax: number) {
     let quantity = 0;
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].subcategory == subcatName) {
-        quantity += this.resources[resourceName].quantity;
+    Object.keys(this.resources).map((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      if (resourceTypes[typeQuality.split('|')[0]].subcategory == subcatName
+        && resource.quality >= qualityMin && resource.quality <= qualityMax) {
+        quantity += this.resources[typeQuality].quantity;
       }
     });
     return quantity;
   }
 
-  getCategoryQuantity(catName: string) {
+  getCategoryQuantity(catName: string, qualityMin: number, qualityMax: number) {
     let quantity = 0;
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].category == catName) {
-        quantity += this.resources[resourceName].quantity;
+    Object.keys(this.resources).map((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      if (resourceTypes[typeQuality.split('|')[0]].category == catName
+        && resource.quality >= qualityMin && resource.quality <= qualityMax) {
+        quantity += this.resources[typeQuality].quantity;
       }
     });
     return quantity;
@@ -105,17 +122,20 @@ export default class Vault {
 
   getExactResources(resourceName: string) {
     let resources: Resource[] = [];
-    if (this.resources[resourceName]) {
-      resources.push(this.resources[resourceName]);
-    }
+    utils.range(0, 2).map((quality) => {
+      const key = (resourceName + '|' + quality);
+      if (this.resources[key]) {
+        resources.push(this.resources[key]);
+      }
+    })
     return resources;
   }
 
   getTagResources(tagName: string) {
     let resources: Resource[] = [];
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].tags.includes(tagName)) {
-        resources.push(this.resources[resourceName]);
+    Object.keys(this.resources).map((typeQuality) => {
+      if (resourceTypes[typeQuality.split('|')[0]].tags.includes(tagName)) {
+        resources.push(this.resources[typeQuality]);
       }
     });
     return resources;
@@ -123,9 +143,9 @@ export default class Vault {
 
   getSubcategoryResources(subcatName: string) {
     let resources: Resource[] = [];
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].subcategory == subcatName) {
-        resources.push(this.resources[resourceName]);
+    Object.keys(this.resources).map((typeQuality) => {
+      if (resourceTypes[typeQuality.split('|')[0]].subcategory == subcatName) {
+        resources.push(this.resources[typeQuality]);
       }
     });
     return resources;
@@ -133,9 +153,9 @@ export default class Vault {
 
   getCategoryResources(catName: string) {
     let resources: Resource[] = [];
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].category == catName) {
-        resources.push(this.resources[resourceName]);
+    Object.keys(this.resources).map((typeQuality) => {
+      if (resourceTypes[typeQuality.split('|')[0]].category == catName) {
+        resources.push(this.resources[typeQuality]);
       }
     });
     return resources;
@@ -143,10 +163,10 @@ export default class Vault {
 
   getValuedResources() {
     let resources: Resource[] = [];
-    Object.keys(this.resources).map((resourceName) => {
-      if (resourceTypes[resourceName].value != null
-        && this.resources[resourceName].quantity >= 1) {
-        resources.push(this.resources[resourceName]);
+    Object.keys(this.resources).map((typeQuality) => {
+      if (resourceTypes[typeQuality.split('|')[0]].value != null
+        && this.resources[typeQuality].quantity >= 1) {
+        resources.push(this.resources[typeQuality]);
       }
     });
     return resources;
@@ -155,5 +175,5 @@ export default class Vault {
 
 interface VaultInterface {
   lastTimestamp: number;
-  resources: { [type: string] : Resource };
+  resources: { [typeQuality: string] : Resource };
 }

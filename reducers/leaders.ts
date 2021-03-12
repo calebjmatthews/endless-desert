@@ -24,12 +24,12 @@ export default function (leaders: { [id: string] : Leader } = {},
 
     case SET_EATING:
     let newSELeaders = Object.assign({}, leaders);
-    newSELeaders[action.leader.id].eating = action.resourceName;
+    newSELeaders[action.leader.id].eating = action.typeQuality;
     return newSELeaders;
 
     case SET_DRINKING:
     let newSDLeaders = Object.assign({}, leaders);
-    newSDLeaders[action.leader.id].drinking = action.resourceName;
+    newSDLeaders[action.leader.id].drinking = action.typeQuality;
     return newSDLeaders;
 
     case ASSIGN_TO_BUILDING:

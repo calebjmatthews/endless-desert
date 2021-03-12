@@ -7,35 +7,38 @@ let vaultStarting = new Vault({ resources: {},
 
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.KNOWLEDGE,
+  quality: 0,
   quantity: 100
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.SEEDS,
+  quality: 0,
   quantity: 22
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.WATER,
+  quality: 0,
   quantity: 8
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.LENTILS,
+  quality: 0,
   quantity: 51
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.WOOD_OAK,
+  quality: 0,
   quantity: 12
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.SAND_YELLOW,
+  quality: 0,
   quantity: 287
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.CLAY_RED,
+  quality: 0,
   quantity: 17
-}));
-vaultStarting.increaseResource(new Resource({
-  type: RESOURCE_TYPES.BRICKS_RED,
-  quantity: 4
 }));
 
 export { vaultStarting };

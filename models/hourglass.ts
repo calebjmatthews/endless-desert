@@ -15,20 +15,20 @@ export default class Hourglass {
   calculate(rates: { productionRates: Rate, consumptionRates: Rate,
     netRates: Rate }, lastTimestamp: number) {
     let timeMult = (new Date(Date.now()).valueOf() - lastTimestamp) / MS_IN_MIN;
-    let productionSum: { [resourceName: string] : number } = {};
-    let consumptionSum: { [resourceName: string] : number } = {};
-    Object.keys(rates.netRates).map((resourceName) => {
-      if (rates.netRates[resourceName] > 0) {
-        if (!productionSum[resourceName]) {
-          productionSum[resourceName] = 0;
+    let productionSum: { [typeQuality: string] : number } = {};
+    let consumptionSum: { [typeQuality: string] : number } = {};
+    Object.keys(rates.netRates).map((typeQuality) => {
+      if (rates.netRates[typeQuality] > 0) {
+        if (!productionSum[typeQuality]) {
+          productionSum[typeQuality] = 0;
         }
-        productionSum[resourceName] += (rates.netRates[resourceName] * timeMult);
+        productionSum[typeQuality] += (rates.netRates[typeQuality] * timeMult);
       }
-      else if (rates.netRates[resourceName] < 0) {
-        if (!consumptionSum[resourceName]) {
-          consumptionSum[resourceName] = 0;
+      else if (rates.netRates[typeQuality] < 0) {
+        if (!consumptionSum[typeQuality]) {
+          consumptionSum[typeQuality] = 0;
         }
-        consumptionSum[resourceName] += (rates.netRates[resourceName] * timeMult);
+        consumptionSum[typeQuality] += (rates.netRates[typeQuality] * timeMult);
       }
     })
 
@@ -52,15 +52,15 @@ export default class Hourglass {
 
   calcRates(buildings: { [id: string] : Building },
     leaders: { [id: string] : Leader }) {
-    let productionRates: { [resourceName: string] : number } = {};
-    let consumptionRates: { [resourceName: string] : number } = {};
-    let netRates: { [resourceName: string] : number } = {};
+    let productionRates: { [typeQuality: string] : number } = {};
+    let consumptionRates: { [typeQuality: string] : number } = {};
+    let netRates: { [typeQuality: string] : number } = {};
     let buildingRates: { [buildingId: string] :
-      { [resourceName: string] : number } } = {};
+      { [typeQuality: string] : number } } = {};
     let bGroupRates: { [typeName: string] :
-      { [resourceName: string] : number } } = {};
+      { [typeQuality: string] : number } } = {};
     let leaderRates: { [leaderId: string] :
-      { [resourceName: string] : number } } = {};
+      { [typeQuality: string] : number } } = {};
 
     const multiBT = getMultiBT(buildings);
     const buildingLeaders = getBuildingLeaders(buildings, leaders);
@@ -87,13 +87,14 @@ export default class Hourglass {
             let prodQuantity = production.quantity;
             if (buildingLeaders[building.id]) {
               const leaderMod = findLeaderMod(buildingLeaders[building.id],
-                production.type, LQ.SPEED);
+                (production.type + '|0'), LQ.SPEED);
               prodQuantity *= (1 + (leaderMod / 100));
             }
-            mapAdd(productionRates, production.type, prodQuantity);
-            mapAdd(buildingRates[id], production.type, prodQuantity);
-            mapAdd(bGroupRates[building.buildingType], production.type, prodQuantity);
-            mapAdd(netRates, production.type, prodQuantity);
+            mapAdd(productionRates, (production.type + '|0'), prodQuantity);
+            mapAdd(buildingRates[id], (production.type + '|0'), prodQuantity);
+            mapAdd(bGroupRates[building.buildingType], (production.type + '|0'),
+              prodQuantity);
+            mapAdd(netRates, (production.type + '|0'), prodQuantity);
           });
         }
         if (recipe.consumes) {
@@ -101,17 +102,17 @@ export default class Hourglass {
             let consQuantity = consumption.quantity;
             if (buildingLeaders[building.id]) {
               const leaderMod = findLeaderMod(buildingLeaders[building.id],
-                consumption.type, LQ.SPEED);
+                (consumption.type + '|0'), LQ.SPEED);
               consQuantity *= (1 + (leaderMod / 100));
               const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
-                consumption.type, LQ.EFFICIENCY);
+                (consumption.type + '|0'), LQ.EFFICIENCY);
               consQuantity *= (1 - (leaderNegMod / 100));
             }
-            mapAdd(consumptionRates, consumption.type, consQuantity);
-            mapAdd(buildingRates[id], consumption.type, (consQuantity * -1));
-            mapAdd(bGroupRates[building.buildingType], consumption.type,
+            mapAdd(consumptionRates, (consumption.type + '|0'), consQuantity);
+            mapAdd(buildingRates[id], (consumption.type + '|0'), (consQuantity * -1));
+            mapAdd(bGroupRates[building.buildingType], (consumption.type + '|0'),
               (consQuantity * -1));
-            mapAdd(netRates, consumption.type, (consQuantity * -1));
+            mapAdd(netRates, (consumption.type + '|0'), (consQuantity * -1));
           });
         }
       }
@@ -210,4 +211,4 @@ export default class Hourglass {
   }
 }
 
-interface Rate { [resourceName: string] : number };
+interface Rate { [typeQuality: string] : number };

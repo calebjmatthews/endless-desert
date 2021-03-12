@@ -68,11 +68,11 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
     return combinedPool[Math.floor(utils.random() * combinedPool.length)];
   }
 
-  costPaid(resourceName: string, optionName: string) {
+  costPaid(typeQuality: string, optionName: string) {
     if (!this.paidCosts[optionName]) {
       this.paidCosts[optionName] = [];
     }
-    this.paidCosts[optionName].push(resourceName);
+    this.paidCosts[optionName].push(typeQuality);
     const cost = researchOptions[optionName].cost;
     let allCostsPaid = true;
     cost.map((aCost) => {

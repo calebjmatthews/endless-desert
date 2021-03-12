@@ -221,13 +221,20 @@ export default function MainComponent() {
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
       dispatch(increaseResources(vault,
-        [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"), quantity: 1 },
-      { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"), quantity: 1 }] ));
+        [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
+          quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
+        quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
+        quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"),
+        quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
+        quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
+        quality: 0, quantity: 1 },
+      { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
+        quality: 0, quantity: 1 }] ));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
@@ -255,7 +262,8 @@ export default function MainComponent() {
         }
         if (account.fortuityCurrent.gainResources) {
           const fgr = account.fortuityCurrent.gainResources;
-          let resourcesGained: { type: string, quantity: number }[] = [];
+          let resourcesGained:
+            { type: string, quality: number, quantity: number }[] = [];
           let resourceNames: string[] = [];
           for (let index = 0; index < fgr.length; index++) {
             const resReq = fgr[index];

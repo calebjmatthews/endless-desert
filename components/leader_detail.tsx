@@ -110,7 +110,7 @@ export default function LeaderDetailComponent() {
 
   function renderEating() {
     if (leader.eating) {
-      let resourceType = resourceTypes[leader.eating];
+      let resourceType = resourceTypes[leader.eating.split('|')[0]];
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { eatingPress() }} >
@@ -146,7 +146,7 @@ export default function LeaderDetailComponent() {
 
   function renderDrinking() {
     if (leader.drinking) {
-      let resourceType = resourceTypes[leader.drinking];
+      let resourceType = resourceTypes[leader.drinking.split('|')[0]];
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { drinkingPress() }} >

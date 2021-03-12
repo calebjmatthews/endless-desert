@@ -17,9 +17,9 @@ export function completeResearch(name: string) {
 }
 
 export const STUDY_RESOURCE = 'STUDY_RESOURCE';
-export function studyResource(resourceName: string) {
+export function studyResource(typeQuality: string) {
   return {
     type: STUDY_RESOURCE,
-    resourceName: resourceName
+    typeQuality: typeQuality
   }
 }

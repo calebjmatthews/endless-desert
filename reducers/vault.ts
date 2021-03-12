@@ -12,7 +12,8 @@ export default function (vault: Vault = vaultStarting, action: any = null) {
     case SET_RESOURCES:
     let newSRVault = new Vault(vault);
     action.resources.map((resource: Resource) => {
-      newSRVault.resources[resource.type] = new Resource(resource);
+      newSRVault.resources[resource.type + '|' + resource.quality] =
+				new Resource(resource);
     });
     return newSRVault;
 

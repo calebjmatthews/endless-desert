@@ -1,6 +1,7 @@
 import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
 import TradingStatus from '../models/trading_status';
+import Resource from '../models/resource';
 
 export const SET_TRADING_STATUS = 'SET_TRADING_STATUS';
 export function setTradingStatus(tradingStatus: TradingStatus) {
@@ -34,12 +35,8 @@ export function dismissTradingPartner(tradingPartner: TradingPartner) {
 }
 
 export const COMPLETE_TRADE = 'COMPLETE_TRADE';
-export function completeTrade(traded: {
-  id: string,
-  tradingPartnerType: string,
-  given: { type: string, quantity: number },
-  received: { type: string, quantity: number }
-}) {
+export function completeTrade(traded: {id: string, tradingPartnerType: string,
+  given: Resource, received: Resource}) {
   return {
     type: COMPLETE_TRADE,
     traded: traded

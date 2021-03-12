@@ -140,27 +140,35 @@ export default function ResearchingComponent() {
     let rTypePool: string[] = [];
     switch(aCost.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
-      rTypePool = [aCost.type];
+      rTypePool = [(aCost.type + '|0')];
       break;
 
       case RESOURCE_SPECIFICITY.TAG:
       let tagPool = vault.getTagResources(aCost.type);
-      rTypePool = tagPool.map((resource) => { return resource.type; });
+      rTypePool = tagPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
       break;
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
       let scPool = vault.getSubcategoryResources(aCost.type);
-      rTypePool = scPool.map((resource) => { return resource.type; });
+      rTypePool = scPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
       break;
 
       case RESOURCE_SPECIFICITY.CATEGORY:
       let catPool = vault.getCategoryResources(aCost.type);
-      rTypePool = catPool.map((resource) => { return resource.type; });
+      rTypePool = catPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
       break;
     }
 
     if (rTypePool.length == 1) {
-      dispatch(consumeResources(vault, [{type: rTypePool[0], quantity: aCost.quantity}]));
+      const qtSplit = rTypePool[0].split('|');
+      dispatch(consumeResources(vault, [{type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity}]));
       afterApplyCost(aCost, optionName);
     }
     else {

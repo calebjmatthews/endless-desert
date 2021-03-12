@@ -24,4 +24,4 @@ export interface FortuityState {
   equipment?: { [id: string] : Equipment };
 }
 
-interface Rate { [resourceName: string] : number };
+interface Rate { [typeQuality: string] : number };

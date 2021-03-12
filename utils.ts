@@ -328,6 +328,14 @@ class Utils {
     return anArray[0];
   }
 
+  range(min: number, max: number) {
+    let aRange: number[] = [];
+    for (let index = min; index <= max; index++) {
+      aRange.push(index);
+    }
+    return aRange;
+  }
+
   getMatchingResourceType(specificity: string, type: string):
     ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
     switch(specificity) {
@@ -392,7 +400,23 @@ class Utils {
     if (rtSel.value) {
       quantity = Math.ceil(resReq.value / rtSel.value);
     }
-    return { type: rtSel.name, quantity: quantity };
+    return { type: rtSel.name, quality: 0, quantity: quantity };
+  }
+
+  typeQualityName(typeQuality: string|null) {
+    if (typeQuality) {
+      let tqSplit = typeQuality.split('|');
+      if (tqSplit[1] == '1') {
+        return (tqSplit[0] + ' (Fine)');
+      }
+      else if (tqSplit[1] == '2') {
+        return (tqSplit[0] + ' (Exquisite)');
+      }
+      else {
+        return tqSplit[0];
+      }
+    }
+    return '';
   }
 }
 
