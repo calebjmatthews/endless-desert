@@ -10,6 +10,8 @@ import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
+const ETY = EQUIPMENT_TYPES;
 
 let tradingPartnerTypes: { [name: string] : TradingPartnerType } = {};
 
@@ -29,6 +31,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 50},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 10}
   ],
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
@@ -48,9 +51,11 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   givesPool: [
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50}
+    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50},
+    {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 10},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 5}
   ],
   receivesPool: [
     {specificity: RSP.EXACT, type: RTY.REEDS, weight: 100},
@@ -74,7 +79,10 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50}
+    {specificity: RSP.EXACT, type: RTY.SALT, weight: 50},
+    {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 10},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
+      weight: 5}
   ],
   receivesPool: [
     {specificity: RSP.CATEGORY, type: RCA.ARTISAN_GOOD, weight: 100},
