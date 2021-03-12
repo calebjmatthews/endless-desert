@@ -84,17 +84,30 @@ export default class Hourglass {
         let recipe = buildingType.recipes[recipeSelected];
         if (recipe.produces) {
           recipe.produces.map((production) => {
-            let prodQuantity = production.quantity;
+            let prod0Quantity = production.quantity;
+            let qualityChance = 0;
             if (buildingLeaders[building.id]) {
-              const leaderMod = findLeaderMod(buildingLeaders[building.id],
+              const leaderSMod = findLeaderMod(buildingLeaders[building.id],
                 (production.type + '|0'), LQ.SPEED);
-              prodQuantity *= (1 + (leaderMod / 100));
+              prod0Quantity *= (1 + (leaderSMod / 100));
+              const leaderQMod =  findLeaderMod(buildingLeaders[building.id],
+                (production.type + '|0'), LQ.QUALITY);
+              qualityChance = leaderQMod/100;
             }
-            mapAdd(productionRates, (production.type + '|0'), prodQuantity);
-            mapAdd(buildingRates[id], (production.type + '|0'), prodQuantity);
+            if (qualityChance > 0) {
+              let prod1Quantity = (prod0Quantity * qualityChance);
+              mapAdd(productionRates, (production.type + '|1'), prod1Quantity);
+              mapAdd(buildingRates[id], (production.type + '|1'), prod1Quantity);
+              mapAdd(bGroupRates[building.buildingType], (production.type + '|1'),
+                prod1Quantity);
+              mapAdd(netRates, (production.type + '|1'), prod1Quantity);
+              prod0Quantity -= prod1Quantity;
+            }
+            mapAdd(productionRates, (production.type + '|0'), prod0Quantity);
+            mapAdd(buildingRates[id], (production.type + '|0'), prod0Quantity);
             mapAdd(bGroupRates[building.buildingType], (production.type + '|0'),
-              prodQuantity);
-            mapAdd(netRates, (production.type + '|0'), prodQuantity);
+              prod0Quantity);
+            mapAdd(netRates, (production.type + '|0'), prod0Quantity);
           });
         }
         if (recipe.consumes) {

@@ -86,6 +86,11 @@ function ResourceDescription(props: any) {
   else {
     rate = '';
   }
+  let textStyle: any = { color: '#000' };
+  if (resource.quality == 1) {
+    textStyle = { color: '#6a7791', textShadowColor: '#a3bcdb',
+      textShadowRadius: 1 };
+  }
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
@@ -95,11 +100,12 @@ function ResourceDescription(props: any) {
         name={resourceType.icon.name}
         foregroundColor={resourceType.foregroundColor}
         backgroundColor={resourceType.backgroundColor}
-        iconSize={18} />
+        iconSize={18}
+        quality={resource.quality} />
       <View style={styles.containerStretchRow}>
         <View>
-          <Text>
-            {props.resource.item.type}
+          <Text style={textStyle}>
+            {utils.typeQualityName(resource.type + '|' + resource.quality) }
           </Text>
           <Text>
             {rate}

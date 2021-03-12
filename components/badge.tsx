@@ -4,7 +4,7 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 
 export default function BadgeComponent(props: BadgeProps) {
-  let badgeStyle = getBadgeStyle(props.iconSize, props.borderless);
+  let badgeStyle = getBadgeStyle(props.iconSize, props.borderless, props.quality);
   return (
     <View style={badgeStyle} >
       <IconComponent
@@ -15,7 +15,8 @@ export default function BadgeComponent(props: BadgeProps) {
     </View>
   );
 
-  function getBadgeStyle(iconSize: number|undefined, borderless: boolean|undefined) {
+  function getBadgeStyle(iconSize: number|undefined, borderless: boolean|undefined,
+    quality: number|undefined) {
     let badgeStyle: any = {
       display: 'flex',
       justifyContent: 'center',
@@ -44,6 +45,11 @@ export default function BadgeComponent(props: BadgeProps) {
     if (borderless) {
       badgeStyle.borderWidth = 0;
     }
+    if (quality) {
+      badgeStyle.borderStyle = 'outset';
+      badgeStyle.borderWidth = 3;
+      badgeStyle.borderColor = '#aecae0';
+    }
     return badgeStyle;
   }
 }
@@ -54,5 +60,6 @@ interface BadgeProps {
   foregroundColor: string,
   backgroundColor: string,
   iconSize: number|undefined,
-  borderless?: boolean
+  borderless?: boolean,
+  quality?: number
 }

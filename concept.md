@@ -110,7 +110,7 @@ Broad gameplay tiers
     * Repair Cistern, Lentil Field, Study, and Huts
     * Samannoud joins
     * One other leader joins fortuitously
-    * Research Scholarship, Study, Biology, Lentil Farming, Anthropology, Trading
+    * Research Scholarship, Study, Analysis, Biology, Lentil Farming, Anthropology, Trading, Physics, Home Construction
     * Three trading partners for early resources
     * Costs are Knowledge, Water, Lentils, Seeds
   - Early: Low knowledge requirements require occational analysing, costs sometimes require resources from trading
@@ -119,7 +119,7 @@ Broad gameplay tiers
     * One more trading partner from fortuity (after Basic Education)
     * Costs now include Sand, Clay, Reeds, Wood
   - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting and more advanced trading
-    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Bountiful Lentil Farming, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
+    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Efficient Lentil Farming, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
     * Six more leaders: two from trading partners, one random, one from research, two from exploration
     * Two more trading partners, both from exploration
     * Six exploration areas, one initial, four from researches, one from previous exploration
@@ -354,6 +354,15 @@ Beginning of game:
   - Event where one leader moves in and unlocks the "Leaders" tab
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
+
+Styling:
+  - Fine border:
+    border-style: outset;
+    border-width: 3px;
+    border-color: #aecae0;
+  - Fine text:
+    color: #6a7791;
+    text-shadow: 0px 0px 1px #a3bcdb;
 
 Commands:
 USE `endless_desert`;
