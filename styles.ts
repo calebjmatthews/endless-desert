@@ -110,6 +110,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
+  spacedRows: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 2
+  },
   columns: {
     display: 'flex',
     flexDirection: 'column',

@@ -16,6 +16,7 @@ import { addTimer } from '../actions/timers';
 import Building from '../models/building';
 import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
+import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { buildingCategories } from '../instances/building_categories';
 import { resourceTypes } from '../instances/resource_types';
@@ -32,6 +33,7 @@ export default function BuildingsComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const introState = useTypedSelector(state => state.account.introState);
   const rates = useTypedSelector(state => state.rates);
+  const leaders = useTypedSelector(state => state.leaders);
   const modalStage = useTypedSelector(state => state.ui.modalStage);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
@@ -60,6 +62,18 @@ export default function BuildingsComponent() {
     if (buildingType.cost != null
       && researchStatus.buildingsAvailable[buildingType.name]) {
       return buildingType;
+    }
+  });
+
+  let leaderLivingMap: { [buildingId: string] : Leader } = {};
+  let leaderAssignedMap: { [buildingId: string] : Leader } = {};
+  Object.keys(leaders).map((id) => {
+    const leader = leaders[id];
+    if (leader.livingAt) {
+      leaderLivingMap[leader.livingAt] = leader;
+    }
+    if (leader.assignedTo) {
+      leaderAssignedMap[leader.assignedTo] = leader;
     }
   });
 
@@ -95,6 +109,7 @@ export default function BuildingsComponent() {
   function renderBuilding(building: any) {
     return <BuildingDescription building={building} introState={introState}
       vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
+      leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
       positioner={positioner} />
   }
 
@@ -179,6 +194,8 @@ function BuildingDescription(props: any) {
           <Text>{(props.building.item.name || buildingType.name)}</Text>
           {renderMoreButton()}
         </View>
+        {renderLivingAt(building, props.leaderLivingMap)}
+        {renderAssignedTo(building, props.leaderAssignedMap)}
         <Text>{renderRateContainer()}</Text>
       </View>
     </View>
@@ -229,12 +246,54 @@ function BuildingDescription(props: any) {
     }
   }
 
+  function renderLivingAt(building: Building,
+    leaderLivingMap: { [buildingId: string] : Leader }) {
+    if (leaderLivingMap[building.id]) {
+      const leader = leaderLivingMap[building.id];
+      return (
+        <View style={styles.spacedRows}>
+          <BadgeComponent
+            provider={leader.icon.provider}
+            name={leader.icon.name}
+            foregroundColor={leader.foregroundColor}
+            backgroundColor={leader.backgroundColor}
+            iconSize={14} />
+          <Text style={{fontSize: 12}}>
+            {leader.name + ' living'}
+          </Text>
+        </View>
+      );
+    }
+    return null;
+  }
+
+  function renderAssignedTo(building: Building,
+    leaderAssignedMap: { [buildingId: string] : Leader }) {
+    if (leaderAssignedMap[building.id]) {
+      const leader = leaderAssignedMap[building.id];
+      return (
+        <View style={styles.spacedRows}>
+          <BadgeComponent
+            provider={leader.icon.provider}
+            name={leader.icon.name}
+            foregroundColor={leader.foregroundColor}
+            backgroundColor={leader.backgroundColor}
+            iconSize={14} />
+          <Text style={{fontSize: 12}}>
+            {leader.name + ' working'}
+          </Text>
+        </View>
+      );
+    }
+    return null;
+  }
+
   function renderRateContainer() {
     let rates: { [typeQuality: string] : number } =
       props.rates.buildingRates[building.id];
     if (rates) {
       return (
-        <View style={styles.rows}>
+        <View style={styles.spacedRows}>
           {renderRates(rates)}
         </View>
       );
