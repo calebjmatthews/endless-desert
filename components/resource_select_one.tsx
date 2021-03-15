@@ -75,7 +75,8 @@ export default function ResourceSelectOneComponent() {
   function renderResources(resourceArray: Resource[],
     setResourceSelected: Function) {
     return resourceArray.map((resource) => {
-      return <ResourceSelector key={resource.type} resource={resource}
+      return <ResourceSelector key={(resource.type + '|' + resource.quality)}
+        resource={resource}
         typeQualitySelected={typeQualitySelected} vault={vault}
         setResourceSelected={setResourceSelected}
         positioner={positioner} />;
@@ -362,24 +363,33 @@ function ResourceSelector(props: {resource: Resource,
   typeQualitySelected: string|null,
   vault: Vault, setResourceSelected: Function, positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
-  let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
+  let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
+  if (props.resource.quality == 1) {
+    optionTextStyle = { paddingLeft: 4, paddingRight: 4,
+      color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
+  }
   return (
-    <View style={StyleSheet.flatten([styles.panelTile,
+    <View style={StyleSheet.flatten([styles.panelTile, styles.columns,
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
-      <BadgeComponent
-        provider={resourceType.icon.provider}
-        name={resourceType.icon.name}
-        foregroundColor={resourceType.foregroundColor}
-        backgroundColor={resourceType.backgroundColor}
-        iconSize={18} />
-      <View>
-        <Text style={optionTextStyle}>{resourceType.name}</Text>
-        <Text style={StyleSheet.flatten([{textAlign: 'right'}, optionTextStyle])}>
-          {utils.formatNumberShort(props.resource.quantity)}
-        </Text>
-        {renderButton(props.resource, props.typeQualitySelected,
-          props.vault, props.setResourceSelected)}
+      <Text style={optionTextStyle}>
+        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+      </Text>
+      <View style={styles.rows}>
+        <BadgeComponent
+          provider={resourceType.icon.provider}
+          name={resourceType.icon.name}
+          foregroundColor={resourceType.foregroundColor}
+          backgroundColor={resourceType.backgroundColor}
+          iconSize={18}
+          quality={props.resource.quality} />
+        <View>
+          <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
+            {utils.formatNumberShort(props.resource.quantity)}
+          </Text>
+          {renderButton(props.resource, props.typeQualitySelected,
+            props.vault, props.setResourceSelected)}
+        </View>
       </View>
     </View>
   );

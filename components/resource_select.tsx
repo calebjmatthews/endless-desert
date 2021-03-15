@@ -143,16 +143,22 @@ export default function ResourceSelectComponent() {
   function getResourcesArray() {
     switch (modalValue.aCost.specificity) {
       case RESOURCE_SPECIFICITY.TAG:
-      return vault.getTagResources(modalValue.aCost.type);
+      return filterOutZero(vault.getTagResources(modalValue.aCost.type));
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return vault.getSubcategoryResources(modalValue.aCost.type);
+      return filterOutZero(vault.getSubcategoryResources(modalValue.aCost.type));
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      return vault.getCategoryResources(modalValue.aCost.type);
+      return filterOutZero(vault.getCategoryResources(modalValue.aCost.type));
 
       default:
       return [];
+    }
+
+    function filterOutZero(resources: Resource[]) {
+      return resources.filter((resource) => {
+        if (Math.ceil(resource.quantity) > 0) { return resource; }
+      });
     }
   }
 
@@ -172,24 +178,32 @@ function ResourceSelector(props: {resource: Resource,
   aCost: {specificity: string, type: string, quantity: number},
   vault: Vault, setResourcesSelected: Function, positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
-  let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
+  let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
+  if (props.resource.quality == 1) {
+    optionTextStyle = { paddingLeft: 4, paddingRight: 4,
+      color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
+  }
   return (
-    <View style={StyleSheet.flatten([styles.panelTile,
+    <View style={StyleSheet.flatten([styles.panelTile, styles.columns,
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
-      <BadgeComponent
-        provider={resourceType.icon.provider}
-        name={resourceType.icon.name}
-        foregroundColor={resourceType.foregroundColor}
-        backgroundColor={resourceType.backgroundColor}
-        iconSize={18} />
-      <View>
-        <Text style={optionTextStyle}>{resourceType.name}</Text>
-        <Text style={StyleSheet.flatten([{textAlign: 'right'}, optionTextStyle])}>
-          {utils.formatNumberShort(props.resource.quantity)}
-        </Text>
-        {renderButton(props.resource, props.resourcesSelected, props.aCost,
-          props.vault, props.setResourcesSelected)}
+      <Text style={optionTextStyle}>
+        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+      </Text>
+      <View style={styles.rows}>
+        <BadgeComponent
+          provider={resourceType.icon.provider}
+          name={resourceType.icon.name}
+          foregroundColor={resourceType.foregroundColor}
+          backgroundColor={resourceType.backgroundColor}
+          iconSize={18} />
+        <View>
+          <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
+            {utils.formatNumberShort(props.resource.quantity)}
+          </Text>
+          {renderButton(props.resource, props.resourcesSelected, props.aCost,
+            props.vault, props.setResourcesSelected)}
+        </View>
       </View>
     </View>
   );
@@ -199,7 +213,7 @@ function ResourceSelector(props: {resource: Resource,
     aCost: {specificity: string, type: string, quantity: number},
     vault: Vault, setResourcesSelected: Function) {
 
-    if (resourcesSelected[resource.type]) {
+    if (resourcesSelected[(resource.type + '|' + resource.quality)]) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
