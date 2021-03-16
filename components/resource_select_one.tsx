@@ -43,22 +43,22 @@ export default function ResourceSelectOneComponent() {
 
   function setStartingSelected(): string|null {
     if (resourcesArray.length == 1) {
-      return (resourcesArray[0].type);
+      return (resourcesArray[0].type + '|' + resourcesArray[0].quality);
     }
     return null;
   }
-  const [typeQualitySelected, typeQualitySelect] = useState(setStartingSelected());
+  const [typeQualitySelected, setTypeQualitySelected] = useState(setStartingSelected());
 
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
         <IconComponent provider="FontAwesome" name="cube" color="#fff" size={20}
           style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Select Resources'}</Text>
+        <Text style={styles.heading1}>{' Select Resource'}</Text>
       </View>
       <ScrollView>
         <View style={styles.tileContainer}>
-          {renderResources(resourcesArray, typeQualitySelect)}
+          {renderResources(resourcesArray, setTypeQualitySelected, setQuantitySelected)}
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -73,12 +73,14 @@ export default function ResourceSelectOneComponent() {
   );
 
   function renderResources(resourceArray: Resource[],
-    setResourceSelected: Function) {
+    setTypeQualitySelected:(typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void) {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
         resource={resource}
         typeQualitySelected={typeQualitySelected} vault={vault}
-        setResourceSelected={setResourceSelected}
+        setTypeQualitySelected={setTypeQualitySelected}
+        setQuantitySelected={setQuantitySelected}
         positioner={positioner} />;
     });
   }
@@ -89,6 +91,7 @@ export default function ResourceSelectOneComponent() {
         <View style={styles.rows}>
           <Text>{'Selecting: '}</Text>
           <TextInput style={styles.inputBox} value={quantitySelected}
+            editable={(typeQualitySelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
         </View>
       );
@@ -101,6 +104,7 @@ export default function ResourceSelectOneComponent() {
           <View style={styles.rows}>
             <Text>{'Offer: '}</Text>
             <TextInput style={styles.inputBox} value={quantitySelected}
+              editable={(typeQualitySelected != null)}
               onChangeText={ (text) => changeTradeQuantity(text) } />
           </View>
           <Text>{utils.formatNumberShort(parseInt(quantitySelected)) + ' '
@@ -224,8 +228,6 @@ export default function ResourceSelectOneComponent() {
 
   function actionAnalysis() {
     if (typeQualitySelected != null) {
-      console.log('typeQualitySelected');
-      console.log(typeQualitySelected);
       const tqSplit = typeQualitySelected.split('|');
       const resourceType = resourceTypes[tqSplit[0]];
       if (resourceType.value != null) {
@@ -342,8 +344,6 @@ export default function ResourceSelectOneComponent() {
       const tqSplit = typeQualitySelected.split('|');
       const rResourceType = resourceTypes[tqSplit[0]];
       const gResourceType = resourceTypes[trade.give.type];
-      console.log('trade');
-      console.log(trade);
 
       if (rResourceType.value != null && gResourceType.value != null
         && (parseInt(qSelected) ? true : false)) {
@@ -361,7 +361,9 @@ export default function ResourceSelectOneComponent() {
 
 function ResourceSelector(props: {resource: Resource,
   typeQualitySelected: string|null,
-  vault: Vault, setResourceSelected: Function, positioner: Positioner}) {
+  vault: Vault, setTypeQualitySelected: (typeQuality: string|null) => void,
+  setQuantitySelected: (quantity: string) => void,
+  positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
@@ -388,20 +390,22 @@ function ResourceSelector(props: {resource: Resource,
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
           {renderButton(props.resource, props.typeQualitySelected,
-            props.vault, props.setResourceSelected)}
+            props.vault, props.setTypeQualitySelected, props.setQuantitySelected)}
         </View>
       </View>
     </View>
   );
 
   function renderButton(resource: Resource, typeQualitySelected: string|null,
-    vault: Vault, setTypeQualitySelected: Function) {
+    vault: Vault, setTypeQualitySelected: (typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void) {
 
     if (typeQualitySelected == (resource.type + '|' + resource.quality)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
-          onPress={() => {typeQualityUnSelect(setTypeQualitySelected)}} >
+          onPress={() => {typeQualityUnSelect(setTypeQualitySelected,
+          setQuantitySelected)}} >
           <Text style={styles.buttonText}>{'Selected'}</Text>
         </TouchableOpacity>
       );
@@ -417,10 +421,14 @@ function ResourceSelector(props: {resource: Resource,
     );
   }
 
-  function typeQualityUnSelect(setResourceSelected: Function) {
-    setResourceSelected(null);
+  function typeQualityUnSelect(setTypeQualitySelected:
+    (typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void) {
+    setTypeQualitySelected(null);
+    setQuantitySelected('0');
   }
-  function typeQualitySelect(resource: Resource, setResourceSelected: Function) {
-    setResourceSelected(resource.type + '|' + resource.quality);
+  function typeQualitySelect(resource: Resource,
+    setTypeQualitySelected: (typeQuality: string|null) => void) {
+    setTypeQualitySelected(resource.type + '|' + resource.quality);
   }
 }
