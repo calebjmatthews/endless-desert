@@ -326,7 +326,8 @@ function BuildingDescription(props: any) {
           name={resourceType.icon.name}
           foregroundColor={resourceType.foregroundColor}
           backgroundColor={resourceType.backgroundColor}
-          iconSize={12} />
+          iconSize={12}
+          quality={parseInt(tqSplit[1])} />
         <Text>{'/m '}</Text>
       </View>
     );
