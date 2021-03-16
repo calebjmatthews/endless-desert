@@ -19,6 +19,7 @@ import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
+import TradingPartner from '../models/trading_partner';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -31,8 +32,6 @@ import { RESOURCE_TAGS } from '../enums/resource_tags';
 const VALUES = [1, 4, 16];
 
 export default function ResourceSelectOneComponent() {
-  const [quantitySelected, setQuantitySelected] = useState('1');
-  const [quantityGiven, setQuantityGiven] = useState(calcQuantityGiven('1'));
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const modalValue: any = useTypedSelector(state => state.ui.modalValue);
@@ -48,6 +47,25 @@ export default function ResourceSelectOneComponent() {
     return null;
   }
   const [typeQualitySelected, setTypeQualitySelected] = useState(setStartingSelected());
+  function setStartingQuantityS(): string {
+    const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
+    if (resourcesArray.length == 1) {
+      let tInt = tPartner.acceptQuantity;
+      const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
+      if (tInt > vault.resources[key].quantity) {
+        tInt = Math.floor(vault.resources[key].quantity);
+      }
+      return tInt.toString();
+    }
+    return '0';
+  }
+  const [quantitySelected, setQuantitySelected] = useState(setStartingQuantityS());
+  function setStartingQuantityG(): number {
+    const selectedQuantity = setStartingQuantityS();
+    return calcQuantityGiven(selectedQuantity, modalValue, typeQualitySelected,
+      tradingStatus.tradingPartners[modalValue.tradingPartner]);
+  }
+  const [quantityGiven, setQuantityGiven] = useState(setStartingQuantityG());
 
   return (
     <View style={styles.container}>
@@ -58,7 +76,8 @@ export default function ResourceSelectOneComponent() {
       </View>
       <ScrollView>
         <View style={styles.tileContainer}>
-          {renderResources(resourcesArray, setTypeQualitySelected, setQuantitySelected)}
+          {renderResources(resourcesArray, setTypeQualitySelected, setQuantitySelected,
+            setQuantityGiven)}
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -74,13 +93,16 @@ export default function ResourceSelectOneComponent() {
 
   function renderResources(resourceArray: Resource[],
     setTypeQualitySelected:(typeQuality: string|null) => void,
-    setQuantitySelected: (quantity: string) => void) {
+    setQuantitySelected: (quantity: string) => void,
+    setQuantityGiven: (quantity: number) => void) {
+    const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
-        resource={resource}
-        typeQualitySelected={typeQualitySelected} vault={vault}
+        resource={resource} typeQualitySelected={typeQualitySelected} vault={vault}
         setTypeQualitySelected={setTypeQualitySelected}
         setQuantitySelected={setQuantitySelected}
+        setQuantityGiven={setQuantityGiven}
+        tPartner={tPartner} modalValue={modalValue}
         positioner={positioner} />;
     });
   }
@@ -97,15 +119,22 @@ export default function ResourceSelectOneComponent() {
       );
     }
     else if (modalValue.type == 'Trading') {
-      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
-        .trades[modalValue.tradeId];
+      const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
+      const trade = tPartner.trades[modalValue.tradeId];
       return (
         <View style={styles.columns}>
-          <View style={styles.rows}>
+          <View style={styles.spacedRows}>
             <Text>{'Offer: '}</Text>
             <TextInput style={styles.inputBox} value={quantitySelected}
               editable={(typeQualitySelected != null)}
               onChangeText={ (text) => changeTradeQuantity(text) } />
+            <Text>{' '}</Text>
+            <TouchableOpacity style={styles.buttonRowItemSmall}
+              onPress={() => {
+                changeTradeQuantity(Math.floor(tPartner.acceptQuantity/2).toString())
+              }}>
+              <Text style={styles.buttonTextSmall}>{'1/2'}</Text>
+            </TouchableOpacity>
           </View>
           <Text>{utils.formatNumberShort(parseInt(quantitySelected)) + ' '
             + utils.typeQualityName(typeQualitySelected)  + ' for '
@@ -134,8 +163,8 @@ export default function ResourceSelectOneComponent() {
     let pText = '0';
     if (tInt ? true : false) { pText = tInt.toString(); }
     setQuantitySelected(pText);
-    setQuantityGiven(calcQuantityGiven(pText));
-
+    setQuantityGiven(calcQuantityGiven(pText, modalValue, typeQualitySelected,
+      tPartner));
   }
 
   function renderSubmitButton() {
@@ -325,31 +354,33 @@ export default function ResourceSelectOneComponent() {
       return [];
     }
   }
+}
 
-  function calcQuantityGiven(qSelected: string) {
-    if (!modalValue) { return 0; }
-    if (modalValue.type == 'Trading' && typeQualitySelected) {
-      const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
-      const trade = tPartner.trades[modalValue.tradeId];
-      const tqSplit = typeQualitySelected.split('|');
-      const rResourceType = resourceTypes[tqSplit[0]];
-      const gResourceType = resourceTypes[trade.give.type];
+function calcQuantityGiven(qSelected: string, modalValue: any,
+  typeQualitySelected: string|null, tPartner: TradingPartner) {
+  if (!modalValue) { return 0; }
+  if (modalValue.type == 'Trading' && typeQualitySelected) {
+    const trade = tPartner.trades[modalValue.tradeId];
+    const tqSplit = typeQualitySelected.split('|');
+    const rResourceType = resourceTypes[tqSplit[0]];
+    const gResourceType = resourceTypes[trade.give.type];
 
-      if (rResourceType.value != null && gResourceType.value != null
-        && (parseInt(qSelected) ? true : false)) {
-        let qGiven = Math.floor((rResourceType.value * VALUES[parseInt(tqSplit[1])]
-          * parseInt(qSelected)) / (gResourceType.value * VALUES[trade.give.quality]));
-        return qGiven;
-      }
+    if (rResourceType.value != null && gResourceType.value != null
+      && (parseInt(qSelected) ? true : false)) {
+      let qGiven = Math.floor((rResourceType.value * VALUES[parseInt(tqSplit[1])]
+        * parseInt(qSelected)) / (gResourceType.value * VALUES[trade.give.quality]));
+      return qGiven;
     }
-    return 0;
   }
+  return 0;
 }
 
 function ResourceSelector(props: {resource: Resource,
   typeQualitySelected: string|null,
-  vault: Vault, setTypeQualitySelected: (typeQuality: string|null) => void,
+  vault: Vault, modalValue: any, tPartner: TradingPartner,
+  setTypeQualitySelected: (typeQuality: string|null) => void,
   setQuantitySelected: (quantity: string) => void,
+  setQuantityGiven: (quantity: number) => void,
   positioner: Positioner}) {
   let resourceType = resourceTypes[props.resource.type];
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
@@ -377,22 +408,26 @@ function ResourceSelector(props: {resource: Resource,
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
           {renderButton(props.resource, props.typeQualitySelected,
-            props.vault, props.setTypeQualitySelected, props.setQuantitySelected)}
+            props.vault, props.tPartner, props.modalValue,
+            props.setTypeQualitySelected, props.setQuantitySelected,
+            props.setQuantityGiven)}
         </View>
       </View>
     </View>
   );
 
   function renderButton(resource: Resource, typeQualitySelected: string|null,
-    vault: Vault, setTypeQualitySelected: (typeQuality: string|null) => void,
-    setQuantitySelected: (quantity: string) => void) {
+    vault: Vault, tPartner: TradingPartner, modalValue: any,
+    setTypeQualitySelected: (typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void,
+    setQuantityGiven: (quantity: number) => void) {
 
     if (typeQualitySelected == (resource.type + '|' + resource.quality)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
           onPress={() => {typeQualityUnSelect(setTypeQualitySelected,
-          setQuantitySelected)}} >
+          setQuantitySelected, setQuantityGiven)}} >
           <Text style={styles.buttonText}>{'Selected'}</Text>
         </TouchableOpacity>
       );
@@ -401,21 +436,31 @@ function ResourceSelector(props: {resource: Resource,
       { width: 74 }]);
     return (
       <TouchableOpacity style={buttonStyle}
-      onPress={() => {typeQualitySelect(resource, setTypeQualitySelected)}} >
+      onPress={() => {typeQualitySelect(resource, tPartner, modalValue,
+        setTypeQualitySelected, setQuantitySelected, setQuantityGiven)}} >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
       </TouchableOpacity>
     );
   }
 
-  function typeQualityUnSelect(setTypeQualitySelected:
-    (typeQuality: string|null) => void,
-    setQuantitySelected: (quantity: string) => void) {
+  function typeQualityUnSelect(setTypeQualitySelected: (typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void,
+    setQuantityGiven: (quantity: number) => void) {
     setTypeQualitySelected(null);
     setQuantitySelected('0');
+    setQuantityGiven(0);
   }
-  function typeQualitySelect(resource: Resource,
-    setTypeQualitySelected: (typeQuality: string|null) => void) {
-    setTypeQualitySelected(resource.type + '|' + resource.quality);
+  function typeQualitySelect(resource: Resource, tPartner: TradingPartner,
+    modalValue: any,
+    setTypeQualitySelected: (typeQuality: string|null) => void,
+    setQuantitySelected: (quantity: string) => void,
+    setQuantityGiven: (quantity: number) => void
+  ) {
+    const key = (resource.type + '|' + resource.quality);
+    const qSelected = tPartner.acceptQuantity.toString();
+    setTypeQualitySelected(key);
+    setQuantitySelected(qSelected);
+    setQuantityGiven(calcQuantityGiven(qSelected, modalValue, key, tPartner));
   }
 }
