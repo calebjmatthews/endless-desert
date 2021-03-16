@@ -20,6 +20,7 @@ import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
 import TradingPartner from '../models/trading_partner';
+import Trade from '../models/trade';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -136,14 +137,54 @@ export default function ResourceSelectOneComponent() {
               <Text style={styles.buttonTextSmall}>{'1/2'}</Text>
             </TouchableOpacity>
           </View>
-          <Text>{utils.formatNumberShort(parseInt(quantitySelected)) + ' '
-            + utils.typeQualityName(typeQualitySelected)  + ' for '
-            + utils.formatNumberShort(quantityGiven)
-            + ' ' + trade.give.type }</Text>
+          <View style={styles.spacedRows}>
+            {renderQuantitySelected()}
+            {renderQuantityGiven(trade)}
+          </View>
         </View>
       );
     }
     return null;
+  }
+
+  function renderQuantitySelected() {
+    if (parseInt(quantitySelected) > 0 && typeQualitySelected) {
+      const tsSplit = typeQualitySelected.split('|');
+      const resourceType = resourceTypes[tsSplit[0]];
+      return (
+        <View style={styles.rows}>
+          <BadgeComponent
+            provider={resourceType.icon.provider}
+            name={resourceType.icon.name}
+            foregroundColor={resourceType.foregroundColor}
+            backgroundColor={resourceType.backgroundColor}
+            iconSize={14}
+            quality={parseInt(tsSplit[1])} />
+          <Text>{' ' + utils.typeQualityName(typeQualitySelected) + ' x'
+            + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
+        </View>
+      );
+    }
+    return <Text>{'? '}</Text>;
+  }
+
+  function renderQuantityGiven(trade: Trade) {
+    const resourceType = resourceTypes[trade.give.type];
+    const typeQuality = (trade.give.type + '|' + trade.give.quality);
+    return (
+      <View style={styles.rows}>
+        <Text>{ ' for '}</Text>
+        <BadgeComponent
+          provider={resourceType.icon.provider}
+          name={resourceType.icon.name}
+          foregroundColor={resourceType.foregroundColor}
+          backgroundColor={resourceType.backgroundColor}
+          iconSize={14}
+          quality={trade.give.quality} />
+        <Text>{' ' + utils.typeQualityName(typeQuality) + ' x'
+          + utils.formatNumberShort(quantityGiven)}</Text>
+      </View>
+    );
   }
 
   function changeTradeQuantity(text: string) {
