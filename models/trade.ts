@@ -3,7 +3,7 @@ import Resource from './resource';
 export default class Trade {
   id: string = '';
   tradingPartnerType: string = '';
-  give: Resource = { type: '', quality: 0, quantity: 0 };
+  give: { type: string, quality: number } = { type: '', quality: 0 };
   receive: {specificity: string, type: string} = { specificity: '', type: '' };
 
   constructor(trade: Trade) {

@@ -240,8 +240,7 @@ function TradingPartnerDescription(props: any) {
           backgroundColor={give.backgroundColor}
           iconSize={16} />
         <Text style={styles.buttonTextDark}>
-          {' ' + give.name + ' (' + utils.formatNumberShort(trade.give.quantity)
-          + ') for '}
+          {' ' + give.name + ' for '}
         </Text>
         <BadgeComponent
           provider={receive.icon.provider}

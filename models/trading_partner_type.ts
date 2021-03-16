@@ -14,7 +14,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   backgroundColor: string = '#fff';
   paddingHorizontal: number = 11;
   paddingVertical: number = 8;
-  tradeValue: number = 0;
+  acceptQuantity: number = 0;
   givesPool: {specificity: string, type: string, quality?: number,
     weight: number}[] = [];
   receivesPool: {specificity: string, type: string, weight: number}[] = [];
@@ -40,10 +40,9 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
       let newTradeResult = this.createNewTrade(pGives);
       if (newTradeResult) {
         pGives.push(newTradeResult.pGive);
-        let give: {type: string, quality: number, quantity: number} = {
+        let give: {type: string, quality: number} = {
           type: newTradeResult.give.type,
-          quality: (newTradeResult.give.quality || 0),
-          quantity: newTradeResult.give.quantity
+          quality: (newTradeResult.give.quality || 0)
         };
         const newTrade = new Trade ({
           id: utils.randHex(8),
@@ -62,6 +61,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return new TradingPartner({
       name: this.name,
       trades: trades,
+      acceptQuantity: this.acceptQuantity,
       traded: {},
       arrived: new Date(Date.now())
     });
@@ -142,13 +142,10 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     else {
       return null;
     }
-    let baseQuantity = (this.tradeValue / (resourceType.value||1))
-    let quantity = Math.ceil(baseQuantity
-      + (baseQuantity * utils.random() - (baseQuantity / 2)));
-    return { type: typeName, quality: pGive.quality, quantity: quantity };
+    return { type: typeName, quality: pGive.quality };
   }
 
-  choosePReceive(give: {type: string, quality?: number, quantity: number}) {
+  choosePReceive(give: {type: string, quality?: number}) {
     for (let loop = 0; loop < 100; loop++) {
       let tReceive: {specificity: string, type: string, weight: number} =
         utils.randomWeightedSelect(this.receivesPool);
@@ -168,7 +165,7 @@ interface TradingPartnerTypeInterface {
   backgroundColor: string;
   paddingHorizontal: number;
   paddingVertical: number;
-  tradeValue: number;
+  acceptQuantity: number;
   givesPool: {specificity: string, type: string, quality?: number, weight: number}[];
   receivesPool: {specificity: string, type: string, weight: number}[];
 }

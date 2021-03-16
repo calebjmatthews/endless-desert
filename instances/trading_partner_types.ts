@@ -25,7 +25,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   backgroundColor: '#008a71',
   paddingHorizontal: 11,
   paddingVertical: 8,
-  tradeValue: 800,
+  acceptQuantity: 80,
   givesPool: [
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
@@ -47,7 +47,7 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   backgroundColor: '#0d5f0d',
   paddingHorizontal: 9,
   paddingVertical: 8,
-  tradeValue: 1200,
+  acceptQuantity: 100,
   givesPool: [
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
@@ -74,7 +74,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   backgroundColor: '#4a0000',
   paddingHorizontal: 8,
   paddingVertical: 8,
-  tradeValue: 1200,
+  acceptQuantity: 100,
   givesPool: [
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},

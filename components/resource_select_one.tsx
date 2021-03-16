@@ -118,26 +118,16 @@ export default function ResourceSelectOneComponent() {
   }
 
   function changeTradeQuantity(text: string) {
-    const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
-      .trades[modalValue.tradeId];
+    const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
+    const trade = tPartner.trades[modalValue.tradeId];
     let tInt = parseInt(text);
 
     if (typeQualitySelected != null) {
       if (tInt > vault.resources[typeQualitySelected].quantity) {
-        tInt = vault.resources[typeQualitySelected].quantity;
+        tInt = Math.floor(vault.resources[typeQualitySelected].quantity);
       }
-
-      const tqSplit = typeQualitySelected.split('|');
-      const rResourceType = resourceTypes[tqSplit[0]];
-      const gResourceType = resourceTypes[trade.give.type];
-      if (rResourceType.value != null && gResourceType.value != null
-        && (tInt ? true : false)) {
-        let qReceived = Math.ceil( (gResourceType.value
-          * VALUES[trade.give.quality] * trade.give.quantity)
-          / (rResourceType.value * VALUES[parseInt(tqSplit[1])]) );
-        if (tInt > qReceived) {
-          tInt = qReceived;
-        }
+      if (tInt > tPartner.acceptQuantity) {
+        tInt = tPartner.acceptQuantity;
       }
     }
 
@@ -339,8 +329,8 @@ export default function ResourceSelectOneComponent() {
   function calcQuantityGiven(qSelected: string) {
     if (!modalValue) { return 0; }
     if (modalValue.type == 'Trading' && typeQualitySelected) {
-      const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
-        .trades[modalValue.tradeId];
+      const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
+      const trade = tPartner.trades[modalValue.tradeId];
       const tqSplit = typeQualitySelected.split('|');
       const rResourceType = resourceTypes[tqSplit[0]];
       const gResourceType = resourceTypes[trade.give.type];
@@ -349,9 +339,6 @@ export default function ResourceSelectOneComponent() {
         && (parseInt(qSelected) ? true : false)) {
         let qGiven = Math.floor((rResourceType.value * VALUES[parseInt(tqSplit[1])]
           * parseInt(qSelected)) / (gResourceType.value * VALUES[trade.give.quality]));
-        if (qGiven > trade.give.quantity) {
-          qGiven = trade.give.quantity;
-        }
         return qGiven;
       }
     }
