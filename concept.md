@@ -270,7 +270,8 @@ Equipment:
 
 Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish
-  - Several things can be used as a main ingredient: Lentils, Meat, Fish, Onion, Dates
+  - Several things can be used as a main ingredient: Lentils, Quail, Fish, Onion, Dates
+  - These create the psuedo resource type for the final dish resource according to the tag they fall into: for example Lentils are a vegetable, so a dish with Lentils, Milk, and Water would be called "Plain Lentil Soup", but would have the resource type of "Vegetable Soup" for the purposes of grouping and studying
   - Soup = Ingredient + Water
   - Stew = Ingredient + Milk + Water
   - Pie = Ingredient + Wheat + Water
@@ -330,8 +331,8 @@ Calculating timestep:
   - "Hourglass" class used to calculate tick related events
   - Production/consumption always calculated using a diff between two timestamps
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
-  - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Lower tiered products are given priority. For example, if there was not enough water to fulfill all buildings, a kitchen could be producing bread at 100% capacity but another kitchen could only be producing honeyed bread at 67% capacity (assuming 2/min water was available out of 3/min water requirement)
-  - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate what % of the diff the building can operate before its resource is exhausted, and this will be set as the end of the end of the calculation. Another calculation will be performed with the remainder of the time, treating the stockpile of the resource as exhausted
+  - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Resources will be used at 100% capacity until a required resource is exhaused
+  - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate when the negative resource will run out, and then recalculate rates for that resource. The resource will be rounded down and set at 0 at this point
 
 Building display:
   - Start by going through each building, and creating an array the building types with duplicates

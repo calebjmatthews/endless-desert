@@ -10,13 +10,12 @@ import Memo from './memo';
 import Positioner from './positioner';
 import Leader from './leader';
 import Equipment from './equipment';
+import Rates from './rates';
 
 export default interface RootState {
   vault: Vault;
   researchStatus: ResearchStatus;
-  rates: { productionRates: Rate, consumptionRates: Rate,
-    buildingRates: { [buildingId: string] : Rate },
-    bGroupRates: { [typeName: string] : Rate }, netRates: Rate };
+  rates: Rates;
   buildings: { [id: string] : Building };
   buildingsConstruction: { [typeName: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
@@ -29,5 +28,3 @@ export default interface RootState {
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[], memos: Memo[], positioner: Positioner };
 }
-
-interface Rate { [typeQuality: string] : number };

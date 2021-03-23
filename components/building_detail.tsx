@@ -353,7 +353,7 @@ export default function BuildDetailComponent() {
       tempBuildings[id] = new Building(buildings[id]);
     });
     tempBuildings[building.id].recipeSelected = recipeIndex;
-    const newRates = new Hourglass().calcRates(tempBuildings, leaders);
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
     dispatch(setRates(newRates));
   }
 

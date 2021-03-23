@@ -19,6 +19,8 @@ import Building from '../models/building';
 import Fortuity from '../models/fortuity';
 import Memo from '../models/memo';
 import Resource from '../models/resource';
+import Rates from '../models/rates';
+import Leader from '../models/leader';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
@@ -47,11 +49,11 @@ export default function HourglassComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
-  const [callCalc, setCallCalc] = useState(false);
+  const [callTick, setCallTick] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setCallCalc(true);
+      setCallTick(true);
       setLocalTimestamp(new Date(Date.now()).valueOf());
     }, 100);
 
@@ -59,8 +61,8 @@ export default function HourglassComponent() {
   }, [localTimestamp]);
 
   useEffect(() => {
-    if (callCalc) {
-      setCallCalc(false);
+    if (callTick) {
+      setCallTick(false);
       // Resources to increase
       let rti: Resource[] = [];
       // Resources to consume
@@ -68,23 +70,9 @@ export default function HourglassComponent() {
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
-        const results = hourglass.calculate(rates, vault.lastTimestamp);
-        let productionDiffs: Resource[] = [];
-        Object.keys(results.productionSum).map((typeQuality) => {
-          const tqSplit = typeQuality.split('|');
-          productionDiffs.push({type: tqSplit[0],
-            quality: parseInt(tqSplit[1]),
-            quantity: results.productionSum[typeQuality]});
-        });
-        rti = productionDiffs;
-        let consumptionDiffs: Resource[] = [];
-        Object.keys(results.consumptionSum).map((typeQuality) => {
-          const tqSplit = typeQuality.split('|');
-          consumptionDiffs.push({type: tqSplit[0],
-            quality: parseInt(tqSplit[1]),
-            quantity: (results.consumptionSum[typeQuality] * -1)});
-        });
-        rtc = consumptionDiffs;
+        const results = hourglass.callCalcs(rates, vault, tempBuildings, {}, {});
+        rti = utils.sumToResources(results.productionSum);
+        rtc = utils.sumToResources(results.consumptionSum);
       }
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
@@ -204,14 +192,12 @@ export default function HourglassComponent() {
         dispatch(consumeResources(vault, rtc));
       }
       if (recalcRates) {
-        let newRates = new Hourglass().calcRates(tempBuildings, leaders);
+        let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
       }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
     }
-  }, [callCalc]);
-
-  return <></>;
+  }, [callTick]);
 
   function fortuityCheck() {
     let fortuityPool: Fortuity[] = [];
@@ -266,6 +252,8 @@ export default function HourglassComponent() {
       iconBackgroundColor: null
     })));
   }
+
+  return <></>;
 }
 
 function combineResources(resources: Resource[],

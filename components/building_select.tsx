@@ -26,6 +26,7 @@ export default function BuildingSelectComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const equipment = useTypedSelector(state => state.equipment);
+  const vault = useTypedSelector(state => state.vault);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
   let leadersBuilding: {[buildingId: string] : Leader} = {};
@@ -125,7 +126,7 @@ export default function BuildingSelectComponent() {
           dispatch(assignToBuilding(leadersBuilding[buildingSelected], null));
           tempLeaders[leadersBuilding[buildingSelected].id].assignedTo = null;
         }
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders);
+        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
@@ -137,7 +138,7 @@ export default function BuildingSelectComponent() {
           dispatch(liveAtBuilding(leadersBuilding[buildingSelected], null));
           tempLeaders[leadersBuilding[buildingSelected].id].livingAt = null;
         }
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders);
+        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }

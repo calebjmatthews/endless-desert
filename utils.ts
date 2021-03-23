@@ -2,6 +2,7 @@ import ResourceType from './models/resource_type';
 import ResourceTag from './models/resource_tag';
 import ResourceSubcategory from './models/resource_subcategory';
 import ResourceCategory from './models/resource_category';
+import Resource from './models/resource';
 import { resourceTypes } from './instances/resource_types';
 import { resourceTags } from './instances/resource_tags';
 import { resourceSubcategories } from './instances/resource_subcategories';
@@ -417,6 +418,35 @@ class Utils {
       }
     }
     return '';
+  }
+
+  mapAdd(map: any, property: string, quantity: number) {
+    if (map != undefined) {
+      if (map[property] == undefined) {
+        map[property] = 0;
+      }
+      map[property] += quantity;
+    }
+  }
+
+  mapsCombine(mapA: any, mapB: any) {
+    let combinedMap = Object.assign({}, mapA);
+    Object.keys(mapB).map((key) => {
+      if (!combinedMap[key]) { combinedMap[key] = 0; }
+      combinedMap[key] += mapB[key];
+    });
+    return combinedMap;
+  }
+
+  sumToResources(aSum: { [typeQuality: string] : number }) {
+    let resources: Resource[] = [];
+    Object.keys(aSum).map((typeQuality) => {
+      const tqSplit = typeQuality.split('|');
+      resources.push({type: tqSplit[0],
+        quality: parseInt(tqSplit[1]),
+        quantity: aSum[typeQuality]});
+    });
+    return resources;
   }
 }
 

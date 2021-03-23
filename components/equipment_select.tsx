@@ -27,6 +27,7 @@ export default function EquipmentSelectComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const leaders = useTypedSelector(state => state.leaders);
   const buildings = useTypedSelector(state => state.buildings);
+  const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
@@ -117,7 +118,7 @@ export default function EquipmentSelectComponent() {
         newLeaders[id] = leader;
       });
       dispatch(setLeaders(newLeaders));
-      let newRates = new Hourglass().calcRates(buildings, newLeaders);
+      let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
       dispatch(setRates(newRates));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
         newLeaders[modalValue.leader.id]));

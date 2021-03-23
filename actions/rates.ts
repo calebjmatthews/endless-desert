@@ -1,7 +1,7 @@
+import Rates from '../models/rates';
+
 export const SET_RATES = 'SET_RATES';
-export function setRates(rates: { productionRates: Rate, consumptionRates: Rate,
-  buildingRates: { [buildingId: string] : Rate },
-  bGroupRates: { [typeName: string] : Rate }, netRates: Rate }) {
+export function setRates(rates: Rates ) {
   return {
     type: SET_RATES,
     rates: rates
