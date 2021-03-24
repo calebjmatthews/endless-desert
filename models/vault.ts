@@ -9,6 +9,10 @@ export default class Vault {
 
   constructor(vault: VaultInterface) {
     Object.assign(this, vault);
+    let newResources: { [typeQuality: string] : Resource } = {};
+    Object.keys(vault.resources).map((key) => {
+      this.resources[key] = vault.resources[key];
+    })
   }
 
   // Add a quantity of one resource to the vault, creating a 0 quantity Resource in
@@ -170,6 +174,19 @@ export default class Vault {
       }
     });
     return resources;
+  }
+
+  checkForEmptying(rs: Resource[]) {
+    let emptiedTQs: string[] = [];
+    rs.map((r) => {
+      const key = r.type + '|' + r.quality;
+      if (this.resources[key]) {
+        if (this.resources[key].quantity < r.quantity) {
+          emptiedTQs.push(key);
+        }
+      }
+    });
+    return emptiedTQs;
   }
 }
 

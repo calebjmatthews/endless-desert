@@ -333,6 +333,7 @@ Calculating timestep:
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
   - The effective rates of all buildings are calculated, relative to the resources available, and this rate is stored and used until one or more buildings are changed. Resources will be used at 100% capacity until a required resource is exhaused
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate when the negative resource will run out, and then recalculate rates for that resource. The resource will be rounded down and set at 0 at this point
+  - Example: Beginning with timestamp 2000, with Red Clay|0 running out at 2800 and Lentils|0 running out at 3200, and current timestamp of 4000. First soonestExhaustion at 2800, calculate results between 2000 and 2800. Inactivate buildings that use Red Clay|0 by recalculating rates, second soonestExhaustion at 3200 and calculate results between 2800 and 3200. Inactivate buildings that use Lentils|0 by recalculating rates and calculate results between 3200 and 4000.
 
 Building display:
   - Start by going through each building, and creating an array the building types with duplicates
@@ -393,3 +394,20 @@ CREATE TABLE `endless_desert`.`sessions` (
   `user_id` VARCHAR(8) NOT NULL,
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
+
+Debug functions:
+dispatch(increaseResources(vault,
+  [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
+    quality: 0, quantity: 1 },
+  { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
+    quality: 0, quantity: 1 }] ));

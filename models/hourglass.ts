@@ -15,6 +15,8 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const MS_IN_MIN = 60000;
 
 export default class Hourglass {
+  // Take a set of resource gain/loss rates, a starting timestamp, and an ending
+  // timestamp, and calculate the resulting resource production and consumption
   calculate(rates: Rates, vault: Vault, startingTimestamp: number,
     endingTimestamp: number = new Date(Date.now()).valueOf()) {
     let timeMult = (endingTimestamp - startingTimestamp) / MS_IN_MIN;
@@ -38,6 +40,8 @@ export default class Hourglass {
     return {productionSum, consumptionSum};
   }
 
+  // Set the progress and text labels for each timer, check whether a timer has
+  // finished, and return an array of all finished timers
   timerTick(timers: { [name: string] : Timer }) {
     let resolvedTimers: Timer[] = [];
     Object.keys(timers).map((timerName) => {
@@ -53,8 +57,14 @@ export default class Hourglass {
     return resolvedTimers;
   }
 
+  // Call the calculate function and return the result. If one or more resources will
+  // be exhausted, call the calculation function for the subset of time until the
+  // resource is exhausted, recalculate the rates to exclude the building with
+  // the exhausted resource, then recursively call the callCalcs function for the
+  // new subset of time until all exhausted resources are accounted for
   callCalcs(rates: Rates, vault: Vault,
     buildings: { [id: string] : Building }, leaders: { [id: string] : Leader },
+    startingTimestamp: number = vault.lastTimestamp,
     productionSum: { [typeQuality: string] : number } = {},
     consumptionSum: { [typeQuality: string] : number } = {}) :
     { productionSum: { [typeQuality: string] : number },
@@ -62,7 +72,15 @@ export default class Hourglass {
 
     if (rates.soonestExhaustion) {
       if (rates.soonestExhaustion < new Date(Date.now()).valueOf()) {
-        const results = this.calculate(rates, vault, vault.lastTimestamp,
+        console.log('productionSum');
+        console.log(productionSum);
+        console.log('consumptionSum');
+        console.log(consumptionSum);
+        console.log('startingTimestamp');
+        console.log(startingTimestamp);
+        console.log('rates.soonestExhaustion');
+        console.log(rates.soonestExhaustion);
+        const results = this.calculate(rates, vault, startingTimestamp,
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
         const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
@@ -70,13 +88,19 @@ export default class Hourglass {
         const cResources = utils.sumToResources(newCSum);
         const newVault = new Vault(vault);
         pResources.map((resource) => newVault.increaseResource(resource));
-        pResources.map((resource) => newVault.increaseResource(resource));
+        cResources.map((resource) => newVault.consumeResource(resource));
         const newRates = this.calcRates(buildings, leaders, newVault);
+        console.log('newPSum');
+        console.log(newPSum);
+        console.log('newCSum');
+        console.log(newCSum);
+        console.log('newRates');
+        console.log(newRates);
         return this.callCalcs(newRates, vault, buildings, leaders,
-          newPSum, newCSum);
+          rates.soonestExhaustion, newPSum, newCSum);
       }
     }
-    const results = this.calculate(rates, vault, vault.lastTimestamp);
+    const results = this.calculate(rates, vault, startingTimestamp);
     const newPSum = utils.mapsCombine(productionSum, results.productionSum);
     const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
     return { productionSum: newPSum, consumptionSum: newCSum };
@@ -201,13 +225,15 @@ export default class Hourglass {
       if (rate < 0 && vault) {
         if (vault.resources[typeQuality]) {
           const quantity = vault.resources[typeQuality].quantity;
-          const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
-          console.log('typeQuality');
-          console.log(typeQuality);
-          console.log('exhaustion');
-          console.log(exhaustion);
-          if (soonestExhaustion == null || soonestExhaustion > exhaustion) {
-            soonestExhaustion = exhaustion;
+          if (quantity > Math.abs(rate)) {
+            const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
+            console.log('typeQuality');
+            console.log(typeQuality);
+            console.log('exhaustion');
+            console.log(exhaustion);
+            if (soonestExhaustion == null || soonestExhaustion > exhaustion) {
+              soonestExhaustion = exhaustion;
+            }
           }
         }
       }

@@ -13,7 +13,7 @@ import { changeSetting, setCurrentFortuity, unlockTab } from '../actions/account
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
-import { increaseResources } from '../actions/vault';
+import { increaseResources, consumeResources } from '../actions/vault';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -37,6 +37,7 @@ import LeaderType from '../models/leader_type';
 import Timer from '../models/timer';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
+import Resource from '../models/resource';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { utils } from '../utils';
@@ -220,21 +221,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(increaseResources(vault,
-        [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
-          quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
-        quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
-        quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"),
-        quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
-        quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
-        quality: 0, quantity: 1 },
-      { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
-        quality: 0, quantity: 1 }] ));
+      let resources: Resource[] = [];
+      Object.keys(vault.resources).map((typeQuality) => {
+        resources.push(vault.resources[typeQuality]);
+      });
+      dispatch(consumeResources(vault, resources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

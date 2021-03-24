@@ -430,11 +430,17 @@ class Utils {
   }
 
   mapsCombine(mapA: any, mapB: any) {
+    // console.log('JSON.stringify(mapA)');
+    // console.log(JSON.stringify(mapA));
+    // console.log('JSON.stringify(mapB)');
+    // console.log(JSON.stringify(mapB));
     let combinedMap = Object.assign({}, mapA);
     Object.keys(mapB).map((key) => {
       if (!combinedMap[key]) { combinedMap[key] = 0; }
       combinedMap[key] += mapB[key];
     });
+    // console.log('JSON.stringify(combinedMap)');
+    // console.log(JSON.stringify(combinedMap));
     return combinedMap;
   }
 

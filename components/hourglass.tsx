@@ -70,7 +70,7 @@ export default function HourglassComponent() {
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
-        const results = hourglass.callCalcs(rates, vault, tempBuildings, {}, {});
+        const results = hourglass.callCalcs(rates, vault, tempBuildings, {});
         rti = utils.sumToResources(results.productionSum);
         rtc = utils.sumToResources(results.consumptionSum);
       }
@@ -188,8 +188,11 @@ export default function HourglassComponent() {
       if (rti.length > 0) {
         dispatch(increaseResources(vault, rti));
       }
+      let emptiedTQs: string[] = [];
       if (rtc.length > 0) {
         dispatch(consumeResources(vault, rtc));
+        emptiedTQs = vault.checkForEmptying(rtc);
+        if (emptiedTQs.length > 0) { recalcRates = true; }
       }
       if (recalcRates) {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
