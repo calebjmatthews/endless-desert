@@ -31,7 +31,7 @@ export default class Hourglass {
         if (!consumptionSum[typeQuality]) {
           consumptionSum[typeQuality] = 0;
         }
-        consumptionSum[typeQuality] += (rates.netRates[typeQuality] * timeMult);
+        consumptionSum[typeQuality] += ((-1 * rates.netRates[typeQuality]) * timeMult);
       }
     })
 
@@ -83,7 +83,7 @@ export default class Hourglass {
   }
 
   calcRates(buildings: { [id: string] : Building },
-    leaders: { [id: string] : Leader }, vault: Vault|null): Rates {
+    leaders: { [id: string] : Leader }, vault: Vault): Rates {
     let productionRates: { [typeQuality: string] : number } = {};
     let consumptionRates: { [typeQuality: string] : number } = {};
     let netRates: { [typeQuality: string] : number } = {};
@@ -117,7 +117,19 @@ export default class Hourglass {
       if (buildingType.recipes && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
         let recipe = buildingType.recipes[recipeSelected];
-        if (recipe.produces) {
+
+        let missingConsumption = false;
+        if (recipe.consumes) {
+          recipe.consumes.map((consumption) => {
+            if (vault.resources[consumption.type + '|0'].quantity <
+              consumption.quantity) {
+              console.log('missingConsumption for: ' + consumption.type);
+              missingConsumption = true;
+            }
+          });
+        }
+
+        if (recipe.produces && !missingConsumption) {
           recipe.produces.map((production) => {
             let prod0Quantity = production.quantity;
             let qualityChance = 0;
@@ -145,7 +157,7 @@ export default class Hourglass {
             utils.mapAdd(netRates, (production.type + '|0'), prod0Quantity);
           });
         }
-        if (recipe.consumes) {
+        if (recipe.consumes && !missingConsumption) {
           recipe.consumes.map((consumption) => {
             let consQuantity = consumption.quantity;
             if (buildingLeaders[building.id]) {

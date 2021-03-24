@@ -42,7 +42,7 @@ export default class Vault {
     }
     const oldQuantity = Math.floor(this.resources[key].quantity);
     this.resources[key].quantity -= r.quantity;
-    if (this.resources[key].quantity == 0) {
+    if (this.resources[key].quantity < 0) {
       this.resources[key].quantity = 0;
     }
     let diff = Math.floor(this.resources[key].quantity) - oldQuantity;

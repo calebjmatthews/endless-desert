@@ -442,9 +442,10 @@ class Utils {
     let resources: Resource[] = [];
     Object.keys(aSum).map((typeQuality) => {
       const tqSplit = typeQuality.split('|');
+      let quantity = aSum[typeQuality];
       resources.push({type: tqSplit[0],
         quality: parseInt(tqSplit[1]),
-        quantity: aSum[typeQuality]});
+        quantity });
     });
     return resources;
   }
