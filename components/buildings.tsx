@@ -189,7 +189,9 @@ function BuildingDescription(props: any) {
         foregroundColor={buildingType.foregroundColor}
         backgroundColor={buildingType.backgroundColor}
         iconSize={18} />
-      <View style={styles.containerStretchColumn}>
+      <View style={StyleSheet.flatten([styles.containerStretchColumn,
+        {minWidth: props.positioner.bodyMedWidth,
+          maxWidth: props.positioner.bodyMedWidth}])}>
         <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
           <Text>{(props.building.item.name || buildingType.name)}</Text>
           {renderMoreButton()}
@@ -313,7 +315,8 @@ function BuildingDescription(props: any) {
     const tqSplit = typeQuality.split('|');
     const resourceType = resourceTypes[tqSplit[0]];
     let sign = '+';
-    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19 };
+    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
+      marginVertical: 3 };
     if (rate < 0) {
       sign = '';
       rateStyle.background = '#ffb4b1';

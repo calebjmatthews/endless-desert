@@ -30,7 +30,7 @@ export function replaceBuilding(building: Building) {
 }
 
 export const SELECT_BUILDING_RECIPE = 'SELECT_BUILDING_RECIPE';
-export function selectBuildingRecipe(building: Building, recipeIndex: number) {
+export function selectBuildingRecipe(building: Building, recipeIndex: number|undefined) {
   return {
     type: SELECT_BUILDING_RECIPE,
     building: building,

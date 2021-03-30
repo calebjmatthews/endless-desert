@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { styles } from '../styles';
 
 import IconComponent from './icon';
@@ -47,34 +47,48 @@ export default function BuildDetailComponent() {
   let building: Building = modalValue;
   const buildingType = new BuildingType(buildingTypes[building.buildingType]);
 
-  const [fuelSelected, setFuelSelected] = useState(setStartingFuel());
-  function setStartingFuel(): string|null {
-    if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
-      let fuelType: string|null = null;
-      if (building.recipe) {
-        if (building.recipe.consumes) {
-          building.recipe.consumes.map((resource) => {
-            const consumableType = resourceTypes[resource.type];
-            if (consumableType.tags.includes(RESOURCE_TAGS.FUEL)) {
-              const fuelResources = vault.getExactResources(resource.type);
-              if (fuelResources[0]) {
-                if (fuelResources[0].quantity > 1) {
-                  return fuelResources[0].type + '|' + fuelResources[0].quality;
+  const [initializing, setInitializing] = useState<boolean>(true);
+  const [fuelSelected, setFuelSelected] = useState<string | null>(null);
+  const [recipes, setRecipes] = useState<BuildingRecipe[] | null>(null);
+  const [recipeSelected, setRecipeSelected] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (initializing) {
+      setInitializing(false);
+
+      let aFuelIsSelected = false;
+      if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
+        let fuelType: string|null = null;
+        if (building.recipe) {
+          if (building.recipe.consumes) {
+            building.recipe.consumes.map((resource) => {
+              const consumableType = resourceTypes[resource.type];
+              if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
+                const fuelResources = vault.getExactResources(resource.type);
+                if (fuelResources[0]) {
+                  if (fuelResources[0].quantity > 1) {
+                    const fuel = fuelResources[0].type + '|' + fuelResources[0].quality;
+                    aFuelIsSelected = true;
+                    setFuelSelected(fuel);
+                  }
                 }
               }
-            }
-          });
+            });
+          }
+        }
+      }
+
+      if (buildingType.recipes) {
+        setRecipes(buildingType.recipes);
+      }
+
+      if (building.recipeSelected != undefined) {
+        if (!buildingType.name.includes(BUILDING_TYPES.FURNACE) || aFuelIsSelected) {
+          setRecipeSelected(building.recipeSelected);
         }
       }
     }
-    return null;
-  }
-
-  const [recipes, setRecipes] = useState(setStartingRecipes());
-  function setStartingRecipes() {
-    if (buildingType.recipes) { return buildingType.recipes; }
-    return null;
-  }
+  }, []);
 
   useEffect(() => {
     const newBuildingType = new BuildingType(buildingTypes[building.buildingType]);
@@ -84,8 +98,30 @@ export default function BuildDetailComponent() {
       setRecipes(building.modifyRecipesFromFuel(resourceType,
         parseInt(tqSplit[1]), newBuildingType));
     }
-    else { setRecipes(newBuildingType.recipes); }
-  }, [fuelSelected])
+    else if (!initializing) {
+      setRecipes(newBuildingType.recipes);
+      setRecipeSelected(undefined);
+    }
+  }, [fuelSelected]);
+
+  useEffect(() => {
+    let tempBuildings: { [id: string] : Building } = {};
+    Object.keys(buildings).map((id) => {
+      tempBuildings[id] = new Building(buildings[id]);
+    });
+    tempBuildings[building.id].recipeSelected = recipeSelected;
+    if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes
+      && recipeSelected) {
+      const recipe = recipes[recipeSelected];
+      dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
+      tempBuildings[building.id].recipe = recipe;
+    }
+    else {
+      dispatch(selectBuildingRecipe(building, recipeSelected));
+    }
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+    dispatch(setRates(newRates));
+  }, [recipeSelected])
 
   return (
     <View style={styles.container}>
@@ -98,14 +134,16 @@ export default function BuildDetailComponent() {
           iconSize={24} />
         <Text style={styles.heading1}>{building.name}</Text>
       </View>
-      <View style={StyleSheet.flatten([styles.descriptionBand,
-        {minWidth: positioner.modalWidth,
-          maxWidth: positioner.modalWidth}])}>
-        <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
-      </View>
-      {renderUpgradeCostContainer()}
-      {renderFuelContainer()}
-      {renderRecipeContainer()}
+      <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
+        <View style={StyleSheet.flatten([styles.descriptionBand,
+          {minWidth: positioner.modalWidth,
+            maxWidth: positioner.modalWidth}])}>
+          <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
+        </View>
+        {renderUpgradeCostContainer()}
+        {renderFuelContainer()}
+        {renderRecipeContainer()}
+      </ScrollView>
     </View>
   );
 
@@ -335,7 +373,8 @@ export default function BuildDetailComponent() {
       const resources = vault.getTagResources(RESOURCE_TAGS.FUEL);
       if (resources.length > 0) {
         return (
-          <View style={{width: 250}}>
+          <View style={{minWidth: positioner.minorWidth,
+            maxWidth: positioner.minorWidth}}>
             <Text style={styles.bareText}>{'Using fuel:'}</Text>
             <View style={styles.tileContainer}>
               {renderFuels(resources)}
@@ -345,7 +384,8 @@ export default function BuildDetailComponent() {
       }
       else {
         return (
-          <View style={{width: 250}}>
+          <View style={{minWidth: positioner.minorWidth,
+            maxWidth: positioner.minorWidth}}>
             <Text style={styles.bareText}>{'Using fuel:'}</Text>
             <View style={styles.break}></View>
             <Text style={styles.bareText}>
@@ -426,7 +466,8 @@ export default function BuildDetailComponent() {
   function renderRecipeContainer() {
     if (recipes) {
       return (
-        <View style={{width: 250}}>
+        <View style={{minWidth: positioner.majorWidth,
+          maxWidth: positioner.majorWidth}}>
           {renderRecipes(recipes)}
         </View>
       );
@@ -460,10 +501,11 @@ export default function BuildDetailComponent() {
   }
 
   function renderSelectButton(recipe: BuildingRecipe) {
-    if (building.recipeSelected == recipe.index) {
+    if (recipeSelected == recipe.index) {
       return (
         <TouchableOpacity style={StyleSheet.flatten([styles.button,
-          styles.sideButton])} >
+          styles.sideButton])}
+          onPress={() => { pressSelectRecipe(building, recipe.index) }} >
           <IconComponent provider="FontAwesome5" name="check-square" color="#fff"
             size={20} />
         </TouchableOpacity>
@@ -480,21 +522,12 @@ export default function BuildDetailComponent() {
   }
 
   function pressSelectRecipe(building: Building, recipeIndex: number) {
-    let tempBuildings: { [id: string] : Building } = {};
-    Object.keys(buildings).map((id) => {
-      tempBuildings[id] = new Building(buildings[id]);
-    });
-    tempBuildings[building.id].recipeSelected = recipeIndex;
-    if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes) {
-      const recipe = recipes[recipeIndex];
-      dispatch(setBuildingSpecificRecipe(building, recipe, recipeIndex));
-      tempBuildings[building.id].recipe = recipe;
+    if (recipeIndex != recipeSelected) {
+      setRecipeSelected(recipeIndex);
     }
     else {
-      dispatch(selectBuildingRecipe(building, recipeIndex));
+      setRecipeSelected(undefined);
     }
-    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
-    dispatch(setRates(newRates));
   }
 
   function renderRecipe(recipe: BuildingRecipe) {
