@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -7,7 +7,8 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { selectBuildingRecipe, payBuildingUpgradeCost } from '../actions/buildings';
+import { selectBuildingRecipe, setBuildingSpecificRecipe,
+  payBuildingUpgradeCost } from '../actions/buildings';
 import { payBuildingCost, removeBuildingConstruction }
   from '../actions/buildings_construction';
 import { setRates } from '../actions/rates';
@@ -17,14 +18,17 @@ import { consumeResources } from '../actions/vault';
 
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
+import BuildingType from '../models/building_type';
 import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
+import Resource from '../models/resource';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 
@@ -41,7 +45,47 @@ export default function BuildDetailComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let building: Building = modalValue;
-  const buildingType = buildingTypes[building.buildingType];
+  const buildingType = new BuildingType(buildingTypes[building.buildingType]);
+
+  const [fuelSelected, setFuelSelected] = useState(setStartingFuel());
+  function setStartingFuel(): string|null {
+    if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
+      let fuelType: string|null = null;
+      if (building.recipe) {
+        if (building.recipe.consumes) {
+          building.recipe.consumes.map((resource) => {
+            const consumableType = resourceTypes[resource.type];
+            if (consumableType.tags.includes(RESOURCE_TAGS.FUEL)) {
+              const fuelResources = vault.getExactResources(resource.type);
+              if (fuelResources[0]) {
+                if (fuelResources[0].quantity > 1) {
+                  return fuelResources[0].type + '|' + fuelResources[0].quality;
+                }
+              }
+            }
+          });
+        }
+      }
+    }
+    return null;
+  }
+
+  const [recipes, setRecipes] = useState(setStartingRecipes());
+  function setStartingRecipes() {
+    if (buildingType.recipes) { return buildingType.recipes; }
+    return null;
+  }
+
+  useEffect(() => {
+    const newBuildingType = new BuildingType(buildingTypes[building.buildingType]);
+    if (fuelSelected != null) {
+      const tqSplit = fuelSelected.split('|');
+      const resourceType = resourceTypes[tqSplit[0]];
+      setRecipes(building.modifyRecipesFromFuel(resourceType,
+        parseInt(tqSplit[1]), newBuildingType));
+    }
+    else { setRecipes(newBuildingType.recipes); }
+  }, [fuelSelected])
 
   return (
     <View style={styles.container}>
@@ -60,13 +104,12 @@ export default function BuildDetailComponent() {
         <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
       </View>
       {renderUpgradeCostContainer()}
+      {renderFuelContainer()}
       {renderRecipeContainer()}
     </View>
   );
 
   function renderUpgradeCostContainer() {
-    const buildingType = buildingTypes[building.buildingType];
-
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
     if (modalDisplayed == MODALS.BUILD_DETAIL && !buildingType.cost) { return null; }
@@ -113,8 +156,6 @@ export default function BuildDetailComponent() {
   }
 
   function renderBuildButton() {
-    const buildingType = buildingTypes[building.buildingType];
-
     let costsPaid = true;
     let cost = buildingType.upgradeCost;
     let buttonText = ' Upgrade';
@@ -149,7 +190,6 @@ export default function BuildDetailComponent() {
   }
 
   function renderBuildCosts() {
-    const buildingType = buildingTypes[building.buildingType];
     let cost = buildingType.upgradeCost;
     if (modalDisplayed == MODALS.BUILD_DETAIL) {
       cost = buildingType.cost;
@@ -271,7 +311,6 @@ export default function BuildDetailComponent() {
       }
     }
     else if (modalDisplayed == MODALS.BUILD_DETAIL) {
-      const buildingType = buildingTypes[building.buildingType];
       if (buildingType.duration) {
         dispatch(addTimer(new Timer({
           name: 'Build',
@@ -291,12 +330,104 @@ export default function BuildDetailComponent() {
     }
   }
 
+  function renderFuelContainer() {
+    if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
+      const resources = vault.getTagResources(RESOURCE_TAGS.FUEL);
+      if (resources.length > 0) {
+        return (
+          <View style={{width: 250}}>
+            <Text style={styles.bareText}>{'Using fuel:'}</Text>
+            <View style={styles.tileContainer}>
+              {renderFuels(resources)}
+            </View>
+          </View>
+        );
+      }
+      else {
+        return (
+          <View style={{width: 250}}>
+            <Text style={styles.bareText}>{'Using fuel:'}</Text>
+            <View style={styles.break}></View>
+            <Text style={styles.bareText}>
+              {'No fuels avaialble! Try growing reeds.'}
+            </Text>
+          </View>
+        );
+      }
+    }
+    return null;
+  }
+
+  function renderFuels(resources: Resource[]) {
+    return resources.map((resource) => {
+      const resourceType = resourceTypes[resource.type];
+      let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
+      if (resource.quality == 1) {
+        optionTextStyle = { paddingLeft: 4, paddingRight: 4,
+          color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
+      }
+      return (
+        <View key={(resource.type + '|' + resource.quality)}
+          style={StyleSheet.flatten([styles.panelTile, styles.columns,
+          {minWidth: positioner.minorWidth,
+            maxWidth: positioner.minorWidth}])}>
+          <Text style={optionTextStyle}>
+            {utils.typeQualityName(resource.type + '|' + resource.quality)}
+          </Text>
+          <View style={styles.rows}>
+            <BadgeComponent
+              provider={resourceType.icon.provider}
+              name={resourceType.icon.name}
+              foregroundColor={resourceType.foregroundColor}
+              backgroundColor={resourceType.backgroundColor}
+              iconSize={18}
+              quality={resource.quality} />
+            <View>
+              <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
+                {utils.formatNumberShort(resource.quantity)}
+              </Text>
+              {renderButton(resource, fuelSelected)}
+            </View>
+          </View>
+        </View>
+      );
+    })
+  }
+
+  function renderButton(resource: Resource, fuelSelected: string|null) {
+    if (fuelSelected == (resource.type + '|' + resource.quality)) {
+      let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
+      return (
+        <TouchableOpacity style={buttonStyle}
+          onPress={() => {typeQualityUnSelect(setFuelSelected)}} >
+          <Text style={styles.buttonText}>{'Selected'}</Text>
+        </TouchableOpacity>
+      );
+    }
+    let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonLight,
+      { width: 74 }]);
+    return (
+      <TouchableOpacity style={buttonStyle}
+      onPress={() => {typeQualitySelect(resource, setFuelSelected)}} >
+        <Text style={StyleSheet.flatten([styles.buttonText,
+          styles.buttonTextDark])}>{'Select'}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  function typeQualityUnSelect(setFuelSelected: (typeQuality: string|null) => void) {
+    setFuelSelected(null);
+  }
+  function typeQualitySelect(resource: Resource,
+    setFuelSelected: (typeQuality: string|null) => void) {
+    setFuelSelected(resource.type + '|' + resource.quality);
+  }
+
   function renderRecipeContainer() {
-    const buildingType = buildingTypes[building.buildingType];
-    if (buildingType.recipes) {
+    if (recipes) {
       return (
         <View style={{width: 250}}>
-          {renderRecipes(buildingType.recipes)}
+          {renderRecipes(recipes)}
         </View>
       );
     }
@@ -310,7 +441,9 @@ export default function BuildDetailComponent() {
       if (recipes.length == 1) {
         return (
           <View key={recipe.index}>
+            <Text style={styles.bareText}>{'Producing:'}</Text>
             {renderRecipe(recipe)}
+            <View style={styles.break}></View>
           </View>
         );
       }
@@ -347,53 +480,62 @@ export default function BuildDetailComponent() {
   }
 
   function pressSelectRecipe(building: Building, recipeIndex: number) {
-    dispatch(selectBuildingRecipe(building, recipeIndex));
     let tempBuildings: { [id: string] : Building } = {};
     Object.keys(buildings).map((id) => {
       tempBuildings[id] = new Building(buildings[id]);
     });
     tempBuildings[building.id].recipeSelected = recipeIndex;
+    if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes) {
+      const recipe = recipes[recipeIndex];
+      dispatch(setBuildingSpecificRecipe(building, recipe, recipeIndex));
+      tempBuildings[building.id].recipe = recipe;
+    }
+    else {
+      dispatch(selectBuildingRecipe(building, recipeIndex));
+    }
     const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
     dispatch(setRates(newRates));
   }
 
   function renderRecipe(recipe: BuildingRecipe) {
-    let rates: {resourceName: string, rate: number}[] = [];
+    let rates: {specificity: string, type: string, quantity: number}[] = [];
     if (recipe.produces) {
       recipe.produces.map((produce) => {
-        rates.push({resourceName: produce.type, rate: produce.quantity});
+        rates.push({ specificity: produce.specificity, type: produce.type,
+          quantity: produce.quantity});
       });
     }
     if (recipe.consumes) {
       recipe.consumes.map((consume) => {
-        rates.push({resourceName: consume.type, rate: (consume.quantity * -1)});
+        rates.push({ specificity: consume.specificity, type: consume.type,
+          quantity: (consume.quantity * -1)});
       });
     }
     return (
       <View>
-        {rates.map((rate) => renderRates(rate.resourceName, rate.rate))}
+        {rates.map((rate) => renderRate(rate))}
       </View>
     );
   }
 
-  function renderRates(resourceName: string, rate: number) {
-    const resource = resourceTypes[resourceName];
+  function renderRate(rate: {specificity: string, type: string, quantity: number}) {
+    const type = utils.getMatchingResourceType(rate.specificity, rate.type);
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4 };
-    if (rate < 0) {
+    if (rate.quantity < 0) {
       sign = '';
       rateStyle.background = '#ffb4b1';
     }
     return (
-      <View key={resourceName} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
-        <Text>{sign + rate}</Text>
+      <View key={type.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+        <Text>{sign + rate.quantity}</Text>
         <BadgeComponent
-          provider={resource.icon.provider}
-          name={resource.icon.name}
-          foregroundColor={resource.foregroundColor}
-          backgroundColor={resource.backgroundColor}
+          provider={type.icon.provider}
+          name={type.icon.name}
+          foregroundColor={type.foregroundColor}
+          backgroundColor={type.backgroundColor}
           iconSize={12} />
-        <Text>{ resource.name + '/m ' }</Text>
+        <Text>{ type.name + '/m ' }</Text>
       </View>
     );
   }

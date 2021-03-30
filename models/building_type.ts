@@ -20,6 +20,12 @@ export default class BuildingType implements BuildingTypeInterface {
   requiresLeader?: boolean;
 
   constructor(buildingType: BuildingTypeInterface) {
+    let newRecipes = null;
+    if (buildingType.recipes) {
+      newRecipes = [];
+      buildingType.recipes.map((recipe) => newRecipes.push(new BuildingRecipe(recipe)));
+    }
+    buildingType.recipes = newRecipes;
     Object.assign(this, buildingType);
     this.setDurations();
   }
@@ -30,7 +36,7 @@ export default class BuildingType implements BuildingTypeInterface {
       this.cost.map((aCost) => {
         let resourceType = utils.getMatchingResourceType(aCost.specificity, aCost.type);
         if (!resourceType) {
-          console.log('aCost');
+          console.log('resourceType missing, aCost:');
           console.log(aCost);
         }
         if (resourceType.value) {
@@ -43,7 +49,7 @@ export default class BuildingType implements BuildingTypeInterface {
       this.upgradeCost.map((aCost) => {
         let resourceType = utils.getMatchingResourceType(aCost.specificity, aCost.type);
         if (!resourceType) {
-          console.log('aCost');
+          console.log('resourceType missing, aCost:');
           console.log(aCost);
         }
         if (resourceType.value) {

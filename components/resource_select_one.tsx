@@ -29,8 +29,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCHES } from '../enums/researches';
 import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
-
-const VALUES = [1, 4, 16];
+import { QUALITY_VALUES } from '../constants';
+const QV = QUALITY_VALUES;
 
 export default function ResourceSelectOneComponent() {
   const dispatch = useDispatch();
@@ -258,7 +258,7 @@ export default function ResourceSelectOneComponent() {
       const tsSplit = typeQualitySelected.split('|');
       const resourceType = resourceTypes[tsSplit[0]];
       if (resourceType.value != null) {
-        const rValue = resourceType.value * VALUES[parseInt(tsSplit[1])];
+        const rValue = resourceType.value * QV[parseInt(tsSplit[1])];
         let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
           quantity: (rValue)}];
         let duration = (resourceType.value / 10) * 1000;
@@ -291,7 +291,7 @@ export default function ResourceSelectOneComponent() {
       const tqSplit = typeQualitySelected.split('|');
       const resourceType = resourceTypes[tqSplit[0]];
       if (resourceType.value != null) {
-        let rValue = ((resourceType.value * VALUES[parseInt(tqSplit[1])]
+        let rValue = ((resourceType.value * QV[parseInt(tqSplit[1])]
           * parseInt(quantitySelected)) / 4);
         console.log('rValue');
         console.log(rValue);
@@ -408,8 +408,8 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
 
     if (rResourceType.value != null && gResourceType.value != null
       && (parseInt(qSelected) ? true : false)) {
-      let qGiven = Math.floor((rResourceType.value * VALUES[parseInt(tqSplit[1])]
-        * parseInt(qSelected)) / (gResourceType.value * VALUES[trade.give.quality]));
+      let qGiven = Math.floor((rResourceType.value * QV[parseInt(tqSplit[1])]
+        * parseInt(qSelected)) / (gResourceType.value * QV[trade.give.quality]));
       return qGiven;
     }
   }

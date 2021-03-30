@@ -51,7 +51,7 @@ resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   name: RESOURCE_TYPES.REEDS,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION],
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.FUEL],
   value: 8,
   icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
   foregroundColor: '#59a500',
@@ -226,6 +226,26 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   value: 3,
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
+  name: RESOURCE_TYPES.RUST_ORE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 200,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#a02d01',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
+  name: RESOURCE_TYPES.CRUDE_IRON,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 300,
+  icon: {provider: 'FontAwesome5', name: 'bars'},
+  foregroundColor: '#a02d01',
   backgroundColor: '#fff'
 });
 

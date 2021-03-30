@@ -72,14 +72,6 @@ export default class Hourglass {
 
     if (rates.soonestExhaustion) {
       if (rates.soonestExhaustion < new Date(Date.now()).valueOf()) {
-        console.log('productionSum');
-        console.log(productionSum);
-        console.log('consumptionSum');
-        console.log(consumptionSum);
-        console.log('startingTimestamp');
-        console.log(startingTimestamp);
-        console.log('rates.soonestExhaustion');
-        console.log(rates.soonestExhaustion);
         const results = this.calculate(rates, vault, startingTimestamp,
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
@@ -90,12 +82,6 @@ export default class Hourglass {
         pResources.map((resource) => newVault.increaseResource(resource));
         cResources.map((resource) => newVault.consumeResource(resource));
         const newRates = this.calcRates(buildings, leaders, newVault);
-        console.log('newPSum');
-        console.log(newPSum);
-        console.log('newCSum');
-        console.log(newCSum);
-        console.log('newRates');
-        console.log(newRates);
         return this.callCalcs(newRates, vault, buildings, leaders,
           rates.soonestExhaustion, newPSum, newCSum);
       }
@@ -141,15 +127,19 @@ export default class Hourglass {
       if (buildingType.recipes && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
         let recipe = buildingType.recipes[recipeSelected];
+        if (building.recipe) { recipe = building.recipe; }
 
         let missingConsumption = false;
         if (recipe.consumes) {
           recipe.consumes.map((consumption) => {
-            if (vault.resources[consumption.type + '|0'].quantity <
-              consumption.quantity) {
-              console.log('missingConsumption for: ' + consumption.type);
-              missingConsumption = true;
+            if (vault.resources[consumption.type + '|0']) {
+              if (vault.resources[consumption.type + '|0'].quantity <
+                consumption.quantity) {
+                console.log('missingConsumption for: ' + consumption.type);
+                missingConsumption = true;
+              }
             }
+            else { missingConsumption = true; }
           });
         }
 
@@ -227,10 +217,6 @@ export default class Hourglass {
           const quantity = vault.resources[typeQuality].quantity;
           if (quantity > Math.abs(rate)) {
             const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
-            console.log('typeQuality');
-            console.log(typeQuality);
-            console.log('exhaustion');
-            console.log(exhaustion);
             if (soonestExhaustion == null || soonestExhaustion > exhaustion) {
               soonestExhaustion = exhaustion;
             }

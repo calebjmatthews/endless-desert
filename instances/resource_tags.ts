@@ -4,6 +4,15 @@ import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 
 let resourceTags: { [name: string] : ResourceTag } = {};
 
+resourceTags[RESOURCE_TAGS.FUEL] = new ResourceTag({
+  name: RESOURCE_TAGS.FUEL,
+  value: 5,
+  extract: false,
+  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
+  foregroundColor: '#ff0000',
+  backgroundColor: '#fff',
+});
+
 resourceTags[RESOURCE_TAGS.CONSTRUCTION] = new ResourceTag({
   name: RESOURCE_TAGS.CONSTRUCTION,
   value: 5,

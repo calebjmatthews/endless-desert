@@ -98,7 +98,7 @@ Resource Subcategories:
     * Saffron: Airy
     * Truffle: Fungal
     * Melange: Rich
-    * : Earthy
+    * Taro: Earthy
 
 Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -279,7 +279,7 @@ Cooking:
   - Omelet = Ingredient + Egg + Water
   - Cake = Ingredient + Wheat + Milk + Egg + Water
   - Oil and spice can be added to any recipe to increase quality
-  - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil. "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Rich Lentil Soup", Fish + Wheat + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
+  - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil, "Tasty" is used if there is oil but no spice, and "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Tasty Lentil Soup", Fish + Wheat + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
 Tabs:
   - Map, showing locations of each building and the river running through the middle

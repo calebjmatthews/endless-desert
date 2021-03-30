@@ -1,4 +1,5 @@
 import Building from '../models/building';
+import BuildingRecipe from '../models/building_recipe';
 
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export function setBuildings(buildings: { [id: string] : Building }) {
@@ -37,6 +38,17 @@ export function selectBuildingRecipe(building: Building, recipeIndex: number) {
   }
 }
 
+export const SET_BUILDING_SPECIFIC_RECIPE = 'SET_BUILDING_SPECIFIC_RECIPE';
+export function setBuildingSpecificRecipe(building: Building, recipe: BuildingRecipe,
+  recipeIndex: number) {
+  return {
+    type: SET_BUILDING_SPECIFIC_RECIPE,
+    building: building,
+    recipe: recipe,
+    recipeIndex: recipeIndex
+  }
+}
+
 export const PAY_BUILDING_UPGRADE_COST = 'PAY_BUILDING_UPGRADE_COST';
 export function payBuildingUpgradeCost(building: Building,
   aCost: {specificity: string, type: string, quantity: number},
@@ -47,14 +59,4 @@ export function payBuildingUpgradeCost(building: Building,
     aCost: aCost,
     resources: resources
   }
-}
-
-function countBuildings(buildingName: string, buildings: { [id: string] : Building }) {
-  let count = 0;
-  Object.keys(buildings).map((id) => {
-    if (buildings[id].buildingType == buildingName) {
-      count++;
-    }
-  });
-  return count;
 }
