@@ -50,7 +50,7 @@ export default function ResourceSelectOneComponent() {
   const [typeQualitySelected, setTypeQualitySelected] = useState(setStartingSelected());
   function setStartingQuantityS(): string {
     const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
-    if (resourcesArray.length == 1) {
+    if (resourcesArray.length == 1 && tPartner) {
       let tInt = tPartner.acceptQuantity;
       const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
       if (tInt > vault.resources[key].quantity) {
@@ -499,9 +499,11 @@ function ResourceSelector(props: {resource: Resource,
     setQuantityGiven: (quantity: number) => void
   ) {
     const key = (resource.type + '|' + resource.quality);
-    const qSelected = tPartner.acceptQuantity.toString();
     setTypeQualitySelected(key);
-    setQuantitySelected(qSelected);
-    setQuantityGiven(calcQuantityGiven(qSelected, modalValue, key, tPartner));
+    if (tPartner) {
+      const qSelected = tPartner.acceptQuantity.toString();
+      setQuantitySelected(qSelected);
+      setQuantityGiven(calcQuantityGiven(qSelected, modalValue, key, tPartner));
+    }
   }
 }
