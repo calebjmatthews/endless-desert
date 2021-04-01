@@ -3,7 +3,7 @@ export default class ResourceType {
   category: string = '';
   subcategory?: string|null = null;
   tags: string[] = [];
-  value: number|null = null;
+  value: number = 0;
   icon: {provider: string, name: string} = {provider: '', name: ''};
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';

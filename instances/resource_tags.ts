@@ -94,6 +94,24 @@ resourceTags[RESOURCE_TAGS.EARTH] = new ResourceTag({
   backgroundColor: '#fff'
 });
 
+resourceTags[RESOURCE_TAGS.INGREDIENT] = new ResourceTag({
+  name: RESOURCE_TAGS.INGREDIENT,
+  value: 50,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'shopping-bag'},
+  foregroundColor: '#4caf50',
+  backgroundColor: '#fff'
+});
+
+resourceTags[RESOURCE_TAGS.SPICE] = new ResourceTag({
+  name: RESOURCE_TAGS.SPICE,
+  value: 50,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'mortar-pestle'},
+  foregroundColor: '#ca8826',
+  backgroundColor: '#fff'
+});
+
 resourceTags[RESOURCE_TAGS.SAVORY] = new ResourceTag({
   name: RESOURCE_TAGS.SAVORY,
   value: 5,

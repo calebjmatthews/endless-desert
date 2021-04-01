@@ -1,12 +1,13 @@
 import BuildingRecipe from './building_recipe';
 import BuildingType from './building_type';
 import ResourceType from './resource_type';
+import getDishFromIngredients from './building_cooking';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUALITY_VALUES } from '../constants';
 const QV = QUALITY_VALUES;
 
-export default class Building {
+export default class Building implements BuildingInterface {
   id: string = '';
   buildingType: string = '';
   suffix: number = 1;
@@ -21,7 +22,7 @@ export default class Building {
   paidUpgradeCosts: { [costName: string] : boolean } = {};
   paidUpgradeResources: { type: string, quantity: number }[] = [];
 
-  constructor(building: Building) {
+  constructor(building: BuildingInterface) {
     if (!building.recipe) { building.recipe = null; }
     if (!building.paidCosts) { building.paidCosts = {}; }
     if (!building.paidResources) { building.paidResources = []; }
@@ -67,4 +68,25 @@ export default class Building {
     return new BuildingRecipe({ index: recipe.index, produces: newProduces,
       consumes: newConsumes});
   }
+
+  getDishFromIngredients(ingredients: ResourceType[],
+    resourceTypes: { [typeName: string] : ResourceType }) {
+    return getDishFromIngredients(ingredients, resourceTypes);
+  }
+}
+
+interface BuildingInterface {
+  id: string;
+  buildingType: string;
+  suffix: number;
+  name: string|null;
+  recipeSelected?: number;
+  // Usually a building is set to produce according to one recipe of an array,
+  // but some buildings have modifiable recipies. If this building is one of those,
+  // its current recipe will be stored here, otherwise this will be null.
+  recipe: BuildingRecipe|null;
+  paidCosts?: { [costName: string] : boolean };
+  paidResources?: { type: string, quantity: number }[];
+  paidUpgradeCosts?: { [costName: string] : boolean };
+  paidUpgradeResources?: { type: string, quantity: number }[];
 }

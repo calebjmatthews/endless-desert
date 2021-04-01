@@ -9,6 +9,8 @@ export enum RESOURCE_TAGS {
   FOOD = "Food",
   CONSTRUCTION = "Construction",
   FUEL = "Fuel",
+  INGREDIENT = "Cooking Ingredient",
+  SPICE = "Cooking Spice",
   SAVORY = "Savory", // orange
   SWEET = "Sweet", // pink
   BITTER = "Bitter", // purple

@@ -21,7 +21,7 @@ resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   name: RESOURCE_TYPES.WATER,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK],
+  tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK, RESOURCE_TAGS.INGREDIENT],
   value: 5,
   icon: {provider: 'FontAwesome5', name: 'water'},
   foregroundColor: '#2196f3',
@@ -31,7 +31,7 @@ resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
   name: RESOURCE_TYPES.LENTILS,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD],
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD, RESOURCE_TAGS.INGREDIENT],
   value: 10,
   icon: {provider: 'FontAwesome5', name: 'seedling'},
   foregroundColor: '#59a500',
@@ -41,7 +41,7 @@ resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
   name: RESOURCE_TYPES.SEEDS,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT],
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 40,
   icon: {provider: 'MaterialCommunityIcons', name: 'seed'},
   foregroundColor: '#59a500',
@@ -61,7 +61,7 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
   name: RESOURCE_TYPES.GRAIN,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT],
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 15,
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
@@ -81,7 +81,7 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
   name: RESOURCE_TYPES.QUAIL,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL],
+  tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
   value: 200,
   icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
   foregroundColor: '#caa096',
@@ -91,7 +91,7 @@ resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
 resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
   name: RESOURCE_TYPES.EGGS,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
   value: 80,
   icon: {provider: 'MaterialCommunityIcons', name: 'egg'},
   foregroundColor: '#000',
@@ -253,7 +253,7 @@ resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({
   name: RESOURCE_TYPES.SALT,
   subcategory: RESOURCE_SUBCATEGORIES.SPICE,
   category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.BRACKISH],
+  tags: [RESOURCE_TAGS.BRACKISH, RESOURCE_TAGS.SPICE],
   value: 20,
   icon: {provider: 'FontAwesome5', name: 'wine-bottle'},
   foregroundColor: '#000',
@@ -275,7 +275,7 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   name: RESOURCE_TYPES.OLIVE_OIL,
   subcategory: RESOURCE_SUBCATEGORIES.OIL,
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+  tags: [RESOURCE_TAGS.SPICE],
   value: 250,
   icon: {provider: 'FontAwesome5', name: 'oil-can'},
   foregroundColor: '#97c701',
@@ -299,6 +299,16 @@ resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   value: 150,
   icon: {provider: 'FontAwesome5', name: 'newspaper'},
   foregroundColor: '#e6dab8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
+  name: RESOURCE_TYPES.MILK,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
+  value: 300,
+  icon: {provider: 'MaterialCommunityIcons', name: 'pail-outline'},
+  foregroundColor: '#756f63',
   backgroundColor: '#fff'
 });
 

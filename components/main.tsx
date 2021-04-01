@@ -38,13 +38,17 @@ import Timer from '../models/timer';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
+import Building from '../models/building';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
+import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
 import { LEADER_TYPES } from '../enums/leader_types';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
+import { BUILDING_TYPES } from '../enums/building_types';
+import { RESOURCE_TYPES } from '../enums/resource_types';
 
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
@@ -221,11 +225,17 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let resources: Resource[] = [];
-      Object.keys(vault.resources).map((typeQuality) => {
-        resources.push(vault.resources[typeQuality]);
-      });
-      dispatch(consumeResources(vault, resources));
+      let testKitchen = new Building({id: '12341234',
+        buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
+        recipeSelected: 0, recipe: null });
+      let dish = testKitchen.getDishFromIngredients([
+        resourceTypes[RESOURCE_TYPES.WATER],
+        resourceTypes[RESOURCE_TYPES.GRAIN],
+        resourceTypes[RESOURCE_TYPES.SEEDS],
+        resourceTypes[RESOURCE_TYPES.SALT]],
+        resourceTypes);
+      console.log('dish');
+      console.log(dish);
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
