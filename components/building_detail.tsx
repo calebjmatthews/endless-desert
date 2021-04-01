@@ -105,22 +105,25 @@ export default function BuildDetailComponent() {
   }, [fuelSelected]);
 
   useEffect(() => {
-    let tempBuildings: { [id: string] : Building } = {};
-    Object.keys(buildings).map((id) => {
-      tempBuildings[id] = new Building(buildings[id]);
-    });
-    tempBuildings[building.id].recipeSelected = recipeSelected;
-    if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes
-      && recipeSelected) {
-      const recipe = recipes[recipeSelected];
-      dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
-      tempBuildings[building.id].recipe = recipe;
+    if (buildings[building.id]) {
+      let tempBuildings: { [id: string] : Building } = {};
+      Object.keys(buildings).map((id) => {
+        tempBuildings[id] = new Building(buildings[id]);
+      });
+
+      tempBuildings[building.id].recipeSelected = recipeSelected;
+      if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes
+        && recipeSelected) {
+        const recipe = recipes[recipeSelected];
+        dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
+        tempBuildings[building.id].recipe = recipe;
+      }
+      else {
+        dispatch(selectBuildingRecipe(building, recipeSelected));
+      }
+      const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+      dispatch(setRates(newRates));
     }
-    else {
-      dispatch(selectBuildingRecipe(building, recipeSelected));
-    }
-    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
-    dispatch(setRates(newRates));
   }, [recipeSelected])
 
   return (
