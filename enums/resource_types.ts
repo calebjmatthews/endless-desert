@@ -28,6 +28,10 @@ export enum RESOURCE_TYPES {
   GLASS = "Glass",
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
-  LENTIL_SOUP = "Lentil Soup",
-  BREAD = "Bread"
+  SOUP = "Soup",
+  BREAD = "Bread",
+  OMELET = "Omelet",
+  STEW = "Stew",
+  PIE = "Pie",
+  CAKE = "Cake"
 }

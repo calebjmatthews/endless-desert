@@ -39,10 +39,19 @@ resourceCategories[RESOURCE_CATEGORIES.ARTISAN_GOOD] = new ResourceCategory({
   backgroundColor: '#fff'
 });
 
+resourceCategories[RESOURCE_CATEGORIES.DISH] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.DISH,
+  value: 20,
+  order: 4,
+  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
+  foregroundColor: '#2b2b2d',
+  backgroundColor: '#fff'
+});
+
 resourceCategories[RESOURCE_CATEGORIES.EQUIPMENT] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.EQUIPMENT,
   value: 2000,
-  order: 4,
+  order: 5,
   icon: {provider: 'FontAwesome5', name: 'tshirt'},
   foregroundColor: '#000',
   backgroundColor: '#fff'

@@ -312,14 +312,54 @@ resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
   backgroundColor: '#fff'
 });
 
-resourceTypes[RESOURCE_TYPES.LENTIL_SOUP] = new ResourceType({
-  name: RESOURCE_TYPES.LENTIL_SOUP,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
+  name: RESOURCE_TYPES.SOUP,
+  category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
   icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
+  name: RESOURCE_TYPES.OMELET,
+  category: RESOURCE_CATEGORIES.DISH,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 80,
+  icon: {provider: 'MaterialCommunityIcons', name: 'egg'},
+  foregroundColor: '#ffeb38',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.STEW] = new ResourceType({
+  name: RESOURCE_TYPES.STEW,
+  category: RESOURCE_CATEGORIES.DISH,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 80,
+  icon: {provider: 'MaterialCommunityIcons', name: 'pot-mix'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.PIE] = new ResourceType({
+  name: RESOURCE_TYPES.PIE,
+  category: RESOURCE_CATEGORIES.DISH,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 80,
+  icon: {provider: 'FontAwesome5', name: 'chart-pie'},
+  foregroundColor: '#673ab7',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
+  name: RESOURCE_TYPES.CAKE,
+  category: RESOURCE_CATEGORIES.DISH,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 80,
+  icon: {provider: 'FontAwesome5', name: 'birthday-cake'},
+  foregroundColor: '#e493a1',
+  backgroundColor: '#fff',
 });
 
 resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({

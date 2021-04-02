@@ -3,5 +3,6 @@ export enum RESOURCE_CATEGORIES {
   MATERIAL = "Material",
   MATERIAL_REFINED = 'Refined Material',
   ARTISAN_GOOD = 'Artisan Good',
+  DISH = 'Dish',
   EQUIPMENT = 'Equipment'
 }

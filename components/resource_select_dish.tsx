@@ -8,11 +8,12 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import ProgressBarComponent from '../components/progress_bar';
 import { displayModalValue } from '../actions/ui';
-import { consumeResources } from '../actions/vault';
 
 import Resource from '../models/resource';
 import Building from '../models/building';
+import BuildingRecipe from '../models/building_recipe';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -28,13 +29,15 @@ export default function ResourceSelectDishComponent() {
   let resourcesArray = getResourcesArray();
 
   const [resourcesSelected, resourcesSelect] = useState<string[]>([]);
+  const [experimenting, setExperimenting] = useState<boolean>(false);
+  const [dish, setDish] = useState<BuildingRecipe | null>(null);
 
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome" name="cube" color="#fff" size={20}
-          style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Select Resources'}</Text>
+        <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
+          color="#fff" size={20} style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Cooking'}</Text>
       </View>
       <ScrollView contentContainerStyle={{minHeight: positioner.modalHeightMajor,
         maxHeight: positioner.modalHeightMajor}}>
@@ -42,21 +45,24 @@ export default function ResourceSelectDishComponent() {
           {renderResources(resourcesArray, resourcesSelect)}
         </View>
       </ScrollView>
-      <ScrollView contentContainerStyle={StyleSheet.flatten([styles.panelFlexColumn,
-        {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
-          minHeight: positioner.modalHeightMinor,
-          maxHeight: positioner.modalHeightMinor, alignItems: 'flex-start'}])} >
-        <Text style={StyleSheet.flatten([styles.heading2, {alignSelf: 'center'}])}>
-          {'Ingredients:'}
-        </Text>
-        <View style={StyleSheet.flatten([styles.spacedRows,
-          {minWidth: (positioner.modalMajor - positioner.majorPadding),
-            maxWidth: (positioner.modalMajor - positioner.majorPadding)}])}>
-          {renderSelected(resourcesSelected)}
-        </View>
-        <View style={styles.break} />
-        <View style={styles.buttonRow}>
-          {renderSubmitButton()}
+      <ScrollView contentContainerStyle={{minWidth: positioner.modalMajor,
+        maxWidth: positioner.modalMajor, minHeight: positioner.modalHeightMinor,
+        maxHeight: positioner.modalHeightMinor, alignItems: 'flex-start'}} >
+        <View style={StyleSheet.flatten([styles.panelFlexColumn,
+          {alignItems: 'flex-start', minWidth: positioner.modalMajor,
+            minHeight: (positioner.modalHeightMinor - positioner.minorPadding)}])} >
+          <Text style={StyleSheet.flatten([styles.heading2, {alignSelf: 'center'}])}>
+            {'Ingredients:'}
+          </Text>
+          <View style={StyleSheet.flatten([styles.spacedRows,
+            {minWidth: (positioner.modalMajor - positioner.majorPadding),
+              maxWidth: (positioner.modalMajor - positioner.majorPadding)}])}>
+            {renderSelected(resourcesSelected)}
+            {renderDish(dish)}
+          </View>
+          <View style={styles.buttonRow}>
+            {renderSubmitButton()}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -112,13 +118,65 @@ export default function ResourceSelectDishComponent() {
     return (' ' + utils.typeQualityName(typeQuality));
   }
 
+  function renderDish(dish: BuildingRecipe | null) {
+    if (resourcesSelected.length < 2) {
+      return null;
+    }
+    if (dish && dish.produces) {
+      const dishType = resourceTypes[dish.produces[0].type];
+      return (
+          <View style={styles.rows}>
+          <Text>{' '}</Text>
+          <IconComponent provider="FontAwesome" name="arrow-right"
+            color="#000" size={16} />
+          <Text>{' '}</Text>
+          <BadgeComponent
+            provider={dishType.icon.provider}
+            name={dishType.icon.name}
+            foregroundColor={dishType.foregroundColor}
+            backgroundColor={dishType.backgroundColor}
+            iconSize={16} />
+          <Text>
+            {' ' + dish.produces[0].name}
+          </Text>
+        </View>
+      );
+    }
+    return (
+      <View style={styles.rows}>
+        <Text>{' '}</Text>
+        <IconComponent provider="FontAwesome" name="arrow-right"
+          color="#000" size={16} />
+        <Text>{' '}</Text>
+        <BadgeComponent
+          provider={'FontAwesome5'}
+          name={'question'}
+          foregroundColor={'#000'}
+          backgroundColor={'#fff'}
+          iconSize={16} />
+        <Text>
+          {' Unknown dish'}
+        </Text>
+      </View>
+    );
+  }
+
   function renderSubmitButton() {
+    if (experimenting) {
+      return (
+        <ProgressBarComponent startingProgress={0}
+          endingProgress={1} duration={5000}
+          label={'Experimenting...'} />
+      );
+    }
     let buttonStyle: any = StyleSheet.flatten([styles.buttonLarge,
       styles.buttonRowItem, {alignSelf: 'flex-end', height: 32}]);
     if (resourcesSelected.length < 2) {
       buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles. buttonRowItem,
         styles.buttonDisabled, {alignSelf: 'flex-end', height: 32}]);
     }
+    let label = ' Experiment';
+    if (dish) { label = ' Try something else'; }
     return (
       <TouchableOpacity style={buttonStyle} disabled={(resourcesSelected.length < 2)}
         onPress={() => experimentPress()} >
@@ -135,8 +193,11 @@ export default function ResourceSelectDishComponent() {
     });
     let dish = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
-    console.log('dish');
-    console.log(dish);
+    setExperimenting(true);
+    setTimeout(() => {
+      setDish(dish);
+      setExperimenting(false);
+    }, 5000);
   }
 }
 
