@@ -146,6 +146,7 @@ export default function BuildDetailComponent() {
         {renderUpgradeCostContainer()}
         {renderFuelContainer()}
         {renderRecipeContainer()}
+        {renderKitchenButton()}
       </ScrollView>
     </View>
   );
@@ -574,5 +575,24 @@ export default function BuildDetailComponent() {
         <Text>{ type.name + '/m ' }</Text>
       </View>
     );
+  }
+
+  function renderKitchenButton() {
+    if (building.buildingType == BUILDING_TYPES.KITCHEN) {
+      return (
+        <TouchableOpacity style={styles.buttonLarge}
+          onPress={() => openDishSelection()} >
+          <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
+            color="#fff" size={16} style={styles.headingIcon} />
+          <Text style={styles.buttonTextLarge}>{' Cook something new'}</Text>
+        </TouchableOpacity>
+      );
+    }
+    return null;
+  }
+
+  function openDishSelection() {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_DISH, 'open',
+      {type: 'Building detail', building}))
   }
 }

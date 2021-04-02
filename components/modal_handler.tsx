@@ -10,6 +10,7 @@ import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
+import ResourceSelectDishComponent from './resource_select_dish';
 import BuildingSelectComponent from './building_select';
 import EquipmentSelectComponent from './equipment_select';
 import MemoComponent from './memo';
@@ -64,6 +65,9 @@ function renderModal(modalType: string) {
 
     case MODALS.RESOURCE_SELECT_ONE:
     return <ResourceSelectOneComponent />;
+
+    case MODALS.RESOURCE_SELECT_DISH:
+    return <ResourceSelectDishComponent />;
 
     case MODALS.BUILDING_SELECT:
     return <BuildingSelectComponent />;

@@ -6,6 +6,7 @@ export default class Positioner {
   minorPadding: number = 10;
   iconSpacer: number = 50;
   headerSpacer: number = 70;
+  titleSpacer: number = 25;
 
   bodyHeight: number = 470;
   majorWidth: number = 280;
@@ -15,6 +16,9 @@ export default class Positioner {
   modalMajor: number = 260;
   modalHalf: number = 130;
   modalThird: number = 90;
+  modalHeight: number = 375;
+  modalHeightMajor: number = 210;
+  modalHeightMinor: number = 140;
 
   constructor(screenWidth?: number, screenHeight?: number) {
     if (screenWidth && screenHeight) {
@@ -27,6 +31,11 @@ export default class Positioner {
       this.modalMajor = screenWidth - (this.minorPadding * 4);
       this.modalHalf = (screenWidth / 2) - (this.minorPadding * 2);
       this.modalThird = (screenWidth / 3) - (this.minorPadding * 2);
+      this.modalHeight = this.bodyHeight * 0.8;
+      this.modalHeightMajor = ((this.modalHeight - this.titleSpacer) * 0.6)
+        - this.minorPadding;
+      this.modalHeightMinor = ((this.modalHeight - this.titleSpacer) * 0.4)
+        - this.minorPadding;
     }
   }
 }

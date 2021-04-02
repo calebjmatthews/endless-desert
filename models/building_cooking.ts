@@ -55,7 +55,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   // Adjective Tier Map: For determining the tier of the current adjective: lower tiers
   // are overwritten by higher tiers
   const atm : { [adjective: string] : number } = { 'Plain' : 0, 'Tasty' : 1,
-    'Savory' : 2, 'Sweet' : 2, 'Bitter' : 2, 'Tart' : 2, 'Salty' : 2, 'Spicy' : 2,
+    'Savory' : 2, 'Sweet' : 2, 'Bitter' : 2, 'Tart' : 2, 'Salted' : 2, 'Spicy' : 2,
     'Mint' : 2, 'Herbed' : 2, 'Spiced' : 3 };
   let adjective = 'Plain';
   // Main Tier Map: For determining the tier of the current main ingredient: lower tiers
@@ -152,7 +152,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       'Spicy', 'Cooling', 'Herbal'];
     const spiceAdjectiveMap: { [tagName : string] : string } = {
       [RTA.SAVORY] : 'Savory', [RTA.SWEET] : 'Sweet', [RTA.BITTER] : 'Bitter',
-      [RTA.SOUR] : 'Tart', [RTA.BRACKISH] : 'Salty', [RTA.SPICY] : 'Spicy',
+      [RTA.SOUR] : 'Tart', [RTA.BRACKISH] : 'Salted', [RTA.SPICY] : 'Spicy',
       [RTA.COOLING] : 'Mint', [RTA.HERBAL] : 'Herbed' };
     let matchingAdjective = 'Plain';
     ingredient.tags.map((tag) => {
