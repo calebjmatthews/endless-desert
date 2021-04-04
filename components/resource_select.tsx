@@ -72,19 +72,20 @@ export default function ResourceSelectComponent() {
     vault: Vault) {
     if (Object.keys(resourcesSelected).length > 0) {
       return Object.keys(resourcesSelected).map((typeQuality) => {
-        let resource = resourceTypes[typeQuality.split('|')[0]];
+        const resource = vault.resources[typeQuality];
+        const resourceType = utils.getResourceType(resource);
         return (
           <View key={typeQuality} style={styles.rows}>
             <BadgeComponent
-              provider={resource.icon.provider}
-              name={resource.icon.name}
-              foregroundColor={resource.foregroundColor}
-              backgroundColor={resource.backgroundColor}
+              provider={resourceType.icon.provider}
+              name={resourceType.icon.name}
+              foregroundColor={resourceType.foregroundColor}
+              backgroundColor={resourceType.backgroundColor}
               iconSize={16} />
             <Text>
               {resourcesSelected[typeQuality] + ' (of '
                 + utils.formatNumberShort(vault.resources[typeQuality].quantity)
-                + ') ' + utils.typeQualityName(typeQuality)}
+                + ') ' + utils.getResourceName(resource)}
             </Text>
           </View>
         );
@@ -177,7 +178,7 @@ function ResourceSelector(props: {resource: Resource,
   resourcesSelected: {[typeQuality: string] : number},
   aCost: {specificity: string, type: string, quantity: number},
   vault: Vault, setResourcesSelected: Function, positioner: Positioner}) {
-  let resourceType = resourceTypes[props.resource.type];
+  let resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
     optionTextStyle = { paddingLeft: 4, paddingRight: 4,

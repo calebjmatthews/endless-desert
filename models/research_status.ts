@@ -3,6 +3,7 @@ import Vault from './vault';
 import Resource from './resource';
 import { researches } from '../instances/researches';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { RESEARCHES } from '../enums/researches';
 
 export default class ResearchStatus implements ResearchStatusInterface {
@@ -94,7 +95,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     let rts: Resource[] = [];
     Object.keys(vault.resources).map((typeQuality) => {
       let resource = vault.resources[typeQuality];
-      let resourceType = resourceTypes[typeQuality.split('|')[0]];
+      let resourceType = utils.getResourceType(resource);
       if (resource.quantity >= 1 && !this.resourcesStudied[typeQuality]
         && resourceType.value != null) {
         rts.push(resource);

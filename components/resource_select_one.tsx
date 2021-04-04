@@ -41,13 +41,11 @@ export default function ResourceSelectOneComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
-  function setStartingSelected(): string|null {
-    if (resourcesArray.length == 1) {
-      return (resourcesArray[0].type + '|' + resourcesArray[0].quality);
-    }
+  const [resourceSelected, setResourceSelected] = useState(setStartingSelected());
+  function setStartingSelected(): Resource|null {
+    if (resourcesArray.length == 1) { return resourcesArray[0]; }
     return null;
   }
-  const [typeQualitySelected, setTypeQualitySelected] = useState(setStartingSelected());
   function setStartingQuantityS(): string {
     const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
     if (resourcesArray.length == 1 && tPartner) {
@@ -63,7 +61,7 @@ export default function ResourceSelectOneComponent() {
   const [quantitySelected, setQuantitySelected] = useState(setStartingQuantityS());
   function setStartingQuantityG(): number {
     const selectedQuantity = setStartingQuantityS();
-    return calcQuantityGiven(selectedQuantity, modalValue, typeQualitySelected,
+    return calcQuantityGiven(selectedQuantity, modalValue, resourceSelected,
       tradingStatus.tradingPartners[modalValue.tradingPartner]);
   }
   const [quantityGiven, setQuantityGiven] = useState(setStartingQuantityG());
@@ -77,7 +75,7 @@ export default function ResourceSelectOneComponent() {
       </View>
       <ScrollView>
         <View style={styles.tileContainer}>
-          {renderResources(resourcesArray, setTypeQualitySelected, setQuantitySelected,
+          {renderResources(resourcesArray, setResourceSelected, setQuantitySelected,
             setQuantityGiven)}
         </View>
       </ScrollView>
@@ -93,14 +91,14 @@ export default function ResourceSelectOneComponent() {
   );
 
   function renderResources(resourceArray: Resource[],
-    setTypeQualitySelected:(typeQuality: string|null) => void,
+    setResourceSelected:(resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void) {
     const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
-        resource={resource} typeQualitySelected={typeQualitySelected} vault={vault}
-        setTypeQualitySelected={setTypeQualitySelected}
+        resource={resource} resourceSelected={resourceSelected} vault={vault}
+        setResourceSelected={setResourceSelected}
         setQuantitySelected={setQuantitySelected}
         setQuantityGiven={setQuantityGiven}
         tPartner={tPartner} modalValue={modalValue}
@@ -114,7 +112,7 @@ export default function ResourceSelectOneComponent() {
         <View style={styles.rows}>
           <Text>{'Selecting: '}</Text>
           <TextInput style={styles.inputBox} value={quantitySelected}
-            editable={(typeQualitySelected != null)}
+            editable={(resourceSelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
         </View>
       );
@@ -127,7 +125,7 @@ export default function ResourceSelectOneComponent() {
           <View style={styles.spacedRows}>
             <Text>{'Offer: '}</Text>
             <TextInput style={styles.inputBox} value={quantitySelected}
-              editable={(typeQualitySelected != null)}
+              editable={(resourceSelected != null)}
               onChangeText={ (text) => changeTradeQuantity(text) } />
             <Text>{' '}</Text>
             <TouchableOpacity style={styles.buttonRowItemSmall}
@@ -148,9 +146,8 @@ export default function ResourceSelectOneComponent() {
   }
 
   function renderQuantitySelected() {
-    if (parseInt(quantitySelected) > 0 && typeQualitySelected) {
-      const tsSplit = typeQualitySelected.split('|');
-      const resourceType = resourceTypes[tsSplit[0]];
+    if (parseInt(quantitySelected) > 0 && resourceSelected) {
+      const resourceType = utils.getResourceType(resourceSelected);
       return (
         <View style={styles.rows}>
           <BadgeComponent
@@ -159,8 +156,8 @@ export default function ResourceSelectOneComponent() {
             foregroundColor={resourceType.foregroundColor}
             backgroundColor={resourceType.backgroundColor}
             iconSize={14}
-            quality={parseInt(tsSplit[1])} />
-          <Text>{' ' + utils.typeQualityName(typeQualitySelected) + ' x'
+            quality={resourceSelected.quality} />
+          <Text>{' ' + utils.getResourceName(resourceSelected) + ' x'
             + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
         </View>
       );
@@ -192,9 +189,10 @@ export default function ResourceSelectOneComponent() {
     const trade = tPartner.trades[modalValue.tradeId];
     let tInt = parseInt(text);
 
-    if (typeQualitySelected != null) {
-      if (tInt > vault.resources[typeQualitySelected].quantity) {
-        tInt = Math.floor(vault.resources[typeQualitySelected].quantity);
+    if (resourceSelected != null) {
+      const key = (resourceSelected.type + '|' + resourceSelected.quality);
+      if (tInt > vault.resources[key].quantity) {
+        tInt = Math.floor(vault.resources[key].quantity);
       }
       if (tInt > tPartner.acceptQuantity) {
         tInt = tPartner.acceptQuantity;
@@ -204,7 +202,7 @@ export default function ResourceSelectOneComponent() {
     let pText = '0';
     if (tInt ? true : false) { pText = tInt.toString(); }
     setQuantitySelected(pText);
-    setQuantityGiven(calcQuantityGiven(pText, modalValue, typeQualitySelected,
+    setQuantityGiven(calcQuantityGiven(pText, modalValue, resourceSelected,
       tPartner));
   }
 
@@ -212,7 +210,7 @@ export default function ResourceSelectOneComponent() {
     let isDisabled = false;
     let buttonStyle: any = StyleSheet.flatten([styles.buttonLarge,
       styles.buttonRowItem]);
-    if (typeQualitySelected == null) {
+    if (resourceSelected == null) {
       isDisabled = true;
       buttonStyle = StyleSheet.flatten([styles.buttonLarge,
         styles.buttonRowItem, styles.buttonDisabled]);
@@ -254,13 +252,15 @@ export default function ResourceSelectOneComponent() {
   }
 
   function actionStudy() {
-    if (typeQualitySelected != null) {
-      const tsSplit = typeQualitySelected.split('|');
-      const resourceType = resourceTypes[tsSplit[0]];
+    if (resourceSelected != null) {
+      const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        const rValue = resourceType.value * QV[parseInt(tsSplit[1])];
-        let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
+        const rValue = resourceType.value * QV[resourceSelected.quality];
+        const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+        const rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
           quantity: (rValue)}];
+        const rsConsume = [{type: resourceSelected.type,
+          quality: resourceSelected.quality, quantity: 1}]
         let duration = (resourceType.value / 10) * 1000;
         if (duration < 1000) { duration = 1000; }
         let timer = new Timer({
@@ -270,33 +270,32 @@ export default function ResourceSelectOneComponent() {
           progress: 0,
           remainingLabel: '',
           resourcesToIncrease: rsIncrease,
-          resourcesToConsume: [{type: tsSplit[0], quality: parseInt(tsSplit[1]),
-            quantity: 1}],
+          resourcesToConsume: rsConsume,
           messageToDisplay: ('You studied '
-            + utils.typeQualityName(typeQualitySelected) + ' for '
+            + utils.getResourceName(resourceSelected) + ' for '
             + utils.formatNumberShort(rValue) + ' knowledge.'),
           iconToDisplay: resourceType.icon,
           iconForegroundColor: resourceType.foregroundColor,
           iconBackgroundColor: resourceType.backgroundColor
         });
         dispatch(addTimer(timer));
-        dispatch(studyResource(typeQualitySelected));
+        dispatch(studyResource(typeQuality));
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
   }
 
   function actionAnalysis() {
-    if (typeQualitySelected != null) {
-      const tqSplit = typeQualitySelected.split('|');
-      const resourceType = resourceTypes[tqSplit[0]];
+    if (resourceSelected != null) {
+      const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        let rValue = ((resourceType.value * QV[parseInt(tqSplit[1])]
+        let rValue = ((resourceType.value * QV[resourceSelected.quality]
           * parseInt(quantitySelected)) / 4);
-        console.log('rValue');
-        console.log(rValue);
-        let rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
+        const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+        const rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
           quantity: rValue}];
+        const rsConsume = [{type: resourceSelected.type,
+          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}]
         let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
         if (duration < 1000) { duration = 1000; }
         let timer = new Timer({
@@ -306,38 +305,37 @@ export default function ResourceSelectOneComponent() {
           progress: 0,
           remainingLabel: '',
           resourcesToIncrease: rsIncrease,
-          resourcesToConsume: [{type: tqSplit[0], quality: parseInt(tqSplit[1]),
-            quantity: parseInt(quantitySelected)}],
+          resourcesToConsume: rsConsume,
           messageToDisplay: ('You analyzed '
             + utils.formatNumberShort(parseInt(quantitySelected)) + ' '
-            + utils.typeQualityName(typeQualitySelected) + ' for '
+            + utils.getResourceName(resourceSelected) + ' for '
             + utils.formatNumberShort(rValue) + ' knowledge.'),
           iconToDisplay: resourceType.icon,
           iconForegroundColor: resourceType.foregroundColor,
           iconBackgroundColor: resourceType.backgroundColor
         });
         dispatch(addTimer(timer));
-        dispatch(studyResource(typeQualitySelected));
+        dispatch(studyResource(typeQuality));
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
   }
 
   function actionTrading() {
-    if (typeQualitySelected != null) {
+    if (resourceSelected != null) {
       const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
         .trades[modalValue.tradeId];
-      const tqSplit = typeQualitySelected.split('|');
       dispatch(increaseResources(vault, [{type: trade.give.type,
         quality: trade.give.quality, quantity: quantityGiven}]));
-      dispatch(consumeResources(vault, [{type: tqSplit[0],
-        quality: parseInt(tqSplit[1]), quantity: parseInt(quantitySelected)}]));
+      dispatch(consumeResources(vault, [{type: resourceSelected.type,
+        quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}]));
       dispatch(completeTrade({
         id: trade.id,
         tradingPartnerType: trade.tradingPartnerType,
         given: { type: trade.give.type, quality: trade.give.quality,
           quantity: quantityGiven },
-        received: { type: tqSplit[0], quality: parseInt(tqSplit[1]),
+        received: { type: resourceSelected.type,
+          quality: resourceSelected.quality,
           quantity: parseInt(quantitySelected) }
       }));
       dispatch(displayModalValue(null, 'closed', null));
@@ -345,15 +343,17 @@ export default function ResourceSelectOneComponent() {
   }
 
   function actionSetEating() {
-    if (typeQualitySelected != null) {
-      dispatch(setEating(modalValue.leader, typeQualitySelected));
+    if (resourceSelected != null) {
+      const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+      dispatch(setEating(modalValue.leader, typeQuality));
       dispatch(displayModalValue(null, 'closed', null));
     }
   }
 
   function actionSetDrinking() {
-    if (typeQualitySelected != null) {
-      dispatch(setDrinking(modalValue.leader, typeQualitySelected));
+    if (resourceSelected != null) {
+      const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+      dispatch(setDrinking(modalValue.leader, typeQuality));
       dispatch(displayModalValue(null, 'closed', null));
     }
   }
@@ -398,17 +398,16 @@ export default function ResourceSelectOneComponent() {
 }
 
 function calcQuantityGiven(qSelected: string, modalValue: any,
-  typeQualitySelected: string|null, tPartner: TradingPartner) {
+  resourceSelected: Resource|null, tPartner: TradingPartner) {
   if (!modalValue) { return 0; }
-  if (modalValue.type == 'Trading' && typeQualitySelected) {
+  if (modalValue.type == 'Trading' && resourceSelected) {
     const trade = tPartner.trades[modalValue.tradeId];
-    const tqSplit = typeQualitySelected.split('|');
-    const rResourceType = resourceTypes[tqSplit[0]];
+    const rResourceType = utils.getResourceType(resourceSelected);
     const gResourceType = resourceTypes[trade.give.type];
 
     if (rResourceType.value != null && gResourceType.value != null
       && (parseInt(qSelected) ? true : false)) {
-      let qGiven = Math.floor((rResourceType.value * QV[parseInt(tqSplit[1])]
+      let qGiven = Math.floor((rResourceType.value * QV[resourceSelected.quality]
         * parseInt(qSelected)) / (gResourceType.value * QV[trade.give.quality]));
       return qGiven;
     }
@@ -416,14 +415,13 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
   return 0;
 }
 
-function ResourceSelector(props: {resource: Resource,
-  typeQualitySelected: string|null,
-  vault: Vault, modalValue: any, tPartner: TradingPartner,
-  setTypeQualitySelected: (typeQuality: string|null) => void,
+function ResourceSelector(props: {resource: Resource, resourceSelected: Resource|null,
+  vault: Vault, modalValue: any,  tPartner: TradingPartner,
+  setResourceSelected: (resourceSelected: Resource|null) => void,
   setQuantitySelected: (quantity: string) => void,
   setQuantityGiven: (quantity: number) => void,
   positioner: Positioner}) {
-  let resourceType = resourceTypes[props.resource.type];
+  const resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
     optionTextStyle = { paddingLeft: 4, paddingRight: 4,
@@ -448,62 +446,65 @@ function ResourceSelector(props: {resource: Resource,
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
-          {renderButton(props.resource, props.typeQualitySelected,
+          {renderButton(props.resource, props.resourceSelected,
             props.vault, props.tPartner, props.modalValue,
-            props.setTypeQualitySelected, props.setQuantitySelected,
+            props.setResourceSelected, props.setQuantitySelected,
             props.setQuantityGiven)}
         </View>
       </View>
     </View>
   );
 
-  function renderButton(resource: Resource, typeQualitySelected: string|null,
+  function renderButton(resource: Resource, resourceSelected: Resource|null,
     vault: Vault, tPartner: TradingPartner, modalValue: any,
-    setTypeQualitySelected: (typeQuality: string|null) => void,
+    setResourceSelected: (resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void) {
 
-    if (typeQualitySelected == (resource.type + '|' + resource.quality)) {
-      let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
-      return (
-        <TouchableOpacity style={buttonStyle}
-          onPress={() => {typeQualityUnSelect(setTypeQualitySelected,
-          setQuantitySelected, setQuantityGiven)}} >
-          <Text style={styles.buttonText}>{'Selected'}</Text>
-        </TouchableOpacity>
-      );
+    if (resourceSelected) {
+      if (resourceSelected.type == resource.type
+        && resourceSelected.quality == resource.quality) {
+        let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
+        return (
+          <TouchableOpacity style={buttonStyle}
+            onPress={() => {typeQualityUnSelect(setResourceSelected,
+            setQuantitySelected, setQuantityGiven)}} >
+            <Text style={styles.buttonText}>{'Selected'}</Text>
+          </TouchableOpacity>
+        );
+      }
     }
     let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonLight,
       { width: 74 }]);
     return (
       <TouchableOpacity style={buttonStyle}
       onPress={() => {typeQualitySelect(resource, tPartner, modalValue,
-        setTypeQualitySelected, setQuantitySelected, setQuantityGiven)}} >
+        setResourceSelected, setQuantitySelected, setQuantityGiven)}} >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
       </TouchableOpacity>
     );
   }
 
-  function typeQualityUnSelect(setTypeQualitySelected: (typeQuality: string|null) => void,
+  function typeQualityUnSelect(setResourceSelected:
+    (resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void) {
-    setTypeQualitySelected(null);
+    setResourceSelected(null);
     setQuantitySelected('0');
     setQuantityGiven(0);
   }
   function typeQualitySelect(resource: Resource, tPartner: TradingPartner,
     modalValue: any,
-    setTypeQualitySelected: (typeQuality: string|null) => void,
+    setResourceSelected: (resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void
   ) {
-    const key = (resource.type + '|' + resource.quality);
-    setTypeQualitySelected(key);
+    setResourceSelected(resource);
     if (tPartner) {
       const qSelected = tPartner.acceptQuantity.toString();
       setQuantitySelected(qSelected);
-      setQuantityGiven(calcQuantityGiven(qSelected, modalValue, key, tPartner));
+      setQuantityGiven(calcQuantityGiven(qSelected, modalValue, resource, tPartner));
     }
   }
 }

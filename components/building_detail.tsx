@@ -48,7 +48,7 @@ export default function BuildDetailComponent() {
   const buildingType = new BuildingType(buildingTypes[building.buildingType]);
 
   const [initializing, setInitializing] = useState<boolean>(true);
-  const [fuelSelected, setFuelSelected] = useState<string | null>(null);
+  const [fuelSelected, setFuelSelected] = useState<Resource | null>(null);
   const [recipes, setRecipes] = useState<BuildingRecipe[] | null>(null);
   const [recipeSelected, setRecipeSelected] = useState<number | undefined>(undefined);
 
@@ -62,14 +62,14 @@ export default function BuildDetailComponent() {
         if (building.recipe) {
           if (building.recipe.consumes) {
             building.recipe.consumes.map((resource) => {
-              const consumableType = resourceTypes[resource.type];
+              const fullResource = Object.assign({quality: 0}, resource);
+              const consumableType = utils.getResourceType(fullResource);
               if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
                 const fuelResources = vault.getExactResources(resource.type);
                 if (fuelResources[0]) {
                   if (fuelResources[0].quantity > 1) {
-                    const fuel = fuelResources[0].type + '|' + fuelResources[0].quality;
                     aFuelIsSelected = true;
-                    setFuelSelected(fuel);
+                    setFuelSelected(fuelResources[0]);
                   }
                 }
               }
@@ -93,10 +93,9 @@ export default function BuildDetailComponent() {
   useEffect(() => {
     const newBuildingType = new BuildingType(buildingTypes[building.buildingType]);
     if (fuelSelected != null) {
-      const tqSplit = fuelSelected.split('|');
-      const resourceType = resourceTypes[tqSplit[0]];
-      setRecipes(building.modifyRecipesFromFuel(resourceType,
-        parseInt(tqSplit[1]), newBuildingType));
+      const resourceType = utils.getResourceType(fuelSelected);
+      setRecipes(building.modifyRecipesFromFuel(resourceType, fuelSelected.quality,
+        newBuildingType));
     }
     else if (!initializing) {
       setRecipes(newBuildingType.recipes);
@@ -239,7 +238,7 @@ export default function BuildDetailComponent() {
     if (!cost) { return null; }
 
     return cost.map((aCost) => {
-      let resource = utils.getMatchingResourceType(aCost.specificity, aCost.type);
+      let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;
@@ -404,7 +403,7 @@ export default function BuildDetailComponent() {
 
   function renderFuels(resources: Resource[]) {
     return resources.map((resource) => {
-      const resourceType = resourceTypes[resource.type];
+      const resourceType = utils.getResourceType(resource);
       let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
       if (resource.quality == 1) {
         optionTextStyle = { paddingLeft: 4, paddingRight: 4,
@@ -438,15 +437,18 @@ export default function BuildDetailComponent() {
     })
   }
 
-  function renderButton(resource: Resource, fuelSelected: string|null) {
-    if (fuelSelected == (resource.type + '|' + resource.quality)) {
-      let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
-      return (
-        <TouchableOpacity style={buttonStyle}
-          onPress={() => {typeQualityUnSelect(setFuelSelected)}} >
-          <Text style={styles.buttonText}>{'Selected'}</Text>
-        </TouchableOpacity>
-      );
+  function renderButton(resource: Resource, fuelSelected: Resource|null) {
+    if (fuelSelected) {
+      if (fuelSelected.type == resource.type
+        && fuelSelected.quality == resource.quality) {
+        let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
+        return (
+          <TouchableOpacity style={buttonStyle}
+            onPress={() => {typeQualityUnSelect(setFuelSelected)}} >
+            <Text style={styles.buttonText}>{'Selected'}</Text>
+          </TouchableOpacity>
+        );
+      }
     }
     let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonLight,
       { width: 74 }]);
@@ -459,12 +461,12 @@ export default function BuildDetailComponent() {
     );
   }
 
-  function typeQualityUnSelect(setFuelSelected: (typeQuality: string|null) => void) {
+  function typeQualityUnSelect(setFuelSelected: (resource: Resource|null) => void) {
     setFuelSelected(null);
   }
   function typeQualitySelect(resource: Resource,
-    setFuelSelected: (typeQuality: string|null) => void) {
-    setFuelSelected(resource.type + '|' + resource.quality);
+    setFuelSelected: (resource: Resource|null) => void) {
+    setFuelSelected(resource);
   }
 
   function renderRecipeContainer() {
@@ -556,7 +558,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderRate(rate: {specificity: string, type: string, quantity: number}) {
-    const type = utils.getMatchingResourceType(rate.specificity, rate.type);
+    const type = utils.getMatchingResourceKind(rate.specificity, rate.type);
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4 };
     if (rate.quantity < 0) {

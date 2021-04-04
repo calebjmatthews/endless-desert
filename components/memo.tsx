@@ -11,6 +11,7 @@ import { dismissMemo, displayModal } from '../actions/ui';
 
 import { resourceTypes } from '../instances/resource_types';
 import { leaderTypes } from '../instances/leader_types';
+import { utils } from '../utils';
 
 export default function MemoComponent() {
   const dispatch = useDispatch();
@@ -53,8 +54,8 @@ export default function MemoComponent() {
 
   function renderResourcesGained() {
     if (memo.resourcesGained) {
-      return memo.resourcesGained.map((resQty, index) => {
-        const resourceType = resourceTypes[resQty.type];
+      return memo.resourcesGained.map((resource, index) => {
+        const resourceType = utils.getResourceType(resource);
         return (
           <View key={index} style={styles.containerStretchRow}>
             <BadgeComponent
@@ -63,7 +64,7 @@ export default function MemoComponent() {
               foregroundColor={resourceType.foregroundColor}
               backgroundColor={resourceType.backgroundColor}
               iconSize={16} />
-            <Text>{' ' + resQty.quantity + ' ' + resQty.type}</Text>
+            <Text>{' ' + resource.quantity + ' ' + resource.type}</Text>
           </View>
         );
       });

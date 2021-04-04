@@ -337,7 +337,7 @@ class Utils {
     return aRange;
   }
 
-  getMatchingResourceType(specificity: string, type: string):
+  getMatchingResourceKind(specificity: string, type: string):
     ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
     switch(specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
@@ -420,6 +420,22 @@ class Utils {
     return '';
   }
 
+  getResourceName(resource: Resource|null) {
+    let name = '';
+    let suffix = '';
+    if (resource) {
+      if (resource.name) { name = resource.name; }
+      else { name = resource.type; }
+      if (resource.quality == 1) {
+        suffix = ' (Fine)';
+      }
+      else if (resource.quality == 2) {
+        suffix = ' (Exquisite)';
+      }
+    }
+    return (name + suffix);
+  }
+
   mapAdd(map: any, property: string, quantity: number) {
     if (map != undefined) {
       if (map[property] == undefined) {
@@ -454,6 +470,15 @@ class Utils {
         quantity });
     });
     return resources;
+  }
+
+  getResourceType(resource: Resource) {
+    if (resource.name && resource.category && resource.tags && resource.value
+      && resource.icon && resource.foregroundColor && resource.backgroundColor) {
+      // @ts-ignore
+      return new ResourceType(resource);
+    }
+    return resourceTypes[resource.type];
   }
 }
 

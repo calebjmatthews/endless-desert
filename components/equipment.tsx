@@ -37,8 +37,8 @@ export default function EquipmentComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   let equipmentArray: any[] = [];
   Object.keys(vault.resources).map((typeQuality) => {
-    const tqSplit = typeQuality.split('|');
-    const resourceType = resourceTypes[tqSplit[0]];
+    const resource = vault.resources[typeQuality];
+    const resourceType = utils.getResourceType(resource);
     const quantity = vault.resources[typeQuality].quantity;
     if (resourceType.category == RESOURCE_CATEGORIES.EQUIPMENT
       && quantity >= 1) {

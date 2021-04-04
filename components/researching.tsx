@@ -240,7 +240,7 @@ function OptionDescription(props: any) {
   function renderCost(cost: {specificity: string, type: string, quantity: number}[],
     vault: Vault, applyCost: Function, optionName: string, rod: ResearchOptionDeck) {
     return cost.map((aCost) => {
-      let resource = utils.getMatchingResourceType(aCost.specificity, aCost.type);
+      let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;

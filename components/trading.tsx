@@ -226,7 +226,7 @@ function TradingPartnerDescription(props: any) {
 
   function renderTrade(trade: Trade, tradeClick: Function) {
     const give = resourceTypes[trade.give.type];
-    const receive = utils.getMatchingResourceType(trade.receive.specificity,
+    const receive = utils.getMatchingResourceKind(trade.receive.specificity,
       trade.receive.type);
 
     return (

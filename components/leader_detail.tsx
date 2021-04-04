@@ -18,6 +18,7 @@ import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
 import { resourceTypes } from '../instances/resource_types';
+import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
 enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
@@ -28,6 +29,7 @@ export default function LeaderDetailComponent() {
   const leader = modalValue;
   const buildings = useTypedSelector(state => state.buildings);
   const equipment = useTypedSelector(state => state.equipment);
+  const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
@@ -110,7 +112,8 @@ export default function LeaderDetailComponent() {
 
   function renderEating() {
     if (leader.eating) {
-      let resourceType = resourceTypes[leader.eating.split('|')[0]];
+      const resource = vault.resources[leader.eating.split('|')[0]];
+      const resourceType = utils.getResourceType(resource);
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { eatingPress() }} >
@@ -146,7 +149,8 @@ export default function LeaderDetailComponent() {
 
   function renderDrinking() {
     if (leader.drinking) {
-      let resourceType = resourceTypes[leader.drinking.split('|')[0]];
+      const resource = vault.resources[leader.drinking.split('|')[0]];
+      const resourceType = utils.getResourceType(resource);
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { drinkingPress() }} >

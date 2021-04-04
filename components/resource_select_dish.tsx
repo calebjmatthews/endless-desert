@@ -28,7 +28,7 @@ export default function ResourceSelectDishComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
-  const [resourcesSelected, resourcesSelect] = useState<string[]>([]);
+  const [resourcesSelected, resourcesSelect] = useState<Resource[]>([]);
   const [experimenting, setExperimenting] = useState<boolean>(false);
   const [dish, setDish] = useState<BuildingRecipe | null>(null);
 
@@ -88,17 +88,18 @@ export default function ResourceSelectDishComponent() {
     });
   }
 
-  function renderSelected(resourcesSelected: string[]) {
+  function renderSelected(resourcesSelected: Resource[]) {
     if (resourcesSelected.length > 0) {
-      return resourcesSelected.map((typeQuality, index) => {
-        let resource = resourceTypes[typeQuality.split('|')[0]];
+      return resourcesSelected.map((resource, index) => {
+        const resourceType = utils.getResourceType(resource);
+        const typeQuality = resource.type + '|' + resource.quality;
         return (
-          <View key={typeQuality} style={styles.rows}>
+          <View key={index} style={styles.rows}>
             <BadgeComponent
-              provider={resource.icon.provider}
-              name={resource.icon.name}
-              foregroundColor={resource.foregroundColor}
-              backgroundColor={resource.backgroundColor}
+              provider={resourceType.icon.provider}
+              name={resourceType.icon.name}
+              foregroundColor={resourceType.foregroundColor}
+              backgroundColor={resourceType.backgroundColor}
               iconSize={16} />
             <Text>
               {renderTypeQualityName(typeQuality, index, resourcesSelected)}
@@ -111,7 +112,7 @@ export default function ResourceSelectDishComponent() {
   }
 
   function renderTypeQualityName(typeQuality: string, index: number,
-    resourcesSelected: string[]) {
+    resourcesSelected: Resource[]) {
     if (index < (resourcesSelected.length-1)) {
       return (' ' + utils.typeQualityName(typeQuality) + ', ');
     }
@@ -188,8 +189,8 @@ export default function ResourceSelectDishComponent() {
   }
 
   function experimentPress() {
-    const ingredientTypes = resourcesSelected.map((typeQuality) => {
-      return resourceTypes[typeQuality.split('|')[0]];
+    const ingredientTypes = resourcesSelected.map((resource) => {
+      return utils.getResourceType(resource);
     });
     let dish = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
@@ -201,9 +202,9 @@ export default function ResourceSelectDishComponent() {
   }
 }
 
-function ResourceSelector(props: {resource: Resource, resourcesSelected: string[],
+function ResourceSelector(props: {resource: Resource, resourcesSelected: Resource[],
   setResourcesSelected: Function, positioner: Positioner}) {
-  let resourceType = resourceTypes[props.resource.type];
+  const resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
     optionTextStyle = { paddingLeft: 4, paddingRight: 4,
@@ -234,10 +235,9 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: string[
     </View>
   );
 
-  function renderButton(resource: Resource, resourcesSelected: string[],
+  function renderButton(resource: Resource, resourcesSelected: Resource[],
     setResourcesSelected: Function) {
-    const key = (resource.type + '|' + resource.quality);
-    if (utils.arrayIncludes(resourcesSelected, key)) {
+    if (ingredientsInclude(resourcesSelected, resource)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
@@ -268,19 +268,30 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: string[
     );
   }
 
+  function ingredientsInclude(ingredients: Resource[], resource: Resource) {
+    let included: boolean = false;
+    for (let index = 0; index < ingredients.length; index++) {
+      const ingredient = ingredients[index];
+      if (ingredient.type == resource.type && ingredient.quality == resource.quality) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function typeQualityUnSelect(resource: Resource,
-    resourcesSelected: string[], setResourcesSelected: Function) {
-    resourcesSelected = resourcesSelected.filter((typeQuality) => {
-      if (typeQuality != (resource.type + '|' + resource.quality)) {
-        return typeQuality;
+    resourcesSelected: Resource[], setResourcesSelected: Function) {
+    resourcesSelected = resourcesSelected.filter((sResource) => {
+      if (sResource.type != resource.type || sResource.quality != resource.quality) {
+        return resource;
       }
     });
     setResourcesSelected(resourcesSelected);
   }
 
   function typeQualitySelect(resource: Resource,
-    resourcesSelected: string[], setResourcesSelected: Function) {
-    resourcesSelected.push((resource.type + '|' + resource.quality));
+    resourcesSelected: Resource[], setResourcesSelected: Function) {
+    resourcesSelected.push(resource);
     setResourcesSelected(resourcesSelected);
   }
 }

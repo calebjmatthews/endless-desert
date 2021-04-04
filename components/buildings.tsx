@@ -234,7 +234,7 @@ function BuildingDescription(props: any) {
       let resourceCost: {type: string, quantity: number}[] = [];
       let totalValue = 0;
       buildingType.upgradeCost.map((aCost) => {
-        const resource = utils.getMatchingResourceType(aCost.specificity, aCost.type);
+        const resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
         if (props.vault.resources[resource.name]) {
           if (props.vault.resources[resource.name].quantity < aCost.quantity) {
             enoughResources = false;
@@ -313,7 +313,8 @@ function BuildingDescription(props: any) {
 
   function renderRate(typeQuality: string, rate: number) {
     const tqSplit = typeQuality.split('|');
-    const resourceType = resourceTypes[tqSplit[0]];
+    const resource = props.vault.resources[typeQuality];
+    const resourceType = utils.getResourceType(resource);
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
       marginVertical: 3 };

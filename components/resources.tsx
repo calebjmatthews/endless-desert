@@ -29,9 +29,9 @@ export default function ResourcesComponent() {
     }
   });
   resourcesArray.sort((a, b) => {
-    const rta = resourceTypes[a.type];
+    const rta = utils.getResourceType(a);
     const rcoa = resourceCategories[rta.category].order;
-    const rtb = resourceTypes[b.type];
+    const rtb = utils.getResourceType(b);
     const rcob = resourceCategories[rtb.category].order;
     if (rcoa != rcob) {
       return rcoa - rcob;
@@ -73,7 +73,7 @@ export default function ResourcesComponent() {
 
 function ResourceDescription(props: any) {
   const resource: Resource = props.resource.item;
-  let resourceType = resourceTypes[resource.type];
+  let resourceType = utils.getResourceType(resource);
   let rate = props.rates.netRates[resource.type + '|' + resource.quality];
   if (rate) {
     let sign = '+';

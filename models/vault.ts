@@ -92,7 +92,8 @@ export default class Vault {
     let quantity = 0;
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
-      if (resourceTypes[typeQuality.split('|')[0]].tags.includes(tagName)
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.tags.includes(tagName)
         && resource.quality >= qualityMin && resource.quality <= qualityMax) {
         quantity += this.resources[typeQuality].quantity;
       }
@@ -104,7 +105,8 @@ export default class Vault {
     let quantity = 0;
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
-      if (resourceTypes[typeQuality.split('|')[0]].subcategory == subcatName
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.subcategory == subcatName
         && resource.quality >= qualityMin && resource.quality <= qualityMax) {
         quantity += this.resources[typeQuality].quantity;
       }
@@ -116,7 +118,8 @@ export default class Vault {
     let quantity = 0;
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
-      if (resourceTypes[typeQuality.split('|')[0]].category == catName
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.category == catName
         && resource.quality >= qualityMin && resource.quality <= qualityMax) {
         quantity += this.resources[typeQuality].quantity;
       }
@@ -138,7 +141,9 @@ export default class Vault {
   getTagResources(tagName: string) {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
-      if (resourceTypes[typeQuality.split('|')[0]].tags.includes(tagName)) {
+      const resource = this.resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.tags.includes(tagName)) {
         resources.push(this.resources[typeQuality]);
       }
     });
@@ -148,7 +153,9 @@ export default class Vault {
   getSubcategoryResources(subcatName: string) {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
-      if (resourceTypes[typeQuality.split('|')[0]].subcategory == subcatName) {
+      const resource = this.resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.subcategory == subcatName) {
         resources.push(this.resources[typeQuality]);
       }
     });
@@ -158,7 +165,9 @@ export default class Vault {
   getCategoryResources(catName: string) {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
-      if (resourceTypes[typeQuality.split('|')[0]].category == catName) {
+      const resource = this.resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.category == catName) {
         resources.push(this.resources[typeQuality]);
       }
     });
@@ -168,7 +177,9 @@ export default class Vault {
   getValuedResources() {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
-      if (resourceTypes[typeQuality.split('|')[0]].value != null
+      const resource = this.resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.value != null
         && this.resources[typeQuality].quantity >= 1) {
         resources.push(this.resources[typeQuality]);
       }
