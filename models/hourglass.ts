@@ -1,5 +1,6 @@
 import Building from './building';
 import BuildingType from './building_type';
+import BuildingRecipe from './building_recipe';
 import Timer from './timer';
 import Leader from './leader';
 import Equipment from './equipment';
@@ -76,8 +77,8 @@ export default class Hourglass {
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
         const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
-        const pResources = utils.sumToResources(newPSum);
-        const cResources = utils.sumToResources(newCSum);
+        const pResources = utils.sumToResources(vault, newPSum);
+        const cResources = utils.sumToResources(vault, newCSum);
         const newVault = new Vault(vault);
         pResources.map((resource) => newVault.increaseResource(resource));
         cResources.map((resource) => newVault.consumeResource(resource));
@@ -124,9 +125,12 @@ export default class Hourglass {
       if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
         missingLeader = true;
       }
-      if (buildingType.recipes && !missingLeader) {
+      if ((buildingType.recipes || building.recipe) && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
-        let recipe = buildingType.recipes[recipeSelected];
+        let recipe = new BuildingRecipe({index: 0, produces: [], consumes: []});
+        if (buildingType.recipes) {
+          recipe = buildingType.recipes[recipeSelected];
+        }
         if (building.recipe) { recipe = building.recipe; }
 
         let missingConsumption = false;
@@ -270,28 +274,29 @@ export default class Hourglass {
 
     function doesResourceMatch(prodResource: string, effect: EquipmentEffect) {
       const resourceType = resourceTypes[prodResource];
-      switch(effect.specificity) {
-        case RESOURCE_SPECIFICITY.EXACT:
-        return (resourceType.name == effect.type);
+      if (resourceType) {
+        switch(effect.specificity) {
+          case RESOURCE_SPECIFICITY.EXACT:
+          return (resourceType.name == effect.type);
 
-        case RESOURCE_SPECIFICITY.TAG:
-        for (let index = 0; index < resourceType.tags.length; index++) {
-          if (resourceType.tags[index] == effect.type) {
-            return true;
+          case RESOURCE_SPECIFICITY.TAG:
+          for (let index = 0; index < resourceType.tags.length; index++) {
+            if (resourceType.tags[index] == effect.type) {
+              return true;
+            }
           }
+          return false;
+
+          case RESOURCE_SPECIFICITY.SUBCATEGORY:
+          return (resourceType.subcategory == effect.type);
+
+          case RESOURCE_SPECIFICITY.CATEGORY:
+          return (resourceType.category == effect.type);
+
+          case undefined:
+          return true;
         }
-        return false;
-
-        case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        return (resourceType.subcategory == effect.type);
-
-        case RESOURCE_SPECIFICITY.CATEGORY:
-        return (resourceType.category == effect.type);
-
-        case undefined:
-        return true;
       }
-      console.log('Unexpected resource specifcity: ' + effect.specificity);
       return false;
     }
   }

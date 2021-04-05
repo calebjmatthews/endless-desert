@@ -30,6 +30,7 @@ export default function ResourcesComponent() {
   });
   resourcesArray.sort((a, b) => {
     const rta = utils.getResourceType(a);
+    if (!rta) { console.log('a'); console.log(a);  }
     const rcoa = resourceCategories[rta.category].order;
     const rtb = utils.getResourceType(b);
     const rcob = resourceCategories[rtb.category].order;
@@ -102,7 +103,7 @@ function ResourceDescription(props: any) {
       <View style={styles.containerStretchRow}>
         <View>
           <Text style={textStyle}>
-            {utils.typeQualityName(resource.type + '|' + resource.quality) }
+            {utils.getResourceName(resource)}
           </Text>
           <Text>
             {rate}

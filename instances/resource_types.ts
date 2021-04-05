@@ -322,6 +322,16 @@ resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
+  name: RESOURCE_TYPES.BREAD,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.FOOD],
+  value: 200,
+  icon: {provider: 'MaterialCommunityIcons', name: 'baguette'},
+  foregroundColor: '#790f0f',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
   name: RESOURCE_TYPES.OMELET,
   category: RESOURCE_CATEGORIES.DISH,
@@ -362,14 +372,14 @@ resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
   backgroundColor: '#fff',
 });
 
-resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
-  name: RESOURCE_TYPES.BREAD,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
+  name: RESOURCE_TYPES.MISTAKE,
+  category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
-  value: 200,
-  icon: {provider: 'MaterialCommunityIcons', name: 'baguette'},
-  foregroundColor: '#790f0f',
-  backgroundColor: '#fff'
+  value: 1,
+  icon: {provider: 'FontAwesome5', name: 'trash-alt'},
+  foregroundColor: '#97e600',
+  backgroundColor: '#fff',
 });
 
 resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({

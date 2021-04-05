@@ -112,7 +112,7 @@ export default function LeaderDetailComponent() {
 
   function renderEating() {
     if (leader.eating) {
-      const resource = vault.resources[leader.eating.split('|')[0]];
+      const resource = vault.resources[leader.eating];
       const resourceType = utils.getResourceType(resource);
       return (
         <TouchableOpacity style={styles.buttonRowItem}
@@ -149,7 +149,7 @@ export default function LeaderDetailComponent() {
 
   function renderDrinking() {
     if (leader.drinking) {
-      const resource = vault.resources[leader.drinking.split('|')[0]];
+      const resource = vault.resources[leader.drinking];
       const resourceType = utils.getResourceType(resource);
       return (
         <TouchableOpacity style={styles.buttonRowItem}

@@ -14,11 +14,9 @@ export function consumeResources(vault: Vault, rs: Resource[]) {
   let resources: Resource[] = []
   rs.map((r) => {
     vault.consumeResource(r);
-    resources.push(new Resource({
-      type: r.type,
-      quality: r.quality,
-      quantity: vault.resources[r.type + '|' + r.quality].quantity
-    }));
+    let nResource = new Resource(r).getResourceWithoutQuantity();
+    nResource.quantity = vault.resources[r.type + '|' + r.quality].quantity;
+    resources.push(nResource);
   });
   return {
     type: SET_RESOURCES,
@@ -30,11 +28,9 @@ export function increaseResources(vault: Vault, rs: Resource[]) {
   let resources: Resource[] = []
   rs.map((r) => {
     vault.increaseResource(r);
-    resources.push(new Resource({
-      type: r.type,
-      quality: r.quality,
-      quantity: vault.resources[r.type + '|' + r.quality].quantity
-    }));
+    let nResource = new Resource(r).getResourceWithoutQuantity();
+    nResource.quantity = vault.resources[r.type + '|' + r.quality].quantity;
+    resources.push(nResource);
   });
   return {
     type: SET_RESOURCES,

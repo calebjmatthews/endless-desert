@@ -71,8 +71,8 @@ export default function HourglassComponent() {
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
         const results = hourglass.callCalcs(rates, vault, tempBuildings, {});
-        rti = utils.sumToResources(results.productionSum);
-        rtc = utils.sumToResources(results.consumptionSum);
+        rti = utils.sumToResources(vault, results.productionSum);
+        rtc = utils.sumToResources(vault, results.consumptionSum);
       }
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);

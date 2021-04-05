@@ -22,14 +22,15 @@ export default class Vault {
   increaseResource(r: Resource) {
     const key = (r.type + '|' + r.quality);
     if (!this.resources[key]) {
-      this.resources[key] =
-        new Resource({type: r.type, quality: r.quality, quantity: 0});
+      this.resources[key] = new Resource(r).getResourceWithoutQuantity();
     }
     const oldQuantity = Math.floor(this.resources[key].quantity);
     this.resources[key].quantity += r.quantity;
     let diff = Math.floor(this.resources[key].quantity) - oldQuantity;
     if (diff > 0) {
-      return new Resource({type: r.type, quality: r.quality, quantity: diff});
+      let nResource = new Resource(r).getResourceWithoutQuantity();
+      nResource.quantity = diff;
+      return nResource;
     }
     return null;
   }
@@ -41,8 +42,7 @@ export default class Vault {
   consumeResource(r: Resource) {
     const key = (r.type + '|' + r.quality);
     if (!this.resources[key]) {
-      this.resources[key] = new Resource({type: r.type, quality: r.quality,
-        quantity: 0});
+      this.resources[key] = new Resource(r).getResourceWithoutQuantity();;
     }
     const oldQuantity = Math.floor(this.resources[key].quantity);
     this.resources[key].quantity -= r.quantity;
@@ -51,7 +51,9 @@ export default class Vault {
     }
     let diff = Math.floor(this.resources[key].quantity) - oldQuantity;
     if (diff < 0) {
-      return new Resource({type: r.type, quality: r.quality, quantity: diff})
+      let nResource = new Resource(r).getResourceWithoutQuantity();
+      nResource.quantity = diff;
+      return nResource;
     }
     return null;
   }

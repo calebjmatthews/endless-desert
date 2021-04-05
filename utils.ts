@@ -3,6 +3,7 @@ import ResourceTag from './models/resource_tag';
 import ResourceSubcategory from './models/resource_subcategory';
 import ResourceCategory from './models/resource_category';
 import Resource from './models/resource';
+import Vault from './models/vault';
 import { resourceTypes } from './instances/resource_types';
 import { resourceTags } from './instances/resource_tags';
 import { resourceSubcategories } from './instances/resource_subcategories';
@@ -460,14 +461,14 @@ class Utils {
     return combinedMap;
   }
 
-  sumToResources(aSum: { [typeQuality: string] : number }) {
+  sumToResources(vault: Vault, aSum: { [typeQuality: string] : number }) {
     let resources: Resource[] = [];
     Object.keys(aSum).map((typeQuality) => {
-      const tqSplit = typeQuality.split('|');
       let quantity = aSum[typeQuality];
-      resources.push({type: tqSplit[0],
-        quality: parseInt(tqSplit[1]),
-        quantity });
+      let nResource = new Resource(vault.resources[typeQuality])
+        .getResourceWithoutQuantity();
+      nResource.quantity = quantity;
+      resources.push(nResource);
     });
     return resources;
   }

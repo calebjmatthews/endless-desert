@@ -9,9 +9,12 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from '../components/progress_bar';
+import { consumeResources, increaseResources } from '../actions/vault';
+import { setBuildingSpecificRecipe } from '../actions/buildings';
 import { displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
+import ResourceType from '../models/resource_type';
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
 import Positioner from '../models/positioner';
@@ -19,6 +22,8 @@ import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { MODALS } from '../enums/modals';
+import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 
 export default function ResourceSelectDishComponent() {
   const dispatch = useDispatch();
@@ -30,7 +35,10 @@ export default function ResourceSelectDishComponent() {
 
   const [resourcesSelected, resourcesSelect] = useState<Resource[]>([]);
   const [experimenting, setExperimenting] = useState<boolean>(false);
-  const [dish, setDish] = useState<BuildingRecipe | null>(null);
+  const [dish, setDish] = useState<{resource: Resource, recipe: BuildingRecipe}
+    | null>(null);
+  let dishResourceType : ResourceType|null = null;
+  if (dish) { dishResourceType = utils.getResourceType(dish.resource); }
 
   return (
     <View style={styles.container}>
@@ -58,7 +66,7 @@ export default function ResourceSelectDishComponent() {
             {minWidth: (positioner.modalMajor - positioner.majorPadding),
               maxWidth: (positioner.modalMajor - positioner.majorPadding)}])}>
             {renderSelected(resourcesSelected)}
-            {renderDish(dish)}
+            {renderDish(dishResourceType)}
           </View>
           <View style={styles.buttonRow}>
             {renderSubmitButton()}
@@ -84,7 +92,8 @@ export default function ResourceSelectDishComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={resource.type} resource={resource}
         resourcesSelected={resourcesSelected}
-        setResourcesSelected={setResourcesSelected} positioner={positioner} />;
+        setResourcesSelected={setResourcesSelected} setDish={setDish}
+        positioner={positioner} />;
     });
   }
 
@@ -119,12 +128,11 @@ export default function ResourceSelectDishComponent() {
     return (' ' + utils.typeQualityName(typeQuality));
   }
 
-  function renderDish(dish: BuildingRecipe | null) {
+  function renderDish(dish: ResourceType | null) {
     if (resourcesSelected.length < 2) {
       return null;
     }
-    if (dish && dish.produces) {
-      const dishType = resourceTypes[dish.produces[0].type];
+    if (dish) {
       return (
           <View style={styles.rows}>
           <Text>{' '}</Text>
@@ -132,13 +140,13 @@ export default function ResourceSelectDishComponent() {
             color="#000" size={16} />
           <Text>{' '}</Text>
           <BadgeComponent
-            provider={dishType.icon.provider}
-            name={dishType.icon.name}
-            foregroundColor={dishType.foregroundColor}
-            backgroundColor={dishType.backgroundColor}
+            provider={dish.icon.provider}
+            name={dish.icon.name}
+            foregroundColor={dish.foregroundColor}
+            backgroundColor={dish.backgroundColor}
             iconSize={16} />
           <Text>
-            {' ' + dish.produces[0].name}
+            {' ' + dish.name}
           </Text>
         </View>
       );
@@ -176,34 +184,74 @@ export default function ResourceSelectDishComponent() {
       buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles. buttonRowItem,
         styles.buttonDisabled, {alignSelf: 'flex-end', height: 32}]);
     }
-    let label = ' Experiment';
-    if (dish) { label = ' Try something else'; }
+    if (!dish) {
+      return (
+        <TouchableOpacity style={buttonStyle} disabled={(resourcesSelected.length < 2)}
+          onPress={() => experimentPress()} >
+          <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
+            color="#fff" size={16} style={styles.headingIcon} />
+          <Text style={styles.buttonTextLarge}>{' Experiment'}</Text>
+        </TouchableOpacity>
+      );
+    }
+    let buttonStyleLight: any = StyleSheet.flatten([styles.buttonLarge,
+      styles.buttonRowItem, styles.buttonLight, {alignSelf: 'flex-end', height: 32}]);
+    let buttonTextLight = StyleSheet.flatten([styles.buttonTextLarge,
+      styles.buttonTextDark]);
     return (
-      <TouchableOpacity style={buttonStyle} disabled={(resourcesSelected.length < 2)}
-        onPress={() => experimentPress()} >
-        <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
-          color="#fff" size={16} style={styles.headingIcon} />
-        <Text style={styles.buttonTextLarge}>{' Experiment'}</Text>
-      </TouchableOpacity>
-    );
+      <View style={styles.buttonRow}>
+        <TouchableOpacity style={buttonStyle}
+          onPress={() => confirmPress()} >
+          <IconComponent provider="MaterialCommunityIcons" name="chef-hat"
+            color="#fff" size={16} />
+          <Text style={styles.buttonTextLarge}>{' Use this'}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={buttonStyleLight}
+          onPress={() => cancelPress()} >
+          <IconComponent provider="FontAwesome" name="arrow-left"
+            color="#071f56" size={16} />
+          <Text style={buttonTextLight}>{' Cancel'}</Text>
+        </TouchableOpacity>
+      </View>
+    )
   }
 
   function experimentPress() {
     const ingredientTypes = resourcesSelected.map((resource) => {
       return utils.getResourceType(resource);
     });
-    let dish = modalValue.building.getDishFromIngredients(ingredientTypes,
+    const cResources = resourcesSelected.map((resource) => {
+      return new Resource({type: resource.type, quality: resource.quality,
+        quantity: getExperimentCost(resource)});
+    });
+    const dishRes = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
+    console.log('dishRes');
+    console.log(dishRes);
     setExperimenting(true);
     setTimeout(() => {
-      setDish(dish);
+      setDish(dishRes);
+      consumeResources(vault, cResources);
       setExperimenting(false);
     }, 5000);
+  }
+
+  function confirmPress() {
+    if (dish) {
+      dispatch(increaseResources(vault, [dish.resource]));
+      dispatch(setBuildingSpecificRecipe(modalValue.building, dish.recipe, 0));
+      dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', modalValue.building));
+    }
+  }
+
+  function cancelPress() {
+    resourcesSelect([]);
+    setDish(null);
   }
 }
 
 function ResourceSelector(props: {resource: Resource, resourcesSelected: Resource[],
-  setResourcesSelected: Function, positioner: Positioner}) {
+  setResourcesSelected: Function, setDish: Function, positioner: Positioner}) {
   const resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
@@ -229,21 +277,21 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
           {renderButton(props.resource, props.resourcesSelected,
-            props.setResourcesSelected)}
+            props.setResourcesSelected, props.setDish)}
         </View>
       </View>
     </View>
   );
 
   function renderButton(resource: Resource, resourcesSelected: Resource[],
-    setResourcesSelected: Function) {
+    setResourcesSelected: Function, setDish: Function) {
     if (ingredientsInclude(resourcesSelected, resource)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
           onPress={() => {typeQualityUnSelect(resource, resourcesSelected,
-            setResourcesSelected)}} >
-          <Text style={styles.buttonText}>{'Selected'}</Text>
+            setResourcesSelected, setDish)}} >
+          <Text style={styles.buttonText}>{'Use ' + getExperimentCost(resource)}</Text>
         </TouchableOpacity>
       );
     }
@@ -261,7 +309,7 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
     return (
       <TouchableOpacity style={buttonStyle}
         onPress={() => {typeQualitySelect(resource, resourcesSelected,
-          setResourcesSelected)}} >
+          setResourcesSelected, setDish)}} >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
       </TouchableOpacity>
@@ -280,18 +328,29 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
   }
 
   function typeQualityUnSelect(resource: Resource,
-    resourcesSelected: Resource[], setResourcesSelected: Function) {
+    resourcesSelected: Resource[], setResourcesSelected: Function, setDish: Function) {
     resourcesSelected = resourcesSelected.filter((sResource) => {
       if (sResource.type != resource.type || sResource.quality != resource.quality) {
         return resource;
       }
     });
+    setDish(null);
     setResourcesSelected(resourcesSelected);
   }
 
   function typeQualitySelect(resource: Resource,
-    resourcesSelected: Resource[], setResourcesSelected: Function) {
+    resourcesSelected: Resource[], setResourcesSelected: Function, setDish: Function) {
     resourcesSelected.push(resource);
+    setDish(null);
     setResourcesSelected(resourcesSelected);
   }
+}
+
+function getExperimentCost(resource: Resource) {
+  const resourceType = utils.getResourceType(resource);
+  for (let index = 0; index < resourceType.tags.length; index++) {
+    const tag = resourceType.tags[index];
+    if (tag == RESOURCE_TAGS.SPICE) { return 1; }
+  }
+  return Math.ceil(DEFAULT_DISH_COST / DEFAULT_SPICE_COST);
 }

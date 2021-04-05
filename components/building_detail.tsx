@@ -7,8 +7,8 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { selectBuildingRecipe, setBuildingSpecificRecipe,
-  payBuildingUpgradeCost } from '../actions/buildings';
+import { selectBuildingRecipe, setBuildingSpecificRecipe, payBuildingUpgradeCost }
+  from '../actions/buildings';
 import { payBuildingCost, removeBuildingConstruction }
   from '../actions/buildings_construction';
 import { setRates } from '../actions/rates';
@@ -64,12 +64,14 @@ export default function BuildDetailComponent() {
             building.recipe.consumes.map((resource) => {
               const fullResource = Object.assign({quality: 0}, resource);
               const consumableType = utils.getResourceType(fullResource);
-              if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
-                const fuelResources = vault.getExactResources(resource.type);
-                if (fuelResources[0]) {
-                  if (fuelResources[0].quantity > 1) {
-                    aFuelIsSelected = true;
-                    setFuelSelected(fuelResources[0]);
+              if (consumableType) {
+                if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
+                  const fuelResources = vault.getExactResources(resource.type);
+                  if (fuelResources[0]) {
+                    if (fuelResources[0].quantity > 1) {
+                      aFuelIsSelected = true;
+                      setFuelSelected(fuelResources[0]);
+                    }
                   }
                 }
               }
@@ -112,7 +114,7 @@ export default function BuildDetailComponent() {
 
       tempBuildings[building.id].recipeSelected = recipeSelected;
       if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes
-        && recipeSelected) {
+        && recipeSelected != undefined) {
         const recipe = recipes[recipeSelected];
         dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
         tempBuildings[building.id].recipe = recipe;

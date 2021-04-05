@@ -33,5 +33,6 @@ export enum RESOURCE_TYPES {
   OMELET = "Omelet",
   STEW = "Stew",
   PIE = "Pie",
-  CAKE = "Cake"
+  CAKE = "Cake",
+  MISTAKE = "Mistake"
 }

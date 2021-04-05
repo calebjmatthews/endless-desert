@@ -45,7 +45,7 @@ export default function BuildingSelectComponent() {
   buildingsArray = buildingsArray.filter((building) => {
     if (modalValue.subType == ASSIGN_TO_BUILDING) {
       const buildingType = buildingTypes[building.buildingType];
-      if (buildingType.recipes) { return building; }
+      if (buildingType.recipes || building.recipe) { return building; }
     }
     else if (modalValue.subType == LIVE_AT_BUILDING) {
       const buildingType = buildingTypes[building.buildingType];

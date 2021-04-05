@@ -1,4 +1,5 @@
 import ResourceType from './resource_type';
+import Resource from './resource';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
@@ -6,6 +7,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 
 import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 
@@ -63,6 +66,9 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   const mtm : { [name : string] : number } = { [RTY.GRAIN] : 1, [RTY.LENTILS] : 3,
     [RTY.SEEDS] : 3, [RTY.QUAIL] : 4 };
   let main = '';
+  let mainColors: { foreground: string, background: string }|null = null;
+  const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.LIQUID];
+  let tags: string[] = [RTA.FOOD];
 
   let dishTypeIndex = 0;
   dishTypes.map((dishType, index) => {
@@ -132,20 +138,48 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     if (mtm[ingredient.name] > mtm[main] ||
       (mtm[main] == undefined && mtm[ingredient.name] != undefined)) {
       main = ingredient.name;
+      mainColors = { foreground: ingredient.foregroundColor,
+        background: ingredient.backgroundColor };
     }
+
+    ingredient.tags.map((tag) => {
+      if (!utils.arrayIncludes(tags, tag) && !utils.arrayIncludes(tagBlacklist, tag)) {
+        tags.push(tag);
+      }
+    });
   });
   dishValue *= ((dishType.valueChange + 100) / 100);
 
   let name = dishType.name;
-  if (main.length > 0) { name = (getMainName(main) + ' ' + name); }
-  name = (adjective + ' ' + name);
+  if (dishType.name != 'Mistake') {
+    if (main.length > 0) { name = (getMainName(main) + ' ' + name); }
+    name = (adjective + ' ' + name);
+  }
+  const id = utils.randHex(8);
+  const drt = resourceTypes[dishType.name];
 
-  return { index: 0,
-    produces: [{ specificity: RSP.EXACT, type: dishType.name,
-      quantity: DEFAULT_DISH_COST, probability: 1,
-      name: name,
-      value: dishValue }],
+  const dishResource = new Resource({
+    type: (dishType.name + '-' + id),
+    quality: 0,
+    quantity: 0,
+    id: id,
+    name: name,
+    category: RCA.DISH,
+    tags: tags,
+    value: dishValue,
+    icon: drt.icon,
+    // @ts-ignore
+    foregroundColor: (mainColors ? mainColors.foreground : drt.foregroundColor),
+    // @ts-ignore
+    backgroundColor: (mainColors ? mainColors.background : drt.backgroundColor)
+  });
+
+  const dishRecipe = { index: 0,
+    produces: [{ specificity: RSP.EXACT,  type: (dishType.name + '-' + id),
+      quantity: DEFAULT_DISH_COST, probability: 1 }],
     consumes: consumes };
+
+  return { resource: dishResource, recipe: dishRecipe };
 
   function getSpiceAdjective(ingredient: ResourceType) {
     const spiceTagNames = ['Savory', 'Sweet', 'Bitter', 'Sour', 'Brackish',
