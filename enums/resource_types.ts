@@ -28,6 +28,7 @@ export enum RESOURCE_TYPES {
   GLASS = "Glass",
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
+  INK_FERROUS = "Ferrous Ink",
   SOUP = "Soup",
   BREAD = "Bread",
   OMELET = "Omelet",

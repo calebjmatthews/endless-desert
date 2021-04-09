@@ -199,9 +199,26 @@ const buildingTypes: { [name: string] : BuildingType } = {
     backgroundColor: '#fff',
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 100}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 4},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
+    upgradesInto: BTY.LENTIL_FIELD_HEARTY,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
+    requiresLeader: false
+  }),
+
+  [BTY.LENTIL_FIELD_HEARTY]: new BuildingType({
+    name: BTY.LENTIL_FIELD_HEARTY,
+    description: 'Thatch mats keep the lentils protected from dry air',
+    category: BCA.FARMING,
+    icon: {provider: 'FontAwesome5', name: 'seedling'},
+    foregroundColor: '#59a500',
+    backgroundColor: '#fff',
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}) ],
     requiresLeader: false
   }),
 

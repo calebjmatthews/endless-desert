@@ -72,6 +72,17 @@ researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
   cost: [{specificity: RS.EXACT, type: RTY.LENTILS, quantity: 1}]
 });
 
+researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
+  name: RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING,
+  appliesTo: RESEARCHES.FIELD_NOTES,
+  difficulty: 1,
+  description: ('Your notes will need to be thorough, yet readable. You do '
+    + 'know you letters, although it\'s been a long time since you\'ve written. '
+    + 'Better practice, and practice a lot.'),
+  cost: [{specificity: RS.EXACT, type: RTY.PAPYRUS, quantity: 400},
+    {specificity: RS.EXACT, type: RTY.INK_FERROUS, quantity: 20}]
+});
+
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
   name: RESEARCH_OPTIONS.LEGUME_DISSECTION,
   appliesTo: RESEARCHES.BIOLOGY,
@@ -110,6 +121,46 @@ researchOptions[RESEARCH_OPTIONS.GERMINATION] = new ResearchOption({
     + 'it out.'),
   cost: [{specificity: RS.EXACT, type: RTY.SEEDS, quantity: 2},
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 50}]
+});
+
+researchOptions[RESEARCH_OPTIONS.CROP_COMPARISON] = new ResearchOption({
+  name: RESEARCH_OPTIONS.CROP_COMPARISON,
+  appliesTo: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  description: ('Different crops have different needs, and require different '
+    + 'approaches. But you\'re continually increasing your material for comparison.'),
+  cost: [{specificity: RS.EXACT, type: RTY.LENTILS, quantity: 400},
+    {specificity: RS.EXACT, type: RTY.GRAIN, quantity: 400},
+    {specificity: RS.EXACT, type: RTY.OLIVES, quantity: 400}]
+});
+
+// Add earth-based field note cost
+researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.SOIL_QUALITY,
+  appliesTo: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  description: ('Some detailed notes on the properties of desert soil'
+    + 'could give you options for growing crops faster, better, and more efficiently.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+});
+
+// Add animal-based field note cost
+researchOptions[RESEARCH_OPTIONS.FROM_DOMESTICATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FROM_DOMESTICATION,
+  appliesTo: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  description: ('Tending to pregnant livestock, treating animal sickness, foods '
+    + 'that are preffered and foods that are rejected, it\'s all here in your notes.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.FINAL_EDIBILITY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FINAL_EDIBILITY,
+  appliesTo: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  description: ('Flavor in your town\'s food is important, but so is efficiency '
+    + 'and effect. You\'ve begun to study and compare foods from different sources.'),
+  cost: [{specificity: RS.CATEGORY, type: RCA.DISH, quantity: 100}]
 });
 
 researchOptions[RESEARCH_OPTIONS.REMEMBERED_MEETINGS] = new ResearchOption({

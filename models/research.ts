@@ -11,9 +11,9 @@ export default class Research {
   beginsCompleted: boolean = false;
   prereq: string[]|null = null;
   knowledgeReq: number = 0;
-  unlocksBuilding?: string[] = undefined;
-  simplifiedBuilding?: string[] = undefined;
-  unlocksTab?: string = undefined;
+  unlocksBuilding?: string[];
+  unlocksUpgrade?: string[];
+  unlocksTab?: string;
 
   constructor(research: Research) {
     Object.assign(this, research);

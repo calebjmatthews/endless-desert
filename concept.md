@@ -114,16 +114,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Three trading partners for early resources
     * Costs are Knowledge, Water, Lentils, Seeds
   - Early: Low knowledge requirements require occational analysing, costs sometimes require resources from trading
-    * Research Reed Cultivation, Grain Farming, Olive Farming, Quail Husbandry, Physics, Clay Excavation, Sand Excavation, Compaction, Chemistry, Dehydration, Combustion, Cooking, Basic Education
+    * Research Reed Cultivation, Grain Farming, Olive Farming, Efficient Lentil Farming, Quail Husbandry, Physics, Clay Excavation, Sand Excavation, Compaction, Chemistry, Dehydration, Combustion, Cooking, Basic Education
     * Three more leaders: one from a trading partner, one random, one from research
     * One more trading partner from fortuity (after Basic Education)
     * Costs now include Sand, Clay, Reeds, Wood
   - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting and more advanced trading
-    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Efficient Lentil Farming, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
+    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
     * Six more leaders: two from trading partners, one random, one from research, two from exploration
     * Two more trading partners, both from exploration
     * Six exploration areas, one initial, four from researches, one from previous exploration
-    * Costs now include Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
+    * Costs now include Field Notes, Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
 
 # Researches (see spredsheet):
 - Start with:

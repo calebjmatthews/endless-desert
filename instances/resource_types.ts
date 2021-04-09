@@ -302,6 +302,16 @@ resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
+  name: RESOURCE_TYPES.INK_FERROUS,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 300,
+  icon: {provider: 'FontAwesome5', name: 'tint'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
   name: RESOURCE_TYPES.MILK,
   category: RESOURCE_CATEGORIES.MATERIAL,

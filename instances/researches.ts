@@ -69,7 +69,24 @@ researches[RESEARCHES.CONJECTURE] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
-  knowledgeReq: 100
+  knowledgeReq: 4000
+});
+
+researches[RESEARCHES.FIELD_NOTES] = new Research({
+  name: RESEARCHES.FIELD_NOTES,
+  unlocks: ('Create field notes, used to complete more complex researches.'),
+  description: ('Until now, your research and observations have only lived inside your '
+    + 'own head. Parchment and ink will allow you to record the phenomena '
+    + 'you see as they\'re occurring.'),
+  icon: {provider: 'FontAwesome5', name: 'clipboard-list'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.SCHOLARSHIP,
+  difficulty: 1,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANALYSIS],
+  knowledgeReq: 1000
 });
 
 researches[RESEARCHES.BIOLOGY] = new Research({
@@ -103,6 +120,23 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 0,
   unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
+});
+
+researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
+  name: RESEARCHES.LENTIL_FARMING_HEARTY,
+  unlocks: ('Researching this allows an upgrade to Lentil Fields.'),
+  description: ('Some minor adaptations to your fields allow lentils to grow '
+    + 'faster, and with even less water. The taste is unchanged.'),
+  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  foregroundColor: '#59a500',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BIOLOGY,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY],
+  knowledgeReq: 400,
+  unlocksUpgrade: [BUILDING_TYPES.LENTIL_FIELD_HEARTY]
 });
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
@@ -140,8 +174,8 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
 });
 
-researches[RESEARCHES.SIMPLIFIED_GRAIN_FARMING] = new Research({
-  name: RESEARCHES.SIMPLIFIED_GRAIN_FARMING,
+researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
+  name: RESEARCHES.GRAIN_FARMING_SIMPLIFIED,
   unlocks: ('Researching this allows grain fields to be run without a leader.'),
   description: ('You\'ve perfected the tools and learned the tricks, with some '
     + 'quick instructions a total novice can grow perfect grain.'),
@@ -154,7 +188,7 @@ researches[RESEARCHES.SIMPLIFIED_GRAIN_FARMING] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GRAIN_FARMING],
   knowledgeReq: 200,
-  simplifiedBuilding: [BUILDING_TYPES.GRAIN_FIELD]
+  unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
 researches[RESEARCHES.OLIVE_FARMING] = new Research({
@@ -175,8 +209,8 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
-researches[RESEARCHES.SIMPLIFIED_OLIVE_FARMING] = new Research({
-  name: RESEARCHES.SIMPLIFIED_OLIVE_FARMING,
+researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
+  name: RESEARCHES.OLIVE_FARMING_SIMPLIFIED,
   unlocks: ('Researching this allows olive groves to be run without a leader.'),
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
