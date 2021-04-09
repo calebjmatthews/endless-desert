@@ -247,6 +247,53 @@ researchOptions[RESEARCH_OPTIONS.TO_BUILD_A_HOME] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.REEDS, quantity: 40}]
 });
 
+// Add a cost of any type of field note
+researchOptions[RESEARCH_OPTIONS.MIDDLE_PRICIPLES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.MIDDLE_PRICIPLES,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  description: ('The numbers that govern everything around you can be understood '
+    + 'from deep observation. Not necessarily observation of anything at all... '
+    + 'But close.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.GRAVITY_UPON_STATE,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  description: ('In order to build larger, grander, and more complex buildings '
+    + 'you\'ll need a keen understanding of the force that pulls '
+    + 'everything toward the greedy earth, and it\'s effects on materials '
+    + 'of all kinds.'),
+  cost: [{specificity: RS.EXACT, type: RTY.CLAY_RED, quantity: 2000},
+    {specificity: RS.EXACT, type: RTY.SAND_YELLOW, quantity: 2000},
+    {specificity: RS.EXACT, type: RTY.WATER, quantity: 2000}]
+});
+
+// Add a cost of a water-type field note
+researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
+  name: RESEARCH_OPTIONS.AIR_AND_FLOW,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  description: ('You\'ve observed that the flows of air and water are '
+    + 'surprisingly similar in style, although different in speed. '
+    + 'Understanding their differences may help you harness both more effectively.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000},
+    {specificity: RS.EXACT, type: RTY.WATER, quantity: 200}]
+});
+
+researchOptions[RESEARCH_OPTIONS.MATERIAL_CONJUNCTION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.MATERIAL_CONJUNCTION,
+  appliesTo: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  description: ('Your building materials are less strong when different types meet: '
+    + 'brick against wood is never as stable and brick against brick. There may be '
+    + 'a way around this, and you know where to start.'),
+  cost: [{specificity: RS.EXACT, type: RTY.BRICKS_RED, quantity: 1000},
+    {specificity: RS.SUBCATEGORY, type: RSC.WOOD, quantity: 200}]
+});
+
 researchOptions[RESEARCH_OPTIONS.HINTS_FROM_ALCHEMY] = new ResearchOption({
   name: RESEARCH_OPTIONS.HINTS_FROM_ALCHEMY,
   appliesTo: RESEARCHES.CHEMISTRY,

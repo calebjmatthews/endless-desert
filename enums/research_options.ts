@@ -34,6 +34,12 @@ export enum RESEARCH_OPTIONS {
   BORROWED_CLUES = "Borrow Clues",
   TO_BUILD_A_HOME = "To Build a Home",
 
+  // Physics Lv 2
+  MIDDLE_PRICIPLES = "Middle Principles",
+  GRAVITY_UPON_STATE = "Gravity Upon State",
+  AIR_AND_FLOW = "Air and Flow",
+  MATERIAL_CONJUNCTION = "Material Conjunction",
+
   // Chemistry Lv 1
   HINTS_FROM_ALCHEMY = "Hints from Alchemy",
   DISTILLATION = "Distillation",

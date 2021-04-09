@@ -119,11 +119,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * One more trading partner from fortuity (after Basic Education)
     * Costs now include Sand, Clay, Reeds, Wood
   - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting and more advanced trading
-    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Performance, Neighboring Peoples, Exploration, Exploration Locations (Four Different Researches)
+    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Exploration, Exploration Locations (Four Different Researches)
     * Six more leaders: two from trading partners, one random, one from research, two from exploration
     * Two more trading partners, both from exploration
     * Six exploration areas, one initial, four from researches, one from previous exploration
     * Costs now include Field Notes, Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
+  - High: Research costs now require field notes and artifacts from exploration
+    * Performance, Neighboring Peoples, Further Education
 
 # Researches (see spredsheet):
 - Start with:
