@@ -23,8 +23,7 @@ researches[RESEARCHES.SCHOLARSHIP] = new Research({
 
 researches[RESEARCHES.STUDY] = new Research({
   name: RESEARCHES.STUDY,
-  unlocks: ('Researching this allows you to study new resources '
-    + 'to increase your knowledge.'),
+  unlocks: ('Study new resources to increase your knowledge.'),
   description: ('Studying how to study. '
     + 'It feels a little dizzying, and a little uplifting.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'magnify'},
@@ -40,8 +39,7 @@ researches[RESEARCHES.STUDY] = new Research({
 
 researches[RESEARCHES.ANALYSIS] = new Research({
   name: RESEARCHES.ANALYSIS,
-  unlocks: ('Researching this allows you to destroy batches of resources '
-    + 'to increase your knowledge.'),
+  unlocks: ('Destroy batches of resources to increase your knowledge.'),
   description: ('Even after the easy discoveries have been made, there\'s an '
     + 'almost unlimited amount you can learn with large numbers of samples '
     + 'an a lack of concern about keeping them intact.'),
@@ -58,7 +56,7 @@ researches[RESEARCHES.ANALYSIS] = new Research({
 
 researches[RESEARCHES.CONJECTURE] = new Research({
   name: RESEARCHES.CONJECTURE,
-  unlocks: ('Researching this gives one more option when researching.'),
+  unlocks: ('See one more option when researching.'),
   description: ('As you\'ve grown more experienced you increasingly see '
     + 'more than one answer to the questions you\'re asking.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'cloud-question'},
@@ -91,7 +89,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
 
 researches[RESEARCHES.BIOLOGY] = new Research({
   name: RESEARCHES.BIOLOGY,
-  unlocks: ('Researching this opens up new areas of study about life and cultivation.'),
+  unlocks: ('Opens up new areas of study about life and cultivation.'),
   description: ('If your settlement is going to support a serious number of people '
     + 'you\'ll have to learn about crops. Better get started.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
@@ -107,7 +105,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
   name: RESEARCHES.LENTIL_FARMING,
-  unlocks: ('Researching this unlocks lentil fields.'),
+  unlocks: ('Unlocks lentil fields.'),
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
@@ -124,7 +122,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   name: RESEARCHES.LENTIL_FARMING_HEARTY,
-  unlocks: ('Researching this allows an upgrade to Lentil Fields.'),
+  unlocks: ('Can upgrade Lentil Fields.'),
   description: ('Some minor adaptations to your fields allow lentils to grow '
     + 'faster, and with even less water. The taste is unchanged.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
@@ -141,7 +139,7 @@ researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
-  unlocks: ('Researching this unlocks reed deltas.'),
+  unlocks: ('Unlocks Reed Deltas.'),
   description: ('Reeds grow in river mud, and are incredibly useful. '
     + 'They can be a fuel source, thatch for roofs, raw material for rough fabric, '
     + 'pulp for papyrus, and probably other things you haven\'t even heard of.'),
@@ -159,7 +157,7 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
 
 researches[RESEARCHES.GRAIN_FARMING] = new Research({
   name: RESEARCHES.GRAIN_FARMING,
-  unlocks: ('Researching this unlocks grain fields.'),
+  unlocks: ('Unlocks Grain Fields.'),
   description: ('Grain is more difficult to grow than lentils, and takes grinding '
     + 'before it can be eaten. But it is useful both as flour and animal feed.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
@@ -176,24 +174,24 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
 
 researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   name: RESEARCHES.GRAIN_FARMING_SIMPLIFIED,
-  unlocks: ('Researching this allows grain fields to be run without a leader.'),
+  unlocks: ('Allows Grain Fields to be run without a leader.'),
   description: ('You\'ve perfected the tools and learned the tricks, with some '
     + 'quick instructions a total novice can grow perfect grain.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
   foregroundColor: '#d8be04',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
-  difficulty: 1,
+  difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.GRAIN_FARMING],
-  knowledgeReq: 200,
-  unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
+  knowledgeReq: 2000,
+  unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
 });
 
 researches[RESEARCHES.OLIVE_FARMING] = new Research({
   name: RESEARCHES.OLIVE_FARMING,
-  unlocks: ('Researching this unlocks olive groves.'),
+  unlocks: ('Unlocks Olive Groves.'),
   description: ('You\'ve come across a variety of olive trees that love the '
     + 'sun and the dry heat. And they can be pressed into an oil that\'s absolutely '
     + 'delicious.'),
@@ -211,7 +209,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
 
 researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   name: RESEARCHES.OLIVE_FARMING_SIMPLIFIED,
-  unlocks: ('Researching this allows olive groves to be run without a leader.'),
+  unlocks: ('Allows Olive Groves to be run without a leader.'),
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
     + 'supervision.'),
@@ -219,17 +217,17 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
-  difficulty: 1,
-  stepsNeeded: 5,
+  difficulty: 2,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.OLIVE_FARMING],
   knowledgeReq: 400,
-  unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
+  unlocksUpgrade: [BUILDING_TYPES.OLIVE_GROVE_SIMPLIFIED]
 });
 
 researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   name: RESEARCHES.QUAIL_HUSBANDRY,
-  unlocks: ('Researching this unlocks quail pastures.'),
+  unlocks: ('Researching this unlocks Quail Pastures.'),
   description: ('These quail hide in dark places during the day\'s heat and the '
     + 'night\'s cold, but they\'re amusingly active in the dawn and dusk. '
     + 'Plus, they only need a small amount of grain as feed.'),
@@ -245,9 +243,60 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
 });
 
+researches[RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED] = new Research({
+  name: RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED,
+  unlocks: ('Allows Quail Pastures to be run without a leader.'),
+  description: ('Quail take to pacifying quite well, and with some training '
+    + 'they can be almost left to themselves.'),
+  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
+  foregroundColor: '#caa096',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.QUAIL_HUSBANDRY],
+  knowledgeReq: 4000,
+  unlocksUpgrade: [BUILDING_TYPES.QUAIL_PASTURE_SIMPLIFIED]
+});
+
+researches[RESEARCHES.OX_HUSBANDRY] = new Research({
+  name: RESEARCHES.OX_HUSBANDRY,
+  unlocks: ('Researching this unlocks Ox Pastures.'),
+  description: ('River oxen are big, noisy beasts. Useful though: depending on '
+    + 'method used they can give either milk or meat and hides.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
+  foregroundColor: '#4a0e0e',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.QUAIL_HUSBANDRY],
+  knowledgeReq: 2000,
+  unlocksBuilding: [BUILDING_TYPES.OX_PASTURE]
+});
+
+researches[RESEARCHES.HERB_FARMING] = new Research({
+  name: RESEARCHES.HERB_FARMING,
+  unlocks: ('Researching this unlocks Herb Gardens.'),
+  description: ('Herbs grow slowly relative to other plants. However, they are '
+    + 'valuable for trade, and a small amount can spice up an entire dish.'),
+  icon: {provider: 'FontAwesome5', name: 'leaf'},
+  foregroundColor: '#ec5107',
+  backgroundColor: '#fff',
+  category: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.OLIVE_FARMING],
+  knowledgeReq: 10000,
+  unlocksBuilding: [BUILDING_TYPES.HERB_GARDEN]
+});
+
 researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   name: RESEARCHES.ANTHROPOLOGY,
-  unlocks: ('Researching this opens up new areas of study.'),
+  unlocks: ('Opens up new areas of study about art and communication.'),
   description: ('Hundreds of different cultures make their own ways through the vast '
     + 'emptiness of the desert. And they\'ve each learned different ways to thrive.'),
   icon: {provider: 'FontAwesome5', name: 'users'},
@@ -263,7 +312,7 @@ researches[RESEARCHES.ANTHROPOLOGY] = new Research({
 
 researches[RESEARCHES.TRADING] = new Research({
   name: RESEARCHES.TRADING,
-  unlocks: ('Researching this allows trading with peoples from across the desert.'),
+  unlocks: ('Allows trading with peoples from across the desert.'),
   description: ('Being able to trade your resources for those you can\'t make '
     + 'would open up an enormous amount of opportunity.'),
   icon: {provider: 'FontAwesome5', name: 'exchange-alt'},
@@ -297,7 +346,7 @@ researches[RESEARCHES.BASIC_EDUCATION] = new Research({
 
 researches[RESEARCHES.PHYSICS] = new Research({
   name: RESEARCHES.PHYSICS,
-  unlocks: ('Researching this opens up new areas of study.'),
+  unlocks: ('Opens up new areas of study about mechanical processes.'),
   description: ('Altered materials, new tools, grand architecture, it all feels '
     + 'tantalizingly close.'),
   icon: {provider: 'FontAwesome', name: 'balance-scale'},
@@ -313,7 +362,7 @@ researches[RESEARCHES.PHYSICS] = new Research({
 
 researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   name: RESEARCHES.CLAY_EXCAVATION,
-  unlocks: ('Researching this unlocks clay pits.'),
+  unlocks: ('Unlocks Clay Pits.'),
   description: ('The soil in desert is a dry, cracking clay. But careful application '
     + 'of water produces a building material for everything from bricks to '
     + 'ornamental figurines.'),
@@ -331,7 +380,7 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
 
 researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   name: RESEARCHES.SAND_EXCAVATION,
-  unlocks: ('Researching this unlocks sand pits.'),
+  unlocks: ('Unlocks Sand Pits.'),
   description: ('You suspect the key to harvesting sand is keeping the pit '
     + 'from collapsing on your workers, and you\'re working on sturdy brick walls '
     + 'that should do the trick.'),
@@ -349,7 +398,7 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
 
 researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
   name: RESEARCHES.HOME_CONSTRUCTION,
-  unlocks: ('Researching this unlocks huts.'),
+  unlocks: ('Unlocks Huts.'),
   description: ('Right now you have enough housing for you and one band of people. '
     + 'Adding more simple huts won\'t be too difficult a task.'),
   icon: {provider: 'FontAwesome5', name: 'store-alt'},
@@ -366,7 +415,7 @@ researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
 
 researches[RESEARCHES.COMPACTION] = new Research({
   name: RESEARCHES.COMPACTION,
-  unlocks: ('Researching this unlocks presses.'),
+  unlocks: ('Unlocks Presses.'),
   description: ('Reeds are useful as they are, but you\'ve heard '
     + 'that pressing them into a dense sheet makes a good roofing material. '
     + 'Once you figure out how to do it, you wonder if a thorough compacting may '
@@ -385,7 +434,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
 
 researches[RESEARCHES.CHEMISTRY] = new Research({
   name: RESEARCHES.CHEMISTRY,
-  unlocks: ('Researching this opens up new areas of study.'),
+  unlocks: ('Opens up new areas of study about non-physical changes.'),
   description: ('You\'ve stumbled across a disclipline you call Chemistry. '
     + 'It involves a lot of careful separation of liquids and salts, and the results '
     + 'so far aren\'t too impressive. Still, compared with the flashier "Alchemy", '
@@ -403,7 +452,7 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
 
 researches[RESEARCHES.DEHYDRATION] = new Research({
   name: RESEARCHES.DEHYDRATION,
-  unlocks: ('Researching this unlocks drying yards.'),
+  unlocks: ('Unlocks Drying Yards.'),
   description: ('You\'ve surmised that many materials are stronger or easier to '
     + 'work with when dry. And there\'s a special salt that\'s left once your '
     + 'cistern\'s water has evaporated you think could help in the process...'),
@@ -421,7 +470,7 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
 
 researches[RESEARCHES.COMBUSTION] = new Research({
   name: RESEARCHES.COMBUSTION,
-  unlocks: ('Researching this unlocks furnaces.'),
+  unlocks: ('Unlocks Furnaces.'),
   description: ('You\'ll need more than fire. You\'ll need useful fire. '
     + 'But if you can get the temperature and air flow high enough, you could start '
     + 'turning sand into glass! Gods know there\'s enough sand around.'),
@@ -439,7 +488,7 @@ researches[RESEARCHES.COMBUSTION] = new Research({
 
 researches[RESEARCHES.COOKING] = new Research({
   name: RESEARCHES.COOKING,
-  unlocks: ('Researching this unlocks kitchens.'),
+  unlocks: ('Unlocks Kitchens.'),
   description: ('Eating raw lentils gets old fast. Real, enjoyable food will be '
     + 'a crucial part of making your settlement a livable place.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},

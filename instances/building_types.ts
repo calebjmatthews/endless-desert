@@ -288,6 +288,61 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
+  [BTY.OX_PASTURE]: new BuildingType({
+    name: BTY.OX_PASTURE,
+    description: 'Ox cover themselves in mud at the river\'s edge',
+    category: BCA.FARMING,
+    icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
+    foregroundColor: '#4a0e0e',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.EXACT, type: RTY.OXEN, quantity: 10},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 500}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.OXEN, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.MILK, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}) ],
+    requiresLeader: true
+  }),
+
+  [BTY.HERB_GARDEN]: new BuildingType({
+    name: BTY.HERB_GARDEN,
+    description: 'The smell is fantastic: spicy, biting, and wild',
+    category: BCA.FARMING,
+    icon: {provider: 'FontAwesome5', name: 'leaf'},
+    foregroundColor: '#ec5107',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 200},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 1000}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.CINNAMON, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.CAROB, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.MINT, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.PEPPERCORN, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 4, produces:
+      [{specificity: RSP.EXACT, type: RTY.CORIANDER, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 5, produces:
+      [{specificity: RSP.EXACT, type: RTY.ANISE, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),
+    new BuildingRecipe({index: 6, produces:
+      [{specificity: RSP.EXACT, type: RTY.SORREL, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}) ],
+    requiresLeader: true
+  }),
+
   [BTY.DRYING_YARD]: new BuildingType({
     name: BTY.DRYING_YARD,
     description: 'The pitiless sun is an ally, for once',

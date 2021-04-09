@@ -57,13 +57,4 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.GLASS] = new ResourceSubcategory({
   backgroundColor: '#fff'
 });
 
-resourceSubcategories[RESOURCE_SUBCATEGORIES.SPICE] = new ResourceSubcategory({
-  name: RESOURCE_SUBCATEGORIES.SPICE,
-  value: 20,
-  order: 6,
-  icon: {provider: 'FontAwesome5', name: 'wine-bottle'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
-});
-
 export { resourceSubcategories };

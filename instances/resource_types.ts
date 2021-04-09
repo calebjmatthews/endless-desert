@@ -98,6 +98,26 @@ resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
   backgroundColor: '#fff',
 });
 
+resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
+  name: RESOURCE_TYPES.OXEN,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
+  value: 400,
+  icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
+  foregroundColor: '#4a0e0e',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
+  name: RESOURCE_TYPES.MILK,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
+  value: 100,
+  icon: {provider: 'Entypo', name: 'bucket'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+});
+
 resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   name: RESOURCE_TYPES.WOOD_OAK,
   subcategory: RESOURCE_SUBCATEGORIES.WOOD,
@@ -251,12 +271,81 @@ resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
 
 resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({
   name: RESOURCE_TYPES.SALT,
-  subcategory: RESOURCE_SUBCATEGORIES.SPICE,
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.BRACKISH, RESOURCE_TAGS.SPICE],
   value: 20,
-  icon: {provider: 'FontAwesome5', name: 'wine-bottle'},
+  icon: {provider: 'FontAwesome5', name: 'mortar-pestle'},
   foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.CINNAMON] = new ResourceType({
+  name: RESOURCE_TYPES.CINNAMON,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.SAVORY, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'FontAwesome5', name: 'mortar-pestle'},
+  foregroundColor: '#bf1414',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.CAROB] = new ResourceType({
+  name: RESOURCE_TYPES.CAROB,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.SWEET, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'MaterialCommunityIcons', name: 'seed-outline'},
+  foregroundColor: '#843619',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.MINT] = new ResourceType({
+  name: RESOURCE_TYPES.MINT,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.COOLING, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'FontAwesome5', name: 'leaf'},
+  foregroundColor: '#38ca8d',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.PEPPERCORN] = new ResourceType({
+  name: RESOURCE_TYPES.PEPPERCORN,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.SPICY, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#272727',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.CORIANDER] = new ResourceType({
+  name: RESOURCE_TYPES.CORIANDER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.HERBAL, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'FontAwesome5', name: 'leaf'},
+  foregroundColor: '#1ca921',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.ANISE] = new ResourceType({
+  name: RESOURCE_TYPES.ANISE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.BITTER, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'FontAwesome5', name: 'star'},
+  foregroundColor: '#6b1f03',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.SORREL] = new ResourceType({
+  name: RESOURCE_TYPES.SORREL,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.SOUR, RESOURCE_TAGS.SPICE],
+  value: 40,
+  icon: {provider: 'MaterialIcons', name: 'grass'},
+  foregroundColor: '#8eb530',
   backgroundColor: '#fff'
 });
 

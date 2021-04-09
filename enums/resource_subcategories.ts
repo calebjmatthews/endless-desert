@@ -4,6 +4,5 @@ export enum RESOURCE_SUBCATEGORIES {
   BRICK = 'Brick',
   SAND = 'Sand',
   OIL = 'Oil',
-  GLASS = 'Glass',
-  SPICE = 'Spice'
+  GLASS = 'Glass'
 }
