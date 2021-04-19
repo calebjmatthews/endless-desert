@@ -257,10 +257,10 @@ export default function ResourceSelectOneComponent() {
       if (resourceType.value != null) {
         const rValue = resourceType.value * QV[resourceSelected.quality];
         const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-        const rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
-          quantity: (rValue)}];
-        const rsConsume = [{type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: 1}]
+        const rsIncrease = [new Resource({type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
+          quantity: (rValue)})];
+        const rsConsume = [new Resource({type: resourceSelected.type,
+          quality: resourceSelected.quality, quantity: 1})]
         let duration = (resourceType.value / 10) * 1000;
         if (duration < 1000) { duration = 1000; }
         let timer = new Timer({
@@ -292,10 +292,10 @@ export default function ResourceSelectOneComponent() {
         let rValue = ((resourceType.value * QV[resourceSelected.quality]
           * parseInt(quantitySelected)) / 4);
         const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-        const rsIncrease = [{type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
-          quantity: rValue}];
-        const rsConsume = [{type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}]
+        const rsIncrease = [new Resource({type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
+          quantity: rValue})];
+        const rsConsume = [new Resource({type: resourceSelected.type,
+          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)})]
         let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
         if (duration < 1000) { duration = 1000; }
         let timer = new Timer({
@@ -325,18 +325,18 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const trade = tradingStatus.tradingPartners[modalValue.tradingPartner]
         .trades[modalValue.tradeId];
-      dispatch(increaseResources(vault, [{type: trade.give.type,
-        quality: trade.give.quality, quantity: quantityGiven}]));
-      dispatch(consumeResources(vault, [{type: resourceSelected.type,
-        quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}]));
+      dispatch(increaseResources(vault, [new Resource({type: trade.give.type,
+        quality: trade.give.quality, quantity: quantityGiven})]));
+      dispatch(consumeResources(vault, [new Resource(Object.assign(resourceSelected,
+        {quantity: parseInt(quantitySelected)} ))]));
       dispatch(completeTrade({
         id: trade.id,
         tradingPartnerType: trade.tradingPartnerType,
-        given: { type: trade.give.type, quality: trade.give.quality,
-          quantity: quantityGiven },
-        received: { type: resourceSelected.type,
+        given: new Resource({ type: trade.give.type, quality: trade.give.quality,
+          quantity: quantityGiven }),
+        received: new Resource({ type: resourceSelected.type,
           quality: resourceSelected.quality,
-          quantity: parseInt(quantitySelected) }
+          quantity: parseInt(quantitySelected) })
       }));
       dispatch(displayModalValue(null, 'closed', null));
     }

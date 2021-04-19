@@ -211,8 +211,10 @@ function TradingPartnerDescription(props: any) {
   );
 
   function renderTrades(trades: { [id: string] : Trade}, vault: Vault,
-    traded: { [id: string] : {given: { type: string, quantity: number },
-      received: { type: string, quantity: number }} }, tradeClick: Function) {
+    traded: { [id: string] : {
+    given: { type: string, quantity: number,  quality: number },
+    received: { type: string, quantity: number,  quality: number }} },
+    tradeClick: Function) {
     return Object.keys(trades).map((tradeId) => {
       const trade = trades[tradeId];
       const wasTraded = traded[tradeId];
@@ -220,7 +222,7 @@ function TradingPartnerDescription(props: any) {
       if (!wasTraded) {
         return renderTrade(trade, tradeClick);
       }
-      return renderWasTraded(trade, wasTraded);
+      return renderWasTraded(trade, wasTraded, vault);
     });
   }
 
@@ -257,9 +259,10 @@ function TradingPartnerDescription(props: any) {
 
   function renderWasTraded(trade: Trade, wasTraded:
     {given: { type: string, quantity: number },
-    received: { type: string, quantity: number }} ) {
+    received: { type: string, quantity: number, quality: number }}, vault: Vault ) {
     const give = resourceTypes[wasTraded.given.type];
-    const receive = resourceTypes[wasTraded.received.type];
+    const receive = utils.getResourceType(vault.resources[wasTraded.received.type
+      + '|' + wasTraded.received.quality]);
 
     return (
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,

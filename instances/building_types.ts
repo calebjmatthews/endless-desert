@@ -203,7 +203,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     foregroundColor: '#f9df00',
     backgroundColor: '#fff',
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
-    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RTY.BRICKS_RED, quantity: 400}],
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400}],
     upgradesInto: BTY.SAND_PIT_RAPID,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1}],
@@ -440,10 +440,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
     backgroundColor: '#fff',
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
-      {specificity: RSP.SUBCATEGORY, type: RTY.CRUDE_IRON, quantity: 20}],
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 20}],
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 200},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
-      {specificity: RSP.SUBCATEGORY, type: RTY.CRUDE_IRON, quantity: 280}],
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 280}],
     upgradesInto: BTY.GRINDING_MILL_SIMPLIFIED,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
