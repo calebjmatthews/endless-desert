@@ -123,7 +123,7 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
 
 equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
   name: EQUIPMENT_TYPES.WOODEN_POLE,
-  description: 'A simple wooden pole: only limited by your creativity',
+  description: 'An iron-capped wooden pole: only limited by your creativity',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: {

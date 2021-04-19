@@ -33,7 +33,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     -  Perfumes/other products are created by account-specific combinations of extracts.
     -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Earthy (shining yellow), Fungal (shining purple), Rich (shining green), Airy (shining blue)
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
-  - Temporary settlements can be made in the Dreaming, last 24 hours (?) before evaporating and allowing the player to claim one single resource.
+  - Temporary settlements can be made in the Dreaming (the River of Pearls?), last 24 hours (?) before evaporating and allowing the player to claim one single resource.
     - These can have unusual resources, such as iron or wood.
     - They can also be unusually small or large.
     - Some way to apply extreme benefits, often with drawbacks. These could include:
@@ -118,14 +118,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Three more leaders: one from a trading partner, one random, one from research
     * One more trading partner from fortuity (after Basic Education)
     * Costs now include Sand, Clay, Reeds, Wood
-  - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting and more advanced trading
-    * Research Observation (Field Notes), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Simplified Compaction, Simplified Dehydration, Simplified Combustion, Bountiful Cooking, Ox Husbandry, Herb Farming, House Construction, Glassblowing, Pottery, Weaving, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Sand Purification, Exploration, Exploration Locations (Four Different Researches)
+  - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting, fields notes, and more advanced trading
+    * Research Observation (Field Notes), Keen Analysis (Analysis with lenses), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Ox Husbandry, Herb Farming, Quality Clay Excavation, Rapid Sand Excavation, Simplified Compaction, Improved Home Construction,  Weaving, Grinding, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Simplified Dehydration, Simplified Combustion, Ventilated Combustion, Bountiful Cooking, Glassblowing, Solvents (Laboratory), Pottery, Brewing, Astrology, Exploration, Exploration Locations (Four Different Researches), Mysticism, The Pathway through Smoke
     * Six more leaders: two from trading partners, one random, one from research, two from exploration
     * Two more trading partners, both from exploration
     * Six exploration areas, one initial, four from researches, one from previous exploration
     * Costs now include Field Notes, Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
-  - High: Research costs now require field notes and artifacts from exploration
-    * Performance, Neighboring Peoples, Further Education
+  - Late: Research costs now require field notes and artifacts from exploration
+    * Deep Analysis (Analysis with quality lenses, papyrus, and ink), Grape Farming, Flower Farming, Mulberry Farming, Bee Husbandry, Silkworm Husbandry, Performance, Neighboring Peoples, Further Education, Companionship (allows pets), Rapid Weaving, Mechanisms, Flowstone, Custom Home Construction, Winemaking, Distillation (Perfumery), Dyemaking, Sand Purification, Solar Combustion, The Yearning Obelisk, Exaltation, The River of Pearls
+  - Deep: The Orchids Aspire
 
 # Researches (see spredsheet):
 - Start with:
@@ -302,7 +303,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 # Useful icons:
   Entypo: 500px (infinity), address (post), bell, flower, lab-flask, mask,
-    round-brush, swarm (bee)
+    round-brush, swarm (bee), lightbulb-cfl-spiral ()
   FontAwesome: leaf, bolt, building-o, beer, medkit, paw, diamond, snowflake
   FontAwesome5: anchor, ankh, archway, bahai, book-dead, broom, burn, campground, cat,
     carrot, cheese, chess, church, cloud, coins, crow, crown, dharmachakra, dice,
@@ -311,7 +312,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     hospital, hotel, icicles, igloo, kaaba (building), kiwi-bird, landmark (building),
     lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
     spa, stroopwafel, theater, torii-gate, vihara (building)
-  Value symbol options: ѵ, 2ұ,
+  Value symbol options: ѵ, ұ,
 
 # Time cycle:
   - The desert transitions from day to night over the course of an hour.
@@ -399,6 +400,7 @@ CREATE TABLE `endless_desert`.`sessions` (
 
 # Debug functions:
 ## Get one of every basic equipment:
+```
 dispatch(increaseResources(vault,
   [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
     quality: 0, quantity: 1 },
@@ -414,10 +416,13 @@ dispatch(increaseResources(vault,
     quality: 0, quantity: 1 },
   { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
     quality: 0, quantity: 1 }] ));
+```
 
 ## Remove all current resources:
+```
 let resources: Resource[] = [];
 Object.keys(vault.resources).map((typeQuality) => {
   resources.push(vault.resources[typeQuality]);
 });
 dispatch(consumeResources(vault, resources));
+```

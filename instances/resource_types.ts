@@ -68,6 +68,16 @@ resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.FLOUR] = new ResourceType({
+  name: RESOURCE_TYPES.FLOUR,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
+  value: 25,
+  icon: {provider: 'FontAwesome5', name: 'shopping-bag'},
+  foregroundColor: '#d8be04',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   name: RESOURCE_TYPES.OLIVES,
   category: RESOURCE_CATEGORIES.MATERIAL,
@@ -115,6 +125,16 @@ resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
   value: 100,
   icon: {provider: 'Entypo', name: 'bucket'},
   foregroundColor: '#000',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.SILKWORM_COCOON] = new ResourceType({
+  name: RESOURCE_TYPES.SILKWORM_COCOON,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+  value: 200,
+  icon: {provider: 'MaterialCommunityIcons', name: 'bug'},
+  foregroundColor: '#4f8000',
   backgroundColor: '#fff',
 });
 
@@ -249,6 +269,16 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.SLAG] = new ResourceType({
+  name: RESOURCE_TYPES.SLAG,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 1,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
   name: RESOURCE_TYPES.RUST_ORE,
   category: RESOURCE_CATEGORIES.MATERIAL,
@@ -259,13 +289,103 @@ resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.IRON_POWDER] = new ResourceType({
+  name: RESOURCE_TYPES.IRON_POWDER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 350,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#a02d01',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
   name: RESOURCE_TYPES.CRUDE_IRON,
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
-  value: 300,
+  value: 400,
   icon: {provider: 'FontAwesome5', name: 'bars'},
   foregroundColor: '#a02d01',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.GREENISH_ORE] = new ResourceType({
+  name: RESOURCE_TYPES.GREENISH_ORE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 600,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#00a07c',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.COPPER_POWDER] = new ResourceType({
+  name: RESOURCE_TYPES.COPPER_POWDER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 1100,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#ff7f22',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.DUSTY_ORE] = new ResourceType({
+  name: RESOURCE_TYPES.DUSTY_ORE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 400,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#758da2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.TIN_POWDER] = new ResourceType({
+  name: RESOURCE_TYPES.TIN_POWDER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 650,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#c3ced8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.BRONZE] = new ResourceType({
+  name: RESOURCE_TYPES.BRONZE,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 800,
+  icon: {provider: 'FontAwesome5', name: 'bars'},
+  foregroundColor: '#ce6112',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.PALE_ORE] = new ResourceType({
+  name: RESOURCE_TYPES.PALE_ORE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 350,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#cfcfe2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
+  name: RESOURCE_TYPES.ZINC_POWDER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 620,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#cfcfe2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.BRASS] = new ResourceType({
+  name: RESOURCE_TYPES.BRASS,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 740,
+  icon: {provider: 'FontAwesome5', name: 'bars'},
+  foregroundColor: '#f5b012',
   backgroundColor: '#fff'
 });
 
@@ -303,7 +423,7 @@ resourceTypes[RESOURCE_TYPES.MINT] = new ResourceType({
   name: RESOURCE_TYPES.MINT,
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.COOLING, RESOURCE_TAGS.SPICE],
-  value: 40,
+  value: 80,
   icon: {provider: 'FontAwesome5', name: 'leaf'},
   foregroundColor: '#38ca8d',
   backgroundColor: '#fff'
@@ -398,6 +518,26 @@ resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
   value: 300,
   icon: {provider: 'FontAwesome5', name: 'tint'},
   foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.LINEN] = new ResourceType({
+  name: RESOURCE_TYPES.LINEN,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 200,
+  icon: {provider: 'Entypo', name: 'spreadsheet'},
+  foregroundColor: '#b7efe4',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
+  name: RESOURCE_TYPES.SILK,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 2000,
+  icon: {provider: 'MaterialCommunityIcons', name: 'lightbulb-cfl-spiral'},
+  foregroundColor: '#ffe668',
   backgroundColor: '#fff'
 });
 

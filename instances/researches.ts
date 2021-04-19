@@ -122,7 +122,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   name: RESEARCHES.LENTIL_FARMING_HEARTY,
-  unlocks: ('Can upgrade Lentil Fields.'),
+  unlocks: ('Allows and upgrade to Lentil Fields.'),
   description: ('Some minor adaptations to your fields allow lentils to grow '
     + 'faster, and with even less water. The taste is unchanged.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
@@ -132,7 +132,7 @@ researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BIOLOGY],
+  prereq: [RESEARCHES.LENTIL_FARMING],
   knowledgeReq: 400,
   unlocksUpgrade: [BUILDING_TYPES.LENTIL_FIELD_HEARTY]
 });
@@ -184,7 +184,7 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.GRAIN_FARMING],
+  prereq: [RESEARCHES.GRAIN_FARMING, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 2000,
   unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
 });
@@ -220,14 +220,14 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.OLIVE_FARMING],
+  prereq: [RESEARCHES.OLIVE_FARMING, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 400,
   unlocksUpgrade: [BUILDING_TYPES.OLIVE_GROVE_SIMPLIFIED]
 });
 
 researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   name: RESEARCHES.QUAIL_HUSBANDRY,
-  unlocks: ('Researching this unlocks Quail Pastures.'),
+  unlocks: ('Unlocks Quail Pastures.'),
   description: ('These quail hide in dark places during the day\'s heat and the '
     + 'night\'s cold, but they\'re amusingly active in the dawn and dusk. '
     + 'Plus, they only need a small amount of grain as feed.'),
@@ -255,14 +255,14 @@ researches[RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.QUAIL_HUSBANDRY],
+  prereq: [RESEARCHES.QUAIL_HUSBANDRY, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 4000,
   unlocksUpgrade: [BUILDING_TYPES.QUAIL_PASTURE_SIMPLIFIED]
 });
 
 researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   name: RESEARCHES.OX_HUSBANDRY,
-  unlocks: ('Researching this unlocks Ox Pastures.'),
+  unlocks: ('Unlocks Ox Pastures.'),
   description: ('River oxen are big, noisy beasts. Useful though: depending on '
     + 'method used they can give either milk or meat and hides.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
@@ -272,14 +272,14 @@ researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   difficulty: 2,
   stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: [RESEARCHES.QUAIL_HUSBANDRY],
+  prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 2000,
   unlocksBuilding: [BUILDING_TYPES.OX_PASTURE]
 });
 
 researches[RESEARCHES.HERB_FARMING] = new Research({
   name: RESEARCHES.HERB_FARMING,
-  unlocks: ('Researching this unlocks Herb Gardens.'),
+  unlocks: ('Unlocks Herb Gardens.'),
   description: ('Herbs grow slowly relative to other plants. However, they are '
     + 'valuable for trade, and a small amount can spice up an entire dish.'),
   icon: {provider: 'FontAwesome5', name: 'leaf'},
@@ -289,7 +289,7 @@ researches[RESEARCHES.HERB_FARMING] = new Research({
   difficulty: 2,
   stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: [RESEARCHES.OLIVE_FARMING],
+  prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 10000,
   unlocksBuilding: [BUILDING_TYPES.HERB_GARDEN]
 });
@@ -371,29 +371,65 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 1,
-  stepsNeeded: 2,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
   knowledgeReq: 100,
   unlocksBuilding: [BUILDING_TYPES.CLAY_PIT]
 });
 
+researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
+  name: RESEARCHES.CLAY_EXCAVATION_QUALITY,
+  unlocks: ('Allows an upgrade to Clay Pits.'),
+  description: ('Application of wooden scaffolding and additional water could '
+    + 'produce clay of superior quality. The kind that could make beautiful '
+    + 'pottery, rather than bricks.'),
+  icon: {provider: 'FontAwesome5', name: 'splotch'},
+  foregroundColor: '#a91f1f',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 1000,
+  unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_QUALITY]
+});
+
 researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   name: RESEARCHES.SAND_EXCAVATION,
   unlocks: ('Unlocks Sand Pits.'),
   description: ('You suspect the key to harvesting sand is keeping the pit '
-    + 'from collapsing on your workers, and you\'re working on sturdy brick walls '
+    + 'from collapsing on your workers, and you\'re working on sturdy clay walls '
     + 'that should do the trick.'),
   icon: {provider: 'FontAwesome5', name: 'mountain'},
   foregroundColor: '#f9df00',
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 1,
-  stepsNeeded: 3,
+  stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
   knowledgeReq: 180,
   unlocksBuilding: [BUILDING_TYPES.SAND_PIT]
+});
+
+researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
+  name: RESEARCHES.SAND_EXCAVATION_RAPID,
+  unlocks: ('Allows an upgrade to Sand Pits.'),
+  description: ('Clay walls do most of the work, holding the sides of the pit '
+    + 'together. But reinforcement with thatch as you go will allow your workers '
+    + 'to dig much faster.'),
+  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  foregroundColor: '#f9df00',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SAND_EXCAVATION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 1800,
+  unlocksUpgrade: [BUILDING_TYPES.SAND_PIT_RAPID]
 });
 
 researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
@@ -413,6 +449,23 @@ researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.HUTS]
 });
 
+researches[RESEARCHES.HOME_CONSTRUCTION_IMRPOVED] = new Research({
+  name: RESEARCHES.HOME_CONSTRUCTION_IMRPOVED,
+  unlocks: ('Unlocks Houses.'),
+  description: ('Now that you have the capabity to produce some basic comforts, '
+    + 'you can do better than the huts you\'ve delt with until now. Much better.'),
+  icon: {provider: 'FontAwesome5', name: 'home'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.HOME_CONSTRUCTION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 6000,
+  unlocksBuilding: [BUILDING_TYPES.HOUSES]
+});
+
 researches[RESEARCHES.COMPACTION] = new Research({
   name: RESEARCHES.COMPACTION,
   unlocks: ('Unlocks Presses.'),
@@ -425,11 +478,135 @@ researches[RESEARCHES.COMPACTION] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 1,
-  stepsNeeded: 4,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
   knowledgeReq: 250,
   unlocksBuilding: [BUILDING_TYPES.PRESS]
+});
+
+researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
+  name: RESEARCHES.COMPACTION_SIMPLIFIED,
+  unlocks: ('Allows Presses to be run without a leader.'),
+  description: ('With a set of stabilizing and safety structures, a '
+    + 'Press can be run without any specialized skills.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
+  foregroundColor: '#795548',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMPACTION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 2500,
+  unlocksUpgrade: [BUILDING_TYPES.PRESS_SIMPLIFIED]
+});
+
+researches[RESEARCHES.GRINDING] = new Research({
+  name: RESEARCHES.GRINDING,
+  unlocks: ('Unlocks Grinding Mills.'),
+  description: ('You\'ve heard of structures that catch the wind to spin giant '
+    + 'metal grinding wheels against each other. The idea is simple enough, but '
+    + 'getting the mechanism right will be tricky.'),
+  icon: {provider: 'FontAwesome', name: 'gears'},
+  foregroundColor: '#705ea7',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.PHYSICS],
+  knowledgeReq: 450,
+  unlocksBuilding: [BUILDING_TYPES.GRINDING_MILL]
+});
+
+researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
+  name: RESEARCHES.GRINDING_SIMPLIFIED,
+  unlocks: ('Allows Grinding Mills to be run without a leader.'),
+  description: ('Reinforcing the grinding wheels will make them far more reliable, '
+    + 'and they should no longer need the constant small repairs that make them '
+    + 'difficult to run.'),
+  icon: {provider: 'FontAwesome', name: 'gears'},
+  foregroundColor: '#705ea7',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GRINDING, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 4500,
+  unlocksUpgrade: [BUILDING_TYPES.GRINDING_MILL_SIMPLIFIED]
+});
+
+researches[RESEARCHES.WEAVING] = new Research({
+  name: RESEARCHES.WEAVING,
+  unlocks: ('Unlocks Weaverys.'),
+  description: ('Cloth making is slow and time-consuming, but most people can be '
+    + 'taught without too much of a learning curve. And there\'s a coarse linen '
+    + 'cloth that could theoretically be made from something as simple as reeds.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'ship-wheel'},
+  foregroundColor: '#9c27b0',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 2500,
+  unlocksBuilding: [BUILDING_TYPES.WEAVERY]
+});
+
+researches[RESEARCHES.TAILORING] = new Research({
+  name: RESEARCHES.TAILORING,
+  unlocks: ('Unlocks Tailors.'),
+  description: ('Clothing made in other towns is shockingly expensive. '
+    + 'Now that you can produce cloth, you can start work shaping it into '
+    + 'clothing more suited to your specific needs.'),
+  icon: {provider: 'FontAwesome5', name: 'tshirt'},
+  foregroundColor: '#afc1ec',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.WEAVING],
+  knowledgeReq: 6500,
+  unlocksBuilding: [BUILDING_TYPES.TAILORS]
+});
+
+researches[RESEARCHES.OUTFITTING] = new Research({
+  name: RESEARCHES.OUTFITTING,
+  unlocks: ('Unlocks Outfitters.'),
+  description: ('In the desert, your survival is tied to how much you can carry '
+    + 'on your back, and how well you can bear it.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
+  foregroundColor: '#1a457b',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.WEAVING],
+  knowledgeReq: 6500,
+  unlocksBuilding: [BUILDING_TYPES.OUTFITTERS]
+});
+
+researches[RESEARCHES.TOOL_FABRICATION] = new Research({
+  name: RESEARCHES.TOOL_FABRICATION,
+  unlocks: ('Unlocks Fabricatory.'),
+  description: ('Your study of metals has brought you tantalizingly close to '
+    + 'a variety of tools that would transform every part of the life that you\'ve '
+    + 'carved out of this harsh land.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
+  foregroundColor: '#1a457b',
+  backgroundColor: '#fff',
+  category: RESEARCHES.PHYSICS,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 8000,
+  unlocksBuilding: [BUILDING_TYPES.FABRICATORY]
 });
 
 researches[RESEARCHES.CHEMISTRY] = new Research({

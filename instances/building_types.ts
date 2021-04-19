@@ -14,6 +14,8 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { BUILDING_CATEGORIES } from '../enums/building_categories';
 const BCA = BUILDING_CATEGORIES;
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
+const EQT = EQUIPMENT_TYPES;
 
 const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.BROKEN_CISTERN]:  new BuildingType({
@@ -28,10 +30,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 2},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 20}],
+    upgradesInto: BTY.CISTERN,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10, probability: 1}],
       consumes: null}) ],
-    upgradesInto: BTY.CISTERN,
     requiresLeader: false
   }),
 
@@ -46,8 +48,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 1},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 10}],
-    recipes: null,
-    upgradesInto: BTY.STUDY
+    upgradesInto: BTY.STUDY,
+    recipes: null
   }),
 
   [BTY.RUINED_HUTS]: new BuildingType({
@@ -61,8 +63,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 3},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 30}],
-    recipes: null,
-    upgradesInto: BTY.HUTS
+    upgradesInto: BTY.HUTS,
+    recipes: null
   }),
 
   [BTY.FALLOW_FIELD]: new BuildingType({
@@ -76,10 +78,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 4},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
+    upgradesInto: BTY.LENTIL_FIELD,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 1, probability: 1}],
       consumes: null}) ],
-    upgradesInto: BTY.LENTIL_FIELD,
     requiresLeader: false
   }),
 
@@ -93,8 +95,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     foregroundColor: '#b1b1b1',
     backgroundColor: '#fff',
     cost: null,
-    recipes: null,
-    upgradesInto: BTY.MARKET
+    upgradesInto: BTY.MARKET,
+    recipes: null
   }),
 
   [BTY.SHATTERED_GATE]: new BuildingType({
@@ -169,9 +171,26 @@ const buildingTypes: { [name: string] : BuildingType } = {
     backgroundColor: '#fff',
     cost: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 500}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 5000}],
+    upgradesInto: BTY.CLAY_PIT_QUALITY,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
+    requiresLeader: false
+  }),
+
+  [BTY.CLAY_PIT_QUALITY]: new BuildingType({
+    name: BTY.CLAY_PIT_QUALITY,
+    description: 'Extra water and time produce the best possible clay',
+    category: BCA.MATERIAL,
+    icon: {provider: 'FontAwesome5', name: 'splotch'},
+    foregroundColor: '#a91f1f',
+    backgroundColor: '#fff',
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
     requiresLeader: false
   }),
 
@@ -184,9 +203,25 @@ const buildingTypes: { [name: string] : BuildingType } = {
     foregroundColor: '#f9df00',
     backgroundColor: '#fff',
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RTY.BRICKS_RED, quantity: 400}],
+    upgradesInto: BTY.SAND_PIT_RAPID,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1}],
       consumes: null}) ],
+    requiresLeader: false
+  }),
+
+  [BTY.SAND_PIT_RAPID]: new BuildingType({
+    name: BTY.SAND_PIT_RAPID,
+    description: ('Reinforced with brick and thatch to allow faster sand extraction'),
+    category: BCA.MATERIAL,
+    icon: {provider: 'FontAwesome5', name: 'mountain'},
+    foregroundColor: '#f9df00',
+    backgroundColor: '#fff',
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 40, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}) ],
     requiresLeader: false
   }),
 
@@ -210,7 +245,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
 
   [BTY.LENTIL_FIELD_HEARTY]: new BuildingType({
     name: BTY.LENTIL_FIELD_HEARTY,
-    description: 'Thatch mats keep the lentils protected from dry air',
+    description: 'Lentils grow in curly, bushy rows',
     category: BCA.FARMING,
     icon: {provider: 'FontAwesome5', name: 'seedling'},
     foregroundColor: '#59a500',
@@ -343,6 +378,192 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
+  [BTY.HOUSES]: new BuildingType({
+    name: BTY.HOUSES,
+    description: 'Beautiful wooden homes with glass windows and rambling pathways '
+      + 'running between them',
+    category: BCA.HOUSING,
+    icon: {provider: 'FontAwesome5', name: 'home'},
+    foregroundColor: '#795548',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 300},
+      {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 800},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200}],
+    recipes: null,
+    livingHappiness: 20
+  }),
+
+  [BTY.PRESS]: new BuildingType({
+    name: BTY.PRESS,
+    description: 'Great slabs of brick groan as they press together',
+    category: BCA.MATERIAL_REFINED,
+    icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
+    foregroundColor: '#795548',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 40},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40}],
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 200},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200}],
+    upgradesInto: BTY.PRESS_SIMPLIFIED,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}), ],
+    requiresLeader: true
+  }),
+
+  [BTY.PRESS_SIMPLIFIED]: new BuildingType({
+    name: BTY.PRESS_SIMPLIFIED,
+    description: 'Great slabs of brick groan as they press together',
+    category: BCA.MATERIAL_REFINED,
+    icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
+    foregroundColor: '#795548',
+    backgroundColor: '#fff',
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}), ],
+    requiresLeader: false
+  }),
+
+  [BTY.GRINDING_MILL]: new BuildingType({
+    name: BTY.GRINDING_MILL,
+    description: 'The mill-blades can be seen from across town, spinning in the wind',
+    category: BCA.MATERIAL_REFINED,
+    icon: {provider: 'FontAwesome', name: 'gears'},
+    foregroundColor: '#705ea7',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 30},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
+      {specificity: RSP.SUBCATEGORY, type: RTY.CRUDE_IRON, quantity: 20}],
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 200},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
+      {specificity: RSP.SUBCATEGORY, type: RTY.CRUDE_IRON, quantity: 280}],
+    upgradesInto: BTY.GRINDING_MILL_SIMPLIFIED,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}) ],
+    requiresLeader: true
+  }),
+
+  [BTY.GRINDING_MILL_SIMPLIFIED]: new BuildingType({
+    name: BTY.GRINDING_MILL_SIMPLIFIED,
+    description: 'The mill-blades can be seen from across town, spinning in the wind',
+    category: BCA.MATERIAL_REFINED,
+    icon: {provider: 'FontAwesome', name: 'gears'},
+    foregroundColor: '#705ea7',
+    backgroundColor: '#fff',
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}) ],
+    requiresLeader: false
+  }),
+
+  [BTY.WEAVERY]: new BuildingType({
+    name: BTY.WEAVERY,
+    description: 'Clicking, whirring, and the murmur of soft voices',
+    category: BCA.MATERIAL_REFINED,
+    icon: {provider: 'MaterialCommunityIcons', name: 'ship-wheel'},
+    foregroundColor: '#9c27b0',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 50}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 20}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.SILK, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, quantity: 20},
+        {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
+    requiresLeader: false
+  }),
+
+  [BTY.TAILORS]: new BuildingType({
+    name: BTY.TAILORS,
+    description: 'Robes and cloaks a lined in display cases, behind shining windows',
+    category: BCA.ARTISAN_GOOD,
+    icon: {provider: 'FontAwesome5', name: 'tshirt'},
+    foregroundColor: '#afc1ec',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 600},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 50}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: EQT.SIMPLE_ROBE, quantity: 0.1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 20}]}) ],
+    requiresLeader: true
+  }),
+
+  [BTY.OUTFITTERS]: new BuildingType({
+    name: BTY.OUTFITTERS,
+    description: 'Straps, gourds, cases, and bags of all kinds hang from the walls',
+    category: BCA.ARTISAN_GOOD,
+    icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
+    foregroundColor: '#1a457b',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 300},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 20}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_HAVERSACK, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_GEARBAG, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_KITPACK, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}) ],
+    requiresLeader: true
+  }),
+
+  [BTY.FABRICATORY]: new BuildingType({
+    name: BTY.FABRICATORY,
+    description: 'The acrid tang of hot metal hangs outside the wide doors',
+    category: BCA.ARTISAN_GOOD,
+    icon: {provider: 'FontAwesome5', name: 'tools'},
+    foregroundColor: '#6d6d6d',
+    backgroundColor: '#fff',
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 150},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 40}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 10},
+        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: EQT.WOODEN_POLE, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 15},
+        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 5}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: EQT.COARSE_IMPLEMENTS, quantity: 0.05,
+        probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 20}]}) ],
+    requiresLeader: true
+  }),
+
   [BTY.DRYING_YARD]: new BuildingType({
     name: BTY.DRYING_YARD,
     description: 'The pitiless sun is an ally, for once',
@@ -364,24 +585,6 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.PRESS]: new BuildingType({
-    name: BTY.PRESS,
-    description: 'Great slabs of brick groan as they press together',
-    category: BCA.MATERIAL_REFINED,
-    icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
-    foregroundColor: '#795548',
-    backgroundColor: '#fff',
-    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 40},
-      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40}],
-    recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}),
-    new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ],
-    requiresLeader: true
-  }),
-
   [BTY.FURNACE]: new BuildingType({
     name: BTY.FURNACE,
     description: 'At night the furnace glows red, and the air shimmers around it',
@@ -396,7 +599,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10},
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SLAG, quantity: 8, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 10},
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}) ],
     requiresLeader: true
