@@ -451,7 +451,20 @@ const buildingTypes: { [name: string] : BuildingType } = {
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}) ],
+      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 20, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GREENISH_ORE, quantity: 40}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 20, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 40}]}),
+    new BuildingRecipe({index: 4, produces:
+      [{specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.PALE_ORE, quantity: 40}]}) ],
     requiresLeader: true
   }),
 
@@ -600,8 +613,22 @@ const buildingTypes: { [name: string] : BuildingType } = {
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.SLAG, quantity: 8, probability: 1}],
+        {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 8, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 10},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 10},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 2},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
+    new BuildingRecipe({index: 4, produces:
+      [{specificity: RSP.EXACT, type: RTY.BRASS, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 7},
+        {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 3},
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}) ],
     requiresLeader: true
   }),

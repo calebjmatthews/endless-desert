@@ -27,10 +27,10 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   }
 
   createTradingPartner() {
-    let tCount = 3;
+    let tCount = 4;
     const roll = Math.random();
-    if (roll < 0.1) { tCount = 4; }
-    else if (roll < 0.35) { tCount = 2; }
+    if (roll < 0.1) { tCount = 5; }
+    else if (roll < 0.35) { tCount = 3; }
     let trades: { [id: string] : Trade} = {};
     let pGives: {specificity: string, type: string, quality?: number,
       weight: number}[] = [];

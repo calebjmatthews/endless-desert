@@ -327,8 +327,9 @@ export default function ResourceSelectOneComponent() {
         .trades[modalValue.tradeId];
       dispatch(increaseResources(vault, [new Resource({type: trade.give.type,
         quality: trade.give.quality, quantity: quantityGiven})]));
-      dispatch(consumeResources(vault, [new Resource(Object.assign(resourceSelected,
-        {quantity: parseInt(quantitySelected)} ))]));
+      let rc = new Resource(resourceSelected).getResourceWithoutQuantity();
+      rc.quantity = parseInt(quantitySelected);
+      dispatch(consumeResources(vault, [rc]));
       dispatch(completeTrade({
         id: trade.id,
         tradingPartnerType: trade.tradingPartnerType,

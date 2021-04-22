@@ -379,6 +379,16 @@ resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.SULFUR] = new ResourceType({
+  name: RESOURCE_TYPES.SULFUR,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 200,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#e8f900',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.BRASS] = new ResourceType({
   name: RESOURCE_TYPES.BRASS,
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,

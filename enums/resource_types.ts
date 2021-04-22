@@ -34,6 +34,7 @@ export enum RESOURCE_TYPES {
   BRONZE = "Bronze",
   PALE_ORE = "Pale Ore",
   ZINC_POWDER = "Zinc Powder",
+  SULFUR = "Sulfur",
   BRASS = "Brass",
   SALT = "Salt",
   CINNAMON = "Cinnamon",
