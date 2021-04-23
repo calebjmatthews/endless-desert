@@ -518,8 +518,9 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 50}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: EQT.SIMPLE_ROBE, quantity: 0.1, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 20}]}) ],
+      [{specificity: RSP.EXACT, type: EQT.SIMPLE_ROBE + " (Unmarked)",
+        quantity: 0.1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 2}]}) ],
     requiresLeader: true
   }),
 
@@ -535,17 +536,17 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_HAVERSACK, quantity: 0.05,
-        probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_HAVERSACK + " (Unmarked)",
+        quantity: 0.05, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_GEARBAG, quantity: 0.05,
-        probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_GEARBAG + " (Unmarked)",
+        quantity: 0.05, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_KITPACK, quantity: 0.05,
-        probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}]}) ],
+      [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_KITPACK + " (Unmarked)",
+        quantity: 0.05, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}) ],
     requiresLeader: true
   }),
 
@@ -561,19 +562,19 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 80},
       {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 40}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK, quantity: 0.05,
+      [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK + " (Unmarked)", quantity: 0.05,
         probability: 1}],
-      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 10},
-        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}]}),
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1},
+        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 1}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: EQT.WOODEN_POLE, quantity: 0.05,
+      [{specificity: RSP.EXACT, type: EQT.WOODEN_POLE + " (Unmarked)", quantity: 0.05,
         probability: 1}],
-      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 15},
-        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 5}]}),
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1.5},
+        {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 0.5}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: EQT.COARSE_IMPLEMENTS, quantity: 0.05,
-        probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 20}]}) ],
+      [{specificity: RSP.EXACT, type: EQT.COARSE_IMPLEMENTS + " (Unmarked)",
+        quantity: 0.05, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2}]}) ],
     requiresLeader: true
   }),
 

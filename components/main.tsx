@@ -28,6 +28,7 @@ import LookAroundComponent from '../components/look_around';
 import LeadersComponent from '../components/leaders';
 import LandingComponent from '../components/landing';
 import EquipmentComponent from '../components/equipment';
+import ValueCheckComponent from '../components/value_check';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -101,6 +102,21 @@ export default function MainComponent() {
     icon: {provider: 'FontAwesome5', name: 'bug'},
     settings: []
   }), ...tabsArray];
+
+  return (
+    <LinearGradient
+      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+      style={styles.mainContainer}>
+      <StorageHandlerComponent />
+      <StatusBar style="auto" />
+      <View style={styles.statusBarSpacer}></View>
+      <View style={styles.scrollWrapper}>
+        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+          <ValueCheckComponent />
+        </View>
+      </View>
+    </LinearGradient>
+  );
 
   if (globalState == 'loading') {
     return (
@@ -263,13 +279,12 @@ export default function MainComponent() {
         }
         if (account.fortuityCurrent.gainResources) {
           const fgr = account.fortuityCurrent.gainResources;
-          let resourcesGained:
-            { type: string, quality: number, quantity: number }[] = [];
+          let resourcesGained: Resource[] = [];
           let resourceNames: string[] = [];
           for (let index = 0; index < fgr.length; index++) {
             const resReq = fgr[index];
             const rToGain = utils.getMatchingResourceQuantity(resReq, resourceNames);
-            resourcesGained.push(rToGain);
+            resourcesGained.push(new Resource(rToGain));
             resourceNames.push(rToGain.type);
           }
           memos[memos.length-1].resourcesGained = resourcesGained;

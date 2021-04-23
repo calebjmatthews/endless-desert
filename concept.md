@@ -312,6 +312,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     hospital, hotel, icicles, igloo, kaaba (building), kiwi-bird, landmark (building),
     lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
     spa, stroopwafel, theater, torii-gate, vihara (building)
+  Flaticon:
+    https://www.flaticon.com/packs/carpenter-27?k=1619116521843
+    https://www.flaticon.com/packs/outdoor-landscape-2
   Value symbol options: ѵ, ұ,
 
 # Time cycle:
@@ -359,6 +362,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Event where one leader moves in and unlocks the "Leaders" tab
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
+
+# Value checking table
+
+- Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
 
 # Styling:
   - Fine border:
