@@ -334,4 +334,49 @@ researchOptions[RESEARCH_OPTIONS.HIDDEN_IN_THE_SAND] = new ResearchOption({
   cost: [{specificity: RS.SUBCATEGORY, type: RSC.SAND, quantity: 100}]
 });
 
+researchOptions[RESEARCH_OPTIONS.ZYMOLOGY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.ZYMOLOGY,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  description: ('There\'s a curious chemical change that happens to wet grain '
+    + 'left alone. The water becomes beer, you know that much. But you\'d '
+    + 'love to figure out exactly how that delightful switch happens.'),
+  cost: [{specificity: RS.EXACT, type: RTY.GRAIN, quantity: 400},
+    {specificity: RS.EXACT, type: RTY.WATER, quantity: 400}]
+});
+
+// Add fire-based field note cost
+researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
+  name: RESEARCH_OPTIONS.VENTILATION_OF_FLAME,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  description: ('Making a fire as hot and concentrated as possible is more difficult '
+    + 'than expected. It\'s all about fuel and airflow, but the fire itself '
+    + 'creates its own updraft that throws everything off.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BITTER_FUMES,
+  appliesTo: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  description: ('You\'ve heard interesting things about a yellow-ish powder '
+    + 'called sulfur, and the ways it can change solid objects into liquids '
+    + 'with completely different properties. But it sure isn\'t pleasant '
+    + 'to work with.'),
+  cost: [{specificity: RS.EXACT, type: RTY.SULFUR, quantity: 20},
+    {specificity: RS.EXACT, type: RTY.WATER, quantity: 80}]
+});
+
+// Add earth-based field note cost
+researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.CHEMICAL_FIXATION,
+  appliesTo: RESEARCHES.BIOLOGY,
+  difficulty: 2,
+  description: ('Metals, clay, glass, and materials of all kinds change with time, '
+    + 'becoming dull or brittle. There must be a way to make them, if not '
+    + 'unchangeable, at least better able to resist this change from the air.'),
+  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+});
+
 export { researchOptions };

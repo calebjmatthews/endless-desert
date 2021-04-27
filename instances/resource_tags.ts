@@ -103,6 +103,15 @@ resourceTags[RESOURCE_TAGS.INGREDIENT] = new ResourceTag({
   backgroundColor: '#fff'
 });
 
+resourceTags[RESOURCE_TAGS.POTTERY] = new ResourceTag({
+  name: RESOURCE_TAGS.POTTERY,
+  value: 60,
+  extract: false,
+  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  foregroundColor: '#942c14',
+  backgroundColor: '#fff',
+});
+
 resourceTags[RESOURCE_TAGS.SPICE] = new ResourceTag({
   name: RESOURCE_TAGS.SPICE,
   value: 50,

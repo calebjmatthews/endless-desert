@@ -108,6 +108,16 @@ resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
   backgroundColor: '#fff',
 });
 
+resourceTypes[RESOURCE_TYPES.FERTILIZER] = new ResourceType({
+  name: RESOURCE_TYPES.FERTILIZER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+  value: 10,
+  icon: {provider: 'FontAwesome5', name: 'poop'},
+  foregroundColor: '#4a0e0e',
+  backgroundColor: '#fff',
+});
+
 resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
   name: RESOURCE_TYPES.OXEN,
   category: RESOURCE_CATEGORIES.MATERIAL,
@@ -279,6 +289,26 @@ resourceTypes[RESOURCE_TYPES.SLAG] = new ResourceType({
   backgroundColor: '#fff'
 });
 
+resourceTypes[RESOURCE_TYPES.CHARCOAL] = new ResourceType({
+  name: RESOURCE_TYPES.CHARCOAL,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FUEL],
+  value: 60,
+  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.CARBON] = new ResourceType({
+  name: RESOURCE_TYPES.CARBON,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  tags: [RESOURCE_TAGS.PLANT],
+  value: 80,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
 resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
   name: RESOURCE_TYPES.RUST_ORE,
   category: RESOURCE_CATEGORIES.MATERIAL,
@@ -396,6 +426,16 @@ resourceTypes[RESOURCE_TYPES.BRASS] = new ResourceType({
   value: 740,
   icon: {provider: 'FontAwesome5', name: 'bars'},
   foregroundColor: '#f5b012',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.STEEL] = new ResourceType({
+  name: RESOURCE_TYPES.STEEL,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 2000,
+  icon: {provider: 'FontAwesome5', name: 'bars'},
+  foregroundColor: '#8ea2d8',
   backgroundColor: '#fff'
 });
 
@@ -551,13 +591,103 @@ resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
   backgroundColor: '#fff'
 });
 
-resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
-  name: RESOURCE_TYPES.MILK,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
-  value: 300,
-  icon: {provider: 'MaterialCommunityIcons', name: 'pail-outline'},
-  foregroundColor: '#756f63',
+resourceTypes[RESOURCE_TYPES.ABRASIVE] = new ResourceType({
+  name: RESOURCE_TYPES.ABRASIVE,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 5,
+  icon: {provider: 'MaterialIcons', name: 'grain'},
+  foregroundColor: '#f9df00',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.BEADS] = new ResourceType({
+  name: RESOURCE_TYPES.BEADS,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 180,
+  icon: {provider: 'FontAwesome5', name: 'bowling-ball'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.GLASSWARE] = new ResourceType({
+  name: RESOURCE_TYPES.GLASSWARE,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 800,
+  icon: {provider: 'FontAwesome5', name: 'wine-glass-alt'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.LENSES] = new ResourceType({
+  name: RESOURCE_TYPES.LENSES,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [],
+  value: 1800,
+  icon: {provider: 'MaterialCommunityIcons', name: 'moon-waning-gibbous'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.ACID] = new ResourceType({
+  name: RESOURCE_TYPES.ACID,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 160,
+  icon: {provider: 'FontAwesome5', name: 'tint'},
+  foregroundColor: '#e8f900',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.GLAZE_TIN] = new ResourceType({
+  name: RESOURCE_TYPES.GLAZE_TIN,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 800,
+  icon: {provider: 'FontAwesome5', name: 'tint'},
+  foregroundColor: '#c3ced8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.GLAZE_ASH] = new ResourceType({
+  name: RESOURCE_TYPES.GLAZE_ASH,
+  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
+  tags: [],
+  value: 240,
+  icon: {provider: 'FontAwesome5', name: 'tint'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.TERRACOTTA] = new ResourceType({
+  name: RESOURCE_TYPES.TERRACOTTA,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.POTTERY],
+  value: 60,
+  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  foregroundColor: '#942c14',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.FAIENCE] = new ResourceType({
+  name: RESOURCE_TYPES.FAIENCE,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.POTTERY],
+  value: 1200,
+  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  foregroundColor: '#c3ced8',
+  backgroundColor: '#fff'
+});
+
+resourceTypes[RESOURCE_TYPES.ASHWARE] = new ResourceType({
+  name: RESOURCE_TYPES.ASHWARE,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.POTTERY],
+  value: 480,
+  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  foregroundColor: '#000',
   backgroundColor: '#fff'
 });
 
@@ -628,6 +758,26 @@ resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
   value: 1,
   icon: {provider: 'FontAwesome5', name: 'trash-alt'},
   foregroundColor: '#97e600',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.BEER] = new ResourceType({
+  name: RESOURCE_TYPES.BEER,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.DRINK],
+  value: 60,
+  icon: {provider: 'MaterialCommunityIcons', name: 'glass-mug-variant'},
+  foregroundColor: '#e8cf1e',
+  backgroundColor: '#fff',
+});
+
+resourceTypes[RESOURCE_TYPES.LIQUOR] = new ResourceType({
+  name: RESOURCE_TYPES.LIQUOR,
+  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  tags: [RESOURCE_TAGS.DRINK],
+  value: 180,
+  icon: {provider: 'MaterialCommunityIcons', name: 'glass-tulip'},
+  foregroundColor: '#9c521d',
   backgroundColor: '#fff',
 });
 

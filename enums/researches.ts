@@ -34,9 +34,17 @@ export enum RESEARCHES {
   OUTFITTING = "Outfitting",
   TOOL_FABRICATION = "Tool Fabrication",
   COMPACTION = "Compaction",
-  COMPACTION_SIMPLIFIED = "Compaction Simplified",
+  COMPACTION_SIMPLIFIED = "Simplified Compaction",
   CHEMISTRY = "Chemistry",
   DEHYDRATION = "Dehydration",
+  DEHYDRATION_SIMPLIFIED = "Simplified Dehydration",
   COMBUSTION = "Combustion",
-  COOKING = "Cooking"
+  COMBUSTION_SIMPLIFIED = "Simplified Combustion",
+  COMBUSTION_VENTILATED = "Ventilated Combustion",
+  COOKING = "Cooking",
+  COOKING_BOUNTIFUL = "Bountiful Cooking",
+  GLASS_SHAPING = "Glass Shaping",
+  SOLVENTS = "Solvents",
+  POTTERY = "Pottery",
+  FERMENTATION = "Fermentation"
 }

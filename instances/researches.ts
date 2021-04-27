@@ -122,7 +122,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
 
 researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   name: RESEARCHES.LENTIL_FARMING_HEARTY,
-  unlocks: ('Allows and upgrade to Lentil Fields.'),
+  unlocks: ('Allows an upgrade to Lentil Fields.'),
   description: ('Some minor adaptations to your fields allow lentils to grow '
     + 'faster, and with even less water. The taste is unchanged.'),
   icon: {provider: 'FontAwesome5', name: 'seedling'},
@@ -200,7 +200,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.BIOLOGY,
   difficulty: 1,
-  stepsNeeded: 5,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.GRAIN_FARMING],
   knowledgeReq: 200,
@@ -495,7 +495,7 @@ researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 2,
-  stepsNeeded: 4,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 2500,
@@ -531,7 +531,7 @@ researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 2,
-  stepsNeeded: 4,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.GRINDING, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 4500,
@@ -567,7 +567,7 @@ researches[RESEARCHES.TAILORING] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.PHYSICS,
   difficulty: 2,
-  stepsNeeded: 4,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
   knowledgeReq: 6500,
@@ -621,7 +621,7 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.CHEMISTRY,
   difficulty: 1,
-  stepsNeeded: 3,
+  stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY, RESEARCHES.PHYSICS],
   knowledgeReq: 80,
@@ -645,6 +645,24 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.DRYING_YARD]
 });
 
+///
+researches[RESEARCHES.DEHYDRATION_SIMPLIFIED] = new Research({
+  name: RESEARCHES.DEHYDRATION_SIMPLIFIED,
+  unlocks: ('Allows Drying Yards to be run without a leader.'),
+  description: ('You\'ve put together simple diagrams showing where each material '
+    + 'needs to be placed, and which shouldn\'t touch.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
+  foregroundColor: '#ff0000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 1800,
+  unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_SIMPLIFIED]
+});
+
 researches[RESEARCHES.COMBUSTION] = new Research({
   name: RESEARCHES.COMBUSTION,
   unlocks: ('Unlocks Furnaces.'),
@@ -656,11 +674,47 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.CHEMISTRY,
   difficulty: 1,
-  stepsNeeded: 4,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY],
   knowledgeReq: 320,
   unlocksBuilding: [BUILDING_TYPES.FURNACE]
+});
+
+researches[RESEARCHES.COMBUSTION_SIMPLIFIED] = new Research({
+  name: RESEARCHES.COMBUSTION_SIMPLIFIED,
+  unlocks: ('Allows Furnaces to be run without a leader.'),
+  description: ('Stoking the furnace to the proper temperature used to be an art. '
+    + 'But the furnace you\'ve made is now unrecognizable, covered in vents '
+    + 'and pulleys.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
+  foregroundColor: '#b02727',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 3200,
+  unlocksUpgrade: [BUILDING_TYPES.FURNACE_SIMPLIFIED]
+});
+
+researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
+  name: RESEARCHES.COMBUSTION_VENTILATED,
+  unlocks: ('Allows Furnaces to be run without a leader.'),
+  description: ('There are some metals that require greater heat to form than your '
+    + 'furnace can manage: much, much greater. You\'ll need more powerful fuel, '
+    + 'more of it, and continuous fresh air spiraling in.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
+  foregroundColor: '#b02727',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION_SIMPLIFIED],
+  knowledgeReq: 6400,
+  unlocksUpgrade: [BUILDING_TYPES.FURNACE_BLAST]
 });
 
 researches[RESEARCHES.COOKING] = new Research({
@@ -673,11 +727,98 @@ researches[RESEARCHES.COOKING] = new Research({
   backgroundColor: '#fff',
   category: RESEARCHES.CHEMISTRY,
   difficulty: 1,
-  stepsNeeded: 5,
+  stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMBUSTION],
   knowledgeReq: 320,
   unlocksBuilding: [BUILDING_TYPES.KITCHEN]
+});
+
+researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
+  name: RESEARCHES.COOKING_BOUNTIFUL,
+  unlocks: ('Allows an upgrade to Kitchens.'),
+  description: ('Some say that cooking is an art, but that\'s debatable. If it '
+    + 'were truly art, would you be able to make it this efficient?'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
+  foregroundColor: '#000',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COOKING, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 3200,
+  unlocksUpgrade: [BUILDING_TYPES.KITCHEN_BOUNTIFUL]
+});
+
+researches[RESEARCHES.GLASS_SHAPING] = new Research({
+  name: RESEARCHES.GLASS_SHAPING,
+  unlocks: ('Unlocks Glassworks.'),
+  description: ('Glass can be blown, ground, or shaped into many more forms '
+    + ' than the flat panes made in a furnace.'),
+  icon: {provider: 'FontAwesome5', name: 'window-restore'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 5000,
+  unlocksBuilding: [BUILDING_TYPES.GLASSWORKS]
+});
+
+researches[RESEARCHES.SOLVENTS] = new Research({
+  name: RESEARCHES.SOLVENTS,
+  unlocks: ('Unlocks Laboratories.'),
+  description: ('There are powers and properties that are hidden in substances, and '
+    + 'to control them you\'ll have to dissolve them.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'flask'},
+  foregroundColor: '#33cee2',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GLASS_SHAPING],
+  knowledgeReq: 9000,
+  unlocksBuilding: [BUILDING_TYPES.LABORATORY]
+});
+
+researches[RESEARCHES.POTTERY] = new Research({
+  name: RESEARCHES.POTTERY,
+  unlocks: ('Unlocks Pottery Kiln.'),
+  description: ('Simple terracotta isn\'t far removed from the clay bricks baked '
+    + 'under the sun. But far more is possible: fine (and valuable) ceramics made '
+    + 'from rare clays and glazes.'),
+  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  foregroundColor: '#942c14',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 7000,
+  unlocksBuilding: [BUILDING_TYPES.POTTERY_KILN]
+});
+
+researches[RESEARCHES.FERMENTATION] = new Research({
+  name: RESEARCHES.FERMENTATION,
+  unlocks: ('Unlocks Brewery.'),
+  description: ('Now here\'s something your people have been clamoring for: '
+    + 'something more interesting (and entertaining) to drink at the end '
+    + 'of a hard day\'s work.'),
+  icon: {provider: 'MaterialCommunityIcons', name: 'glass-mug-variant'},
+  foregroundColor: '#e8cf1e',
+  backgroundColor: '#fff',
+  category: RESEARCHES.CHEMISTRY,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 8000,
+  unlocksBuilding: [BUILDING_TYPES.BREWERY]
 });
 
 export { researches }

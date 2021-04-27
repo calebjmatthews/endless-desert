@@ -37,5 +37,12 @@ export enum BUILDING_TYPES {
   DRYING_YARD = "Drying Yard",
   DRYING_YARD_SIMPLIFIED = "Simplified Drying Yard",
   FURNACE = "Furnace",
-  KITCHEN = "Kitchen"
+  FURNACE_SIMPLIFIED = "Simplified Furnace",
+  FURNACE_BLAST = "Blast Furnace",
+  KITCHEN = "Kitchen",
+  KITCHEN_BOUNTIFUL = "Bountiful Kitchen",
+  GLASSWORKS = "Glassworks",
+  LABORATORY = "Laboratory",
+  POTTERY_KILN = "Pottery Kiln",
+  BREWERY = "Brewery"
 }

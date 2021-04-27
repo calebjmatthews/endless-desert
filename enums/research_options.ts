@@ -44,5 +44,11 @@ export enum RESEARCH_OPTIONS {
   HINTS_FROM_ALCHEMY = "Hints from Alchemy",
   DISTILLATION = "Distillation",
   FIRE_STARTING = "Fire Starting",
-  HIDDEN_IN_THE_SAND = "Hidden in the Sand"
+  HIDDEN_IN_THE_SAND = "Hidden in the Sand",
+
+  // Chemistry Lv 2
+  ZYMOLOGY = "Zymology",
+  VENTILATION_OF_FLAME = "Ventilation of Flame",
+  BITTER_FUMES = "Bitter Fumes",
+  CHEMICAL_FIXATION = "Chemical Fixation"
 }
