@@ -1,10 +1,12 @@
 import ResourceType from '../models/resource_type';
+import Icon from '../models/icon';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
+import { SVGS } from '../enums/svgs';
 
 let resourceTypes: { [name: string] : ResourceType } = {};
 
@@ -13,7 +15,7 @@ resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ETHERIAL,
   tags: [RESOURCE_TAGS.MIND],
   value: 1,
-  icon: {provider: 'FontAwesome5', name: 'graduation-cap'},
+  icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE}),
   foregroundColor: '#2b2b2d',
   backgroundColor: '#fff'
 });
@@ -23,7 +25,7 @@ resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK, RESOURCE_TAGS.INGREDIENT],
   value: 5,
-  icon: {provider: 'FontAwesome5', name: 'water'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'water'}),
   foregroundColor: '#2196f3',
   backgroundColor: '#fff'
 });
@@ -33,7 +35,7 @@ resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD, RESOURCE_TAGS.INGREDIENT],
   value: 10,
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
+  icon: new Icon({provider: 'svg', name: SVGS.LENTILS}),
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
@@ -43,7 +45,7 @@ resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 40,
-  icon: {provider: 'MaterialCommunityIcons', name: 'seed'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'seed'}),
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
@@ -53,7 +55,7 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.FUEL],
   value: 8,
-  icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'reorder-vertical'}),
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
@@ -63,7 +65,7 @@ resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 15,
-  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'corn'}),
   foregroundColor: '#d8be04',
   backgroundColor: '#fff'
 });
@@ -73,7 +75,7 @@ resourceTypes[RESOURCE_TYPES.FLOUR] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 25,
-  icon: {provider: 'FontAwesome5', name: 'shopping-bag'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'shopping-bag'}),
   foregroundColor: '#d8be04',
   backgroundColor: '#fff'
 });
@@ -83,7 +85,7 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT],
   value: 25,
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
+  icon: new Icon({provider: 'FontAwesome', name: 'pagelines'}),
   foregroundColor: '#97c701',
   backgroundColor: '#fff'
 });
@@ -93,7 +95,7 @@ resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
   value: 200,
-  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'kiwi-bird'}),
   foregroundColor: '#caa096',
   backgroundColor: '#fff',
 });
@@ -103,7 +105,7 @@ resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
   value: 80,
-  icon: {provider: 'MaterialCommunityIcons', name: 'egg'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'egg'}),
   foregroundColor: '#000',
   backgroundColor: '#fff',
 });
@@ -113,7 +115,7 @@ resourceTypes[RESOURCE_TYPES.FERTILIZER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
   value: 10,
-  icon: {provider: 'FontAwesome5', name: 'poop'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'poop'}),
   foregroundColor: '#4a0e0e',
   backgroundColor: '#fff',
 });
@@ -123,7 +125,7 @@ resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
   value: 400,
-  icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cow'}),
   foregroundColor: '#4a0e0e',
   backgroundColor: '#fff',
 });
@@ -133,7 +135,7 @@ resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
   value: 100,
-  icon: {provider: 'Entypo', name: 'bucket'},
+  icon: new Icon({provider: 'Entypo', name: 'bucket'}),
   foregroundColor: '#000',
   backgroundColor: '#fff',
 });
@@ -143,7 +145,7 @@ resourceTypes[RESOURCE_TYPES.SILKWORM_COCOON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
   value: 200,
-  icon: {provider: 'MaterialCommunityIcons', name: 'bug'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'bug'}),
   foregroundColor: '#4f8000',
   backgroundColor: '#fff',
 });
@@ -154,7 +156,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BITTER],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#790f0f',
   backgroundColor: '#fff'
 });
@@ -165,7 +167,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_ROWAN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.HERBAL],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#95a53c',
   backgroundColor: '#fff'
 });
@@ -176,7 +178,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_WALNUT] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SOUR],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#927150',
   backgroundColor: '#fff'
 });
@@ -187,7 +189,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_ALDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SPICY],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#a5104e',
   backgroundColor: '#fff'
 });
@@ -198,7 +200,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SWEET],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#d2734f',
   backgroundColor: '#fff'
 });
@@ -209,7 +211,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BRACKISH],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#e87b7b',
   backgroundColor: '#fff'
 });
@@ -220,7 +222,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_ASH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SAVORY],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#ffcd8f',
   backgroundColor: '#fff'
 });
@@ -231,7 +233,7 @@ resourceTypes[RESOURCE_TYPES.WOOD_SPRUCE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.COOLING],
   value: 50,
-  icon: {provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
   foregroundColor: '#633c02',
   backgroundColor: '#fff'
 });
@@ -242,7 +244,7 @@ resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 15,
-  icon: {provider: 'FontAwesome5', name: 'splotch'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'splotch'}),
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff'
 });
@@ -253,7 +255,7 @@ resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 80,
-  icon: {provider: 'FontAwesome', name: 'cubes'},
+  icon: new Icon({provider: 'FontAwesome', name: 'cubes'}),
   foregroundColor: '#a91f1f',
   backgroundColor: '#fff'
 });
@@ -263,7 +265,7 @@ resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 40,
-  icon: {provider: 'MaterialCommunityIcons', name: 'pound-box'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pound-box'}),
   foregroundColor: '#ceb903',
   backgroundColor: '#fff'
 });
@@ -274,7 +276,7 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 3,
-  icon: {provider: 'FontAwesome5', name: 'mountain'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'mountain'}),
   foregroundColor: '#f9df00',
   backgroundColor: '#fff'
 });
@@ -284,7 +286,7 @@ resourceTypes[RESOURCE_TYPES.SLAG] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 1,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -294,7 +296,7 @@ resourceTypes[RESOURCE_TYPES.CHARCOAL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FUEL],
   value: 60,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -304,7 +306,7 @@ resourceTypes[RESOURCE_TYPES.CARBON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT],
   value: 80,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -314,7 +316,7 @@ resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 200,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#a02d01',
   backgroundColor: '#fff'
 });
@@ -324,7 +326,7 @@ resourceTypes[RESOURCE_TYPES.IRON_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 350,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#a02d01',
   backgroundColor: '#fff'
 });
@@ -334,7 +336,7 @@ resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 400,
-  icon: {provider: 'FontAwesome5', name: 'bars'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'bars'}),
   foregroundColor: '#a02d01',
   backgroundColor: '#fff'
 });
@@ -344,7 +346,7 @@ resourceTypes[RESOURCE_TYPES.GREENISH_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 600,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#00a07c',
   backgroundColor: '#fff'
 });
@@ -354,7 +356,7 @@ resourceTypes[RESOURCE_TYPES.COPPER_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 1100,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#ff7f22',
   backgroundColor: '#fff'
 });
@@ -364,7 +366,7 @@ resourceTypes[RESOURCE_TYPES.DUSTY_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 400,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#758da2',
   backgroundColor: '#fff'
 });
@@ -374,7 +376,7 @@ resourceTypes[RESOURCE_TYPES.TIN_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 650,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#c3ced8',
   backgroundColor: '#fff'
 });
@@ -384,7 +386,7 @@ resourceTypes[RESOURCE_TYPES.BRONZE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 800,
-  icon: {provider: 'FontAwesome5', name: 'bars'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'bars'}),
   foregroundColor: '#ce6112',
   backgroundColor: '#fff'
 });
@@ -394,7 +396,7 @@ resourceTypes[RESOURCE_TYPES.PALE_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 350,
-  icon: {provider: 'MaterialCommunityIcons', name: 'circle-slice-8'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
   foregroundColor: '#cfcfe2',
   backgroundColor: '#fff'
 });
@@ -404,7 +406,7 @@ resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 620,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#cfcfe2',
   backgroundColor: '#fff'
 });
@@ -414,7 +416,7 @@ resourceTypes[RESOURCE_TYPES.SULFUR] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 200,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#e8f900',
   backgroundColor: '#fff'
 });
@@ -424,7 +426,7 @@ resourceTypes[RESOURCE_TYPES.BRASS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 740,
-  icon: {provider: 'FontAwesome5', name: 'bars'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'bars'}),
   foregroundColor: '#f5b012',
   backgroundColor: '#fff'
 });
@@ -434,7 +436,7 @@ resourceTypes[RESOURCE_TYPES.STEEL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 2000,
-  icon: {provider: 'FontAwesome5', name: 'bars'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'bars'}),
   foregroundColor: '#8ea2d8',
   backgroundColor: '#fff'
 });
@@ -444,7 +446,7 @@ resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.BRACKISH, RESOURCE_TAGS.SPICE],
   value: 20,
-  icon: {provider: 'FontAwesome5', name: 'mortar-pestle'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'mortar-pestle'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -454,7 +456,7 @@ resourceTypes[RESOURCE_TYPES.CINNAMON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.SAVORY, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'FontAwesome5', name: 'mortar-pestle'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'mortar-pestle'}),
   foregroundColor: '#bf1414',
   backgroundColor: '#fff'
 });
@@ -464,7 +466,7 @@ resourceTypes[RESOURCE_TYPES.CAROB] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.SWEET, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'MaterialCommunityIcons', name: 'seed-outline'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'seed-outline'}),
   foregroundColor: '#843619',
   backgroundColor: '#fff'
 });
@@ -474,7 +476,7 @@ resourceTypes[RESOURCE_TYPES.MINT] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.COOLING, RESOURCE_TAGS.SPICE],
   value: 80,
-  icon: {provider: 'FontAwesome5', name: 'leaf'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'leaf'}),
   foregroundColor: '#38ca8d',
   backgroundColor: '#fff'
 });
@@ -484,7 +486,7 @@ resourceTypes[RESOURCE_TYPES.PEPPERCORN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.SPICY, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#272727',
   backgroundColor: '#fff'
 });
@@ -494,7 +496,7 @@ resourceTypes[RESOURCE_TYPES.CORIANDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.HERBAL, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'FontAwesome5', name: 'leaf'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'leaf'}),
   foregroundColor: '#1ca921',
   backgroundColor: '#fff'
 });
@@ -504,7 +506,7 @@ resourceTypes[RESOURCE_TYPES.ANISE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.BITTER, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'FontAwesome5', name: 'star'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'star'}),
   foregroundColor: '#6b1f03',
   backgroundColor: '#fff'
 });
@@ -514,7 +516,7 @@ resourceTypes[RESOURCE_TYPES.SORREL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.SOUR, RESOURCE_TAGS.SPICE],
   value: 40,
-  icon: {provider: 'MaterialIcons', name: 'grass'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grass'}),
   foregroundColor: '#8eb530',
   backgroundColor: '#fff'
 });
@@ -525,7 +527,7 @@ resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 120,
-  icon: {provider: 'FontAwesome5', name: 'solar-panel'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'solar-panel'}),
   foregroundColor: '#33cee2',
   backgroundColor: '#fff'
 });
@@ -536,7 +538,7 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.SPICE],
   value: 250,
-  icon: {provider: 'FontAwesome5', name: 'oil-can'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'oil-can'}),
   foregroundColor: '#97c701',
   backgroundColor: '#fff'
 });
@@ -546,7 +548,7 @@ resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 50,
-  icon: {provider: 'FontAwesome', name: 'certificate'},
+  icon: new Icon({provider: 'FontAwesome', name: 'certificate'}),
   foregroundColor: '#e6dab8',
   backgroundColor: '#fff'
 });
@@ -556,7 +558,7 @@ resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 150,
-  icon: {provider: 'FontAwesome5', name: 'newspaper'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'newspaper'}),
   foregroundColor: '#e6dab8',
   backgroundColor: '#fff'
 });
@@ -566,7 +568,7 @@ resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 300,
-  icon: {provider: 'FontAwesome5', name: 'tint'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -576,7 +578,7 @@ resourceTypes[RESOURCE_TYPES.LINEN] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 200,
-  icon: {provider: 'Entypo', name: 'spreadsheet'},
+  icon: new Icon({provider: 'Entypo', name: 'spreadsheet'}),
   foregroundColor: '#b7efe4',
   backgroundColor: '#fff'
 });
@@ -586,7 +588,7 @@ resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 2000,
-  icon: {provider: 'MaterialCommunityIcons', name: 'lightbulb-cfl-spiral'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'lightbulb-cfl-spiral'}),
   foregroundColor: '#ffe668',
   backgroundColor: '#fff'
 });
@@ -596,7 +598,7 @@ resourceTypes[RESOURCE_TYPES.ABRASIVE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.EARTH],
   value: 5,
-  icon: {provider: 'MaterialIcons', name: 'grain'},
+  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
   foregroundColor: '#f9df00',
   backgroundColor: '#fff'
 });
@@ -606,7 +608,7 @@ resourceTypes[RESOURCE_TYPES.BEADS] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 180,
-  icon: {provider: 'FontAwesome5', name: 'bowling-ball'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'bowling-ball'}),
   foregroundColor: '#33cee2',
   backgroundColor: '#fff'
 });
@@ -616,7 +618,7 @@ resourceTypes[RESOURCE_TYPES.GLASSWARE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 800,
-  icon: {provider: 'FontAwesome5', name: 'wine-glass-alt'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'wine-glass-alt'}),
   foregroundColor: '#33cee2',
   backgroundColor: '#fff'
 });
@@ -626,7 +628,7 @@ resourceTypes[RESOURCE_TYPES.LENSES] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 1800,
-  icon: {provider: 'MaterialCommunityIcons', name: 'moon-waning-gibbous'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'moon-waning-gibbous'}),
   foregroundColor: '#33cee2',
   backgroundColor: '#fff'
 });
@@ -636,7 +638,7 @@ resourceTypes[RESOURCE_TYPES.ACID] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 160,
-  icon: {provider: 'FontAwesome5', name: 'tint'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
   foregroundColor: '#e8f900',
   backgroundColor: '#fff'
 });
@@ -646,7 +648,7 @@ resourceTypes[RESOURCE_TYPES.GLAZE_TIN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 800,
-  icon: {provider: 'FontAwesome5', name: 'tint'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
   foregroundColor: '#c3ced8',
   backgroundColor: '#fff'
 });
@@ -656,7 +658,7 @@ resourceTypes[RESOURCE_TYPES.GLAZE_ASH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 240,
-  icon: {provider: 'FontAwesome5', name: 'tint'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -666,7 +668,7 @@ resourceTypes[RESOURCE_TYPES.TERRACOTTA] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 60,
-  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
   foregroundColor: '#942c14',
   backgroundColor: '#fff',
 });
@@ -676,7 +678,7 @@ resourceTypes[RESOURCE_TYPES.FAIENCE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 1200,
-  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
   foregroundColor: '#c3ced8',
   backgroundColor: '#fff'
 });
@@ -686,7 +688,7 @@ resourceTypes[RESOURCE_TYPES.ASHWARE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 480,
-  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
   foregroundColor: '#000',
   backgroundColor: '#fff'
 });
@@ -696,7 +698,7 @@ resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: {provider: 'MaterialCommunityIcons', name: 'pot'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pot'}),
   foregroundColor: '#59a500',
   backgroundColor: '#fff'
 });
@@ -706,7 +708,7 @@ resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.FOOD],
   value: 200,
-  icon: {provider: 'MaterialCommunityIcons', name: 'baguette'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'baguette'}),
   foregroundColor: '#790f0f',
   backgroundColor: '#fff'
 });
@@ -716,7 +718,7 @@ resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: {provider: 'MaterialCommunityIcons', name: 'egg'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'egg'}),
   foregroundColor: '#ffeb38',
   backgroundColor: '#fff',
 });
@@ -726,7 +728,7 @@ resourceTypes[RESOURCE_TYPES.STEW] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: {provider: 'MaterialCommunityIcons', name: 'pot-mix'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pot-mix'}),
   foregroundColor: '#795548',
   backgroundColor: '#fff',
 });
@@ -736,7 +738,7 @@ resourceTypes[RESOURCE_TYPES.PIE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: {provider: 'FontAwesome5', name: 'chart-pie'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'chart-pie'}),
   foregroundColor: '#673ab7',
   backgroundColor: '#fff',
 });
@@ -746,7 +748,7 @@ resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: {provider: 'FontAwesome5', name: 'birthday-cake'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'birthday-cake'}),
   foregroundColor: '#e493a1',
   backgroundColor: '#fff',
 });
@@ -756,7 +758,7 @@ resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 1,
-  icon: {provider: 'FontAwesome5', name: 'trash-alt'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'trash-alt'}),
   foregroundColor: '#97e600',
   backgroundColor: '#fff',
 });
@@ -766,7 +768,7 @@ resourceTypes[RESOURCE_TYPES.BEER] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.DRINK],
   value: 60,
-  icon: {provider: 'MaterialCommunityIcons', name: 'glass-mug-variant'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'glass-mug-variant'}),
   foregroundColor: '#e8cf1e',
   backgroundColor: '#fff',
 });
@@ -776,7 +778,7 @@ resourceTypes[RESOURCE_TYPES.LIQUOR] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.DRINK],
   value: 180,
-  icon: {provider: 'MaterialCommunityIcons', name: 'glass-tulip'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'glass-tulip'}),
   foregroundColor: '#9c521d',
   backgroundColor: '#fff',
 });
@@ -786,7 +788,7 @@ resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceTyp
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: {provider: 'MaterialCommunityIcons', name: 'pickaxe'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pickaxe'}),
   foregroundColor: '#6d6d6d',
   backgroundColor: '#fff'
 });
@@ -796,7 +798,7 @@ resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType(
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: {provider: 'FontAwesome5', name: 'slash'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'slash'}),
   foregroundColor: '#795548',
   backgroundColor: '#fff'
 });
@@ -806,7 +808,7 @@ resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new Resourc
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: {provider: 'FontAwesome5', name: 'tools'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tools'}),
   foregroundColor: '#6d6d6d',
   backgroundColor: '#fff'
 });
@@ -816,7 +818,7 @@ resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType(
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.CLOTHING],
   value: 2000,
-  icon: {provider: 'FontAwesome5', name: 'tshirt'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'tshirt'}),
   foregroundColor: '#afc1ec',
   backgroundColor: '#fff'
 });
@@ -827,7 +829,7 @@ new ResourceType({
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: {provider: 'FontAwesome5', name: 'box'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'box'}),
   foregroundColor: '#1a7b1d',
   backgroundColor: '#fff'
 });
@@ -838,7 +840,7 @@ new ResourceType({
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'toolbox'}),
   foregroundColor: '#1a457b',
   backgroundColor: '#fff'
 });
@@ -849,7 +851,7 @@ new ResourceType({
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: {provider: 'FontAwesome5', name: 'toolbox'},
+  icon: new Icon({provider: 'FontAwesome5', name: 'toolbox'}),
   foregroundColor: '#7a1a7b',
   backgroundColor: '#fff'
 });

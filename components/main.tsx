@@ -29,6 +29,7 @@ import LeadersComponent from '../components/leaders';
 import LandingComponent from '../components/landing';
 import EquipmentComponent from '../components/equipment';
 import ValueCheckComponent from '../components/value_check';
+import BadgeComponent from '../components/badge';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -40,6 +41,7 @@ import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
 import Building from '../models/building';
+import Icon from '../models/icon';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -103,20 +105,35 @@ export default function MainComponent() {
     settings: []
   }), ...tabsArray];
 
-  return (
-    <LinearGradient
-      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
-      style={styles.mainContainer}>
-      <StorageHandlerComponent />
-      <StatusBar style="auto" />
-      <View style={styles.statusBarSpacer}></View>
-      <View style={styles.scrollWrapper}>
-        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
-          <ValueCheckComponent />
-        </View>
-      </View>
-    </LinearGradient>
-  );
+  // return (
+  //   <LinearGradient
+  //     colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+  //     style={styles.mainContainer}>
+  //     <StorageHandlerComponent />
+  //     <StatusBar style="auto" />
+  //     <View style={styles.statusBarSpacer}></View>
+  //     <View style={styles.scrollWrapper}>
+  //       <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+  //         <ValueCheckComponent />
+  //       </View>
+  //     </View>
+  //   </LinearGradient>
+  // );
+
+  // return (
+  //   <LinearGradient
+  //     colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+  //     style={styles.mainContainer}>
+  //     <StatusBar style="auto" />
+  //     <View style={styles.statusBarSpacer}></View>
+  //     <View style={styles.scrollWrapper}>
+  //       <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+  //         <BadgeComponent icon={new Icon({ provider: 'svg', name: 'Knowledge',
+  //           size: 29 })} />
+  //       </View>
+  //     </View>
+  //   </LinearGradient>
+  // );
 
   if (globalState == 'loading') {
     return (

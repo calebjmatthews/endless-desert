@@ -1,10 +1,12 @@
+import Icon from './icon';
+
 export default class ResourceType {
   name: string = '';
   category: string = '';
   subcategory?: string|null = null;
   tags: string[] = [];
   value: number = 0;
-  icon: {provider: string, name: string} = {provider: '', name: ''};
+  icon: Icon = new Icon({provider: '', name: ''});
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
 

@@ -2,21 +2,40 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { styles } from '../styles';
 import IconComponent from './icon';
+import BadgeIconComponent from './badge_icon';
+import SvgComponent from './svg';
+
+import Icon from '../models/icon';
 
 export default function BadgeComponent(props: BadgeProps) {
-  let badgeStyle = getBadgeStyle(props.iconSize, props.borderless, props.quality);
-  return (
-    <View style={badgeStyle} >
-      <IconComponent
-        provider={props.provider}
-        name={props.name}
-        color={props.foregroundColor}
-        size={props.iconSize} />
-    </View>
-  );
+  if (props.icon) {
+    if (props.icon.provider == 'svg') {
+      let badgeStyle = getBadgeStyle(props.icon.size, props.icon.borderless,
+        props.icon.quality);
+      return (
+        <View style={badgeStyle}>
+          <SvgComponent icon={props.icon} />
+        </View>
+      );
+    }
+  }
+
+  if (props.provider) {
+    let name = props.name || '';
+    let foregroundColor = props.foregroundColor || '';
+    let backgroundColor = props.backgroundColor || '';
+    return <BadgeIconComponent provider={props.provider} name={name}
+      foregroundColor={foregroundColor} backgroundColor={backgroundColor}
+      iconSize={props.iconSize} borderless={props.borderless}
+      quality={props.quality} />
+  }
+
+  return null;
 
   function getBadgeStyle(iconSize: number|undefined, borderless: boolean|undefined,
     quality: number|undefined) {
+    let backgroundColor = props.backgroundColor;
+    if (props.icon) { backgroundColor = props.icon.backgroundColor; }
     let badgeStyle: any = {
       display: 'flex',
       justifyContent: 'center',
@@ -24,7 +43,7 @@ export default function BadgeComponent(props: BadgeProps) {
       height: 30,
       width: 30,
       margin: 5,
-      backgroundColor: props.backgroundColor,
+      backgroundColor: backgroundColor,
       borderWidth: 2,
       borderStyle: 'solid',
       borderColor: '#071f56',
@@ -55,11 +74,12 @@ export default function BadgeComponent(props: BadgeProps) {
 }
 
 interface BadgeProps {
-  provider: string,
-  name: string,
-  foregroundColor: string,
-  backgroundColor: string,
-  iconSize: number|undefined,
+  icon?: Icon,
+  provider?: string,
+  name?: string,
+  foregroundColor?: string,
+  backgroundColor?: string,
+  iconSize?: number|undefined,
   borderless?: boolean,
   quality?: number
 }

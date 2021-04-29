@@ -107,6 +107,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setBuildingsAvailable() {
     Object.keys(this.status).map((researchName) => {
       let research = researches[researchName];
+      if (!research) { console.log(researchName); }
       if (research.unlocksBuilding && this.status[researchName] == 'completed') {
         research.unlocksBuilding.map((buildingName) => {
           this.buildingsAvailable[buildingName] = true;

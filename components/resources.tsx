@@ -93,13 +93,7 @@ function ResourceDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent
-        provider={resourceType.icon.provider}
-        name={resourceType.icon.name}
-        foregroundColor={resourceType.foregroundColor}
-        backgroundColor={resourceType.backgroundColor}
-        iconSize={18}
-        quality={resource.quality} />
+      {renderBadge(resourceType)}
       <View style={styles.containerStretchRow}>
         <View>
           <Text style={textStyle}>
@@ -118,4 +112,21 @@ function ResourceDescription(props: any) {
 
     </View>
   );
+
+  function renderBadge(resourceType: ResourceType) {
+    if (resourceType.icon.provider == 'svg') {
+      return (
+        <BadgeComponent icon={resourceType.icon} />
+      );
+    }
+    return (
+      <BadgeComponent
+        provider={resourceType.icon.provider}
+        name={resourceType.icon.name}
+        foregroundColor={resourceType.foregroundColor}
+        backgroundColor={resourceType.backgroundColor}
+        iconSize={18}
+        quality={resource.quality} />
+    );
+  }
 }
