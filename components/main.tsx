@@ -258,17 +258,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let testKitchen = new Building({id: '12341234',
-        buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
-        recipeSelected: 0, recipe: null });
-      let dish = testKitchen.getDishFromIngredients([
-        resourceTypes[RESOURCE_TYPES.WATER],
-        resourceTypes[RESOURCE_TYPES.GRAIN],
-        resourceTypes[RESOURCE_TYPES.SEEDS],
-        resourceTypes[RESOURCE_TYPES.SALT]],
-        resourceTypes);
-      console.log('dish');
-      console.log(dish);
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

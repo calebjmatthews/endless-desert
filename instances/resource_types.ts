@@ -15,9 +15,7 @@ resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ETHERIAL,
   tags: [RESOURCE_TAGS.MIND],
   value: 1,
-  icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE}),
-  foregroundColor: '#2b2b2d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE})
 });
 
 resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
@@ -25,9 +23,7 @@ resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK, RESOURCE_TAGS.INGREDIENT],
   value: 5,
-  icon: new Icon({provider: 'FontAwesome5', name: 'water'}),
-  foregroundColor: '#2196f3',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WATER})
 });
 
 resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
@@ -35,9 +31,7 @@ resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD, RESOURCE_TAGS.INGREDIENT],
   value: 10,
-  icon: new Icon({provider: 'svg', name: SVGS.LENTILS}),
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.LENTILS})
 });
 
 resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
@@ -45,9 +39,7 @@ resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 40,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'seed'}),
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS})
 });
 
 resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
@@ -55,9 +47,7 @@ resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.FUEL],
   value: 8,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'reorder-vertical'}),
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.REEDS})
 });
 
 resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
@@ -65,9 +55,7 @@ resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 15,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'corn'}),
-  foregroundColor: '#d8be04',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.GRAIN})
 });
 
 resourceTypes[RESOURCE_TYPES.FLOUR] = new ResourceType({
@@ -75,9 +63,7 @@ resourceTypes[RESOURCE_TYPES.FLOUR] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
   value: 25,
-  icon: new Icon({provider: 'FontAwesome5', name: 'shopping-bag'}),
-  foregroundColor: '#d8be04',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
 resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
@@ -85,9 +71,7 @@ resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT],
   value: 25,
-  icon: new Icon({provider: 'FontAwesome', name: 'pagelines'}),
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVES})
 });
 
 resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({

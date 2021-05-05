@@ -120,7 +120,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Costs now include Sand, Clay, Reeds, Wood
   - Mid: Higher knowledge requirements require frequent analysing, costs require resources from crafting, fields notes, and more advanced trading
     * Research Observation (Field Notes), Keen Analysis (Analysis with lenses), Simplified Grain Farming, Simplified Olive Farming, Simplified Quail Husbandry, Ox Husbandry, Herb Farming, Quality Clay Excavation, Rapid Sand Excavation, Simplified Compaction, Improved Home Construction,  Weaving, Grinding, Tailoring (Clothing), Outfitting (Back Equipment), Tool Fabrication, Simplified Dehydration, Simplified Combustion, Ventilated Combustion, Bountiful Cooking, Glassblowing, Solvents (Laboratory), Pottery, Brewing, Astrology, Exploration, Exploration Locations (Four Different Researches), Mysticism, The Pathway through Smoke
-    * Six more leaders: two from trading partners, one random, one from research, two from exploration
+    * Six more leaders: two from trading partners, one random, one from research, two from exploration¸
     * Two more trading partners, both from exploration
     * Six exploration areas, one initial, four from researches, one from previous exploration
     * Costs now include Field Notes, Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
@@ -432,4 +432,19 @@ Object.keys(vault.resources).map((typeQuality) => {
   resources.push(vault.resources[typeQuality]);
 });
 dispatch(consumeResources(vault, resources));
+```
+
+## Desert Test Kitchen
+```
+let testKitchen = new Building({id: '12341234',
+  buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
+  recipeSelected: 0, recipe: null });
+let dish = testKitchen.getDishFromIngredients([
+  resourceTypes[RESOURCE_TYPES.WATER],
+  resourceTypes[RESOURCE_TYPES.GRAIN],
+  resourceTypes[RESOURCE_TYPES.SEEDS],
+  resourceTypes[RESOURCE_TYPES.SALT]],
+  resourceTypes);
+console.log('dish');
+console.log(dish);
 ```
