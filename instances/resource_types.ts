@@ -79,9 +79,7 @@ resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
   value: 200,
-  icon: new Icon({provider: 'FontAwesome5', name: 'kiwi-bird'}),
-  foregroundColor: '#caa096',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
 
 resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
@@ -89,9 +87,7 @@ resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
   value: 80,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'egg'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.EGGS})
 });
 
 resourceTypes[RESOURCE_TYPES.FERTILIZER] = new ResourceType({
@@ -99,9 +95,7 @@ resourceTypes[RESOURCE_TYPES.FERTILIZER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
   value: 10,
-  icon: new Icon({provider: 'FontAwesome5', name: 'poop'}),
-  foregroundColor: '#4a0e0e',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.FERTILIZER})
 });
 
 resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
@@ -109,9 +103,7 @@ resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
   value: 400,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cow'}),
-  foregroundColor: '#4a0e0e',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.OXEN})
 });
 
 resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
@@ -119,9 +111,7 @@ resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
   value: 100,
-  icon: new Icon({provider: 'Entypo', name: 'bucket'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.MILK})
 });
 
 resourceTypes[RESOURCE_TYPES.SILKWORM_COCOON] = new ResourceType({
@@ -129,9 +119,7 @@ resourceTypes[RESOURCE_TYPES.SILKWORM_COCOON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
   value: 200,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'bug'}),
-  foregroundColor: '#4f8000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.SILKWORM_COCOON})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
@@ -140,9 +128,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BITTER],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#790f0f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#9b6e42',
+    shadow: '#825a3a', secondaryColor: '#f3d488', secondaryShadow: '#daae90'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_ROWAN] = new ResourceType({
@@ -151,9 +138,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_ROWAN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.HERBAL],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#95a53c',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#95a53c',
+    shadow: '#7c822b', secondaryColor: '#a0775b', secondaryShadow: '#5f4c42'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_WALNUT] = new ResourceType({
@@ -162,9 +148,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_WALNUT] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SOUR],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#927150',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#927150',
+    shadow: '#c1a086', secondaryColor: '#3c2613', secondaryShadow: '#a7897a'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_ALDER] = new ResourceType({
@@ -173,9 +158,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_ALDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SPICY],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#a5104e',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#a5104e',
+    shadow: '#800437', secondaryColor: '#d85454', secondaryShadow: '#c13636'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
@@ -184,9 +168,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SWEET],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#d2734f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#d2734f',
+    shadow: '#ad6043', secondaryColor: '#ec8f6c', secondaryShadow: '#de805c'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
@@ -195,9 +178,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BRACKISH],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#e87b7b',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#e87b7b',
+    shadow: '#d66464', secondaryColor: '#ffb7b7', secondaryShadow: '#ff8e8e'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_ASH] = new ResourceType({
@@ -206,9 +188,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_ASH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SAVORY],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#ffcd8f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#daa86b',
+    shadow: '#865e2e', secondaryColor: '#ffcd8f', secondaryShadow: '#b58e5f'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_SPRUCE] = new ResourceType({
@@ -217,9 +198,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_SPRUCE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.COOLING],
   value: 50,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'view-dashboard-variant'}),
-  foregroundColor: '#633c02',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#4a2c00',
+    shadow: '#271700', secondaryColor: '#905600', secondaryShadow: '#653c00'})
 });
 
 resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
@@ -228,9 +208,8 @@ resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 15,
-  icon: new Icon({provider: 'FontAwesome5', name: 'splotch'}),
-  foregroundColor: '#a91f1f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
+    shadow: '#6f1b1b'})
 });
 
 resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
@@ -239,9 +218,8 @@ resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 80,
-  icon: new Icon({provider: 'FontAwesome', name: 'cubes'}),
-  foregroundColor: '#a91f1f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#a91f1f',
+    shadow: '#6f1b1b', secondaryColor: '#de6363'})
 });
 
 resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
@@ -249,9 +227,7 @@ resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 40,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pound-box'}),
-  foregroundColor: '#ceb903',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.THATCH})
 });
 
 resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
@@ -262,16 +238,6 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   value: 3,
   icon: new Icon({provider: 'FontAwesome5', name: 'mountain'}),
   foregroundColor: '#f9df00',
-  backgroundColor: '#fff'
-});
-
-resourceTypes[RESOURCE_TYPES.SLAG] = new ResourceType({
-  name: RESOURCE_TYPES.SLAG,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
-  value: 1,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#000',
   backgroundColor: '#fff'
 });
 

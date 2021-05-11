@@ -4,8 +4,8 @@ export default class Icon {
   size: number = 29;
   width: string = '29px';
   height: string = '29px';
-  foregroundColor: string = '#000';
-  foregroundShadow: string = '#000';
+  color: string = '#000';
+  shadow: string = '#000';
   backgroundColor: string = '#fff';
   secondaryColor: string = '#000';
   secondaryShadow: string = '#000';
@@ -16,9 +16,8 @@ export default class Icon {
 
   constructor(icon: IconInterface) {
     if (!icon.size) { icon.size = 29; icon.width = '29px'; icon.height = '29px'; }
-    if (!icon.foregroundColor) { icon.foregroundColor = '#000'; }
-    if (!icon.foregroundColor) { icon.foregroundColor = '#000'; }
-    if (!icon.foregroundShadow) { icon.foregroundShadow = '#fff'; }
+    if (!icon.color) { icon.color = '#000'; }
+    if (!icon.shadow) { icon.shadow = '#fff'; }
     if (!icon.secondaryColor) { icon.secondaryColor = '#000'; }
     if (!icon.secondaryShadow) { icon.secondaryShadow = '#000'; }
     if (!icon.tertiaryColor) { icon.tertiaryColor = '#000'; }
@@ -35,8 +34,8 @@ interface IconInterface {
   size?: number;
   width?: string;
   height?: string;
-  foregroundColor?: string;
-  foregroundShadow?: string;
+  color?: string;
+  shadow?: string;
   backgroundColor?: string;
   secondaryColor?: string;
   secondaryShadow?: string;

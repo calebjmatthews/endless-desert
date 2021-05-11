@@ -6,5 +6,15 @@ export enum SVGS {
   REEDS = "Reeds",
   GRAIN = "Grain",
   FLOUR = "Flour",
-  OLIVES = "Olives"
+  OLIVES = "Olives",
+  QUAIL = "Quail",
+  EGGS = "Eggs",
+  FERTILIZER = "Fertilizer",
+  OXEN = "Oxen",
+  MILK = "Milk",
+  SILKWORM_COCOON = "Silkworm Cocoon",
+  WOOD = "Wood",
+  CLAY = "Clay",
+  BRICK = "Brick",
+  THATCH = "Thatch"
 }

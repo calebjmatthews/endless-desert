@@ -24,7 +24,6 @@ export enum RESOURCE_TYPES {
   BRICKS_RED = "Red Bricks",
   THATCH = "Thatch",
   SAND_YELLOW = "Yellow Sand",
-  SLAG = "Slag",
   CHARCOAL = "Charcoal",
   CARBON = "Carbon",
   RUST_ORE = "Rust Ore",
