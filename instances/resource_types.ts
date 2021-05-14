@@ -168,8 +168,8 @@ resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SWEET],
   value: 50,
-  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#d2734f',
-    shadow: '#ad6043', secondaryColor: '#ec8f6c', secondaryShadow: '#de805c'})
+  icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#bf7229',
+    shadow: '#ad6043', secondaryColor: '#ffb581', secondaryShadow: '#de805c'})
 });
 
 resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
@@ -236,9 +236,7 @@ resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 3,
-  icon: new Icon({provider: 'FontAwesome5', name: 'mountain'}),
-  foregroundColor: '#f9df00',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SAND})
 });
 
 resourceTypes[RESOURCE_TYPES.CHARCOAL] = new ResourceType({
@@ -246,9 +244,7 @@ resourceTypes[RESOURCE_TYPES.CHARCOAL] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FUEL],
   value: 60,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.CHARCOAL})
 });
 
 resourceTypes[RESOURCE_TYPES.CARBON] = new ResourceType({
@@ -256,9 +252,7 @@ resourceTypes[RESOURCE_TYPES.CARBON] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.PLANT],
   value: 80,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.CARBON})
 });
 
 resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
@@ -266,9 +260,8 @@ resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 200,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#a02d01',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#880000',
+    shadow: '#b33c3c', secondaryColor: '#2b1010', secondaryShadow: '#564446'})
 });
 
 resourceTypes[RESOURCE_TYPES.IRON_POWDER] = new ResourceType({
@@ -276,9 +269,8 @@ resourceTypes[RESOURCE_TYPES.IRON_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 350,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#a02d01',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#4d4d4d',
+    shadow: '#333', secondaryColor: '#666'})
 });
 
 resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
@@ -296,9 +288,8 @@ resourceTypes[RESOURCE_TYPES.GREENISH_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 600,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#00a07c',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#227b67',
+    shadow: '#3f948a', secondaryColor: '#ad5f27', secondaryShadow: '#b5795b'})
 });
 
 resourceTypes[RESOURCE_TYPES.COPPER_POWDER] = new ResourceType({
@@ -306,9 +297,8 @@ resourceTypes[RESOURCE_TYPES.COPPER_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 1100,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#ff7f22',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ff7f22',
+    shadow: '#d66224', secondaryColor: '#ffa575'})
 });
 
 resourceTypes[RESOURCE_TYPES.DUSTY_ORE] = new ResourceType({
@@ -316,9 +306,8 @@ resourceTypes[RESOURCE_TYPES.DUSTY_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 400,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#758da2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#61676d',
+    shadow: '#4b4b65', secondaryColor: '#758da2', secondaryShadow: '#94a2bd'})
 });
 
 resourceTypes[RESOURCE_TYPES.TIN_POWDER] = new ResourceType({
@@ -326,9 +315,8 @@ resourceTypes[RESOURCE_TYPES.TIN_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 650,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#c3ced8',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#94a2bd',
+    shadow: '#758da2', secondaryColor: '#b9c0ef'})
 });
 
 resourceTypes[RESOURCE_TYPES.BRONZE] = new ResourceType({
@@ -346,9 +334,8 @@ resourceTypes[RESOURCE_TYPES.PALE_ORE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 350,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'circle-slice-8'}),
-  foregroundColor: '#cfcfe2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#9f9ab5',
+    shadow: '#797388', secondaryColor: '#cfcfe2', secondaryShadow: '#f3f3f3'})
 });
 
 resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
@@ -356,9 +343,8 @@ resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.EARTH],
   value: 620,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#cfcfe2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ebe9f3',
+    shadow: '#cfcfe2', secondaryColor: '#fff'})
 });
 
 resourceTypes[RESOURCE_TYPES.SULFUR] = new ResourceType({
@@ -498,7 +484,7 @@ resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 50,
-  icon: new Icon({provider: 'FontAwesome', name: 'certificate'}),
+  icon: new Icon({provider: 'svg', name: SVGS.PULP}),
   foregroundColor: '#e6dab8',
   backgroundColor: '#fff'
 });

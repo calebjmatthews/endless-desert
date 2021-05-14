@@ -19,6 +19,13 @@ import WoodSvgComponent from './wood';
 import ClaySvgComponent from './clay';
 import BrickSvgComponent from './brick';
 import ThatchSvgComponent from './thatch';
+import SandSvgComponent from './sand';
+import CharcoalSvgComponent from './charcoal';
+import CarbonSvgComponent from './carbon';
+import OreSvgComponent from './ore';
+import PowderSvgComponent from './powder';
+
+import PulpSvgComponent from './pulp';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -63,6 +70,18 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BrickSvgComponent icon={props.icon} />;
     case SVGS.THATCH:
     return <ThatchSvgComponent icon={props.icon} />;
+    case SVGS.PULP:
+    return <PulpSvgComponent icon={props.icon} />;
+    case SVGS.SAND:
+    return <SandSvgComponent icon={props.icon} />;
+    case SVGS.CHARCOAL:
+    return <CharcoalSvgComponent icon={props.icon} />;
+    case SVGS.CARBON:
+    return <CarbonSvgComponent icon={props.icon} />;
+    case SVGS.ORE:
+    return <OreSvgComponent icon={props.icon} />;
+    case SVGS.POWDER:
+    return <PowderSvgComponent icon={props.icon} />;
   }
   return null;
 }

@@ -284,6 +284,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Oil and spice can be added to any recipe to increase value
   - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil, "Tasty" is used if there is oil but no spice, and "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Tasty Lentil Soup", Fish + Grain + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
+# Expeditions:
+- Colossal underground "House of Form" produced honey that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
+  - Gardens with reward of rare seeds and plant-related equipment
+  - Library with knowledge-related rewards
+  - Kitchens with recipes, rare ingredients, and cooking-related equipment
+
 # Tabs:
   - Map, showing locations of each building and the river running through the middle
   - Buildings, with an expandable list of buildings with the resources consumed/produced by each

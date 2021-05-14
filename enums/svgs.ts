@@ -16,5 +16,12 @@ export enum SVGS {
   WOOD = "Wood",
   CLAY = "Clay",
   BRICK = "Brick",
-  THATCH = "Thatch"
+  THATCH = "Thatch",
+  SAND = "Sand",
+  CHARCOAL = "Charcoal",
+  CARBON = "Carbon",
+  ORE = "Ore",
+  POWDER = "Powder",
+
+  PULP = "Pulp",
 }
