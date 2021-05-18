@@ -5,7 +5,7 @@ import Icon from '../../models/icon';
 export default function PulpSvgComponent(props: { icon: Icon }) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 512 512">
-     <g stroke-width="1.1442">
+     <g strokeWidth="1.1442">
       <path d="m460.14 436.57h-423.04v-132.1c0-116.82 94.701-211.52 211.52-211.52 116.82 0 211.52 94.701 211.52 211.52z" fill="#d8c9b9"/>
       <path d="m460.14 304.47c0-116.82-94.701-211.52-211.52-211.52-0.15644 0-0.3084 0.0045-0.46483 0.0045v343.61h211.99z" fill="#ceb69d"/>
       <path d="m360.23 223.67 50.349-64.437 37.866 29.588-50.349 64.437z" fill="#9e807f"/>

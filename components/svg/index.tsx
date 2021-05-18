@@ -24,6 +24,15 @@ import CharcoalSvgComponent from './charcoal';
 import CarbonSvgComponent from './carbon';
 import OreSvgComponent from './ore';
 import PowderSvgComponent from './powder';
+import BarSvgComponent from './bar';
+import SaltSvgComponent from './salt';
+import CinnamonSvgComponent from './cinnamon';
+import CarobSvgComponent from './carob';
+import MintSvgComponent from './mint';
+import PeppercornSvgComponent from './peppercorn';
+import CorianderSvgComponent from './coriander';
+import AniseSvgComponent from './anise';
+import SorrelSvgComponent from './sorrel';
 
 import PulpSvgComponent from './pulp';
 
@@ -82,6 +91,24 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <OreSvgComponent icon={props.icon} />;
     case SVGS.POWDER:
     return <PowderSvgComponent icon={props.icon} />;
+    case SVGS.BAR:
+    return <BarSvgComponent icon={props.icon} />;
+    case SVGS.SALT:
+    return <SaltSvgComponent icon={props.icon} />;
+    case SVGS.CINNAMON:
+    return <CinnamonSvgComponent icon={props.icon} />;
+    case SVGS.CAROB:
+    return <CarobSvgComponent icon={props.icon} />;
+    case SVGS.MINT:
+    return <MintSvgComponent icon={props.icon} />;
+    case SVGS.PEPPERCORN:
+    return <PeppercornSvgComponent icon={props.icon} />;
+    case SVGS.CORIANDER:
+    return <CorianderSvgComponent icon={props.icon} />;
+    case SVGS.ANISE:
+    return <AniseSvgComponent icon={props.icon} />;
+    case SVGS.SORREL:
+    return <SorrelSvgComponent icon={props.icon} />;
   }
   return null;
 }

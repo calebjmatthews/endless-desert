@@ -22,6 +22,15 @@ export enum SVGS {
   CARBON = "Carbon",
   ORE = "Ore",
   POWDER = "Powder",
+  BAR = "Bar",
+  SALT = "Salt",
+  CINNAMON = "Cinnamon",
+  CAROB = "Carob",
+  MINT = "Mint",
+  PEPPERCORN = "Peppercorn",
+  CORIANDER = "Coriander",
+  ANISE = "Anise",
+  SORREL = "Sorrel",
 
   PULP = "Pulp",
 }
