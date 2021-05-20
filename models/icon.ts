@@ -16,6 +16,7 @@ export default class Icon {
 
   constructor(icon: IconInterface) {
     if (!icon.size) { icon.size = 29; icon.width = '29px'; icon.height = '29px'; }
+    else { icon.width = icon.size + 'px'; icon.height = icon.size + 'px'; }
     if (!icon.color) { icon.color = '#000'; }
     if (!icon.shadow) { icon.shadow = '#fff'; }
     if (!icon.secondaryColor) { icon.secondaryColor = '#000'; }

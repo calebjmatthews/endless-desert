@@ -23,6 +23,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { INTRO_STATES } from '../enums/intro_states';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 
 export default function BuildingsComponent() {
@@ -325,13 +326,7 @@ function BuildingDescription(props: any) {
     return (
       <View key={typeQuality} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + utils.formatNumberShort(rate)}</Text>
-        <BadgeComponent
-          provider={resourceType.icon.provider}
-          name={resourceType.icon.name}
-          foregroundColor={resourceType.foregroundColor}
-          backgroundColor={resourceType.backgroundColor}
-          iconSize={12}
-          quality={parseInt(tqSplit[1])} />
+        {renderBadge(resourceType, parseInt(tqSplit[1]), 21)}
         <Text>{'/m '}</Text>
       </View>
     );

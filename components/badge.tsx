@@ -51,12 +51,12 @@ export default function BadgeComponent(props: BadgeProps) {
     };
 
     if (iconSize) {
-      if (iconSize < 18) {
+      if (iconSize < 21) {
         badgeStyle.height = 24;
         badgeStyle.width = 24;
         badgeStyle.margin = 2;
       }
-      else if (iconSize > 18) {
+      else if (iconSize > 21) {
         badgeStyle.height = 38;
         badgeStyle.width = 38;
       }

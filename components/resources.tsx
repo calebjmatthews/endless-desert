@@ -14,6 +14,7 @@ import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceCategories } from '../instances/resource_categories';
 import { resourceSubcategories } from '../instances/resource_subcategories';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 
 export default function ResourcesComponent() {
@@ -93,7 +94,7 @@ function ResourceDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      {renderBadge(resourceType)}
+      {renderBadge(resourceType, resource.quality, 29)}
       <View style={styles.containerStretchRow}>
         <View>
           <Text style={textStyle}>
@@ -112,21 +113,4 @@ function ResourceDescription(props: any) {
 
     </View>
   );
-
-  function renderBadge(resourceType: ResourceType) {
-    if (resourceType.icon.provider == 'svg') {
-      return (
-        <BadgeComponent icon={resourceType.icon} />
-      );
-    }
-    return (
-      <BadgeComponent
-        provider={resourceType.icon.provider}
-        name={resourceType.icon.name}
-        foregroundColor={resourceType.foregroundColor}
-        backgroundColor={resourceType.backgroundColor}
-        iconSize={18}
-        quality={resource.quality} />
-    );
-  }
 }
