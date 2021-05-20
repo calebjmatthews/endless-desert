@@ -263,7 +263,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Back: Effects are varied and have a negative element, but usually just a single effect per equipment
     * Journeyman's Haversack: + speed but - quality/efficiency
     * Journeyman's Gearbag: + efficiency but - quality/speed
-    * Journeyman's Kitpack: + quality but - speed/efficiency
+    * Journeyman's Toolpack: + quality but - speed/efficiency
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production, decreased food consumption, increased Knowledge from studying/analysis, decreased build time, special fortuities, increased basic status but decreased happiness
   - Tiers of equipment are from 1 - 5, with probs as follows:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
@@ -321,6 +321,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   Flaticon:
     https://www.flaticon.com/packs/carpenter-27?k=1619116521843
     https://www.flaticon.com/packs/outdoor-landscape-2
+
+    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   Value symbol options: ѵ, ұ,
 
 # Time cycle:
@@ -421,7 +428,7 @@ dispatch(increaseResources(vault,
     quality: 0, quantity: 1 },
   { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
     quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + " (Unmarked)"),
+  { type: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + " (Unmarked)"),
     quality: 0, quantity: 1 },
   { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
     quality: 0, quantity: 1 },
@@ -454,5 +461,3 @@ let dish = testKitchen.getDishFromIngredients([
 console.log('dish');
 console.log(dish);
 ```
-
-#4f6f44

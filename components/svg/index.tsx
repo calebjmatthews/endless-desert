@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import KnowledgeSvgComponent from './knowledge';
 import LentilSvgComponent from './lentil';
-import WaterSvgComponent from './water';
+import DropSvgComponent from './drop';
 import SeedsSvgComponent from './seeds';
 import ReedsSvgComponent from './reeds';
 import GrainSvgComponent from './grain';
@@ -33,8 +33,36 @@ import PeppercornSvgComponent from './peppercorn';
 import CorianderSvgComponent from './coriander';
 import AniseSvgComponent from './anise';
 import SorrelSvgComponent from './sorrel';
-
+import GlassSvgComponent from './glass';
+import OliveOilSvgComponent from './olive_oil';
 import PulpSvgComponent from './pulp';
+import PapyrusSvgComponent from './papyrus';
+import LinenSvgComponent from './linen';
+import SilkSvgComponent from './silk';
+import AbrasiveSvgComponent from './abrasive';
+import BeadsSvgComponent from './beads';
+import GlasswareSvgComponent from './glassware';
+import LensesSvgComponent from './lenses';
+import GlazeSvgComponent from './glaze';
+import TerracottaSvgComponent from './terracotta';
+import FaienceSvgComponent from './faience';
+import AshwareSvgComponent from './ashware';
+import SoupSvgComponent from './soup';
+import BreadSvgComponent from './bread';
+import StewSvgComponent from './stew';
+import OmeletSvgComponent from './omelet';
+import PieSvgComponent from './pie';
+import CakeSvgComponent from './cake';
+import MistakeSvgComponent from './mistake';
+import BeerSvgComponent from './beer';
+import LiquorSvgComponent from './liquor';
+import RoughMattockSvgComponent from './rough_mattock';
+import WoodenPoleSvgComponent from './wooden_pole';
+import CoarseImplementsSvgComponent from './coarse_implements';
+import SimpleRobeSvgComponent from './simple_robe';
+import JourneymansHaversackSvgComponent from './journeymans_haversack';
+import JourneymansGearbagSvgComponent from './journeymans_gearbag';
+import JourneymansToolpackSvgComponent from './journeymans_toolpack';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -47,8 +75,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <KnowledgeSvgComponent icon={props.icon} />;
     case SVGS.LENTILS:
     return <LentilSvgComponent icon={props.icon} />;
-    case SVGS.WATER:
-    return <WaterSvgComponent icon={props.icon} />;
+    case SVGS.DROP:
+    return <DropSvgComponent icon={props.icon} />;
     case SVGS.SEEDS:
     return <SeedsSvgComponent icon={props.icon} />;
     case SVGS.REEDS:
@@ -79,8 +107,6 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BrickSvgComponent icon={props.icon} />;
     case SVGS.THATCH:
     return <ThatchSvgComponent icon={props.icon} />;
-    case SVGS.PULP:
-    return <PulpSvgComponent icon={props.icon} />;
     case SVGS.SAND:
     return <SandSvgComponent icon={props.icon} />;
     case SVGS.CHARCOAL:
@@ -109,6 +135,66 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <AniseSvgComponent icon={props.icon} />;
     case SVGS.SORREL:
     return <SorrelSvgComponent icon={props.icon} />;
+    case SVGS.GLASS:
+    return <GlassSvgComponent icon={props.icon} />;
+    case SVGS.OLIVE_OIL:
+    return <OliveOilSvgComponent icon={props.icon} />;
+    case SVGS.PULP:
+    return <PulpSvgComponent icon={props.icon} />;
+    case SVGS.PAPYRUS:
+    return <PapyrusSvgComponent icon={props.icon} />;
+    case SVGS.LINEN:
+    return <LinenSvgComponent icon={props.icon} />;
+    case SVGS.SILK:
+    return <SilkSvgComponent icon={props.icon} />;
+    case SVGS.ABRASIVE:
+    return <AbrasiveSvgComponent icon={props.icon} />;
+    case SVGS.BEADS:
+    return <BeadsSvgComponent icon={props.icon} />;
+    case SVGS.GLASSWARE:
+    return <GlasswareSvgComponent icon={props.icon} />;
+    case SVGS.LENSES:
+    return <LensesSvgComponent icon={props.icon} />;
+    case SVGS.GLAZE:
+    return <GlazeSvgComponent icon={props.icon} />;
+    case SVGS.TERRACOTTA:
+    return <TerracottaSvgComponent icon={props.icon} />;
+    case SVGS.FAIENCE:
+    return <FaienceSvgComponent icon={props.icon} />;
+    case SVGS.ASHWARE:
+    return <AshwareSvgComponent icon={props.icon} />;
+    case SVGS.SOUP:
+    return <SoupSvgComponent icon={props.icon} />;
+    case SVGS.BREAD:
+    return <BreadSvgComponent icon={props.icon} />;
+    case SVGS.OMELET:
+    return <OmeletSvgComponent icon={props.icon} />;
+    case SVGS.STEW:
+    return <StewSvgComponent icon={props.icon} />;
+    case SVGS.PIE:
+    return <PieSvgComponent icon={props.icon} />;
+    case SVGS.CAKE:
+    return <CakeSvgComponent icon={props.icon} />;
+    case SVGS.MISTAKE:
+    return <MistakeSvgComponent icon={props.icon} />;
+    case SVGS.BEER:
+    return <BeerSvgComponent icon={props.icon} />;
+    case SVGS.LIQUOR:
+    return <LiquorSvgComponent icon={props.icon} />;
+    case SVGS.ROUGH_MATTOCK:
+    return <RoughMattockSvgComponent icon={props.icon} />;
+    case SVGS.WOODEN_POLE:
+    return <WoodenPoleSvgComponent icon={props.icon} />;
+    case SVGS.COARSE_IMPLEMENTS:
+    return <CoarseImplementsSvgComponent icon={props.icon} />;
+    case SVGS.SIMPLE_ROBE:
+    return <SimpleRobeSvgComponent icon={props.icon} />;
+    case SVGS.JOURNEYMANS_HAVERSACK:
+    return <JourneymansHaversackSvgComponent icon={props.icon} />;
+    case SVGS.JOURNEYMANS_GEARBAG:
+    return <JourneymansGearbagSvgComponent icon={props.icon} />;
+    case SVGS.JOURNEYMANS_TOOLPACK:
+    return <JourneymansToolpackSvgComponent icon={props.icon} />;
   }
   return null;
 }

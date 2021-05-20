@@ -23,7 +23,8 @@ resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL,
   tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK, RESOURCE_TAGS.INGREDIENT],
   value: 5,
-  icon: new Icon({provider: 'svg', name: SVGS.WATER})
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
+    shadow: '#2887c3', secondaryColor: '#aaebf0'})
 });
 
 resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
@@ -444,9 +445,7 @@ resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.CONSTRUCTION],
   value: 120,
-  icon: new Icon({provider: 'FontAwesome5', name: 'solar-panel'}),
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
 });
 
 resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
@@ -455,9 +454,7 @@ resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.SPICE],
   value: 250,
-  icon: new Icon({provider: 'FontAwesome5', name: 'oil-can'}),
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
 });
 
 resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
@@ -465,9 +462,7 @@ resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 50,
-  icon: new Icon({provider: 'svg', name: SVGS.PULP}),
-  foregroundColor: '#e6dab8',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.PULP})
 });
 
 resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
@@ -475,9 +470,7 @@ resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 150,
-  icon: new Icon({provider: 'FontAwesome5', name: 'newspaper'}),
-  foregroundColor: '#e6dab8',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})
 });
 
 resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
@@ -485,9 +478,8 @@ resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 300,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
+    shadow: '#000', secondaryColor: '#a2a2a2'})
 });
 
 resourceTypes[RESOURCE_TYPES.LINEN] = new ResourceType({
@@ -495,9 +487,7 @@ resourceTypes[RESOURCE_TYPES.LINEN] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 200,
-  icon: new Icon({provider: 'Entypo', name: 'spreadsheet'}),
-  foregroundColor: '#b7efe4',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
 resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
@@ -505,9 +495,7 @@ resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 2000,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'lightbulb-cfl-spiral'}),
-  foregroundColor: '#ffe668',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SILK})
 });
 
 resourceTypes[RESOURCE_TYPES.ABRASIVE] = new ResourceType({
@@ -515,9 +503,7 @@ resourceTypes[RESOURCE_TYPES.ABRASIVE] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [RESOURCE_TAGS.EARTH],
   value: 5,
-  icon: new Icon({provider: 'MaterialIcons', name: 'grain'}),
-  foregroundColor: '#f9df00',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ABRASIVE})
 });
 
 resourceTypes[RESOURCE_TYPES.BEADS] = new ResourceType({
@@ -525,9 +511,7 @@ resourceTypes[RESOURCE_TYPES.BEADS] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 180,
-  icon: new Icon({provider: 'FontAwesome5', name: 'bowling-ball'}),
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.BEADS})
 });
 
 resourceTypes[RESOURCE_TYPES.GLASSWARE] = new ResourceType({
@@ -535,9 +519,7 @@ resourceTypes[RESOURCE_TYPES.GLASSWARE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 800,
-  icon: new Icon({provider: 'FontAwesome5', name: 'wine-glass-alt'}),
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.GLASSWARE})
 });
 
 resourceTypes[RESOURCE_TYPES.LENSES] = new ResourceType({
@@ -545,9 +527,7 @@ resourceTypes[RESOURCE_TYPES.LENSES] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [],
   value: 1800,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'moon-waning-gibbous'}),
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.LENSES})
 });
 
 resourceTypes[RESOURCE_TYPES.ACID] = new ResourceType({
@@ -555,9 +535,8 @@ resourceTypes[RESOURCE_TYPES.ACID] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 160,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
-  foregroundColor: '#e8f900',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#dbea00',
+    shadow: '#c6d400', secondaryColor: '#f8ff9c'})
 });
 
 resourceTypes[RESOURCE_TYPES.GLAZE_TIN] = new ResourceType({
@@ -565,9 +544,8 @@ resourceTypes[RESOURCE_TYPES.GLAZE_TIN] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 800,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
-  foregroundColor: '#c3ced8',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#94a2bd',
+    shadow: '#758da2'})
 });
 
 resourceTypes[RESOURCE_TYPES.GLAZE_ASH] = new ResourceType({
@@ -575,9 +553,8 @@ resourceTypes[RESOURCE_TYPES.GLAZE_ASH] = new ResourceType({
   category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
   tags: [],
   value: 240,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tint'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#676767',
+    shadow: '#1d1d1d'})
 });
 
 resourceTypes[RESOURCE_TYPES.TERRACOTTA] = new ResourceType({
@@ -585,9 +562,7 @@ resourceTypes[RESOURCE_TYPES.TERRACOTTA] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 60,
-  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
-  foregroundColor: '#942c14',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.TERRACOTTA})
 });
 
 resourceTypes[RESOURCE_TYPES.FAIENCE] = new ResourceType({
@@ -595,9 +570,7 @@ resourceTypes[RESOURCE_TYPES.FAIENCE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 1200,
-  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
-  foregroundColor: '#c3ced8',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.FAIENCE})
 });
 
 resourceTypes[RESOURCE_TYPES.ASHWARE] = new ResourceType({
@@ -605,9 +578,7 @@ resourceTypes[RESOURCE_TYPES.ASHWARE] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.POTTERY],
   value: 480,
-  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey'}),
-  foregroundColor: '#000',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ASHWARE})
 });
 
 resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
@@ -615,19 +586,16 @@ resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pot'}),
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SOUP, color: '#F47400',
+    shadow: '#f25600'})
 });
 
 resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
   name: RESOURCE_TYPES.BREAD,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
+  category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 200,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'baguette'}),
-  foregroundColor: '#790f0f',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.BREAD})
 });
 
 resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
@@ -635,9 +603,8 @@ resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'egg'}),
-  foregroundColor: '#ffeb38',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.OMELET, color: '#18c08b',
+    shadow: '#0caf7b'})
 });
 
 resourceTypes[RESOURCE_TYPES.STEW] = new ResourceType({
@@ -645,9 +612,8 @@ resourceTypes[RESOURCE_TYPES.STEW] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pot-mix'}),
-  foregroundColor: '#795548',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.STEW, color: '#fa690e',
+    shadow: '#f94c10'})
 });
 
 resourceTypes[RESOURCE_TYPES.PIE] = new ResourceType({
@@ -655,9 +621,7 @@ resourceTypes[RESOURCE_TYPES.PIE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: new Icon({provider: 'FontAwesome5', name: 'chart-pie'}),
-  foregroundColor: '#673ab7',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.PIE, color: '#ed5565ff'})
 });
 
 resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
@@ -665,9 +629,8 @@ resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 80,
-  icon: new Icon({provider: 'FontAwesome5', name: 'birthday-cake'}),
-  foregroundColor: '#e493a1',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#fa690e',
+    shadow: '#f94c10'})
 });
 
 resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
@@ -675,9 +638,7 @@ resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
   category: RESOURCE_CATEGORIES.DISH,
   tags: [RESOURCE_TAGS.FOOD],
   value: 1,
-  icon: new Icon({provider: 'FontAwesome5', name: 'trash-alt'}),
-  foregroundColor: '#97e600',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.MISTAKE})
 });
 
 resourceTypes[RESOURCE_TYPES.BEER] = new ResourceType({
@@ -685,9 +646,7 @@ resourceTypes[RESOURCE_TYPES.BEER] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.DRINK],
   value: 60,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'glass-mug-variant'}),
-  foregroundColor: '#e8cf1e',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.BEER})
 });
 
 resourceTypes[RESOURCE_TYPES.LIQUOR] = new ResourceType({
@@ -695,9 +654,7 @@ resourceTypes[RESOURCE_TYPES.LIQUOR] = new ResourceType({
   category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   tags: [RESOURCE_TAGS.DRINK],
   value: 180,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'glass-tulip'}),
-  foregroundColor: '#9c521d',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'svg', name: SVGS.LIQUOR})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({
@@ -705,9 +662,7 @@ resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceTyp
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'pickaxe'}),
-  foregroundColor: '#6d6d6d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType({
@@ -715,9 +670,7 @@ resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType(
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: new Icon({provider: 'FontAwesome5', name: 'slash'}),
-  foregroundColor: '#795548',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new ResourceType({
@@ -725,9 +678,7 @@ resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new Resourc
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tools'}),
-  foregroundColor: '#6d6d6d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({
@@ -735,9 +686,7 @@ resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType(
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.CLOTHING],
   value: 2000,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tshirt'}),
-  foregroundColor: '#afc1ec',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)')] =
@@ -746,9 +695,7 @@ new ResourceType({
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: new Icon({provider: 'FontAwesome5', name: 'box'}),
-  foregroundColor: '#1a7b1d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)')] =
@@ -757,20 +704,16 @@ new ResourceType({
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'toolbox'}),
-  foregroundColor: '#1a457b',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
 });
 
-resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + ' (Unmarked)')] =
+resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + ' (Unmarked)')] =
 new ResourceType({
-  name: (EQUIPMENT_TYPES.JOURNEYMANS_KITPACK + ' (Unmarked)'),
+  name: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + ' (Unmarked)'),
   category: RESOURCE_CATEGORIES.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
-  icon: new Icon({provider: 'FontAwesome5', name: 'toolbox'}),
-  foregroundColor: '#7a1a7b',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
 export { resourceTypes }

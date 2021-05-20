@@ -6,5 +6,5 @@ export enum EQUIPMENT_TYPES {
   SIMPLE_ROBE = "Simple Robe",
   JOURNEYMANS_HAVERSACK = "Journeyman's Haversack",
   JOURNEYMANS_GEARBAG = "Journeyman's Gearbag",
-  JOURNEYMANS_KITPACK = "Journeyman's Kitpack"
+  JOURNEYMANS_TOOLPACK = "Journeyman's Toolpack"
 }

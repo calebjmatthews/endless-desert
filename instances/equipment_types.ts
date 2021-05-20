@@ -374,8 +374,8 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
   backgroundColor: '#fff'
 });
 
-equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_KITPACK] = new EquipmentType({
-  name: EQUIPMENT_TYPES.JOURNEYMANS_KITPACK,
+equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
+  name: EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK,
   description: ('Filled with crude tools to inspect and measure'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
