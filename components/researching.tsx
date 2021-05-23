@@ -28,6 +28,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -261,12 +262,7 @@ function OptionDescription(props: any) {
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
-          <BadgeComponent
-            provider={resource.icon.provider}
-            name={resource.icon.name}
-            foregroundColor={resource.foregroundColor}
-            backgroundColor={resource.backgroundColor}
-            iconSize={16} />
+          {renderBadge(resource, 0, 21)}
           <Text style={styles.buttonText}>
             {costText}
           </Text>

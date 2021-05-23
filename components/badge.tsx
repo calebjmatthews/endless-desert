@@ -22,8 +22,9 @@ export default function BadgeComponent(props: BadgeProps) {
 
   if (props.provider) {
     let name = props.name || '';
-    let foregroundColor = props.foregroundColor || '';
-    let backgroundColor = props.backgroundColor || '';
+    let foregroundColor = props.foregroundColor
+      || (props.icon ? props.icon.color : '#000');
+    let backgroundColor = props.backgroundColor || '#fff';
     return <BadgeIconComponent provider={props.provider} name={name}
       foregroundColor={foregroundColor} backgroundColor={backgroundColor}
       iconSize={props.iconSize} borderless={props.borderless}

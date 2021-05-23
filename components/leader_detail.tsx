@@ -18,6 +18,7 @@ import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
 import { resourceTypes } from '../instances/resource_types';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
@@ -117,12 +118,7 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { eatingPress() }} >
-          <BadgeComponent
-            provider={resourceType.icon.provider}
-            name={resourceType.icon.name}
-            foregroundColor={resourceType.foregroundColor}
-            backgroundColor={resourceType.backgroundColor}
-            iconSize={16} />
+          {renderBadge(resourceType, resource.quality, 21)}
           <Text style={styles.buttonText}>
             {resourceType.name}
           </Text>
@@ -138,7 +134,7 @@ export default function LeaderDetailComponent() {
             name='paw'
             foregroundColor='#000'
             backgroundColor='#fff'
-            iconSize={16} />
+            iconSize={21} />
           <Text style={styles.buttonText}>
             {'Scavenging'}
           </Text>
@@ -154,12 +150,7 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { drinkingPress() }} >
-          <BadgeComponent
-            provider={resourceType.icon.provider}
-            name={resourceType.icon.name}
-            foregroundColor={resourceType.foregroundColor}
-            backgroundColor={resourceType.backgroundColor}
-            iconSize={16} />
+          {renderBadge(resourceType, resource.quality, 21)}
           <Text style={styles.buttonText}>
             {resourceType.name}
           </Text>
@@ -175,7 +166,7 @@ export default function LeaderDetailComponent() {
             name='water-off'
             foregroundColor='#000'
             backgroundColor='#fff'
-            iconSize={16} />
+            iconSize={21} />
           <Text style={styles.buttonText}>
             {'Scavenging'}
           </Text>
@@ -249,7 +240,7 @@ export default function LeaderDetailComponent() {
           name={buttonObj.iconName}
           foregroundColor={buttonObj.iconForegroundColor}
           backgroundColor={buttonObj.iconBackgroundColor}
-          iconSize={16} />
+          iconSize={21} />
         <Text style={styles.buttonText}>
           {buttonObj.text}
         </Text>
@@ -269,7 +260,7 @@ export default function LeaderDetailComponent() {
             name={buildingType.icon.name}
             foregroundColor={buildingType.foregroundColor}
             backgroundColor={buildingType.backgroundColor}
-            iconSize={16} />
+            iconSize={21} />
           <Text style={styles.buttonText}>
             {buildingType.name}
           </Text>
@@ -285,7 +276,7 @@ export default function LeaderDetailComponent() {
             name='tent'
             foregroundColor='#000'
             backgroundColor='#fff'
-            iconSize={16} />
+            iconSize={21} />
           <Text style={styles.buttonText}>
             {'Nowhere'}
           </Text>
@@ -313,12 +304,7 @@ export default function LeaderDetailComponent() {
             alignItems: 'flex-start'}])}
             onPress={() => { equipmentPress(slot) }} >
             <View style={styles.rows}>
-              <BadgeComponent
-                provider={equipmentType.icon.provider}
-                name={equipmentType.icon.name}
-                foregroundColor={equipmentType.foregroundColor}
-                backgroundColor={equipmentType.backgroundColor}
-                iconSize={16} />
+              {renderBadge(equipmentType, 0, 21)}
               <Text style={styles.buttonText}>
                 {equipmentType.name}
               </Text>
@@ -343,7 +329,7 @@ export default function LeaderDetailComponent() {
               name='minus-circle'
               foregroundColor='#b1b1b1'
               backgroundColor='#fff'
-              iconSize={16} />
+              iconSize={21} />
             <Text style={styles.buttonText}>{'Nothing'}</Text>
           </TouchableOpacity>
         </View>

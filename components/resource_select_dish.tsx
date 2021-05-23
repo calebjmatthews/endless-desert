@@ -19,6 +19,7 @@ import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
@@ -104,12 +105,7 @@ export default function ResourceSelectDishComponent() {
         const typeQuality = resource.type + '|' + resource.quality;
         return (
           <View key={index} style={styles.rows}>
-            <BadgeComponent
-              provider={resourceType.icon.provider}
-              name={resourceType.icon.name}
-              foregroundColor={resourceType.foregroundColor}
-              backgroundColor={resourceType.backgroundColor}
-              iconSize={16} />
+            {renderBadge(resourceType, resource.quality, 21)}
             <Text>
               {renderTypeQualityName(typeQuality, index, resourcesSelected)}
             </Text>
@@ -139,12 +135,7 @@ export default function ResourceSelectDishComponent() {
           <IconComponent provider="FontAwesome" name="arrow-right"
             color="#000" size={16} />
           <Text>{' '}</Text>
-          <BadgeComponent
-            provider={dish.icon.provider}
-            name={dish.icon.name}
-            foregroundColor={dish.foregroundColor}
-            backgroundColor={dish.backgroundColor}
-            iconSize={16} />
+          {renderBadge(dish, 0, 21)}
           <Text>
             {' ' + dish.name}
           </Text>
@@ -162,7 +153,7 @@ export default function ResourceSelectDishComponent() {
           name={'question'}
           foregroundColor={'#000'}
           backgroundColor={'#fff'}
-          iconSize={16} />
+          iconSize={21} />
         <Text>
           {' Unknown dish'}
         </Text>
@@ -266,12 +257,7 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
         {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
       </Text>
       <View style={styles.rows}>
-        <BadgeComponent
-          provider={resourceType.icon.provider}
-          name={resourceType.icon.name}
-          foregroundColor={resourceType.foregroundColor}
-          backgroundColor={resourceType.backgroundColor}
-          iconSize={18} />
+        {renderBadge(resourceType, 0, 21)}
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}

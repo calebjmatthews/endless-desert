@@ -16,8 +16,9 @@ export function renderBadge(objWithIcon: ObjWithIconProps,
     <BadgeComponent
       provider={objWithIcon.icon.provider}
       name={objWithIcon.icon.name}
-      foregroundColor={objWithIcon.foregroundColor}
-      backgroundColor={objWithIcon.backgroundColor}
+      foregroundColor={objWithIcon.foregroundColor
+        || (objWithIcon.icon ? objWithIcon.icon.color : '#000')}
+      backgroundColor={objWithIcon.backgroundColor || '#fff'}
       iconSize={18}
       quality={quality} />
   );

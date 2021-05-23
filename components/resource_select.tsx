@@ -6,7 +6,6 @@ import { Text, View, ScrollView, TouchableOpacity, StyleSheet }
   from 'react-native';
 import { styles } from '../styles';
 
-import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
@@ -16,6 +15,7 @@ import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
@@ -76,12 +76,7 @@ export default function ResourceSelectComponent() {
         const resourceType = utils.getResourceType(resource);
         return (
           <View key={typeQuality} style={styles.rows}>
-            <BadgeComponent
-              provider={resourceType.icon.provider}
-              name={resourceType.icon.name}
-              foregroundColor={resourceType.foregroundColor}
-              backgroundColor={resourceType.backgroundColor}
-              iconSize={16} />
+            {renderBadge(resourceType, resource.quality, 21)}
             <Text>
               {resourcesSelected[typeQuality] + ' (of '
                 + utils.formatNumberShort(vault.resources[typeQuality].quantity)
@@ -192,12 +187,7 @@ function ResourceSelector(props: {resource: Resource,
         {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
       </Text>
       <View style={styles.rows}>
-        <BadgeComponent
-          provider={resourceType.icon.provider}
-          name={resourceType.icon.name}
-          foregroundColor={resourceType.foregroundColor}
-          backgroundColor={resourceType.backgroundColor}
-          iconSize={18} />
+        {renderBadge(resourceType, props.resource.quality, 21)}
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}

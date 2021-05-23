@@ -6,7 +6,6 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
-import BadgeComponent from './badge';
 
 import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';

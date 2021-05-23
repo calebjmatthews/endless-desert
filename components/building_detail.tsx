@@ -25,6 +25,7 @@ import Timer from '../models/timer';
 import Resource from '../models/resource';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
@@ -264,12 +265,7 @@ export default function BuildDetailComponent() {
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost); }} >
-          <BadgeComponent
-            provider={resource.icon.provider}
-            name={resource.icon.name}
-            foregroundColor={resource.foregroundColor}
-            backgroundColor={resource.backgroundColor}
-            iconSize={16} />
+          {renderBadge(resource, 0, 21)}
           <Text style={styles.buttonText}>
             {costText}
           </Text>
@@ -420,13 +416,7 @@ export default function BuildDetailComponent() {
             {utils.typeQualityName(resource.type + '|' + resource.quality)}
           </Text>
           <View style={styles.rows}>
-            <BadgeComponent
-              provider={resourceType.icon.provider}
-              name={resourceType.icon.name}
-              foregroundColor={resourceType.foregroundColor}
-              backgroundColor={resourceType.backgroundColor}
-              iconSize={18}
-              quality={resource.quality} />
+            {renderBadge(resourceType, resource.quality, 21)}
             <View>
               <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
                 {utils.formatNumberShort(resource.quantity)}
@@ -570,12 +560,7 @@ export default function BuildDetailComponent() {
     return (
       <View key={type.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + rate.quantity}</Text>
-        <BadgeComponent
-          provider={type.icon.provider}
-          name={type.icon.name}
-          foregroundColor={type.foregroundColor}
-          backgroundColor={type.backgroundColor}
-          iconSize={12} />
+        {renderBadge(type, 0, 21)}
         <Text>{ type.name + '/m ' }</Text>
       </View>
     );
