@@ -6,7 +6,6 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
-import BadgeComponent from './badge';
 import { selectTab, displayModalValue } from '../actions/ui';
 import { dismissTradingPartner, welcomePendingTradingPartner, addPendingTradingPartner }
   from '../actions/trading_status';
@@ -24,6 +23,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
+import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -235,21 +235,11 @@ function TradingPartnerDescription(props: any) {
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
         styles.buttonLight, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
         onPress={() => { tradeClick(trade.tradingPartnerType, trade.id) }} >
-        <BadgeComponent
-          provider={give.icon.provider}
-          name={give.icon.name}
-          foregroundColor={give.foregroundColor}
-          backgroundColor={give.backgroundColor}
-          iconSize={16} />
+        {renderBadge(give, 0, 21)}
         <Text style={styles.buttonTextDark}>
           {' ' + give.name + ' for '}
         </Text>
-        <BadgeComponent
-          provider={receive.icon.provider}
-          name={receive.icon.name}
-          foregroundColor={receive.foregroundColor}
-          backgroundColor={receive.backgroundColor}
-          iconSize={16} />
+        {renderBadge(receive, 0, 21)}
         <Text style={styles.buttonTextDark}>
           {receive.name}
         </Text>
@@ -268,22 +258,12 @@ function TradingPartnerDescription(props: any) {
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
         styles.buttonDisabled, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
         disabled >
-        <BadgeComponent
-          provider={give.icon.provider}
-          name={give.icon.name}
-          foregroundColor={give.foregroundColor}
-          backgroundColor={give.backgroundColor}
-          iconSize={16} />
+        {renderBadge(give, 0, 21)}
         <Text style={styles.buttonTextDark}>
           {give.name + ' x' + utils.formatNumberShort(wasTraded.given.quantity)
           + ' for '}
         </Text>
-        <BadgeComponent
-          provider={receive.icon.provider}
-          name={receive.icon.name}
-          foregroundColor={receive.foregroundColor}
-          backgroundColor={receive.backgroundColor}
-          iconSize={16} />
+        {renderBadge(receive, 0, 21)}
         <Text style={styles.buttonTextDark}>
           {receive.name + ' x' + utils.formatNumberShort(wasTraded.received.quantity)}
         </Text>
