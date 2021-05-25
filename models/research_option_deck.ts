@@ -23,7 +23,8 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
     let research = researches[this.researchName];
     Object.keys(researchOptions).map((roName) => {
       let researchOption = researchOptions[roName];
-      if (researchOption.appliesTo == research.name) {
+      if (researchOption.difficulty == research.difficulty
+        && researchOption.appliesTo == research.name) {
         this.preferredOptions[roName] = true;
       }
       else if (researchOption.difficulty == research.difficulty

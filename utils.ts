@@ -464,8 +464,10 @@ class Utils {
   sumToResources(vault: Vault, aSum: { [typeQuality: string] : number }) {
     let resources: Resource[] = [];
     Object.keys(aSum).map((typeQuality) => {
-      let quantity = aSum[typeQuality];
-      let nResource = new Resource(vault.resources[typeQuality])
+      const quantity = aSum[typeQuality];
+      const tqSplit = typeQuality.split('|');
+      let nResource = new Resource(vault.resources[typeQuality]
+        || { type: tqSplit[0], quality: parseInt(tqSplit[1]), quantity: 0 })
         .getResourceWithoutQuantity();
       nResource.quantity = quantity;
       resources.push(nResource);
