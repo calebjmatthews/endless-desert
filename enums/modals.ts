@@ -3,6 +3,7 @@ export enum MODALS {
   BUILDING_DETAIL = "Building Detail",
   BUILD_DETAIL = "Build Detail",
   LEADER_DETAIL = "Leader Detail",
+  RESOURCE_DETAIL = "Resource Detail",
   RESOURCE_SELECT = "Resource Select",
   RESOURCE_SELECT_ONE = "Resource Select One",
   RESOURCE_SELECT_DISH = "Resource Select Dish",

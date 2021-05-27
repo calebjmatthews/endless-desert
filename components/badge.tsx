@@ -53,13 +53,17 @@ export default function BadgeComponent(props: BadgeProps) {
 
     if (iconSize) {
       if (iconSize < 21) {
-        badgeStyle.height = 24;
-        badgeStyle.width = 24;
+        badgeStyle.height = iconSize + 3;
+        badgeStyle.width = iconSize + 3;
         badgeStyle.margin = 2;
       }
+      else if (iconSize > 41) {
+        badgeStyle.height = iconSize + 9;
+        badgeStyle.width = iconSize + 9;
+      }
       else if (iconSize > 21) {
-        badgeStyle.height = 38;
-        badgeStyle.width = 38;
+        badgeStyle.height = iconSize + 6;
+        badgeStyle.width = iconSize + 6;
       }
     }
     if (borderless) {

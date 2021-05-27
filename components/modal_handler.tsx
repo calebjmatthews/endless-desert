@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import { displayModal } from '../actions/ui';
 import BuildComponent from './build';
+import ResourceDetailComponent from './resource_detail';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
 import ResourceSelectDishComponent from './resource_select_dish';
@@ -59,6 +60,9 @@ function renderModal(modalType: string) {
   switch (modalType) {
     case MODALS.BUILD:
     return <BuildComponent />;
+
+    case MODALS.RESOURCE_DETAIL:
+    return <ResourceDetailComponent />;
 
     case MODALS.RESOURCE_SELECT:
     return <ResourceSelectComponent />;

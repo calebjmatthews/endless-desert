@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import { displayModalValue } from '../actions/ui';
 
 import ResourceType from '../models/resource_type';
 import Resource from '../models/resource';
@@ -15,8 +16,10 @@ import { resourceCategories } from '../instances/resource_categories';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { renderBadge } from './utils_react';
 import { utils } from '../utils';
+import { MODALS } from '../enums/modals';
 
 export default function ResourcesComponent() {
+  const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
   const positioner = useTypedSelector(state => state.ui.positioner);
@@ -53,7 +56,12 @@ export default function ResourcesComponent() {
 
   function renderResource(resource: any) {
     return <ResourceDescription resource={resource} rates={rates}
-      positioner={positioner} />
+      resourceDetailOpen={resourceDetailOpen} positioner={positioner} />
+  }
+
+  function resourceDetailOpen(resource: Resource) {
+    const typeQuality = resource.type + '|' + resource.quality;
+    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', typeQuality));
   }
 
   return (
@@ -90,9 +98,10 @@ function ResourceDescription(props: any) {
       textShadowRadius: 1 };
   }
   return (
-    <View style={StyleSheet.flatten([styles.panelFlex,
+    <TouchableOpacity style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+        maxWidth: props.positioner.majorWidth}])}
+      onPress={() => { props.resourceDetailOpen(resource) }}>
       {renderBadge(resourceType, resource.quality, 29)}
       <View style={styles.containerStretchRow}>
         <View>
@@ -110,6 +119,6 @@ function ResourceDescription(props: any) {
         </View>
       </View>
 
-    </View>
+    </TouchableOpacity>
   );
 }

@@ -117,6 +117,12 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginVertical: 2
   },
+  centeredRows: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   columns: {
     display: 'flex',
     flexDirection: 'column',
