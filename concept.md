@@ -1,9 +1,10 @@
+# Endless Desert
 Incremental idle game about exploration and discovery in an endless desert
 
 ssh -i newsummer cmatthews@64.225.48.128
 scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@64.225.48.128:/home/cmatthews/
 
-# Ideas:
+## Ideas:
   - Basic resources: water, reeds, clay, and sand.
   - Foods: Grain, lentils, figs, dates, goards, fish, bread, beer, onions, garlic, cheese, butter, spices (coriander, cinnamon, carob, garlic, chicory).
   - Animals: Oxen, quail, fish, bees, scarabs (for dye), cats.
@@ -59,7 +60,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
   - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
 
-# Resource Subcategories:
+## Resource Subcategories:
   - Sand
     * Yellow: Savory
     * Pure: Sweet
@@ -100,12 +101,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Melange: Rich
     * Taro: Earthy
 
-# Where is the bottleneck?
+## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
   - It should be relatively easy to sustain an existing settlement, and easy to expand by adding buildings, but without much value to be gained by stockpiling huge numbers of basic resources. Adding new groups should be difficult, and trading should have relatively low maximum numbers of resources, so the player cannot succeed by trading huge quantities of sand, for example.
   - Advanced products should require a mix of intermediate resources that come from the town and resources that have to be traded for.
 
-# Broad gameplay tiers
+## Broad gameplay tiers
   - Beginning: Should happen with almost non-existent wait times
     * Repair Cistern, Lentil Field, Study, and Huts
     * Samannoud joins
@@ -125,10 +126,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Six exploration areas, one initial, four from researches, one from previous exploration
     * Costs now include Field Notes, Bricks, Thatch, Papyrus, Glass, Iron, Artisan Goods, Food
   - Late: Research costs now require field notes and artifacts from exploration
-    * Deep Analysis (Analysis with quality lenses, papyrus, and ink), Grape Farming, Flower Farming, Mulberry Farming, Bee Husbandry, Silkworm Husbandry, Performance, Neighboring Peoples, Further Education, Companionship (allows pets), Rapid Weaving, Mechanisms, Flowstone, Custom Home Construction, Winemaking, Distillation (Perfumery), Dyemaking, Sand Purification, Solar Combustion, The Yearning Obelisk, Exaltation, The River of Pearls
+    * Deep Analysis (Analysis with lenses, papyrus, and ink), Grape Farming, Flower Farming, Mulberry Farming, Bee Husbandry, Silkworm Husbandry, Performance, Neighboring Peoples, Further Education, Companionship (allows pets), Rapid Weaving, Mechanisms, Flowstone, Custom Home Construction, Winemaking, Distillation (Perfumery), Dyemaking, Sand Purification, Solar Combustion, The Yearning Obelisk, Exaltation, The River of Pearls
   - Deep: The Orchids Aspire
 
-# Researches (see spredsheet):
+## Researches (see spredsheet):
 - Start with:
   - Analysis
   - Biology
@@ -163,7 +164,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Questline around magic lamp with Djinn inside
 - Mysticism
 
-# Research options:
+## Research options:
   - Scholarship:
     - Use knowledge
     - Use any material
@@ -190,25 +191,25 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Use field notes on plants
     - Use field notes on animals
 
-# Research option flow:
+## Research option flow:
   - Pull the options specific to the research, then the options for its category and difficulty
   - Remove the options that have already been used as part of this research
   - Look at the number of remaining steps: if there are <= steps as research-specific options, only choose from those
   - If there are >, choose from any in the pool
   - If there are no options remaining in the pool, restore all previously used options
 
-# Option cost application:
+## Option cost application:
   - If specificity is exact, deduct material at once
   - If specificity is tag or category, open resource selection modal
   - Check if all costs have been fulfilled, if so mark research completed and change component to "Finished!"
   - If not, add research option paid (research option name -> cost type) cost object to research options deck
 
-# Resource selection:
+## Resource selection:
   - Only show matching resources, sorted with highest quantity first
   - If only one matching resource exists, have it auto-selected
   - Can manually enter in quantity after selecting, but auto-fills to cost quantity
 
-# Leaders:
+## Leaders:
   - Need open housing for leader+crew to move in
   - "Leaders" tab that shows each leader with equipment selection, what building they're assigned to
   - Section on buildings description to assign a leader
@@ -228,12 +229,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Old friend of player, first leader but then disappears
     * Old friend's second in command
 
-# Caches:
+## Caches:
   - Give random amounts of relics, which are resources used to construct cosmetics
   - After creating a new file an "Heirloom Cache" is available for super cheap ($0.50?)
   - Otherwise a "Mysterious Cache" is available every week for $1 and a "Grand Cache" is available every month for $5. Grand Caches include a clue that leads to a unique mysticism research and series of explorations that result in more relics
 
-# Research:
+## Research:
   - Study action, inspect an item that has not been studied before to gain knowledge
   - Analyse action, Gain knowledge by destroying a resource and studying its parts
   - Field notes are brought back by explorers, even when an exploration fails. There are also ways of gathering field notes about the town itself. Example field notes are "Notes on the Western Stars", "Notes on the Waning Moon", "Notes on Flowing Water", "Notes on Caves Beneath the Sand", etc.
@@ -244,7 +245,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Higher difficulty uses field notes and higher refined materials
     - High difficulty uses rarer field notes, high-quality dishes, complex refined materials, and rarer exploration rewards
 
-# Traders:
+## Traders:
   - Individual trader ideas:
     - European traders that give metals
     - Scholarly trader that receives knowledge and parchment
@@ -254,7 +255,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Early traders
   - Middle traders: give iron, gold; receive glass
 
-# Equipment:
+## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
     * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
@@ -271,7 +272,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Exquisite unmarked equipment is 80% 3, 18% 4, 2% 5
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
 
-# Cooking:
+## Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish
   - Several things can be used as a main ingredient: Lentils, Quail, Fish, Onion, Dates
   - These create the psuedo resource type for the final dish resource according to the tag they fall into: for example Lentils are a vegetable, so a dish with Lentils, Milk, and Water would be called "Plain Lentil Soup", but would have the resource type of "Vegetable Soup" for the purposes of grouping and studying
@@ -284,13 +285,23 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Oil and spice can be added to any recipe to increase value
   - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil, "Tasty" is used if there is oil but no spice, and "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Tasty Lentil Soup", Fish + Grain + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
-# Expeditions:
+## Expeditions:
 - Colossal underground "House of Form" produced honey that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
   - Gardens with reward of rare seeds and plant-related equipment
   - Library with knowledge-related rewards
   - Kitchens with recipes, rare ingredients, and cooking-related equipment
 
-# Tabs:
+## Field Notes:
+  - Required for many research options of difficulty 2 and higher
+  - You can gain some Field Notes from observing buildings or the sky. These take 1000 knowledge, 100 parchment, 10 ink, and 1 hour of study to produce
+    -  Notes on the Boundless Sky (sky during day)
+    -  Notes on the [direction] Stars (25% chance during night)
+    -  Notes on Flowing Water (Cistern)
+    -  Notes on the Recalcitrant Earth (Clay Pit, Sand Pit, Press, etc)
+    -  Notes on Scintillating Heat (Drying Yard, Furnace, etc)
+    -  Notes on Gentle Cultivation (Lentil Field, Quail Pen, etc)
+
+## Tabs:
   - Map, showing locations of each building and the river running through the middle
   - Buildings, with an expandable list of buildings with the resources consumed/produced by each
     - Section headers with the category of building (Service?, Agriculture, Artisan???)
@@ -307,7 +318,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Exploration, with current expedition (if active) and expedition options (if not active)
   - The Dreaming, with a map for each of the temporary settlements made in The Dreaming
 
-# Useful icons:
+## Useful icons:
   Entypo: 500px (infinity), address (post), bell, flower, lab-flask, mask,
     round-brush, swarm (bee), lightbulb-cfl-spiral ()
   FontAwesome: leaf, bolt, building-o, beer, medkit, paw, diamond, snowflake
@@ -330,23 +341,23 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     <div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   Value symbol options: ѵ, ұ,
 
-# Time cycle:
+## Time cycle:
   - The desert transitions from day to night over the course of an hour.
   - Morning is from :00 - :15, day from :15 - :30, evening from :30 - :45, and night from :45 - :00
   - Night is from :50 - :05, morning from :05 - :20, day from :20 - :35, evening from :35 - :50.
   - Twenty four days consitute a month, and twenty eight to thirty one days consistute a year.
 
-# Starting game state:
+## Starting game state:
   - Buildings: one trading post, one hut, one cistern, one lentil field
 
-# Example game state:
+## Example game state:
   - Buildings: one town center, four houses, one cistern, one lentil field, two grain field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
   - Initial products are: 110 water, 11 lentils, 11 grain, 11 oxen, 11 fish, 33 reeds, 11 clay, 22 sand
   - Intermediate consumption is: 10 water -> 11 lentils, 20 water -> 22 grain, 30 water + 10 grain -> 11 oxen, 10 water -> 11 fish, 2 oxen + 5 water -> 16 cheese, 10 lentils + 2 water + 2 reeds -> 11 lentil soup, 10 grain + 2 water + 2 reeds -> 11 bread, 10 fish + 2 reeds -> 11 baked fish, 10 reeds -> 11 roofing, 10 reeds -> 11 papyrus, 10 clay -> 11 bricks, 10 sand + 2 reeds -> 11 glass, 10 glass + 2 reeds -> 16 lenses
   - Final products are -19 water, 1 lentils, 2 grain, 9 oxen, 1 fish, 3 reeds, 1 clay, 12 sand, 6 cheese, 1 lentil soup, 1 bread, 1 baked fish, 11 papyrus, 11 roofing, 11 clay bricks, 1 glass, 16 lenses
   - Four groups are eating cheese, lentil soup, bread, baked fish, and drinking water; one exploring, one cheese making, one lens crafting, one playing music.
 
-# Calculating timestep:
+## Calculating timestep:
   - "Hourglass" class used to calculate tick related events
   - Production/consumption always calculated using a diff between two timestamps
   - P/C sets for buildings have a "tier" which is determined by the complexity of the resources they're consuming, one higher than the highest tiered resource that went into its production. For example, a cistern has a tier of 0 because it consumes nothing to produce water. Bread has a tier of 2, because it consumes water (tier 0, ignored) and grain (tier 1, increased by 1)
@@ -354,12 +365,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - When calculating larger timestamp durations (>10 seconds), if one or more resources have a negative production the hourglass will calculate when the negative resource will run out, and then recalculate rates for that resource. The resource will be rounded down and set at 0 at this point
   - Example: Beginning with timestamp 2000, with Red Clay|0 running out at 2800 and Lentils|0 running out at 3200, and current timestamp of 4000. First soonestExhaustion at 2800, calculate results between 2000 and 2800. Inactivate buildings that use Red Clay|0 by recalculating rates, second soonestExhaustion at 3200 and calculate results between 2800 and 3200. Inactivate buildings that use Lentils|0 by recalculating rates and calculate results between 3200 and 4000.
 
-# Building display:
+## Building display:
   - Start by going through each building, and creating an array the building types with duplicates
   - Go through each building again, creating a display object that can be either a building group or a single building, with a building group for those with duplicates
   - Pull the building specific or building group rates from the rate reducer
 
-# Beginning of game:
+## Beginning of game:
   - Some messages to introduce setting
     * "Rumors say anything can be found in the desert: ancient knowledge, buried jade, even a path back from the land of the dead. But perhaps it was foolish to run towards its center on your own."
     * "Your food and water are long gone, your breath gasping and your steps slow, when you find a ruined village."
@@ -376,11 +387,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
 
-# Value checking table
+## Value checking table
 
 - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
 
-# Styling:
+## Styling:
   - Fine border:
     border-style: outset;
     border-width: 3px;
@@ -389,7 +400,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     color: #6a7791;
     text-shadow: 0px 0px 1px #a3bcdb;
 
-# Commands:
+## Commands:
 USE `endless_desert`;
 DELETE FROM `buildings`;
 DELETE FROM `buildings_construction`;
@@ -404,7 +415,7 @@ DELETE FROM `equipment`;
 DELETE FROM `users`;
 DELETE FROM `sessions`;
 
-# Create user table:
+## Create user table:
 CREATE TABLE `endless_desert`.`users` (
   `id` VARCHAR(8) NOT NULL,
   `email` VARCHAR(254) NOT NULL,
@@ -418,8 +429,8 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-# Debug functions:
-## Get one of every basic equipment:
+## Debug functions:
+### Get one of every basic equipment:
 ```
 dispatch(increaseResources(vault,
   [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
@@ -438,7 +449,7 @@ dispatch(increaseResources(vault,
     quality: 0, quantity: 1 }] ));
 ```
 
-## Remove all current resources:
+### Remove all current resources:
 ```
 let resources: Resource[] = [];
 Object.keys(vault.resources).map((typeQuality) => {
@@ -447,7 +458,7 @@ Object.keys(vault.resources).map((typeQuality) => {
 dispatch(consumeResources(vault, resources));
 ```
 
-## Desert Test Kitchen
+### Desert Test Kitchen
 ```
 let testKitchen = new Building({id: '12341234',
   buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',

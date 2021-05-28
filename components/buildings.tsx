@@ -17,6 +17,7 @@ import Building from '../models/building';
 import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import Leader from '../models/leader';
+import Resource from '../models/resource';
 import { buildingTypes } from '../instances/building_types';
 import { buildingCategories } from '../instances/building_categories';
 import { resourceTypes } from '../instances/resource_types';
@@ -314,7 +315,9 @@ function BuildingDescription(props: any) {
 
   function renderRate(typeQuality: string, rate: number) {
     const tqSplit = typeQuality.split('|');
-    const resource = props.vault.resources[typeQuality];
+    let resource = props.vault.resources[typeQuality];
+    if (!resource) { resource = new Resource({ type: tqSplit[0],
+      quality: parseInt(tqSplit[1]), quantity: 0 }) }
     const resourceType = utils.getResourceType(resource);
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,

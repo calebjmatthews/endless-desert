@@ -469,10 +469,10 @@ researches[RESEARCHES.HOME_CONSTRUCTION_IMRPOVED] = new Research({
 researches[RESEARCHES.COMPACTION] = new Research({
   name: RESEARCHES.COMPACTION,
   unlocks: ('Unlocks Presses.'),
-  description: ('Reeds are useful as they are, but you\'ve heard '
-    + 'that pressing them into a dense sheet makes a good roofing material. '
-    + 'Once you figure out how to do it, you wonder if a thorough compacting may '
-    + 'have even more uses.'),
+  description: ('Reeds are useful as they are, but you\'ve been eager for one '
+    + 'resource above all others: something to write on. You don\'t exactly '
+    + 'know how to make papyrus, but it surely most begin with a thorough '
+    + 'flattening.'),
   icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
   foregroundColor: '#795548',
   backgroundColor: '#fff',
