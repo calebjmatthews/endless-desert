@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
@@ -9,8 +9,12 @@ import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
 
 import ResourceType from '../models/resource_type';
+import ResourceCategory from '../models/resource_category';
 import Resource from '../models/resource';
 import Vault from '../models/vault';
+import Rates from '../models/rates';
+import Positioner from '../models/positioner';
+import { CategoryBranch } from '../models/category_branch';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceCategories } from '../instances/resource_categories';
 import { resourceSubcategories } from '../instances/resource_subcategories';
@@ -23,6 +27,7 @@ export default function ResourcesComponent() {
   const vault = useTypedSelector(state => state.vault);
   const rates = useTypedSelector(state => state.rates);
   const positioner = useTypedSelector(state => state.ui.positioner);
+
   let resourcesArray = Object.keys(vault.resources).map((typeQuality) => {
     return vault.resources[typeQuality];
   });
@@ -31,31 +36,24 @@ export default function ResourcesComponent() {
        return resource;
     }
   });
-  resourcesArray.sort((a, b) => {
-    const rta = utils.getResourceType(a);
-    if (!rta) { console.log('a'); console.log(a);  }
-    const rcoa = resourceCategories[rta.category].order;
-    const rtb = utils.getResourceType(b);
-    const rcob = resourceCategories[rtb.category].order;
-    if (rcoa != rcob) {
-      return rcoa - rcob;
+
+  const catTree = vault.getCategoryTree(resourcesArray);
+  let uiArray: UiItem[] = [];
+  Object.keys(catTree).map((catName) => {
+    const catBranch = catTree[catName];
+    let category = Object.assign( {}, catBranch );
+    delete category.resources;
+    if (catBranch.resources.length > 0) {
+      uiArray.push({ type: 'category', id: category.name, category });
+      catBranch.resources.map((resource) => {
+        const id = (resource.type + '|' + resource.quality);
+        uiArray.push({ type: 'resource', id, resource });
+      });
     }
-    const rateA = rates.netRates[a.type + '|' + a.quality];
-    const rateB = rates.netRates[b.type + '|' + b.quality];
-    if (rateA && !rateB) { return -1; }
-    if (!rateA && rateB) { return 1; }
-    let rsoa = 99;
-    if (rta.subcategory) { rsoa = resourceSubcategories[rta.subcategory].order; }
-    let rsob = 99;
-    if (rtb.subcategory) { rsob = resourceSubcategories[rtb.subcategory].order; }
-    if (rsoa != rsob) {
-      return rsoa - rsob;
-    }
-    return (rta.name < rtb.name) ? -1 : 1;
   });
 
-  function renderResource(resource: any) {
-    return <ResourceDescription resource={resource} rates={rates}
+  function renderUiItem(data: any) {
+    return <UiSplitter data={data} rates={rates}
       resourceDetailOpen={resourceDetailOpen} positioner={positioner} />
   }
 
@@ -72,25 +70,41 @@ export default function ResourcesComponent() {
         <Text style={styles.heading1}>{' Resources'}</Text>
       </View>
       <FlatList
-        data={resourcesArray}
-        renderItem={renderResource}
-        keyExtractor={resource => (resource.type + '|' + resource.quality)}>
+        data={uiArray}
+        renderItem={renderUiItem}
+        keyExtractor={uiItem => uiItem.id }>
       </FlatList>
     </View>
   );
 }
 
-function ResourceDescription(props: any) {
-  const resource: Resource = props.resource.item;
+function UiSplitter(props: any) {
+  switch(props.data.item.type) {
+    case 'resource':
+    return <ResourceDescription resource={props.data.item.resource} rates={props.rates}
+      resourceDetailOpen={props.resourceDetailOpen} positioner={props.positioner} />
+
+    case 'category':
+    return <CategoryDescription category={props.data.item.category} rates={props.rates}
+      resourceDetailOpen={props.resourceDetailOpen} positioner={props.positioner} />
+
+    default:
+    return null;
+  }
+
+}
+
+function ResourceDescription(props: UiItemProps) {
+  if (!props.resource) { return null; }
+  const resource: Resource = props.resource;
   let resourceType = utils.getResourceType(resource);
-  let rate = props.rates.netRates[resource.type + '|' + resource.quality];
+  const rate = props.rates.netRates[resource.type + '|' + resource.quality];
+  let rateString = '';
   if (rate) {
+    rateString = rate.toString();
     let sign = '+';
     if (rate < 0) { sign = ''; }
-    rate = (sign + (Math.round(rate)) + '/m');
-  }
-  else {
-    rate = '';
+    rateString = (sign + (Math.round(rate)) + '/m');
   }
   let textStyle: any = { color: '#000' };
   if (resource.quality == 1) {
@@ -109,16 +123,54 @@ function ResourceDescription(props: any) {
             {utils.getResourceName(resource)}
           </Text>
           <Text>
-            {rate}
+            {rateString}
           </Text>
         </View>
         <View style={styles.quantityContainer}>
           <Text style={{fontSize: 20}}>
-            {utils.formatNumberShort(props.resource.item.quantity)}
+            {utils.formatNumberShort(props.resource.quantity)}
           </Text>
         </View>
       </View>
 
     </TouchableOpacity>
   );
+}
+
+function CategoryDescription(props: UiItemProps) {
+  if (!props.category) { return null; }
+  const rCat = resourceCategories[props.category.name];
+
+  return (
+    <View style={StyleSheet.flatten([styles.rows,
+      {marginLeft: 10, marginTop: 10, minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])} >
+      <IconComponent provider={rCat.icon.provider} name={rCat.icon.name}
+        color="#fff" size={20}
+        style={styles.headingIcon} />
+      <View style={styles.containerStretchRow}>
+        <View>
+          <Text style={styles.bareText}>
+            {' ' + rCat.name}
+          </Text>
+        </View>
+      </View>
+
+    </View>
+  );
+}
+
+interface UiItemProps {
+  resource?: Resource;
+  category?: ResourceCategory;
+  rates: Rates;
+  resourceDetailOpen: (resource: Resource) => void;
+  positioner: Positioner;
+}
+
+interface UiItem {
+  type: string;
+  id: string;
+  resource?: Resource;
+  category?: CategoryBranch;
 }

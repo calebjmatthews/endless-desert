@@ -1,5 +1,7 @@
 import Resource from './resource';
+import { CategoryBranch } from './category_branch';
 import { resourceTypes } from '../instances/resource_types';
+import { resourceCategories } from '../instances/resource_categories';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
@@ -200,6 +202,19 @@ export default class Vault {
       }
     });
     return emptiedTQs;
+  }
+
+  getCategoryTree(resourcesArray: Resource[]) {
+    let catTree: { [catName: string] : CategoryBranch } = {};
+    Object.keys(resourceCategories).map((categoryName) => {
+      catTree[categoryName] = { ...resourceCategories[categoryName], resources: [] };
+    });
+    resourcesArray = utils.resourcesSort(resourcesArray);
+    resourcesArray.map((resource) => {
+      const resourceType = resourceTypes[resource.type];
+      catTree[resourceType.category].resources.push(resource);
+    });
+    return catTree;
   }
 }
 

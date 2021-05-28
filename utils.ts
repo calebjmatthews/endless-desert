@@ -483,6 +483,32 @@ class Utils {
     }
     return resourceTypes[resource.type];
   }
+
+  resourcesSort(resourcesArray: Resource[]) {
+    resourcesArray.sort((a, b) => {
+      const rta = utils.getResourceType(a);
+      if (!rta) { console.log('a'); console.log(a);  }
+      const rcoa = resourceCategories[rta.category].order;
+      const rtb = utils.getResourceType(b);
+      const rcob = resourceCategories[rtb.category].order;
+      if (rcoa != rcob) {
+        return rcoa - rcob;
+      }
+      // const rateA = rates.netRates[a.type + '|' + a.quality];
+      // const rateB = rates.netRates[b.type + '|' + b.quality];
+      // if (rateA && !rateB) { return -1; }
+      // if (!rateA && rateB) { return 1; }
+      let rsoa = 99;
+      if (rta.subcategory) { rsoa = resourceSubcategories[rta.subcategory].order; }
+      let rsob = 99;
+      if (rtb.subcategory) { rsob = resourceSubcategories[rtb.subcategory].order; }
+      if (rsoa != rsob) {
+        return rsoa - rsob;
+      }
+      return (rta.name < rtb.name) ? -1 : 1;
+    });
+    return resourcesArray;
+  }
 }
 
 export let utils = new Utils();
