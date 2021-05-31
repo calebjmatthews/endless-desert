@@ -1,6 +1,7 @@
 import Research from './research';
 import Vault from './vault';
 import Resource from './resource';
+import ResearchBranch from './research_branch';
 import { researches } from '../instances/researches';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -9,7 +10,7 @@ import { RESEARCHES } from '../enums/researches';
 export default class ResearchStatus implements ResearchStatusInterface {
   // Each research and whether it is "completed", "visible" or "hidden"
   status: { [name: string] : string } = {};
-  actions: { [category: string] : string[] } = {};
+    actions: { [category: string] : string[] } = {};
   resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
 
@@ -72,16 +73,15 @@ export default class ResearchStatus implements ResearchStatusInterface {
 
   setResearchedActions() {
     this.actions = {};
-    let actionRelated: { [researchName : string] : string } = {};
-    actionRelated[RESEARCHES.STUDY] = 'Research';
-    actionRelated[RESEARCHES.ANALYSIS] = 'Research';
 
     Object.keys(this.status).map((name) => {
       if (this.status[name] == 'completed') {
-        let category = actionRelated[name];
-        if (category) {
-          if (!this.actions[category]) { this.actions[category] = []; }
-          this.actions[category].push(name);
+        const research = researches[name];
+        if (research.actionCategory) {
+          if (!this.actions[research.actionCategory]) {
+            this.actions[research.actionCategory] = [];
+          }
+          this.actions[research.actionCategory].push(name);
         }
       }
     });
@@ -114,6 +114,30 @@ export default class ResearchStatus implements ResearchStatusInterface {
         });
       }
     });
+  }
+
+  getResearchTree(showCompleted: boolean) {
+    let researchTree: { [rName: string] : ResearchBranch } = {};
+    Object.keys(researches).map((rName) => {
+      const research = researches[rName];
+      if (research.isCategory) {
+        researchTree[rName] = new ResearchBranch({ type: 'category', name: rName,
+          status: '', children: [] });
+        if (((this.status[rName] == 'visible' || this.status[rName] == 'completed'))
+          && (showCompleted || this.status[rName] != 'completed')) {
+          researchTree[rName].children.push(new ResearchBranch({ type: 'research',
+            name: rName, status: this.status[rName], children: [] }));
+        }
+      }
+      else {
+        if (((this.status[rName] == 'visible' || this.status[rName] == 'completed'))
+          && (showCompleted || this.status[rName] != 'completed')) {
+          researchTree[research.category].children.push({ type: 'research',
+            name: rName, status: this.status[rName], children: [] });
+        }
+      }
+    });
+    return researchTree;
   }
 }
 

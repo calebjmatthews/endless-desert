@@ -53,8 +53,18 @@ export default function ResourcesComponent() {
   });
 
   function renderUiItem(data: any) {
-    return <UiSplitter data={data} rates={rates}
-      resourceDetailOpen={resourceDetailOpen} positioner={positioner} />
+    switch(data.item.type) {
+      case 'resource':
+      return <ResourceDescription resource={data.item.resource} rates={rates}
+        resourceDetailOpen={resourceDetailOpen} positioner={positioner} />
+
+      case 'category':
+      return <CategoryDescription category={data.item.category} rates={rates}
+        resourceDetailOpen={resourceDetailOpen} positioner={positioner} />
+
+      default:
+      return null;
+    }
   }
 
   function resourceDetailOpen(resource: Resource) {
@@ -79,18 +89,7 @@ export default function ResourcesComponent() {
 }
 
 function UiSplitter(props: any) {
-  switch(props.data.item.type) {
-    case 'resource':
-    return <ResourceDescription resource={props.data.item.resource} rates={props.rates}
-      resourceDetailOpen={props.resourceDetailOpen} positioner={props.positioner} />
 
-    case 'category':
-    return <CategoryDescription category={props.data.item.category} rates={props.rates}
-      resourceDetailOpen={props.resourceDetailOpen} positioner={props.positioner} />
-
-    default:
-    return null;
-  }
 
 }
 

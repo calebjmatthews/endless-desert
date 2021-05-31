@@ -16,7 +16,9 @@ import { styles } from '../styles';
 
 import Research from '../models/research';
 import ResearchStatus from '../models/research_status';
+import ResearchBranch from '../models/research_branch';
 import Vault from '../models/vault';
+import Resource from '../models/resource';
 import ResearchOptionDeck from '../models/research_option_deck';
 import Timer from '../models/timer';
 import Positioner from '../models/positioner';
@@ -25,6 +27,7 @@ import { utils } from '../utils';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { MODALS } from '../enums/modals';
 import { RESEARCHES } from '../enums/researches';
+import { TABS } from '../enums/tabs';
 
 export default function ResearchesComponent() {
   const dispatch = useDispatch();
@@ -37,12 +40,27 @@ export default function ResearchesComponent() {
   const showCompletedResearches =
     useTypedSelector(state => state.account.showCompletedResearches);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  let uiArray: ResearchBranch[] = [];
+  researchStatus.actions[TABS.RESEARCH].map((action) => {
+    uiArray.push(new ResearchBranch({ type: 'action', name: action, status: '',
+      children: [] }));
+  });
   let researchArray = Object.keys(researchStatus.status).map((name) => {
     return {name: name, status: researchStatus.status[name]}
   });
   researchArray = researchArray.filter((r) => {
     if (r.status == 'visible' || r.status == 'completed') {
       return r;
+    }
+  });
+  const researchTree = researchStatus.getResearchTree(showCompletedResearches);
+  Object.keys(researchTree).map((rName) => {
+    const rBranch = researchTree[rName];
+    if (rBranch.children.length > 0) {
+      uiArray.push(rBranch);
+      rBranch.children.map((child) => {
+        uiArray.push(child);
+      });
     }
   });
 
@@ -53,7 +71,6 @@ export default function ResearchesComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Research'}</Text>
       </View>
-      {renderActions()}
       <View>
         <Text style={styles.bareText}>
           {utils.formatNumberShort(vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0']
@@ -61,68 +78,66 @@ export default function ResearchesComponent() {
         </Text>
       </View>
       <FlatList
-        data={researchArray}
-        renderItem={(item) => renderResearch(item, startClick)}
+        data={uiArray}
+        renderItem={(item) => renderUiItem(item)}
         keyExtractor={research => research.name}>
       </FlatList>
     </View>
   );
 
-  function renderResearch(research: any, startClick: Function) {
-    return <ResearchDescription research={research} vault={vault}
-      startClick={startClick} rods={researchOptionDecks} positioner={positioner}
-      showCompletedResearches={showCompletedResearches} />
-  }
+  function renderUiItem(data: any) {
+    switch(data.item.type) {
+      case 'action':
+      return <>{renderActionItem(data.item.name)}</>
 
-  function renderActions() {
-    let actions = researchStatus.actions['Research'];
-    if (actions) {
-      return (
-        <View>
-          {renderActionItems(actions)}
-        </View>
-      );
+      case 'research':
+      return <ResearchDescription branch={data.item} vault={vault}
+        startClick={startClick} rods={researchOptionDecks} positioner={positioner}
+        showCompletedResearches={showCompletedResearches} />
+
+      case 'category':
+      return <CategoryDescription branch={data.item} positioner={positioner} />
+
+      default:
+      return null;
     }
-    return null;
   }
 
-  function renderActionItems(actionNames: string[]) {
-    return actionNames.map((actionName) => {
-      let research = researches[actionName];
-      let buttonDisabled = false;
-      let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
+  function renderActionItem(actionName: string) {
+    let research = researches[actionName];
+    let buttonDisabled = false;
+    let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
+      {'flexGrow': 10}]);
+    if (studyTimer || analysisTimer) {
+      buttonDisabled = true;
+      buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
         {'flexGrow': 10}]);
-      if (studyTimer) {
-        buttonDisabled = true;
-        buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
-          {'flexGrow': 10}]);
-      }
-      return (
-        <View key={actionName}
-          style={StyleSheet.flatten([styles.panelFlex,
-            {minWidth: positioner.majorWidth,
-              maxWidth: positioner.majorWidth, minHeight: 0}])} >
-          <View style={styles.containerStretchColumn}>
-            <View style={styles.buttonRow}>
-              <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
-                onPress={() => { actionClick(actionName) }}>
-                <IconComponent provider={research.icon.provider}
-                  name={research.icon.name}
-                  color="#fff" size={16} />
-                <Text style={styles.buttonText}>{' ' + research.name}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-                styles.buttonLight])}>
-                <IconComponent provider="FontAwesome5" name="question-circle"
-                  color="#17265d" size={16} />
-                <Text style={styles.buttonTextDark}>{' Help'}</Text>
-              </TouchableOpacity>
-            </View>
-            {renderActionProgressBar(actionName)}
+    }
+    return (
+      <View key={actionName}
+        style={StyleSheet.flatten([styles.panelFlex,
+          {minWidth: positioner.majorWidth,
+            maxWidth: positioner.majorWidth, minHeight: 0}])} >
+        <View style={styles.containerStretchColumn}>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
+              onPress={() => { actionClick(actionName) }}>
+              <IconComponent provider={research.icon.provider}
+                name={research.icon.name}
+                color="#fff" size={16} />
+              <Text style={styles.buttonText}>{' ' + research.name}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
+              styles.buttonLight])}>
+              <IconComponent provider="FontAwesome5" name="question-circle"
+                color="#17265d" size={16} />
+              <Text style={styles.buttonTextDark}>{' Help'}</Text>
+            </TouchableOpacity>
           </View>
+          {renderActionProgressBar(actionName)}
         </View>
-      );
-    });
+      </View>
+    );
   }
 
   function renderActionProgressBar(actionName: string) {
@@ -158,11 +173,11 @@ export default function ResearchesComponent() {
       dispatch(selectTab("Researching", researchStatus.name));
     }
     else if (quantity >= research.knowledgeReq) {
-      dispatch(consumeResources(vault, [{
+      dispatch(consumeResources(vault, [new Resource({
         type: RESOURCE_TYPES.KNOWLEDGE,
         quality: 0,
         quantity: research.knowledgeReq
-      }]));
+      })]));
       dispatch(startResearch(researchStatus.name));
       dispatch(selectTab("Researching", researchStatus.name));
     }
@@ -177,13 +192,12 @@ export default function ResearchesComponent() {
   }
 }
 
-function ResearchDescription(props: {research: any, vault: Vault,
+function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
   startClick: Function, showCompletedResearches: boolean,
   rods: { [researchName: string] : ResearchOptionDeck}, positioner: Positioner}) {
-  const researchStatus: {name: string, status: string} = props.research.item;
-  const research = researches[researchStatus.name];
+  const research = researches[props.branch.name];
 
-  if (!props.showCompletedResearches && researchStatus.status != 'visible') {
+  if (!props.showCompletedResearches && props.branch.status != 'visible') {
     return null;
   }
 
@@ -199,7 +213,7 @@ function ResearchDescription(props: {research: any, vault: Vault,
         iconSize={18} />
       <View style={styles.containerStretchColumn}>
         <Text>{research.name}</Text>
-        <Text>{renderCost(researchStatus)}</Text>
+        <Text>{renderCost(props.branch)}</Text>
         <View style={styles.buttonRow}>
           {renderStart()}
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
@@ -216,18 +230,22 @@ function ResearchDescription(props: {research: any, vault: Vault,
   function renderCost(researchStatus: {name: string, status: string}) {
     const research = researches[researchStatus.name];
     if (researchStatus.status == 'visible') {
-      return <View><Text>{'To start: ' + research.knowledgeReq + ' knowledge'}</Text></View>;
+      return (
+        <View>
+          <Text>{'To start: ' + utils.formatNumberShort(research.knowledgeReq)
+            + ' knowledge'}</Text>
+        </View>);
     }
     return null;
   }
 
   function renderStart() {
-    if (props.rods[researchStatus.name]) {
-      let rod = props.rods[researchStatus.name];
+    if (props.rods[props.branch.name]) {
+      let rod = props.rods[props.branch.name];
       if (rod.stepsCompleted < rod.stepsNeeded) {
         return (
           <TouchableOpacity style={styles.buttonRowItem}
-            onPress={() => {props.startClick(researchStatus, props.vault, true)}} >
+            onPress={() => {props.startClick(props.branch, props.vault, true)}} >
             <IconComponent provider="MaterialCommunityIcons" name="feather"
               color="#fff" size={16} />
             <Text style={styles.buttonText}>{' Resume'}</Text>
@@ -235,10 +253,10 @@ function ResearchDescription(props: {research: any, vault: Vault,
         );
       }
     }
-    if (researchStatus.status == 'visible') {
+    if (props.branch.status == 'visible') {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => {props.startClick(researchStatus, props.vault)}} >
+          onPress={() => {props.startClick(props.branch, props.vault)}} >
           <IconComponent provider="MaterialCommunityIcons" name="feather"
             color="#fff" size={16} />
           <Text style={styles.buttonText}>{' Start'}</Text>
@@ -255,4 +273,26 @@ function ResearchDescription(props: {research: any, vault: Vault,
       </TouchableOpacity>
     );
   }
+}
+
+function CategoryDescription(props: {branch: ResearchBranch, positioner: Positioner}) {
+  const rCat = researches[props.branch.name];
+
+  return (
+    <View style={StyleSheet.flatten([styles.rows,
+      {marginLeft: 10, marginTop: 10, minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth}])} >
+      <IconComponent provider={rCat.icon.provider} name={rCat.icon.name}
+        color="#fff" size={20}
+        style={styles.headingIcon} />
+      <View style={styles.containerStretchRow}>
+        <View>
+          <Text style={styles.bareText}>
+            {' ' + rCat.name}
+          </Text>
+        </View>
+      </View>
+
+    </View>
+  );
 }

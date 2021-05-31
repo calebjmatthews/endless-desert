@@ -400,6 +400,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     color: #6a7791;
     text-shadow: 0px 0px 1px #a3bcdb;
 
+## Play test
+  - Repairing study and huts is too cheap
+  - Repairing market should come before huts
+  - Iron for grinding mill takes too long to acquire
+  - Olives should be +4/m
+  - Wheat should be +20/m
+  - Cooking should be +20/m
+  - Fortuity should grant ore, equipment, food
+  - Travel-ready food like salted meat, dried fruit, waybread
+  - Leaders should begin with a tool, except for Da Nang
+  - Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
+  - Consistent sorting in tabs/selection components
+
 ## Commands:
 USE `endless_desert`;
 DELETE FROM `buildings`;

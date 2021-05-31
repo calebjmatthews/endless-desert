@@ -6,6 +6,7 @@ export default class Research {
   foregroundColor: string = '#000';
   backgroundColor: string = '#fff';
   category: string = '';
+  isCategory: boolean = false;
   difficulty: number = 0;
   stepsNeeded: number = 1;
   beginsCompleted: boolean = false;
@@ -14,6 +15,7 @@ export default class Research {
   unlocksBuilding?: string[];
   unlocksUpgrade?: string[];
   unlocksTab?: string;
+  actionCategory?: string;
 
   constructor(research: Research) {
     Object.assign(this, research);

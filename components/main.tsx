@@ -64,7 +64,7 @@ export default function MainComponent() {
   const account = useTypedSelector(state => state.account);
   const vault = useTypedSelector(state => state.vault);
   const [dropdownExpanded, dropdownSet] = useState(false);
-  const [positionerInit, setPositionerInit] = useState(false);
+  const [positionerInit, setPositionerInit] = useState(false)
 
   useEffect(() => {
     if (!positionerInit) {
