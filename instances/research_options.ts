@@ -371,11 +371,11 @@ researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
 // Add earth-based field note cost
 researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.CHEMICAL_FIXATION,
-  appliesTo: RESEARCHES.BIOLOGY,
+  appliesTo: RESEARCHES.CHEMISTRY,
   difficulty: 2,
   description: ('Metals, clay, glass, and materials of all kinds change with time, '
     + 'becoming dull or brittle. There must be a way to make them, if not '
-    + 'unchangeable, at least better able to resist this change from the air.'),
+    + 'unchangeable, at least better able to resist this decay from the air.'),
   cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
 });
 

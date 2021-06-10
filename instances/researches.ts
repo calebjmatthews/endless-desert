@@ -654,7 +654,7 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
     + 'It involves a lot of careful separation of liquids and salts, and the results '
     + 'so far aren\'t too impressive. Still, compared with the flashier "Alchemy", '
     + 'it seems to actually work.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'test-tube'},
+  icon: {provider: 'MaterialCommunityIcons', name: 'flask'},
   foregroundColor: '#97c701',
   backgroundColor: '#fff',
   category: RESEARCHES.CHEMISTRY,

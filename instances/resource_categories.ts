@@ -32,7 +32,7 @@ resourceCategories[RESOURCE_CATEGORIES.ARTISAN_GOOD] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.ARTISAN_GOOD,
   value: 200,
   order: 3,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'bottle-wine',
+  icon: new Icon({provider: 'FontAwesome5', name: 'wine-bottle',
     color: '#2b2b2d'})
 });
 

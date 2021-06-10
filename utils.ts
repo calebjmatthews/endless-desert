@@ -246,8 +246,8 @@ class Utils {
       if (number >= Math.pow(10, power)) {
         let fNumber = number / Math.pow(10, power);
         let dPlace = 2;
-        if (fNumber > 100) { dPlace = 0; }
-        else if (fNumber > 10) { dPlace = 1; }
+        if (fNumber >= 100) { dPlace = 0; }
+        else if (fNumber >= 10) { dPlace = 1; }
         strNumber = fNumber.toFixed(dPlace) + exponents[power];
       }
     }
