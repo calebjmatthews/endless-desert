@@ -134,24 +134,22 @@ researchOptions[RESEARCH_OPTIONS.CROP_COMPARISON] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.OLIVES, quantity: 400}]
 });
 
-// Add earth-based field note cost
 researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
   name: RESEARCH_OPTIONS.SOIL_QUALITY,
   appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 2,
   description: ('Some detailed notes on the properties of desert soil'
     + 'could give you options for growing crops faster, better, and more efficiently.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+  cost: [{specificity: RS.EXACT, type: RTY.NOTES_EARTH, quantity: 1}]
 });
 
-// Add animal-based field note cost
 researchOptions[RESEARCH_OPTIONS.FROM_DOMESTICATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.FROM_DOMESTICATION,
   appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 2,
   description: ('Tending to pregnant livestock, treating animal sickness, foods '
     + 'that are preffered and foods that are rejected, it\'s all here in your notes.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+  cost: [{specificity: RS.EXACT, type: RTY.NOTES_CULTIVATION, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.FINAL_EDIBILITY] = new ResearchOption({
@@ -247,7 +245,6 @@ researchOptions[RESEARCH_OPTIONS.TO_BUILD_A_HOME] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.REEDS, quantity: 40}]
 });
 
-// Add a cost of any type of field note
 researchOptions[RESEARCH_OPTIONS.MIDDLE_PRICIPLES] = new ResearchOption({
   name: RESEARCH_OPTIONS.MIDDLE_PRICIPLES,
   appliesTo: RESEARCHES.PHYSICS,
@@ -255,7 +252,7 @@ researchOptions[RESEARCH_OPTIONS.MIDDLE_PRICIPLES] = new ResearchOption({
   description: ('The numbers that govern everything around you can be understood '
     + 'from deep observation. Not necessarily observation of anything at all... '
     + 'But close.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+  cost: [{specificity: RS.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
@@ -271,7 +268,6 @@ researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 2000}]
 });
 
-// Add a cost of a water-type field note
 researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
   name: RESEARCH_OPTIONS.AIR_AND_FLOW,
   appliesTo: RESEARCHES.PHYSICS,
@@ -279,7 +275,7 @@ researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
   description: ('You\'ve observed that the flows of air and water are '
     + 'surprisingly similar in style, although different in speed. '
     + 'Understanding their differences may help you harness both more effectively.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000},
+  cost: [{specificity: RS.EXACT, type: RTY.NOTES_WATER, quantity: 1},
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 200}]
 });
 
@@ -345,7 +341,6 @@ researchOptions[RESEARCH_OPTIONS.ZYMOLOGY] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 400}]
 });
 
-// Add fire-based field note cost
 researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
   name: RESEARCH_OPTIONS.VENTILATION_OF_FLAME,
   appliesTo: RESEARCHES.CHEMISTRY,
@@ -353,7 +348,7 @@ researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
   description: ('Making a fire as hot and concentrated as possible is more difficult '
     + 'than expected. It\'s all about fuel and airflow, but the fire itself '
     + 'creates its own updraft that throws everything off.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+  cost: [{specificity: RS.EXACT, type: RTY.NOTES_HEAT, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
@@ -368,7 +363,6 @@ researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 80}]
 });
 
-// Add earth-based field note cost
 researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.CHEMICAL_FIXATION,
   appliesTo: RESEARCHES.CHEMISTRY,
@@ -376,7 +370,7 @@ researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   description: ('Metals, clay, glass, and materials of all kinds change with time, '
     + 'becoming dull or brittle. There must be a way to make them, if not '
     + 'unchangeable, at least better able to resist this decay from the air.'),
-  cost: [{specificity: RS.EXACT, type: RTY.KNOWLEDGE, quantity: 2000}]
+  cost: [{specificity: RS.EXACT, type: RTY.NOTES_EARTH, quantity: 1}]
 });
 
 export { researchOptions };

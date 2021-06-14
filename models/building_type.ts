@@ -13,6 +13,8 @@ export default class BuildingType implements BuildingTypeInterface {
   cost: {specificity: string, type: string, quantity: number}[]|null = null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null = null;
+  givesNote: string = '';
+  noteCost: {specificity: string, type: string, quantity: number}[] = [];
   upgradesInto?: string;
   duration?: number;
   upgradeDuration?: number;
@@ -75,6 +77,8 @@ interface BuildingTypeInterface {
   cost: {specificity: string, type: string, quantity: number}[]|null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null;
+  givesNote: string;
+  noteCost: {specificity: string, type: string, quantity: number}[];
   upgradesInto?: string;
   duration?: number;
   upgradeDuration?: number;

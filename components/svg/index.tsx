@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import KnowledgeSvgComponent from './resources/knowledge';
+import NotesSkySvgComponent from './resources/notes_sky';
+import NotesStarSvgComponent from './resources/notes_star';
+import NotesWaterSvgComponent from './resources/notes_water';
+import NotesEarthSvgComponent from './resources/notes_earth';
+import NotesHeatSvgComponent from './resources/notes_heat';
+import NotesCultivationSvgComponent from './resources/notes_cultivation';
 import LentilSvgComponent from './resources/lentil';
 import DropSvgComponent from './resources/drop';
 import SeedsSvgComponent from './resources/seeds';
@@ -63,6 +69,7 @@ import SimpleRobeSvgComponent from './equipment/simple_robe';
 import JourneymansHaversackSvgComponent from './equipment/journeymans_haversack';
 import JourneymansGearbagSvgComponent from './equipment/journeymans_gearbag';
 import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
+import SkySvgComponent from './buildings/sky';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -71,6 +78,18 @@ export default function SvgComponent(props: { icon: Icon }) {
   switch (props.icon.name) {
     case SVGS.KNOWLEDGE:
     return <KnowledgeSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_SKY:
+    return <NotesSkySvgComponent icon={props.icon} />;
+    case SVGS.NOTES_STAR:
+    return <NotesStarSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_WATER:
+    return <NotesWaterSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_EARTH:
+    return <NotesEarthSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_HEAT:
+    return <NotesHeatSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_CULTIVATION:
+    return <NotesCultivationSvgComponent icon={props.icon} />;
     case SVGS.LENTILS:
     return <LentilSvgComponent icon={props.icon} />;
     case SVGS.DROP:
@@ -193,6 +212,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <JourneymansGearbagSvgComponent icon={props.icon} />;
     case SVGS.JOURNEYMANS_TOOLPACK:
     return <JourneymansToolpackSvgComponent icon={props.icon} />;
+    case SVGS.SKY:
+    return <SkySvgComponent icon={props.icon} />;
   }
   return null;
 }

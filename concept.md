@@ -258,6 +258,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
     * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
+    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in efficiency)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
     * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
@@ -293,11 +294,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
-  - You can gain some Field Notes from observing buildings or the sky. These take 1000 knowledge, 100 parchment, 10 ink, and 1 hour of study to produce
+  - You can gain some Field Notes from observing buildings or the sky. These take 1000 knowledge, 400 papyrus, 80 ink, and 1 hour of study to produce
     -  Notes on the Boundless Sky (sky during day)
-    -  Notes on the [direction] Stars (25% chance during night)
+    -  Notes on Stars Beyond Counting (sky during night)
     -  Notes on Flowing Water (Cistern)
-    -  Notes on the Recalcitrant Earth (Clay Pit, Sand Pit, Press, etc)
+    -  Notes on the Reluctant Earth (Clay Pit, Sand Pit, Press, etc)
     -  Notes on Scintillating Heat (Drying Yard, Furnace, etc)
     -  Notes on Gentle Cultivation (Lentil Field, Quail Pen, etc)
 
@@ -387,9 +388,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
 
-## Value checking table
+## Tips
+  - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
+  - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
+  - More complicated buildings require the skilled hand of a leader to keep them running. But as your research improves, you'll be able to build simplified versions that don't need a leader.
+  - It's only ever possible to analyse 100 of anything at a time, and the more valuable something is the longer it takes to analyse. However, it might eventaully be possible to analyse much faster.
 
-- Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
+## Value checking table
+  - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
 
 ## Styling:
   - Fine border:
@@ -410,8 +416,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Fortuity should grant ore, equipment, food
   - Travel-ready food like salted meat, dried fruit, waybread
   - Leaders should begin with a tool, except for Da Nang
+  - Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
   - Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   - Consistent sorting in tabs/selection components
+  - Hide resources with zero quantity in selection components
+  - Show resource descriptive name, not id name in selection components
 
 ## Commands:
 USE `endless_desert`;

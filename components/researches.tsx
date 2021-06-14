@@ -37,6 +37,7 @@ export default function ResearchesComponent() {
     useTypedSelector(state => state.researchOptionDecks);
   const studyTimer = useTypedSelector(state => state.timers[RESEARCHES.STUDY]);
   const analysisTimer = useTypedSelector(state => state.timers[RESEARCHES.ANALYSIS]);
+  const notesTimer = useTypedSelector(state => state.timers[RESEARCHES.FIELD_NOTES]);
   const showCompletedResearches =
     useTypedSelector(state => state.account.showCompletedResearches);
   const positioner = useTypedSelector(state => state.ui.positioner);
@@ -108,7 +109,7 @@ export default function ResearchesComponent() {
     let buttonDisabled = false;
     let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
       {'flexGrow': 10}]);
-    if (studyTimer || analysisTimer) {
+    if (studyTimer || analysisTimer || notesTimer) {
       buttonDisabled = true;
       buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
         {'flexGrow': 10}]);
@@ -150,6 +151,10 @@ export default function ResearchesComponent() {
       case RESEARCHES.ANALYSIS:
       matchingTimer = analysisTimer;
       break;
+
+      case RESEARCHES.FIELD_NOTES:
+      matchingTimer = notesTimer;
+      break;
     }
     if (matchingTimer) {
       return (
@@ -187,8 +192,16 @@ export default function ResearchesComponent() {
   }
 
   function actionClick(actionName: string) {
-    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
-      {type: actionName}));
+    switch(actionName) {
+      case RESEARCHES.STUDY:
+      case RESEARCHES.ANALYSIS:
+      dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
+        {type: actionName})); break;
+
+      case RESEARCHES.FIELD_NOTES:
+      dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
+        {type: TABS.RESEARCH, subType: actionName})); break;
+    }
   }
 }
 

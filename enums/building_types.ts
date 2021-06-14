@@ -1,4 +1,5 @@
 export enum BUILDING_TYPES {
+  SKY = "Boundless Sky",
   BROKEN_CISTERN = "Broken Cistern",
   DECAYING_STUDY = "Decaying Study",
   RUINED_HUTS = "Ruined Huts",

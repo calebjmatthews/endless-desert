@@ -18,6 +18,54 @@ resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE})
 });
 
+resourceTypes[RESOURCE_TYPES.NOTES_SKY] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_SKY,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_SKY})
+});
+
+resourceTypes[RESOURCE_TYPES.NOTES_STAR] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_STAR,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_STAR})
+});
+
+resourceTypes[RESOURCE_TYPES.NOTES_WATER] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_WATER,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_WATER})
+});
+
+resourceTypes[RESOURCE_TYPES.NOTES_EARTH] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_EARTH,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_EARTH})
+});
+
+resourceTypes[RESOURCE_TYPES.NOTES_HEAT] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_HEAT,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_HEAT})
+});
+
+resourceTypes[RESOURCE_TYPES.NOTES_CULTIVATION] = new ResourceType({
+  name: RESOURCE_TYPES.NOTES_CULTIVATION,
+  category: RESOURCE_CATEGORIES.FIELD_NOTES,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_CULTIVATION})
+});
+
 resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
   name: RESOURCE_TYPES.WATER,
   category: RESOURCE_CATEGORIES.MATERIAL,

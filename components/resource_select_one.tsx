@@ -304,7 +304,6 @@ export default function ResourceSelectOneComponent() {
           iconBackgroundColor: resourceType.backgroundColor
         });
         dispatch(addTimer(timer));
-        dispatch(studyResource(typeQuality));
         dispatch(displayModalValue(null, 'closed', null));
       }
     }

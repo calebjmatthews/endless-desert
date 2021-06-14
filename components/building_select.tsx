@@ -8,17 +8,27 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import SvgComponent from './svg';
 import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, liveAtBuilding }
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
+import { addTimer } from '../actions/timers';
 import { displayModalValue } from '../actions/ui';
 
 import Building from '../models/building';
 import Leader from '../models/leader';
+import Resource from '../models/resource';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
+import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
+import { resourceTypes } from '../instances/resource_types';
+import { renderBadge } from './utils_react';
+import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
+import { RESEARCHES } from '../enums/researches';
+import { RESOURCE_TYPES } from '../enums/resource_types';
+import { BUILDING_TYPES } from '../enums/building_types';
 
 export default function BuildingSelectComponent() {
   const dispatch = useDispatch();
@@ -53,6 +63,11 @@ export default function BuildingSelectComponent() {
     }
     else { return building; }
   });
+  if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
+    buildingsArray = [new Building({ id: BUILDING_TYPES.SKY,
+      buildingType: BUILDING_TYPES.SKY, suffix: 0, name: BUILDING_TYPES.SKY,
+      recipe: null }), ...buildingsArray];
+  }
 
   function setStartingSelected(): string|null {
     if (buildingsArray.length == 1) { return buildingsArray[0].id; }
@@ -75,6 +90,7 @@ export default function BuildingSelectComponent() {
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
         {minWidth: positioner.majorWidth,
           maxWidth: positioner.majorWidth}])}>
+        {renderAboveButton()}
         <View style={styles.buttonRow}>
           {renderSubmitButton()}
         </View>
@@ -92,18 +108,84 @@ export default function BuildingSelectComponent() {
       return <BuildingSelector key={building.id} building={building}
         buildingSelected={buildingSelected}
         setBuildingSelected={setBuildingSelected} buildingLeader={buildingLeader}
-        subType={modalValue.subType} positioner={positioner}  />;
+        subType={(modalValue.subType)} positioner={positioner}  />;
     });
   }
 
+  function renderAboveButton() {
+    let costs = null;
+    if (buildingSelected) {
+      let building = buildings[buildingSelected];
+      if (building) {
+        costs = buildingTypes[building.buildingType].noteCost;
+      }
+      else {
+        costs = buildingTypes[buildingSelected].noteCost;
+      }
+    }
+    if (modalValue.subType == RESEARCHES.FIELD_NOTES && costs) {
+      return (
+        <View style={StyleSheet.flatten([styles.rows,
+          {minWidth: positioner.majorWidth,
+            maxWidth: positioner.majorWidth, padding: 5, flexWrap: 'wrap'}])}>
+          <Text>{"Cost: "}</Text>
+          {costs.map((cost, index) => {
+            let comma = ', ';
+            let quantity = 0;
+            if (vault.resources[(cost.type + '|0')]) {
+              quantity = vault.resources[(cost.type + '|0')].quantity;
+            }
+            if (index+1 == costs.length) { comma = ' '; }
+            return (
+              <View key={cost.type} style={styles.rows}>
+                <Text>{utils.formatNumberShort(cost.quantity)}</Text>
+                <SvgComponent icon={{...resourceTypes[cost.type].icon,
+                  height: '21', width: '21'}} />
+                <Text>{cost.type + ' (of ' + utils.formatNumberShort(quantity)
+                  + ')' + comma}</Text>
+              </View>
+            );
+          })}
+        </View>
+      );
+    }
+    return null;
+  }
+
   function renderSubmitButton() {
-    let isDisabled = false;
+    let isDisabled = true;
+    let caption = ' Go';
     let buttonStyle: any = StyleSheet.flatten([styles.buttonLarge,
-      styles.buttonRowItem]);
-    if (buildingSelected == null) {
+        styles.buttonRowItem, styles.buttonDisabled]);
+    if (buildingSelected != null) {
+      isDisabled = false;
+      buttonStyle = StyleSheet.flatten([styles.buttonLarge,
+        styles.buttonRowItem]);
+    }
+    let resourceMissing: string|null = null;
+    if (modalValue.subType == RESEARCHES.FIELD_NOTES && buildingSelected) {
+      let building = buildings[buildingSelected];
+      let costs: any[] = [];
+      if (building) {
+        costs = buildingTypes[building.buildingType].noteCost;
+      }
+      else {
+        costs = buildingTypes[buildingSelected].noteCost;
+      }
+      costs.map((cost) => {
+        if (vault.resources[(cost.type + '|0')]) {
+          if (vault.resources[(cost.type + '|0')].quantity < cost.quantity) {
+            resourceMissing = cost.type;
+          }
+        }
+        else { resourceMissing = cost.type; }
+      });
+    }
+    if (resourceMissing) {
       isDisabled = true;
       buttonStyle = StyleSheet.flatten([styles.buttonLarge,
-        styles.buttonRowItem, styles.buttonDisabled]);
+          styles.buttonRowItem, styles.buttonDisabled]);
+      caption = (' Missing ' + resourceMissing + ' ');
     }
     return (
       <TouchableOpacity style={buttonStyle}
@@ -111,7 +193,7 @@ export default function BuildingSelectComponent() {
         onPress={() => {submit()}} >
         <IconComponent provider="FontAwesome5" name="check-square" color="#fff"
           size={16} style={styles.headingIcon} />
-        <Text style={styles.buttonTextLarge}>{' Go'}</Text>
+        <Text style={styles.buttonTextLarge}>{caption}</Text>
       </TouchableOpacity>
     )
   }
@@ -142,6 +224,36 @@ export default function BuildingSelectComponent() {
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
+      else if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
+        let buildingName = buildingSelected;
+        let buildingType = buildingTypes[buildingSelected];
+        if (buildings[buildingSelected]) {
+          buildingType = buildingTypes[buildings[buildingSelected].buildingType];
+          buildingName = buildings[buildingSelected].name || buildingType.name;
+        }
+        const noteType = resourceTypes[buildingType.givesNote];
+        const rsIncrease = [new Resource({ type: buildingType.givesNote,
+          quality: 0, quantity: 1 })];
+        const rsConsume = buildingType.noteCost.map((cost) => {
+          return new Resource({ type: cost.type, quality: 0,
+            quantity: cost.quantity });
+        })
+        let timer = new Timer({
+          name: RESEARCHES.FIELD_NOTES,
+          startedAt: new Date(Date.now()).valueOf(),
+          endsAt: (new Date(Date.now()).valueOf() + 3600000),
+          progress: 0,
+          remainingLabel: '',
+          resourcesToIncrease: rsIncrease,
+          resourcesToConsume: rsConsume,
+          messageToDisplay: ('Your notes on the ' + buildingName + ' are finished.'),
+          iconToDisplay: noteType.icon,
+          iconForegroundColor: noteType.foregroundColor,
+          iconBackgroundColor: noteType.backgroundColor
+        });
+        dispatch(addTimer(timer));
+        dispatch(displayModalValue(null, 'closed', null));
+      }
     }
   }
 }
@@ -151,10 +263,17 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
   positioner: Positioner}) {
   let buildingType = buildingTypes[props.building.buildingType];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
+  let panelStyle = StyleSheet.flatten([styles.panelTile,
+    {minWidth: props.positioner.majorWidth,
+      maxWidth: props.positioner.majorWidth}]);
+  if (props.subType == RESEARCHES.FIELD_NOTES) {
+    panelStyle = StyleSheet.flatten([styles.panelTile,
+      {minWidth: props.positioner.minorWidth,
+        maxWidth: props.positioner.minorWidth}]);
+  }
+
   return (
-    <View style={StyleSheet.flatten([styles.panelTile,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+    <View style={panelStyle}>
       <BadgeComponent
         provider={buildingType.icon.provider}
         name={buildingType.icon.name}
