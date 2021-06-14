@@ -73,7 +73,7 @@ export default function StorageHandlerComponent() {
           fetchFromStorage(checkRes.sessionId, checkRes.userId);
         }
         else {
-          const newRates = hourglass.calcRates(buildingsStarting, {}, null);
+          const newRates = hourglass.calcRates(buildingsStarting, {});
           dispatch(setRates(newRates));
           dispatch(setGlobalState('landing'));
         }
@@ -210,7 +210,7 @@ export default function StorageHandlerComponent() {
     })
     .then((booleanRes) => {
       if (booleanRes == false) {
-        const newRates = hourglass.calcRates(buildingsStarting, {}, null);
+        const newRates = hourglass.calcRates(buildingsStarting, {});
         dispatch(setRates(newRates));
         dispatch(setGlobalState('landing'));
       }

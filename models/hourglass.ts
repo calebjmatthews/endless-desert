@@ -94,7 +94,10 @@ export default class Hourglass {
   }
 
   calcRates(buildings: { [id: string] : Building },
-    leaders: { [id: string] : Leader }, vault: Vault): Rates {
+    leaders: { [id: string] : Leader }, vault: Vault = new Vault({
+      lastTimestamp: new Date(Date.now()).valueOf(),
+      resources: {}
+    })): Rates {
     let productionRates: { [typeQuality: string] : number } = {};
     let consumptionRates: { [typeQuality: string] : number } = {};
     let netRates: { [typeQuality: string] : number } = {};
