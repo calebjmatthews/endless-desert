@@ -23,20 +23,30 @@ export default class Hourglass {
     let timeMult = (endingTimestamp - startingTimestamp) / MS_IN_MIN;
     let productionSum: { [typeQuality: string] : number } = {};
     let consumptionSum: { [typeQuality: string] : number } = {};
-    Object.keys(rates.netRates).map((typeQuality) => {
-      if (rates.netRates[typeQuality] > 0) {
-        if (!productionSum[typeQuality]) {
-          productionSum[typeQuality] = 0;
+    if (timeMult > 1 || timeMult < 0) {
+      console.log('timeMult > 1 || timeMult < 0');
+      console.log(timeMult);
+      console.log('startingTimestamp');
+      console.log(startingTimestamp);
+      console.log('endingTimestamp');
+      console.log(endingTimestamp);
+    }
+    if (timeMult > 0) {
+      Object.keys(rates.netRates).map((typeQuality) => {
+        if (rates.netRates[typeQuality] > 0) {
+          if (!productionSum[typeQuality]) {
+            productionSum[typeQuality] = 0;
+          }
+          productionSum[typeQuality] += (rates.netRates[typeQuality] * timeMult);
         }
-        productionSum[typeQuality] += (rates.netRates[typeQuality] * timeMult);
-      }
-      else if (rates.netRates[typeQuality] < 0) {
-        if (!consumptionSum[typeQuality]) {
-          consumptionSum[typeQuality] = 0;
+        else if (rates.netRates[typeQuality] < 0) {
+          if (!consumptionSum[typeQuality]) {
+            consumptionSum[typeQuality] = 0;
+          }
+          consumptionSum[typeQuality] += ((-1 * rates.netRates[typeQuality]) * timeMult);
         }
-        consumptionSum[typeQuality] += ((-1 * rates.netRates[typeQuality]) * timeMult);
-      }
-    })
+      });
+    }
 
     return {productionSum, consumptionSum};
   }
@@ -140,8 +150,7 @@ export default class Hourglass {
         if (recipe.consumes) {
           recipe.consumes.map((consumption) => {
             if (vault.resources[consumption.type + '|0']) {
-              if (vault.resources[consumption.type + '|0'].quantity <
-                consumption.quantity) {
+              if (vault.resources[consumption.type + '|0'].quantity < 1) {
                 console.log('missingConsumption for: ' + consumption.type);
                 missingConsumption = true;
               }
