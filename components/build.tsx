@@ -88,7 +88,8 @@ export default function BuildComponent() {
         paidCosts: {},
         paidResources: [],
         paidUpgradeCosts: {},
-        paidUpgradeResources: []
+        paidUpgradeResources: [],
+        recipe: null
       });
       dispatch(addBuildingConstruction(buildingCon));
     }

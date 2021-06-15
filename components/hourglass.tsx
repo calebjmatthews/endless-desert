@@ -104,7 +104,8 @@ export default function HourglassComponent() {
             paidCosts: {},
             paidResources: [],
             paidUpgradeCosts: {},
-            paidUpgradeResources: []
+            paidUpgradeResources: [],
+            recipe: null
           });
           dispatch(addBuilding(building));
           tempBuildings[building.id] = building;
@@ -130,7 +131,8 @@ export default function HourglassComponent() {
               paidCosts: {},
               paidResources: [],
               paidUpgradeCosts: {},
-              paidUpgradeResources: []
+              paidUpgradeResources: [],
+              recipe: null
             });
             dispatch(replaceBuilding(upgBuilding));
             tempBuildings[building.id] = upgBuilding;
@@ -224,7 +226,7 @@ export default function HourglassComponent() {
     dispatch(addMemos([memos[MEMOS.CISTERN_REPAIRED],
       memos[MEMOS.CISTERN_REPAIRED_NEXT]]));
     dispatch(increaseResources(vault,
-      [{ type: RESOURCE_TYPES.WATER, quality: 0, quantity: 2080 }]));
+      [new Resource({ type: RESOURCE_TYPES.WATER, quality: 0, quantity: 2080 })]));
     dispatch(setIntroState(INTRO_STATES.RESTORE_FIELD));
   }
 

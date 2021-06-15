@@ -100,6 +100,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Truffle: Fungal
     * Melange: Rich
     * Taro: Earthy
+  - Jewels
+    * Jade: Herbal
+    * Turquoise: Cooling
+    * Topaz: Savory
+    * Jasper: Sour
+    * Onyx: Bitter
+    * Ruby: Spicy
+    * Sapphire: Brackish
+    * Diamond: Sweet
+    * Moonstone: Airy
+    * Opal: Fungal
+    * Alexandrite: Rich
+    * Tanzanite: Earthy
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
