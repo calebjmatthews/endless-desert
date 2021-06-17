@@ -346,6 +346,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   Flaticon:
     https://www.flaticon.com/packs/carpenter-27?k=1619116521843
     https://www.flaticon.com/packs/outdoor-landscape-2
+    https://www.flaticon.com/packs/mandalas-5
+    https://www.flaticon.com/packs/japan-52
+    https://www.flaticon.com/packs/landmark-21
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
