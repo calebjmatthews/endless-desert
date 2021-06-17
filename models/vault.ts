@@ -211,8 +211,13 @@ export default class Vault {
     });
     resourcesArray = utils.resourcesSort(resourcesArray);
     resourcesArray.map((resource) => {
-      const resourceType = resourceTypes[resource.type];
-      catTree[resourceType.category].resources.push(resource);
+      if (resource.category) {
+        catTree[resource.category].resources.push(resource);
+      }
+      else {
+        const resourceType = resourceTypes[resource.type];
+        catTree[resourceType.category].resources.push(resource);
+      }
     });
     return catTree;
   }

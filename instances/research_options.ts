@@ -138,7 +138,7 @@ researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
   name: RESEARCH_OPTIONS.SOIL_QUALITY,
   appliesTo: RESEARCHES.BIOLOGY,
   difficulty: 2,
-  description: ('Some detailed notes on the properties of desert soil'
+  description: ('Some detailed notes on the properties of desert soil '
     + 'could give you options for growing crops faster, better, and more efficiently.'),
   cost: [{specificity: RS.EXACT, type: RTY.NOTES_EARTH, quantity: 1}]
 });
