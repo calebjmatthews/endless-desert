@@ -59,6 +59,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Building that refines sand into pure sand+subcategory resource
   - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
   - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
+  - Nearby kingdoms:
+    - North: Relatively traveling before sea, where many travelers come from. Ruins of an Egypt-inspired kingdom obsessed with the afterlife, many of which disappeared in a single event.
+    - East: Salt flats? Large, extant China-inspired kingdom with heavy beaurocracy and centers of learning.
+    - South: River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
+    - West:
 
 ## Resource Subcategories:
   - Sand
@@ -263,7 +268,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - European traders that give metals
     - Scholarly trader that receives knowledge and parchment
     - Exploring trader that receives food, drink, and exploration supplies
+    - Treasure hunting trader that exchanges artifacts for different artifacts
+    - Jeweler trader that receives jade and exchanges other jewels
     - "Dragon" trader that receives precious metals and jewels
+    - Royal trader that receieves large quantities of artisan goods in exchange for jade
   - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
   - Early traders
   - Middle traders: give iron, gold; receive glass

@@ -67,12 +67,19 @@ export default function HourglassComponent() {
       let rti: Resource[] = [];
       // Resources to consume
       let rtc: Resource[] = [];
+      let whileAway: { show: boolean, rti: Resource[], rtc: Resource[],
+        timers: Timer[] } = { show: false, rti: [], rtc: [],
+        timers: [] };
+      if (new Date(Date.now()).valueOf() - vault.lastTimestamp > 60000) {
+        whileAway.show = true;
+      }
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
         const results = hourglass.callCalcs(rates, vault, tempBuildings, {});
         rti = utils.sumToResources(vault, results.productionSum);
         rtc = utils.sumToResources(vault, results.consumptionSum);
+        whileAway = Object.assign(whileAway, { rti, rtc });
       }
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
@@ -152,6 +159,7 @@ export default function HourglassComponent() {
           }
         }
         if (timer.messageToDisplay) {
+          if (whileAway.show) { whileAway.timers.push(timer); }
           dispatch(addMessage(new Message({
             text: timer.messageToDisplay,
             type: '',
@@ -200,6 +208,7 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
       }
+      if (whileAway.show) { showWhileAway(whileAway); }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
     }
   }, [callTick]);
@@ -256,6 +265,26 @@ export default function HourglassComponent() {
       iconForegroundColor: null,
       iconBackgroundColor: null
     })));
+  }
+
+  function showWhileAway(wa: { show: boolean, rti: Resource[], rtc: Resource[],
+    timers: Timer[] }) {
+    if (wa.rti.length == 0 && wa.rtc.length == 0 && wa.timers.length == 0) {
+      return null;
+    }
+    let text = 'While you were away...';
+    let messages: Message[] = [];
+    wa.timers.map((timer) => {
+      if (timer.messageToDisplay) {
+        messages.push(new Message({ text: timer.messageToDisplay, type: '',
+          icon: timer.iconToDisplay, timestamp: new Date(timer.endsAt),
+          foregroundColor: timer.iconForegroundColor,
+          backgroundColor: timer.iconBackgroundColor }));
+      }
+    });
+
+    dispatch(addMemos([new Memo({ name: 'While Away', title: 'You\'ve returned.',
+      text, messages, resourcesGained: wa.rti, resourcesLost: wa.rtc })]));
   }
 
   return <></>;

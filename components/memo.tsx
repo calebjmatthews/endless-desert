@@ -9,6 +9,9 @@ import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { dismissMemo, displayModal } from '../actions/ui';
 
+import Resource from '../models/resource';
+import Message from '../models/message';
+import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { leaderTypes } from '../instances/leader_types';
 import { renderBadge } from './utils_react';
@@ -25,11 +28,14 @@ export default function MemoComponent() {
       {renderHeading()}
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
         {minWidth: positioner.majorWidth,
-          maxWidth: positioner.majorWidth}])}>
+          maxWidth: positioner.majorWidth, maxHeight: positioner.modalHeight,
+          overflowY: 'auto'}])}>
         <Text style={styles.bodyText}>
           {memo.text}
         </Text>
-        {renderResourcesGained()}
+        {renderMessages(memo.messages)}
+        {renderResources(memo.resourcesGained, true)}
+        {renderResources(memo.resourcesLost, false)}
         {renderLeaderJoined()}
         <View style={styles.break} />
         <TouchableOpacity style={styles.buttonLarge}
@@ -53,20 +59,55 @@ export default function MemoComponent() {
     return null;
   }
 
-  function renderResourcesGained() {
-    if (memo.resourcesGained) {
-      return memo.resourcesGained.map((resource, index) => {
-        const resourceType = utils.getResourceType(resource);
-        return (
-          <View key={index} style={styles.containerStretchRow}>
-            {renderBadge(resourceType, 0, 21)}
-            <Text>{' ' + resource.quantity + ' ' + resource.type}</Text>
-          </View>
-        );
-      });
+  function renderMessages(messages: Message[]|null|undefined) {
+    if (!messages) { return null; }
+    if (messages.length > 0) {
+      let label = 'These things happened:';
+      if (messages.length == 1) { label = 'Something happened:'; }
+      return (
+        <>
+          <Text style={styles.bodyText}>{label}</Text>
+          {messages.map((message, index) => {
+            let icon = null;
+            if (message.icon && message.foregroundColor) {
+              icon = renderBadge({icon: new Icon({provider: message.icon.provider,
+                name: message.icon.name, color: message.foregroundColor})}, 0, 21);
+            }
+            return (
+              <View key={index} style={styles.containerStretchRow}>
+                {icon}
+                <Text style={styles.bodyText}>{message.text}</Text>
+              </View>
+            )
+          })}
+        </>
+      );
     }
-    else {
-      return null;
+  }
+
+  function renderResources(resources: Resource[]|null|undefined,
+    gained: boolean = true) {
+    let label = 'gained', sign = '+';
+    if (!gained) { label = 'used up'; sign = '-'; }
+    if (!resources) { return null; }
+    if (resources.length > 0) {
+      return (
+        <>
+          <Text style={styles.bodyText}>{'Your town ' + label + ':'}</Text>
+          {resources.map((resource, index) => {
+            const resourceType = utils.getResourceType(resource);
+            return (
+              <View key={index} style={styles.containerStretchRow}>
+                {renderBadge(resourceType, 0, 21)}
+                <Text style={styles.bodyText}>
+                  {' ' + sign + utils.formatNumberShort(resource.quantity) + ' '
+                    + utils.getResourceName(resource)}
+                </Text>
+              </View>
+            );
+          })}
+        </>
+      )
     }
   }
 
@@ -81,7 +122,7 @@ export default function MemoComponent() {
             foregroundColor={leaderType.foregroundColor}
             backgroundColor={leaderType.backgroundColor}
             iconSize={16} />
-          <Text>{' ' + leaderType.name + ' joined you!'}</Text>
+          <Text style={styles.bodyText}>{' ' + leaderType.name + ' joined you!'}</Text>
         </View>
       );
     }
