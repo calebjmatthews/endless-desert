@@ -15,14 +15,40 @@ import { SET_EATING, SET_DRINKING, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
+import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
 import { resourceTypes } from '../instances/resource_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
 enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
+
+const noFood = {
+  icon: new Icon({ provider: 'FontAwesome5', name: 'paw', color: '#000' }),
+  text: 'Foraging',
+  style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+  disabled: true
+};
+const noDrink = {
+  icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'water-off',
+    color: '#000' }),
+  text: 'Scavenging',
+  style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+  disabled: true
+};
+const noHome = {
+  icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'tent', color: '#000' }),
+  text: 'Camping',
+  style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
+  disabled: true
+};
+const rest = {
+  icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'sleep', color: '#000' }),
+  text: 'Resting',
+  style: styles.buttonRowItem,
+  disabled: false
+};
 
 export default function LeaderDetailComponent() {
   const dispatch = useDispatch();
@@ -37,12 +63,7 @@ export default function LeaderDetailComponent() {
   return (
     <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
-        <BadgeComponent
-          provider={leader.icon.provider}
-          name={leader.icon.name}
-          foregroundColor={leader.foregroundColor}
-          backgroundColor={leader.backgroundColor}
-          iconSize={24} />
+        <BadgeComponent icon={leader.icon} size={24} />
         <Text style={styles.heading1}>{leader.name}</Text>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
@@ -118,7 +139,8 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { eatingPress() }} >
-          {renderBadge(resourceType, resource.quality, 21)}
+          <BadgeComponent icon={resourceType.icon} quality={resource.quality}
+            size={21} />
           <Text style={styles.buttonText}>
             {resourceType.name}
           </Text>
@@ -129,14 +151,9 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { eatingPress() }} >
-          <BadgeComponent
-            provider='FontAwesome5'
-            name='paw'
-            foregroundColor='#000'
-            backgroundColor='#fff'
-            iconSize={21} />
+          <BadgeComponent icon={noFood.icon} />
           <Text style={styles.buttonText}>
-            {'Scavenging'}
+            {noFood.text}
           </Text>
         </TouchableOpacity>
       );
@@ -150,7 +167,8 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { drinkingPress() }} >
-          {renderBadge(resourceType, resource.quality, 21)}
+          <BadgeComponent icon={resourceType.icon} quality={resource.quality}
+            size={21} />
           <Text style={styles.buttonText}>
             {resourceType.name}
           </Text>
@@ -161,14 +179,9 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { drinkingPress() }} >
-          <BadgeComponent
-            provider='MaterialCommunityIcons'
-            name='water-off'
-            foregroundColor='#000'
-            backgroundColor='#fff'
-            iconSize={21} />
+          <BadgeComponent icon={noDrink.icon} />
           <Text style={styles.buttonText}>
-            {'Scavenging'}
+            {noDrink.text}
           </Text>
         </TouchableOpacity>
       );
@@ -176,56 +189,22 @@ export default function LeaderDetailComponent() {
   }
 
   function renderAssignedTo() {
-    let buttonObj: any = {
-      iconProvider: 'MaterialCommunityIcons',
-      iconName: 'sleep',
-      iconForegroundColor: '#000',
-      iconBackgroundColor: '#fff',
-      text: 'Resting',
-      style: styles.buttonRowItem,
-      disabled: false
-    };
+    let assignedToState: { icon: Icon, text: string, style: any,
+      disabled: boolean } = rest;
     if (!leader.eating) {
-      buttonObj = {
-        iconProvider: 'FontAwesome5',
-        iconName: 'paw',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
-        text: 'Scavenging',
-        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
-        disabled: true
-      };
+      assignedToState = noFood;
     }
     else if (!leader.drinking) {
-      buttonObj = {
-        iconProvider: 'MaterialCommunityIcons',
-        iconName: 'water-off',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
-        text: 'Scavenging',
-        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
-        disabled: true
-      };
+      assignedToState = noDrink;
     }
     else if (!leader.livingAt) {
-      buttonObj = {
-        iconProvider: 'MaterialCommunityIcons',
-        iconName: 'tent',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
-        text: 'Camping',
-        style: StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled]),
-        disabled: true
-      };
+      assignedToState = noHome;
     }
     else if (leader.assignedTo) {
       const building = buildings[leader.assignedTo];
       const buildingType = buildingTypes[building.buildingType];
-      buttonObj = {
-        iconProvider: buildingType.icon.provider,
-        iconName: buildingType.icon.name,
-        iconForegroundColor: buildingType.foregroundColor,
-        iconBackgroundColor: buildingType.backgroundColor,
+      assignedToState = {
+        icon: buildingType.icon,
         text: buildingType.name,
         style: styles.buttonRowItem,
         disabled: false
@@ -233,16 +212,11 @@ export default function LeaderDetailComponent() {
     }
 
     return (
-      <TouchableOpacity style={buttonObj.style}
-        onPress={() => { assignedToPress() }} disabled={buttonObj.disabled} >
-        <BadgeComponent
-          provider={buttonObj.iconProvider}
-          name={buttonObj.iconName}
-          foregroundColor={buttonObj.iconForegroundColor}
-          backgroundColor={buttonObj.iconBackgroundColor}
-          iconSize={21} />
+      <TouchableOpacity style={assignedToState.style}
+        onPress={() => { assignedToPress() }} disabled={assignedToState.disabled} >
+        <BadgeComponent icon={assignedToState.icon} size={21} />
         <Text style={styles.buttonText}>
-          {buttonObj.text}
+          {assignedToState.text}
         </Text>
       </TouchableOpacity>
     );
@@ -255,12 +229,7 @@ export default function LeaderDetailComponent() {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
           onPress={() => { livingAtPress() }} >
-          <BadgeComponent
-            provider={buildingType.icon.provider}
-            name={buildingType.icon.name}
-            foregroundColor={buildingType.foregroundColor}
-            backgroundColor={buildingType.backgroundColor}
-            iconSize={21} />
+          <BadgeComponent icon={buildingType.icon} size={21} />
           <Text style={styles.buttonText}>
             {buildingType.name}
           </Text>
@@ -276,7 +245,7 @@ export default function LeaderDetailComponent() {
             name='tent'
             foregroundColor='#000'
             backgroundColor='#fff'
-            iconSize={21} />
+            size={21} />
           <Text style={styles.buttonText}>
             {'Nowhere'}
           </Text>
@@ -304,7 +273,7 @@ export default function LeaderDetailComponent() {
             alignItems: 'flex-start'}])}
             onPress={() => { equipmentPress(slot) }} >
             <View style={styles.rows}>
-              {renderBadge(equipmentType, 0, 21)}
+              <BadgeComponent icon={equipmentType.icon} size={29} />
               <Text style={styles.buttonText}>
                 {equipmentType.name}
               </Text>
@@ -329,7 +298,7 @@ export default function LeaderDetailComponent() {
               name='minus-circle'
               foregroundColor='#b1b1b1'
               backgroundColor='#fff'
-              iconSize={21} />
+              size={21} />
             <Text style={styles.buttonText}>{'Nothing'}</Text>
           </TouchableOpacity>
         </View>

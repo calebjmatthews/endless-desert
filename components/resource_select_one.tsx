@@ -23,7 +23,6 @@ import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -151,7 +150,8 @@ export default function ResourceSelectOneComponent() {
       const resourceType = utils.getResourceType(resourceSelected);
       return (
         <View style={styles.rows}>
-          {renderBadge(resourceType, resourceSelected.quality, 21)}
+          <BadgeComponent icon={resourceType.icon} quality={resourceSelected.quality}
+            size={21} />
           <Text>{' ' + utils.getResourceName(resourceSelected) + ' x'
             + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
         </View>
@@ -166,7 +166,8 @@ export default function ResourceSelectOneComponent() {
     return (
       <View style={styles.rows}>
         <Text>{ ' for '}</Text>
-        {renderBadge(resourceType, trade.give.quality, 21)}
+        <BadgeComponent icon={resourceType.icon} quality={trade.give.quality}
+          size={21} />
         <Text>{' ' + utils.typeQualityName(typeQuality) + ' x'
           + utils.formatNumberShort(quantityGiven)}</Text>
       </View>
@@ -263,9 +264,7 @@ export default function ResourceSelectOneComponent() {
           messageToDisplay: ('You studied '
             + utils.getResourceName(resourceSelected) + ' for '
             + utils.formatNumberShort(rValue) + ' knowledge.'),
-          iconToDisplay: resourceType.icon,
-          iconForegroundColor: resourceType.foregroundColor,
-          iconBackgroundColor: resourceType.backgroundColor
+          iconToDisplay: resourceType.icon
         });
         dispatch(addTimer(timer));
         dispatch(studyResource(typeQuality));
@@ -299,9 +298,7 @@ export default function ResourceSelectOneComponent() {
             + utils.formatNumberShort(parseInt(quantitySelected)) + ' '
             + utils.getResourceName(resourceSelected) + ' for '
             + utils.formatNumberShort(rValue) + ' knowledge.'),
-          iconToDisplay: resourceType.icon,
-          iconForegroundColor: resourceType.foregroundColor,
-          iconBackgroundColor: resourceType.backgroundColor
+          iconToDisplay: resourceType.icon
         });
         dispatch(addTimer(timer));
         dispatch(displayModalValue(null, 'closed', null));
@@ -424,7 +421,8 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
         {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
       </Text>
       <View style={styles.rows}>
-        {renderBadge(resourceType, props.resource.quality, 21)}
+        <BadgeComponent icon={resourceType.icon} quality={props.resource.quality}
+          size={21} />
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}

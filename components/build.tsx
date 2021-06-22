@@ -104,12 +104,7 @@ function BuildingDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent
-        provider={buildingType.icon.provider}
-        name={buildingType.icon.name}
-        foregroundColor={buildingType.foregroundColor}
-        backgroundColor={buildingType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={buildingType.icon} size={21} />
       <View style={styles.containerStretchColumn}>
         <Text>{buildingType.name}</Text>
         <Text>{renderCost(buildingType.cost)}</Text>

@@ -8,6 +8,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 
 import Message from '../models/message';
+import Icon from '../models/icon';
 
 export default function MessageBarComponent() {
   const dispatch = useDispatch();
@@ -18,38 +19,25 @@ export default function MessageBarComponent() {
       text: 'The sun sets and the air cools. Finally, some relief.',
       type: '',
       timestamp: new Date(Date.now()),
-      icon: {provider: 'FontAwesome5', name: 'sun'},
-      foregroundColor: '#da8088',
-      backgroundColor: '#fff'
+      icon: new Icon({provider: 'FontAwesome5', name: 'sun', color: '#da8088'})
     })
   }
   if (message) {
+    let icon = null;
+    if (message.icon) {
+      icon = <BadgeComponent icon={message.icon} size={19} borderless={true} />
+    }
     return (
       <View style={styles.messageBarContainer}>
         <View style={styles.messageBarBackground} />
         <View style={styles.messageBar}>
-          {renderBadge(message)}
+          {icon}
           <Text style={styles.messageBarText}>{' ' + message.text}</Text>
         </View>
       </View>
     );
   }
   else {
-    return null;
-  }
-
-  function renderBadge(message: Message) {
-    if (message.icon && message.foregroundColor && message.backgroundColor) {
-      return (
-        <BadgeComponent
-          provider={message.icon.provider}
-          name={message.icon.name}
-          foregroundColor={message.foregroundColor}
-          backgroundColor={message.backgroundColor}
-          iconSize={16}
-          borderless={true} />
-      );
-    }
     return null;
   }
 }

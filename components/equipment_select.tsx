@@ -135,12 +135,7 @@ function EquipmentSelector(props: {anEquipment: Equipment,
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.modalMajor,
         maxWidth: props.positioner.modalMajor}])}>
-      <BadgeComponent
-        provider={equipmentType.icon.provider}
-        name={equipmentType.icon.name}
-        foregroundColor={equipmentType.foregroundColor}
-        backgroundColor={equipmentType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={equipmentType.icon} size={19} />
       <View>
         <Text style={optionTextStyle}>{equipmentType.name}</Text>
         {renderEquipmentEffects(props.anEquipment)}

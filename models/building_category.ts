@@ -1,9 +1,9 @@
+import Icon from './icon';
+
 export default class BuildingCategory {
   name: string = '';
   order: number = 0;
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
 
   constructor(buildingCategory: BuildingCategory) {
     Object.assign(this, buildingCategory);

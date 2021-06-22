@@ -2,6 +2,7 @@ import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
 import EquipmentEffectGenerator from './equipment_effect_gen';
 import Vault from './vault';
+import Icon from './icon';
 import { utils } from '../utils';
 
 export default class EquipmentType implements EquipmentTypeInterface {
@@ -9,9 +10,7 @@ export default class EquipmentType implements EquipmentTypeInterface {
   description: string = '';
   slot: string = '';
   effectGenerators: EquipmentEffectGenerator[] = [];
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
 
   constructor(equipmentType: EquipmentTypeInterface) {
     Object.assign(this, equipmentType);
@@ -32,7 +31,5 @@ interface EquipmentTypeInterface {
   description: string;
   slot: string;
   effectGenerators: EquipmentEffectGenerator[];
-  icon: {provider: string, name: string};
-  foregroundColor: string;
-  backgroundColor: string;
+  icon: Icon;
 }

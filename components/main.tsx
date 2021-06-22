@@ -312,9 +312,7 @@ export default function MainComponent() {
           fortuityCheck: true,
           remainingLabel: '',
           messageToDisplay: null,
-          iconToDisplay: null,
-          iconForegroundColor: null,
-          iconBackgroundColor: null
+          iconToDisplay: null
         })));
       }
     }

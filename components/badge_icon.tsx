@@ -4,18 +4,18 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 
 export default function BadgeIconComponent(props: BadgeIconProps) {
-  let badgeStyle = getBadgeStyle(props.iconSize, props.borderless, props.quality);
+  let badgeStyle = getBadgeStyle(props.size, props.borderless, props.quality);
   return (
     <View style={badgeStyle} >
       <IconComponent
         provider={props.provider}
         name={props.name}
         color={props.foregroundColor}
-        size={props.iconSize} />
+        size={props.size} />
     </View>
   );
 
-  function getBadgeStyle(iconSize: number|undefined, borderless: boolean|undefined,
+  function getBadgeStyle(size: number|undefined, borderless: boolean|undefined,
     quality: number|undefined) {
     let badgeStyle: any = {
       display: 'flex',
@@ -31,13 +31,13 @@ export default function BadgeIconComponent(props: BadgeIconProps) {
       borderRadius: 2
     };
 
-    if (iconSize) {
-      if (iconSize < 18) {
+    if (size) {
+      if (size < 18) {
         badgeStyle.height = 24;
         badgeStyle.width = 24;
         badgeStyle.margin = 2;
       }
-      else if (iconSize > 18) {
+      else if (size > 18) {
         badgeStyle.height = 38;
         badgeStyle.width = 38;
       }
@@ -59,7 +59,7 @@ interface BadgeIconProps {
   name: string,
   foregroundColor: string,
   backgroundColor: string,
-  iconSize: number|undefined,
+  size: number|undefined,
   borderless?: boolean,
   quality?: number
 }

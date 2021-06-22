@@ -15,7 +15,7 @@ import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
-import { renderBadge, renderValue } from './utils_react';
+import { renderValue } from './utils_react';
 import { utils } from '../utils';
 
 export default function ResourceDetailComponent() {
@@ -33,7 +33,8 @@ export default function ResourceDetailComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        {renderBadge(resourceType, resource.quality, 55)}
+        <BadgeComponent icon={resourceType.icon} quality={resource.quality}
+          size={55} />
         <Text style={styles.heading1}>{utils.getResourceName(resource)}</Text>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>

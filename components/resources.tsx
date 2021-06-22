@@ -6,6 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import BadgeComponent from './badge';
 import { displayModalValue } from '../actions/ui';
 
 import ResourceType from '../models/resource_type';
@@ -18,7 +19,6 @@ import { CategoryBranch } from '../models/category_branch';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceCategories } from '../instances/resource_categories';
 import { resourceSubcategories } from '../instances/resource_subcategories';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
@@ -115,7 +115,7 @@ function ResourceDescription(props: UiItemProps) {
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}
       onPress={() => { props.resourceDetailOpen(resource) }}>
-      {renderBadge(resourceType, resource.quality, 29)}
+      <BadgeComponent icon={resourceType.icon} quality={resource.quality} size={29} />
       <View style={styles.containerStretchRow}>
         <View>
           <Text style={textStyle}>

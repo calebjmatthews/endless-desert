@@ -14,7 +14,6 @@ import Message from '../models/message';
 import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { leaderTypes } from '../instances/leader_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 
 export default function MemoComponent() {
@@ -70,8 +69,7 @@ export default function MemoComponent() {
           {messages.map((message, index) => {
             let icon = null;
             if (message.icon && message.foregroundColor) {
-              icon = renderBadge({icon: new Icon({provider: message.icon.provider,
-                name: message.icon.name, color: message.foregroundColor})}, 0, 21);
+              icon = <BadgeComponent icon={message.icon} size={21} />;
             }
             return (
               <View key={index} style={styles.containerStretchRow}>
@@ -98,7 +96,7 @@ export default function MemoComponent() {
             const resourceType = utils.getResourceType(resource);
             return (
               <View key={index} style={styles.containerStretchRow}>
-                {renderBadge(resourceType, 0, 21)}
+                <BadgeComponent icon={resourceType.icon} size={21} />
                 <Text style={styles.bodyText}>
                   {' ' + sign + utils.formatNumberShort(resource.quantity) + ' '
                     + utils.getResourceName(resource)}
@@ -116,12 +114,7 @@ export default function MemoComponent() {
       const leaderType = leaderTypes[memo.leaderJoined];
       return (
         <View style={styles.containerStretchRow}>
-          <BadgeComponent
-            provider={leaderType.icon.provider}
-            name={leaderType.icon.name}
-            foregroundColor={leaderType.foregroundColor}
-            backgroundColor={leaderType.backgroundColor}
-            iconSize={16} />
+          <BadgeComponent icon={leaderType.icon} size={16} />
           <Text style={styles.bodyText}>{' ' + leaderType.name + ' joined you!'}</Text>
         </View>
       );

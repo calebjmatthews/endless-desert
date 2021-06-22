@@ -25,7 +25,6 @@ import Timer from '../models/timer';
 import Resource from '../models/resource';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
@@ -131,12 +130,7 @@ export default function BuildDetailComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <BadgeComponent
-          provider={buildingType.icon.provider}
-          name={buildingType.icon.name}
-          foregroundColor={buildingType.foregroundColor}
-          backgroundColor={buildingType.backgroundColor}
-          iconSize={24} />
+        <BadgeComponent icon={buildingType.icon} size={24} />
         <Text style={styles.heading1}>{building.name}</Text>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
@@ -265,7 +259,7 @@ export default function BuildDetailComponent() {
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost); }} >
-          {renderBadge(resource, 0, 21)}
+          <BadgeComponent icon={resource.icon} size={21} />
           <Text style={styles.buttonText}>
             {costText}
           </Text>
@@ -342,9 +336,7 @@ export default function BuildDetailComponent() {
           buildingToUpgrade: building.id,
           messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
             + upgType.name + '.'),
-          iconToDisplay: buildingType.icon,
-          iconForegroundColor: buildingType.foregroundColor,
-          iconBackgroundColor: buildingType.backgroundColor
+          iconToDisplay: buildingType.icon
         })));
         dispatch(displayModal(null));
       }
@@ -359,9 +351,7 @@ export default function BuildDetailComponent() {
           remainingLabel: '',
           buildingToBuild: building.buildingType,
           messageToDisplay: ('You built a new ' + buildingType.name + '.'),
-          iconToDisplay: buildingType.icon,
-          iconForegroundColor: buildingType.foregroundColor,
-          iconBackgroundColor: buildingType.backgroundColor
+          iconToDisplay: buildingType.icon
         })));
         dispatch(removeBuildingConstruction(building));
         dispatch(displayModal(null));
@@ -416,7 +406,8 @@ export default function BuildDetailComponent() {
             {utils.typeQualityName(resource.type + '|' + resource.quality)}
           </Text>
           <View style={styles.rows}>
-            {renderBadge(resourceType, resource.quality, 21)}
+            <BadgeComponent icon={resourceType.icon} quality={resource.quality}
+              size={21} />
             <View>
               <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
                 {utils.formatNumberShort(resource.quantity)}
@@ -560,7 +551,7 @@ export default function BuildDetailComponent() {
     return (
       <View key={type.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + rate.quantity}</Text>
-        {renderBadge(type, 0, 21)}
+        <BadgeComponent icon={type.icon} size={21} />
         <Text>{ type.name + '/m ' }</Text>
       </View>
     );

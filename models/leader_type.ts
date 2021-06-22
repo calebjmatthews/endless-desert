@@ -1,6 +1,7 @@
 import Leader from './leader';
 import Equipment from './equipment';
 import Vault from './vault';
+import Icon from './icon';
 import { equipmentTypes } from '../instances/equipment_types';
 import { utils } from '../utils';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
@@ -13,9 +14,7 @@ export default class LeaderType implements LeaderTypeInterface {
   toolStarting: string|null = null;
   clothingStarting: string|null = null;
   backStarting: string|null = null;
-  icon: {provider: string, name: string} = { provider: '', name: ''};
-  foregroundColor: string = '';
-  backgroundColor: string = '';
+  icon: Icon = new Icon({ provider: '', name: ''});
   paddingHorizontal: number = 8;
   paddingVertical: number = 11;
 
@@ -76,9 +75,7 @@ interface LeaderTypeInterface {
   toolStarting: string|null;
   clothingStarting: string|null;
   backStarting: string|null;
-  icon: {provider: string, name: string};
-  foregroundColor: string;
-  backgroundColor: string;
+  icon: Icon;
   paddingHorizontal: number;
   paddingVertical: number;
 }

@@ -3,12 +3,14 @@ import { Text, View } from 'react-native';
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import SvgComponent from './svg';
 
 import EquipmentEffect from '../models/equipment_effect';
 import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import ResourceSubcategory from '../models/resource_subcategory';
 import ResourceCategory from '../models/resource_category';
+import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
@@ -58,10 +60,14 @@ export default function EquipmentEffectComponent(props:
         case RESOURCE_SPECIFICITY.CATEGORY:
         type = resourceCategories[anEffect.type]; break;
       }
+      let icon = <IconComponent provider={type.icon.provider} name={type.icon.name}
+        color={type.icon.color} size={16} />;
+      if (type.icon.provider == 'svg') {
+        icon = <SvgComponent icon={new Icon({...type.icon, size: 16})} />
+      }
       return (
         <View style={styles.rows}>
-          <IconComponent provider={type.icon.provider} name={type.icon.name}
-            color={type.foregroundColor} size={16} />
+          {icon}
           <Text style={{fontSize: 12}}>{' ' + anEffect.type + ' '}</Text>
         </View>
       );
@@ -74,7 +80,7 @@ export default function EquipmentEffectComponent(props:
     return (
       <View style={styles.rows}>
         <IconComponent provider={quality.icon.provider} name={quality.icon.name}
-          color={quality.foregroundColor} size={16} />
+          color={quality.icon.color} size={16} />
         <Text style={{fontSize: 12}}>{' ' + anEffect.quality}</Text>
       </View>
     );

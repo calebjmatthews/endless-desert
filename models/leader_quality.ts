@@ -1,8 +1,8 @@
+import Icon from './icon';
+
 export default class LeaderQuality {
   name: string = '';
-  icon: {provider: string, name: string} = { provider: '', name: ''};
-  foregroundColor: string = '';
-  backgroundColor: string = '';
+  icon: Icon = new Icon({ provider: '', name: ''});
 
   constructor(leaderQuality: LeaderQuality) {
     Object.assign(this, leaderQuality);

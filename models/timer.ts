@@ -1,4 +1,5 @@
 import Resource from './resource';
+import Icon from './icon';
 import { utils } from '../utils';
 
 export default class Timer implements TimerInterface {
@@ -18,9 +19,7 @@ export default class Timer implements TimerInterface {
   tradingPartnerToArrive?: string|null = null;
   fortuityCheck?: boolean = false;
   messageToDisplay: string|null = null;
-  iconToDisplay: {provider: string, name: string}|null = null;
-  iconForegroundColor: string|null = null;
-  iconBackgroundColor: string|null = null;
+  iconToDisplay: Icon|null = null;
 
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
@@ -66,6 +65,4 @@ interface TimerInterface {
   fortuityCheck?: boolean;
   messageToDisplay: string|null;
   iconToDisplay: {provider: string, name: string}|null;
-  iconForegroundColor: string|null;
-  iconBackgroundColor: string|null;
 }

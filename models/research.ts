@@ -1,10 +1,10 @@
+import Icon from './icon';
+
 export default class Research {
   name: string = '';
   unlocks: string = '';
   description: string = '';
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
   category: string = '';
   isCategory: boolean = false;
   difficulty: number = 0;

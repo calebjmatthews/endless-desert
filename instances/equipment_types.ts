@@ -1,6 +1,7 @@
 import EquipmentType from '../models/equipment_type';
 import EquipmentEffect from '../models/equipment_effect';
 import EquipmentEffectGenerator from '../models/equipment_effect_gen';
+import Icon from '../models/icon';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
@@ -9,6 +10,7 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+import { SVGS } from '../enums/svgs';
 
 let equipmentTypes: { [name: string] : EquipmentType } = {};
 
@@ -61,9 +63,7 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
     }],
     count: 3
   })],
-  icon: {provider: 'MaterialCommunityIcons', name: 'star-four-points'},
-  foregroundColor: '#dc2222',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
@@ -116,9 +116,7 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
     }],
     count: 4
   })],
-  icon: {provider: 'MaterialCommunityIcons', name: 'pickaxe'},
-  foregroundColor: '#6d6d6d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
 })
 
 equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
@@ -171,9 +169,7 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
     }],
     count: 4
   })],
-  icon: {provider: 'FontAwesome5', name: 'slash'},
-  foregroundColor: '#795548',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
@@ -226,9 +222,7 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
     }],
     count: 4
   })],
-  icon: {provider: 'FontAwesome5', name: 'tools'},
-  foregroundColor: '#6d6d6d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
@@ -276,9 +270,7 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
     }],
     count: 3
   })],
-  icon: {provider: 'FontAwesome5', name: 'tshirt'},
-  foregroundColor: '#afc1ec',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK] = new EquipmentType({
@@ -323,9 +315,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK] = new EquipmentType({
     }],
     count: 2
   })],
-  icon: {provider: 'FontAwesome5', name: 'box'},
-  foregroundColor: '#1a7b1d',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
@@ -369,9 +359,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
     }],
     count: 2
   })],
-  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
-  foregroundColor: '#1a457b',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
@@ -415,9 +403,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
     }],
     count: 2
   })],
-  icon: {provider: 'FontAwesome5', name: 'toolbox'},
-  foregroundColor: '#7a1a7b',
-  backgroundColor: '#fff'
+  icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
 export { equipmentTypes };

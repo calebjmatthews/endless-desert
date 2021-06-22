@@ -164,9 +164,7 @@ export default function HourglassComponent() {
             text: timer.messageToDisplay,
             type: '',
             timestamp: new Date(Date.now()),
-            icon: timer.iconToDisplay,
-            foregroundColor: timer.iconForegroundColor,
-            backgroundColor: timer.iconBackgroundColor
+            icon: timer.iconToDisplay
           })));
         }
         if (timer.fortuityCheck) {
@@ -185,9 +183,7 @@ export default function HourglassComponent() {
               fortuityCheck: true,
               remainingLabel: '',
               messageToDisplay: null,
-              iconToDisplay: null,
-              iconForegroundColor: null,
-              iconBackgroundColor: null
+              iconToDisplay: null
             })));
           }
         }
@@ -261,9 +257,7 @@ export default function HourglassComponent() {
       fortuityCheck: true,
       remainingLabel: '',
       messageToDisplay: null,
-      iconToDisplay: null,
-      iconForegroundColor: null,
-      iconBackgroundColor: null
+      iconToDisplay: null
     })));
   }
 
@@ -277,9 +271,7 @@ export default function HourglassComponent() {
     wa.timers.map((timer) => {
       if (timer.messageToDisplay) {
         messages.push(new Message({ text: timer.messageToDisplay, type: '',
-          icon: timer.iconToDisplay, timestamp: new Date(timer.endsAt),
-          foregroundColor: timer.iconForegroundColor,
-          backgroundColor: timer.iconBackgroundColor }));
+          icon: timer.iconToDisplay, timestamp: new Date(timer.endsAt) }));
       }
     });
 

@@ -28,7 +28,6 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -77,12 +76,7 @@ export default function ResearchingComponent() {
         {minWidth: positioner.majorWidth,
           maxWidth: positioner.majorWidth}])}>
         <View style={styles.rows}>
-          <BadgeComponent
-            provider={research.icon.provider}
-            name={research.icon.name}
-            foregroundColor={research.foregroundColor}
-            backgroundColor={research.backgroundColor}
-            iconSize={18} />
+          <BadgeComponent icon={research.icon} size={29} />
           <Text style={styles.heading2}>{rod.researchName}</Text>
         </View>
         <View>
@@ -202,9 +196,7 @@ export default function ResearchingComponent() {
       text: ('You finished researching ' + research.name + '.'),
       type: '',
       timestamp: new Date(Date.now()),
-      icon: research.icon,
-      foregroundColor: research.foregroundColor,
-      backgroundColor: research.backgroundColor
+      icon: research.icon
     })));
 
     switch (research.unlocksTab) {
@@ -262,7 +254,7 @@ function OptionDescription(props: any) {
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
-          {renderBadge(resource, 0, 21)}
+          <BadgeComponent icon={resource.icon} size={21} />
           <Text style={styles.buttonText}>
             {costText}
           </Text>

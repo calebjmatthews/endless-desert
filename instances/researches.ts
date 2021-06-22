@@ -1,4 +1,5 @@
 import Research from '../models/research';
+import Icon from '../models/icon';
 import { RESEARCHES } from '../enums/researches';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
@@ -10,9 +11,7 @@ researches[RESEARCHES.SCHOLARSHIP] = new Research({
   description: ('In order to learn, something of value must be lost. '
     + 'And at the beginning your options are few. Just one, if fact. '
     + 'Still, you have to start somewhere!'),
-  icon: {provider: 'FontAwesome5', name: 'graduation-cap'},
-  foregroundColor: '#2b2b2d',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'graduation-cap', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: true,
   difficulty: 0,
@@ -27,9 +26,7 @@ researches[RESEARCHES.STUDY] = new Research({
   unlocks: ('Study new resources to increase your knowledge.'),
   description: ('Studying how to study. '
     + 'It feels a little dizzying, and a little uplifting.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'magnify'},
-  foregroundColor: '#2b2b2d',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'magnify', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 0,
@@ -46,9 +43,7 @@ researches[RESEARCHES.ANALYSIS] = new Research({
   description: ('Even after the easy discoveries have been made, there\'s an '
     + 'almost unlimited amount you can learn with large numbers of samples '
     + 'an a lack of concern about keeping them intact.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'magnify-close'},
-  foregroundColor: '#2b2b2d',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'magnify-close', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 0,
@@ -64,9 +59,7 @@ researches[RESEARCHES.CONJECTURE] = new Research({
   unlocks: ('See one more option when researching.'),
   description: ('As you\'ve grown more experienced you increasingly see '
     + 'more than one answer to the questions you\'re asking.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'cloud-question'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cloud-question', color: '#000'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 0,
@@ -82,9 +75,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   description: ('Until now, your research and observations have only lived inside your '
     + 'own head. Parchment and ink will allow you to record the phenomena '
     + 'you see as they\'re occurring.'),
-  icon: {provider: 'FontAwesome5', name: 'clipboard-list'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'clipboard-list', color: '#000'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 1,
@@ -100,9 +91,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   unlocks: ('Opens up new areas of study about life and cultivation.'),
   description: ('If your settlement is going to support a serious number of people '
     + 'you\'ll have to learn about crops. Better get started.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'seedling', color: '#59a500'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: true,
   difficulty: 1,
@@ -117,9 +106,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   unlocks: ('Unlocks lentil fields.'),
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'seedling', color: '#59a500'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -135,9 +122,7 @@ researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   unlocks: ('Allows an upgrade to Lentil Fields.'),
   description: ('Some minor adaptations to your fields allow lentils to grow '
     + 'faster, and with even less water. The taste is unchanged.'),
-  icon: {provider: 'FontAwesome5', name: 'seedling'},
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'seedling', color: '#59a500'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -154,9 +139,7 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   description: ('Reeds grow in river mud, and are incredibly useful. '
     + 'They can be a fuel source, thatch for roofs, raw material for rough fabric, '
     + 'pulp for papyrus, and probably other things you haven\'t even heard of.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'reorder-vertical'},
-  foregroundColor: '#59a500',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'reorder-vertical', color: '#59a500'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -172,9 +155,7 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
   unlocks: ('Unlocks Grain Fields.'),
   description: ('Grain is more difficult to grow than lentils, and takes grinding '
     + 'before it can be eaten. But it is useful both as flour and animal feed.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
-  foregroundColor: '#d8be04',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'corn', color: '#d8be04'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -190,9 +171,7 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   unlocks: ('Allows Grain Fields to be run without a leader.'),
   description: ('You\'ve perfected the tools and learned the tricks, with some '
     + 'quick instructions a total novice can grow perfect grain.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'corn'},
-  foregroundColor: '#d8be04',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'corn', color: '#d8be04'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -209,9 +188,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   description: ('You\'ve come across a variety of olive trees that love the '
     + 'sun and the dry heat. And they can be pressed into an oil that\'s absolutely '
     + 'delicious.'),
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome', name: 'pagelines', color: '#97c701'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -228,9 +205,7 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
     + 'supervision.'),
-  icon: {provider: 'FontAwesome', name: 'pagelines'},
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome', name: 'pagelines', color: '#97c701'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -247,9 +222,7 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   description: ('These quail hide in dark places during the day\'s heat and the '
     + 'night\'s cold, but they\'re amusingly active in the dawn and dusk. '
     + 'Plus, they only need a small amount of grain as feed.'),
-  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
-  foregroundColor: '#caa096',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'kiwi-bird', color: '#caa096'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -265,9 +238,7 @@ researches[RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED] = new Research({
   unlocks: ('Allows Quail Pastures to be run without a leader.'),
   description: ('Quail take to pacifying quite well, and with some training '
     + 'they can be almost left to themselves.'),
-  icon: {provider: 'FontAwesome5', name: 'kiwi-bird'},
-  foregroundColor: '#caa096',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'kiwi-bird', color: '#caa096'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -283,9 +254,7 @@ researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   unlocks: ('Unlocks Ox Pastures.'),
   description: ('River oxen are big, noisy beasts. Useful though: depending on '
     + 'method used they can give either milk or meat and hides.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'cow'},
-  foregroundColor: '#4a0e0e',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cow', color: '#4a0e0e'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -301,9 +270,7 @@ researches[RESEARCHES.HERB_FARMING] = new Research({
   unlocks: ('Unlocks Herb Gardens.'),
   description: ('Herbs grow slowly relative to other plants. However, they are '
     + 'valuable for trade, and a small amount can spice up an entire dish.'),
-  icon: {provider: 'FontAwesome5', name: 'leaf'},
-  foregroundColor: '#ec5107',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'leaf', color: '#ec5107'}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -319,9 +286,7 @@ researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   unlocks: ('Opens up new areas of study about art and communication.'),
   description: ('Hundreds of different cultures make their own ways through the vast '
     + 'emptiness of the desert. And they\'ve each learned different ways to thrive.'),
-  icon: {provider: 'FontAwesome5', name: 'users'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'users', color: '#000'}),
   category: RESEARCHES.ANTHROPOLOGY,
   isCategory: true,
   difficulty: 1,
@@ -336,9 +301,7 @@ researches[RESEARCHES.TRADING] = new Research({
   unlocks: ('Allows trading with peoples from across the desert.'),
   description: ('Being able to trade your resources for those you can\'t make '
     + 'would open up an enormous amount of opportunity.'),
-  icon: {provider: 'FontAwesome5', name: 'exchange-alt'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'exchange-alt', color: '#000'}),
   category: RESEARCHES.ANTHROPOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -355,9 +318,7 @@ researches[RESEARCHES.BASIC_EDUCATION] = new Research({
   description: ('You\'ve always been better informed than most people around you; '
     + 'that\'s just a fact. How much good could you do if you spread that knowledge '
     + 'to the wider world?'),
-  icon: {provider: 'FontAwesome5', name: 'book-reader'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'book-reader', color: '#000'}),
   category: RESEARCHES.ANTHROPOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -372,9 +333,7 @@ researches[RESEARCHES.PHYSICS] = new Research({
   unlocks: ('Opens up new areas of study about mechanical processes.'),
   description: ('Altered materials, new tools, grand architecture, it all feels '
     + 'tantalizingly close.'),
-  icon: {provider: 'FontAwesome', name: 'balance-scale'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome', name: 'balance-scale', color: '#000'}),
   category: RESEARCHES.PHYSICS,
   isCategory: true,
   difficulty: 1,
@@ -390,9 +349,7 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   description: ('The soil in desert is a dry, cracking clay. But careful application '
     + 'of water produces a building material for everything from bricks to '
     + 'ornamental figurines.'),
-  icon: {provider: 'FontAwesome5', name: 'splotch'},
-  foregroundColor: '#a91f1f',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'splotch', color: '#a91f1f'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -409,9 +366,7 @@ researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
   description: ('Application of wooden scaffolding and additional water could '
     + 'produce clay of superior quality. The kind that could make beautiful '
     + 'pottery, rather than bricks.'),
-  icon: {provider: 'FontAwesome5', name: 'splotch'},
-  foregroundColor: '#a91f1f',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'splotch', color: '#a91f1f'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -428,9 +383,7 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   description: ('You suspect the key to harvesting sand is keeping the pit '
     + 'from collapsing on your workers, and you\'re working on sturdy clay walls '
     + 'that should do the trick.'),
-  icon: {provider: 'FontAwesome5', name: 'mountain'},
-  foregroundColor: '#f9df00',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'mountain', color: '#f9df00'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -447,9 +400,7 @@ researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
   description: ('Clay walls do most of the work, holding the sides of the pit '
     + 'together. But reinforcement with thatch as you go will allow your workers '
     + 'to dig much faster.'),
-  icon: {provider: 'FontAwesome5', name: 'mountain'},
-  foregroundColor: '#f9df00',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'mountain', color: '#f9df00'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -465,9 +416,7 @@ researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
   unlocks: ('Unlocks Huts.'),
   description: ('Right now you have enough housing for you and one band of people. '
     + 'Adding more simple huts won\'t be too difficult a task.'),
-  icon: {provider: 'FontAwesome5', name: 'store-alt'},
-  foregroundColor: '#795548',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'store-alt', color: '#795548'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -483,9 +432,7 @@ researches[RESEARCHES.HOME_CONSTRUCTION_IMRPOVED] = new Research({
   unlocks: ('Unlocks Houses.'),
   description: ('Now that you have the capabity to produce some basic comforts, '
     + 'you can do better than the huts you\'ve delt with until now. Much better.'),
-  icon: {provider: 'FontAwesome5', name: 'home'},
-  foregroundColor: '#795548',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'home', color: '#795548'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -503,9 +450,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
     + 'resource above all others: something to write on. You don\'t exactly '
     + 'know how to make papyrus, but it surely most begin with a thorough '
     + 'flattening.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
-  foregroundColor: '#795548',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'inbox-multiple', color: '#795548'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -521,9 +466,7 @@ researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
   unlocks: ('Allows Presses to be run without a leader.'),
   description: ('With a set of stabilizing and safety structures, a '
     + 'Press can be run without any specialized skills.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'inbox-multiple'},
-  foregroundColor: '#795548',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'inbox-multiple', color: '#795548'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -540,9 +483,7 @@ researches[RESEARCHES.GRINDING] = new Research({
   description: ('You\'ve heard of structures that catch the wind to spin giant '
     + 'metal grinding wheels against each other. The idea is simple enough, but '
     + 'getting the mechanism right will be tricky.'),
-  icon: {provider: 'FontAwesome', name: 'gears'},
-  foregroundColor: '#705ea7',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome', name: 'gears', color: '#705ea7'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -559,9 +500,7 @@ researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
   description: ('Reinforcing the grinding wheels will make them far more reliable, '
     + 'and they should no longer need the constant small repairs that make them '
     + 'difficult to run.'),
-  icon: {provider: 'FontAwesome', name: 'gears'},
-  foregroundColor: '#705ea7',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome', name: 'gears', color: '#705ea7'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -578,9 +517,7 @@ researches[RESEARCHES.WEAVING] = new Research({
   description: ('Cloth making is slow and time-consuming, but most people can be '
     + 'taught without too much of a learning curve. And there\'s a coarse linen '
     + 'cloth that could theoretically be made from something as simple as reeds.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'ship-wheel'},
-  foregroundColor: '#9c27b0',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'ship-wheel', color: '#9c27b0'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -597,9 +534,7 @@ researches[RESEARCHES.TAILORING] = new Research({
   description: ('Clothing made in other towns is shockingly expensive. '
     + 'Now that you can produce cloth, you can start work shaping it into '
     + 'clothing more suited to your specific needs.'),
-  icon: {provider: 'FontAwesome5', name: 'tshirt'},
-  foregroundColor: '#afc1ec',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'tshirt', color: '#afc1ec'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -615,9 +550,7 @@ researches[RESEARCHES.OUTFITTING] = new Research({
   unlocks: ('Unlocks Outfitters.'),
   description: ('In the desert, your survival is tied to how much you can carry '
     + 'on your back, and how well you can bear it.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
-  foregroundColor: '#1a457b',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'toolbox', color: '#1a457b'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -634,9 +567,7 @@ researches[RESEARCHES.TOOL_FABRICATION] = new Research({
   description: ('Your study of metals has brought you tantalizingly close to '
     + 'a variety of tools that would transform every part of the life that you\'ve '
     + 'carved out of this harsh land.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'toolbox'},
-  foregroundColor: '#1a457b',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'toolbox', color: '#1a457b'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -654,9 +585,7 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
     + 'It involves a lot of careful separation of liquids and salts, and the results '
     + 'so far aren\'t too impressive. Still, compared with the flashier "Alchemy", '
     + 'it seems to actually work.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'flask'},
-  foregroundColor: '#97c701',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'flask', color: '#97c701'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: true,
   difficulty: 1,
@@ -672,9 +601,7 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
   description: ('You\'ve surmised that many materials are stronger or easier to '
     + 'work with when dry. And there\'s a special salt that\'s left once your '
     + 'cistern\'s water has evaporated you think could help in the process...'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
-  foregroundColor: '#ff0000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'waves', color: '#ff0000'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 1,
@@ -691,9 +618,7 @@ researches[RESEARCHES.DEHYDRATION_SIMPLIFIED] = new Research({
   unlocks: ('Allows Drying Yards to be run without a leader.'),
   description: ('You\'ve put together simple diagrams showing where each material '
     + 'needs to be placed, and which shouldn\'t touch.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'waves'},
-  foregroundColor: '#ff0000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'waves', color: '#ff0000'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -710,9 +635,7 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   description: ('You\'ll need more than fire. You\'ll need useful fire. '
     + 'But if you can get the temperature and air flow high enough, you could start '
     + 'turning sand into glass! Gods know there\'s enough sand around.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
-  foregroundColor: '#b02727',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'fireplace', color: '#b02727'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 1,
@@ -729,9 +652,7 @@ researches[RESEARCHES.COMBUSTION_SIMPLIFIED] = new Research({
   description: ('Stoking the furnace to the proper temperature used to be an art. '
     + 'But the furnace you\'ve made is now unrecognizable, covered in vents '
     + 'and pulleys.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
-  foregroundColor: '#b02727',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'fireplace', color: '#b02727'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -748,9 +669,7 @@ researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   description: ('There are some metals that require greater heat to form than your '
     + 'furnace can manage: much, much greater. You\'ll need more powerful fuel, '
     + 'more of it, and continuous fresh air spiraling in.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'fireplace'},
-  foregroundColor: '#b02727',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'fireplace', color: '#b02727'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -766,9 +685,7 @@ researches[RESEARCHES.COOKING] = new Research({
   unlocks: ('Unlocks Kitchens.'),
   description: ('Eating raw lentils gets old fast. Real, enjoyable food will be '
     + 'a crucial part of making your settlement a livable place.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife', color: '#000'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 1,
@@ -784,9 +701,7 @@ researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
   unlocks: ('Allows an upgrade to Kitchens.'),
   description: ('Some say that cooking is an art, but that\'s debatable. If it '
     + 'were truly art, would you be able to make it this efficient?'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife'},
-  foregroundColor: '#000',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'silverware-fork-knife', color: '#000'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -802,9 +717,7 @@ researches[RESEARCHES.GLASS_SHAPING] = new Research({
   unlocks: ('Unlocks Glassworks.'),
   description: ('Glass can be blown, ground, or shaped into many more forms '
     + ' than the flat panes made in a furnace.'),
-  icon: {provider: 'FontAwesome5', name: 'window-restore'},
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'window-restore', color: '#33cee2'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -820,9 +733,7 @@ researches[RESEARCHES.SOLVENTS] = new Research({
   unlocks: ('Unlocks Laboratories.'),
   description: ('There are powers and properties that are hidden in substances, and '
     + 'to control them you\'ll have to dissolve them.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'flask'},
-  foregroundColor: '#33cee2',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'flask', color: '#33cee2'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -839,9 +750,7 @@ researches[RESEARCHES.POTTERY] = new Research({
   description: ('Simple terracotta isn\'t far removed from the clay bricks baked '
     + 'under the sun. But far more is possible: fine (and valuable) ceramics made '
     + 'from rare clays and glazes.'),
-  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
-  foregroundColor: '#942c14',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey', color: '#942c14'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,
@@ -858,9 +767,7 @@ researches[RESEARCHES.FERMENTATION] = new Research({
   description: ('Now here\'s something your people have been clamoring for: '
     + 'something more interesting (and entertaining) to drink at the end '
     + 'of a hard day\'s work.'),
-  icon: {provider: 'FontAwesome5', name: 'glass-whiskey'},
-  foregroundColor: '#e8cf1e',
-  backgroundColor: '#fff',
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey', color: '#e8cf1e'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,

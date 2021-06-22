@@ -1,4 +1,5 @@
 import BuildingRecipe from './building_recipe';
+import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 
@@ -7,9 +8,7 @@ export default class BuildingType implements BuildingTypeInterface {
   description: string = '';
   order?: number|undefined;
   category: string = '';
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
   cost: {specificity: string, type: string, quantity: number}[]|null = null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null = null;
@@ -71,9 +70,7 @@ interface BuildingTypeInterface {
   description: string;
   order?: number|undefined;
   category: string;
-  icon: {provider: string, name: string};
-  foregroundColor: string;
-  backgroundColor: string;
+  icon: Icon;
   cost: {specificity: string, type: string, quantity: number}[]|null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
   recipes: BuildingRecipe[]|null;

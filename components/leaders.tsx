@@ -55,7 +55,7 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
   buildings: { [id: string] : Building }, morePress: Function}) {
   const leader: Leader = props.leader;
   const buildings: { [id: string] : Building } = props.buildings;
-  const circleBgColor = leader.backgroundColor;
+  const circleBgColor = '#000';
 
   return (
     <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -66,11 +66,8 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
           justifyContent: 'center', alignItems: 'center'}}>
           <View style={StyleSheet.flatten([styles.leaderCircle,
             {backgroundColor: circleBgColor}])} />
-          <IconComponent style={{position: 'absolute'}}
-            provider={leader.icon.provider}
-            name={leader.icon.name}
-            color={leader.foregroundColor}
-            size={18} />
+          <IconComponent style={{position: 'absolute'}} provider={leader.icon.provider}
+            name={leader.icon.name} color={leader.icon.color} size={19} />
         </View>
         <View style={styles.containerStretchColumn}>
           <Text>
@@ -135,23 +132,12 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
     else if (leader.assignedTo) {
       const building = buildings[leader.assignedTo];
       const buildingType = buildingTypes[building.buildingType];
-      assignedObj = {
-        iconProvider: buildingType.icon.provider,
-        iconName: buildingType.icon.name,
-        iconForegroundColor: buildingType.foregroundColor,
-        iconBackgroundColor: buildingType.backgroundColor,
-        text: buildingType.name
-      };
+      assignedObj = { icon: buildingType.icon, text: buildingType.name };
     }
 
     return (
       <View style={styles.rows}>
-        <BadgeComponent
-          provider={assignedObj.iconProvider}
-          name={assignedObj.iconName}
-          foregroundColor={assignedObj.iconForegroundColor}
-          backgroundColor={assignedObj.iconBackgroundColor}
-          iconSize={14} />
+        <BadgeComponent icon={assignedObj.icon} size={21} />
         <Text style={{fontSize: 12}}>
           {' ' + assignedObj.text}
         </Text>

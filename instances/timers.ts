@@ -11,9 +11,7 @@ timersStarting[('Trading' + 0)] = new Timer({
   remainingLabel: '1m',
   tradingPartnerToArrive: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
   messageToDisplay: 'A trader is waiting outside the gate.',
-  iconToDisplay: {provider: 'FontAwesome5', name: 'question'},
-  iconForegroundColor: '#fff',
-  iconBackgroundColor: '#444'
+  iconToDisplay: {provider: 'FontAwesome5', name: 'question'}
 });
 
 export { timersStarting };

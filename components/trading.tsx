@@ -6,6 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import BadgeComponent from './badge';
 import { selectTab, displayModalValue } from '../actions/ui';
 import { dismissTradingPartner, welcomePendingTradingPartner, addPendingTradingPartner }
   from '../actions/trading_status';
@@ -18,12 +19,12 @@ import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import ResourceCategory from '../models/resource_category';
 import Timer from '../models/timer';
+import Icon from '../models/icon';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -80,9 +81,7 @@ export default function TradingComponent() {
       remainingLabel: '1m',
       tradingPartnerToArrive: newTradingPartner.name,
       messageToDisplay: 'A trader is waiting outside the gate.',
-      iconToDisplay: {provider: 'FontAwesome5', name: 'question'},
-      iconForegroundColor: '#fff',
-      iconBackgroundColor: '#444'
+      iconToDisplay: new Icon({provider: 'FontAwesome5', name: 'question'})
     });
     dispatch(addTimer(newTimer));
     dispatch(welcomePendingTradingPartner());
@@ -145,16 +144,12 @@ export default function TradingComponent() {
           <View style={styles.containerStretchRow}>
             <View style={{width: 40, height: 40}}>
               <IconComponent style={{position: 'absolute'}}
-                provider={'MaterialCommunityIcons'}
-                name={'shield'}
-                color={'#444'}
-                size={36} />
+                provider={'MaterialCommunityIcons'} name={'shield'}
+                color={'#444'} size={36} />
               <IconComponent style={{position: 'absolute', paddingHorizontal: 11,
                   paddingVertical: 8}}
-                provider={'FontAwesome5'}
-                name={'question'}
-                color={'#fff'}
-                size={18} />
+                provider={'FontAwesome5'} name={'question'}
+                color={'#fff'} size={19} />
             </View>
             <View style={styles.containerStretchColumn}>
               {contents}
@@ -179,16 +174,14 @@ function TradingPartnerDescription(props: any) {
         <View style={{width: 40, height: 40}}>
           <IconComponent style={{position: 'absolute'}}
             provider={'MaterialCommunityIcons'}
-            name={'shield'}
-            color={tradingPartnerType.backgroundColor}
-            size={36} />
+            name={'shield'} color={'#000'} size={36} />
           <IconComponent style={{position: 'absolute',
               paddingHorizontal: tradingPartnerType.paddingHorizontal,
               paddingVertical: tradingPartnerType.paddingVertical}}
             provider={tradingPartnerType.icon.provider}
             name={tradingPartnerType.icon.name}
-            color={tradingPartnerType.foregroundColor}
-            size={18} />
+            color={tradingPartnerType.icon.color}
+            size={19} />
         </View>
         <View style={styles.containerStretchColumn}>
           <Text>
@@ -235,11 +228,11 @@ function TradingPartnerDescription(props: any) {
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
         styles.buttonLight, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
         onPress={() => { tradeClick(trade.tradingPartnerType, trade.id) }} >
-        {renderBadge(give, 0, 21)}
+        <BadgeComponent icon={give.icon} size={21} />
         <Text style={styles.buttonTextDark}>
           {' ' + give.name + ' for '}
         </Text>
-        {renderBadge(receive, 0, 21)}
+        <BadgeComponent icon={receive.icon} size={21} />
         <Text style={styles.buttonTextDark}>
           {receive.name}
         </Text>
@@ -258,12 +251,12 @@ function TradingPartnerDescription(props: any) {
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
         styles.buttonDisabled, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
         disabled >
-        {renderBadge(give, 0, 21)}
+        <BadgeComponent icon={give.icon} size={21} />
         <Text style={styles.buttonTextDark}>
           {give.name + ' x' + utils.formatNumberShort(wasTraded.given.quantity)
           + ' for '}
         </Text>
-        {renderBadge(receive, 0, 21)}
+        <BadgeComponent icon={receive.icon} size={21} />
         <Text style={styles.buttonTextDark}>
           {receive.name + ' x' + utils.formatNumberShort(wasTraded.received.quantity)}
         </Text>

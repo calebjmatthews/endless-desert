@@ -218,12 +218,7 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])} >
-      <BadgeComponent
-        provider={research.icon.provider}
-        name={research.icon.name}
-        foregroundColor={research.foregroundColor}
-        backgroundColor={research.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={research.icon} size={29} />
       <View style={styles.containerStretchColumn}>
         <Text>{research.name}</Text>
         <Text>{renderCost(props.branch)}</Text>
@@ -296,8 +291,7 @@ function CategoryDescription(props: {branch: ResearchBranch, positioner: Positio
       {marginLeft: 10, marginTop: 10, minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])} >
       <IconComponent provider={rCat.icon.provider} name={rCat.icon.name}
-        color="#fff" size={20}
-        style={styles.headingIcon} />
+        color="#fff" size={20} style={styles.headingIcon} />
       <View style={styles.containerStretchRow}>
         <View>
           <Text style={styles.bareText}>

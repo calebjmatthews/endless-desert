@@ -1,4 +1,5 @@
 import LeaderType from '../models/leader_type';
+import Icon from '../models/icon';
 import { LEADER_TYPES } from '../enums/leader_types';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 
@@ -13,9 +14,9 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
   toolStarting: EQUIPMENT_TYPES.FOUR_POINT_BANGLE,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'MaterialCommunityIcons', name: 'star-four-points'},
-  foregroundColor: '#dc2222',
-  backgroundColor: '#3e37a0',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'star-four-points',
+    color: '#dc2222'}),
+  // backgroundColor: '#3e37a0',
   paddingHorizontal: 8,
   paddingVertical: 11
 });
@@ -30,9 +31,9 @@ leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'MaterialCommunityIcons', name: 'weather-sunset-down'},
-  foregroundColor: '#ffff00',
-  backgroundColor: '#b50c0c',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'weather-sunset-down',
+    color: '#ffff00'}),
+  // backgroundColor: '#b50c0c',
   paddingHorizontal: 8,
   paddingVertical: 11
 });
@@ -48,9 +49,8 @@ leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'FontAwesome5', name: 'book-medical'},
-  foregroundColor: '#ffb52c',
-  backgroundColor: '#422c05',
+  icon: new Icon({provider: 'FontAwesome5', name: 'book-medical', color: '#ffb52c'}),
+  // backgroundColor: '#422c05',
   paddingHorizontal: 8,
   paddingVertical: 11
 });
@@ -66,9 +66,8 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'FontAwesome5', name: 'fire'},
-  foregroundColor: '#84f9e4',
-  backgroundColor: '#008a71',
+  icon: new Icon({provider: 'FontAwesome5', name: 'fire', color: '#84f9e4'}),
+  // backgroundColor: '#008a71',
   paddingHorizontal: 8,
   paddingVertical: 11
 });
@@ -84,9 +83,9 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'MaterialCommunityIcons', name: 'cards-club'},
-  foregroundColor: '#27b327',
-  backgroundColor: '#0d5f0d',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cards-club',
+    color: '#27b327'}),
+  // backgroundColor: '#0d5f0d',
   paddingHorizontal: 8,
   paddingVertical: 11
 });
@@ -101,9 +100,9 @@ leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: {provider: 'MaterialCommunityIcons', name: 'cards-club'},
-  foregroundColor: '#27b327',
-  backgroundColor: '#0d5f0d',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cards-club',
+    color: '#27b327'}),
+  // backgroundColor: '#0d5f0d',
   paddingHorizontal: 8,
   paddingVertical: 11
 });

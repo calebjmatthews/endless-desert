@@ -7,6 +7,7 @@ import { Text, View, ScrollView, TouchableOpacity, StyleSheet }
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import BadgeComponent from './badge';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 
@@ -15,7 +16,6 @@ import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
@@ -76,7 +76,8 @@ export default function ResourceSelectComponent() {
         const resourceType = utils.getResourceType(resource);
         return (
           <View key={typeQuality} style={styles.rows}>
-            {renderBadge(resourceType, resource.quality, 21)}
+            <BadgeComponent icon={resourceType.icon} quality={resource.quality}
+              size={21} />
             <Text>
               {resourcesSelected[typeQuality] + ' (of '
                 + utils.formatNumberShort(vault.resources[typeQuality].quantity)
@@ -117,8 +118,8 @@ export default function ResourceSelectComponent() {
     let rs: Resource[] = []
     Object.keys(resourcesSelected).map((typeQuality) => {
       const tqSplit = typeQuality.split('|');
-      rs.push({type: tqSplit[0], quality: parseInt(tqSplit[1]),
-        quantity: resourcesSelected[typeQuality]});
+      rs.push(new Resource({type: tqSplit[0], quality: parseInt(tqSplit[1]),
+        quantity: resourcesSelected[typeQuality]}));
     });
     dispatch(consumeResources(vault, rs));
 
@@ -187,7 +188,8 @@ function ResourceSelector(props: {resource: Resource,
         {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
       </Text>
       <View style={styles.rows}>
-        {renderBadge(resourceType, props.resource.quality, 21)}
+        <BadgeComponent icon={resourceType.icon} quality={props.resource.quality}
+          size={21} />
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}

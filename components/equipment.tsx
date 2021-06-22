@@ -104,12 +104,7 @@ function CleanEquipmentDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent
-        provider={equipmentType.icon.provider}
-        name={equipmentType.icon.name}
-        foregroundColor={equipmentType.foregroundColor}
-        backgroundColor={equipmentType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={equipmentType.icon} size={29} />
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
           <Text>{equipment.type}</Text>
@@ -183,12 +178,7 @@ function MarkedEquipmentDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent
-        provider={equipmentType.icon.provider}
-        name={equipmentType.icon.name}
-        foregroundColor={equipmentType.foregroundColor}
-        backgroundColor={equipmentType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={equipmentType.icon} size={29} />
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
           <Text>{anEquipment.typeName}</Text>
@@ -230,12 +220,7 @@ function MarkedEquipmentDescription(props: any) {
     if (leader) {
       return (
         <View style={styles.rows}>
-          <BadgeComponent
-            provider={leader.icon.provider}
-            name={leader.icon.name}
-            foregroundColor={leader.foregroundColor}
-            backgroundColor={leader.backgroundColor}
-            iconSize={14} />
+          <BadgeComponent icon={leader.icon} size={19} />
           <Text style={{fontSize: 12}}>{' ' + leader.name + ' equipped'}</Text>
         </View>
       );

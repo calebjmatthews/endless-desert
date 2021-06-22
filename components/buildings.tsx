@@ -24,7 +24,6 @@ import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { INTRO_STATES } from '../enums/intro_states';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 
 export default function BuildingsComponent() {
@@ -185,12 +184,7 @@ function BuildingDescription(props: any) {
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent
-        provider={buildingType.icon.provider}
-        name={buildingType.icon.name}
-        foregroundColor={buildingType.foregroundColor}
-        backgroundColor={buildingType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={buildingType.icon} size={29} />
       <View style={StyleSheet.flatten([styles.containerStretchColumn,
         {minWidth: props.positioner.bodyMedWidth,
           maxWidth: props.positioner.bodyMedWidth}])}>
@@ -256,12 +250,7 @@ function BuildingDescription(props: any) {
       const leader = leaderLivingMap[building.id];
       return (
         <View style={styles.spacedRows}>
-          <BadgeComponent
-            provider={leader.icon.provider}
-            name={leader.icon.name}
-            foregroundColor={leader.foregroundColor}
-            backgroundColor={leader.backgroundColor}
-            iconSize={14} />
+          <BadgeComponent icon={leader.icon} size={19} />
           <Text style={{fontSize: 12}}>
             {leader.name + ' living'}
           </Text>
@@ -277,12 +266,7 @@ function BuildingDescription(props: any) {
       const leader = leaderAssignedMap[building.id];
       return (
         <View style={styles.spacedRows}>
-          <BadgeComponent
-            provider={leader.icon.provider}
-            name={leader.icon.name}
-            foregroundColor={leader.foregroundColor}
-            backgroundColor={leader.backgroundColor}
-            iconSize={14} />
+          <BadgeComponent icon={leader.icon} size={19} />
           <Text style={{fontSize: 12}}>
             {leader.name + ' working'}
           </Text>
@@ -329,7 +313,8 @@ function BuildingDescription(props: any) {
     return (
       <View key={typeQuality} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + utils.formatNumberShort(rate)}</Text>
-        {renderBadge(resourceType, parseInt(tqSplit[1]), 21)}
+        <BadgeComponent icon={resourceType.icon} quality={parseInt(tqSplit[1])}
+          size={21} />
         <Text>{'/m '}</Text>
       </View>
     );

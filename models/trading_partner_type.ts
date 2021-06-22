@@ -2,6 +2,7 @@ import TradingPartner from './trading_partner';
 import Resource from './resource';
 import ResourceType from './resource_type';
 import Trade from './trade';
+import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
@@ -9,9 +10,7 @@ import { utils } from '../utils';
 export default class TradingPartnerType implements TradingPartnerTypeInterface {
   name: string = '';
   description: string = '';
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
   paddingHorizontal: number = 11;
   paddingVertical: number = 8;
   acceptQuantity: number = 0;
@@ -160,9 +159,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
 interface TradingPartnerTypeInterface {
   name: string;
   description: string;
-  icon: {provider: string, name: string};
-  foregroundColor: string;
-  backgroundColor: string;
+  icon: Icon;
   paddingHorizontal: number;
   paddingVertical: number;
   acceptQuantity: number;

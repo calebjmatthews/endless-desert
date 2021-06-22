@@ -1,5 +1,6 @@
 import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
+import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
@@ -21,9 +22,7 @@ export default class Leader implements LeaderInterface {
   happiness: number = 0;
   eating: string|null = null;
   drinking: string|null = null;
-  icon: {provider: string, name: string} = {provider: '', name: ''};
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
+  icon: Icon = new Icon({provider: '', name: ''});
   paddingHorizontal: number = 8;
   paddingVertical: number = 11;
 
@@ -206,9 +205,7 @@ interface LeaderInterface {
   happiness: number;
   eating: string|null;
   drinking: string|null;
-  icon: {provider: string, name: string};
-  foregroundColor: string;
-  backgroundColor: string;
+  icon: Icon;
   paddingHorizontal: number;
   paddingVertical: number;
 }

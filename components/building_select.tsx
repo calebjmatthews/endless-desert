@@ -23,7 +23,6 @@ import Positioner from '../models/positioner';
 import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
-import { renderBadge } from './utils_react';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 import { RESEARCHES } from '../enums/researches';
@@ -247,9 +246,7 @@ export default function BuildingSelectComponent() {
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
           messageToDisplay: ('Your notes on the ' + buildingName + ' are finished.'),
-          iconToDisplay: noteType.icon,
-          iconForegroundColor: noteType.foregroundColor,
-          iconBackgroundColor: noteType.backgroundColor
+          iconToDisplay: noteType.icon
         });
         dispatch(addTimer(timer));
         dispatch(displayModalValue(null, 'closed', null));
@@ -274,12 +271,7 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
 
   return (
     <View style={panelStyle}>
-      <BadgeComponent
-        provider={buildingType.icon.provider}
-        name={buildingType.icon.name}
-        foregroundColor={buildingType.foregroundColor}
-        backgroundColor={buildingType.backgroundColor}
-        iconSize={18} />
+      <BadgeComponent icon={buildingType.icon} size={19} />
       <View>
         <Text style={optionTextStyle}>{buildingType.name}</Text>
         {renderBuildingLeader(props.buildingLeader, props.subType)}
@@ -296,12 +288,7 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
     if (buildingLeader) {
       return (
         <View style={styles.rows}>
-          <BadgeComponent
-            provider={buildingLeader.icon.provider}
-            name={buildingLeader.icon.name}
-            foregroundColor={buildingLeader.foregroundColor}
-            backgroundColor={buildingLeader.backgroundColor}
-            iconSize={16} />
+          <BadgeComponent icon={buildingLeader.icon} size={16} />
           <Text style={optionTextStyle}>
             {buildingLeader.name + caption}
           </Text>

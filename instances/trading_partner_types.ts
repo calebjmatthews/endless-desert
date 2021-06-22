@@ -1,4 +1,5 @@
 import TradingPartnerType from '../models/trading_partner_type';
+import Icon from '../models/icon';
 import { TRADING_PARTNERS } from '../enums/trading_partners';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
@@ -20,9 +21,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   description: ('Journeying ascetics on a pilgrimage to a sea of blue-green fire. '
     + 'Will trade materials they\'ve picked up in their travels for simple food '
     + 'and drink.'),
-  icon: {provider: 'FontAwesome', name: 'fire'},
-  foregroundColor: '#84f9e4',
-  backgroundColor: '#008a71',
+  icon: new Icon({provider: 'FontAwesome', name: 'fire', color: '#84f9e4'}),
+// backgroundColor: '#008a71',
   paddingHorizontal: 11,
   paddingVertical: 8,
   acceptQuantity: 80,
@@ -43,9 +43,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
 tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerType({
   name: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
   description: ('Traders from a distant northern kingdom of rolling grassy hills.'),
-  icon: {provider: 'MaterialCommunityIcons', name: 'cards-club'},
-  foregroundColor: '#27b327',
-  backgroundColor: '#0d5f0d',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cards-club', color: '#27b327'}),
+// backgroundColor: '#0d5f0d',
   paddingHorizontal: 9,
   paddingVertical: 8,
   acceptQuantity: 100,
@@ -74,9 +73,8 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   name: TRADING_PARTNERS.RED_CROW_TRADERS,
   description: ('They\'re loud, rowdy, and argumentative; based on the rumours '
     + 'you\'ve heard, "Red Crow Raiders" would be a more accurate name.'),
-  icon: {provider: 'FontAwesome5', name: 'crow'},
-  foregroundColor: '#ff2626',
-  backgroundColor: '#4a0000',
+  icon: new Icon({provider: 'FontAwesome5', name: 'crow', color: '#ff2626'}),
+// backgroundColor: '#4a0000',
   paddingHorizontal: 8,
   paddingVertical: 8,
   acceptQuantity: 100,
