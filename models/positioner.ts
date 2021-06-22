@@ -4,14 +4,14 @@ export default class Positioner {
 
   majorPadding: number = 20;
   minorPadding: number = 10;
-  iconSpacer: number = 50;
+  iconSpacer: number = 55;
   headerSpacer: number = 70;
   titleSpacer: number = 25;
 
   bodyHeight: number = 470;
   majorWidth: number = 280;
   minorWidth: number = 130;
-  bodyMedWidth: number = 230;
+  bodyMedWidth: number = 225;
   modalWidth: number = 300;
   modalMajor: number = 260;
   modalHalf: number = 130;

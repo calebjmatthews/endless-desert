@@ -62,6 +62,7 @@ import CakeSvgComponent from './resources/cake';
 import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
 import LiquorSvgComponent from './resources/liquor';
+
 import RoughMattockSvgComponent from './equipment/rough_mattock';
 import WoodenPoleSvgComponent from './equipment/wooden_pole';
 import CoarseImplementsSvgComponent from './equipment/coarse_implements';
@@ -69,7 +70,14 @@ import SimpleRobeSvgComponent from './equipment/simple_robe';
 import JourneymansHaversackSvgComponent from './equipment/journeymans_haversack';
 import JourneymansGearbagSvgComponent from './equipment/journeymans_gearbag';
 import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
+
 import SkySvgComponent from './buildings/sky';
+import CisternSvgComponent from './buildings/cistern';
+import StudySvgComponent from './buildings/study';
+import HutSvgComponent from './buildings/hut';
+import LentilFieldSvgComponent from './buildings/lentil_field';
+import ClayPitSvgComponent from './buildings/clay_pit';
+import SandPitSvgComponent from './buildings/sand_pit';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -198,6 +206,7 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BeerSvgComponent icon={props.icon} />;
     case SVGS.LIQUOR:
     return <LiquorSvgComponent icon={props.icon} />;
+
     case SVGS.ROUGH_MATTOCK:
     return <RoughMattockSvgComponent icon={props.icon} />;
     case SVGS.WOODEN_POLE:
@@ -212,8 +221,21 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <JourneymansGearbagSvgComponent icon={props.icon} />;
     case SVGS.JOURNEYMANS_TOOLPACK:
     return <JourneymansToolpackSvgComponent icon={props.icon} />;
+
     case SVGS.SKY:
     return <SkySvgComponent icon={props.icon} />;
+    case SVGS.CISTERN:
+    return <CisternSvgComponent icon={props.icon} />;
+    case SVGS.STUDY:
+    return <StudySvgComponent icon={props.icon} />;
+    case SVGS.HUT:
+    return <HutSvgComponent icon={props.icon} />;
+    case SVGS.LENTIL_FIELD:
+    return <LentilFieldSvgComponent icon={props.icon} />;
+    case SVGS.CLAY_PIT:
+    return <ClayPitSvgComponent icon={props.icon} />;
+    case SVGS.SAND_PIT:
+    return <SandPitSvgComponent icon={props.icon} />;
   }
   return null;
 }

@@ -60,6 +60,7 @@ export enum SVGS {
   MISTAKE = "Mistake",
   BEER = "Beer",
   LIQUOR = "Liquor",
+
   ROUGH_MATTOCK = "Rough Mattock",
   WOODEN_POLE = "Wooden Pole",
   COARSE_IMPLEMENTS = "Coarse Implements",
@@ -67,5 +68,12 @@ export enum SVGS {
   JOURNEYMANS_HAVERSACK = "Journeyman's Haversack",
   JOURNEYMANS_GEARBAG = "Journeyman's Gearbag",
   JOURNEYMANS_TOOLPACK = "Journeyman's Toolpack",
-  SKY = "Sky"
+
+  SKY = "Sky",
+  CISTERN = "Cistern",
+  STUDY = "Study",
+  HUT = "Hut",
+  LENTIL_FIELD = "Lentil Field",
+  CLAY_PIT = "Clay Pit",
+  SAND_PIT = "Sand Pit"
 }
