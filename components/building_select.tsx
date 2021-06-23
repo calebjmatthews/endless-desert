@@ -271,7 +271,7 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
 
   return (
     <View style={panelStyle}>
-      <BadgeComponent icon={buildingType.icon} size={19} />
+      <BadgeComponent icon={buildingType.icon} size={21} />
       <View>
         <Text style={optionTextStyle}>{buildingType.name}</Text>
         {renderBuildingLeader(props.buildingLeader, props.subType)}

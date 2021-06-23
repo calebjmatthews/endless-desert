@@ -130,7 +130,7 @@ export default function BuildDetailComponent() {
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
-        <BadgeComponent icon={buildingType.icon} size={24} />
+        <BadgeComponent icon={buildingType.icon} size={55} />
         <Text style={styles.heading1}>{building.name}</Text>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
