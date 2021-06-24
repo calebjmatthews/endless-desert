@@ -78,6 +78,12 @@ import HutSvgComponent from './buildings/hut';
 import LentilFieldSvgComponent from './buildings/lentil_field';
 import ClayPitSvgComponent from './buildings/clay_pit';
 import SandPitSvgComponent from './buildings/sand_pit';
+import ReedDeltaSvgComponent from './buildings/reed_delta';
+import GrainFieldSvgComponent from './buildings/grain_field';
+import OliveGroveSvgComponent from './buildings/olive_grove';
+import QuailPastureSvgComponent from './buildings/quail_pasture';
+import PressSvgComponent from './buildings/press';
+import GrindingMillSvgComponent from './buildings/grinding_mill';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -236,6 +242,18 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <ClayPitSvgComponent icon={props.icon} />;
     case SVGS.SAND_PIT:
     return <SandPitSvgComponent icon={props.icon} />;
+    case SVGS.REED_DELTA:
+    return <ReedDeltaSvgComponent icon={props.icon} />;
+    case SVGS.GRAIN_FIELD:
+    return <GrainFieldSvgComponent icon={props.icon} />;
+    case SVGS.OLIVE_GROVE:
+    return <OliveGroveSvgComponent icon={props.icon} />;
+    case SVGS.QUAIL_PASTURE:
+    return <QuailPastureSvgComponent icon={props.icon} />;
+    case SVGS.PRESS:
+    return <PressSvgComponent icon={props.icon} />;
+    case SVGS.GRINDING_MILL:
+    return <GrindingMillSvgComponent icon={props.icon} />;
   }
   return null;
 }

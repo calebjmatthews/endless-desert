@@ -75,5 +75,11 @@ export enum SVGS {
   HUT = "Hut",
   LENTIL_FIELD = "Lentil Field",
   CLAY_PIT = "Clay Pit",
-  SAND_PIT = "Sand Pit"
+  SAND_PIT = "Sand Pit",
+  REED_DELTA = "Reed Delta",
+  GRAIN_FIELD = "Grain Field",
+  OLIVE_GROVE = "Olive Grove",
+  QUAIL_PASTURE = "Quail Pasture",
+  PRESS = "Press",
+  GRINDING_MILL = "Grinding Mill"
 }
