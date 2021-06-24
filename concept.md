@@ -357,6 +357,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/mandalas-5
     https://www.flaticon.com/packs/japan-52
     https://www.flaticon.com/packs/landmark-21
+    https://www.flaticon.com/packs/prehistoric-age
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -445,8 +446,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Consistent sorting in tabs/selection components
   - Hide resources with zero quantity in selection components
   - Show resource descriptive name, not id name in selection components
+  - Show detail modals when pressing on icon, e.g. on buildings
 
-## Commands:
+## Commands
+### Delete all records from all tables:
 USE `endless_desert`;
 DELETE FROM `buildings`;
 DELETE FROM `buildings_construction`;
@@ -461,7 +464,7 @@ DELETE FROM `equipment`;
 DELETE FROM `users`;
 DELETE FROM `sessions`;
 
-## Create user table:
+### Create user table:
 CREATE TABLE `endless_desert`.`users` (
   `id` VARCHAR(8) NOT NULL,
   `email` VARCHAR(254) NOT NULL,
@@ -475,7 +478,7 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-## Debug functions:
+## Debug functions
 ### Get one of every basic equipment:
 ```
 dispatch(increaseResources(vault,
@@ -518,3 +521,5 @@ let dish = testKitchen.getDishFromIngredients([
 console.log('dish');
 console.log(dish);
 ```
+
+### Build one of every building
