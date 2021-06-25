@@ -18,7 +18,7 @@ export enum BUILDING_TYPES {
   QUAIL_PASTURE = "Quail Pasture",
   QUAIL_PASTURE_SIMPLIFIED = "Simplified Quail Pasture",
   OX_PASTURE = "Ox Pasture",
-  HERB_GARDEN = "Herb Garden",
+  SPICE_FIELD = "Spice Field",
   GATE = "Gate",
   MARKET = "Market",
   CLAY_PIT = "Clay Pit",

@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab, setPositioner, addMemos } from '../actions/ui';
+import { addBuilding } from '../actions/buildings';
 import { changeSetting, setCurrentFortuity, unlockTab } from '../actions/account';
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
@@ -45,6 +46,7 @@ import Icon from '../models/icon';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
+import { buildingTypes } from '../instances/building_types';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
@@ -98,12 +100,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -258,11 +260,23 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      Object.keys(buildingTypes).map((typeName) => {
+        let buildingType = buildingTypes[typeName];
+        let suffix = 1;
+        let name = buildingType.name;
+        let building = new Building({
+          id: utils.randHex(16),
+          buildingType: buildingType.name,
+          suffix: suffix,
+          name: name,
+          paidCosts: {},
+          paidResources: [],
+          paidUpgradeCosts: {},
+          paidUpgradeResources: [],
+          recipe: null
+        });
+        dispatch(addBuilding(building));
       });
-      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

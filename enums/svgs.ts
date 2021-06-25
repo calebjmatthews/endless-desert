@@ -80,6 +80,15 @@ export enum SVGS {
   GRAIN_FIELD = "Grain Field",
   OLIVE_GROVE = "Olive Grove",
   QUAIL_PASTURE = "Quail Pasture",
+  OX_PASTURE = "Ox Pasture",
+  HOUSE = "House",
   PRESS = "Press",
-  GRINDING_MILL = "Grinding Mill"
+  GRINDING_MILL = "Grinding Mill",
+  SPICE_FIELD = "Spice Field",
+  WEAVERY = "Weavery",
+  TAILORS = "Tailors",
+  OUTFITTERS = "Outfitters",
+  FABRICATORY = "Fabricatory",
+  DRYING_YARD = "Drying Yard",
+  FURNACE = "Furnace"
 }

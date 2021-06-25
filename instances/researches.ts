@@ -278,7 +278,7 @@ researches[RESEARCHES.HERB_FARMING] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 10000,
-  unlocksBuilding: [BUILDING_TYPES.HERB_GARDEN]
+  unlocksBuilding: [BUILDING_TYPES.SPICE_FIELD]
 });
 
 researches[RESEARCHES.ANTHROPOLOGY] = new Research({

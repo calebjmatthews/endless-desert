@@ -82,8 +82,17 @@ import ReedDeltaSvgComponent from './buildings/reed_delta';
 import GrainFieldSvgComponent from './buildings/grain_field';
 import OliveGroveSvgComponent from './buildings/olive_grove';
 import QuailPastureSvgComponent from './buildings/quail_pasture';
+import OxPastureSvgComponent from './buildings/ox_pasture';
 import PressSvgComponent from './buildings/press';
 import GrindingMillSvgComponent from './buildings/grinding_mill';
+import SpiceFieldSvgComponent from './buildings/spice_field';
+import HouseSvgComponent from './buildings/house';
+import WeaverySvgComponent from './buildings/weavery';
+import TailorsSvgComponent from './buildings/tailors';
+import OutfittersSvgComponent from './buildings/outfitters';
+import FabricatorySvgComponent from './buildings/fabricatory';
+import DryingYardSvgComponent from './buildings/drying_yard';
+import FurnaceSvgComponent from './buildings/furnace';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -250,10 +259,26 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <OliveGroveSvgComponent icon={props.icon} />;
     case SVGS.QUAIL_PASTURE:
     return <QuailPastureSvgComponent icon={props.icon} />;
+    case SVGS.OX_PASTURE:
+    return <OxPastureSvgComponent icon={props.icon} />;
     case SVGS.PRESS:
     return <PressSvgComponent icon={props.icon} />;
     case SVGS.GRINDING_MILL:
     return <GrindingMillSvgComponent icon={props.icon} />;
+    case SVGS.SPICE_FIELD:
+    return <SpiceFieldSvgComponent icon={props.icon} />;
+    case SVGS.HOUSE:
+    return <HouseSvgComponent icon={props.icon} />;
+    case SVGS.WEAVERY:
+    return <WeaverySvgComponent icon={props.icon} />;
+    case SVGS.TAILORS:
+    return <TailorsSvgComponent icon={props.icon} />;
+    case SVGS.OUTFITTERS:
+    return <OutfittersSvgComponent icon={props.icon} />;
+    case SVGS.FABRICATORY:
+    return <FabricatorySvgComponent icon={props.icon} />;
+    case SVGS.DRYING_YARD:
+    return <DryingYardSvgComponent icon={props.icon} />;
   }
   return null;
 }

@@ -507,7 +507,7 @@ Object.keys(vault.resources).map((typeQuality) => {
 dispatch(consumeResources(vault, resources));
 ```
 
-### Desert Test Kitchen
+### Desert Test Kitchen:
 ```
 let testKitchen = new Building({id: '12341234',
   buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
@@ -522,4 +522,32 @@ console.log('dish');
 console.log(dish);
 ```
 
-### Build one of every building
+### Add one of every resource:
+```
+let allResources: Resource[] = [];
+Object.keys(resourceTypes).map((typeName) => {
+  allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+});
+dispatch(increaseResources(vault, allResources));
+```
+
+### Build one of every building:
+```
+Object.keys(buildingTypes).map((typeName) => {
+  let buildingType = buildingTypes[typeName];
+  let suffix = 1;
+  let name = buildingType.name;
+  let building = new Building({
+    id: utils.randHex(16),
+    buildingType: buildingType.name,
+    suffix: suffix,
+    name: name,
+    paidCosts: {},
+    paidResources: [],
+    paidUpgradeCosts: {},
+    paidUpgradeResources: [],
+    recipe: null
+  });
+  dispatch(addBuilding(building));
+});
+```
