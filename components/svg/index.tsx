@@ -74,6 +74,8 @@ import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
 import SkySvgComponent from './buildings/sky';
 import CisternSvgComponent from './buildings/cistern';
 import StudySvgComponent from './buildings/study';
+import MarketSvgComponent from './buildings/market';
+import WatchtowerSvgComponent from './buildings/watchtower';
 import HutSvgComponent from './buildings/hut';
 import LentilFieldSvgComponent from './buildings/lentil_field';
 import ClayPitSvgComponent from './buildings/clay_pit';
@@ -93,6 +95,11 @@ import OutfittersSvgComponent from './buildings/outfitters';
 import FabricatorySvgComponent from './buildings/fabricatory';
 import DryingYardSvgComponent from './buildings/drying_yard';
 import FurnaceSvgComponent from './buildings/furnace';
+import KitchenSvgComponent from './buildings/kitchen';
+import GlassworksSvgComponent from './buildings/glassworks';
+import LaboratorySvgComponent from './buildings/laboratory';
+import PotteryKilnSvgComponent from './buildings/pottery_kiln';
+import BrewerySvgComponent from './buildings/brewery';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -243,6 +250,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <CisternSvgComponent icon={props.icon} />;
     case SVGS.STUDY:
     return <StudySvgComponent icon={props.icon} />;
+    case SVGS.MARKET:
+    return <MarketSvgComponent icon={props.icon} />;
+    case SVGS.WATCHTOWER:
+    return <WatchtowerSvgComponent icon={props.icon} />;
     case SVGS.HUT:
     return <HutSvgComponent icon={props.icon} />;
     case SVGS.LENTIL_FIELD:
@@ -279,6 +290,18 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FabricatorySvgComponent icon={props.icon} />;
     case SVGS.DRYING_YARD:
     return <DryingYardSvgComponent icon={props.icon} />;
+    case SVGS.FURNACE:
+    return <FurnaceSvgComponent icon={props.icon} />;
+    case SVGS.KITCHEN:
+    return <KitchenSvgComponent icon={props.icon} />;
+    case SVGS.GLASSWORKS:
+    return <GlassworksSvgComponent icon={props.icon} />;
+    case SVGS.LABORATORY:
+    return <LaboratorySvgComponent icon={props.icon} />;
+    case SVGS.POTTERY_KILN:
+    return <PotteryKilnSvgComponent icon={props.icon} />;
+    case SVGS.BREWERY:
+    return <BrewerySvgComponent icon={props.icon} />;
   }
   return null;
 }

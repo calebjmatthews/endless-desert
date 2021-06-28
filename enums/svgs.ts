@@ -72,6 +72,8 @@ export enum SVGS {
   SKY = "Sky",
   CISTERN = "Cistern",
   STUDY = "Study",
+  MARKET = "Market",
+  WATCHTOWER = "Watchtower",
   HUT = "Hut",
   LENTIL_FIELD = "Lentil Field",
   CLAY_PIT = "Clay Pit",
@@ -90,5 +92,10 @@ export enum SVGS {
   OUTFITTERS = "Outfitters",
   FABRICATORY = "Fabricatory",
   DRYING_YARD = "Drying Yard",
-  FURNACE = "Furnace"
+  FURNACE = "Furnace",
+  KITCHEN = "Kitchen",
+  GLASSWORKS = "Glassworks",
+  LABORATORY = "Laboratory",
+  POTTERY_KILN = "Pottery Kiln",
+  BREWERY = "Brewery"
 }

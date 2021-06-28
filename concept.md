@@ -365,6 +365,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   Value symbol options: ѵ, ұ,
 
 ## Time cycle:
@@ -372,9 +373,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Morning is from :00 - :15, day from :15 - :30, evening from :30 - :45, and night from :45 - :00
   - Night is from :50 - :05, morning from :05 - :20, day from :20 - :35, evening from :35 - :50.
   - Twenty four days consitute a month, and twenty eight to thirty one days consistute a year.
-
-## Starting game state:
-  - Buildings: one trading post, one hut, one cistern, one lentil field
 
 ## Example game state:
   - Buildings: one town center, four houses, one cistern, one lentil field, two grain field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
@@ -417,7 +415,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
   - More complicated buildings require the skilled hand of a leader to keep them running. But as your research improves, you'll be able to build simplified versions that don't need a leader.
-  - It's only ever possible to analyse 100 of anything at a time, and the more valuable something is the longer it takes to analyse. However, it might eventaully be possible to analyse much faster.
+  - It's only ever possible to analyse 100 of anything at a time, and the more valuable something is the longer it takes to analyse. However, it might eventually be possible to analyse much faster.
 
 ## Value checking table
   - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
