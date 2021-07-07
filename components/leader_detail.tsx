@@ -63,7 +63,7 @@ export default function LeaderDetailComponent() {
   return (
     <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
-        <BadgeComponent icon={leader.icon} size={24} />
+        <BadgeComponent icon={leader.icon} size={55} />
         <Text style={styles.heading1}>{leader.name}</Text>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>

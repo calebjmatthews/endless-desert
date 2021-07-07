@@ -62,13 +62,7 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.containerStretchRow}>
-        <View style={{width: 40, height: 40, display: 'flex',
-          justifyContent: 'center', alignItems: 'center'}}>
-          <View style={StyleSheet.flatten([styles.leaderCircle,
-            {backgroundColor: circleBgColor}])} />
-          <IconComponent style={{position: 'absolute'}} provider={leader.icon.provider}
-            name={leader.icon.name} color={leader.icon.color} size={19} />
-        </View>
+        <BadgeComponent icon={leader.icon} size={43} />
         <View style={styles.containerStretchColumn}>
           <Text>
             {leader.name}

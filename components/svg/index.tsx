@@ -101,6 +101,13 @@ import LaboratorySvgComponent from './buildings/laboratory';
 import PotteryKilnSvgComponent from './buildings/pottery_kiln';
 import BrewerySvgComponent from './buildings/brewery';
 
+import SamannoudSvgComponent from './leaders/samannoud';
+import ShudderingRefugeSvgComponent from './leaders/shuddering_refuge';
+import FoxfireHereticSvgComponent from './leaders/foxfire_heretic';
+import TrefoilSowerSvgComponent from './leaders/trefoil_sower';
+import ScarredScholarSvgComponent from './leaders/scarred_scholar';
+import AuspiciousWaifSvgComponent from './leaders/auspicious_waif';
+
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
 
@@ -302,6 +309,19 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PotteryKilnSvgComponent icon={props.icon} />;
     case SVGS.BREWERY:
     return <BrewerySvgComponent icon={props.icon} />;
+
+    case SVGS.SAMANNOUD:
+    return <SamannoudSvgComponent icon={props.icon} />;
+    case SVGS.SHUDDERING_REFUGE:
+    return <ShudderingRefugeSvgComponent icon={props.icon} />;
+    case SVGS.FOXFIRE_HERETIC:
+    return <FoxfireHereticSvgComponent icon={props.icon} />;
+    case SVGS.TREFOIL_SOWER:
+    return <TrefoilSowerSvgComponent icon={props.icon} />;
+    case SVGS.SCARRED_SCHOLAR:
+    return <ScarredScholarSvgComponent icon={props.icon} />;
+    case SVGS.AUSPICIOUS_WAIF:
+    return <AuspiciousWaifSvgComponent icon={props.icon} />;
   }
   return null;
 }
