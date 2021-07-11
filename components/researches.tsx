@@ -81,7 +81,7 @@ export default function ResearchesComponent() {
       <FlatList
         data={uiArray}
         renderItem={(item) => renderUiItem(item)}
-        keyExtractor={research => research.name}>
+        keyExtractor={research => research.type + '|' + research.name}>
       </FlatList>
     </View>
   );

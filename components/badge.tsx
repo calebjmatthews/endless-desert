@@ -23,10 +23,17 @@ export default function BadgeComponent(props: BadgeProps) {
       );
     }
     else {
+      let size = props.icon.size;
+      if (size > 28) {
+        size -= 4;
+      }
+      else if (size > 21) {
+        size -= 2;
+      }
       return (
         <View style={badgeStyle}>
           <IconComponent provider={props.icon.provider} name={props.icon.name}
-            color={props.icon.color} size={props.icon.size}
+            color={props.icon.color} size={size}
             style={{lineHeight: 0}} />
         </View>
       );
@@ -35,8 +42,7 @@ export default function BadgeComponent(props: BadgeProps) {
 
   if (props.provider) {
     let name = props.name || '';
-    let foregroundColor = props.foregroundColor
-      || (props.icon ? props.icon.color : '#000');
+    let foregroundColor = props.foregroundColor || '#000';
     let backgroundColor = props.backgroundColor || '#fff';
     return <BadgeIconComponent provider={props.provider} name={name}
       foregroundColor={foregroundColor} backgroundColor={backgroundColor}
@@ -48,8 +54,9 @@ export default function BadgeComponent(props: BadgeProps) {
 
   function getBadgeStyle(size: number|undefined, borderless: boolean|undefined,
     quality: number|undefined) {
-    let backgroundColor = props.backgroundColor;
-    if (props.icon) { backgroundColor = props.icon.backgroundColor; }
+    let backgroundColor = '#fff';
+    if (props.backgroundColor) { backgroundColor = props.backgroundColor; }
+    if (props.icon?.backgroundColor) { backgroundColor = props.icon.backgroundColor; }
     let badgeStyle: any = {
       display: 'flex',
       justifyContent: 'center',
