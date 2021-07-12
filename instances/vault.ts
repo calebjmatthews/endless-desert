@@ -28,17 +28,17 @@ vaultStarting.increaseResource(new Resource({
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.WOOD_OAK,
   quality: 0,
-  quantity: 12
+  quantity: 32
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.SAND_YELLOW,
   quality: 0,
-  quantity: 287
+  quantity: 217
 }));
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.CLAY_RED,
   quality: 0,
-  quantity: 17
+  quantity: 37
 }));
 
 export { vaultStarting };

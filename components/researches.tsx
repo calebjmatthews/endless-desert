@@ -42,7 +42,7 @@ export default function ResearchesComponent() {
     useTypedSelector(state => state.account.showCompletedResearches);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let uiArray: ResearchBranch[] = [];
-  researchStatus.actions[TABS.RESEARCH].map((action) => {
+  researchStatus.actions[TABS.RESEARCH]?.map((action) => {
     uiArray.push(new ResearchBranch({ type: 'action', name: action, status: '',
       children: [] }));
   });

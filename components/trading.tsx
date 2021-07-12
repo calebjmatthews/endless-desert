@@ -27,6 +27,7 @@ import { resourceSubcategories } from '../instances/resource_subcategories';
 import { resourceCategories } from '../instances/resource_categories';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { INTRO_STATES } from '../enums/intro_states';
 import { MODALS } from '../enums/modals';
 
 export default function TradingComponent() {
@@ -38,6 +39,7 @@ export default function TradingComponent() {
   });
   const vault = useTypedSelector(state => state.vault);
   const timer = useTypedSelector(state => state.timers[('Trading' + 0)]);
+  const introState = useTypedSelector(state => state.account.introState);
 
   return (
     <View style={styles.container}>
@@ -46,13 +48,31 @@ export default function TradingComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Trading'}</Text>
       </View>
-      <ScrollView>
-        {renderTradingPartners(tradingPartnerArray)}
-        {renderArrivingTradingPartner()}
-      </ScrollView>
-
+      {renderBody()}
     </View>
   );
+
+  function renderBody() {
+    if (introState == INTRO_STATES.REFURBISH_HUTS || introState == INTRO_STATES.DONE) {
+      return (
+        <ScrollView>
+          {renderTradingPartners(tradingPartnerArray)}
+          {renderArrivingTradingPartner()}
+        </ScrollView>
+      );
+    }
+    else {
+      return (
+        <ScrollView>
+          <View style={styles.break}></View>
+          <Text style={StyleSheet.flatten([styles.bareText, { textAlign: 'center'}])}>
+            {'You\'ll have to repair the market before trading with anyone.'}
+          </Text>
+        </ScrollView>
+
+      );
+    }
+  }
 
   function renderTradingPartners(tradingPartnerArray: TradingPartner[]) {
     return tradingPartnerArray.map((tradingPartner) => {

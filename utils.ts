@@ -358,6 +358,48 @@ class Utils {
     }
   }
 
+  getMatchingResourceKindQuantity(specificity: string, type: string, vault: Vault):
+    number {
+    let quantity = 0;
+    switch(specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      quantity += vault.resources[type + '|0']?.quantity;
+      quantity += vault.resources[type + '|1']?.quantity;
+      quantity += vault.resources[type + '|2']?.quantity;
+      return quantity;
+
+      case RESOURCE_SPECIFICITY.TAG:
+      Object.keys(vault.resources).map((typeQuality) => {
+        let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        if (this.arrayIncludes(resourceType.tags, type)) {
+          quantity += vault.resources[typeQuality].quantity;
+        }
+      });
+      return quantity;
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      Object.keys(vault.resources).map((typeQuality) => {
+        let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        if (resourceType.subcategory == type) {
+          quantity += vault.resources[typeQuality].quantity;
+        }
+      });
+      return quantity;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      Object.keys(vault.resources).map((typeQuality) => {
+        let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        if (resourceType.category == type) {
+          quantity += vault.resources[typeQuality].quantity;
+        }
+      });
+      return quantity;
+
+      default:
+      return quantity;
+    }
+  }
+
   getMatchingResourceQuantity(resReq: {specificity: string, type: string,
     value: number}, forbiddenRT: string[] = []) {
     let resourcePool: ResourceType[] = [];

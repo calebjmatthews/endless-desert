@@ -206,7 +206,8 @@ function BuildingDescription(props: any) {
       styles.buttonTextDark]);
     let iconColor = '#17265d';
     let iconName = 'angle-down';
-    if (areResourcesEnough(building)) {
+    if (!props.buildTimer && areResourcesEnough(building)
+      && isIntroStateCorrect(building)) {
       buttonStyle = styles.buttonRowItemSmall;
       textStyle = styles.buttonTextSmall;
       iconName = 'exclamation-circle';
@@ -222,7 +223,6 @@ function BuildingDescription(props: any) {
       </TouchableOpacity>
     );
 
-    // To do: look at entire category when cost is other than "exact"
     function areResourcesEnough(building: Building) {
       let buildingType = buildingTypes[building.buildingType];
       let enoughResources = true;
@@ -230,17 +230,37 @@ function BuildingDescription(props: any) {
       let resourceCost: {type: string, quantity: number}[] = [];
       let totalValue = 0;
       buildingType.upgradeCost.map((aCost) => {
-        const resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
-        if (props.vault.resources[resource.name]) {
-          if (props.vault.resources[resource.name].quantity < aCost.quantity) {
-            enoughResources = false;
-          }
-        }
-        else {
+        const quantity = utils.getMatchingResourceKindQuantity(aCost.specificity,
+          aCost.type, props.vault);
+        if (quantity < aCost.quantity) {
           enoughResources = false;
         }
       });
       return enoughResources;
+    }
+
+    function isIntroStateCorrect(building: Building) {
+      switch(props.introState) {
+        case INTRO_STATES.REPAIR_CISTERN:
+        if (building.buildingType == BUILDING_TYPES.BROKEN_CISTERN) { return true; }
+        return false;
+
+        case INTRO_STATES.RESTORE_FIELD:
+        if (building.buildingType == BUILDING_TYPES.FALLOW_FIELD) { return true; }
+        return false;
+
+        case INTRO_STATES.REFURBISH_STUDY:
+        if (building.buildingType == BUILDING_TYPES.DECAYING_STUDY) { return true; }
+        return false;
+
+        case INTRO_STATES.REVAMP_MARKET:
+        if (building.buildingType == BUILDING_TYPES.ABANDONED_MARKET) { return true; }
+        return false;
+
+        case INTRO_STATES.REFURBISH_HUTS:
+        if (building.buildingType == BUILDING_TYPES.RUINED_HUTS) { return true; }
+        return false;
+      }
     }
   }
 

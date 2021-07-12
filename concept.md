@@ -415,7 +415,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
   - More complicated buildings require the skilled hand of a leader to keep them running. But as your research improves, you'll be able to build simplified versions that don't need a leader.
-  - It's only ever possible to analyse 100 of anything at a time, and the more valuable something is the longer it takes to analyse. However, it might eventually be possible to analyse much faster.
+  - It's only ever possible to analyze 100 of anything at a time, and the more valuable something is the longer it takes to analyze. However, it might eventually be possible to analyze much faster.
 
 ## Value checking table
   - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building

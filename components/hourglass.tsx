@@ -151,6 +151,9 @@ export default function HourglassComponent() {
           else if (buildingType.name == BUILDING_TYPES.FALLOW_FIELD) {
             fieldRepaired();
           }
+          else if (buildingType.name == BUILDING_TYPES.ABANDONED_MARKET) {
+            marketRepaired();
+          }
           else if (buildingType.name == BUILDING_TYPES.DECAYING_STUDY) {
             studyRepaired();
           }
@@ -242,8 +245,14 @@ export default function HourglassComponent() {
 
   function studyRepaired() {
     dispatch(addMemos([memos[MEMOS.STUDY_REPAIRED], memos[MEMOS.STUDY_REPAIRED_NEXT]]));
-    dispatch(setIntroState(INTRO_STATES.REFURBISH_HUTS));
+    dispatch(setIntroState(INTRO_STATES.REVAMP_MARKET));
     dispatch(unlockTab(TABS.RESEARCH));
+  }
+
+  function marketRepaired() {
+    dispatch(addMemos([memos[MEMOS.MARKET_REPAIRED],
+      memos[MEMOS.MARKET_REPAIRED_NEXT]]));
+    dispatch(setIntroState(INTRO_STATES.REFURBISH_HUTS));
   }
 
   function hutsRepaired() {

@@ -172,6 +172,11 @@ export default function BuildDetailComponent() {
         disabledMessage = ('I shouldn\'t spend time on this, '
           + 'I need somewhere to sleep and plan.');
     }
+    else if (introState == INTRO_STATES.REVAMP_MARKET
+      && buildingType.name != BUILDING_TYPES.ABANDONED_MARKET) {
+        disabledMessage = ('I shouldn\'t spend time on this, '
+          + 'I need somewhere to meet with trading partners.');
+    }
 
     if (!disabledMessage) {
       let text = 'To upgrade:';
@@ -189,7 +194,9 @@ export default function BuildDetailComponent() {
       );
     }
     return (
-      <Text style={styles.bareText}>{disabledMessage}</Text>
+      <Text style={StyleSheet.flatten([styles.bareText, { textAlign: 'center'}])}>
+        {disabledMessage}
+      </Text>
     );
   }
 
