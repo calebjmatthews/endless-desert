@@ -47,14 +47,16 @@ export default function ResourceSelectOneComponent() {
     return null;
   }
   function setStartingQuantityS(): string {
-    const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
-    if (resourcesArray.length == 1 && tPartner) {
-      let tInt = tPartner.acceptQuantity;
-      const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
-      if (tInt > vault.resources[key].quantity) {
-        tInt = Math.floor(vault.resources[key].quantity);
+    if (modalValue.type == 'Trading') {
+      const tPartner = tradingStatus.tradingPartners[modalValue.tradingPartner];
+      if (resourcesArray.length == 1 && tPartner) {
+        let tInt = tPartner.acceptQuantity;
+        const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
+        if (tInt > vault.resources[key].quantity) {
+          tInt = Math.floor(vault.resources[key].quantity);
+        }
+        return tInt.toString();
       }
-      return tInt.toString();
     }
     return '0';
   }
@@ -114,6 +116,7 @@ export default function ResourceSelectOneComponent() {
           <TextInput style={styles.inputBox} value={quantitySelected}
             editable={(resourceSelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
+          <Text>{' (Max 100)'}</Text>
         </View>
       );
     }
@@ -486,6 +489,12 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
       const qSelected = tPartner.acceptQuantity.toString();
       setQuantitySelected(qSelected);
       setQuantityGiven(calcQuantityGiven(qSelected, modalValue, resource, tPartner));
+    }
+    if (modalValue.type == RESEARCHES.ANALYSIS) {
+      const typeQuality = resource.type + '|' + resource.quality;
+      let quantity = Math.floor(props.vault.resources[typeQuality].quantity);
+      if (quantity > 100) { quantity = 100; }
+      setQuantitySelected(quantity.toString());
     }
   }
 }
