@@ -357,7 +357,8 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   description: ('The soil in desert is a dry, cracking clay. But careful application '
     + 'of water produces a building material for everything from bricks to '
     + 'ornamental figurines.'),
-  icon: new Icon({provider: 'svg', name: SVGS.CLAY}),
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
+    shadow: '#6f1b1b'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -374,7 +375,8 @@ researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
   description: ('Application of wooden scaffolding and additional water could '
     + 'produce clay of superior quality. The kind that could make beautiful '
     + 'pottery, rather than bricks.'),
-  icon: new Icon({provider: 'svg', name: SVGS.CLAY}),
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
+    shadow: '#6f1b1b'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,
@@ -458,7 +460,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
     + 'resource above all others: something to write on. You don\'t exactly '
     + 'know how to make papyrus, but it surely most begin with a thorough '
     + 'flattening.'),
-  icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS}),
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
