@@ -21,11 +21,13 @@ import Vault from '../models/vault';
 import Timer from '../models/timer';
 import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
+import Icon from '../models/icon';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+const RTY = RESOURCE_TYPES;
 import { RESEARCHES } from '../enums/researches';
 import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
@@ -111,12 +113,17 @@ export default function ResourceSelectOneComponent() {
   function renderQuantityInput() {
     if (modalValue.type == RESEARCHES.ANALYSIS) {
       return (
-        <View style={styles.rows}>
+        <View style={styles.columns}>
+          <View style={styles.rows}>
           <Text>{'Selecting: '}</Text>
           <TextInput style={styles.inputBox} value={quantitySelected}
             editable={(resourceSelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
           <Text>{' (Max 100)'}</Text>
+          </View>
+          <View style={styles.spacedRows}>
+            {renderQuantitySelected()}
+          </View>
         </View>
       );
     }
@@ -149,7 +156,36 @@ export default function ResourceSelectOneComponent() {
   }
 
   function renderQuantitySelected() {
-    if (parseInt(quantitySelected) > 0 && resourceSelected) {
+    if (!resourceSelected) { return null; }
+    if (modalValue.type == RESEARCHES.ANALYSIS) {
+      const resourceType = utils.getResourceType(resourceSelected);
+      const { knowledge, duration } = calcAnalysis();
+
+      return (
+        <>
+          <View style={styles.rows}>
+            <Text>{'Gain '}</Text>
+            <BadgeComponent icon={resourceTypes[RTY.KNOWLEDGE].icon} size={21} />
+            <Text>{'Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
+          </View>
+          <View style={styles.rows}>
+            <Text>{' by analyzing '}</Text>
+          </View>
+          <View style={styles.rows}>
+            <BadgeComponent icon={resourceType.icon} size={21} />
+            <Text>{utils.getResourceName(resourceSelected) +' x'
+              + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
+          </View>
+          <View style={styles.rows}>
+            <Text>{' for '}</Text>
+            <BadgeComponent icon={new Icon({ provider: 'FontAwesome',
+              name: 'clock-o', color: '#8390da' })} size={21} />
+            <Text>{utils.formatDuration(duration) + '.'}</Text>
+          </View>
+        </>
+      );
+    }
+    else if (modalValue.type == 'Trading' && parseInt(quantitySelected) > 0) {
       const resourceType = utils.getResourceType(resourceSelected);
       return (
         <View style={styles.rows}>
@@ -160,7 +196,7 @@ export default function ResourceSelectOneComponent() {
         </View>
       );
     }
-    return <Text>{'? '}</Text>;
+    return null;
   }
 
   function renderQuantityGiven(trade: Trade) {
@@ -250,7 +286,7 @@ export default function ResourceSelectOneComponent() {
       if (resourceType.value != null) {
         const rValue = resourceType.value * QV[resourceSelected.quality];
         const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-        const rsIncrease = [new Resource({type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
+        const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
           quantity: (rValue)})];
         const rsConsume = [new Resource({type: resourceSelected.type,
           quality: resourceSelected.quality, quantity: 1})]
@@ -280,15 +316,12 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        let rValue = ((resourceType.value * QV[resourceSelected.quality]
-          * parseInt(quantitySelected)) / 4);
+        const { knowledge, duration } = calcAnalysis();
         const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-        const rsIncrease = [new Resource({type: RESOURCE_TYPES.KNOWLEDGE, quality: 0,
-          quantity: rValue})];
+        const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
+          quantity: knowledge})];
         const rsConsume = [new Resource({type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)})]
-        let duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
-        if (duration < 1000) { duration = 1000; }
+          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)})];
         let timer = new Timer({
           name: RESEARCHES.ANALYSIS,
           startedAt: new Date(Date.now()).valueOf(),
@@ -300,13 +333,28 @@ export default function ResourceSelectOneComponent() {
           messageToDisplay: ('You analyzed '
             + utils.formatNumberShort(parseInt(quantitySelected)) + ' '
             + utils.getResourceName(resourceSelected) + ' for '
-            + utils.formatNumberShort(rValue) + ' knowledge.'),
+            + utils.formatNumberShort(knowledge) + ' knowledge.'),
           iconToDisplay: resourceType.icon
         });
         dispatch(addTimer(timer));
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
+  }
+
+  function calcAnalysis() {
+    let knowledge = 0;
+    let duration = 0;
+    if (resourceSelected != null) {
+      const resourceType = utils.getResourceType(resourceSelected);
+      if (resourceType.value != null) {
+        knowledge = ((resourceType.value * QV[resourceSelected.quality]
+          * parseInt(quantitySelected)) / 4);
+        duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
+        if (duration < 1000) { duration = 1000; }
+      }
+    }
+    return { knowledge, duration };
   }
 
   function actionTrading() {
