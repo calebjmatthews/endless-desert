@@ -65,9 +65,9 @@ export default function BadgeComponent(props: BadgeProps) {
       width: 30,
       margin: 5,
       backgroundColor: backgroundColor,
-      borderWidth: 2,
+      borderWidth: 1,
       borderStyle: 'solid',
-      borderColor: '#071f56',
+      borderColor: '#737f9c',
       borderRadius: 2
     };
 
@@ -87,7 +87,7 @@ export default function BadgeComponent(props: BadgeProps) {
       }
     }
     if (borderless) {
-      badgeStyle.borderWidth = 0;
+      // badgeStyle.borderWidth = 0;
     }
     if (quality) {
       badgeStyle.borderStyle = 'outset';
