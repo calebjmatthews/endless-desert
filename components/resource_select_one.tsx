@@ -427,7 +427,7 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
       dispatch(setEating(modalValue.leader, typeQuality));
-      dispatch(displayModalValue(null, 'closed', null));
+      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
     }
   }
 
@@ -435,7 +435,7 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
       dispatch(setDrinking(modalValue.leader, typeQuality));
-      dispatch(displayModalValue(null, 'closed', null));
+      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
     }
   }
 
