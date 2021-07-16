@@ -428,6 +428,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Fine text:
     color: #6a7791;
     text-shadow: 0px 0px 1px #a3bcdb;
+  - Aroma tag:
+    background-color: #fff
+    border-color: #fff;
+    box-shadow: 0 0px 5px 3px #ffffff6b;
 
 ## Play test
   - Repairing study and huts is too cheap

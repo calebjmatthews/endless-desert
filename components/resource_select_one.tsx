@@ -111,7 +111,14 @@ export default function ResourceSelectOneComponent() {
   }
 
   function renderQuantityInput() {
-    if (modalValue.type == RESEARCHES.ANALYSIS) {
+    if (modalValue.type == RESEARCHES.STUDY) {
+      return (
+        <View style={styles.spacedRows}>
+          {renderQuantitySelected()}
+        </View>
+      );
+    }
+    else if (modalValue.type == RESEARCHES.ANALYSIS) {
       return (
         <View style={styles.columns}>
           <View style={styles.rows}>
@@ -157,7 +164,34 @@ export default function ResourceSelectOneComponent() {
 
   function renderQuantitySelected() {
     if (!resourceSelected) { return null; }
-    if (modalValue.type == RESEARCHES.ANALYSIS) {
+    if (modalValue.type == RESEARCHES.STUDY) {
+      const resourceType = utils.getResourceType(resourceSelected);
+      const { knowledge, duration } = calcStudy();
+
+      return (
+        <>
+          <View style={styles.rows}>
+            <Text>{'Gain '}</Text>
+            <BadgeComponent icon={resourceTypes[RTY.KNOWLEDGE].icon} size={21} />
+            <Text>{'Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
+          </View>
+          <View style={styles.rows}>
+            <Text>{' by studying '}</Text>
+          </View>
+          <View style={styles.rows}>
+            <BadgeComponent icon={resourceType.icon} size={21} />
+            <Text>{utils.getResourceName(resourceSelected)}</Text>
+          </View>
+          <View style={styles.rows}>
+            <Text>{' for '}</Text>
+            <BadgeComponent icon={new Icon({ provider: 'FontAwesome',
+              name: 'clock-o', color: '#8390da' })} size={21} />
+            <Text>{utils.formatDuration(duration) + '.'}</Text>
+          </View>
+        </>
+      );
+    }
+    else if (modalValue.type == RESEARCHES.ANALYSIS) {
       const resourceType = utils.getResourceType(resourceSelected);
       const { knowledge, duration } = calcAnalysis();
 
@@ -284,14 +318,12 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        const rValue = resourceType.value * QV[resourceSelected.quality];
+        const { knowledge, duration } = calcStudy();
         const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
-          quantity: (rValue)})];
+          quantity: (knowledge)})];
         const rsConsume = [new Resource({type: resourceSelected.type,
           quality: resourceSelected.quality, quantity: 1})]
-        let duration = (resourceType.value / 10) * 1000;
-        if (duration < 1000) { duration = 1000; }
         let timer = new Timer({
           name: RESEARCHES.STUDY,
           startedAt: new Date(Date.now()).valueOf(),
@@ -302,7 +334,7 @@ export default function ResourceSelectOneComponent() {
           resourcesToConsume: rsConsume,
           messageToDisplay: ('You studied '
             + utils.getResourceName(resourceSelected) + ' for '
-            + utils.formatNumberShort(rValue) + ' knowledge.'),
+            + utils.formatNumberShort(knowledge) + ' knowledge.'),
           iconToDisplay: resourceType.icon
         });
         dispatch(addTimer(timer));
@@ -310,6 +342,18 @@ export default function ResourceSelectOneComponent() {
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
+  }
+
+  function calcStudy() {
+    let knowledge = 0;
+    let duration = 0;
+    if (resourceSelected != null) {
+      const resourceType = utils.getResourceType(resourceSelected);
+      knowledge = resourceType.value * QV[resourceSelected.quality];
+      duration = (resourceType.value / 10) * 1000;
+      if (duration < 1000) { duration = 1000; }
+    }
+    return { knowledge, duration };
   }
 
   function actionAnalysis() {

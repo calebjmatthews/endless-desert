@@ -170,25 +170,25 @@ class Utils {
   formatDuration(milliseconds: number, units: number = 0, long: boolean = false):
     string {
     if (units < 2) {
-      if (milliseconds > (1000 * 60 * 60 * 24)) {
+      if (milliseconds >= (1000 * 60 * 60 * 24)) {
         let days: number = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
         units++;
         return ((days + (long ? ' days ' : 'd ') +
           this.formatDuration(milliseconds % (1000 * 60 * 60 * 24), units, long)));
       }
-      if (milliseconds > (1000 * 60 * 60)) {
+      if (milliseconds >= (1000 * 60 * 60)) {
         let days: number  = Math.floor(milliseconds / (1000 * 60 * 60));
         units++;
         return ((days + (long ? ' hours ' : 'h ') +
           this.formatDuration(milliseconds % (1000 * 60 * 60), units, long)));
       }
-      if (milliseconds > (1000 * 60)) {
+      if (milliseconds >= (1000 * 60)) {
         let days: number  = Math.floor(milliseconds / (1000 * 60));
         units++;
         return ((days + (long ? ' minutes ' : 'm ') +
           this.formatDuration(milliseconds % (1000 * 60), units, long)));
       }
-      else if (milliseconds > (1000)) {
+      else if (milliseconds >= (1000)) {
         let days: number  = Math.floor(milliseconds / (1000));
         units++;
         return ((days + (long ? ' seconds ' : 's ') +
