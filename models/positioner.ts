@@ -14,6 +14,7 @@ export default class Positioner {
   bodyMedWidth: number = 225;
   modalWidth: number = 300;
   modalMajor: number = 260;
+  modalMinor: number = 240;
   modalHalf: number = 130;
   modalThird: number = 90;
   modalHeight: number = 375;
@@ -29,6 +30,7 @@ export default class Positioner {
       this.bodyMedWidth = this.majorWidth - this.iconSpacer;
       this.modalWidth = screenWidth - (this.minorPadding * 2);
       this.modalMajor = screenWidth - (this.minorPadding * 4);
+      this.modalMinor = screenWidth - (this.minorPadding * 8);
       this.modalHalf = (screenWidth / 2) - (this.minorPadding * 2);
       this.modalThird = (screenWidth / 3) - (this.minorPadding * 2);
       this.modalHeight = this.bodyHeight * 0.8;

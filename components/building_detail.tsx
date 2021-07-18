@@ -23,6 +23,7 @@ import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
 import Resource from '../models/resource';
+import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -62,7 +63,7 @@ export default function BuildDetailComponent() {
         if (building.recipe) {
           if (building.recipe.consumes) {
             building.recipe.consumes.map((resource) => {
-              const fullResource = Object.assign({quality: 0}, resource);
+              const fullResource = new Resource({...resource, quality: 0});
               const consumableType = utils.getResourceType(fullResource);
               if (consumableType) {
                 if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
@@ -306,8 +307,8 @@ export default function BuildDetailComponent() {
 
     if (rTypePool.length == 1) {
       const qtSplit = rTypePool[0].split('|');
-      dispatch(consumeResources(vault, [{type: qtSplit[0],
-        quality: parseInt(qtSplit[1]), quantity: aCost.quantity}]));
+      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
       if (modalDisplayed == MODALS.BUILDING_DETAIL) {
         dispatch(payBuildingUpgradeCost(building, aCost, [aCost]));
       }
@@ -474,19 +475,14 @@ export default function BuildDetailComponent() {
   }
 
   function renderRecipes(recipes: BuildingRecipe[]) {
-    return recipes.map((recipe) => {
-      if (recipes.length == 1) {
-        return (
-          <View key={recipe.index}>
-            <Text style={styles.bareText}>{'Producing:'}</Text>
-            {renderRecipe(recipe)}
-            <View style={styles.break}></View>
-          </View>
-        );
-      }
+    const recipesToRender: BuildingRecipe[] = [
+      new BuildingRecipe({ index: -1, produces: null, consumes: null }),
+      ...recipes
+    ];
+    return recipesToRender.map((recipe) => {
       return (
         <View key={recipe.index}>
-          <Text style={styles.bareText}>{'Option #' + (recipe.index + 1)}</Text>
+          <View style={styles.break}></View>
           <View style={styles.sideButtonContainer}>
             {renderSelectButton(recipe)}
             {renderRecipe(recipe)}
@@ -528,6 +524,18 @@ export default function BuildDetailComponent() {
 
   function renderRecipe(recipe: BuildingRecipe) {
     let rates: {specificity: string, type: string, quantity: number}[] = [];
+    if (recipe.index == -1) {
+      const rateStyle = { background: '#cec3e4', paddingHorizontal: 4,
+        minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
+      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
+        color: '#cec3e4', size: 21 });
+      return (
+        <View style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+          <BadgeComponent icon={icon} size={21} />
+          <Text>{ ' Rest' }</Text>
+        </View>
+      )
+    }
     if (recipe.produces) {
       recipe.produces.map((produce) => {
         rates.push({ specificity: produce.specificity, type: produce.type,
@@ -550,7 +558,8 @@ export default function BuildDetailComponent() {
   function renderRate(rate: {specificity: string, type: string, quantity: number}) {
     const type = utils.getMatchingResourceKind(rate.specificity, rate.type);
     let sign = '+';
-    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4 };
+    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4,
+      minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
     if (rate.quantity < 0) {
       sign = '';
       rateStyle.background = '#ffb4b1';

@@ -140,9 +140,11 @@ export default class Hourglass {
       }
       if ((buildingType.recipes || building.recipe) && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
-        let recipe = new BuildingRecipe({index: 0, produces: [], consumes: []});
+        let recipe = new BuildingRecipe({index: -1, produces: [], consumes: []});
         if (buildingType.recipes) {
-          recipe = buildingType.recipes[recipeSelected];
+          if (buildingType.recipes[recipeSelected]) {
+            recipe = buildingType.recipes[recipeSelected];
+          }
         }
         if (building.recipe) { recipe = building.recipe; }
 
