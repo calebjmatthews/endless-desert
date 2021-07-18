@@ -43,7 +43,7 @@ export default function BuildDetailComponent() {
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
-  const equipment = useTypedSelector(state => state.equipment);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let building: Building = modalValue;
   const buildingType = new BuildingType(buildingTypes[building.buildingType]);
@@ -151,6 +151,11 @@ export default function BuildDetailComponent() {
   function renderUpgradeCostContainer() {
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
+    if (buildingType.upgradesInto) {
+      if (!researchStatus.upgradesAvailable[buildingType.upgradesInto]) {
+        return null;
+      }
+    }
     if (modalDisplayed == MODALS.BUILD_DETAIL && !buildingType.cost) { return null; }
 
     let disabledMessage: string|null = null;

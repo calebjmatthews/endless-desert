@@ -167,6 +167,7 @@ export default function StorageHandlerComponent() {
               researchStatus.checkAndSetVisible();
               researchStatus.setResearchedActions();
               researchStatus.setBuildingsAvailable();
+              researchStatus.setUpgradesAvailable();
               dispatch(setResearchStatus(researchStatus));
             }
             else if (tableName == 'buildings' && jsonValue) {

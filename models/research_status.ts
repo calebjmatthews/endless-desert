@@ -13,6 +13,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     actions: { [category: string] : string[] } = {};
   resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
+  upgradesAvailable: { [buildingName: string] : boolean } = {};
 
   constructor(researchStatus: ResearchStatusInterface) {
     Object.assign(this, researchStatus);
@@ -33,6 +34,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     this.checkAndSetVisible();
     this.setResearchedActions();
     this.setBuildingsAvailable();
+    this.setUpgradesAvailable();
   }
 
   // Set the visibility of researches based on whether all of their prerequisites
@@ -69,6 +71,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     this.checkAndSetVisible();
     this.setResearchedActions();
     this.setBuildingsAvailable();
+    this.setUpgradesAvailable();
   }
 
   setResearchedActions() {
@@ -111,6 +114,18 @@ export default class ResearchStatus implements ResearchStatusInterface {
       if (research.unlocksBuilding && this.status[researchName] == 'completed') {
         research.unlocksBuilding.map((buildingName) => {
           this.buildingsAvailable[buildingName] = true;
+        });
+      }
+    });
+  }
+
+  setUpgradesAvailable() {
+    Object.keys(this.status).map((researchName) => {
+      let research = researches[researchName];
+      if (!research) { console.log(researchName); }
+      if (research.unlocksUpgrade && this.status[researchName] == 'completed') {
+        research.unlocksUpgrade.map((buildingName) => {
+          this.upgradesAvailable[buildingName] = true;
         });
       }
     });
