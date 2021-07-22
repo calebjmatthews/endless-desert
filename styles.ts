@@ -302,6 +302,24 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     alignSelf: 'stretch'
   },
+  buttonSubtle: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 2,
+    marginLeft: 5,
+    marginRight: 5,
+    padding: 2,
+    paddingRight: 6,
+    backgroundColor: '#fff',
+    color: '#000',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#73799f',
+    borderRadius: 2
+  },
   sideButtonContainer: {
     display: 'flex',
     flexDirection: 'row',

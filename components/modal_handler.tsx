@@ -14,6 +14,7 @@ import ResourceSelectOneComponent from './resource_select_one';
 import ResourceSelectDishComponent from './resource_select_dish';
 import BuildingSelectComponent from './building_select';
 import EquipmentSelectComponent from './equipment_select';
+import LeaderSelectComponent from './leader_select';
 import MemoComponent from './memo';
 import BuildingDetailComponent from './building_detail';
 import LeaderDetailComponent from './leader_detail';
@@ -78,6 +79,9 @@ function renderModal(modalType: string) {
 
     case MODALS.EQUIPMENT_SELECT:
     return <EquipmentSelectComponent />;
+
+    case MODALS.LEADER_SELECT:
+    return <LeaderSelectComponent />;
 
     case MODALS.MEMO:
     return <MemoComponent />;

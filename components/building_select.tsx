@@ -38,14 +38,14 @@ export default function BuildingSelectComponent() {
   const vault = useTypedSelector(state => state.vault);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
-  let leadersBuilding: {[buildingId: string] : Leader} = {};
+  let buildingsLeader: {[buildingId: string] : Leader} = {};
   Object.keys(leaders).map((leaderId) => {
     const leader = leaders[leaderId];
     if (modalValue.subType == ASSIGN_TO_BUILDING && leader.assignedTo) {
-      leadersBuilding[leader.assignedTo] = leader;
+      buildingsLeader[leader.assignedTo] = leader;
     }
     else if (modalValue.subType == LIVE_AT_BUILDING && leader.livingAt) {
-      leadersBuilding[leader.livingAt] = leader;
+      buildingsLeader[leader.livingAt] = leader;
     }
   });
   let buildingsArray = Object.keys(buildings).map((buildingId) => {
@@ -101,8 +101,8 @@ export default function BuildingSelectComponent() {
     setBuildingSelected: Function) {
     return buildingArray.map((building) => {
       let buildingLeader: Leader|null = null;
-      if (leadersBuilding[building.id]) {
-        buildingLeader = leadersBuilding[building.id];
+      if (buildingsLeader[building.id]) {
+        buildingLeader = buildingsLeader[building.id];
       }
       return <BuildingSelector key={building.id} building={building}
         buildingSelected={buildingSelected}
@@ -203,9 +203,9 @@ export default function BuildingSelectComponent() {
         dispatch(assignToBuilding(modalValue.leader, buildingSelected));
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
-        if (leadersBuilding[buildingSelected]) {
-          dispatch(assignToBuilding(leadersBuilding[buildingSelected], null));
-          tempLeaders[leadersBuilding[buildingSelected].id].assignedTo = null;
+        if (buildingsLeader[buildingSelected]) {
+          dispatch(assignToBuilding(buildingsLeader[buildingSelected], null));
+          tempLeaders[buildingsLeader[buildingSelected].id].assignedTo = null;
         }
         let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
@@ -215,9 +215,9 @@ export default function BuildingSelectComponent() {
         dispatch(liveAtBuilding(modalValue.leader, buildingSelected));
         let tempLeaders = Object.assign({}, leaders);
         tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
-        if (leadersBuilding[buildingSelected]) {
-          dispatch(liveAtBuilding(leadersBuilding[buildingSelected], null));
-          tempLeaders[leadersBuilding[buildingSelected].id].livingAt = null;
+        if (buildingsLeader[buildingSelected]) {
+          dispatch(liveAtBuilding(buildingsLeader[buildingSelected], null));
+          tempLeaders[buildingsLeader[buildingSelected].id].livingAt = null;
         }
         let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));

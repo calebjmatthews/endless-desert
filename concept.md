@@ -411,6 +411,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
 
+## Music
+  - Daily card-based minigame that creates a benefit that applies to your entire town for 36 hours.
+  - Cards can be created from Inspiration; one is created from the daily performance.
+  - Cards have positive and negative effects on resource rates, as well as directly increasing or decreasing resources. The can also affect research, building speed, and exploration.
+  - Also, cards have meta-effects within the performance mini-game (draw cards, discard cards, retreive from discard, permanently create cards, permanently destroy cards).
+
+## Hawk Bazaar
+  - Hawk your wares!
+  - One per day, send out a passenger hawk containing any quantity of a resource at a price set by the player
+  - Use hawk scrip to send out more hawks than the single daily hawk
+  - Buy as many things from the Hawk Bazaar as you wish
+  - When sending out a hawk, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
+
 ## Tips
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.

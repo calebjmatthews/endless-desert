@@ -12,17 +12,20 @@ import { displayModal, displayModalValue } from '../actions/ui';
 import { payBuildingUpgradeCost } from '../actions/buildings';
 import { payBuildingCost } from '../actions/buildings_construction';
 import { addTimer } from '../actions/timers';
+import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 
 import Building from '../models/building';
 import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
+import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { buildingCategories } from '../instances/building_categories';
 import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { INTRO_STATES } from '../enums/intro_states';
 import { utils } from '../utils';
 
@@ -111,6 +114,7 @@ export default function BuildingsComponent() {
     return <BuildingDescription building={building} introState={introState}
       vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
       leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
+      livingAssign={livingAssign} workingAssign={workingAssign}
       positioner={positioner} />
   }
 
@@ -173,6 +177,16 @@ export default function BuildingsComponent() {
 
   function morePress(building: Building) {
     dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
+  }
+
+  function livingAssign(building: Building) {
+    dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: LIVE_AT_BUILDING, building: building}));
+  }
+
+  function workingAssign(building: Building) {
+    dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open',
+      {type: MODALS.LEADER_DETAIL, subType: ASSIGN_TO_BUILDING, building: building}));
   }
 }
 
@@ -266,14 +280,31 @@ function BuildingDescription(props: any) {
 
   function renderLivingAt(building: Building,
     leaderLivingMap: { [buildingId: string] : Leader }) {
+    const buildingType = buildingTypes[building.buildingType];
     if (leaderLivingMap[building.id]) {
       const leader = leaderLivingMap[building.id];
       return (
         <View style={styles.spacedRows}>
-          <BadgeComponent icon={leader.icon} size={19} />
-          <Text style={{fontSize: 12}}>
-            {leader.name + ' living'}
-          </Text>
+          <TouchableOpacity style={styles.buttonSubtle}
+            onPress={() => props.livingAssign(building)}>
+            <BadgeComponent icon={leader.icon} size={19} />
+            <Text style={{fontSize: 12}}>
+              {leader.name + ' living'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else if (buildingType.category == BUILDING_CATEGORIES.HOUSING) {
+      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
+        color: '#cec3e4', size: 19 });
+      return (
+        <View style={styles.spacedRows}>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle, { paddingLeft: 6 }])} onPress={() => props.livingAssign(building)}>
+            <Text style={{fontSize: 12, color: '#767279'}}>
+              {'No leader living'}
+            </Text>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -286,10 +317,28 @@ function BuildingDescription(props: any) {
       const leader = leaderAssignedMap[building.id];
       return (
         <View style={styles.spacedRows}>
-          <BadgeComponent icon={leader.icon} size={19} />
-          <Text style={{fontSize: 12}}>
-            {leader.name + ' working'}
-          </Text>
+          <TouchableOpacity style={styles.buttonSubtle}
+            onPress={() => props.workingAssign(building)}>
+            <BadgeComponent icon={leader.icon} size={19} />
+            <Text style={{fontSize: 12}}>
+              {leader.name + ' working'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else if (buildingType.category != BUILDING_CATEGORIES.GENERAL
+      && buildingType.category != BUILDING_CATEGORIES.HOUSING) {
+      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
+        color: '#cec3e4', size: 14 });
+      return (
+        <View style={styles.spacedRows}>
+          <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle,
+            { paddingLeft: 6 }])} onPress={() => props.workingAssign(building)}>
+            <Text style={{fontSize: 12, color: '#767279'}}>
+              {'No leader working'}
+            </Text>
+          </TouchableOpacity>
         </View>
       );
     }
