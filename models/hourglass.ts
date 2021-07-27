@@ -108,17 +108,7 @@ export default class Hourglass {
       lastTimestamp: new Date(Date.now()).valueOf(),
       resources: {}
     })): Rates {
-    let productionRates: { [typeQuality: string] : number } = {};
-    let consumptionRates: { [typeQuality: string] : number } = {};
-    let netRates: { [typeQuality: string] : number } = {};
-    let buildingRates: { [buildingId: string] :
-      { [typeQuality: string] : number } } = {};
-    let bGroupRates: { [typeName: string] :
-      { [typeQuality: string] : number } } = {};
-    let leaderRates: { [leaderId: string] :
-      { [typeQuality: string] : number } } = {};
-    let exhaustions: { [typeQuality: string] : number } = {};
-    let soonestExhaustion: number|null = null;
+    let r = new Rates(null);
 
     const multiBT = getMultiBT(buildings);
     const buildingLeaders = getBuildingLeaders(buildings, leaders);
@@ -126,12 +116,12 @@ export default class Hourglass {
     // Add each building's recipe to the rate maps
     Object.keys(buildings).map((id) => {
       let building = buildings[id];
-      if (buildingRates[id] == undefined) {
-        buildingRates[id] = {};
+      if (r.buildingRates[id] == undefined) {
+        r.buildingRates[id] = {};
       }
       if (multiBT[building.buildingType] == true
-        && bGroupRates[building.buildingType] == undefined) {
-        bGroupRates[building.buildingType] = {};
+        && r.bGroupRates[building.buildingType] == undefined) {
+        r.bGroupRates[building.buildingType] = {};
       }
       let buildingType = buildingTypes[building.buildingType];
       let missingLeader = false;
@@ -175,18 +165,18 @@ export default class Hourglass {
             }
             if (qualityChance > 0) {
               let prod1Quantity = (prod0Quantity * qualityChance);
-              utils.mapAdd(productionRates, (production.type + '|1'), prod1Quantity);
-              utils.mapAdd(buildingRates[id], (production.type + '|1'), prod1Quantity);
-              utils.mapAdd(bGroupRates[building.buildingType],
+              utils.mapAdd(r.productionRates, (production.type + '|1'), prod1Quantity);
+              utils.mapAdd(r.buildingRates[id], (production.type + '|1'), prod1Quantity);
+              utils.mapAdd(r.bGroupRates[building.buildingType],
                 (production.type + '|1'), prod1Quantity);
-              utils.mapAdd(netRates, (production.type + '|1'), prod1Quantity);
+              utils.mapAdd(r.netRates, (production.type + '|1'), prod1Quantity);
               prod0Quantity -= prod1Quantity;
             }
-            utils.mapAdd(productionRates, (production.type + '|0'), prod0Quantity);
-            utils.mapAdd(buildingRates[id], (production.type + '|0'), prod0Quantity);
-            utils.mapAdd(bGroupRates[building.buildingType], (production.type + '|0'),
+            utils.mapAdd(r.productionRates, (production.type + '|0'), prod0Quantity);
+            utils.mapAdd(r.buildingRates[id], (production.type + '|0'), prod0Quantity);
+            utils.mapAdd(r.bGroupRates[building.buildingType], (production.type + '|0'),
               prod0Quantity);
-            utils.mapAdd(netRates, (production.type + '|0'), prod0Quantity);
+            utils.mapAdd(r.netRates, (production.type + '|0'), prod0Quantity);
           });
         }
         if (recipe.consumes && !missingConsumption) {
@@ -200,12 +190,12 @@ export default class Hourglass {
                 (consumption.type + '|0'), LQ.EFFICIENCY);
               consQuantity *= (1 - (leaderNegMod / 100));
             }
-            utils.mapAdd(consumptionRates, (consumption.type + '|0'), consQuantity);
-            utils.mapAdd(buildingRates[id], (consumption.type + '|0'),
+            utils.mapAdd(r.consumptionRates, (consumption.type + '|0'), consQuantity);
+            utils.mapAdd(r.buildingRates[id], (consumption.type + '|0'),
               (consQuantity * -1));
-            utils.mapAdd(bGroupRates[building.buildingType], (consumption.type + '|0'),
+            utils.mapAdd(r.bGroupRates[building.buildingType], (consumption.type + '|0'),
               (consQuantity * -1));
-            utils.mapAdd(netRates, (consumption.type + '|0'), (consQuantity * -1));
+            utils.mapAdd(r.netRates, (consumption.type + '|0'), (consQuantity * -1));
           });
         }
       }
@@ -215,36 +205,35 @@ export default class Hourglass {
     Object.keys(leaders).map((id) => {
       const leader = leaders[id];
       if (leader.eating) {
-        utils.mapAdd(consumptionRates, leader.eating, 10);
-        utils.mapAdd(leaderRates[id], leader.eating, -10);
-        utils.mapAdd(netRates, leader.eating, -10);
+        utils.mapAdd(r.consumptionRates, leader.eating, 10);
+        utils.mapAdd(r.leaderRates[id], leader.eating, -10);
+        utils.mapAdd(r.netRates, leader.eating, -10);
       }
       if (leader.drinking) {
-        utils.mapAdd(consumptionRates, leader.drinking, 10);
-        utils.mapAdd(leaderRates[id], leader.drinking, -10);
-        utils.mapAdd(netRates, leader.drinking, -10);
+        utils.mapAdd(r.consumptionRates, leader.drinking, 10);
+        utils.mapAdd(r.leaderRates[id], leader.drinking, -10);
+        utils.mapAdd(r.netRates, leader.drinking, -10);
       }
     });
 
     // Check for resources that have a negative rate, and determine when they will
     //  be exhausted
-    Object.keys(netRates).map((typeQuality) => {
-      const rate = netRates[typeQuality];
+    Object.keys(r.netRates).map((typeQuality) => {
+      const rate = r.netRates[typeQuality];
       if (rate < 0 && vault) {
         if (vault.resources[typeQuality]) {
           const quantity = vault.resources[typeQuality].quantity;
           if (quantity > Math.abs(rate)) {
             const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
-            if (soonestExhaustion == null || soonestExhaustion > exhaustion) {
-              soonestExhaustion = exhaustion;
+            if (r.soonestExhaustion == null || r.soonestExhaustion > exhaustion) {
+              r.soonestExhaustion = exhaustion;
             }
           }
         }
       }
     });
 
-    return new Rates({productionRates, consumptionRates, buildingRates, bGroupRates,
-      netRates, exhaustions, soonestExhaustion});
+    return new Rates(r);
 
     function getMultiBT(buildings: { [id: string] : Building }) {
       let multiBT: { [typeName: string] : boolean } = {};
