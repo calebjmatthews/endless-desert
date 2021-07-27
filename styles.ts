@@ -327,7 +327,8 @@ export const styles = StyleSheet.create({
     marginBottom: 10
   },
   sideButton: {
-    minWidth: 40
+    minWidth: 40,
+    borderWidth: 0
   },
   modalContainer: {
     zIndex: 100,

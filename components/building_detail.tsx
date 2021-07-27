@@ -165,23 +165,23 @@ export default function BuildDetailComponent() {
     }
     else if (introState == INTRO_STATES.REPAIR_CISTERN
       && buildingType.name != BUILDING_TYPES.BROKEN_CISTERN) {
-      disabledMessage = ('I shouldn\'t spend time on this, '
+      disabledMessage = ('You shouldn\'t spend time on this, '
         + 'a source of water is more important.');
     }
     else if (introState == INTRO_STATES.RESTORE_FIELD
       && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
-        disabledMessage = ('I shouldn\'t spend time on this, '
+        disabledMessage = ('You shouldn\'t spend time on this, '
           + 'reliable food is more important.');
     }
     else if (introState == INTRO_STATES.REFURBISH_STUDY
       && buildingType.name != BUILDING_TYPES.DECAYING_STUDY) {
-        disabledMessage = ('I shouldn\'t spend time on this, '
-          + 'I need somewhere to sleep and plan.');
+        disabledMessage = ('You shouldn\'t spend time on this, '
+          + 'you need somewhere to sleep and plan.');
     }
     else if (introState == INTRO_STATES.REVAMP_MARKET
       && buildingType.name != BUILDING_TYPES.ABANDONED_MARKET) {
-        disabledMessage = ('I shouldn\'t spend time on this, '
-          + 'I need somewhere to meet with trading partners.');
+        disabledMessage = ('You shouldn\'t spend time on this, '
+          + 'somewhere to meet with trading partners is more important.');
     }
 
     if (!disabledMessage) {

@@ -374,7 +374,7 @@ function BuildingDescription(props: any) {
     const resourceType = utils.getResourceType(resource);
     let sign = '+';
     let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
-      marginVertical: 3 };
+      marginVertical: 6 };
     if (rate < 0) {
       sign = '';
       rateStyle.background = '#ffb4b1';
