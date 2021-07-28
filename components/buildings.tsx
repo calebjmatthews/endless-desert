@@ -9,8 +9,9 @@ import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
 import { displayModal, displayModalValue } from '../actions/ui';
-import { payBuildingUpgradeCost } from '../actions/buildings';
+import { selectBuildingRecipe, payBuildingUpgradeCost } from '../actions/buildings';
 import { payBuildingCost } from '../actions/buildings_construction';
+import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
 import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 
@@ -19,6 +20,8 @@ import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
+import Hourglass from '../models/hourglass';
+import Rate from '../models/rate';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { buildingCategories } from '../instances/building_categories';
@@ -115,7 +118,7 @@ export default function BuildingsComponent() {
       vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
       leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
       livingAssign={livingAssign} workingAssign={workingAssign}
-      positioner={positioner} />
+      recipeAssign={recipeAssign} positioner={positioner} />
   }
 
   function renderBuildHeader() {
@@ -188,6 +191,20 @@ export default function BuildingsComponent() {
     dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open',
       {type: MODALS.LEADER_DETAIL, subType: ASSIGN_TO_BUILDING, building: building}));
   }
+
+  function recipeAssign(building: Building, recipeSelected: number) {
+    console.log('arguments');
+    console.log(arguments);
+    let tempBuildings: { [id: string] : Building } = {};
+    Object.keys(buildings).map((id) => {
+      tempBuildings[id] = new Building(buildings[id]);
+    });
+
+    tempBuildings[building.id].recipeSelected = recipeSelected;
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+    dispatch(setRates(newRates));
+    dispatch(selectBuildingRecipe(building, recipeSelected));
+  }
 }
 
 function BuildingDescription(props: any) {
@@ -195,21 +212,23 @@ function BuildingDescription(props: any) {
   const buildingType: BuildingType = buildingTypes[building.buildingType];
 
   return (
-    <View style={StyleSheet.flatten([styles.panelFlex,
+    <View style={StyleSheet.flatten([styles.panelFlex, styles.columns,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent icon={buildingType.icon} size={29} />
-      <View style={StyleSheet.flatten([styles.containerStretchColumn,
-        {minWidth: props.positioner.bodyMedWidth,
-          maxWidth: props.positioner.bodyMedWidth}])}>
-        <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
-          <Text>{(props.building.item.name || buildingType.name)}</Text>
-          {renderMoreButton()}
+      <View style={styles.rows}>
+        <BadgeComponent icon={buildingType.icon} size={29} />
+        <View style={StyleSheet.flatten([styles.containerStretchColumn,
+          {minWidth: props.positioner.bodyMedWidth,
+            maxWidth: props.positioner.bodyMedWidth}])}>
+          <View style={styles.buttonTextRow}>
+            <Text>{(props.building.item.name || buildingType.name)}</Text>
+            {renderMoreButton()}
+          </View>
+          {renderLivingAt(building, props.leaderLivingMap)}
+          {renderAssignedTo(building, props.leaderAssignedMap)}
         </View>
-        {renderLivingAt(building, props.leaderLivingMap)}
-        {renderAssignedTo(building, props.leaderAssignedMap)}
-        <Text>{renderRateContainer()}</Text>
       </View>
+      {renderRateContainer()}
     </View>
   );
 
@@ -346,21 +365,71 @@ function BuildingDescription(props: any) {
   }
 
   function renderRateContainer() {
-    let rates: { [typeQuality: string] : number } =
+    let rates: Rate =
       props.rates.buildingRates[building.id];
-    if (rates) {
-      return (
-        <View style={styles.spacedRows}>
-          {renderRates(rates)}
+    if (!rates && building.recipeSelected != -1) { return null; }
+    if (!Object.keys(rates).length && building.recipeSelected != -1) { return null; }
+
+    let content = (
+      <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
+        justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
+        {renderRates(rates)}
+      </View>
+    );
+    if (building.recipeSelected == -1) {
+      const rateStyle = { background: '#cec3e4', paddingHorizontal: 4, maxHeight: 19,
+        marginVertical: 6 };
+      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
+        color: '#cec3e4', size: 21 });
+      content = (
+        <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
+          justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
+          <View style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+            <BadgeComponent icon={icon} size={21} />
+            <Text>{' Resting '}</Text>
+          </View>
         </View>
       );
     }
+
+    return (
+      <View style={StyleSheet.flatten([styles.spacedRows, { flexWrap: 'nowrap' }])}>
+        <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle,
+          { alignSelf: 'stretch' }])} onPress={() => stepThroughRecipes(-1)}>
+          <Text>{" "}</Text>
+          <IconComponent provider="FontAwesome5" name={'angle-left'}
+            color={"#000"} size={14} />
+        </TouchableOpacity>
+        {content}
+        <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle,
+          { alignSelf: 'stretch' }])} onPress={() => stepThroughRecipes(1)}>
+          <Text>{" "}</Text>
+          <IconComponent provider="FontAwesome5" name={'angle-right'}
+            color={"#000"} size={14} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  function stepThroughRecipes(increment: number) {
+    const buildingType = buildingTypes[building.buildingType];
+    if (!buildingType) { return null; }
+    if (!buildingType.recipes) { return null; }
+    if (building.recipeSelected == undefined) { return null; }
+
+    if (building.recipeSelected == -1 && increment == -1) {
+      props.recipeAssign(building, (buildingType.recipes.length - 1));
+    }
+    else if (building.recipeSelected == buildingType.recipes.length-1
+      && increment == 1) {
+      props.recipeAssign(building, -1);
+    }
     else {
-      return null;
+      props.recipeAssign(building, (building.recipeSelected + increment));
     }
   }
 
-  function renderRates(rates: { [typeQuality: string] : number }) {
+  function renderRates(rates: Rate) {
     return Object.keys(rates).map((typeQuality) => {
       return renderRate(typeQuality, rates[typeQuality])
     });

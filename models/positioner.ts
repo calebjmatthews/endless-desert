@@ -7,11 +7,13 @@ export default class Positioner {
   iconSpacer: number = 55;
   headerSpacer: number = 70;
   titleSpacer: number = 25;
+  buildingButtonSpacer: number = 47;
 
   bodyHeight: number = 470;
   majorWidth: number = 280;
   minorWidth: number = 130;
   bodyMedWidth: number = 225;
+  buildingBarWidth: number = 208;
   modalWidth: number = 300;
   modalMajor: number = 260;
   modalMinor: number = 240;
@@ -28,6 +30,8 @@ export default class Positioner {
       this.majorWidth = screenWidth - (this.majorPadding * 2);
       this.minorWidth = (this.majorWidth / 2) - this.minorPadding;
       this.bodyMedWidth = this.majorWidth - this.iconSpacer;
+      this.buildingBarWidth = this.majorWidth - this.buildingButtonSpacer
+        - (this.minorPadding * 2);
       this.modalWidth = screenWidth - (this.minorPadding * 2);
       this.modalMajor = screenWidth - (this.minorPadding * 4);
       this.modalMinor = screenWidth - (this.minorPadding * 8);
