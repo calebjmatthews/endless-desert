@@ -151,7 +151,7 @@ export default function BuildDetailComponent() {
   function renderUpgradeCostContainer() {
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
-    if (buildingType.upgradesInto) {
+    if (buildingType.upgradesInto && modalDisplayed != MODALS.BUILD_DETAIL) {
       if (!researchStatus.upgradesAvailable[buildingType.upgradesInto]) {
         return null;
       }
