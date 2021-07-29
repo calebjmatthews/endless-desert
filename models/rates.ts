@@ -10,6 +10,7 @@ export default class Rates {
   leaderRates: { [leaderId: string] : Rate } = {};
   exhaustions: { [typeQuality: string] : number } = {};
   soonestExhaustion: number|null = null;
+  problems: { [buildingId: string] : string[] }  = {};
 
   constructor(rates: Rates|null) {
     if (rates) {

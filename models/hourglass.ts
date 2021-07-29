@@ -118,9 +118,8 @@ export default class Hourglass {
       let building = buildings[id];
       if (r.recipesRates[id] == undefined) {
         r.recipesRates[id] = [];
-      }
-      if (r.buildingRates[id] == undefined) {
         r.buildingRates[id] = {};
+        r.problems[id] = [];
       }
       if (multiBT[building.buildingType] == true
         && r.bGroupRates[building.buildingType] == undefined) {
@@ -130,6 +129,7 @@ export default class Hourglass {
       let missingLeader = false;
       if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
         missingLeader = true;
+        r.problems[id].push('Missing leader');
       }
       if (buildingType.recipes || building.recipe) {
         let recipes: BuildingRecipe[] = [];
@@ -170,7 +170,7 @@ export default class Hourglass {
                 consQuantity *= (1 - (leaderNegMod / 100));
               }
               utils.mapAdd(r.recipesRates[id][index], (consumption.type + '|0'),
-                consQuantity);
+                (consQuantity * -1));
             });
           }
         });
@@ -191,10 +191,14 @@ export default class Hourglass {
             if (vault.resources[consumption.type + '|0']) {
               if (vault.resources[consumption.type + '|0'].quantity < 1) {
                 console.log('missingConsumption for: ' + consumption.type);
+                r.problems[id].push(consumption.type + ' missing');
                 missingConsumption = true;
               }
             }
-            else { missingConsumption = true; }
+            else {
+              r.problems[id].push(consumption.type + ' missing');
+              missingConsumption = true;
+            }
           });
         }
 

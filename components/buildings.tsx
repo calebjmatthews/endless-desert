@@ -208,6 +208,7 @@ export default function BuildingsComponent() {
 function BuildingDescription(props: any) {
   const building: Building = props.building.item;
   const buildingType: BuildingType = buildingTypes[building.buildingType];
+  const problems = props.rates.problems[building.id];
 
   return (
     <View style={StyleSheet.flatten([styles.panelFlex, styles.columns,
@@ -226,7 +227,8 @@ function BuildingDescription(props: any) {
           {renderAssignedTo(building, props.leaderAssignedMap)}
         </View>
       </View>
-      {renderRateContainer()}
+      {renderRateContainer(problems)}
+      {renderProblems(problems)}
     </View>
   );
 
@@ -362,7 +364,7 @@ function BuildingDescription(props: any) {
     return null;
   }
 
-  function renderRateContainer() {
+  function renderRateContainer(problems: string[]) {
     if (building.recipeSelected == undefined) { return null; }
     const rates = props.rates.recipesRates[building.id][building.recipeSelected];
     if (building.recipeSelected != -1) {
@@ -375,7 +377,7 @@ function BuildingDescription(props: any) {
       content = (
         <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
           justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
-          {renderRates(rates)}
+          {renderRates(rates, problems)}
         </View>
       );
     }
@@ -432,24 +434,27 @@ function BuildingDescription(props: any) {
     }
   }
 
-  function renderRates(rates: Rate) {
+  function renderRates(rates: Rate, problems: string[]) {
     return Object.keys(rates).map((typeQuality) => {
-      return renderRate(typeQuality, rates[typeQuality])
+      return renderRate(typeQuality, rates[typeQuality], problems)
     });
   }
 
-  function renderRate(typeQuality: string, rate: number) {
+  function renderRate(typeQuality: string, rate: number, problems: string[]) {
     const tqSplit = typeQuality.split('|');
     let resource = props.vault.resources[typeQuality];
     if (!resource) { resource = new Resource({ type: tqSplit[0],
       quality: parseInt(tqSplit[1]), quantity: 0 }) }
     const resourceType = utils.getResourceType(resource);
     let sign = '+';
-    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
+    let rateStyle: any = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
       marginVertical: 6 };
     if (rate < 0) {
       sign = '';
       rateStyle.background = '#ffb4b1';
+    }
+    if (problems.length > 0) {
+      rateStyle.opacity = 0.6;
     }
     return (
       <View key={typeQuality} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
@@ -459,5 +464,25 @@ function BuildingDescription(props: any) {
         <Text>{'/m '}</Text>
       </View>
     );
+  }
+
+  function renderProblems(problems: string[]) {
+    const problemStyle = StyleSheet.flatten([styles.infoBar,
+      { backgroundColor: '#b9313a', borderColor: '#860009', borderRadius: 10 }]);
+    return (
+      <View>
+        {problems.map((problem) => {
+          return (
+            <View style={problemStyle}>
+            <IconComponent provider="FontAwesome5" name="exclamation-circle"
+              color="#fff"  size={12} />
+              <Text style={{fontSize: 12, color: '#ffffff'}}>
+                {' ' + problem}
+              </Text>
+            </View>
+          )
+        })}
+      </View>
+    )
   }
 }
