@@ -116,6 +116,9 @@ export default class Hourglass {
     // Add each building's recipe to the rate maps
     Object.keys(buildings).map((id) => {
       let building = buildings[id];
+      if (r.recipesRates[id] == undefined) {
+        r.recipesRates[id] = [];
+      }
       if (r.buildingRates[id] == undefined) {
         r.buildingRates[id] = {};
       }
@@ -127,6 +130,50 @@ export default class Hourglass {
       let missingLeader = false;
       if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
         missingLeader = true;
+      }
+      if (buildingType.recipes || building.recipe) {
+        let recipes: BuildingRecipe[] = [];
+        if (building.recipe) { recipes = [building.recipe]; }
+        else if (buildingType.recipes) { recipes = buildingType.recipes; }
+
+        recipes.map((recipe, index) => {
+          r.recipesRates[id][index] = {};
+          if (recipe.produces) {
+            recipe.produces.map((production) => {
+              let prod0Quantity = production.quantity;
+              let qualityChance = 0;
+              if (buildingLeaders[building.id]) {
+                const leaderSMod = findLeaderMod(buildingLeaders[building.id],
+                  (production.type + '|0'), LQ.SPEED);
+                prod0Quantity *= (1 + (leaderSMod / 100));
+                const leaderQMod =  findLeaderMod(buildingLeaders[building.id],
+                  (production.type + '|0'), LQ.QUALITY);
+                qualityChance = leaderQMod/100;
+              }
+              if (qualityChance > 0) {
+                let prod1Quantity = (prod0Quantity * qualityChance);
+                utils.mapAdd(r.recipesRates[id][index], (production.type + '|1'), prod1Quantity);
+                prod0Quantity -= prod1Quantity;
+              }
+              utils.mapAdd(r.recipesRates[id][index], (production.type + '|0'), prod0Quantity);
+            })
+          }
+          if (recipe.consumes) {
+            recipe.consumes.map((consumption) => {
+              let consQuantity = consumption.quantity;
+              if (buildingLeaders[building.id]) {
+                const leaderMod = findLeaderMod(buildingLeaders[building.id],
+                  (consumption.type + '|0'), LQ.SPEED);
+                consQuantity *= (1 + (leaderMod / 100));
+                const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
+                  (consumption.type + '|0'), LQ.EFFICIENCY);
+                consQuantity *= (1 - (leaderNegMod / 100));
+              }
+              utils.mapAdd(r.recipesRates[id][index], (consumption.type + '|0'),
+                consQuantity);
+            });
+          }
+        });
       }
       if ((buildingType.recipes || building.recipe) && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;

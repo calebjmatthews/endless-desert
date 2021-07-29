@@ -193,8 +193,6 @@ export default function BuildingsComponent() {
   }
 
   function recipeAssign(building: Building, recipeSelected: number) {
-    console.log('arguments');
-    console.log(arguments);
     let tempBuildings: { [id: string] : Building } = {};
     Object.keys(buildings).map((id) => {
       tempBuildings[id] = new Building(buildings[id]);
@@ -365,18 +363,23 @@ function BuildingDescription(props: any) {
   }
 
   function renderRateContainer() {
-    let rates: Rate =
-      props.rates.buildingRates[building.id];
-    if (!rates && building.recipeSelected != -1) { return null; }
-    if (!Object.keys(rates).length && building.recipeSelected != -1) { return null; }
+    if (building.recipeSelected == undefined) { return null; }
+    const rates = props.rates.recipesRates[building.id][building.recipeSelected];
+    if (building.recipeSelected != -1) {
+      if (!rates) { return null; }
+      if (!Object.keys(rates).length) { return null; }
+    }
 
-    let content = (
-      <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
-        justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
-        {renderRates(rates)}
-      </View>
-    );
-    if (building.recipeSelected == -1) {
+    let content = null;
+    if (building.recipeSelected != -1) {
+      content = (
+        <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
+          justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
+          {renderRates(rates)}
+        </View>
+      );
+    }
+    else {
       const rateStyle = { background: '#cec3e4', paddingHorizontal: 4, maxHeight: 19,
         marginVertical: 6 };
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
