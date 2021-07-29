@@ -1,39 +1,39 @@
-import TradingPartner from './trading_partner';
+import TradingPartnerVisit from './trading_partner_visit';
 import Trade from './trade';
 import Resource from './resource';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { utils } from '../utils';
 
 export default class TradingStatus implements TradingStatusInterface {
-  tradingPartners: { [name: string] : TradingPartner } = {};
-  tpPending: TradingPartner[] = [];
+  tradingPartnerVisits: { [name: string] : TradingPartnerVisit } = {};
+  tpPending: TradingPartnerVisit[] = [];
 
   constructor(tradingStatus: TradingStatusInterface) {
     Object.assign(this, tradingStatus);
   }
 
-  createPendingTradingPartner() {
-    let tpName = selectTradingPartner(this.tradingPartners);
-    return tradingPartnerTypes[tpName].createTradingPartner();
+  createPendingTradingPartnerVisit() {
+    let tpName = selectTradingPartnerVisit(this.tradingPartnerVisits);
+    return tradingPartnerTypes[tpName].createTradingPartnerVisit();
 
-    function selectTradingPartner(ctps: { [name: string] : TradingPartner }) {
+    function selectTradingPartnerVisit(ctps: { [name: string] : TradingPartnerVisit }) {
       let tps = Object.keys(tradingPartnerTypes);
       return tps[Math.floor(utils.random() * tps.length)];
     }
   }
 
-  addPendingTradingPartner(tradingPartner: TradingPartner) {
+  addPendingTradingPartnerVisit(tradingPartner: TradingPartnerVisit) {
     this.tpPending.push(tradingPartner);
   }
 
-  welcomePendingTradingPartner() {
+  welcomePendingTradingPartnerVisit() {
     let tradingPartner = this.tpPending[0];
-    this.tradingPartners[tradingPartner.name] = tradingPartner;
+    this.tradingPartnerVisits[tradingPartner.name] = tradingPartner;
     this.tpPending = this.tpPending.slice(1);
   }
 
-  dismissTradingPartner(tradingPartner: TradingPartner) {
-    delete this.tradingPartners[tradingPartner.name];
+  dismissTradingPartnerVisit(tradingPartner: TradingPartnerVisit) {
+    delete this.tradingPartnerVisits[tradingPartner.name];
   }
 
   completeTrade(traded: {
@@ -42,11 +42,11 @@ export default class TradingStatus implements TradingStatusInterface {
     given: Resource,
     received: Resource
   }) {
-    this.tradingPartners[traded.tradingPartnerType].traded[traded.id] = traded;
+    this.tradingPartnerVisits[traded.tradingPartnerType].traded[traded.id] = traded;
   }
 }
 
 interface TradingStatusInterface {
-  tradingPartners: { [name: string] : TradingPartner };
-  tpPending: TradingPartner[];
+  tradingPartnerVisits: { [name: string] : TradingPartnerVisit };
+  tpPending: TradingPartnerVisit[];
 }

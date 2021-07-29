@@ -1,4 +1,4 @@
-import TradingPartner from '../models/trading_partner';
+import TradingPartnerVisit from '../models/trading_partner_visit';
 import Trade from '../models/trade';
 import TradingStatus from '../models/trading_status';
 import Resource from '../models/resource';
@@ -12,25 +12,25 @@ export function setTradingStatus(tradingStatus: TradingStatus) {
 }
 
 export const ADD_PENDING_TRADING_PARTNER = 'ADD_PENDING_TRADING_PARTNER';
-export function addPendingTradingPartner(tradingPartner: TradingPartner) {
+export function addPendingTradingPartnerVisit(tradingPartnerVisit: TradingPartnerVisit) {
   return {
     type: ADD_PENDING_TRADING_PARTNER,
-    tradingPartner: tradingPartner
+    tradingPartnerVisit: tradingPartnerVisit
   }
 }
 
 export const WELCOME_PENDING_TRADING_PARTNER = 'WELCOME_PENDING_TRADING_PARTNER';
-export function welcomePendingTradingPartner() {
+export function welcomePendingTradingPartnerVisit() {
   return {
     type: WELCOME_PENDING_TRADING_PARTNER
   }
 }
 
 export const DISMISS_TRADING_PARTNER = 'DISMISS_TRADING_PARTNER';
-export function dismissTradingPartner(tradingPartner: TradingPartner) {
+export function dismissTradingPartnerVisit(tradingPartnerVisit: TradingPartnerVisit) {
   return {
     type: DISMISS_TRADING_PARTNER,
-    tradingPartner: tradingPartner
+    tradingPartnerVisit: tradingPartnerVisit
   }
 }
 

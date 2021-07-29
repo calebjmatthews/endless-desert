@@ -1,4 +1,4 @@
-import TradingPartner from './trading_partner';
+import TradingPartnerVisit from './trading_partner_visit';
 import Resource from './resource';
 import ResourceType from './resource_type';
 import Trade from './trade';
@@ -25,7 +25,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     });
   }
 
-  createTradingPartner() {
+  createTradingPartnerVisit() {
     let tCount = 4;
     const roll = Math.random();
     if (roll < 0.1) { tCount = 5; }
@@ -57,7 +57,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
       }
     }
 
-    return new TradingPartner({
+    return new TradingPartnerVisit({
       name: this.name,
       trades: trades,
       acceptQuantity: this.acceptQuantity,

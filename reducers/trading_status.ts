@@ -12,17 +12,17 @@ export default function (tradingStatus: TradingStatus = tradingStatusStarting,
 
     case ADD_PENDING_TRADING_PARTNER:
     let newAPTPTradingStatus = new TradingStatus(tradingStatus);
-    newAPTPTradingStatus.addPendingTradingPartner(action.tradingPartner);
+    newAPTPTradingStatus.addPendingTradingPartnerVisit(action.tradingPartnerVisit);
     return newAPTPTradingStatus;
 
     case WELCOME_PENDING_TRADING_PARTNER:
     let newWPTPTradingStatus = new TradingStatus(tradingStatus);
-    newWPTPTradingStatus.welcomePendingTradingPartner();
+    newWPTPTradingStatus.welcomePendingTradingPartnerVisit();
     return newWPTPTradingStatus;
 
     case DISMISS_TRADING_PARTNER:
     let newDTPTradingStatus = new TradingStatus(tradingStatus);
-    newDTPTradingStatus.dismissTradingPartner(action.tradingPartner);
+    newDTPTradingStatus.dismissTradingPartnerVisit(action.tradingPartnerVisit);
     return newDTPTradingStatus;
 
     case COMPLETE_TRADE:

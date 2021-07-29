@@ -8,11 +8,11 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { selectTab, displayModalValue } from '../actions/ui';
-import { dismissTradingPartner, welcomePendingTradingPartner, addPendingTradingPartner }
+import { dismissTradingPartnerVisit, welcomePendingTradingPartnerVisit, addPendingTradingPartnerVisit }
   from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
 
-import TradingPartner from '../models/trading_partner';
+import TradingPartnerVisit from '../models/trading_partner_visit';
 import Trade from '../models/trade';
 import Vault from '../models/vault';
 import ResourceType from '../models/resource_type';
@@ -34,9 +34,8 @@ export default function TradingComponent() {
   const dispatch = useDispatch();
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const tradingPartnerArray = Object.keys(tradingStatus.tradingPartners).map((name) => {
-    return tradingStatus.tradingPartners[name];
-  });
+  const tradingPartnerArray = Object.keys(tradingStatus.tradingPartnerVisits)
+    .map((name) => { return tradingStatus.tradingPartnerVisits[name]; });
   const vault = useTypedSelector(state => state.vault);
   const timer = useTypedSelector(state => state.timers[('Trading' + 0)]);
   const introState = useTypedSelector(state => state.account.introState);
@@ -56,8 +55,8 @@ export default function TradingComponent() {
     if (introState == INTRO_STATES.REFURBISH_HUTS || introState == INTRO_STATES.DONE) {
       return (
         <ScrollView>
-          {renderTradingPartners(tradingPartnerArray)}
-          {renderArrivingTradingPartner()}
+          {renderTradingPartnerVisits(tradingPartnerArray)}
+          {renderArrivingTradingPartnerVisit()}
         </ScrollView>
       );
     }
@@ -74,9 +73,9 @@ export default function TradingComponent() {
     }
   }
 
-  function renderTradingPartners(tradingPartnerArray: TradingPartner[]) {
+  function renderTradingPartnerVisits(tradingPartnerArray: TradingPartnerVisit[]) {
     return tradingPartnerArray.map((tradingPartner) => {
-      return <TradingPartnerDescription key={tradingPartner.name}
+      return <TradingPartnerVisitDescription key={tradingPartner.name}
         tradingPartner={tradingPartner} positioner={positioner}
         vault={vault} tradeClick={tradeClick} dismissClick={dismissClick} />
     });
@@ -88,27 +87,28 @@ export default function TradingComponent() {
   }
 
   function dismissClick(tradingPartner: string) {
-    dispatch(dismissTradingPartner(tradingStatus.tradingPartners[tradingPartner]));
+    dispatch(dismissTradingPartnerVisit
+      (tradingStatus.tradingPartnerVisits[tradingPartner]));
   }
 
   function welcomeClick() {
-    let newTradingPartner = tradingStatus.createPendingTradingPartner();
+    let newTradingPartnerVisit = tradingStatus.createPendingTradingPartnerVisit();
     let newTimer = new Timer({
       name: ('Trading' + 0),
       startedAt: new Date(Date.now()).valueOf(),
       endsAt: (new Date(Date.now()).valueOf() + 300000),
       progress: 0,
       remainingLabel: '1m',
-      tradingPartnerToArrive: newTradingPartner.name,
+      tradingPartnerToArrive: newTradingPartnerVisit.name,
       messageToDisplay: 'A trader is waiting outside the gate.',
       iconToDisplay: new Icon({provider: 'FontAwesome5', name: 'question'})
     });
     dispatch(addTimer(newTimer));
-    dispatch(welcomePendingTradingPartner());
-    dispatch(addPendingTradingPartner(newTradingPartner));
+    dispatch(welcomePendingTradingPartnerVisit());
+    dispatch(addPendingTradingPartnerVisit(newTradingPartnerVisit));
   }
 
-  function renderArrivingTradingPartner() {
+  function renderArrivingTradingPartnerVisit() {
     if (timer || tradingStatus.tpPending.length > 0) {
       let contents = null;
       if (timer) {
@@ -119,7 +119,7 @@ export default function TradingComponent() {
        );
       }
       else if (tradingStatus.tpPending.length > 0
-        && Object.keys(tradingStatus.tradingPartners).length == 0) {
+        && Object.keys(tradingStatus.tradingPartnerVisits).length == 0) {
         contents = (
          <>
            <Text style={styles.bodyTextMed}>
@@ -137,7 +137,7 @@ export default function TradingComponent() {
        );
       }
       else if (tradingStatus.tpPending.length > 0
-        && Object.keys(tradingStatus.tradingPartners).length > 0) {
+        && Object.keys(tradingStatus.tradingPartnerVisits).length > 0) {
           contents = (
            <>
              <Text style={styles.bodyTextMed}>
@@ -182,8 +182,8 @@ export default function TradingComponent() {
   }
 }
 
-function TradingPartnerDescription(props: any) {
-  let tradingPartner: TradingPartner = props.tradingPartner;
+function TradingPartnerVisitDescription(props: any) {
+  let tradingPartner: TradingPartnerVisit = props.tradingPartner;
   let tradingPartnerType = tradingPartnerTypes[tradingPartner.name];
 
   return (
