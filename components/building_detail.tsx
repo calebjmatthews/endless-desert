@@ -29,6 +29,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
+const BTY = BUILDING_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -58,7 +59,7 @@ export default function BuildDetailComponent() {
       setInitializing(false);
 
       let aFuelIsSelected = false;
-      if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
+      if (buildingType.name.includes(BTY.FURNACE)) {
         let fuelType: string|null = null;
         if (building.recipe) {
           if (building.recipe.consumes) {
@@ -86,7 +87,7 @@ export default function BuildDetailComponent() {
       }
 
       if (building.recipeSelected != undefined) {
-        if (!buildingType.name.includes(BUILDING_TYPES.FURNACE) || aFuelIsSelected) {
+        if (!buildingType.name.includes(BTY.FURNACE) || aFuelIsSelected) {
           setRecipeSelected(building.recipeSelected);
         }
       }
@@ -114,7 +115,7 @@ export default function BuildDetailComponent() {
       });
 
       tempBuildings[building.id].recipeSelected = recipeSelected;
-      if (buildingType.name.includes(BUILDING_TYPES.FURNACE) && recipes
+      if (buildingType.name.includes(BTY.FURNACE) && recipes
         && recipeSelected != undefined) {
         const recipe = recipes[recipeSelected];
         dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
@@ -149,9 +150,13 @@ export default function BuildDetailComponent() {
   );
 
   function renderUpgradeCostContainer() {
+    const brokenBuildings = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
+      BTY.DECAYING_STUDY, BTY.ABANDONED_MARKET, BTY.RUINED_HUTS, BTY.SHATTERED_GATE];
+
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
-    if (buildingType.upgradesInto && modalDisplayed != MODALS.BUILD_DETAIL) {
+    if (buildingType.upgradesInto && modalDisplayed != MODALS.BUILD_DETAIL
+      && !utils.arrayIncludes(brokenBuildings, buildingType.name)) {
       if (!researchStatus.upgradesAvailable[buildingType.upgradesInto]) {
         return null;
       }
@@ -164,22 +169,22 @@ export default function BuildDetailComponent() {
         + 'something else');
     }
     else if (introState == INTRO_STATES.REPAIR_CISTERN
-      && buildingType.name != BUILDING_TYPES.BROKEN_CISTERN) {
+      && buildingType.name != BTY.BROKEN_CISTERN) {
       disabledMessage = ('You shouldn\'t spend time on this, '
         + 'a source of water is more important.');
     }
     else if (introState == INTRO_STATES.RESTORE_FIELD
-      && buildingType.name != BUILDING_TYPES.FALLOW_FIELD) {
+      && buildingType.name != BTY.FALLOW_FIELD) {
         disabledMessage = ('You shouldn\'t spend time on this, '
           + 'reliable food is more important.');
     }
     else if (introState == INTRO_STATES.REFURBISH_STUDY
-      && buildingType.name != BUILDING_TYPES.DECAYING_STUDY) {
+      && buildingType.name != BTY.DECAYING_STUDY) {
         disabledMessage = ('You shouldn\'t spend time on this, '
           + 'you need somewhere to sleep and plan.');
     }
     else if (introState == INTRO_STATES.REVAMP_MARKET
-      && buildingType.name != BUILDING_TYPES.ABANDONED_MARKET) {
+      && buildingType.name != BTY.ABANDONED_MARKET) {
         disabledMessage = ('You shouldn\'t spend time on this, '
           + 'somewhere to meet with trading partners is more important.');
     }
@@ -373,7 +378,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderFuelContainer() {
-    if (buildingType.name.includes(BUILDING_TYPES.FURNACE)) {
+    if (buildingType.name.includes(BTY.FURNACE)) {
       const resources = vault.getTagResources(RESOURCE_TAGS.FUEL);
       if (resources.length > 0) {
         return (
@@ -579,7 +584,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderKitchenButton() {
-    if (building.buildingType == BUILDING_TYPES.KITCHEN) {
+    if (building.buildingType == BTY.KITCHEN) {
       return (
         <TouchableOpacity style={styles.buttonLarge}
           onPress={() => openDishSelection()} >
