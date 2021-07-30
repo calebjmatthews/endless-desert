@@ -118,6 +118,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Opal: Fungal
     * Alexandrite: Rich
     * Tanzanite: Earthy
+  - Produce
+    * Lentil: Nothing
+    * Blueberry : Cooling
+    * Tomato : Savory
+    * Lemon: Sour
+    * Radish : Bitter
+    * Onion : Spicy
+    * Potato : Brackish
+    * Apple : Sweet
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.

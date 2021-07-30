@@ -1,4 +1,5 @@
 import TradingPartnerVisit from './trading_partner_visit';
+import TradingPartner from './trading_partner';
 import Resource from './resource';
 import ResourceType from './resource_type';
 import Trade from './trade';
@@ -13,19 +14,30 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   icon: Icon = new Icon({provider: '', name: ''});
   paddingHorizontal: number = 11;
   paddingVertical: number = 8;
-  acceptQuantity: number = 0;
   givesPool: {specificity: string, type: string, quality?: number,
-    weight: number}[] = [];
-  receivesPool: {specificity: string, type: string, weight: number}[] = [];
+    weight: number}[][] = [];
+  receivesPool: {specificity: string, type: string, weight: number}[][] = [];
+  initialTrust: number = 0;
+  maxTrust: number = 0;
+  getTier: (trust: number) => number = (trust) => (
+    Math.floor(trust / 100)
+  );
+  getAcceptQuantity: (trust: number) => number = (trust) => (
+    Math.floor(trust)
+  );
 
   constructor(tradingPartnerType: TradingPartnerTypeInterface) {
     Object.assign(this, tradingPartnerType);
-    this.givesPool.map((give) => {
-      if (!give.quality) { give.quality = 0; }
+    this.givesPool.map((giveTiers) => {
+      giveTiers.map((give) => {
+        if (!give.quality) { give.quality = 0; }
+      });
     });
   }
 
-  createTradingPartnerVisit() {
+  createTradingPartnerVisit(tradingPartner: TradingPartner) {
+    const tier = this.getTier(tradingPartner.trust);
+    const acceptQuantity = this.getAcceptQuantity(tradingPartner.trust);
     let tCount = 4;
     const roll = Math.random();
     if (roll < 0.1) { tCount = 5; }
@@ -36,7 +48,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
 
     let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
-      let newTradeResult = this.createNewTrade(pGives);
+      let newTradeResult = this.createNewTrade(pGives, tier);
       if (newTradeResult) {
         pGives.push(newTradeResult.pGive);
         let give: {type: string, quality: number} = {
@@ -60,18 +72,19 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return new TradingPartnerVisit({
       name: this.name,
       trades: trades,
-      acceptQuantity: this.acceptQuantity,
+      acceptQuantity: acceptQuantity,
       traded: {},
-      arrived: new Date(Date.now())
+      arrived: new Date(Date.now()),
+      talkedTo: false
     });
   }
 
   createNewTrade(pGives: {specificity: string, type: string, quality?: number,
-    weight: number}[]) {
-    const pGive = this.choosePGive(pGives);
+    weight: number}[], tier: number) {
+    const pGive = this.choosePGive(pGives, tier);
     const give = this.createGive(pGive);
     if (give) {
-      const pReceive = this.choosePReceive(give);
+      const pReceive = this.choosePReceive(give, tier);
       const receive = { specificity: pReceive.specificity, type: pReceive.type };
       return { pGive, give, receive }
     }
@@ -79,11 +92,11 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   }
 
   choosePGive(pGives: {specificity: string, type: string, quality?: number,
-    weight: number}[]) {
+    weight: number}[], tier: number) {
     for (let loop = 0; loop < 100; loop++) {
       let tGive: {specificity: string, type: string, quality?: number,
         weight: number} =
-        utils.randomWeightedSelect(this.givesPool);
+        utils.randomWeightedSelect(this.givesPool[tier]);
       let alreadyPresent = false;
       pGives.map((pGive) => {
         if (pGive.type == tGive.type) {
@@ -94,7 +107,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
         return tGive;
       }
     }
-    return this.givesPool[0];
+    return this.givesPool[tier][0];
   }
 
   createGive(pGive: {specificity: string, type: string, quality?: number,
@@ -144,15 +157,15 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return { type: typeName, quality: pGive.quality };
   }
 
-  choosePReceive(give: {type: string, quality?: number}) {
+  choosePReceive(give: {type: string, quality?: number}, tier: number) {
     for (let loop = 0; loop < 100; loop++) {
       let tReceive: {specificity: string, type: string, weight: number} =
-        utils.randomWeightedSelect(this.receivesPool);
+        utils.randomWeightedSelect(this.receivesPool[tier]);
       if (give.type != tReceive.type) {
         return tReceive;
       }
     }
-    return this.receivesPool[0];
+    return this.receivesPool[tier][0];
   }
 }
 
@@ -162,7 +175,10 @@ interface TradingPartnerTypeInterface {
   icon: Icon;
   paddingHorizontal: number;
   paddingVertical: number;
-  acceptQuantity: number;
-  givesPool: {specificity: string, type: string, quality?: number, weight: number}[];
-  receivesPool: {specificity: string, type: string, weight: number}[];
+  givesPool: {specificity: string, type: string, quality?: number, weight: number}[][];
+  receivesPool: {specificity: string, type: string, weight: number}[][];
+  initialTrust: number;
+  maxTrust: number;
+  getTier: (trust: number) => number;
+  getAcceptQuantity: (trust: number) => number;
 }

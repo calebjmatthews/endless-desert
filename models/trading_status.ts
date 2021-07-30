@@ -1,23 +1,40 @@
 import TradingPartnerVisit from './trading_partner_visit';
+import TradingPartner from './trading_partner';
 import Trade from './trade';
 import Resource from './resource';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { utils } from '../utils';
 
 export default class TradingStatus implements TradingStatusInterface {
+  tradingPartners: { [name: string] : TradingPartner } = {};
   tradingPartnerVisits: { [name: string] : TradingPartnerVisit } = {};
   tpPending: TradingPartnerVisit[] = [];
 
   constructor(tradingStatus: TradingStatusInterface) {
-    Object.assign(this, tradingStatus);
+    let tradingPartners: { [name: string] : TradingPartner } = {};
+    Object.keys(tradingStatus.tradingPartners).map((name) => {
+      tradingPartners[name] =
+        new TradingPartner(tradingStatus.tradingPartners[name]);
+    });
+
+      let tradingPartnerVisits: { [name: string] : TradingPartnerVisit } = {};
+      Object.keys(tradingStatus.tradingPartnerVisits).map((name) => {
+        tradingPartnerVisits[name] =
+          new TradingPartnerVisit(tradingStatus.tradingPartnerVisits[name]);
+      });
+    const tpPending: TradingPartnerVisit[] = tradingStatus.tpPending.map((tp) => {
+      return new TradingPartnerVisit(tp);
+    })
+    Object.assign(this, { tradingPartners, tradingPartnerVisits, tpPending });
   }
 
   createPendingTradingPartnerVisit() {
-    let tpName = selectTradingPartnerVisit(this.tradingPartnerVisits);
-    return tradingPartnerTypes[tpName].createTradingPartnerVisit();
+    const tpName = selectTradingPartnerVisit(this.tradingPartnerVisits);
+    const tPartner = this.tradingPartners[tpName];
+    return tradingPartnerTypes[tpName].createTradingPartnerVisit(tPartner);
 
     function selectTradingPartnerVisit(ctps: { [name: string] : TradingPartnerVisit }) {
-      let tps = Object.keys(tradingPartnerTypes);
+      const tps = Object.keys(tradingPartnerTypes);
       return tps[Math.floor(utils.random() * tps.length)];
     }
   }
@@ -42,11 +59,35 @@ export default class TradingStatus implements TradingStatusInterface {
     given: Resource,
     received: Resource
   }) {
+    if (this.tradingPartnerVisits[traded.tradingPartnerType].getTradesRemaining() <= 1) {
+      this.increaseTrust(traded.tradingPartnerType, 9);
+    }
+    else {
+      this.increaseTrust(traded.tradingPartnerType, 3);
+    }
     this.tradingPartnerVisits[traded.tradingPartnerType].traded[traded.id] = traded;
+  }
+
+  talkTo(typeName: string) {
+    if (!this.tradingPartnerVisits[typeName].talkedTo) {
+      this.increaseTrust(typeName, 2);
+      this.tradingPartnerVisits[typeName].talkedTo = true;
+    }
+    else {
+      console.log('Already talked to!');
+    }
+  }
+
+  increaseTrust(typeName: string, amount: number) {
+    const newTrust = this.tradingPartners[typeName].trust + amount;
+    if (newTrust < tradingPartnerTypes[typeName].maxTrust) {
+      this.tradingPartners[typeName].trust = newTrust;
+    }
   }
 }
 
 interface TradingStatusInterface {
+  tradingPartners: { [name: string] : TradingPartner };
   tradingPartnerVisits: { [name: string] : TradingPartnerVisit };
   tpPending: TradingPartnerVisit[];
 }

@@ -5,9 +5,10 @@ import Resource from '../models/resource';
 
 export const SET_TRADING_STATUS = 'SET_TRADING_STATUS';
 export function setTradingStatus(tradingStatus: TradingStatus) {
+  const newTradingStatus = new TradingStatus(tradingStatus);
   return {
     type: SET_TRADING_STATUS,
-    tradingStatus: tradingStatus
+    tradingStatus: newTradingStatus
   }
 }
 
@@ -40,5 +41,13 @@ export function completeTrade(traded: {id: string, tradingPartnerType: string,
   return {
     type: COMPLETE_TRADE,
     traded: traded
+  }
+}
+
+export const TALK_TO = 'TALK_TO';
+export function talkTo(typeName: string) {
+  return {
+    type: TALK_TO,
+    typeName: typeName
   }
 }

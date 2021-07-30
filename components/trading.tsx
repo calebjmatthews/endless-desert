@@ -8,8 +8,8 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { selectTab, displayModalValue } from '../actions/ui';
-import { dismissTradingPartnerVisit, welcomePendingTradingPartnerVisit, addPendingTradingPartnerVisit }
-  from '../actions/trading_status';
+import { dismissTradingPartnerVisit, welcomePendingTradingPartnerVisit,
+  addPendingTradingPartnerVisit, talkTo } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
 
 import TradingPartnerVisit from '../models/trading_partner_visit';
@@ -77,21 +77,22 @@ export default function TradingComponent() {
     return tradingPartnerArray.map((tradingPartner) => {
       return <TradingPartnerVisitDescription key={tradingPartner.name}
         tradingPartner={tradingPartner} positioner={positioner}
-        vault={vault} tradeClick={tradeClick} dismissClick={dismissClick} />
+        vault={vault} tradePress={tradePress} dismissPress={dismissPress}
+        talkPress={talkPress} />
     });
   }
 
-  function tradeClick(tradingPartner: string, tradeId: string) {
+  function tradePress(tradingPartner: string, tradeId: string) {
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
       {type: 'Trading', tradingPartner: tradingPartner, tradeId: tradeId}));
   }
 
-  function dismissClick(tradingPartner: string) {
+  function dismissPress(tradingPartner: string) {
     dispatch(dismissTradingPartnerVisit
       (tradingStatus.tradingPartnerVisits[tradingPartner]));
   }
 
-  function welcomeClick() {
+  function welcomePress() {
     let newTradingPartnerVisit = tradingStatus.createPendingTradingPartnerVisit();
     let newTimer = new Timer({
       name: ('Trading' + 0),
@@ -106,6 +107,10 @@ export default function TradingComponent() {
     dispatch(addTimer(newTimer));
     dispatch(welcomePendingTradingPartnerVisit());
     dispatch(addPendingTradingPartnerVisit(newTradingPartnerVisit));
+  }
+
+  function talkPress(tradingPartner: TradingPartnerVisit) {
+    dispatch(talkTo(tradingPartner.name));
   }
 
   function renderArrivingTradingPartnerVisit() {
@@ -127,7 +132,7 @@ export default function TradingComponent() {
            </Text>
            <View style={styles.buttonRow}>
              <TouchableOpacity style={styles.buttonRowItem}
-               onPress={() => { welcomeClick() }}>
+               onPress={() => { welcomePress() }}>
                <IconComponent provider={'FontAwesome5'}
                  name={'hand-holding'} color="#fff" size={16} />
                <Text style={styles.buttonText}>{' Welcome in'}</Text>
@@ -147,7 +152,7 @@ export default function TradingComponent() {
              <View style={styles.buttonRow}>
                <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
                  styles.buttonDisabled])} disabled
-                 onPress={() => { welcomeClick() }}>
+                 onPress={() => { welcomePress() }}>
                  <IconComponent provider={'FontAwesome5'}
                    name={'hand-holding'} color="#fff" size={16} />
                  <Text style={styles.buttonText}>{' Welcome in'}</Text>
@@ -210,16 +215,16 @@ function TradingPartnerVisitDescription(props: any) {
           <View style={styles.buttonRow}>
             {renderGoodbye(tradingPartner.trades, tradingPartner.traded)}
             <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-              styles.buttonLight])}>
-              <IconComponent provider="FontAwesome5" name="question-circle"
+              styles.buttonLight])} onPress={() => props.talkPress(tradingPartner)}>
+              <IconComponent provider="FontAwesome5" name="angle-down"
                 color="#071f56" size={16} />
-              <Text style={styles.buttonTextDark}>{' Info'}</Text>
+              <Text style={styles.buttonTextDark}>{' Hello'}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
       {renderTrades(tradingPartner.trades, props.vault, tradingPartner.traded,
-        props.tradeClick)}
+        props.tradePress)}
     </View>
   );
 
@@ -227,19 +232,19 @@ function TradingPartnerVisitDescription(props: any) {
     traded: { [id: string] : {
     given: { type: string, quantity: number,  quality: number },
     received: { type: string, quantity: number,  quality: number }} },
-    tradeClick: Function) {
+    tradePress: Function) {
     return Object.keys(trades).map((tradeId) => {
       const trade = trades[tradeId];
       const wasTraded = traded[tradeId];
 
       if (!wasTraded) {
-        return renderTrade(trade, tradeClick);
+        return renderTrade(trade, tradePress);
       }
       return renderWasTraded(trade, wasTraded, vault);
     });
   }
 
-  function renderTrade(trade: Trade, tradeClick: Function) {
+  function renderTrade(trade: Trade, tradePress: Function) {
     const give = resourceTypes[trade.give.type];
     const receive = utils.getMatchingResourceKind(trade.receive.specificity,
       trade.receive.type);
@@ -247,7 +252,7 @@ function TradingPartnerVisitDescription(props: any) {
     return (
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
         styles.buttonLight, {justifyContent: 'flex-start', alignSelf: 'stretch'}])}
-        onPress={() => { tradeClick(trade.tradingPartnerType, trade.id) }} >
+        onPress={() => { tradePress(trade.tradingPartnerType, trade.id) }} >
         <BadgeComponent icon={give.icon} size={21} />
         <Text style={styles.buttonTextDark}>
           {' ' + give.name + ' for '}
@@ -295,7 +300,7 @@ function TradingPartnerVisitDescription(props: any) {
     if (!allTraded) {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { props.dismissClick(tradingPartner.name) }}>
+          onPress={() => { props.dismissPress(tradingPartner.name) }}>
           <IconComponent provider={'FontAwesome5'}
             name={'hand-paper'} color="#fff" size={16} />
           <Text style={styles.buttonText}>{' No thanks'}</Text>
@@ -305,7 +310,7 @@ function TradingPartnerVisitDescription(props: any) {
     else {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { props.dismissClick(tradingPartner.name) }}>
+          onPress={() => { props.dismissPress(tradingPartner.name) }}>
           <IconComponent provider={'FontAwesome5'}
             name={'hand-peace'} color="#fff" size={16} />
           <Text style={styles.buttonText}>{' Farewell'}</Text>
