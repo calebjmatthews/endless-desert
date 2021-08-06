@@ -7,12 +7,14 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import RatingComponent from './rating';
 import { selectTab, displayModalValue } from '../actions/ui';
 import { dismissTradingPartnerVisit, welcomePendingTradingPartnerVisit,
   addPendingTradingPartnerVisit, talkTo } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
 
 import TradingPartnerVisit from '../models/trading_partner_visit';
+import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
 import Vault from '../models/vault';
 import ResourceType from '../models/resource_type';
@@ -34,7 +36,7 @@ export default function TradingComponent() {
   const dispatch = useDispatch();
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const tradingPartnerArray = Object.keys(tradingStatus.tradingPartnerVisits)
+  const tradingPartnerVisitArray = Object.keys(tradingStatus.tradingPartnerVisits)
     .map((name) => { return tradingStatus.tradingPartnerVisits[name]; });
   const vault = useTypedSelector(state => state.vault);
   const timer = useTypedSelector(state => state.timers[('Trading' + 0)]);
@@ -55,7 +57,7 @@ export default function TradingComponent() {
     if (introState == INTRO_STATES.REFURBISH_HUTS || introState == INTRO_STATES.DONE) {
       return (
         <ScrollView>
-          {renderTradingPartnerVisits(tradingPartnerArray)}
+          {renderTradingPartnerVisits(tradingPartnerVisitArray)}
           {renderArrivingTradingPartnerVisit()}
         </ScrollView>
       );
@@ -73,23 +75,24 @@ export default function TradingComponent() {
     }
   }
 
-  function renderTradingPartnerVisits(tradingPartnerArray: TradingPartnerVisit[]) {
-    return tradingPartnerArray.map((tradingPartner) => {
-      return <TradingPartnerVisitDescription key={tradingPartner.name}
-        tradingPartner={tradingPartner} positioner={positioner}
-        vault={vault} tradePress={tradePress} dismissPress={dismissPress}
-        talkPress={talkPress} />
+  function renderTradingPartnerVisits(tradingPartnerVisitArray: TradingPartnerVisit[]) {
+    return tradingPartnerVisitArray.map((tradingPartnerVisit) => {
+      const tradingPartner = tradingStatus.tradingPartners[tradingPartnerVisit.name];
+      return <TradingPartnerVisitDescription key={tradingPartnerVisit.name}
+        tradingPartnerVisit={tradingPartnerVisit} tradingPartner={tradingPartner}
+        vault={vault} positioner={positioner} tradePress={tradePress}
+        dismissPress={dismissPress} talkPress={talkPress} />
     });
   }
 
-  function tradePress(tradingPartner: string, tradeId: string) {
+  function tradePress(tradingPartnerVisit: string, tradeId: string) {
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
-      {type: 'Trading', tradingPartner: tradingPartner, tradeId: tradeId}));
+      {type: 'Trading', tradingPartner: tradingPartnerVisit, tradeId: tradeId}));
   }
 
-  function dismissPress(tradingPartner: string) {
+  function dismissPress(tradingPartnerVisit: string) {
     dispatch(dismissTradingPartnerVisit
-      (tradingStatus.tradingPartnerVisits[tradingPartner]));
+      (tradingStatus.tradingPartnerVisits[tradingPartnerVisit]));
   }
 
   function welcomePress() {
@@ -109,8 +112,8 @@ export default function TradingComponent() {
     dispatch(addPendingTradingPartnerVisit(newTradingPartnerVisit));
   }
 
-  function talkPress(tradingPartner: TradingPartnerVisit) {
-    dispatch(talkTo(tradingPartner.name));
+  function talkPress(tradingPartnerVisit: TradingPartnerVisit) {
+    dispatch(talkTo(tradingPartnerVisit.name));
   }
 
   function renderArrivingTradingPartnerVisit() {
@@ -188,8 +191,13 @@ export default function TradingComponent() {
 }
 
 function TradingPartnerVisitDescription(props: any) {
-  let tradingPartner: TradingPartnerVisit = props.tradingPartner;
-  let tradingPartnerType = tradingPartnerTypes[tradingPartner.name];
+  const tradingPartnerVisit: TradingPartnerVisit = props.tradingPartnerVisit;
+  const tpt = tradingPartnerTypes[tradingPartnerVisit.name];
+  const tp: TradingPartner = props.tradingPartner;
+  const emptyIcon = new Icon({ provider: 'FontAwesome', name: 'star-o',
+    color: '#8a6100', size: 18 });
+  const filledIcon = new Icon({ provider: 'FontAwesome', name: 'star',
+    color: '#ffb400', size: 18 });
 
   return (
     <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -201,21 +209,28 @@ function TradingPartnerVisitDescription(props: any) {
             provider={'MaterialCommunityIcons'}
             name={'shield'} color={'#000'} size={36} />
           <IconComponent style={{position: 'absolute',
-              paddingHorizontal: tradingPartnerType.paddingHorizontal,
-              paddingVertical: tradingPartnerType.paddingVertical}}
-            provider={tradingPartnerType.icon.provider}
-            name={tradingPartnerType.icon.name}
-            color={tradingPartnerType.icon.color}
+              paddingHorizontal: tpt.paddingHorizontal,
+              paddingVertical: tpt.paddingVertical}}
+            provider={tpt.icon.provider}
+            name={tpt.icon.name}
+            color={tpt.icon.color}
             size={19} />
         </View>
         <View style={styles.containerStretchColumn}>
           <Text>
-            {tradingPartner.name}
+            {tradingPartnerVisit.name}
           </Text>
+          <View style={styles.rows}>
+            <Text style={{fontSize: 12}}>{"Trust: "}</Text>
+            <RatingComponent numerator={tpt.getTier(tp.trust)+1} denominator={5}
+              iconCount={5} emptyIcon={emptyIcon} filledIcon={filledIcon}
+              width={84} />
+            <Text style={{fontSize: 12}}>{" (" + tp.trust + ")"}</Text>
+          </View>
           <View style={styles.buttonRow}>
-            {renderGoodbye(tradingPartner.trades, tradingPartner.traded)}
+            {renderGoodbye(tradingPartnerVisit.trades, tradingPartnerVisit.traded)}
             <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-              styles.buttonLight])} onPress={() => props.talkPress(tradingPartner)}>
+              styles.buttonLight])} onPress={() => props.talkPress(tradingPartnerVisit)}>
               <IconComponent provider="FontAwesome5" name="angle-down"
                 color="#071f56" size={16} />
               <Text style={styles.buttonTextDark}>{' Hello'}</Text>
@@ -223,7 +238,7 @@ function TradingPartnerVisitDescription(props: any) {
           </View>
         </View>
       </View>
-      {renderTrades(tradingPartner.trades, props.vault, tradingPartner.traded,
+      {renderTrades(tradingPartnerVisit.trades, props.vault, tradingPartnerVisit.traded,
         props.tradePress)}
     </View>
   );
@@ -300,7 +315,7 @@ function TradingPartnerVisitDescription(props: any) {
     if (!allTraded) {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { props.dismissPress(tradingPartner.name) }}>
+          onPress={() => { props.dismissPress(tradingPartnerVisit.name) }}>
           <IconComponent provider={'FontAwesome5'}
             name={'hand-paper'} color="#fff" size={16} />
           <Text style={styles.buttonText}>{' No thanks'}</Text>
@@ -310,7 +325,7 @@ function TradingPartnerVisitDescription(props: any) {
     else {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => { props.dismissPress(tradingPartner.name) }}>
+          onPress={() => { props.dismissPress(tradingPartnerVisit.name) }}>
           <IconComponent provider={'FontAwesome5'}
             name={'hand-peace'} color="#fff" size={16} />
           <Text style={styles.buttonText}>{' Farewell'}</Text>

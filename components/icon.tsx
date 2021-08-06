@@ -41,6 +41,6 @@ interface IconProps {
   provider: string,
   name: string,
   color: string,
-  size: number|undefined,
+  size?: number,
   style?: any
 }

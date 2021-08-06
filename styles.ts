@@ -508,5 +508,10 @@ export const styles = StyleSheet.create({
     marginVertical: 2,
     paddingHorizontal: 5,
     paddingVertical: 1
+  },
+
+  ratingRow: {
+    position: 'absolute',
+    overflow: 'hidden'
   }
 });
