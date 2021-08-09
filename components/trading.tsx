@@ -198,6 +198,8 @@ function TradingPartnerVisitDescription(props: any) {
     color: '#8a6100', size: 18 });
   const filledIcon = new Icon({ provider: 'FontAwesome', name: 'star',
     color: '#ffb400', size: 18 });
+  const tier = tpt.getTier(tp.trust);
+  const ratingNumerator = tier.value + 1 + (tier.toNext / 100);
 
   return (
     <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -222,7 +224,7 @@ function TradingPartnerVisitDescription(props: any) {
           </Text>
           <View style={styles.rows}>
             <Text style={{fontSize: 12}}>{"Trust: "}</Text>
-            <RatingComponent numerator={tpt.getTier(tp.trust)+1} denominator={5}
+            <RatingComponent numerator={ratingNumerator} denominator={5}
               iconCount={5} emptyIcon={emptyIcon} filledIcon={filledIcon}
               width={84} />
             <Text style={{fontSize: 12}}>{" (" + tp.trust + ")"}</Text>

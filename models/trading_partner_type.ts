@@ -19,9 +19,10 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   receivesPool: {specificity: string, type: string, weight: number}[][] = [];
   initialTrust: number = 0;
   maxTrust: number = 0;
-  getTier: (trust: number) => number = (trust) => (
-    Math.floor(trust / 100)
-  );
+  getTier: (trust: number) => {value: number, toNext: number} = (trust) => ({
+    value: Math.floor(trust / 100),
+    toNext: trust % 100
+  });
   getAcceptQuantity: (trust: number) => number = (trust) => (
     Math.floor(trust)
   );
@@ -48,7 +49,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
 
     let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
-      let newTradeResult = this.createNewTrade(pGives, tier);
+      let newTradeResult = this.createNewTrade(pGives, tier.value);
       if (newTradeResult) {
         pGives.push(newTradeResult.pGive);
         let give: {type: string, quality: number} = {
@@ -179,6 +180,6 @@ interface TradingPartnerTypeInterface {
   receivesPool: {specificity: string, type: string, weight: number}[][];
   initialTrust: number;
   maxTrust: number;
-  getTier: (trust: number) => number;
+  getTier: (trust: number) => {value: number, toNext: number};
   getAcceptQuantity: (trust: number) => number;
 }

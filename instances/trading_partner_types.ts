@@ -50,10 +50,11 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   initialTrust: 100,
   maxTrust: 1000,
   getTier(trust) {
-    let tier = Math.floor((trust-100) / 80);
-    if (tier < 0) { tier = 0; }
-    if (tier >= 1) { tier = 1; }
-    return tier;
+    let value = Math.floor((trust-100) / 80);
+    const toNext = (trust-100) % 80;
+    if (value < 0) { value = 0; }
+    if (value >= 1) { value = 1; }
+    return { value, toNext };
   },
   getAcceptQuantity(trust) { return Math.floor(trust * 0.8); }
 });
@@ -98,10 +99,11 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   initialTrust: 112,
   maxTrust: 1200,
   getTier(trust) {
-    let tier = Math.floor((trust-112) / 100);
-    if (tier < 0) { tier = 0; }
-    if (tier >= 1) { tier = 1; }
-    return tier;
+    let value = Math.floor((trust-112) / 100);
+    const toNext = (trust-100) % 100;
+    if (value < 0) { value = 0; }
+    if (value >= 1) { value = 1; }
+    return { value, toNext };
   },
   getAcceptQuantity(trust) { return Math.floor(trust); }
 });
@@ -146,10 +148,11 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   initialTrust: 100,
   maxTrust: 1500,
   getTier(trust) {
-    let tier = Math.floor((trust-100) / 110);
-    if (tier < 0) { tier = 0; }
-    if (tier >= 1) { tier = 1; }
-    return tier;
+    let value = Math.floor((trust-100) / 110);
+    const toNext = (trust-100) % 110;
+    if (value < 0) { value = 0; }
+    if (value >= 1) { value = 1; }
+    return { value, toNext };
   },
   getAcceptQuantity(trust) { return Math.floor(trust * 1.1); }
 });
