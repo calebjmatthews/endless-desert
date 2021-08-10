@@ -32,7 +32,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Rendering many things in a short time increases the crucible heat from gentle -> moderate -> strong -> incinerating, where a higher heat can produce a higher quality extract but has a higher chance of destroying the ingredient.
     -  Strong heat has the best ratio, and while incinerating technically has a higher chance to return a quality extract, it is almost certain to destroy the item.
     -  Perfumes/other products are created by account-specific combinations of extracts.
-    -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Earthy (shining yellow), Fungal (shining purple), Rich (shining green), Airy (shining blue)
+    -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Deep (shining yellow), Strange (shining purple), Rich (shining green), Airy (shining blue)
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
   - Temporary settlements can be made in the Dreaming (the River of Pearls?), last 24 hours (?) before evaporating and allowing the player to claim one single resource.
     - These can have unusual resources, such as iron or wood.
@@ -60,10 +60,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
   - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
   - Nearby kingdoms:
-    - North: Relatively traveling before sea, where many travelers come from. Ruins of an Egypt-inspired kingdom obsessed with the afterlife, many of which disappeared in a single event.
+    - North: Relatively safe traveling before sea, where many travelers come from. Ruins of an Egypt-inspired kingdom obsessed with the afterlife, many of which disappeared in a single event.
     - East: Salt flats? Large, extant China-inspired kingdom with heavy beaurocracy and centers of learning.
     - South: River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
-    - West:
+    - West: Mirages? Constant fires? Oceans made from glass? Hanging gardens?
+  - Four gods:
+    - Branching creation: bountiful, many-from-one. Cicada whose exuvia embody one trait and continue living.
+    - Enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself.
+    - Merging creation: harmonious, one-from-many. Termite mound made of termites bonded to one another.
+    - Detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
 
 ## Resource Subcategories:
   - Sand
@@ -76,9 +81,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Black: Bitter
     * Ochre: Sour
     * Shining: Airy
-    * Purple: Fungal
+    * Purple: Strange
     * Golden: Rich
-    * Bone: Earthy
+    * Bone: Deep
   - Wood
     * Oak: Bitter
     * Rowan: Herbal
@@ -89,8 +94,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Ash: Savory
     * Spruce: Cooling
     * Mahogany: Rich
-    * Mangrove: Fungal
-    * Ebony: Earthy
+    * Mangrove: Strange
+    * Ebony: Deep
     * Lignum Vitae: Airy
   - Herbs
     * Cinnamon: Savory
@@ -102,9 +107,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Anise: Bitter
     * Sorrel: Sour
     * Saffron: Airy
-    * Truffle: Fungal
+    * Truffle: Strange
     * Melange: Rich
-    * Taro: Earthy
+    * Taro: Deep
   - Jewels
     * Jade: Herbal
     * Turquoise: Cooling
@@ -115,15 +120,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Sapphire: Brackish
     * Diamond: Sweet
     * Moonstone: Airy
-    * Opal: Fungal
+    * Opal: Strange
     * Alexandrite: Rich
-    * Tanzanite: Earthy
+    * Tanzanite: Deep
   - Produce
     * Lentil: Nothing
     * Blueberry : Cooling
     * Tomato : Savory
     * Lemon: Sour
-    * Radish : Bitter
+    * Spinach : Bitter
     * Onion : Spicy
     * Potato : Brackish
     * Apple : Sweet

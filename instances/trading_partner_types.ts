@@ -13,6 +13,7 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 const ETY = EQUIPMENT_TYPES;
+import { SVGS } from '../enums/svgs';
 
 let tradingPartnerTypes: { [name: string] : TradingPartnerType } = {};
 
@@ -21,10 +22,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   description: ('Journeying ascetics on a pilgrimage to a sea of blue-green fire. '
     + 'Will trade materials they\'ve picked up in their travels for simple food '
     + 'and drink.'),
-  icon: new Icon({provider: 'FontAwesome', name: 'fire', color: '#84f9e4'}),
-// backgroundColor: '#008a71',
-  paddingHorizontal: 11,
-  paddingVertical: 8,
+  icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_ASCETICS, color: '#84f9e4',
+    backgroundColor: '#008a71'}),
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
@@ -62,10 +61,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
 tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerType({
   name: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
   description: ('Traders from a distant northern kingdom of rolling grassy hills.'),
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cards-club', color: '#27b327'}),
-// backgroundColor: '#0d5f0d',
-  paddingHorizontal: 9,
-  paddingVertical: 8,
+  icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_KINGDOM, color: '#27b327',
+    backgroundColor: '#0d5f0d'}),
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
@@ -112,10 +109,8 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   name: TRADING_PARTNERS.RED_CROW_TRADERS,
   description: ('They\'re loud, rowdy, and argumentative; based on the rumours '
     + 'you\'ve heard, "Red Crow Raiders" would be a more accurate name.'),
-  icon: new Icon({provider: 'FontAwesome5', name: 'crow', color: '#ff2626'}),
-// backgroundColor: '#4a0000',
-  paddingHorizontal: 8,
-  paddingVertical: 8,
+  icon: new Icon({provider: 'svg', name: SVGS.RED_CROW_TRADERS, color: '#ff2626',
+    backgroundColor: '#4a0000'}),
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},

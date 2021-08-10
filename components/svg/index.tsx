@@ -108,6 +108,10 @@ import TrefoilSowerSvgComponent from './leaders/trefoil_sower';
 import ScarredScholarSvgComponent from './leaders/scarred_scholar';
 import AuspiciousWaifSvgComponent from './leaders/auspicious_waif';
 
+import RedCrowTradersSvgComponent from './trading_partners/red_crow_traders';
+import FoxfireAsceticsSvgComponent from './trading_partners/foxfire_ascetics';
+import TrefoilKingdomSvgComponent from './trading_partners/trefoil_kingdom';
+
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
 
@@ -322,6 +326,13 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <ScarredScholarSvgComponent icon={props.icon} />;
     case SVGS.AUSPICIOUS_WAIF:
     return <AuspiciousWaifSvgComponent icon={props.icon} />;
+
+    case SVGS.RED_CROW_TRADERS:
+    return <RedCrowTradersSvgComponent icon={props.icon} />;
+    case SVGS.FOXFIRE_ASCETICS:
+    return <FoxfireAsceticsSvgComponent icon={props.icon} />;
+    case SVGS.TREFOIL_KINGDOM:
+    return <TrefoilKingdomSvgComponent icon={props.icon} />;
   }
   return null;
 }

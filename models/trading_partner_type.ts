@@ -12,8 +12,6 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   name: string = '';
   description: string = '';
   icon: Icon = new Icon({provider: '', name: ''});
-  paddingHorizontal: number = 11;
-  paddingVertical: number = 8;
   givesPool: {specificity: string, type: string, quality?: number,
     weight: number}[][] = [];
   receivesPool: {specificity: string, type: string, weight: number}[][] = [];
@@ -174,8 +172,6 @@ interface TradingPartnerTypeInterface {
   name: string;
   description: string;
   icon: Icon;
-  paddingHorizontal: number;
-  paddingVertical: number;
   givesPool: {specificity: string, type: string, quality?: number, weight: number}[][];
   receivesPool: {specificity: string, type: string, weight: number}[][];
   initialTrust: number;

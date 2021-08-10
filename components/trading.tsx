@@ -6,6 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
+import SvgComponent from './svg';
 import BadgeComponent from './badge';
 import RatingComponent from './rating';
 import { selectTab, displayModalValue } from '../actions/ui';
@@ -206,17 +207,11 @@ function TradingPartnerVisitDescription(props: any) {
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.containerStretchRow}>
-        <View style={{width: 40, height: 40}}>
-          <IconComponent style={{position: 'absolute'}}
+        <View style={StyleSheet.flatten([styles.container, {width: 40, height: 40}])}>
+          <IconComponent style={{position: 'absolute', zIndex: -1}}
             provider={'MaterialCommunityIcons'}
-            name={'shield'} color={'#000'} size={36} />
-          <IconComponent style={{position: 'absolute',
-              paddingHorizontal: tpt.paddingHorizontal,
-              paddingVertical: tpt.paddingVertical}}
-            provider={tpt.icon.provider}
-            name={tpt.icon.name}
-            color={tpt.icon.color}
-            size={19} />
+            name={'shield'} color={tpt.icon.backgroundColor} size={36} />
+          <SvgComponent icon={new Icon({...tpt.icon, size: 19})} />
         </View>
         <View style={styles.containerStretchColumn}>
           <Text>

@@ -104,5 +104,9 @@ export enum SVGS {
   FOXFIRE_HERETIC = "Guangzhou",
   TREFOIL_SOWER = "Louth",
   SCARRED_SCHOLAR = "Szczecin",
-  AUSPICIOUS_WAIF = "Reims"
+  AUSPICIOUS_WAIF = "Reims",
+
+  FOXFIRE_ASCETICS = "Foxfire Ascetics",
+  TREFOIL_KINGDOM = "Trefoil Kingdom",
+  RED_CROW_TRADERS = "Red Crow Traders"
 }
