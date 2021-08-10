@@ -299,7 +299,7 @@ export default function MainComponent() {
             }
           });
           let leader = new Leader(leaderCreateRes.leader);
-          leader.calcEffects(tempEquipment);
+          leader.calcEffects(tempEquipment, {});
           dispatch(addLeader(leader));
         }
         if (account.fortuityCurrent.gainResources) {

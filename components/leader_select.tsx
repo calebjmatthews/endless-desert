@@ -8,7 +8,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, liveAtBuilding }
+import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, setLeaders }
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
@@ -23,6 +23,7 @@ export default function LeaderSelectComponent() {
   const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
   const buildings = useTypedSelector(state => state.buildings);
+  const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
   const modalValue: {type: string, subType: string, building: Building} =
     useTypedSelector(state => state.ui.modalValue);
@@ -123,14 +124,16 @@ export default function LeaderSelectComponent() {
         dispatch(displayModalValue(null, 'closed', null));
       }
       else if (modalValue.subType == LIVE_AT_BUILDING) {
-        let tempLeaders = Object.assign({}, leaders);
+        let newLeaders = Object.assign({}, leaders);
         if (buildingsLeader[modalValue.building.id]) {
-          dispatch(liveAtBuilding(buildingsLeader[modalValue.building.id], null));
-          tempLeaders[buildingsLeader[modalValue.building.id].id].livingAt = null;
+          newLeaders[buildingsLeader[modalValue.building.id].id].livingAt = null;
+          newLeaders[buildingsLeader[modalValue.building.id].id]
+            .calcEffects(equipment, buildings);
         }
-        dispatch(liveAtBuilding(leader, modalValue.building.id));
-        tempLeaders[leader.id].livingAt = modalValue.building.id;
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
+        newLeaders[leader.id].livingAt = modalValue.building.id;
+        newLeaders[leader.id].calcEffects(equipment, buildings);
+        dispatch(setLeaders(newLeaders));
+        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(null, 'closed', null));
       }

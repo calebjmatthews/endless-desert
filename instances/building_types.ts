@@ -168,7 +168,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    livingHappiness: 0
+    livingHappiness: 10
   }),
 
   [BTY.CISTERN]: new BuildingType({

@@ -114,7 +114,7 @@ export default function EquipmentSelectComponent() {
             leader.backEquipped = equipmentSelected;
           }
         }
-        leader.calcEffects(equipment);
+        leader.calcEffects(equipment, buildings);
         newLeaders[id] = leader;
       });
       dispatch(setLeaders(newLeaders));

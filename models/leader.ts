@@ -1,7 +1,9 @@
 import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
+import Building from './building';
 import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
+import { buildingTypes } from '../instances/building_types';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -30,9 +32,15 @@ export default class Leader implements LeaderInterface {
     Object.assign(this, leader);
   }
 
-  calcEffects(equipment: { [id: string] : Equipment }) {
+  calcEffects(equipment: { [id: string] : Equipment },
+    buildings: { [id: string] : Building }) {
     let effectArray: EquipmentEffect[] = []
     let happiness = 0;
+
+    const home = this.livingAt ? buildings[this.livingAt] : null;
+    const homeType = home ? buildingTypes[home.buildingType] : null;
+    if (homeType?.livingHappiness) { happiness += homeType.livingHappiness; }
+
     let happinessAppliesTo: {[quality: string] : number} = {};
     const slots = ['toolEquipped', 'clothingEquipped', 'backEquipped'];
     let leader: any = this;

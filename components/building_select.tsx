@@ -9,7 +9,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import SvgComponent from './svg';
-import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, liveAtBuilding }
+import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, setLeaders }
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
@@ -212,14 +212,16 @@ export default function BuildingSelectComponent() {
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
       else if (modalValue.subType == LIVE_AT_BUILDING) {
-        dispatch(liveAtBuilding(modalValue.leader, buildingSelected));
-        let tempLeaders = Object.assign({}, leaders);
-        tempLeaders[modalValue.leader.id].livingAt = buildingSelected;
+        let newLeaders = Object.assign({}, leaders);
+        newLeaders[modalValue.leader.id].livingAt = buildingSelected;
+        newLeaders[modalValue.leader.id].calcEffects(equipment, buildings);
         if (buildingsLeader[buildingSelected]) {
-          dispatch(liveAtBuilding(buildingsLeader[buildingSelected], null));
-          tempLeaders[buildingsLeader[buildingSelected].id].livingAt = null;
+          newLeaders[buildingsLeader[buildingSelected].id].livingAt = null;
+          newLeaders[buildingsLeader[buildingSelected].id]
+            .calcEffects(equipment, buildings);
         }
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
+        dispatch(setLeaders(newLeaders));
+        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
