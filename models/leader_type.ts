@@ -15,8 +15,6 @@ export default class LeaderType implements LeaderTypeInterface {
   clothingStarting: string|null = null;
   backStarting: string|null = null;
   icon: Icon = new Icon({ provider: '', name: ''});
-  paddingHorizontal: number = 8;
-  paddingVertical: number = 11;
 
   constructor(leader: LeaderTypeInterface) {
     Object.assign(this, leader);
@@ -39,10 +37,6 @@ export default class LeaderType implements LeaderTypeInterface {
       eating: null,
       drinking: null,
       icon: this.icon,
-      foregroundColor: this.foregroundColor,
-      backgroundColor: this.backgroundColor,
-      paddingVertical: this.paddingVertical,
-      paddingHorizontal: this.paddingHorizontal
     });
     let tool: Equipment|null = null;
     let startingEquipment: { [id: string] : Equipment } = {};
@@ -76,6 +70,4 @@ interface LeaderTypeInterface {
   clothingStarting: string|null;
   backStarting: string|null;
   icon: Icon;
-  paddingHorizontal: number;
-  paddingVertical: number;
 }

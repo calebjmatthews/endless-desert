@@ -27,8 +27,6 @@ export default class Leader implements LeaderInterface {
   eating: string|null = null;
   drinking: string|null = null;
   icon: Icon = new Icon({provider: '', name: ''});
-  paddingHorizontal: number = 8;
-  paddingVertical: number = 11;
 
   constructor(leader: LeaderInterface) {
     Object.assign(this, leader);
@@ -232,6 +230,4 @@ interface LeaderInterface {
   eating: string|null;
   drinking: string|null;
   icon: Icon;
-  paddingHorizontal: number;
-  paddingVertical: number;
 }

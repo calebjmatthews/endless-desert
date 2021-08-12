@@ -15,9 +15,7 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
   toolStarting: EQUIPMENT_TYPES.FOUR_POINT_BANGLE,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.SAMANNOUD}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.SAMANNOUD})
 });
 
 leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
@@ -30,9 +28,7 @@ leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.SHUDDERING_REFUGE}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.SHUDDERING_REFUGE})
 });
 
 leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
@@ -46,9 +42,7 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_HERETIC}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_HERETIC})
 });
 
 leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
@@ -62,9 +56,7 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
 });
 
 leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
@@ -77,9 +69,7 @@ leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_SCHOLAR}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_SCHOLAR})
 });
 
 leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
@@ -93,9 +83,7 @@ leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.AUSPICIOUS_WAIF}),
-  paddingHorizontal: 8,
-  paddingVertical: 11
+  icon: new Icon({provider: 'svg', name: SVGS.AUSPICIOUS_WAIF})
 });
 
 export { leaderTypes };
