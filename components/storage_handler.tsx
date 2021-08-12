@@ -195,7 +195,7 @@ export default function StorageHandlerComponent() {
         let leaders: { [id: string] : Leader } = {};
         Object.keys(rawLeaders).map((id) => {
           let leader = new Leader(rawLeaders[id]);
-          leader.calcEffects(equipment, buildings);
+          leader.calcEffects(equipment, buildings, vault);
           leaders[id] = leader;
         });
         dispatch(setLeaders(leaders));

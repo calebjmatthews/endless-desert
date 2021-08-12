@@ -110,8 +110,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Truffle: Strange
     * Melange: Rich
     * Taro: Deep
-  - Jewels
-    * Jade: Herbal
+  - Gems
+    * Jade: None
+    * Emerald: Herbal
     * Turquoise: Cooling
     * Topaz: Savory
     * Jasper: Sour
@@ -125,13 +126,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Tanzanite: Deep
   - Produce
     * Lentil: Nothing
-    * Blueberry : Cooling
-    * Tomato : Savory
+    * Blueberry: Cooling
+    * Tomato: Savory
     * Lemon: Sour
-    * Spinach : Bitter
-    * Onion : Spicy
-    * Potato : Brackish
-    * Apple : Sweet
+    * Spinach: Bitter
+    * Onion: Spicy
+    * Potato: Brackish
+    * Apple: Sweet
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.

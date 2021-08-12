@@ -42,6 +42,7 @@ import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
 import Building from '../models/building';
+import Vault from '../models/vault';
 import Icon from '../models/icon';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
@@ -299,7 +300,7 @@ export default function MainComponent() {
             }
           });
           let leader = new Leader(leaderCreateRes.leader);
-          leader.calcEffects(tempEquipment, {});
+          leader.calcEffects(tempEquipment, {}, new Vault(null));
           dispatch(addLeader(leader));
         }
         if (account.fortuityCurrent.gainResources) {

@@ -128,10 +128,10 @@ export default function LeaderSelectComponent() {
         if (buildingsLeader[modalValue.building.id]) {
           newLeaders[buildingsLeader[modalValue.building.id].id].livingAt = null;
           newLeaders[buildingsLeader[modalValue.building.id].id]
-            .calcEffects(equipment, buildings);
+            .calcEffects(equipment, buildings, vault);
         }
         newLeaders[leader.id].livingAt = modalValue.building.id;
-        newLeaders[leader.id].calcEffects(equipment, buildings);
+        newLeaders[leader.id].calcEffects(equipment, buildings, vault);
         dispatch(setLeaders(newLeaders));
         let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));

@@ -214,11 +214,11 @@ export default function BuildingSelectComponent() {
       else if (modalValue.subType == LIVE_AT_BUILDING) {
         let newLeaders = Object.assign({}, leaders);
         newLeaders[modalValue.leader.id].livingAt = buildingSelected;
-        newLeaders[modalValue.leader.id].calcEffects(equipment, buildings);
+        newLeaders[modalValue.leader.id].calcEffects(equipment, buildings, vault);
         if (buildingsLeader[buildingSelected]) {
           newLeaders[buildingsLeader[buildingSelected].id].livingAt = null;
           newLeaders[buildingsLeader[buildingSelected].id]
-            .calcEffects(equipment, buildings);
+            .calcEffects(equipment, buildings, vault);
         }
         dispatch(setLeaders(newLeaders));
         let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);

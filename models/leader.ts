@@ -1,6 +1,8 @@
 import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
 import Building from './building';
+import Vault from './vault';
+import ResourceType from './resource_type';
 import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
@@ -33,13 +35,29 @@ export default class Leader implements LeaderInterface {
   }
 
   calcEffects(equipment: { [id: string] : Equipment },
-    buildings: { [id: string] : Building }) {
+    buildings: { [id: string] : Building }, vault: Vault) {
     let effectArray: EquipmentEffect[] = []
     let happiness = 0;
 
     const home = this.livingAt ? buildings[this.livingAt] : null;
     const homeType = home ? buildingTypes[home.buildingType] : null;
     if (homeType?.livingHappiness) { happiness += homeType.livingHappiness; }
+
+    const eating = this.eating ? vault.resources[this.eating] : null;
+    let eatingResourceType = eating?.type ? resourceTypes[eating.type] : null;
+    // @ts-ignore
+    if (eating?.value) { eatingResourceType = new ResourceType(eating); }
+    if (eatingResourceType) {
+      happiness += eatingResourceType.getFoodOrDrinkHappinessValue();
+    }
+
+    const drinking = this.drinking ? vault.resources[this.drinking] : null;
+    let drinkingResourceType = drinking?.type ? resourceTypes[drinking.type] : null;
+    // @ts-ignore
+    if (drinking?.value) { drinkingResourceType = new ResourceType(drinking); }
+    if (drinkingResourceType) {
+      happiness += drinkingResourceType.getFoodOrDrinkHappinessValue();
+    }
 
     let happinessAppliesTo: {[quality: string] : number} = {};
     const slots = ['toolEquipped', 'clothingEquipped', 'backEquipped'];

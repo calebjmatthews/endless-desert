@@ -10,11 +10,13 @@ export default class Vault {
   resources: { [typeQuality: string] : Resource } = {};
 
   constructor(vault: VaultInterface) {
-    Object.assign(this, vault);
-    let newResources: { [typeQuality: string] : Resource } = {};
-    Object.keys(vault.resources).map((key) => {
-      this.resources[key] = vault.resources[key];
-    })
+    if (vault) {
+      Object.assign(this, vault);
+      let newResources: { [typeQuality: string] : Resource } = {};
+      Object.keys(vault.resources).map((key) => {
+        this.resources[key] = vault.resources[key];
+      })
+    }
   }
 
   // Add a quantity of one resource to the vault, creating a 0 quantity Resource in
