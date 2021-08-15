@@ -418,9 +418,88 @@ resourceTypes[RESOURCE_TYPES.STEEL] = new ResourceType({
   tags: [],
   value: 2000,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#8ea2d8',
-    shadow: '#444b6b', secondaryColor: '#b1b9e4'}),
-  foregroundColor: '#8ea2d8',
-  backgroundColor: '#fff'
+    shadow: '#444b6b', secondaryColor: '#b1b9e4'})
+});
+
+resourceTypes[RESOURCE_TYPES.JADE] = new ResourceType({
+  name: RESOURCE_TYPES.JADE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS],
+  value: 1000,
+  icon: new Icon({provider: 'svg', name: SVGS.JADE})
+});
+
+resourceTypes[RESOURCE_TYPES.AMETHYST] = new ResourceType({
+  name: RESOURCE_TYPES.AMETHYST,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.COOLING],
+  value: 2000,
+  icon: new Icon({provider: 'svg', name: SVGS.AMETHYST})
+});
+
+resourceTypes[RESOURCE_TYPES.TOPAZ] = new ResourceType({
+  name: RESOURCE_TYPES.TOPAZ,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SAVORY],
+  value: 3000,
+  icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
+});
+
+resourceTypes[RESOURCE_TYPES.JASPER] = new ResourceType({
+  name: RESOURCE_TYPES.JASPER,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SOUR],
+  value: 5000,
+  icon: new Icon({provider: 'svg', name: SVGS.JASPER})
+});
+
+resourceTypes[RESOURCE_TYPES.ONYX] = new ResourceType({
+  name: RESOURCE_TYPES.ONYX,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.BITTER],
+  value: 8000,
+  icon: new Icon({provider: 'svg', name: SVGS.ONYX})
+});
+
+resourceTypes[RESOURCE_TYPES.RUBY] = new ResourceType({
+  name: RESOURCE_TYPES.RUBY,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SPICY],
+  value: 13000,
+  icon: new Icon({provider: 'svg', name: SVGS.RUBY})
+});
+
+resourceTypes[RESOURCE_TYPES.SAPPHIRE] = new ResourceType({
+  name: RESOURCE_TYPES.SAPPHIRE,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.BRACKISH],
+  value: 21000,
+  icon: new Icon({provider: 'svg', name: SVGS.SAPPHIRE})
+});
+
+resourceTypes[RESOURCE_TYPES.EMERALD] = new ResourceType({
+  name: RESOURCE_TYPES.EMERALD,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.HERBAL],
+  value: 34000,
+  icon: new Icon({provider: 'svg', name: SVGS.EMERALD})
+});
+
+resourceTypes[RESOURCE_TYPES.DIAMOND] = new ResourceType({
+  name: RESOURCE_TYPES.DIAMOND,
+  category: RESOURCE_CATEGORIES.MATERIAL,
+  subcategory: RESOURCE_SUBCATEGORIES.GEM,
+  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SWEET],
+  value: 55000,
+  icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
 });
 
 resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({

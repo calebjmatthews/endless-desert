@@ -52,4 +52,12 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.GLASS] = new ResourceSubcategory({
     color: '#33cee2'})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.GEM] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.GEM,
+  value: 1000,
+  order: 6,
+  icon: new Icon({provider: 'FontAwesome5', name: 'gem',
+    color: '#33cee2'})
+});
+
 export { resourceSubcategories };

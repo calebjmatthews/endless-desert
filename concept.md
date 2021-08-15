@@ -112,13 +112,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Taro: Deep
   - Gems
     * Jade: None
-    * Emerald: Herbal
     * Turquoise: Cooling
     * Topaz: Savory
     * Jasper: Sour
     * Onyx: Bitter
     * Ruby: Spicy
     * Sapphire: Brackish
+    * Emerald: Herbal
     * Diamond: Sweet
     * Moonstone: Airy
     * Opal: Strange
@@ -281,19 +281,20 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Traders:
   - Individual trader ideas:
     - European traders that give metals
-    - Scholarly trader that receives knowledge and parchment
+    - Scholar pirates that receives knowledge, field notes, and parchment in exchange for gems, gold, and weapons
     - Exploring trader that receives food, drink, and exploration supplies
     - Treasure hunting trader that exchanges artifacts for different artifacts
-    - Jeweler trader that receives jade and exchanges other jewels
-    - "Dragon" trader that receives precious metals and jewels
+    - Jeweler trader that receives jade and exchanges other gems
     - Royal trader that receieves large quantities of artisan goods in exchange for jade
+    - Greenhouse trader that receives glass, clay, and fertilizer in exchange for crops, seeds, spices, and tools
+    - Astronomer trader that receives lenses, parchment, field notes, and star maps in exchange for metal ore, chemicals
   - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
-  - Early traders
-  - Middle traders: give iron, gold; receive glass
+  - Early traders: receive thatch, olive oil, bricks, glass, payrus
+  - Middle traders: receive dishes, textiles, pottery, tools, field notes
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field), shovel (pit), lever (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field), shovel (pit), weight (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
     * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in efficiency)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
@@ -512,20 +513,20 @@ CREATE TABLE `endless_desert`.`sessions` (
 ### Get one of every basic equipment:
 ```
 dispatch(increaseResources(vault,
-  [{ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
-    quality: 0, quantity: 1 },
-  { type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
-    quality: 0, quantity: 1 }] ));
+  [new Resource({ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
+    quality: 0, quantity: 1 }),
+  new Resource({ type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
+    quality: 0, quantity: 1 })] ));
 ```
 
 ### Remove all current resources:

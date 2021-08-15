@@ -16,7 +16,7 @@ resourceTags[RESOURCE_TAGS.CONSTRUCTION] = new ResourceTag({
   name: RESOURCE_TAGS.CONSTRUCTION,
   value: 5,
   extract: false,
-  icon: new Icon({provider: 'FontAwesome5', name: 'hammer', 
+  icon: new Icon({provider: 'FontAwesome5', name: 'hammer',
     color:'#8a4949'})});
 
 resourceTags[RESOURCE_TAGS.DRINK] = new ResourceTag({
@@ -74,6 +74,13 @@ resourceTags[RESOURCE_TAGS.EARTH] = new ResourceTag({
   extract: false,
   icon: new Icon({provider: 'FontAwesome5', name: 'globe-africa',
     color:'#986127'})});
+
+resourceTags[RESOURCE_TAGS.PRECIOUS] = new ResourceTag({
+  name: RESOURCE_TAGS.PRECIOUS,
+  value: 5,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'gem',
+    color:'#8a4949'})});
 
 resourceTags[RESOURCE_TAGS.INGREDIENT] = new ResourceTag({
   name: RESOURCE_TAGS.INGREDIENT,

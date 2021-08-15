@@ -31,6 +31,15 @@ import CarbonSvgComponent from './resources/carbon';
 import OreSvgComponent from './resources/ore';
 import PowderSvgComponent from './resources/powder';
 import BarSvgComponent from './resources/bar';
+import JadeSvgComponent from './resources/jade';
+import AmethystSvgComponent from './resources/amethyst';
+import TopazSvgComponent from './resources/topaz';
+import JasperSvgComponent from './resources/jasper';
+import OnyxSvgComponent from './resources/onyx';
+import RubySvgComponent from './resources/ruby';
+import SapphireSvgComponent from './resources/sapphire';
+import EmeraldSvgComponent from './resources/emerald';
+import DiamondSvgComponent from './resources/diamond';
 import SaltSvgComponent from './resources/salt';
 import CinnamonSvgComponent from './resources/cinnamon';
 import CarobSvgComponent from './resources/carob';
@@ -177,6 +186,24 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PowderSvgComponent icon={props.icon} />;
     case SVGS.BAR:
     return <BarSvgComponent icon={props.icon} />;
+    case SVGS.JADE:
+    return <JadeSvgComponent icon={props.icon} />;
+    case SVGS.AMETHYST:
+    return <AmethystSvgComponent icon={props.icon} />;
+    case SVGS.TOPAZ:
+    return <TopazSvgComponent icon={props.icon} />;
+    case SVGS.JASPER:
+    return <JasperSvgComponent icon={props.icon} />;
+    case SVGS.ONYX:
+    return <OnyxSvgComponent icon={props.icon} />;
+    case SVGS.RUBY:
+    return <RubySvgComponent icon={props.icon} />;
+    case SVGS.SAPPHIRE:
+    return <SapphireSvgComponent icon={props.icon} />;
+    case SVGS.EMERALD:
+    return <EmeraldSvgComponent icon={props.icon} />;
+    case SVGS.DIAMOND:
+    return <DiamondSvgComponent icon={props.icon} />;
     case SVGS.SALT:
     return <SaltSvgComponent icon={props.icon} />;
     case SVGS.CINNAMON:
