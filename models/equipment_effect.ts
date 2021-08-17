@@ -1,10 +1,13 @@
 export default class EquipmentEffect {
   quality: string = '';
-  specificity: string|undefined;
-  type: string|undefined;
+  source?: string;
+  specificity?: string;
+  type?: string;
   change: number = 0;
 
-  constructor(equipmentEffect: EquipmentEffect) {
-    Object.assign(this, equipmentEffect);
+  constructor(equipmentEffect: EquipmentEffect|null) {
+    if (equipmentEffect) {
+      Object.assign(this, equipmentEffect);
+    }
   }
 }

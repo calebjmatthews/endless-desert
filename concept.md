@@ -112,7 +112,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Taro: Deep
   - Gems
     * Jade: None
-    * Turquoise: Cooling
+    * Amethyst: Cooling
     * Topaz: Savory
     * Jasper: Sour
     * Onyx: Bitter

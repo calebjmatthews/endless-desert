@@ -9,7 +9,7 @@ export default class Vault {
   lastTimestamp: number = new Date(Date.now()).valueOf();
   resources: { [typeQuality: string] : Resource } = {};
 
-  constructor(vault: VaultInterface) {
+  constructor(vault: VaultInterface|null) {
     if (vault) {
       Object.assign(this, vault);
       let newResources: { [typeQuality: string] : Resource } = {};
