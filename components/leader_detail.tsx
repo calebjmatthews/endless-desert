@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import SvgComponent from './svg';
 import EquipmentEffectComponent from './equipment_effect';
 import ProgressBarComponent from '../components/progress_bar';
 import { SET_EATING, SET_DRINKING, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
@@ -21,6 +22,7 @@ import { equipmentTypes } from '../instances/equipment_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
 
 enum SLOTS { TOOL = 'Tool', CLOTHING = 'Clothing', BACK = 'Back' };
 
@@ -60,6 +62,8 @@ export default function LeaderDetailComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
+  const [happinessExpanded, setHappinessExpanded] = useState(true);
+
   return (
     <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
@@ -74,6 +78,7 @@ export default function LeaderDetailComponent() {
         </View>
         <View style={{width: (positioner.modalWidth - 40)}}>
           <Text style={styles.bareText}>Happiness:</Text>
+          {renderHappinessExplanation()}
           <ProgressBarComponent startingProgress={0}
             endingProgress={(leader.happiness / 100)} duration={1000}
             labelStyle={styles.bareText}
@@ -131,6 +136,47 @@ export default function LeaderDetailComponent() {
       </ScrollView>
     </View>
   );
+
+  function renderHappinessExplanation() {
+    const happinessExplanation = leader.explanations[LEADER_QUALITIES.HAPPINESS];
+    if (happinessExpanded && happinessExplanation) {
+      const full = {width: ((positioner.modalWidth - 40) - 2)};
+      const half = {width: (((positioner.modalWidth - 40) / 2) - 2)};
+      const halfStyle: any = StyleSheet.flatten([half, styles.pseudoCell,
+        styles.rows]);
+      const quarter = {width: (((positioner.modalWidth - 40) / 4) - 2)};
+      const qatrStyle = StyleSheet.flatten([quarter, styles.pseudoCell]);
+      const textBold: any = {fontSize: 12, fontWeight: "bold"};
+      const text = {fontSize: 12, flexShrink: 10} ;
+      return (
+        <View style={full}>
+          <View style={styles.break} />
+          <View style={styles.pseudoCellRow}>
+            <View style={halfStyle}><Text style={textBold}>{'Source'}</Text></View>
+            <View style={qatrStyle}><Text style={textBold}>{'Change'}</Text></View>
+            <View style={qatrStyle}><Text style={textBold}>{'Total'}</Text></View>
+          </View>
+          {happinessExplanation.map((row, index) =>
+            <View key={index} style={styles.pseudoCellRow}>
+              <View style={halfStyle}>
+                {row.sourceIcon && (
+                  <>
+                    <SvgComponent icon={new Icon({...row.sourceIcon, size: 18})} />
+                    <Text>{' '}</Text>
+                  </>
+                )}
+                <Text style={text}>{row.source}</Text>
+              </View>
+              <View style={qatrStyle}><Text style={text}>{row.change}</Text></View>
+              <View style={qatrStyle}><Text style={text}>{row.total}</Text></View>
+            </View>
+          )}
+          <View style={styles.break} />
+        </View>
+      );
+    }
+    return null;
+  }
 
   function renderEating() {
     if (leader.eating) {

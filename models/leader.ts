@@ -6,6 +6,7 @@ import ResourceType from './resource_type';
 import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
+import { equipmentTypes } from '../instances/equipment_types';
 import { utils } from '../utils';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
@@ -32,7 +33,7 @@ export default class Leader implements LeaderInterface {
   effects: EquipmentEffect[] = [];
   happiness: number = 0;
   explanations: { [subject: string] :
-    { source: string, change: string, total: string }[] } = {};
+    { source: string, sourceIcon?: Icon, change: string, total: string }[] } = {};
   eating: string|null = null;
   drinking: string|null = null;
   icon: Icon = new Icon({provider: '', name: ''});
@@ -53,8 +54,9 @@ export default class Leader implements LeaderInterface {
       happiness += homeType.livingHappiness;
       this.explanations = explanationsAdd({
         explanations: this.explanations,
-        subject: `${LQ.HAPPINESS}|null|null`,
+        subject: LQ.HAPPINESS,
         source: (home?.name || 'Home'),
+        sourceIcon: homeType?.icon,
         change: homeType.livingHappiness,
         total: happiness
       });
@@ -69,8 +71,9 @@ export default class Leader implements LeaderInterface {
       happiness += eatingValue;
       this.explanations = explanationsAdd({
         explanations: this.explanations,
-        subject: `${LQ.HAPPINESS}|null|null`,
+        subject: LQ.HAPPINESS,
         source: utils.getResourceName(eating),
+        sourceIcon: eatingResourceType?.icon,
         change: eatingValue,
         total: happiness
       });
@@ -85,8 +88,9 @@ export default class Leader implements LeaderInterface {
       happiness += drinkingValue;
       this.explanations = explanationsAdd({
         explanations: this.explanations,
-        subject: `${LQ.HAPPINESS}|null|null`,
-        source: utils.getResourceName(eating),
+        subject: LQ.HAPPINESS,
+        source: utils.getResourceName(drinking),
+        sourceIcon: drinkingResourceType?.icon,
         change: drinkingValue,
         total: happiness
       });
@@ -98,6 +102,7 @@ export default class Leader implements LeaderInterface {
     slots.map((slot) => {
       const equipmentId: string = leader[slot];
       const anEquipment: Equipment = equipment[equipmentId];
+      const equipmentType = equipmentTypes[anEquipment?.typeName];
       if (anEquipment) {
         if (anEquipment.effects) {
           anEquipment.effects.map((effect) => {
@@ -139,8 +144,9 @@ export default class Leader implements LeaderInterface {
             if (effect.quality == LQ.HAPPINESS) {
               this.explanations = explanationsAdd({
                 explanations: this.explanations,
-                subject: `${effect.quality}|null|null`,
+                subject: effect.quality,
                 source: anEquipment.typeName,
+                sourceIcon: equipmentType.icon,
                 change: effect.change,
                 total: happiness
               });
@@ -150,8 +156,9 @@ export default class Leader implements LeaderInterface {
               || effect.quality == LQ.HAPPINESS_TO_SPEED) {
               this.explanations = explanationsAdd({
                 explanations: this.explanations,
-                subject: `${effect.quality}|null|null`,
+                subject: effect.quality,
                 source: anEquipment.typeName,
+                sourceIcon: equipmentType.icon,
                 change: effect.change,
                 total: happinessAppliesTo[HAT_MAP[effect.quality]]
               });
@@ -198,6 +205,8 @@ export default class Leader implements LeaderInterface {
     Object.keys(combineMap).forEach((key) => {
       const combObj = combineMap[key];
       const combEffect = combObj.effect;
+      const sourceIcon = combEffect.source ?
+        equipmentTypes[combEffect.source].icon : undefined;
       let moddedEffect = new EquipmentEffect(combEffect);
       moddedEffect.change = 0;
       effectArray.map((compEffect, index) => {
@@ -209,6 +218,7 @@ export default class Leader implements LeaderInterface {
             explanations: this.explanations,
             subject: key,
             source: compEffect.source || '',
+            sourceIcon: sourceIcon,
             change: compEffect.change,
             total: total
           });
@@ -224,6 +234,7 @@ export default class Leader implements LeaderInterface {
           explanations: this.explanations,
           subject: key,
           source: 'Happiness',
+          sourceIcon: sourceIcon,
           change: happinessMod,
           total: total
         });
@@ -238,8 +249,9 @@ export default class Leader implements LeaderInterface {
     console.log(this);
 
     function explanationsAdd(p: {explanations: { [subject: string] :
-      { source: string, change: string, total: string }[] }, subject: string,
-      source: string, change: number, total: number}) {
+      { source: string, sourceIcon?: Icon, change: string, total: string }[] },
+      subject: string, source: string, sourceIcon?: Icon, change: number,
+      total: number}) {
       const baseZero = [ LQ.HAPPINESS, LQ.HAPPINESS_TO_SPEED,
         LQ.HAPPINESS_TO_QUALITY, LQ.HAPPINESS_TO_EFFICIENCY];
       if (!p.explanations[p.subject]) {
@@ -247,8 +259,7 @@ export default class Leader implements LeaderInterface {
         if (utils.arrayIncludes(baseZero, p.subject.split('|')[0])) {
           total = '0%';
         }
-        p.explanations[p.subject] = [{ source: 'Base', change: '',
-          total: total }];
+        p.explanations[p.subject] = [{ source: 'Base', change: ' ', total: total }];
       }
 
       let sign = ''; let changeStr = ''; let total = '';
@@ -264,8 +275,8 @@ export default class Leader implements LeaderInterface {
         total = (utils.formatNumberShort(100 + p.total) + '%');
       }
 
-      p.explanations[p.subject].push({ source: p.source, change: changeStr,
-        total: total });
+      p.explanations[p.subject].push({ source: p.source, sourceIcon: p.sourceIcon,
+        change: changeStr, total: total });
       return p.explanations;
     }
 
@@ -332,7 +343,7 @@ interface LeaderInterface {
   effects: EquipmentEffect[];
   happiness: number;
   explanations: { [subject: string] :
-    { source: string, change: string, total: string }[] };
+    { source: string, sourceIcon?: Icon, change: string, total: string }[] };
   eating: string|null;
   drinking: string|null;
   icon: Icon;

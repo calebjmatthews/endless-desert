@@ -35,7 +35,7 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   name: LEADER_TYPES.FOXFIRE_HERETIC,
   title: 'the Foxfire Heretic',
   description: ('|name| has been ejected from the Foxfire Ascetics, '
-    + 'although there\'s'
+    + 'although there\'s '
     + 'no explanation as to why. But there are clues: a fierce glint '
     + 'in the eyes, and decidedly non-traditional views on alcohol consumption.'),
   speechType: 'Calm',

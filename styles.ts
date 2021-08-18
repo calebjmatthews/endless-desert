@@ -513,5 +513,20 @@ export const styles = StyleSheet.create({
   ratingRow: {
     position: 'absolute',
     overflow: 'hidden'
+  },
+
+  pseudoCellRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'space-between',
+    marginBottom: 2
+  },
+  pseudoCell: {
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    opacity: 0.9
   }
 });
