@@ -117,5 +117,7 @@ export enum SVGS {
 
   FOXFIRE_ASCETICS = "Foxfire Ascetics",
   TREFOIL_KINGDOM = "Trefoil Kingdom",
-  RED_CROW_TRADERS = "Red Crow Traders"
+  RED_CROW_TRADERS = "Red Crow Traders",
+
+  HAPPINESS = "Happiness"
 }

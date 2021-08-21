@@ -121,6 +121,8 @@ import RedCrowTradersSvgComponent from './trading_partners/red_crow_traders';
 import FoxfireAsceticsSvgComponent from './trading_partners/foxfire_ascetics';
 import TrefoilKingdomSvgComponent from './trading_partners/trefoil_kingdom';
 
+import HappinessSvgComponent from './ui/happiness';
+
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
 
@@ -360,6 +362,9 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FoxfireAsceticsSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_KINGDOM:
     return <TrefoilKingdomSvgComponent icon={props.icon} />;
+
+    case SVGS.HAPPINESS:
+    return <HappinessSvgComponent icon={props.icon} />;
   }
   return null;
 }

@@ -16,6 +16,7 @@ import { SET_EATING, SET_DRINKING, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING }
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
+import EquipmentEffect from '../models/equipment_effect';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
@@ -62,7 +63,8 @@ export default function LeaderDetailComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const slots: string[] = [SLOTS.TOOL, SLOTS.CLOTHING, SLOTS.BACK];
 
-  const [happinessExpanded, setHappinessExpanded] = useState(true);
+  const [happinessExpanded, setHappinessExpanded] = useState(false);
+  const [effectsExpanded, setEffectsExpanded] = useState(false);
 
   return (
     <View style={styles.modalContent}>
@@ -77,8 +79,12 @@ export default function LeaderDetailComponent() {
           <Text style={styles.descriptionBandText}>{leader.description}</Text>
         </View>
         <View style={{width: (positioner.modalWidth - 40)}}>
-          <Text style={styles.bareText}>Happiness:</Text>
-          {renderHappinessExplanation()}
+          <View style={styles.buttonTextRow}>
+            <Text style={styles.bareText}>{'Happiness:'}</Text>
+            {renderMoreButton(happinessExpanded, setHappinessExpanded)}
+          </View>
+          {happinessExpanded && renderExplanation(LEADER_QUALITIES.HAPPINESS)}
+          <View style={styles.break} />
           <ProgressBarComponent startingProgress={0}
             endingProgress={(leader.happiness / 100)} duration={1000}
             labelStyle={styles.bareText}
@@ -87,7 +93,15 @@ export default function LeaderDetailComponent() {
         <View style={styles.break} />
         <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
             maxWidth: positioner.modalMajor}])}>
-          <Text style={styles.bareText}>{'Work Effects:'}</Text>
+          <View style={styles.buttonTextRow}>
+            <Text style={styles.bareText}>{'Effects:'}</Text>
+            {renderMoreButton(effectsExpanded, setEffectsExpanded)}
+          </View>
+          {effectsExpanded && (
+            leader.effects.map((anEffect) => {
+              return renderExplanation(`${anEffect.quality}|${anEffect.specificity || 'null'}|${anEffect.type || 'null'}`, anEffect)
+            })
+          )}
           <View style={StyleSheet.flatten([styles.panelFlexColumn,
             {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
             alignItems: 'flex-start'}])}>
@@ -137,45 +151,70 @@ export default function LeaderDetailComponent() {
     </View>
   );
 
-  function renderHappinessExplanation() {
-    const happinessExplanation = leader.explanations[LEADER_QUALITIES.HAPPINESS];
-    if (happinessExpanded && happinessExplanation) {
-      const full = {width: ((positioner.modalWidth - 40) - 2)};
-      const half = {width: (((positioner.modalWidth - 40) / 2) - 2)};
-      const halfStyle: any = StyleSheet.flatten([half, styles.pseudoCell,
-        styles.rows]);
-      const quarter = {width: (((positioner.modalWidth - 40) / 4) - 2)};
-      const qatrStyle = StyleSheet.flatten([quarter, styles.pseudoCell]);
-      const textBold: any = {fontSize: 12, fontWeight: "bold"};
-      const text = {fontSize: 12, flexShrink: 10} ;
+  function renderMoreButton(expanded: boolean,
+    setExpanded: (expanded: boolean) => void) {
+      let iconName = 'angle-down';
+      let text = 'More'
+      if (expanded) {
+        iconName = 'angle-up';
+        text = 'Hide';
+      }
       return (
-        <View style={full}>
-          <View style={styles.break} />
-          <View style={styles.pseudoCellRow}>
-            <View style={halfStyle}><Text style={textBold}>{'Source'}</Text></View>
-            <View style={qatrStyle}><Text style={textBold}>{'Change'}</Text></View>
-            <View style={qatrStyle}><Text style={textBold}>{'Total'}</Text></View>
-          </View>
-          {happinessExplanation.map((row, index) =>
-            <View key={index} style={styles.pseudoCellRow}>
-              <View style={halfStyle}>
-                {row.sourceIcon && (
-                  <>
-                    <SvgComponent icon={new Icon({...row.sourceIcon, size: 18})} />
-                    <Text>{' '}</Text>
-                  </>
-                )}
-                <Text style={text}>{row.source}</Text>
-              </View>
-              <View style={qatrStyle}><Text style={text}>{row.change}</Text></View>
-              <View style={qatrStyle}><Text style={text}>{row.total}</Text></View>
-            </View>
-          )}
-          <View style={styles.break} />
-        </View>
+        <TouchableOpacity style={styles.buttonRowItemSmall}
+          onPress={() => setExpanded(!expanded)}>
+          <IconComponent provider='FontAwesome5' name={iconName}
+            color={'#fff'} size={14} />
+          <Text style={styles.buttonTextSmall}>
+            {` ${text}`}
+          </Text>
+        </TouchableOpacity>
       );
-    }
-    return null;
+  }
+
+  function renderExplanation(quality: string, anEffect?: EquipmentEffect) {
+    const explanation = leader.explanations[quality];
+    const full = {width: ((positioner.modalWidth - 40) - 2)};
+    const half = {width: (((positioner.modalWidth - 40) / 2) - 2)};
+    const fullStyle: any = StyleSheet.flatten([full, styles.pseudoCell,
+      {display: 'flex', alignItems: 'center'}]);
+    const halfStyle: any = StyleSheet.flatten([half, styles.pseudoCell,
+      styles.rows]);
+    const quarter = {width: (((positioner.modalWidth - 40) / 4) - 2)};
+    const qatrStyle = StyleSheet.flatten([quarter, styles.pseudoCell]);
+    const textBold: any = {fontSize: 12, fontWeight: 'bold'};
+    const text = {fontSize: 12, flexShrink: 100} ;
+    return (
+      <View key={quality} style={full}>
+        <View style={styles.break} />
+        {anEffect && (
+          <View style={styles.pseudoCellRow}>
+            <View style={fullStyle}>
+              <EquipmentEffectComponent anEffect={anEffect} size={'large'} />
+            </View>
+          </View>
+        )}
+        <View style={styles.pseudoCellRow}>
+          <View style={halfStyle}><Text style={textBold}>{'Source'}</Text></View>
+          <View style={qatrStyle}><Text style={textBold}>{'Change'}</Text></View>
+          <View style={qatrStyle}><Text style={textBold}>{'Total'}</Text></View>
+        </View>
+        {explanation.map((row, index) =>
+          <View key={index} style={styles.pseudoCellRow}>
+            <View style={halfStyle}>
+              {row.sourceIcon && (
+                <>
+                  <SvgComponent icon={new Icon({...row.sourceIcon, size: 18})} />
+                  <Text>{' '}</Text>
+                </>
+              )}
+              <Text style={text}>{row.source}</Text>
+            </View>
+            <View style={qatrStyle}><Text style={text}>{row.change}</Text></View>
+            <View style={qatrStyle}><Text style={text}>{row.total}</Text></View>
+          </View>
+        )}
+      </View>
+    );
   }
 
   function renderEating() {

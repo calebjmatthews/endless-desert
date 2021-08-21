@@ -22,7 +22,10 @@ import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 
 export default function EquipmentEffectComponent(props:
-  { anEffect: EquipmentEffect }) {
+  { anEffect: EquipmentEffect, size?: string }) {
+  let fontSize = 12; let iconSize = 16;
+  if (props.size == 'large') { fontSize = 14; iconSize = 18; }
+
   return (
     <View style={styles.infoBar}>
       {renderChange(props.anEffect)}
@@ -41,7 +44,7 @@ export default function EquipmentEffectComponent(props:
       let sign = '+'
       if (props.anEffect.change < 0) { sign = ''; }
       return (
-        <Text style={{fontSize: 12}}>
+        <Text style={{fontSize}}>
           {sign + utils.formatNumberShort(props.anEffect.change) + '% '}
         </Text>
       );
@@ -61,14 +64,14 @@ export default function EquipmentEffectComponent(props:
         type = resourceCategories[anEffect.type]; break;
       }
       let icon = <IconComponent provider={type.icon.provider} name={type.icon.name}
-        color={type.icon.color} size={16} />;
+        color={type.icon.color} size={iconSize} />;
       if (type.icon.provider == 'svg') {
-        icon = <SvgComponent icon={new Icon({...type.icon, size: 16})} />
+        icon = <SvgComponent icon={new Icon({...type.icon, size: iconSize})} />
       }
       return (
         <View style={styles.rows}>
           {icon}
-          <Text style={{fontSize: 12}}>{' ' + anEffect.type + ' '}</Text>
+          <Text style={{fontSize}}>{' ' + anEffect.type + ' '}</Text>
         </View>
       );
     }
@@ -80,8 +83,8 @@ export default function EquipmentEffectComponent(props:
     return (
       <View style={styles.rows}>
         <IconComponent provider={quality.icon.provider} name={quality.icon.name}
-          color={quality.icon.color} size={16} />
-        <Text style={{fontSize: 12}}>{' ' + anEffect.quality}</Text>
+          color={quality.icon.color} size={iconSize} />
+        <Text style={{fontSize}}>{' ' + anEffect.quality}</Text>
       </View>
     );
   }

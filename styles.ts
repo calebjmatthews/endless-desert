@@ -527,6 +527,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 2,
     backgroundColor: '#fff',
     borderRadius: 2,
+    shadowColor: '#00000080',
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 2},
     opacity: 0.9
   }
 });

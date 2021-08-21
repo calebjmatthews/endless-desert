@@ -12,6 +12,7 @@ import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
+import { SVGS } from '../enums/svgs';
 
 const HAT_MAP = {
   [LQ.HAPPINESS_TO_SPEED] : LQ.SPEED,
@@ -205,8 +206,6 @@ export default class Leader implements LeaderInterface {
     Object.keys(combineMap).forEach((key) => {
       const combObj = combineMap[key];
       const combEffect = combObj.effect;
-      const sourceIcon = combEffect.source ?
-        equipmentTypes[combEffect.source].icon : undefined;
       let moddedEffect = new EquipmentEffect(combEffect);
       moddedEffect.change = 0;
       effectArray.map((compEffect, index) => {
@@ -214,6 +213,8 @@ export default class Leader implements LeaderInterface {
           const total = ((((100 + moddedEffect.change) / 100)
             * ((100 + compEffect.change) / 100)) - 1) * 100;
           moddedEffect.change = total;
+          const sourceIcon = compEffect.source ?
+            equipmentTypes[compEffect.source].icon : undefined;
           this.explanations = explanationsAdd({
             explanations: this.explanations,
             subject: key,
@@ -234,7 +235,7 @@ export default class Leader implements LeaderInterface {
           explanations: this.explanations,
           subject: key,
           source: 'Happiness',
-          sourceIcon: sourceIcon,
+          sourceIcon: new Icon({ provider: 'svg', name: SVGS.HAPPINESS }),
           change: happinessMod,
           total: total
         });
