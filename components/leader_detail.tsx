@@ -21,6 +21,7 @@ import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
 import { resourceTypes } from '../instances/resource_types';
+import { resourceTags } from '../instances/resource_tags';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
@@ -78,7 +79,8 @@ export default function LeaderDetailComponent() {
             maxWidth: positioner.modalWidth}])}>
           <Text style={styles.descriptionBandText}>{leader.description}</Text>
         </View>
-        <View style={{width: (positioner.modalWidth - 40)}}>
+        <View style={{minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}}>
           <View style={styles.buttonTextRow}>
             <Text style={styles.bareText}>{'Happiness:'}</Text>
             {renderMoreButton(happinessExpanded, setHappinessExpanded)}
@@ -91,8 +93,8 @@ export default function LeaderDetailComponent() {
             color={'#de0202'} label={(leader.happiness + '%')} />
         </View>
         <View style={styles.break} />
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
-            maxWidth: positioner.modalMajor}])}>
+        <View style={{minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}}>
           <View style={styles.buttonTextRow}>
             <Text style={styles.bareText}>{'Effects:'}</Text>
             {renderMoreButton(effectsExpanded, setEffectsExpanded)}
@@ -103,7 +105,8 @@ export default function LeaderDetailComponent() {
             })
           )}
           <View style={StyleSheet.flatten([styles.panelFlexColumn,
-            {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
+            {minWidth: positioner.modalMajor - positioner.minorPadding,
+              maxWidth: positioner.modalMajor - positioner.minorPadding,
             alignItems: 'flex-start'}])}>
             {leader.effects.map((anEffect, index) => {
               return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
@@ -136,12 +139,12 @@ export default function LeaderDetailComponent() {
           </View>
         </View>
         <View style={styles.break} />
-        <View style={StyleSheet.flatten([{minWidth: positioner.modalMajor,
-            maxWidth: positioner.modalMajor}])}>
+        <View>
           <Text style={styles.bareText}>{'Equipment:'}</Text>
           <View style={StyleSheet.flatten([styles.panelFlexColumn,
-            {minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor}])}>
-            {slots.map((slot) => {
+            {minWidth: positioner.modalMajor - positioner.minorPadding,
+              maxWidth: positioner.modalMajor - positioner.minorPadding}])}>
+            {slots.map((slot, index) => {
               return renderSlot(slot);
             })}
           </View>
@@ -173,13 +176,13 @@ export default function LeaderDetailComponent() {
 
   function renderExplanation(quality: string, anEffect?: EquipmentEffect) {
     const explanation = leader.explanations[quality];
-    const full = {width: ((positioner.modalWidth - 40) - 2)};
-    const half = {width: (((positioner.modalWidth - 40) / 2) - 2)};
+    const full = {width: ((positioner.modalMajor) - 2)};
+    const half = {width: (((positioner.modalMajor) / 2) - 2)};
     const fullStyle: any = StyleSheet.flatten([full, styles.pseudoCell,
       {display: 'flex', alignItems: 'center'}]);
     const halfStyle: any = StyleSheet.flatten([half, styles.pseudoCell,
       styles.rows]);
-    const quarter = {width: (((positioner.modalWidth - 40) / 4) - 2)};
+    const quarter = {width: (((positioner.modalMajor) / 4) - 2)};
     const qatrStyle = StyleSheet.flatten([quarter, styles.pseudoCell]);
     const textBold: any = {fontSize: 12, fontWeight: 'bold'};
     const text = {fontSize: 12, flexShrink: 100} ;
@@ -344,15 +347,21 @@ export default function LeaderDetailComponent() {
     if (slot == SLOTS.CLOTHING) { equipmentSlot = leader.clothingEquipped; }
     else if (slot == SLOTS.BACK) { equipmentSlot = leader.backEquipped; }
 
+    const iconName = resourceTags[slot].icon.name;
+
     if (equipmentSlot) {
       const anEquipment = equipment[equipmentSlot];
       const equipmentType = equipmentTypes[anEquipment.typeName];
       return (
-        <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
-          maxWidth: positioner.modalMajor}])} key={slot}>
-          <Text style={{minWidth: 90, maxWidth: 90, textAlign: 'right'}}>
-            {slot + ':'}
-          </Text>
+        <View style={StyleSheet.flatten([styles.columns,
+          {minWidth: positioner.modalMajor - positioner.minorPadding,
+          maxWidth: positioner.modalMajor - positioner.minorPadding}])} key={slot}>
+          <View style={styles.break} />
+          <View style={StyleSheet.flatten([styles.rows, {paddingLeft: 5}])}>
+            <IconComponent provider='FontAwesome5' name={iconName}
+              color={'#686874'} size={14} />
+            <Text style={{fontSize: 12}}> {slot + ':'}</Text>
+          </View>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
             {alignSelf: 'stretch', flexDirection: 'column',
             alignItems: 'flex-start'}])}
