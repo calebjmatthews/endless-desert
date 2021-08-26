@@ -33,13 +33,6 @@ resourceTags[RESOURCE_TAGS.FOOD] = new ResourceTag({
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'food-apple',
     color:'#f44336'})});
 
-resourceTags[RESOURCE_TAGS.LIQUID] = new ResourceTag({
-  name: RESOURCE_TAGS.LIQUID,
-  value: 5,
-  extract: false,
-  icon: new Icon({provider: 'Entypo', name: 'drop',
-    color:'#3f51b5'})});
-
 resourceTags[RESOURCE_TAGS.MIND] = new ResourceTag({
   name: RESOURCE_TAGS.MIND,
   value: 5,
@@ -47,8 +40,8 @@ resourceTags[RESOURCE_TAGS.MIND] = new ResourceTag({
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'brain',
     color:'#b10101'})});
 
-resourceTags[RESOURCE_TAGS.PLANT] = new ResourceTag({
-  name: RESOURCE_TAGS.PLANT,
+resourceTags[RESOURCE_TAGS.CROP] = new ResourceTag({
+  name: RESOURCE_TAGS.CROP,
   value: 5,
   extract: false,
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'sprout',
@@ -60,13 +53,6 @@ resourceTags[RESOURCE_TAGS.ANIMAL] = new ResourceTag({
   extract: false,
   icon: new Icon({provider: 'FontAwesome5', name: 'paw',
     color:'#881919'})});
-
-resourceTags[RESOURCE_TAGS.ANIMAL_PRODUCT] = new ResourceTag({
-  name: RESOURCE_TAGS.ANIMAL_PRODUCT,
-  value: 5,
-  extract: false,
-  icon: new Icon({provider: 'FontAwesome5', name: 'feather-alt',
-    color:'#01b101'})});
 
 resourceTags[RESOURCE_TAGS.EARTH] = new ResourceTag({
   name: RESOURCE_TAGS.EARTH,
@@ -89,8 +75,8 @@ resourceTags[RESOURCE_TAGS.INGREDIENT] = new ResourceTag({
   icon: new Icon({provider: 'FontAwesome5', name: 'shopping-bag',
     color:'#4caf50'})});
 
-resourceTags[RESOURCE_TAGS.POTTERY] = new ResourceTag({
-  name: RESOURCE_TAGS.POTTERY,
+resourceTags[RESOURCE_TAGS.CERAMIC] = new ResourceTag({
+  name: RESOURCE_TAGS.CERAMIC,
   value: 60,
   extract: false,
   icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey',
@@ -103,11 +89,67 @@ resourceTags[RESOURCE_TAGS.SPICE] = new ResourceTag({
   icon: new Icon({provider: 'FontAwesome5', name: 'mortar-pestle',
     color:'#ca8826'})});
 
+resourceTags[RESOURCE_TAGS.TRADE_GOOD] = new ResourceTag({
+  name: RESOURCE_TAGS.TRADE_GOOD,
+  value: 40,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'exchange-alt',
+    color:'#666'})});
+
+resourceTags[RESOURCE_TAGS.PRESSED] = new ResourceTag({
+  name: RESOURCE_TAGS.PRESSED,
+  value: 50,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'inbox-multiple',
+    color:'#ca8826'})});
+
+resourceTags[RESOURCE_TAGS.DRIED] = new ResourceTag({
+  name: RESOURCE_TAGS.DRIED,
+  value: 5,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'waves',
+    color:'#ff2222'})});
+
+resourceTags[RESOURCE_TAGS.POWDER] = new ResourceTag({
+  name: RESOURCE_TAGS.POWDER,
+  value: 25,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'triangle',
+    color:'#666'})});
+
+resourceTags[RESOURCE_TAGS.SMELTED] = new ResourceTag({
+  name: RESOURCE_TAGS.SMELTED,
+  value: 5,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'fire',
+    color:'#ff2222'})});
+
+resourceTags[RESOURCE_TAGS.TEXTILE] = new ResourceTag({
+  name: RESOURCE_TAGS.TEXTILE,
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'google-spreadsheet',
+    color:'#3f51b5'})});
+
+resourceTags[RESOURCE_TAGS.GLASS] = new ResourceTag({
+  name: RESOURCE_TAGS.GLASS,
+  value: 180,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'glass-whiskey',
+    color:'#3f51b5'})});
+
+resourceTags[RESOURCE_TAGS.SYNTHESIZED] = new ResourceTag({
+  name: RESOURCE_TAGS.SYNTHESIZED,
+  value: 160,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'flask',
+    color:'#4caf50'})});
+
 resourceTags[RESOURCE_TAGS.SAVORY] = new ResourceTag({
   name: RESOURCE_TAGS.SAVORY,
   value: 5,
   extract: true,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'food-drumstick',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'triangle',
     color:'#ca8826'})});
 
 resourceTags[RESOURCE_TAGS.SWEET] = new ResourceTag({

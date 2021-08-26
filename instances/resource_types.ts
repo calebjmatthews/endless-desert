@@ -1,792 +1,796 @@
 import ResourceType from '../models/resource_type';
 import Icon from '../models/icon';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 import { SVGS } from '../enums/svgs';
 
 let resourceTypes: { [name: string] : ResourceType } = {};
 
-resourceTypes[RESOURCE_TYPES.KNOWLEDGE] = new ResourceType({
-  name: RESOURCE_TYPES.KNOWLEDGE,
-  category: RESOURCE_CATEGORIES.ETHERIAL,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.KNOWLEDGE] = new ResourceType({
+  name: RTY.KNOWLEDGE,
+  category: RCA.ETHERIAL,
+  tags: [RTA.MIND],
   value: 1,
   icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_SKY] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_SKY,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_SKY] = new ResourceType({
+  name: RTY.NOTES_SKY,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_SKY})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_STAR] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_STAR,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_STAR] = new ResourceType({
+  name: RTY.NOTES_STAR,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_STAR})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_WATER] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_WATER,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_WATER] = new ResourceType({
+  name: RTY.NOTES_WATER,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_WATER})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_EARTH] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_EARTH,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_EARTH] = new ResourceType({
+  name: RTY.NOTES_EARTH,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_EARTH})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_HEAT] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_HEAT,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_HEAT] = new ResourceType({
+  name: RTY.NOTES_HEAT,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_HEAT})
 });
 
-resourceTypes[RESOURCE_TYPES.NOTES_CULTIVATION] = new ResourceType({
-  name: RESOURCE_TYPES.NOTES_CULTIVATION,
-  category: RESOURCE_CATEGORIES.FIELD_NOTES,
-  tags: [RESOURCE_TAGS.MIND],
+resourceTypes[RTY.NOTES_CULTIVATION] = new ResourceType({
+  name: RTY.NOTES_CULTIVATION,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
   value: 10000,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_CULTIVATION})
 });
 
-resourceTypes[RESOURCE_TYPES.WATER] = new ResourceType({
-  name: RESOURCE_TYPES.WATER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.LIQUID, RESOURCE_TAGS.DRINK, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.WATER] = new ResourceType({
+  name: RTY.WATER,
+  category: RCA.MATERIAL,
+  tags: [RTA.DRINK, RTA.INGREDIENT],
   value: 5,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
     shadow: '#2887c3', secondaryColor: '#aaebf0'})
 });
 
-resourceTypes[RESOURCE_TYPES.LENTILS] = new ResourceType({
-  name: RESOURCE_TYPES.LENTILS,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FOOD, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.LENTILS] = new ResourceType({
+  name: RTY.LENTILS,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
   value: 10,
   icon: new Icon({provider: 'svg', name: SVGS.LENTILS})
 });
 
-resourceTypes[RESOURCE_TYPES.SEEDS] = new ResourceType({
-  name: RESOURCE_TYPES.SEEDS,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.SEEDS] = new ResourceType({
+  name: RTY.SEEDS,
+  category: RCA.MATERIAL,
+  tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS})
 });
 
-resourceTypes[RESOURCE_TYPES.REEDS] = new ResourceType({
-  name: RESOURCE_TYPES.REEDS,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.FUEL],
+resourceTypes[RTY.REEDS] = new ResourceType({
+  name: RTY.REEDS,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.CONSTRUCTION, RTA.FUEL],
   value: 8,
   icon: new Icon({provider: 'svg', name: SVGS.REEDS})
 });
 
-resourceTypes[RESOURCE_TYPES.GRAIN] = new ResourceType({
-  name: RESOURCE_TYPES.GRAIN,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.GRAIN] = new ResourceType({
+  name: RTY.GRAIN,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT],
   value: 15,
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN})
 });
 
-resourceTypes[RESOURCE_TYPES.FLOUR] = new ResourceType({
-  name: RESOURCE_TYPES.FLOUR,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.FLOUR] = new ResourceType({
+  name: RTY.FLOUR,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER, RTA.INGREDIENT],
   value: 25,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
-resourceTypes[RESOURCE_TYPES.OLIVES] = new ResourceType({
-  name: RESOURCE_TYPES.OLIVES,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT],
+resourceTypes[RTY.OLIVES] = new ResourceType({
+  name: RTY.OLIVES,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP],
   value: 25,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVES})
 });
 
-resourceTypes[RESOURCE_TYPES.QUAIL] = new ResourceType({
-  name: RESOURCE_TYPES.QUAIL,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.QUAIL] = new ResourceType({
+  name: RTY.QUAIL,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
 
-resourceTypes[RESOURCE_TYPES.EGGS] = new ResourceType({
-  name: RESOURCE_TYPES.EGGS,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.EGGS] = new ResourceType({
+  name: RTY.EGGS,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.EGGS})
 });
 
-resourceTypes[RESOURCE_TYPES.FERTILIZER] = new ResourceType({
-  name: RESOURCE_TYPES.FERTILIZER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+resourceTypes[RTY.FERTILIZER] = new ResourceType({
+  name: RTY.FERTILIZER,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL],
   value: 10,
   icon: new Icon({provider: 'svg', name: SVGS.FERTILIZER})
 });
 
-resourceTypes[RESOURCE_TYPES.OXEN] = new ResourceType({
-  name: RESOURCE_TYPES.OXEN,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.OXEN] = new ResourceType({
+  name: RTY.OXEN,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 400,
   icon: new Icon({provider: 'svg', name: SVGS.OXEN})
 });
 
-resourceTypes[RESOURCE_TYPES.MILK] = new ResourceType({
-  name: RESOURCE_TYPES.MILK,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT, RESOURCE_TAGS.INGREDIENT],
+resourceTypes[RTY.MILK] = new ResourceType({
+  name: RTY.MILK,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 100,
   icon: new Icon({provider: 'svg', name: SVGS.MILK})
 });
 
-resourceTypes[RESOURCE_TYPES.SILKWORM_COCOON] = new ResourceType({
-  name: RESOURCE_TYPES.SILKWORM_COCOON,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.ANIMAL_PRODUCT],
+resourceTypes[RTY.SILKWORM_COCOON] = new ResourceType({
+  name: RTY.SILKWORM_COCOON,
+  category: RCA.MATERIAL,
+  tags: [RTA.ANIMAL],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.SILKWORM_COCOON})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_OAK] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_OAK,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BITTER],
+resourceTypes[RTY.WOOD_OAK] = new ResourceType({
+  name: RTY.WOOD_OAK,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.BITTER],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#9b6e42',
     shadow: '#825a3a', secondaryColor: '#f3d488', secondaryShadow: '#daae90'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_ROWAN] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_ROWAN,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.HERBAL],
+resourceTypes[RTY.WOOD_ROWAN] = new ResourceType({
+  name: RTY.WOOD_ROWAN,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.HERBAL],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#95a53c',
     shadow: '#7c822b', secondaryColor: '#a0775b', secondaryShadow: '#5f4c42'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_WALNUT] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_WALNUT,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SOUR],
+resourceTypes[RTY.WOOD_WALNUT] = new ResourceType({
+  name: RTY.WOOD_WALNUT,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SOUR],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#927150',
     shadow: '#c1a086', secondaryColor: '#3c2613', secondaryShadow: '#a7897a'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_ALDER] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_ALDER,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SPICY],
+resourceTypes[RTY.WOOD_ALDER] = new ResourceType({
+  name: RTY.WOOD_ALDER,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SPICY],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#a5104e',
     shadow: '#800437', secondaryColor: '#d85454', secondaryShadow: '#c13636'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_MAPLE] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_MAPLE,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SWEET],
+resourceTypes[RTY.WOOD_MAPLE] = new ResourceType({
+  name: RTY.WOOD_MAPLE,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SWEET],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#bf7229',
     shadow: '#ad6043', secondaryColor: '#ffb581', secondaryShadow: '#de805c'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_WILLOW] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_WILLOW,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.BRACKISH],
+resourceTypes[RTY.WOOD_WILLOW] = new ResourceType({
+  name: RTY.WOOD_WILLOW,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.BRACKISH],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#e87b7b',
     shadow: '#d66464', secondaryColor: '#ffb7b7', secondaryShadow: '#ff8e8e'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_ASH] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_ASH,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.SAVORY],
+resourceTypes[RTY.WOOD_ASH] = new ResourceType({
+  name: RTY.WOOD_ASH,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SAVORY],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#daa86b',
     shadow: '#865e2e', secondaryColor: '#ffcd8f', secondaryShadow: '#b58e5f'})
 });
 
-resourceTypes[RESOURCE_TYPES.WOOD_SPRUCE] = new ResourceType({
-  name: RESOURCE_TYPES.WOOD_SPRUCE,
-  subcategory: RESOURCE_SUBCATEGORIES.WOOD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.CONSTRUCTION, RESOURCE_TAGS.COOLING],
+resourceTypes[RTY.WOOD_SPRUCE] = new ResourceType({
+  name: RTY.WOOD_SPRUCE,
+  subcategory: RSC.WOOD,
+  category: RCA.MATERIAL,
+  tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.COOLING],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#4a2c00',
     shadow: '#271700', secondaryColor: '#905600', secondaryShadow: '#653c00'})
 });
 
-resourceTypes[RESOURCE_TYPES.CLAY_RED] = new ResourceType({
-  name: RESOURCE_TYPES.CLAY_RED,
-  subcategory: RESOURCE_SUBCATEGORIES.CLAY,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.CLAY_RED] = new ResourceType({
+  name: RTY.CLAY_RED,
+  subcategory: RSC.CLAY,
+  category: RCA.MATERIAL,
+  tags: [RTA.EARTH],
   value: 15,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'})
 });
 
-resourceTypes[RESOURCE_TYPES.BRICKS_RED] = new ResourceType({
-  name: RESOURCE_TYPES.BRICKS_RED,
-  subcategory: RESOURCE_SUBCATEGORIES.BRICK,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.CONSTRUCTION],
+resourceTypes[RTY.BRICKS_RED] = new ResourceType({
+  name: RTY.BRICKS_RED,
+  subcategory: RSC.BRICK,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#a91f1f',
     shadow: '#6f1b1b', secondaryColor: '#de6363'})
 });
 
-resourceTypes[RESOURCE_TYPES.THATCH] = new ResourceType({
-  name: RESOURCE_TYPES.THATCH,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.CONSTRUCTION],
+resourceTypes[RTY.THATCH] = new ResourceType({
+  name: RTY.THATCH,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.THATCH})
 });
 
-resourceTypes[RESOURCE_TYPES.SAND_YELLOW] = new ResourceType({
-  name: RESOURCE_TYPES.SAND_YELLOW,
-  subcategory: RESOURCE_SUBCATEGORIES.SAND,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.SAND_YELLOW] = new ResourceType({
+  name: RTY.SAND_YELLOW,
+  subcategory: RSC.SAND,
+  category: RCA.MATERIAL,
+  tags: [RTA.EARTH],
   value: 3,
   icon: new Icon({provider: 'svg', name: SVGS.SAND})
 });
 
-resourceTypes[RESOURCE_TYPES.CHARCOAL] = new ResourceType({
-  name: RESOURCE_TYPES.CHARCOAL,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT, RESOURCE_TAGS.FUEL],
+resourceTypes[RTY.CHARCOAL] = new ResourceType({
+  name: RTY.CHARCOAL,
+  category: RCA.MATERIAL,
+  tags: [RTA.SMELTED, RTA.FUEL],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.CHARCOAL})
 });
 
-resourceTypes[RESOURCE_TYPES.CARBON] = new ResourceType({
-  name: RESOURCE_TYPES.CARBON,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.PLANT],
+resourceTypes[RTY.CARBON] = new ResourceType({
+  name: RTY.CARBON,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.CARBON})
 });
 
-resourceTypes[RESOURCE_TYPES.RUST_ORE] = new ResourceType({
-  name: RESOURCE_TYPES.RUST_ORE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.RUST_ORE] = new ResourceType({
+  name: RTY.RUST_ORE,
+  category: RCA.MATERIAL,
+  tags: [RTA.TRADE_GOOD],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#880000',
     shadow: '#b33c3c', secondaryColor: '#2b1010', secondaryShadow: '#564446'})
 });
 
-resourceTypes[RESOURCE_TYPES.IRON_POWDER] = new ResourceType({
-  name: RESOURCE_TYPES.IRON_POWDER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.IRON_POWDER] = new ResourceType({
+  name: RTY.IRON_POWDER,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 350,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#4d4d4d',
     shadow: '#333', secondaryColor: '#666'})
 });
 
-resourceTypes[RESOURCE_TYPES.CRUDE_IRON] = new ResourceType({
-  name: RESOURCE_TYPES.CRUDE_IRON,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.CRUDE_IRON] = new ResourceType({
+  name: RTY.CRUDE_IRON,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED],
   value: 400,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#4d4d4d',
     shadow: '#333', secondaryColor: '#666'})
 });
 
-resourceTypes[RESOURCE_TYPES.GREENISH_ORE] = new ResourceType({
-  name: RESOURCE_TYPES.GREENISH_ORE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.GREENISH_ORE] = new ResourceType({
+  name: RTY.GREENISH_ORE,
+  category: RCA.MATERIAL,
+  tags: [RTA.TRADE_GOOD],
   value: 600,
   icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#227b67',
     shadow: '#3f948a', secondaryColor: '#ad5f27', secondaryShadow: '#b5795b'})
 });
 
-resourceTypes[RESOURCE_TYPES.COPPER_POWDER] = new ResourceType({
-  name: RESOURCE_TYPES.COPPER_POWDER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.COPPER_POWDER] = new ResourceType({
+  name: RTY.COPPER_POWDER,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 1100,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ff7f22',
     shadow: '#d66224', secondaryColor: '#ffa575'})
 });
 
-resourceTypes[RESOURCE_TYPES.DUSTY_ORE] = new ResourceType({
-  name: RESOURCE_TYPES.DUSTY_ORE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.DUSTY_ORE] = new ResourceType({
+  name: RTY.DUSTY_ORE,
+  category: RCA.MATERIAL,
+  tags: [RTA.TRADE_GOOD],
   value: 400,
   icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#61676d',
     shadow: '#4b4b65', secondaryColor: '#758da2', secondaryShadow: '#94a2bd'})
 });
 
-resourceTypes[RESOURCE_TYPES.TIN_POWDER] = new ResourceType({
-  name: RESOURCE_TYPES.TIN_POWDER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.TIN_POWDER] = new ResourceType({
+  name: RTY.TIN_POWDER,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 650,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#94a2bd',
     shadow: '#758da2', secondaryColor: '#b9c0ef'})
 });
 
-resourceTypes[RESOURCE_TYPES.BRONZE] = new ResourceType({
-  name: RESOURCE_TYPES.BRONZE,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.BRONZE] = new ResourceType({
+  name: RTY.BRONZE,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED],
   value: 800,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#ce6112',
     shadow: '#a94e23', secondaryColor: '#d87444'})
 });
 
-resourceTypes[RESOURCE_TYPES.PALE_ORE] = new ResourceType({
-  name: RESOURCE_TYPES.PALE_ORE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.PALE_ORE] = new ResourceType({
+  name: RTY.PALE_ORE,
+  category: RCA.MATERIAL,
+  tags: [RTA.TRADE_GOOD],
   value: 350,
   icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#9f9ab5',
     shadow: '#797388', secondaryColor: '#cfcfe2', secondaryShadow: '#f3f3f3'})
 });
 
-resourceTypes[RESOURCE_TYPES.ZINC_POWDER] = new ResourceType({
-  name: RESOURCE_TYPES.ZINC_POWDER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.ZINC_POWDER] = new ResourceType({
+  name: RTY.ZINC_POWDER,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 620,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ebe9f3',
     shadow: '#cfcfe2', secondaryColor: '#fff'})
 });
 
-resourceTypes[RESOURCE_TYPES.SULFUR] = new ResourceType({
-  name: RESOURCE_TYPES.SULFUR,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.SULFUR] = new ResourceType({
+  name: RTY.SULFUR,
+  category: RCA.MATERIAL,
+  tags: [RTA.POWDER],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#e8f900',
     shadow: '#abb500', secondaryColor: '#faffa1'})
 });
 
-resourceTypes[RESOURCE_TYPES.BRASS] = new ResourceType({
-  name: RESOURCE_TYPES.BRASS,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.BRASS] = new ResourceType({
+  name: RTY.BRASS,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED],
   value: 740,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#ff9825',
     shadow: '#e06900', secondaryColor: '#ffbc81'})
 });
 
-resourceTypes[RESOURCE_TYPES.STEEL] = new ResourceType({
-  name: RESOURCE_TYPES.STEEL,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.STEEL] = new ResourceType({
+  name: RTY.STEEL,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED],
   value: 2000,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#8ea2d8',
     shadow: '#444b6b', secondaryColor: '#b1b9e4'})
 });
 
-resourceTypes[RESOURCE_TYPES.JADE] = new ResourceType({
-  name: RESOURCE_TYPES.JADE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS],
+resourceTypes[RTY.JADE] = new ResourceType({
+  name: RTY.JADE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS],
   value: 1000,
   icon: new Icon({provider: 'svg', name: SVGS.JADE})
 });
 
-resourceTypes[RESOURCE_TYPES.AMETHYST] = new ResourceType({
-  name: RESOURCE_TYPES.AMETHYST,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.COOLING],
+resourceTypes[RTY.AMETHYST] = new ResourceType({
+  name: RTY.AMETHYST,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.COOLING],
   value: 2000,
   icon: new Icon({provider: 'svg', name: SVGS.AMETHYST})
 });
 
-resourceTypes[RESOURCE_TYPES.TOPAZ] = new ResourceType({
-  name: RESOURCE_TYPES.TOPAZ,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SAVORY],
+resourceTypes[RTY.TOPAZ] = new ResourceType({
+  name: RTY.TOPAZ,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SAVORY],
   value: 3000,
   icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
 });
 
-resourceTypes[RESOURCE_TYPES.JASPER] = new ResourceType({
-  name: RESOURCE_TYPES.JASPER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SOUR],
+resourceTypes[RTY.JASPER] = new ResourceType({
+  name: RTY.JASPER,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SOUR],
   value: 5000,
   icon: new Icon({provider: 'svg', name: SVGS.JASPER})
 });
 
-resourceTypes[RESOURCE_TYPES.ONYX] = new ResourceType({
-  name: RESOURCE_TYPES.ONYX,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.BITTER],
+resourceTypes[RTY.ONYX] = new ResourceType({
+  name: RTY.ONYX,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BITTER],
   value: 8000,
   icon: new Icon({provider: 'svg', name: SVGS.ONYX})
 });
 
-resourceTypes[RESOURCE_TYPES.RUBY] = new ResourceType({
-  name: RESOURCE_TYPES.RUBY,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SPICY],
+resourceTypes[RTY.RUBY] = new ResourceType({
+  name: RTY.RUBY,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SPICY],
   value: 13000,
   icon: new Icon({provider: 'svg', name: SVGS.RUBY})
 });
 
-resourceTypes[RESOURCE_TYPES.SAPPHIRE] = new ResourceType({
-  name: RESOURCE_TYPES.SAPPHIRE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.BRACKISH],
+resourceTypes[RTY.SAPPHIRE] = new ResourceType({
+  name: RTY.SAPPHIRE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BRACKISH],
   value: 21000,
   icon: new Icon({provider: 'svg', name: SVGS.SAPPHIRE})
 });
 
-resourceTypes[RESOURCE_TYPES.EMERALD] = new ResourceType({
-  name: RESOURCE_TYPES.EMERALD,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.HERBAL],
+resourceTypes[RTY.EMERALD] = new ResourceType({
+  name: RTY.EMERALD,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.HERBAL],
   value: 34000,
   icon: new Icon({provider: 'svg', name: SVGS.EMERALD})
 });
 
-resourceTypes[RESOURCE_TYPES.DIAMOND] = new ResourceType({
-  name: RESOURCE_TYPES.DIAMOND,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  subcategory: RESOURCE_SUBCATEGORIES.GEM,
-  tags: [RESOURCE_TAGS.PRECIOUS, RESOURCE_TAGS.SWEET],
+resourceTypes[RTY.DIAMOND] = new ResourceType({
+  name: RTY.DIAMOND,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
   value: 55000,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
 });
 
-resourceTypes[RESOURCE_TYPES.SALT] = new ResourceType({
-  name: RESOURCE_TYPES.SALT,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.BRACKISH, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.SALT] = new ResourceType({
+  name: RTY.SALT,
+  category: RCA.MATERIAL,
+  tags: [RTA.TRADE_GOOD, RTA.BRACKISH, RTA.SPICE],
   value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.SALT}),
 });
 
-resourceTypes[RESOURCE_TYPES.CINNAMON] = new ResourceType({
-  name: RESOURCE_TYPES.CINNAMON,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.SAVORY, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.CINNAMON] = new ResourceType({
+  name: RTY.CINNAMON,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.SAVORY, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CINNAMON})
 });
 
-resourceTypes[RESOURCE_TYPES.CAROB] = new ResourceType({
-  name: RESOURCE_TYPES.CAROB,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.SWEET, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.CAROB] = new ResourceType({
+  name: RTY.CAROB,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CAROB})
 });
 
-resourceTypes[RESOURCE_TYPES.MINT] = new ResourceType({
-  name: RESOURCE_TYPES.MINT,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.COOLING, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.MINT] = new ResourceType({
+  name: RTY.MINT,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.COOLING, RTA.SPICE],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.MINT})
 });
 
-resourceTypes[RESOURCE_TYPES.PEPPERCORN] = new ResourceType({
-  name: RESOURCE_TYPES.PEPPERCORN,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.SPICY, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.PEPPERCORN] = new ResourceType({
+  name: RTY.PEPPERCORN,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.SPICY, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.PEPPERCORN})
 });
 
-resourceTypes[RESOURCE_TYPES.CORIANDER] = new ResourceType({
-  name: RESOURCE_TYPES.CORIANDER,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.HERBAL, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.CORIANDER] = new ResourceType({
+  name: RTY.CORIANDER,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.HERBAL, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CORIANDER})
 });
 
-resourceTypes[RESOURCE_TYPES.ANISE] = new ResourceType({
-  name: RESOURCE_TYPES.ANISE,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.BITTER, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.ANISE] = new ResourceType({
+  name: RTY.ANISE,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.BITTER, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.ANISE})
 });
 
-resourceTypes[RESOURCE_TYPES.SORREL] = new ResourceType({
-  name: RESOURCE_TYPES.SORREL,
-  category: RESOURCE_CATEGORIES.MATERIAL,
-  tags: [RESOURCE_TAGS.SOUR, RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.SORREL] = new ResourceType({
+  name: RTY.SORREL,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.SOUR, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.SORREL}),
 });
 
-resourceTypes[RESOURCE_TYPES.GLASS] = new ResourceType({
-  name: RESOURCE_TYPES.GLASS,
-  subcategory: RESOURCE_SUBCATEGORIES.GLASS,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.CONSTRUCTION],
+resourceTypes[RTY.GLASS] = new ResourceType({
+  name: RTY.GLASS,
+  subcategory: RSC.GLASS,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED, RTA.CONSTRUCTION],
   value: 120,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
 });
 
-resourceTypes[RESOURCE_TYPES.OLIVE_OIL] = new ResourceType({
-  name: RESOURCE_TYPES.OLIVE_OIL,
-  subcategory: RESOURCE_SUBCATEGORIES.OIL,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.SPICE],
+resourceTypes[RTY.OLIVE_OIL] = new ResourceType({
+  name: RTY.OLIVE_OIL,
+  subcategory: RSC.OIL,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.PRESSED, RTA.SPICE],
   value: 250,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
 });
 
-resourceTypes[RESOURCE_TYPES.PULP] = new ResourceType({
-  name: RESOURCE_TYPES.PULP,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.PULP] = new ResourceType({
+  name: RTY.PULP,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.PRESSED],
   value: 50,
   icon: new Icon({provider: 'svg', name: SVGS.PULP})
 });
 
-resourceTypes[RESOURCE_TYPES.PAPYRUS] = new ResourceType({
-  name: RESOURCE_TYPES.PAPYRUS,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.PAPYRUS] = new ResourceType({
+  name: RTY.PAPYRUS,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.DRIED],
   value: 150,
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})
 });
 
-resourceTypes[RESOURCE_TYPES.INK_FERROUS] = new ResourceType({
-  name: RESOURCE_TYPES.INK_FERROUS,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.INK_FERROUS] = new ResourceType({
+  name: RTY.INK_FERROUS,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SYNTHESIZED],
   value: 300,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
     shadow: '#000', secondaryColor: '#a2a2a2'})
 });
 
-resourceTypes[RESOURCE_TYPES.LINEN] = new ResourceType({
-  name: RESOURCE_TYPES.LINEN,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+resourceTypes[RTY.LINEN] = new ResourceType({
+  name: RTY.LINEN,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.TEXTILE],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
-resourceTypes[RESOURCE_TYPES.SILK] = new ResourceType({
-  name: RESOURCE_TYPES.SILK,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+resourceTypes[RTY.SILK] = new ResourceType({
+  name: RTY.SILK,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.TEXTILE],
   value: 2000,
   icon: new Icon({provider: 'svg', name: SVGS.SILK})
 });
 
-resourceTypes[RESOURCE_TYPES.ABRASIVE] = new ResourceType({
-  name: RESOURCE_TYPES.ABRASIVE,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [RESOURCE_TAGS.EARTH],
+resourceTypes[RTY.ABRASIVE] = new ResourceType({
+  name: RTY.ABRASIVE,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.POWDER],
   value: 5,
   icon: new Icon({provider: 'svg', name: SVGS.ABRASIVE})
 });
 
-resourceTypes[RESOURCE_TYPES.BEADS] = new ResourceType({
-  name: RESOURCE_TYPES.BEADS,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+resourceTypes[RTY.BEADS] = new ResourceType({
+  name: RTY.BEADS,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.GLASS],
   value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.BEADS})
 });
 
-resourceTypes[RESOURCE_TYPES.GLASSWARE] = new ResourceType({
-  name: RESOURCE_TYPES.GLASSWARE,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+resourceTypes[RTY.GLASSWARE] = new ResourceType({
+  name: RTY.GLASSWARE,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.GLASS],
   value: 800,
   icon: new Icon({provider: 'svg', name: SVGS.GLASSWARE})
 });
 
-resourceTypes[RESOURCE_TYPES.LENSES] = new ResourceType({
-  name: RESOURCE_TYPES.LENSES,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [],
+resourceTypes[RTY.LENSES] = new ResourceType({
+  name: RTY.LENSES,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.GLASS],
   value: 1800,
   icon: new Icon({provider: 'svg', name: SVGS.LENSES})
 });
 
-resourceTypes[RESOURCE_TYPES.ACID] = new ResourceType({
-  name: RESOURCE_TYPES.ACID,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.ACID] = new ResourceType({
+  name: RTY.ACID,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SYNTHESIZED],
   value: 160,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#dbea00',
     shadow: '#c6d400', secondaryColor: '#f8ff9c'})
 });
 
-resourceTypes[RESOURCE_TYPES.GLAZE_TIN] = new ResourceType({
-  name: RESOURCE_TYPES.GLAZE_TIN,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.GLAZE_TIN] = new ResourceType({
+  name: RTY.GLAZE_TIN,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SYNTHESIZED],
   value: 800,
   icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#94a2bd',
     shadow: '#758da2'})
 });
 
-resourceTypes[RESOURCE_TYPES.GLAZE_ASH] = new ResourceType({
-  name: RESOURCE_TYPES.GLAZE_ASH,
-  category: RESOURCE_CATEGORIES.MATERIAL_REFINED,
-  tags: [],
+resourceTypes[RTY.GLAZE_ASH] = new ResourceType({
+  name: RTY.GLAZE_ASH,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SYNTHESIZED],
   value: 240,
   icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#676767',
     shadow: '#1d1d1d'})
 });
 
-resourceTypes[RESOURCE_TYPES.TERRACOTTA] = new ResourceType({
-  name: RESOURCE_TYPES.TERRACOTTA,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.POTTERY],
+resourceTypes[RTY.TERRACOTTA] = new ResourceType({
+  name: RTY.TERRACOTTA,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.CERAMIC],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.TERRACOTTA})
 });
 
-resourceTypes[RESOURCE_TYPES.FAIENCE] = new ResourceType({
-  name: RESOURCE_TYPES.FAIENCE,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.POTTERY],
+resourceTypes[RTY.FAIENCE] = new ResourceType({
+  name: RTY.FAIENCE,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.CERAMIC],
   value: 1200,
   icon: new Icon({provider: 'svg', name: SVGS.FAIENCE})
 });
 
-resourceTypes[RESOURCE_TYPES.ASHWARE] = new ResourceType({
-  name: RESOURCE_TYPES.ASHWARE,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.POTTERY],
+resourceTypes[RTY.ASHWARE] = new ResourceType({
+  name: RTY.ASHWARE,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.CERAMIC],
   value: 480,
   icon: new Icon({provider: 'svg', name: SVGS.ASHWARE})
 });
 
-resourceTypes[RESOURCE_TYPES.SOUP] = new ResourceType({
-  name: RESOURCE_TYPES.SOUP,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.SOUP] = new ResourceType({
+  name: RTY.SOUP,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.SOUP, color: '#F47400',
     shadow: '#f25600'})
 });
 
-resourceTypes[RESOURCE_TYPES.BREAD] = new ResourceType({
-  name: RESOURCE_TYPES.BREAD,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.BREAD] = new ResourceType({
+  name: RTY.BREAD,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.BREAD})
 });
 
-resourceTypes[RESOURCE_TYPES.OMELET] = new ResourceType({
-  name: RESOURCE_TYPES.OMELET,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.OMELET] = new ResourceType({
+  name: RTY.OMELET,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.OMELET, color: '#18c08b',
     shadow: '#0caf7b'})
 });
 
-resourceTypes[RESOURCE_TYPES.STEW] = new ResourceType({
-  name: RESOURCE_TYPES.STEW,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.STEW] = new ResourceType({
+  name: RTY.STEW,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.STEW, color: '#fa690e',
     shadow: '#f94c10'})
 });
 
-resourceTypes[RESOURCE_TYPES.PIE] = new ResourceType({
-  name: RESOURCE_TYPES.PIE,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.PIE] = new ResourceType({
+  name: RTY.PIE,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.PIE, color: '#ed5565ff'})
 });
 
-resourceTypes[RESOURCE_TYPES.CAKE] = new ResourceType({
-  name: RESOURCE_TYPES.CAKE,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.CAKE] = new ResourceType({
+  name: RTY.CAKE,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#fa690e',
     shadow: '#f94c10'})
 });
 
-resourceTypes[RESOURCE_TYPES.MISTAKE] = new ResourceType({
-  name: RESOURCE_TYPES.MISTAKE,
-  category: RESOURCE_CATEGORIES.DISH,
-  tags: [RESOURCE_TAGS.FOOD],
+resourceTypes[RTY.MISTAKE] = new ResourceType({
+  name: RTY.MISTAKE,
+  category: RCA.DISH,
+  tags: [RTA.FOOD],
   value: 1,
   icon: new Icon({provider: 'svg', name: SVGS.MISTAKE})
 });
 
-resourceTypes[RESOURCE_TYPES.BEER] = new ResourceType({
-  name: RESOURCE_TYPES.BEER,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.DRINK],
+resourceTypes[RTY.BEER] = new ResourceType({
+  name: RTY.BEER,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.DRINK],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.BEER})
 });
 
-resourceTypes[RESOURCE_TYPES.LIQUOR] = new ResourceType({
-  name: RESOURCE_TYPES.LIQUOR,
-  category: RESOURCE_CATEGORIES.ARTISAN_GOOD,
-  tags: [RESOURCE_TAGS.DRINK],
+resourceTypes[RTY.LIQUOR] = new ResourceType({
+  name: RTY.LIQUOR,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.DRINK],
   value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.LIQUOR})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
   icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
@@ -794,7 +798,7 @@ resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceTyp
 
 resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
@@ -802,7 +806,7 @@ resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType(
 
 resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
@@ -810,7 +814,7 @@ resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new Resourc
 
 resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.CLOTHING],
   value: 2000,
   icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
@@ -819,7 +823,7 @@ resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType(
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)')] =
 new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
@@ -828,7 +832,7 @@ new ResourceType({
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)')] =
 new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
@@ -837,7 +841,7 @@ new ResourceType({
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + ' (Unmarked)')] =
 new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + ' (Unmarked)'),
-  category: RESOURCE_CATEGORIES.EQUIPMENT,
+  category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
