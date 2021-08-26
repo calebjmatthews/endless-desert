@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg from 'react-native-svg';
 
-export default function OlivesSvgComponent(props: any) {
+export default function OliveSvgComponent(props: any) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 511.77 511.77">
      <path d="m386.744 132.365c-25.267 1.038-74.518-.807-120.492-24.826-63.889-33.379-96.039-96.095-97.377-98.748-.731-1.45-.718-3.176.034-4.615.753-1.441 2.162-2.437 3.77-2.665.64-.091 6.512-.898 16.183-1.295 25.267-1.038 74.519.807 120.491 24.825 63.904 33.386 96.039 96.094 97.376 98.748.731 1.451.719 3.178-.034 4.618-.752 1.439-2.161 2.435-3.769 2.663-.639.091-6.524.899-16.182 1.295z" fill="#008932"/>

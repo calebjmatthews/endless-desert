@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg from 'react-native-svg';
 
-export default function EggsSvgComponent(props: any) {
+export default function EggSvgComponent(props: any) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 510.62 510.62">
      <path d="m153.33 444.46c-84.546 0-153.33-70.406-153.33-156.95 0-42.614 16.342-96.366 42.648-140.28 31.317-52.277 70.624-81.067 110.68-81.067s79.365 28.79 110.68 81.067c26.306 43.914 42.647 97.666 42.647 140.28 1e-3 86.541-68.782 156.95-153.33 156.95z" fill="#f9a54c"/>

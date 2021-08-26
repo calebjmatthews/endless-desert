@@ -69,7 +69,7 @@ researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
   description: ('At least it starts as a casual inspection. '
     + 'The closer you look at these lentils, this single bushel of dried beans, '
     + 'the more you discover. Who knew?'),
-  cost: [{specificity: RS.EXACT, type: RTY.LENTILS, quantity: 1}]
+  cost: [{specificity: RS.EXACT, type: RTY.LENTIL, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
@@ -90,7 +90,7 @@ researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
   description: ('You\'ll need a fair number of lentils you can use as '
     + 'study subjects. And to grow other crops you\'ll need to know about '
     + 'watering patterns, light preference, growth times...'),
-  cost: [{specificity: RS.EXACT, type: RTY.LENTILS, quantity: 50}]
+  cost: [{specificity: RS.EXACT, type: RTY.LENTIL, quantity: 50}]
 });
 
 researchOptions[RESEARCH_OPTIONS.WATER_UNDER_THE_SUN] = new ResearchOption({
@@ -129,9 +129,9 @@ researchOptions[RESEARCH_OPTIONS.CROP_COMPARISON] = new ResearchOption({
   difficulty: 2,
   description: ('Different crops have different needs, and require different '
     + 'approaches. But you\'re continually increasing your material for comparison.'),
-  cost: [{specificity: RS.EXACT, type: RTY.LENTILS, quantity: 400},
+  cost: [{specificity: RS.EXACT, type: RTY.LENTIL, quantity: 400},
     {specificity: RS.EXACT, type: RTY.GRAIN, quantity: 400},
-    {specificity: RS.EXACT, type: RTY.OLIVES, quantity: 400}]
+    {specificity: RS.EXACT, type: RTY.OLIVE, quantity: 400}]
 });
 
 researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({

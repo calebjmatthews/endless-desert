@@ -33,7 +33,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     ]}),
     new DishType({name: 'Omelet', valueChange: 60, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGGS, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
     new DishType({name: 'Stew', valueChange: 80, contains: [
@@ -44,7 +44,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGGS, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST }
     ]})
   ];
 
@@ -63,7 +63,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   let adjective = 'Plain';
   // Main Tier Map: For determining the tier of the current main ingredient: lower tiers
   // are overwritten by higher tiers
-  const mtm : { [name : string] : number } = { [RTY.FLOUR] : 1, [RTY.LENTILS] : 3,
+  const mtm : { [name : string] : number } = { [RTY.FLOUR] : 1, [RTY.LENTIL] : 3,
     [RTY.SEEDS] : 3, [RTY.QUAIL] : 4 };
   let main = '';
   let mainColors: { foreground: string, background: string }|null = null;
@@ -198,7 +198,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   }
 
   function getMainName(typeName: string) {
-    const mainNameMap: { [typeName : string] : string } = { [RTY.LENTILS] : 'Lentil',
+    const mainNameMap: { [typeName : string] : string } = { [RTY.LENTIL] : 'Lentil',
       [RTY.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail' };
     return (mainNameMap[typeName] ? mainNameMap[typeName] : typeName);
   }

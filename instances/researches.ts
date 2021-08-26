@@ -112,7 +112,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   unlocks: ('Unlocks lentil fields.'),
   description: ('Lentils are the perfect crop for your early settlement. '
     + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
-  icon: new Icon({provider: 'svg', name: SVGS.LENTILS}),
+  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -128,7 +128,7 @@ researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   unlocks: ('Allows an upgrade to Lentil Fields.'),
   description: ('Some minor adaptations to your fields allow lentils to grow '
     + 'faster, and with even less water. The taste is unchanged.'),
-  icon: new Icon({provider: 'svg', name: SVGS.LENTILS}),
+  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -194,7 +194,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   description: ('You\'ve come across a variety of olive trees that love the '
     + 'sun and the dry heat. And they can be pressed into an oil that\'s absolutely '
     + 'delicious.'),
-  icon: new Icon({provider: 'svg', name: SVGS.OLIVES}),
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -211,7 +211,7 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
     + 'supervision.'),
-  icon: new Icon({provider: 'svg', name: SVGS.OLIVES}),
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -260,7 +260,7 @@ researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   unlocks: ('Unlocks Ox Pastures.'),
   description: ('River oxen are big, noisy beasts. Useful though: depending on '
     + 'method used they can give either milk or meat and hides.'),
-  icon: new Icon({provider: 'svg', name: SVGS.OXEN}),
+  icon: new Icon({provider: 'svg', name: SVGS.OX}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -729,7 +729,7 @@ researches[RESEARCHES.GLASS_SHAPING] = new Research({
   unlocks: ('Unlocks Glassworks.'),
   description: ('Glass can be blown, ground, or shaped into many more forms '
     + ' than the flat panes made in a furnace.'),
-  icon: new Icon({provider: 'svg', name: SVGS.LENSES}),
+  icon: new Icon({provider: 'svg', name: SVGS.LENS}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,

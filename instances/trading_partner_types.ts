@@ -41,10 +41,10 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 100}
+    {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100}
   ], [
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.LENTILS, weight: 100}
+    {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100}
   ]],
   initialTrust: 100,
   maxTrust: 1000,
@@ -246,7 +246,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SULFUR, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.OXEN, weight: 25}
+    {specificity: RSP.EXACT, type: RTY.OX, weight: 25}
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},

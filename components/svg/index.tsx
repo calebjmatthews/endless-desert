@@ -14,11 +14,11 @@ import SeedsSvgComponent from './resources/seeds';
 import ReedsSvgComponent from './resources/reeds';
 import GrainSvgComponent from './resources/grain';
 import FlourSvgComponent from './resources/flour';
-import OlivesSvgComponent from './resources/olives';
+import OliveSvgComponent from './resources/olive';
 import QuailSvgComponent from './resources/quail';
-import EggsSvgComponent from './resources/eggs';
+import EggSvgComponent from './resources/egg';
 import FertilizerSvgComponent from './resources/fertilizer';
-import OxenSvgComponent from './resources/oxen';
+import OxSvgComponent from './resources/ox';
 import MilkSvgComponent from './resources/milk';
 import SilkwormCocoonSvgComponent from './resources/silkworm_cocoon';
 import WoodSvgComponent from './resources/wood';
@@ -57,7 +57,7 @@ import SilkSvgComponent from './resources/silk';
 import AbrasiveSvgComponent from './resources/abrasive';
 import BeadsSvgComponent from './resources/beads';
 import GlasswareSvgComponent from './resources/glassware';
-import LensesSvgComponent from './resources/lenses';
+import LensSvgComponent from './resources/lens';
 import GlazeSvgComponent from './resources/glaze';
 import TerracottaSvgComponent from './resources/terracotta';
 import FaienceSvgComponent from './resources/faience';
@@ -144,7 +144,7 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <NotesHeatSvgComponent icon={props.icon} />;
     case SVGS.NOTES_CULTIVATION:
     return <NotesCultivationSvgComponent icon={props.icon} />;
-    case SVGS.LENTILS:
+    case SVGS.LENTIL:
     return <LentilSvgComponent icon={props.icon} />;
     case SVGS.DROP:
     return <DropSvgComponent icon={props.icon} />;
@@ -156,16 +156,16 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <GrainSvgComponent icon={props.icon} />;
     case SVGS.FLOUR:
     return <FlourSvgComponent icon={props.icon} />;
-    case SVGS.OLIVES:
-    return <OlivesSvgComponent icon={props.icon} />;
+    case SVGS.OLIVE:
+    return <OliveSvgComponent icon={props.icon} />;
     case SVGS.QUAIL:
     return <QuailSvgComponent icon={props.icon} />;
-    case SVGS.EGGS:
-    return <EggsSvgComponent icon={props.icon} />;
+    case SVGS.EGG:
+    return <EggSvgComponent icon={props.icon} />;
     case SVGS.FERTILIZER:
     return <FertilizerSvgComponent icon={props.icon} />;
-    case SVGS.OXEN:
-    return <OxenSvgComponent icon={props.icon} />;
+    case SVGS.OX:
+    return <OxSvgComponent icon={props.icon} />;
     case SVGS.MILK:
     return <MilkSvgComponent icon={props.icon} />;
     case SVGS.SILKWORM_COCOON:
@@ -242,8 +242,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BeadsSvgComponent icon={props.icon} />;
     case SVGS.GLASSWARE:
     return <GlasswareSvgComponent icon={props.icon} />;
-    case SVGS.LENSES:
-    return <LensesSvgComponent icon={props.icon} />;
+    case SVGS.LENS:
+    return <LensSvgComponent icon={props.icon} />;
     case SVGS.GLAZE:
     return <GlazeSvgComponent icon={props.icon} />;
     case SVGS.TERRACOTTA:

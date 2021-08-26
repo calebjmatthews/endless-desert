@@ -99,7 +99,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
     upgradesInto: BTY.LENTIL_FIELD,
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 1, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1, probability: 1}],
       consumes: null}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
@@ -258,7 +258,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}],
     upgradesInto: BTY.LENTIL_FIELD_HEARTY,
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 10, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
@@ -272,7 +272,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.LENTIL_FIELD}),
     cost: null,
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.LENTILS, quantity: 16, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 16, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
@@ -317,7 +317,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 300}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 4, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
@@ -337,7 +337,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.EGGS, quantity: 4, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
@@ -350,11 +350,11 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'Ox cover themselves in mud at the river\'s edge',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.OX_PASTURE}),
-    cost: [{specificity: RSP.EXACT, type: RTY.OXEN, quantity: 10},
+    cost: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 10},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 500}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OXEN, quantity: 1, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.OX, quantity: 1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
     new BuildingRecipe({index: 1, produces:
@@ -430,7 +430,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}), ],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -447,7 +447,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10}]}), ],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -844,7 +844,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.GLASSWARE, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 8}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.LENSES, quantity: 1, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.LENS, quantity: 1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10},
         {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 10}]}) ],
     givesNote: RTY.NOTES_HEAT,

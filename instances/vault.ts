@@ -21,7 +21,7 @@ vaultStarting.increaseResource(new Resource({
   quantity: 8
 }));
 vaultStarting.increaseResource(new Resource({
-  type: RESOURCE_TYPES.LENTILS,
+  type: RESOURCE_TYPES.LENTIL,
   quality: 0,
   quantity: 51
 }));

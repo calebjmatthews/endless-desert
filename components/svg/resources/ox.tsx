@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg from 'react-native-svg';
 
-export default function OxenSvgComponent(props: any) {
+export default function OxSvgComponent(props: any) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 512 512">
     <path d="m503.87 335.21c-2.27 0-4.532-0.948-6.143-2.806-1.341-1.552-32.746-38.54-15.167-83.96 16.619-42.948 3.198-68.067-6.278-79.222-11.127-13.087-25.968-18.313-34.23-16.552-4.373 0.913-8.698-1.885-9.627-6.278s1.889-8.702 6.278-9.627c15.651-3.31 36.198 5.73 49.96 21.933 11.825 13.905 28.714 44.814 9.056 95.611-14.087 36.405 12.024 67.147 12.294 67.452 2.936 3.389 2.571 8.524-0.817 11.464-1.54 1.331-3.437 1.985-5.326 1.985z" fill="#AF6E5A"/>

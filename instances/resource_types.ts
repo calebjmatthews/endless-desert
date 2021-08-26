@@ -79,12 +79,12 @@ resourceTypes[RTY.WATER] = new ResourceType({
     shadow: '#2887c3', secondaryColor: '#aaebf0'})
 });
 
-resourceTypes[RTY.LENTILS] = new ResourceType({
-  name: RTY.LENTILS,
+resourceTypes[RTY.LENTIL] = new ResourceType({
+  name: RTY.LENTIL,
   category: RCA.MATERIAL,
   tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
   value: 10,
-  icon: new Icon({provider: 'svg', name: SVGS.LENTILS})
+  icon: new Icon({provider: 'svg', name: SVGS.LENTIL})
 });
 
 resourceTypes[RTY.SEEDS] = new ResourceType({
@@ -119,12 +119,12 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
-resourceTypes[RTY.OLIVES] = new ResourceType({
-  name: RTY.OLIVES,
+resourceTypes[RTY.OLIVE] = new ResourceType({
+  name: RTY.OLIVE,
   category: RCA.MATERIAL,
   tags: [RTA.CROP],
   value: 60,
-  icon: new Icon({provider: 'svg', name: SVGS.OLIVES})
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE})
 });
 
 resourceTypes[RTY.QUAIL] = new ResourceType({
@@ -135,12 +135,12 @@ resourceTypes[RTY.QUAIL] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
 
-resourceTypes[RTY.EGGS] = new ResourceType({
-  name: RTY.EGGS,
+resourceTypes[RTY.EGG] = new ResourceType({
+  name: RTY.EGG,
   category: RCA.MATERIAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
-  icon: new Icon({provider: 'svg', name: SVGS.EGGS})
+  icon: new Icon({provider: 'svg', name: SVGS.EGG})
 });
 
 resourceTypes[RTY.FERTILIZER] = new ResourceType({
@@ -151,12 +151,12 @@ resourceTypes[RTY.FERTILIZER] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FERTILIZER})
 });
 
-resourceTypes[RTY.OXEN] = new ResourceType({
-  name: RTY.OXEN,
+resourceTypes[RTY.OX] = new ResourceType({
+  name: RTY.OX,
   category: RCA.MATERIAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 400,
-  icon: new Icon({provider: 'svg', name: SVGS.OXEN})
+  icon: new Icon({provider: 'svg', name: SVGS.OX})
 });
 
 resourceTypes[RTY.MILK] = new ResourceType({
@@ -653,12 +653,12 @@ resourceTypes[RTY.GLASSWARE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.GLASSWARE})
 });
 
-resourceTypes[RTY.LENSES] = new ResourceType({
-  name: RTY.LENSES,
+resourceTypes[RTY.LENS] = new ResourceType({
+  name: RTY.LENS,
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.GLASS],
   value: 1800,
-  icon: new Icon({provider: 'svg', name: SVGS.LENSES})
+  icon: new Icon({provider: 'svg', name: SVGS.LENS})
 });
 
 resourceTypes[RTY.ACID] = new ResourceType({

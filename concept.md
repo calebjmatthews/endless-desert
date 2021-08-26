@@ -7,7 +7,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Ideas:
   - Basic resources: water, reeds, clay, and sand.
   - Foods: Grain, lentils, figs, dates, goards, fish, bread, beer, onions, garlic, cheese, butter, spices (coriander, cinnamon, carob, garlic, chicory).
-  - Animals: Oxen, quail, fish, bees, scarabs (for dye), cats.
+  - Animals: Ox, quail, fish, bees, scarabs (for dye), cats.
   - Manufacturing: Press reeds into papyrus, roofing, or linen; smelt sand into glass lenses or bottles; form clay into bricks or jars.
   - Trading system with shifting prices to acquire iron, copper, various coins, ivory, wine, silk, wool, jade, tea, porcelain, honey, wax, and gunpowder.
   - Research system that uses lenses to break down any item into concepts, ties together concepts into a completed theory. Research categories: philosophy (general knowledge), biology (farming), zoology (ranching), anthropology (music, entertainment, culture), physics (crafting), astrology (new exploration areas), chemistry (crafting), exaltation (mysteriously enhancing humans), and mysticism (contact with beings from another plane).
@@ -127,12 +127,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Produce
     * Lentil: Nothing
     * Blueberry: Cooling
+    * Grape: Cooling
     * Tomato: Savory
+    * Squash: Savory
     * Lemon: Sour
+    * Kumquat: Sour
     * Spinach: Bitter
+    * Radish: Bitter
     * Onion: Spicy
+    * Chilli Pepper: Spicy
     * Potato: Brackish
+    * Lotus Root: Brackish
     * Fig: Sweet
+    * Date: Sweet
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -466,11 +473,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Repairing study and huts is too cheap
   [X] Repairing market should come before huts
   [X] Iron for grinding mill takes too long to acquire
-  [X] Olives should be +4/m
+  [X] Olive should be +4/m
   [X] Grain should be +20/m
   [X] Cooking should be +20/m
   [X] Leaders should begin with a tool, except for Da Nang
-  [ ] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
+  [X] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
