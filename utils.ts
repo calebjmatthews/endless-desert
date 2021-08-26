@@ -248,7 +248,14 @@ class Utils {
         let dPlace = 2;
         if (fNumber >= 100) { dPlace = 0; }
         else if (fNumber >= 10) { dPlace = 1; }
-        strNumber = fNumber.toFixed(dPlace) + exponents[power];
+        strNumber = fNumber.toFixed(dPlace);
+        if (strNumber.slice(-2) == '.0') {
+          strNumber = strNumber.slice(0, -2);
+        }
+        if (strNumber.slice(-3) == '.00') {
+          strNumber = strNumber.slice(0, -3);
+        }
+        strNumber += exponents[power];
       }
     }
     return strNumber;
