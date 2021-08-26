@@ -7,8 +7,8 @@ import { TRADING_PARTNERS } from '../enums/trading_partners';
 const TP = TRADING_PARTNERS;
 
 let tradingPartners: { [name: string] : TradingPartner } = {};
-const tradingPartnerTypeNames = [TP.FOXFIRE_ASCETICS, TP.KINGDOM_OF_TREFOIL,
-  TP.RED_CROW_TRADERS];
+const tradingPartnerTypeNames = [TP.FOXFIRE_ASCETICS, TP.TREFOIL_ISLANDS,
+  TP.RED_CROW_TRADERS, TP.TOURMALINE_JEWELERS, TP.SPRING_AUTUMN_KINGDOM];
 tradingPartnerTypeNames.forEach((typeName) => {
   tradingPartners[typeName] = new TradingPartner({
     name: typeName,
@@ -22,8 +22,8 @@ tradingPartnerVisits[TP.FOXFIRE_ASCETICS] = tradingPartnerTypes[TP.FOXFIRE_ASCET
   .createTradingPartnerVisit(tradingPartners[TP.FOXFIRE_ASCETICS]);
 
 let tpPending: TradingPartnerVisit[] = [];
-tpPending.push(tradingPartnerTypes[TP.KINGDOM_OF_TREFOIL]
-  .createTradingPartnerVisit(tradingPartners[TP.KINGDOM_OF_TREFOIL]));
+tpPending.push(tradingPartnerTypes[TP.TREFOIL_ISLANDS]
+  .createTradingPartnerVisit(tradingPartners[TP.TREFOIL_ISLANDS]));
 
 let tradingStatusStarting = new TradingStatus({ tradingPartners, tradingPartnerVisits,
   tpPending });

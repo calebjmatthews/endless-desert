@@ -9,7 +9,7 @@ timersStarting[('Trading' + 0)] = new Timer({
   endsAt: (new Date(Date.now()).valueOf() + 300000),
   progress: 0,
   remainingLabel: '1m',
-  tradingPartnerToArrive: TRADING_PARTNERS.KINGDOM_OF_TREFOIL,
+  tradingPartnerToArrive: TRADING_PARTNERS.TREFOIL_ISLANDS,
   messageToDisplay: 'A trader is waiting outside the gate.',
   iconToDisplay: {provider: 'FontAwesome5', name: 'question'}
 });

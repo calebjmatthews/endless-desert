@@ -120,6 +120,8 @@ import AuspiciousWaifSvgComponent from './leaders/auspicious_waif';
 import RedCrowTradersSvgComponent from './trading_partners/red_crow_traders';
 import FoxfireAsceticsSvgComponent from './trading_partners/foxfire_ascetics';
 import TrefoilKingdomSvgComponent from './trading_partners/trefoil_kingdom';
+import TourmalineJewelersSvgComponent from './trading_partners/tourmaline_jewelers';
+import SpringAutumnKingdomSvgComponent from './trading_partners/spring_autumn_kingdom';
 
 import HappinessSvgComponent from './ui/happiness';
 
@@ -362,6 +364,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FoxfireAsceticsSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_KINGDOM:
     return <TrefoilKingdomSvgComponent icon={props.icon} />;
+    case SVGS.TOURMALINE_JEWELERS:
+    return <TourmalineJewelersSvgComponent icon={props.icon} />;
+    case SVGS.SPRING_AUTUMN_KINGDOM:
+    return <SpringAutumnKingdomSvgComponent icon={props.icon} />;
 
     case SVGS.HAPPINESS:
     return <HappinessSvgComponent icon={props.icon} />;

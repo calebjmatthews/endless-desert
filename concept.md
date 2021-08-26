@@ -61,7 +61,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
   - Nearby kingdoms:
     - North: Relatively safe traveling before sea, where many travelers come from. Ruins of an Egypt-inspired kingdom obsessed with the afterlife, many of which disappeared in a single event.
-    - East: Salt flats? Large, extant China-inspired kingdom with heavy beaurocracy and centers of learning.
+    - East: Salt flats? Large, extant China-inspired kingdom with heavy bureaucracy and centers of learning.
     - South: River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
     - West: Mirages? Constant fires? Oceans made from glass? Hanging gardens?
   - Four gods:
@@ -132,7 +132,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Spinach: Bitter
     * Onion: Spicy
     * Potato: Brackish
-    * Apple: Sweet
+    * Fig: Sweet
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
