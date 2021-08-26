@@ -27,7 +27,7 @@ leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
   speechType: 'Calm',
   toolStarting: null,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
-  backStarting: null,
+  backStarting: EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK,
   icon: new Icon({provider: 'svg', name: SVGS.SHUDDERING_REFUGE})
 });
 
@@ -39,7 +39,7 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
     + 'no explanation as to why. But there are clues: a fierce glint '
     + 'in the eyes, and decidedly non-traditional views on alcohol consumption.'),
   speechType: 'Calm',
-  toolStarting: null,
+  toolStarting: EQUIPMENT_TYPES.WOODEN_POLE,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_HERETIC})
@@ -53,7 +53,7 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
     + 'distant lands for a reason you can\'t quite discern. '
     + '|name| told you the  "oats" aren\'t literal, so you know that much.'),
   speechType: 'Humorous',
-  toolStarting: null,
+  toolStarting: EQUIPMENT_TYPES.ROUGH_MATTOCK,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
@@ -66,7 +66,7 @@ leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
     + 'left the Red Crow Traders and joined you. Whatever the scars are from, '
     + 'one apparently only needs a single working eye to be intimidatingly well read.'),
   speechType: 'Rowdy',
-  toolStarting: null,
+  toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.SCARRED_SCHOLAR})

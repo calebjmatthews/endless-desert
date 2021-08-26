@@ -302,7 +302,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 10, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
@@ -317,7 +317,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 300}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 10, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.OLIVES, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,

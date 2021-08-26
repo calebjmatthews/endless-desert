@@ -84,12 +84,12 @@ tradingPartnerTypes[TRADING_PARTNERS.KINGDOM_OF_TREFOIL] = new TradingPartnerTyp
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.REEDS, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
-    {specificity: RSP.EXACT, type: RTY.REEDS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.THATCH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.FLOUR, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ]],
@@ -130,13 +130,14 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
       weight: 10}
   ]],
   receivesPool: [[
-    {specificity: RSP.CATEGORY, type: RCA.ARTISAN_GOOD, weight: 100},
-    {specificity: RSP.CATEGORY, type: RCA.MATERIAL_REFINED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
-    {specificity: RSP.CATEGORY, type: RCA.ARTISAN_GOOD, weight: 100},
-    {specificity: RSP.CATEGORY, type: RCA.MATERIAL_REFINED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]],

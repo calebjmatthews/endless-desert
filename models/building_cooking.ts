@@ -67,7 +67,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     [RTY.SEEDS] : 3, [RTY.QUAIL] : 4 };
   let main = '';
   let mainColors: { foreground: string, background: string }|null = null;
-  const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.LIQUID];
+  const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD];
   let tags: string[] = [RTA.FOOD];
 
   let dishTypeIndex = 0;

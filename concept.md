@@ -289,12 +289,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Greenhouse trader that receives glass, clay, and fertilizer in exchange for crops, seeds, spices, and tools
     - Astronomer trader that receives lenses, parchment, field notes, and star maps in exchange for metal ore, chemicals
   - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
-  - Early traders: receive thatch, olive oil, bricks, glass, payrus
+  - Early traders: receive thatch, olive oil, flour, bricks, glass, payrus
   - Middle traders: receive dishes, textiles, pottery, tools, field notes
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field), shovel (pit), weight (press), bellows (furnace), rake (drying yard), pan (kitchen), loom (textile), tongs (glassblower), hammer (workshop), needle (tailor), scissors (outfitter), clamp (fabricator)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), needle (tailor), scissors (outfitter), hammer (fabricator)
     * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in efficiency)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
@@ -463,21 +463,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     box-shadow: 0 0px 5px 3px #ffffff6b;
 
 ## Play test
-  - Repairing study and huts is too cheap
-  - Repairing market should come before huts
-  - Iron for grinding mill takes too long to acquire
-  - Olives should be +4/m
-  - Wheat should be +20/m
-  - Cooking should be +20/m
-  - Fortuity should grant ore, equipment, food
-  - Travel-ready food like salted meat, dried fruit, waybread
-  - Leaders should begin with a tool, except for Da Nang
-  - Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
-  - Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
-  - Consistent sorting in tabs/selection components
-  - Hide resources with zero quantity in selection components
-  - Show resource descriptive name, not id name in selection components
-  - Show detail modals when pressing on icon, e.g. on buildings
+  [X] Repairing study and huts is too cheap
+  [X] Repairing market should come before huts
+  [X] Iron for grinding mill takes too long to acquire
+  [X] Olives should be +4/m
+  [X] Grain should be +20/m
+  [X] Cooking should be +20/m
+  [X] Leaders should begin with a tool, except for Da Nang
+  [ ] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
+  [ ] Fortuity should grant ore, equipment, food
+  [ ] Travel-ready food like salted meat, dried fruit, waybread
+  [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
+  [ ] Consistent sorting in tabs/selection components
+  [ ] Hide resources with zero quantity in selection components
+  [ ] Show resource descriptive name, not id name in selection components
+  [ ] Show detail modals when pressing on icon, e.g. on buildings
 
 ## Commands
 ### Delete all records from all tables:

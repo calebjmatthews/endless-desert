@@ -107,15 +107,15 @@ resourceTypes[RTY.GRAIN] = new ResourceType({
   name: RTY.GRAIN,
   category: RCA.MATERIAL,
   tags: [RTA.CROP, RTA.INGREDIENT],
-  value: 15,
+  value: 12,
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN})
 });
 
 resourceTypes[RTY.FLOUR] = new ResourceType({
   name: RTY.FLOUR,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   tags: [RTA.POWDER, RTA.INGREDIENT],
-  value: 25,
+  value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
@@ -123,7 +123,7 @@ resourceTypes[RTY.OLIVES] = new ResourceType({
   name: RTY.OLIVES,
   category: RCA.MATERIAL,
   tags: [RTA.CROP],
-  value: 25,
+  value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVES})
 });
 
