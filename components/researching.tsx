@@ -15,6 +15,7 @@ import { completeResearch } from '../actions/research_status';
 import { unlockTab } from '../actions/account';
 
 import ResearchOption from '../models/research_option';
+import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import ResourceSubcategory from '../models/resource_subcategory';
@@ -162,8 +163,8 @@ export default function ResearchingComponent() {
 
     if (rTypePool.length == 1) {
       const qtSplit = rTypePool[0].split('|');
-      dispatch(consumeResources(vault, [{type: qtSplit[0],
-        quality: parseInt(qtSplit[1]), quantity: aCost.quantity}]));
+      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
       afterApplyCost(aCost, optionName);
     }
     else {

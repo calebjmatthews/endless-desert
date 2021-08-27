@@ -11,6 +11,7 @@ export enum BUILDING_TYPES {
   LENTIL_FIELD = "Lentil Field",
   LENTIL_FIELD_HEARTY = "Hearty Lentil Field",
   REED_DELTA = "Reed Delta",
+  REED_DELTA_BOUNTIFUL = "Bountiful Reed Delta",
   GRAIN_FIELD = "Grain Field",
   GRAIN_FIELD_SIMPLIFIED = "Simplified Grain Field",
   OLIVE_GROVE = "Olive Grove",

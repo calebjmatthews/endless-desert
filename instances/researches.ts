@@ -156,6 +156,24 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 
+researches[RESEARCHES.REED_CULTIVATION_BOUNTIFUL] = new Research({
+  name: RESEARCHES.REED_CULTIVATION_BOUNTIFUL,
+  unlocks: ('Unlocks Bountiful Reed Deltas.'),
+  description: ('You\'ve been diverting a signficant amount of water to keep '
+    + 'the banks of your reed deltas productive. However, you\'ve stumbled across '
+    + 'a new strain of reed grass that requires a litle more water but grows '
+    + 'explosively.'),
+  icon: new Icon({provider: 'svg', name: SVGS.REEDS}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.REED_CULTIVATION],
+  knowledgeReq: 350,
+  unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_BOUNTIFUL]
+});
+
 researches[RESEARCHES.GRAIN_FARMING] = new Research({
   name: RESEARCHES.GRAIN_FARMING,
   unlocks: ('Unlocks Grain Fields.'),
@@ -180,11 +198,11 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
-  difficulty: 2,
-  stepsNeeded: 3,
+  difficulty: 1,
+  stepsNeeded: 4,
   beginsCompleted: false,
-  prereq: [RESEARCHES.GRAIN_FARMING, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 2000,
+  prereq: [RESEARCHES.GRAIN_FARMING],
+  knowledgeReq: 400,
   unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
 });
 

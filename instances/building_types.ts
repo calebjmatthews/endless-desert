@@ -286,9 +286,26 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.REED_DELTA}),
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 40},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 40}],
+    upgradesInto: BTY.REED_DELTA_BOUNTIFUL,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 5}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
+  }),
+
+  [BTY.REED_DELTA]: new BuildingType({
+    name: BTY.REED_DELTA,
+    description: 'Reeds cluster along the muddy banks',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.REED_DELTA}),
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 22, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 6}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -301,12 +318,29 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.GRAIN_FIELD}),
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 800}],
+    upgradesInto: BTY.GRAIN_FIELD_SIMPLIFIED,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
+  }),
+
+  [BTY.GRAIN_FIELD_SIMPLIFIED]: new BuildingType({
+    name: BTY.GRAIN_FIELD_SIMPLIFIED,
+    description: 'If it\'s knee-cover by mid summer you know it\'s growing well',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.GRAIN_FIELD}),
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
   }),
 
   [BTY.OLIVE_GROVE]: new BuildingType({
@@ -316,12 +350,29 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GROVE}),
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 300}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 800}],
+    upgradesInto: BTY.OLIVE_GROVE_SIMPLIFIED,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
+  }),
+
+  [BTY.OLIVE_GROVE_SIMPLIFIED]: new BuildingType({
+    name: BTY.OLIVE_GROVE_SIMPLIFIED,
+    description: 'The lines of olive trees smell rich and sweet',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GROVE}),
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
   }),
 
   [BTY.QUAIL_PASTURE]: new BuildingType({

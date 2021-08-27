@@ -8,6 +8,7 @@ export enum RESEARCHES {
   LENTIL_FARMING = "Lentil Farming",
   LENTIL_FARMING_HEARTY = "Hearty Lentil Farming",
   REED_CULTIVATION = "Reed Cultivation",
+  REED_CULTIVATION_BOUNTIFUL = "Bountiful Reed Cultivation",
   GRAIN_FARMING = "Grain Farming",
   GRAIN_FARMING_SIMPLIFIED = "Simplified Grain Farming",
   OLIVE_FARMING = "Olive Farming",

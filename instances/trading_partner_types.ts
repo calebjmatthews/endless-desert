@@ -267,10 +267,10 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   maxTrust: 3000,
   getTier(trust) {
     if (trust < 1000) {
-      return { value: 0, toNext: (trust-100 / 1000) }
+      return { value: 0, toNext: ((trust-100) / 1000) }
     }
     if (trust < 2000) {
-      return { value: 1, toNext: (trust-1100 / 1000) }
+      return { value: 1, toNext: ((trust-1100) / 1000) }
     }
     return { value: 1, toNext: 1 };
   },
