@@ -478,8 +478,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Cooking should be +20/m
   [X] Leaders should begin with a tool, except for Da Nang
   [X] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
-  [ ] Multiple Crop types
-  [ ] Improved subcategories
+  [X] Multiple Crop types
+  [X] Improved subcategories
   [ ] Improvements for Grain, Olive, Reed buildings
   [ ] Paper from mill + press
   [ ] Clay should be +6/m

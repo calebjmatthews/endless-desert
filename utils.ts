@@ -554,7 +554,10 @@ class Utils {
       if (rsoa != rsob) {
         return rsoa - rsob;
       }
+      if (rta.value != rtb.value) { return rta.value - rtb.value; }
+      
       return (rta.name < rtb.name) ? -1 : 1;
+
     });
     return resourcesArray;
   }

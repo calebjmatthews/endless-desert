@@ -1,9 +1,19 @@
 export enum RESOURCE_SUBCATEGORIES {
+  CROP = "Crop",
+  SPICE = "Spice",
+  SEED = "Seed",
   WOOD = "Wood",
-  CLAY = "Clay",
-  BRICK = "Brick",
+  ANIMAL = "Animal",
   SAND = "Sand",
+  CLAY = "Clay",
+  ORE = "Ore",
+  GEM = "Gem",
+  BRICK = "Brick",
   OIL = "Oil",
+  METAL_POWDER = "Metal Powder",
+  METAL_INGOT = "Metal Ingot",
+  GLAZE = "Glaze",
   GLASS = "Glass",
-  GEM = "Gem"
+  CERAMIC = "Ceramic",
+  TEXTILE = "Textile"
 }
