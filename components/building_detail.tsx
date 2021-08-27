@@ -344,11 +344,12 @@ export default function BuildDetailComponent() {
     if (modalDisplayed == MODALS.BUILDING_DETAIL && buildingType.upgradesInto
       && buildingTypes[buildingType.upgradesInto]) {
       let upgType = buildingTypes[buildingType.upgradesInto];
-      if (upgType.upgradeDuration) {
+      if (buildingType.upgradeDuration) {
         dispatch(addTimer(new Timer({
           name: 'Build',
           startedAt: new Date(Date.now()).valueOf(),
-          endsAt: (new Date(Date.now()).valueOf() + upgType.upgradeDuration * 1000),
+          endsAt: (new Date(Date.now()).valueOf()
+            + buildingType.upgradeDuration * 1000),
           progress: 0,
           remainingLabel: '',
           buildingToUpgrade: building.id,
