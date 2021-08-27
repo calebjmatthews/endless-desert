@@ -473,7 +473,7 @@ function BuildingDescription(props: any) {
       <View>
         {problems.map((problem) => {
           return (
-            <View style={problemStyle}>
+            <View key={problem} style={problemStyle}>
             <IconComponent provider="FontAwesome5" name="exclamation-circle"
               color="#fff"  size={12} />
               <Text style={{fontSize: 12, color: '#ffffff'}}>

@@ -129,7 +129,7 @@ export default class Hourglass {
       let missingLeader = false;
       if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
         missingLeader = true;
-        r.problems[id].push('Missing leader');
+        r.problems[id].push('Leader required');
       }
       if (buildingType.recipes || building.recipe) {
         let recipes: BuildingRecipe[] = [];
