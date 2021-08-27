@@ -9,6 +9,20 @@ import NotesEarthSvgComponent from './resources/notes_earth';
 import NotesHeatSvgComponent from './resources/notes_heat';
 import NotesCultivationSvgComponent from './resources/notes_cultivation';
 import LentilSvgComponent from './resources/lentil';
+import BlueberrySvgComponent from './resources/blueberry';
+import GrapeSvgComponent from './resources/grape';
+import SquashSvgComponent from './resources/squash';
+import TomatoSvgComponent from './resources/tomato';
+import KumquatSvgComponent from './resources/kumquat';
+import LemonSvgComponent from './resources/lemon';
+import SpinachSvgComponent from './resources/spinach';
+import RadishSvgComponent from './resources/radish';
+import OnionSvgComponent from './resources/onion';
+import ChilliPepperSvgComponent from './resources/chilli_pepper';
+import PotatoSvgComponent from './resources/potato';
+import LotusRootSvgComponent from './resources/lotus_root';
+import DateSvgComponent from './resources/date';
+import FigSvgComponent from './resources/fig';
 import DropSvgComponent from './resources/drop';
 import SeedsSvgComponent from './resources/seeds';
 import ReedsSvgComponent from './resources/reeds';
@@ -146,6 +160,34 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <NotesCultivationSvgComponent icon={props.icon} />;
     case SVGS.LENTIL:
     return <LentilSvgComponent icon={props.icon} />;
+    case SVGS.BLUEBERRY:
+    return <BlueberrySvgComponent icon={props.icon} />;
+    case SVGS.GRAPE:
+    return <GrapeSvgComponent icon={props.icon} />;
+    case SVGS.SQUASH:
+    return <SquashSvgComponent icon={props.icon} />;
+    case SVGS.TOMATO:
+    return <TomatoSvgComponent icon={props.icon} />;
+    case SVGS.KUMQUAT:
+    return <KumquatSvgComponent icon={props.icon} />;
+    case SVGS.LEMON:
+    return <LemonSvgComponent icon={props.icon} />;
+    case SVGS.SPINACH:
+    return <SpinachSvgComponent icon={props.icon} />;
+    case SVGS.RADISH:
+    return <RadishSvgComponent icon={props.icon} />;
+    case SVGS.ONION:
+    return <OnionSvgComponent icon={props.icon} />;
+    case SVGS.CHILLI_PEPPER:
+    return <ChilliPepperSvgComponent icon={props.icon} />;
+    case SVGS.POTATO:
+    return <PotatoSvgComponent icon={props.icon} />;
+    case SVGS.LOTUS_ROOT:
+    return <LotusRootSvgComponent icon={props.icon} />;
+    case SVGS.DATE:
+    return <DateSvgComponent icon={props.icon} />;
+    case SVGS.FIG:
+    return <FigSvgComponent icon={props.icon} />;
     case SVGS.DROP:
     return <DropSvgComponent icon={props.icon} />;
     case SVGS.SEEDS:

@@ -87,6 +87,118 @@ resourceTypes[RTY.LENTIL] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.LENTIL})
 });
 
+resourceTypes[RTY.GRAPE] = new ResourceType({
+  name: RTY.GRAPE,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.GRAPE})
+});
+
+resourceTypes[RTY.BLUEBERRY] = new ResourceType({
+  name: RTY.BLUEBERRY,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.BLUEBERRY})
+});
+
+resourceTypes[RTY.SQUASH] = new ResourceType({
+  name: RTY.SQUASH,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SAVORY],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.SQUASH})
+});
+
+resourceTypes[RTY.TOMATO] = new ResourceType({
+  name: RTY.TOMATO,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SAVORY],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.TOMATO})
+});
+
+resourceTypes[RTY.KUMQUAT] = new ResourceType({
+  name: RTY.KUMQUAT,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SOUR],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.KUMQUAT})
+});
+
+resourceTypes[RTY.LEMON] = new ResourceType({
+  name: RTY.LEMON,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SOUR],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.LEMON})
+});
+
+resourceTypes[RTY.SPINACH] = new ResourceType({
+  name: RTY.SPINACH,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.BITTER],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.SPINACH})
+});
+
+resourceTypes[RTY.RADISH] = new ResourceType({
+  name: RTY.RADISH,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.BITTER],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.RADISH})
+});
+
+resourceTypes[RTY.ONION] = new ResourceType({
+  name: RTY.ONION,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SPICY],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.ONION})
+});
+
+resourceTypes[RTY.CHILLI_PEPPER] = new ResourceType({
+  name: RTY.CHILLI_PEPPER,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SPICY],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.CHILLI_PEPPER})
+});
+
+resourceTypes[RTY.POTATO] = new ResourceType({
+  name: RTY.POTATO,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.BRACKISH],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.POTATO})
+});
+
+resourceTypes[RTY.LOTUS_ROOT] = new ResourceType({
+  name: RTY.LOTUS_ROOT,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.BRACKISH],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.LOTUS_ROOT})
+});
+
+resourceTypes[RTY.DATE] = new ResourceType({
+  name: RTY.DATE,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SWEET],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.DATE})
+});
+
+resourceTypes[RTY.FIG] = new ResourceType({
+  name: RTY.FIG,
+  category: RCA.MATERIAL,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SWEET],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.FIG})
+});
+
 resourceTypes[RTY.SEEDS] = new ResourceType({
   name: RTY.SEEDS,
   category: RCA.MATERIAL,

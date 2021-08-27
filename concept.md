@@ -126,20 +126,20 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Tanzanite: Deep
   - Produce
     * Lentil: Nothing
-    * Blueberry: Cooling
     * Grape: Cooling
-    * Tomato: Savory
+    * Blueberry: Cooling
     * Squash: Savory
-    * Lemon: Sour
+    * Tomato: Savory
     * Kumquat: Sour
+    * Lemon: Sour
     * Spinach: Bitter
     * Radish: Bitter
     * Onion: Spicy
     * Chilli Pepper: Spicy
     * Potato: Brackish
     * Lotus Root: Brackish
-    * Fig: Sweet
     * Date: Sweet
+    * Fig: Sweet
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -478,6 +478,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Cooking should be +20/m
   [X] Leaders should begin with a tool, except for Da Nang
   [X] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
+  [ ] Multiple Crop types
+  [ ] Improved subcategories
+  [ ] Improvements for Grain, Olive, Reed buildings
+  [ ] Paper from mill + press
+  [ ] Clay should be +6/m
+  [ ] Multiple Sand types
+  [ ] Multiple Clay types
+  [ ] Multiple Seed types
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
