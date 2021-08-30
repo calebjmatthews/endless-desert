@@ -26,13 +26,13 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     backgroundColor: '#008a71'}),
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 50},
     {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 20}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
@@ -66,13 +66,14 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 100},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 20},
     {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 10}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.SEEDS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
@@ -84,7 +85,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.REEDS, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
@@ -131,7 +132,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
@@ -164,7 +165,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.JASPER, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
@@ -173,7 +174,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.JASPER, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
     {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
@@ -186,12 +187,12 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.JASPER, weight: 169}
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169}
   ], [
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.JASPER, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
     {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71}
@@ -242,6 +243,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   ], [
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 50},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},

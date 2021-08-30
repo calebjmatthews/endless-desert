@@ -481,10 +481,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Multiple Crop types
   [X] Improved subcategories
   [X] Upgraded versions of Grain, Olive, Reed buildings
-  [ ] Paper from mill + press
-  [ ] Clay should be +6/m
+  [X] Paper from mill + press
+  [X] Clay should be +6/m
+  [X] Multiple Clay types
   [ ] Multiple Sand types
-  [ ] Multiple Clay types
   [ ] Multiple Seed types
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread

@@ -393,14 +393,74 @@ resourceTypes[RTY.WOOD_SPRUCE] = new ResourceType({
     shadow: '#271700', secondaryColor: '#905600', secondaryShadow: '#653c00'})
 });
 
+resourceTypes[RTY.CLAY_MUDDY] = new ResourceType({
+  name: RTY.CLAY_MUDDY,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CLAY,
+  tags: [RTA.EARTH],
+  value: 25,
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a06363',
+    shadow: '#754646'})
+});
+
+resourceTypes[RTY.CLAY_RICH] = new ResourceType({
+  name: RTY.CLAY_RICH,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CLAY,
+  tags: [RTA.EARTH],
+  value: 60,
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#5d2d00',
+    shadow: '#2d1600'})
+});
+
 resourceTypes[RTY.CLAY_RED] = new ResourceType({
   name: RTY.CLAY_RED,
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH],
-  value: 15,
+  value: 35,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'})
+});
+
+resourceTypes[RTY.CLAY_BLUE] = new ResourceType({
+  name: RTY.CLAY_BLUE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CLAY,
+  tags: [RTA.EARTH],
+  value: 45,
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#9cb0d2',
+    shadow: '#818ea2'})
+});
+
+resourceTypes[RTY.CLAY_KAOLIN] = new ResourceType({
+  name: RTY.CLAY_KAOLIN,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CLAY,
+  tags: [RTA.EARTH],
+  value: 840,
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#f7e0c5',
+    shadow: '#d6bfa4'})
+});
+
+resourceTypes[RTY.BRICKS_MUD] = new ResourceType({
+  name: RTY.BRICKS_MUD,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.BRICK,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
+  value: 50,
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#674648',
+    shadow: '#50392d', secondaryColor: '#845d59'})
+});
+
+resourceTypes[RTY.BRICKS_BROWNSTONE] = new ResourceType({
+  name: RTY.BRICKS_BROWNSTONE,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.BRICK,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
+  value: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#5d2d00',
+    shadow: '#2d1600', secondaryColor: '#9a5d24'})
 });
 
 resourceTypes[RTY.BRICKS_RED] = new ResourceType({
@@ -408,9 +468,29 @@ resourceTypes[RTY.BRICKS_RED] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 80,
+  value: 100,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#a91f1f',
     shadow: '#6f1b1b', secondaryColor: '#de6363'})
+});
+
+resourceTypes[RTY.BRICKS_SANDLIME] = new ResourceType({
+  name: RTY.BRICKS_SANDLIME,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.BRICK,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
+  value: 110,
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#9cb0d2',
+    shadow: '#818ea2', secondaryColor: '#ccd6ff'})
+});
+
+resourceTypes[RTY.BRICKS_SHINING] = new ResourceType({
+  name: RTY.BRICKS_SHINING,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.BRICK,
+  tags: [RTA.DRIED, RTA.CONSTRUCTION],
+  value: 860,
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#f7e0c5',
+    shadow: '#d6bfa4', secondaryColor: '#fffaf7'})
 });
 
 resourceTypes[RTY.THATCH] = new ResourceType({
@@ -603,13 +683,13 @@ resourceTypes[RTY.TOPAZ] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
 });
 
-resourceTypes[RTY.JASPER] = new ResourceType({
-  name: RTY.JASPER,
+resourceTypes[RTY.LAPIS_LAZULI] = new ResourceType({
+  name: RTY.LAPIS_LAZULI,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SOUR],
   value: 5000,
-  icon: new Icon({provider: 'svg', name: SVGS.JASPER})
+  icon: new Icon({provider: 'svg', name: SVGS.LAPIS_LAZULI})
 });
 
 resourceTypes[RTY.ONYX] = new ResourceType({
@@ -834,6 +914,16 @@ resourceTypes[RTY.ACID] = new ResourceType({
     shadow: '#c6d400', secondaryColor: '#f8ff9c'})
 });
 
+resourceTypes[RTY.GLAZE_ASH] = new ResourceType({
+  name: RTY.GLAZE_ASH,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.GLAZE,
+  tags: [RTA.SYNTHESIZED],
+  value: 240,
+  icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#676767',
+    shadow: '#1d1d1d'})
+});
+
 resourceTypes[RTY.GLAZE_TIN] = new ResourceType({
   name: RTY.GLAZE_TIN,
   category: RCA.MATERIAL_REFINED,
@@ -844,14 +934,14 @@ resourceTypes[RTY.GLAZE_TIN] = new ResourceType({
     shadow: '#758da2'})
 });
 
-resourceTypes[RTY.GLAZE_ASH] = new ResourceType({
-  name: RTY.GLAZE_ASH,
+resourceTypes[RTY.GLAZE_LAPIS] = new ResourceType({
+  name: RTY.GLAZE_LAPIS,
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.GLAZE,
   tags: [RTA.SYNTHESIZED],
-  value: 240,
-  icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#676767',
-    shadow: '#1d1d1d'})
+  value: 5500,
+  icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#353cff',
+    shadow: '#13177f'})
 });
 
 resourceTypes[RTY.TERRACOTTA] = new ResourceType({
@@ -863,6 +953,15 @@ resourceTypes[RTY.TERRACOTTA] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.TERRACOTTA})
 });
 
+resourceTypes[RTY.ASHWARE] = new ResourceType({
+  name: RTY.ASHWARE,
+  category: RCA.ARTISAN_GOOD,
+  subcategory: RSC.CERAMIC,
+  tags: [RTA.CERAMIC],
+  value: 480,
+  icon: new Icon({provider: 'svg', name: SVGS.ASHWARE})
+});
+
 resourceTypes[RTY.FAIENCE] = new ResourceType({
   name: RTY.FAIENCE,
   category: RCA.ARTISAN_GOOD,
@@ -872,13 +971,13 @@ resourceTypes[RTY.FAIENCE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FAIENCE})
 });
 
-resourceTypes[RTY.ASHWARE] = new ResourceType({
-  name: RTY.ASHWARE,
+resourceTypes[RTY.PORCELAIN] = new ResourceType({
+  name: RTY.PORCELAIN,
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.CERAMIC,
   tags: [RTA.CERAMIC],
-  value: 480,
-  icon: new Icon({provider: 'svg', name: SVGS.ASHWARE})
+  value: 7800,
+  icon: new Icon({provider: 'svg', name: SVGS.PORCELAIN})
 });
 
 resourceTypes[RTY.SOUP] = new ResourceType({

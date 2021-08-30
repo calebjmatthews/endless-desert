@@ -33,7 +33,7 @@ memos[MEMOS.LOOK_AROUND_LOOT] = new Memo({
     new Resource({ type: RESOURCE_TYPES.LENTIL, quality: 0, quantity: 51 }),
     new Resource({ type: RESOURCE_TYPES.WOOD_OAK, quality: 0, quantity: 32 }),
     new Resource({ type: RESOURCE_TYPES.SAND_YELLOW, quality: 0, quantity: 217 }),
-    new Resource({ type: RESOURCE_TYPES.CLAY_RED, quality: 0, quantity: 37 })
+    new Resource({ type: RESOURCE_TYPES.CLAY_MUDDY, quality: 0, quantity: 37 })
   ]
 });
 

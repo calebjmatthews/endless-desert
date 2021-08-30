@@ -263,8 +263,8 @@ researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
     + 'you\'ll need a keen understanding of the force that pulls '
     + 'everything toward the greedy earth, and it\'s effects on materials '
     + 'of all kinds.'),
-  cost: [{specificity: RS.EXACT, type: RTY.CLAY_RED, quantity: 2000},
-    {specificity: RS.EXACT, type: RTY.SAND_YELLOW, quantity: 2000},
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.CLAY, quantity: 2000},
+    {specificity: RS.SUBCATEGORY, type: RSC.SAND, quantity: 2000},
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 2000}]
 });
 
