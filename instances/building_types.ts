@@ -477,8 +477,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200}],
     upgradesInto: BTY.PRESS_SIMPLIFIED,
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
@@ -494,8 +494,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.PRESS}),
     cost: null,
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
@@ -520,26 +520,29 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
+    new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 2, produces:
+    new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GREENISH_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 3, produces:
+    new BuildingRecipe({index: 4, produces:
       [{specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 4, produces:
+    new BuildingRecipe({index: 5, produces:
       [{specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.PALE_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 5, produces:
+    new BuildingRecipe({index: 6, produces:
       [{specificity: RSP.EXACT, type: RTY.CARBON, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]}),
-    new BuildingRecipe({index: 6, produces:
+    new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 40}]})],
     givesNote: RTY.NOTES_EARTH,
@@ -557,26 +560,29 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
+    new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 2, produces:
+    new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GREENISH_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 3, produces:
+    new BuildingRecipe({index: 4, produces:
       [{specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 4, produces:
+    new BuildingRecipe({index: 5, produces:
       [{specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.PALE_ORE, quantity: 40}]}),
-    new BuildingRecipe({index: 5, produces:
+    new BuildingRecipe({index: 6, produces:
       [{specificity: RSP.EXACT, type: RTY.CARBON, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]}),
-    new BuildingRecipe({index: 6, produces:
+    new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 40}]})],
     givesNote: RTY.NOTES_EARTH,
@@ -692,10 +698,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 1, produces:
         [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 10, probability: 1}],
-        consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
-      new BuildingRecipe({index: 2, produces:
-        [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
-        consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}) ],
+        consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -713,10 +716,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 1, produces:
         [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 10, probability: 1}],
-        consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}),
-      new BuildingRecipe({index: 2, produces:
-        [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
-        consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}) ],
+        consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: false

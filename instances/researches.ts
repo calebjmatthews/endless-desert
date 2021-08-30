@@ -476,7 +476,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
   unlocks: ('Unlocks Presses.'),
   description: ('Reeds are useful as they are, but you\'ve been eager for one '
     + 'resource above all others: something to write on. You don\'t exactly '
-    + 'know how to make papyrus, but it surely most begin with a thorough '
+    + 'know how to make papyrus, but it surely most involve a thorough '
     + 'flattening.'),
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
   category: RESEARCHES.PHYSICS,
@@ -492,7 +492,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
 researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
   name: RESEARCHES.COMPACTION_SIMPLIFIED,
   unlocks: ('Allows Presses to be run without a leader.'),
-  description: ('With a set of stabilizing and safety structures, a '
+  description: ('With a set of stabilizing safety structures, a '
     + 'Press can be run without any specialized skills.'),
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS}),
   category: RESEARCHES.PHYSICS,
@@ -628,8 +628,8 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
   name: RESEARCHES.DEHYDRATION,
   unlocks: ('Unlocks Drying Yards.'),
   description: ('You\'ve surmised that many materials are stronger or easier to '
-    + 'work with when dry. And there\'s a special salt that\'s left once your '
-    + 'cistern\'s water has evaporated you think could help in the process...'),
+    + 'work with when dry. At least there\'s one area where the brutal sunlight will '
+    + 'do you a favor.'),
   icon: new Icon({provider: 'svg', name: SVGS.THATCH}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,

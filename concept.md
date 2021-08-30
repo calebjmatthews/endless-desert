@@ -480,7 +480,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Can be frustrating to wait for usable trade, e.g. Ferrous Ink => Artisan Good
   [X] Multiple Crop types
   [X] Improved subcategories
-  [ ] Improvements for Grain, Olive, Reed buildings
+  [X] Upgraded versions of Grain, Olive, Reed buildings
   [ ] Paper from mill + press
   [ ] Clay should be +6/m
   [ ] Multiple Sand types

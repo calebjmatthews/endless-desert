@@ -80,7 +80,7 @@ leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
     + 'seems to come fast: knowledge of construction, chemistry, languages, and still '
     + 'hungry for more.'),
   speechType: 'Humorous',
-  toolStarting: null,
+  toolStarting: EQUIPMENT_TYPES.ROUGH_MATTOCK,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.AUSPICIOUS_WAIF})
