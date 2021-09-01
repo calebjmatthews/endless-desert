@@ -114,6 +114,7 @@ import GrindingMillSvgComponent from './buildings/grinding_mill';
 import SpiceFieldSvgComponent from './buildings/spice_field';
 import HouseSvgComponent from './buildings/house';
 import WeaverySvgComponent from './buildings/weavery';
+import SandCascadeSvgComponent from './buildings/sand_cascade';
 import TailorsSvgComponent from './buildings/tailors';
 import OutfittersSvgComponent from './buildings/outfitters';
 import FabricatorySvgComponent from './buildings/fabricatory';
@@ -370,6 +371,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <HouseSvgComponent icon={props.icon} />;
     case SVGS.WEAVERY:
     return <WeaverySvgComponent icon={props.icon} />;
+    case SVGS.SAND_CASCADE:
+    return <SandCascadeSvgComponent icon={props.icon} />;
     case SVGS.TAILORS:
     return <TailorsSvgComponent icon={props.icon} />;
     case SVGS.OUTFITTERS:

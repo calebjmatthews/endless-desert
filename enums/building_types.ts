@@ -33,6 +33,7 @@ export enum BUILDING_TYPES {
   GRINDING_MILL = "Grinding Mill",
   GRINDING_MILL_SIMPLIFIED = "Simplified Grinding Mill",
   WEAVERY = "Weavery",
+  SAND_CASCADE = "Sand Cascade",
   TAILORS = "Tailors",
   OUTFITTERS = "Outfitters",
   FABRICATORY = "Fabricatory",

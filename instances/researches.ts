@@ -556,6 +556,24 @@ researches[RESEARCHES.WEAVING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.WEAVERY]
 });
 
+researches[RESEARCHES.SAND_PURIFICATION] = new Research({
+  name: RESEARCHES.WEAVING,
+  unlocks: ('Unlocks Sand Cascades.'),
+  description: ('You\'ve known for some time that sand is full of tiny '
+    + 'particles of shocking variety, but it\'s only now that textiles are '
+    + 'available that they could be separated into their component parts.'),
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#fff0c6',
+    shadow: '#f5d698'}),
+  category: RESEARCHES.PHYSICS,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.WEAVING],
+  knowledgeReq: 4200,
+  unlocksBuilding: [BUILDING_TYPES.SAND_CASCADE]
+});
+
 researches[RESEARCHES.TAILORING] = new Research({
   name: RESEARCHES.TAILORING,
   unlocks: ('Unlocks Tailors.'),

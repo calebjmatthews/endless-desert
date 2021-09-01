@@ -72,14 +72,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Resource Subcategories:
   - Sand
-    * Yellow: Savory
-    * Pure: Sweet
-    * Pale: Cooling
-    * Volcanic: Spicy
-    * Coral: Brackish
-    * Olivine: Herbal
-    * Black: Bitter
-    * Ochre: Sour
+    * Yellow: Savory   Rich Clay
+    * Dune: Sweet      Rust Ore
+    * Pale: Cooling    Pale Ore
+    * Volcanic: Spicy  Dusty Ore
+    * Coral: Brackish  Jade
+    * Olivine: Herbal  Greenish Ore
+    * Black: Bitter    Charcoal
+    * Ochre: Sour      Seeds
+    * Pure: None
     * Shining: Airy
     * Purple: Strange
     * Golden: Rich
@@ -484,7 +485,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Paper from mill + press
   [X] Clay should be +6/m
   [X] Multiple Clay types
-  [ ] Multiple Sand types
+  [X] Multiple Sand types
+  [ ] New crops in trader pools
   [ ] Multiple Seed types
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread

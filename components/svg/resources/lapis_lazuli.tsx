@@ -35,12 +35,12 @@ export default function LapisLazuliSvgComponent(props: any) {
       <path d="m256 80.762 30 51.301-30 63.9-123.9-63.9 26.4-111.9z" fill="#353cff"/>
       <path d="m379.9 132.06-123.9 63.9v-115.2l97.5-60.599z" fill="#282ece"/>
      </g>
-     <g stroke-width="1.5434">
+     <g strokeWidth="1.5434">
       <path d="m255.25 248 0.89695-93.157v-30.804l46.811 123.78z" fill="#b68700"/>
       <path d="m256.15 247.75h-138.9l138.42-47.545z" fill="#c99400"/>
       <path d="m255.28 247.15h138.9l-138.32 47.708z" fill="#a16b02"/>
      </g>
-     <path d="m255.81 247.16v140.17-7.4453l-48.114-132.55z" fill="#b68700" stroke-width="1.5504"/>
+     <path d="m255.81 247.16v140.17-7.4453l-48.114-132.55z" fill="#b68700" strokeWidth="1.5504"/>
     </g>
     </Svg>
   );

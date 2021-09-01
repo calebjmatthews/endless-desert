@@ -505,9 +505,90 @@ resourceTypes[RTY.SAND_YELLOW] = new ResourceType({
   name: RTY.SAND_YELLOW,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH],
+  tags: [RTA.EARTH, RTA.SAVORY],
   value: 3,
-  icon: new Icon({provider: 'svg', name: SVGS.SAND})
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
+    shadow: '#e6a960'})
+});
+
+resourceTypes[RTY.SAND_DUNE] = new ResourceType({
+  name: RTY.SAND_DUNE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.SWEET],
+  value: 5,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f9c29e',
+    shadow: '#c79573'})
+});
+
+resourceTypes[RTY.SAND_PALE] = new ResourceType({
+  name: RTY.SAND_PALE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.COOLING],
+  value: 6,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#d6d8dc',
+    shadow: '#afbad0'})
+});
+
+resourceTypes[RTY.SAND_VOLCANIC] = new ResourceType({
+  name: RTY.SAND_VOLCANIC,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.SPICY],
+  value: 4,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#866262',
+    shadow: '#6f3a3a'})
+});
+
+resourceTypes[RTY.SAND_CORAL] = new ResourceType({
+  name: RTY.SAND_CORAL,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.BRACKISH],
+  value: 5,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#e24242',
+    shadow: '#bd3b3b'})
+});
+
+resourceTypes[RTY.SAND_OLIVINE] = new ResourceType({
+  name: RTY.SAND_OLIVINE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.HERBAL],
+  value: 4,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#579e0f',
+    shadow: '#507926'})
+});
+
+resourceTypes[RTY.SAND_BLACK] = new ResourceType({
+  name: RTY.SAND_BLACK,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.BITTER],
+  value: 6,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#564409',
+    shadow: '#1f1801'})
+});
+
+resourceTypes[RTY.SAND_OCHRE] = new ResourceType({
+  name: RTY.SAND_OCHRE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH, RTA.SOUR],
+  value: 6,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f9873e',
+    shadow: '#ce6b2d'})
+});
+
+resourceTypes[RTY.SAND_PURE] = new ResourceType({
+  name: RTY.SAND_PURE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SAND,
+  tags: [RTA.EARTH],
+  value: 20,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#fff0c6',
+    shadow: '#f5d698'})
 });
 
 resourceTypes[RTY.CHARCOAL] = new ResourceType({
@@ -832,13 +913,13 @@ resourceTypes[RTY.PULP] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.PRESSED],
   value: 50,
-  icon: new Icon({provider: 'svg', name: SVGS.PULP})
+  icon: new Icon({provider: 'svg', name: SVGS.POWDER})
 });
 
 resourceTypes[RTY.PAPYRUS] = new ResourceType({
   name: RTY.PAPYRUS,
   category: RCA.MATERIAL_REFINED,
-  tags: [RTA.DRIED],
+  tags: [RTA.PRESSED],
   value: 150,
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})
 });

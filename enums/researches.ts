@@ -29,6 +29,7 @@ export enum RESEARCHES {
   HOME_CONSTRUCTION = "Home Construction",
   HOME_CONSTRUCTION_IMRPOVED = "Improved Home Construction",
   WEAVING = "Weaving",
+  SAND_PURIFICATION = "Sand Purification",
   GRINDING = "Grinding",
   GRINDING_SIMPLIFIED = "Simplified Grinding",
   TAILORING = "Tailoring",

@@ -112,6 +112,7 @@ export enum SVGS {
   GRINDING_MILL = "Grinding Mill",
   SPICE_FIELD = "Spice Field",
   WEAVERY = "Weavery",
+  SAND_CASCADE = "Sand Cascade",
   TAILORS = "Tailors",
   OUTFITTERS = "Outfitters",
   FABRICATORY = "Fabricatory",

@@ -366,6 +366,7 @@ function BuildingDescription(props: any) {
 
   function renderRateContainer(problems: string[]) {
     if (building.recipeSelected == undefined) { return null; }
+    if (!props.rates.recipesRates[building.id]) { return null; }
     const rates = props.rates.recipesRates[building.id][building.recipeSelected];
     if (building.recipeSelected != -1) {
       if (!rates) { return null; }
@@ -467,6 +468,7 @@ function BuildingDescription(props: any) {
   }
 
   function renderProblems(problems: string[]) {
+    if (!problems) { return null; }
     const problemStyle = StyleSheet.flatten([styles.infoBar,
       { backgroundColor: '#b9313a', borderColor: '#860009', borderRadius: 10 }]);
     return (

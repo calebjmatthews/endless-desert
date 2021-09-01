@@ -101,12 +101,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -261,11 +261,23 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      Object.keys(buildingTypes).map((typeName) => {
+        let buildingType = buildingTypes[typeName];
+        let suffix = 1;
+        let name = buildingType.name;
+        let building = new Building({
+          id: utils.randHex(16),
+          buildingType: buildingType.name,
+          suffix: suffix,
+          name: name,
+          paidCosts: {},
+          paidResources: [],
+          paidUpgradeCosts: {},
+          paidUpgradeResources: [],
+          recipe: null
+        });
+        dispatch(addBuilding(building));
       });
-      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
