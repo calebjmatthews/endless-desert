@@ -486,7 +486,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Clay should be +6/m
   [X] Multiple Clay types
   [X] Multiple Sand types
-  [ ] New crops in trader pools
+  [X] New crops in trader pools
   [ ] Multiple Seed types
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread
