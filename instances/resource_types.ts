@@ -911,9 +911,9 @@ resourceTypes[RTY.OLIVE_OIL] = new ResourceType({
 resourceTypes[RTY.PULP] = new ResourceType({
   name: RTY.PULP,
   category: RCA.MATERIAL_REFINED,
-  tags: [RTA.PRESSED],
+  tags: [RTA.POWDER],
   value: 50,
-  icon: new Icon({provider: 'svg', name: SVGS.POWDER})
+  icon: new Icon({provider: 'svg', name: SVGS.PULP})
 });
 
 resourceTypes[RTY.PAPYRUS] = new ResourceType({
