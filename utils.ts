@@ -236,6 +236,9 @@ class Utils {
       28: 'No',
       30: 'De'
     };
+    if (Math.abs(number) < 1) {
+      return number.toFixed(2);
+    }
     if (number < 1000) {
       return Math.round(number).toString();
     }
@@ -555,7 +558,7 @@ class Utils {
         return rsoa - rsob;
       }
       if (rta.value != rtb.value) { return rta.value - rtb.value; }
-      
+
       return (rta.name < rtb.name) ? -1 : 1;
 
     });
