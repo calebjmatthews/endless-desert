@@ -496,7 +496,7 @@ function BuildingDescription(props: any) {
         const resource = new Resource(building.resourcesSelected[specType]);
         const resourceType = resourceTypes[resource.type];
         const rRate = rate / resourceType.value;
-        label = ((rRate > 0 ? '+' : '') + rRate);
+        label = ((rRate > 0 ? '+' : '') + utils.formatNumberShort(rRate));
         icon = resourceType.icon;
       }
       return (
