@@ -50,7 +50,6 @@ export default function BuildDetailComponent() {
   const buildingType = new BuildingType(buildingTypes[building.buildingType]);
 
   const [initializing, setInitializing] = useState<boolean>(true);
-  const [fuelSelected, setFuelSelected] = useState<Resource | null>(null);
   const [recipes, setRecipes] = useState<BuildingRecipe[] | null>(null);
   const [recipeSelected, setRecipeSelected] = useState<number | undefined>(undefined);
 
@@ -58,54 +57,11 @@ export default function BuildDetailComponent() {
     if (initializing) {
       setInitializing(false);
 
-      let aFuelIsSelected = false;
-      if (buildingType.name.includes(BTY.FURNACE)) {
-        let fuelType: string|null = null;
-        if (building.recipe) {
-          if (building.recipe.consumes) {
-            building.recipe.consumes.map((resource) => {
-              const fullResource = new Resource({...resource, quality: 0});
-              const consumableType = utils.getResourceType(fullResource);
-              if (consumableType) {
-                if (utils.arrayIncludes(consumableType.tags, RESOURCE_TAGS.FUEL)) {
-                  const fuelResources = vault.getExactResources(resource.type);
-                  if (fuelResources[0]) {
-                    if (fuelResources[0].quantity > 1) {
-                      aFuelIsSelected = true;
-                      setFuelSelected(fuelResources[0]);
-                    }
-                  }
-                }
-              }
-            });
-          }
-        }
-      }
-
       if (buildingType.recipes) {
         setRecipes(buildingType.recipes);
       }
-
-      if (building.recipeSelected != undefined) {
-        if (!buildingType.name.includes(BTY.FURNACE) || aFuelIsSelected) {
-          setRecipeSelected(building.recipeSelected);
-        }
-      }
     }
   }, []);
-
-  useEffect(() => {
-    const newBuildingType = new BuildingType(buildingTypes[building.buildingType]);
-    if (fuelSelected != null) {
-      const resourceType = utils.getResourceType(fuelSelected);
-      setRecipes(building.modifyRecipesFromFuel(resourceType, fuelSelected.quality,
-        newBuildingType));
-    }
-    else if (!initializing) {
-      setRecipes(newBuildingType.recipes);
-      setRecipeSelected(undefined);
-    }
-  }, [fuelSelected]);
 
   useEffect(() => {
     if (buildings[building.id]) {
@@ -115,15 +71,7 @@ export default function BuildDetailComponent() {
       });
 
       tempBuildings[building.id].recipeSelected = recipeSelected;
-      if (buildingType.name.includes(BTY.FURNACE) && recipes
-        && recipeSelected != undefined) {
-        const recipe = recipes[recipeSelected];
-        dispatch(setBuildingSpecificRecipe(building, recipe, recipeSelected));
-        tempBuildings[building.id].recipe = recipe;
-      }
-      else {
-        dispatch(selectBuildingRecipe(building, recipeSelected));
-      }
+      dispatch(selectBuildingRecipe(building, recipeSelected));
       const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
       dispatch(setRates(newRates));
     }
@@ -142,7 +90,6 @@ export default function BuildDetailComponent() {
           <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
         </View>
         {renderUpgradeCostContainer()}
-        {renderFuelContainer()}
         {renderRecipeContainer()}
         {renderKitchenButton()}
       </ScrollView>
@@ -376,99 +323,6 @@ export default function BuildDetailComponent() {
         dispatch(displayModal(null));
       }
     }
-  }
-
-  function renderFuelContainer() {
-    if (buildingType.name.includes(BTY.FURNACE)) {
-      const resources = vault.getTagResources(RESOURCE_TAGS.FUEL);
-      if (resources.length > 0) {
-        return (
-          <View style={{minWidth: positioner.minorWidth,
-            maxWidth: positioner.minorWidth}}>
-            <Text style={styles.bareText}>{'Using fuel:'}</Text>
-            <View style={styles.tileContainer}>
-              {renderFuels(resources)}
-            </View>
-          </View>
-        );
-      }
-      else {
-        return (
-          <View style={{minWidth: positioner.minorWidth,
-            maxWidth: positioner.minorWidth}}>
-            <Text style={styles.bareText}>{'Using fuel:'}</Text>
-            <View style={styles.break}></View>
-            <Text style={styles.bareText}>
-              {'No fuels avaialble! Try growing reeds.'}
-            </Text>
-          </View>
-        );
-      }
-    }
-    return null;
-  }
-
-  function renderFuels(resources: Resource[]) {
-    return resources.map((resource) => {
-      const resourceType = utils.getResourceType(resource);
-      let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
-      if (resource.quality == 1) {
-        optionTextStyle = { paddingLeft: 4, paddingRight: 4,
-          color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
-      }
-      return (
-        <View key={(resource.type + '|' + resource.quality)}
-          style={StyleSheet.flatten([styles.panelTile, styles.columns,
-          {minWidth: positioner.minorWidth,
-            maxWidth: positioner.minorWidth}])}>
-          <Text style={optionTextStyle}>
-            {utils.typeQualityName(resource.type + '|' + resource.quality)}
-          </Text>
-          <View style={styles.rows}>
-            <BadgeComponent icon={resourceType.icon} quality={resource.quality}
-              size={21} />
-            <View>
-              <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
-                {utils.formatNumberShort(resource.quantity)}
-              </Text>
-              {renderButton(resource, fuelSelected)}
-            </View>
-          </View>
-        </View>
-      );
-    })
-  }
-
-  function renderButton(resource: Resource, fuelSelected: Resource|null) {
-    if (fuelSelected) {
-      if (fuelSelected.type == resource.type
-        && fuelSelected.quality == resource.quality) {
-        let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
-        return (
-          <TouchableOpacity style={buttonStyle}
-            onPress={() => {typeQualityUnSelect(setFuelSelected)}} >
-            <Text style={styles.buttonText}>{'Selected'}</Text>
-          </TouchableOpacity>
-        );
-      }
-    }
-    let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonLight,
-      { width: 74 }]);
-    return (
-      <TouchableOpacity style={buttonStyle}
-      onPress={() => {typeQualitySelect(resource, setFuelSelected)}} >
-        <Text style={StyleSheet.flatten([styles.buttonText,
-          styles.buttonTextDark])}>{'Select'}</Text>
-      </TouchableOpacity>
-    );
-  }
-
-  function typeQualityUnSelect(setFuelSelected: (resource: Resource|null) => void) {
-    setFuelSelected(null);
-  }
-  function typeQualitySelect(resource: Resource,
-    setFuelSelected: (resource: Resource|null) => void) {
-    setFuelSelected(resource);
   }
 
   function renderRecipeContainer() {

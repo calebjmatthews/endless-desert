@@ -31,45 +31,9 @@ export default class Building implements BuildingInterface {
     if (!building.paidResources) { building.paidResources = []; }
     if (!building.paidUpgradeCosts) { building.paidUpgradeCosts = {}; }
     if (!building.paidUpgradeResources) { building.paidUpgradeResources = []; }
+    if (!building.resourcesSelected) { building.resourcesSelected = {}; }
 
     Object.assign(this, building);
-  }
-
-  modifyRecipesFromFuel(resourceType: ResourceType, quality: number,
-    buildingType: BuildingType) {
-    if (buildingType.recipes) {
-      return buildingType.recipes.map((recipe) => {
-        return this.modifyOneRecipeFromFuel(resourceType, quality, recipe);
-      });
-    }
-    return [];
-  }
-
-  modifyOneRecipeFromFuel(resourceType: ResourceType, quality: number,
-    recipe: BuildingRecipe) {
-    let newProduces: {specificity: string, type: string, quantity: number,
-      probability: number}[]|null = null;
-    let newConsumes: {specificity: string, type: string, quantity: number}[]|null = null;
-    if (recipe.produces) {
-      newProduces = recipe.produces
-    }
-    if (recipe.consumes) {
-      let fuelConsume: {specificity: string, type: string, quantity: number} =
-        { specificity: RESOURCE_SPECIFICITY.EXACT, type: '', quantity: 0 };
-      newConsumes = recipe.consumes.slice();
-      newConsumes = newConsumes.filter((consume) => {
-        if (consume.type != RESOURCE_TAGS.FUEL) { return consume; }
-        else { fuelConsume = consume; }
-      });
-
-      if (fuelConsume.type.length > 0 && resourceType.value) {
-        const quantity = fuelConsume.quantity / resourceType.value;
-        newConsumes.push({specificity: RESOURCE_SPECIFICITY.EXACT,
-          type: resourceType.name, quantity });
-      }
-    }
-    return new BuildingRecipe({ index: recipe.index, produces: newProduces,
-      consumes: newConsumes});
   }
 
   getDishFromIngredients(ingredients: ResourceType[],
