@@ -12,6 +12,7 @@ import ResourceDetailComponent from './resource_detail';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
 import ResourceSelectDishComponent from './resource_select_dish';
+import ResourceSelectRateComponent from './resource_select_rate';
 import BuildingSelectComponent from './building_select';
 import EquipmentSelectComponent from './equipment_select';
 import LeaderSelectComponent from './leader_select';
@@ -73,6 +74,9 @@ function renderModal(modalType: string) {
 
     case MODALS.RESOURCE_SELECT_DISH:
     return <ResourceSelectDishComponent />;
+
+    case MODALS.RESOURCE_SELECT_RATE:
+    return <ResourceSelectRateComponent />;
 
     case MODALS.BUILDING_SELECT:
     return <BuildingSelectComponent />;

@@ -1,5 +1,6 @@
 import BuildingRecipe from './building_recipe';
 import BuildingType from './building_type';
+import Resource from './resource';
 import ResourceType from './resource_type';
 import getDishFromIngredients from './building_cooking';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
@@ -13,6 +14,8 @@ export default class Building implements BuildingInterface {
   suffix: number = 1;
   name: string|null = null;
   recipeSelected?: number = 0;
+  // Resource selected to satisfy a non-exact rate's specType
+  resourcesSelected: { [ specType: string ] : Resource } = {};
   // Usually a building is set to produce according to one recipe of an array,
   // but some buildings have modifiable recipies. If this building is one of those,
   // its current recipe will be stored here, otherwise this will be null.
@@ -81,6 +84,8 @@ interface BuildingInterface {
   suffix: number;
   name: string|null;
   recipeSelected?: number;
+  // Resource typeQuality selected to satisfy a non-exact rate's specType
+  resourcesSelected: { [ specType: string ] : Resource };
   // Usually a building is set to produce according to one recipe of an array,
   // but some buildings have modifiable recipies. If this building is one of those,
   // its current recipe will be stored here, otherwise this will be null.

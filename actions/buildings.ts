@@ -1,5 +1,6 @@
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
+import Resource from '../models/resource';
 
 export const SET_BUILDINGS = 'SET_BUILDINGS';
 export function setBuildings(buildings: { [id: string] : Building }) {
@@ -46,6 +47,17 @@ export function setBuildingSpecificRecipe(building: Building, recipe: BuildingRe
     building: building,
     recipe: recipe,
     recipeIndex: recipeIndex
+  }
+}
+
+export const SET_BUILDING_RESOURCE_SELECTED = 'SET_BUILDING_RESOURCE_SELECTED';
+export function setBuildingResourceSelected(building: Building, specType: string,
+  resource: Resource) {
+  return {
+    type: SET_BUILDING_RESOURCE_SELECTED,
+    building: building,
+    specType: specType,
+    resource: resource
   }
 }
 

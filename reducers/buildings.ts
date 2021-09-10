@@ -1,5 +1,6 @@
 import { SET_BUILDINGS, ADD_BUILDING, REPLACE_BUILDING, SELECT_BUILDING_RECIPE,
-  SET_BUILDING_SPECIFIC_RECIPE, PAY_BUILDING_UPGRADE_COST } from '../actions/buildings';
+  SET_BUILDING_SPECIFIC_RECIPE, SET_BUILDING_RESOURCE_SELECTED,
+  PAY_BUILDING_UPGRADE_COST } from '../actions/buildings';
 import Building from '../models/building';
 
 import { buildingsStarting } from '../instances/buildings';
@@ -29,9 +30,17 @@ export default function (buildings: { [id: string] : Building } = buildingsStart
     let newSBSRBuildings = Object.assign({}, buildings);
     newSBSRBuildings[action.building.id].recipe = action.recipe;
     newSBSRBuildings[action.building.id].recipeSelected = action.recipeIndex;
-    console.log('newSBSRBuildings');
-    console.log(newSBSRBuildings);
     return newSBSRBuildings;
+
+    case SET_BUILDING_RESOURCE_SELECTED:
+    let newSBRSBuildings = Object.assign({}, buildings);
+    console.log('action');
+    console.log(action);
+    newSBRSBuildings[action.building.id].resourcesSelected[action.specType]
+      = action.resource;
+    console.log('newSBRSBuildings');
+    console.log(newSBRSBuildings);
+    return newSBRSBuildings;
 
     case PAY_BUILDING_UPGRADE_COST:
     let newPBUCBuildings = Object.assign({}, buildings);

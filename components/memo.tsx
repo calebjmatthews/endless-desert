@@ -68,7 +68,7 @@ export default function MemoComponent() {
           <Text style={styles.bodyText}>{label}</Text>
           {messages.map((message, index) => {
             let icon = null;
-            if (message.icon && message.foregroundColor) {
+            if (message.icon) {
               icon = <BadgeComponent icon={message.icon} size={21} />;
             }
             return (

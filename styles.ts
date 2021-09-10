@@ -531,5 +531,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 2},
     opacity: 0.9
+  },
+
+  rateButton: {
+    minHeight: 36,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#73799f',
+    borderRadius: 2
   }
 });

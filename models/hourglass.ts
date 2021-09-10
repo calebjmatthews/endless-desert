@@ -7,6 +7,7 @@ import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
 import Vault from './vault';
 import Rates from './rates';
+import Resource from './resource';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -152,10 +153,12 @@ export default class Hourglass {
               }
               if (qualityChance > 0) {
                 let prod1Quantity = (prod0Quantity * qualityChance);
-                utils.mapAdd(r.recipesRates[id][index], (production.type + '|1'), prod1Quantity);
+                utils.mapAdd(r.recipesRates[id][index], (production.specificity
+                  + '|' + production.type + '|1'), prod1Quantity);
                 prod0Quantity -= prod1Quantity;
               }
-              utils.mapAdd(r.recipesRates[id][index], (production.type + '|0'), prod0Quantity);
+              utils.mapAdd(r.recipesRates[id][index], (production.specificity
+                + '|' + production.type + '|0'), prod0Quantity);
             })
           }
           if (recipe.consumes) {
@@ -169,8 +172,8 @@ export default class Hourglass {
                   (consumption.type + '|0'), LQ.EFFICIENCY);
                 consQuantity *= (1 - (leaderNegMod / 100));
               }
-              utils.mapAdd(r.recipesRates[id][index], (consumption.type + '|0'),
-                (consQuantity * -1));
+              utils.mapAdd(r.recipesRates[id][index], (consumption.specificity
+                + '|' + consumption.type + '|0'), (consQuantity * -1));
             });
           }
         });
@@ -188,15 +191,32 @@ export default class Hourglass {
         let missingConsumption = false;
         if (recipe.consumes) {
           recipe.consumes.map((consumption) => {
-            if (vault.resources[consumption.type + '|0']) {
-              if (vault.resources[consumption.type + '|0'].quantity < 1) {
-                console.log('missingConsumption for: ' + consumption.type);
+            let cResource: Resource|null = new Resource({...consumption, quality: 0});
+            if (consumption.specificity != RESOURCE_SPECIFICITY.EXACT) {
+              const specType = consumption.specificity + '|' + consumption.type;
+              if (building.resourcesSelected[specType]) {
+                cResource = new Resource(building.resourcesSelected[specType]);
+              }
+              else {
+                cResource = null;
+              }
+            }
+
+            if (cResource) {
+              if (vault.resources[cResource.type + '|0']) {
+                if (vault.resources[cResource.type + '|0'].quantity < 1) {
+                  console.log('missingConsumption for: ' + cResource.type);
+                  r.problems[id].push(cResource.type + ' missing');
+                  missingConsumption = true;
+                }
+              }
+              else {
                 r.problems[id].push(consumption.type + ' missing');
                 missingConsumption = true;
               }
             }
             else {
-              r.problems[id].push(consumption.type + ' missing');
+              r.problems[id].push('A ' + consumption.type + ' must be selected');
               missingConsumption = true;
             }
           });
@@ -231,7 +251,21 @@ export default class Hourglass {
           });
         }
         if (recipe.consumes && !missingConsumption) {
-          recipe.consumes.map((consumption) => {
+          recipe.consumes.map((rawConsumption) => {
+            let consumption = rawConsumption;
+            if (rawConsumption.specificity != RESOURCE_SPECIFICITY.EXACT) {
+              console.log('rawConsumption');
+              console.log(rawConsumption);
+              const specType = rawConsumption.specificity + '|' + rawConsumption.type;
+              const resource = building.resourcesSelected[specType];
+              const resourceType = resourceTypes[resource.type];
+              console.log('resourceType');
+              console.log(resourceType);
+              consumption = {
+                specificity: RESOURCE_SPECIFICITY.EXACT,
+                type: resource.type,
+                quantity: (rawConsumption.quantity / resourceType.value) };
+            }
             let consQuantity = consumption.quantity;
             if (buildingLeaders[building.id]) {
               const leaderMod = findLeaderMod(buildingLeaders[building.id],
@@ -284,6 +318,9 @@ export default class Hourglass {
       }
     });
 
+    console.log('new Rates(r)');
+    console.log(new Rates(r));
+
     return new Rates(r);
 
     function getMultiBT(buildings: { [id: string] : Building }) {
@@ -324,6 +361,21 @@ export default class Hourglass {
         }
       });
       return leaderMod;
+    }
+
+    function recipeFromSelected(recipe: BuildingRecipe, building: Building) {
+      let newConsumes: { specificity: string, type: string, quantity: number }[] = [];
+      recipe.consumes?.map((consume) => {
+        if (consume.specificity == RESOURCE_SPECIFICITY.EXACT) {
+          newConsumes.push(consume);
+        }
+        else {
+          const rsKey = consume.specificity + '|' + consume.type;
+          if (building.resourcesSelected[rsKey]) {
+
+          }
+        }
+      });
     }
 
     function doesResourceMatch(prodResource: string, effect: EquipmentEffect) {

@@ -20,6 +20,10 @@ import Timer from '../models/timer';
 import BuildingType from '../models/building_type';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
+import ResourceType from '../models/resource_type';
+import ResourceTag from '../models/resource_tag';
+import ResourceSubcategory from '../models/resource_subcategory';
+import ResourceCategory from '../models/resource_category';
 import Hourglass from '../models/hourglass';
 import Rate from '../models/rate';
 import Icon from '../models/icon';
@@ -30,6 +34,7 @@ import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { INTRO_STATES } from '../enums/intro_states';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
 
 export default function BuildingsComponent() {
@@ -118,7 +123,8 @@ export default function BuildingsComponent() {
       vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
       leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
       livingAssign={livingAssign} workingAssign={workingAssign}
-      recipeAssign={recipeAssign} positioner={positioner} />
+      recipeAssign={recipeAssign} inexactRateOpen={inexactRateOpen}
+      positioner={positioner} />
   }
 
   function renderBuildHeader() {
@@ -202,6 +208,11 @@ export default function BuildingsComponent() {
     const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
     dispatch(setRates(newRates));
     dispatch(selectBuildingRecipe(building, recipeSelected));
+  }
+
+  function inexactRateOpen(building: Building, specTypeQuality: string, rate: number) {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_RATE, 'open',
+      {type: MODALS.RESOURCE_SELECT_RATE, building, specTypeQuality, rate}));
   }
 }
 
@@ -436,17 +447,24 @@ function BuildingDescription(props: any) {
   }
 
   function renderRates(rates: Rate, problems: string[]) {
-    return Object.keys(rates).map((typeQuality) => {
-      return renderRate(typeQuality, rates[typeQuality], problems)
+    return Object.keys(rates).map((specTypeQuality) => {
+      return renderRate(specTypeQuality, rates[specTypeQuality], problems)
     });
   }
 
-  function renderRate(typeQuality: string, rate: number, problems: string[]) {
-    const tqSplit = typeQuality.split('|');
-    let resource = props.vault.resources[typeQuality];
-    if (!resource) { resource = new Resource({ type: tqSplit[0],
-      quality: parseInt(tqSplit[1]), quantity: 0 }) }
-    const resourceType = utils.getResourceType(resource);
+  function renderRate(specTypeQuality: string, rate: number, problems: string[]) {
+    const stqSplit = specTypeQuality.split('|');
+    let resourceKind: ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory
+      |null = null;
+    let inexact = false;
+    if (stqSplit[0] == RESOURCE_SPECIFICITY.TAG
+      || stqSplit[0] == RESOURCE_SPECIFICITY.SUBCATEGORY
+      || stqSplit[0] == RESOURCE_SPECIFICITY.CATEGORY) {
+      inexact = true;
+    }
+    resourceKind = utils.getMatchingResourceKind(stqSplit[0], stqSplit[1]);
+    if (!resourceKind) { return null; }
+
     let sign = '+';
     let rateStyle: any = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
       marginVertical: 6 };
@@ -457,14 +475,44 @@ function BuildingDescription(props: any) {
     if (problems.length > 0) {
       rateStyle.opacity = 0.6;
     }
-    return (
-      <View key={typeQuality} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
-        <Text>{sign + utils.formatNumberShort(rate)}</Text>
-        <BadgeComponent icon={resourceType.icon} quality={parseInt(tqSplit[1])}
-          size={21} />
-        <Text>{'/m '}</Text>
-      </View>
-    );
+    if (!inexact) {
+      return (
+        <View key={specTypeQuality}
+          style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+          <Text>{sign + utils.formatNumberShort(rate)}</Text>
+          <BadgeComponent icon={resourceKind.icon} quality={parseInt(stqSplit[2])}
+            size={21} />
+          <Text>{'/m '}</Text>
+        </View>
+      );
+    }
+    else {
+      rateStyle.opacity = 0.8;
+      const style = StyleSheet.flatten([styles.rows, styles.rateButton, rateStyle]);
+      let label = '???';
+      let icon = resourceKind.icon;
+      const specType = stqSplit[0] + '|' + stqSplit[1];
+      if (building.resourcesSelected[specType]) {
+        const resource = new Resource(building.resourcesSelected[specType]);
+        const resourceType = resourceTypes[resource.type];
+        const rRate = rate / resourceType.value;
+        label = ((rRate > 0 ? '+' : '') + rRate);
+        icon = resourceType.icon;
+      }
+      return (
+        <TouchableOpacity key={specTypeQuality} style={style}
+          onPress={() => inexactRatePress(specTypeQuality, rate)}>
+          <Text>{label}</Text>
+          <BadgeComponent icon={icon} quality={parseInt(stqSplit[2])}
+            size={21} />
+          <Text>{'/m '}</Text>
+        </TouchableOpacity>
+      );
+    }
+  }
+
+  function inexactRatePress(specTypeQuality: string, rate: number) {
+    props.inexactRateOpen(props.building.item, specTypeQuality, rate);
   }
 
   function renderProblems(problems: string[]) {

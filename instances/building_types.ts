@@ -298,8 +298,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.REED_DELTA]: new BuildingType({
-    name: BTY.REED_DELTA,
+  [BTY.REED_DELTA_BOUNTIFUL]: new BuildingType({
+    name: BTY.REED_DELTA_BOUNTIFUL,
     description: 'Reeds cluster along the muddy banks',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.REED_DELTA}),
@@ -760,7 +760,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_BLUE, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
-      new BuildingRecipe({index: 4, produces:
+      new BuildingRecipe({index: 5, produces:
         [{specificity: RSP.EXACT, type: RTY.BRICKS_SHINING, quantity: 10,
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, quantity: 10},
@@ -797,7 +797,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_BLUE, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
-      new BuildingRecipe({index: 4, produces:
+      new BuildingRecipe({index: 5, produces:
         [{specificity: RSP.EXACT, type: RTY.BRICKS_SHINING, quantity: 10,
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, quantity: 10},
@@ -819,8 +819,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.FURNACE_SIMPLIFIED,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 10},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 10}]}),
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 500},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 10},

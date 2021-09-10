@@ -390,6 +390,7 @@ class Utils {
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
       Object.keys(vault.resources).map((typeQuality) => {
         let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        if (!resourceType) { console.log('typeQuality'); console.log(typeQuality); }
         if (resourceType.subcategory == type) {
           quantity += vault.resources[typeQuality].quantity;
         }
