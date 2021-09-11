@@ -411,7 +411,8 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   description: ('You suspect the key to harvesting sand is keeping the pit '
     + 'from collapsing on your workers, and you\'re working on sturdy clay walls '
     + 'that should do the trick.'),
-  icon: new Icon({provider: 'svg', name: SVGS.SAND}),
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
+    shadow: '#e6a960'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,
@@ -428,7 +429,8 @@ researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
   description: ('Clay walls do most of the work, holding the sides of the pit '
     + 'together. But reinforcement with thatch as you go will allow your workers '
     + 'to dig much faster.'),
-  icon: new Icon({provider: 'svg', name: SVGS.SAND}),
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
+    shadow: '#e6a960'}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 2,

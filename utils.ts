@@ -236,6 +236,9 @@ class Utils {
       28: 'No',
       30: 'De'
     };
+    if (number == 0) {
+      return number.toString();
+    }
     if (Math.abs(number) < 1) {
       return number.toFixed(2);
     }

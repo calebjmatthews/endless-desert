@@ -318,9 +318,6 @@ export default class Hourglass {
       }
     });
 
-    console.log('new Rates(r)');
-    console.log(new Rates(r));
-
     return new Rates(r);
 
     function getMultiBT(buildings: { [id: string] : Building }) {

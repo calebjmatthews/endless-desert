@@ -36,7 +36,7 @@ vaultStarting.increaseResource(new Resource({
   quantity: 217
 }));
 vaultStarting.increaseResource(new Resource({
-  type: RESOURCE_TYPES.CLAY_RED,
+  type: RESOURCE_TYPES.CLAY_MUDDY,
   quality: 0,
   quantity: 37
 }));

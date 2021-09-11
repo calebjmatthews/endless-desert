@@ -19,6 +19,7 @@ resourceTypes[RTY.KNOWLEDGE] = new ResourceType({
   category: RCA.ETHERIAL,
   tags: [RTA.MIND],
   value: 1,
+  description: 'The only currency you trade in',
   icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE})
 });
 
@@ -27,6 +28,7 @@ resourceTypes[RTY.NOTES_SKY] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'The pale blue sky stretches wide, like a dreaming cat',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_SKY})
 });
 
@@ -35,6 +37,7 @@ resourceTypes[RTY.NOTES_STAR] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'In the deep sands, stars are the only way to navigate',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_STAR})
 });
 
@@ -43,6 +46,7 @@ resourceTypes[RTY.NOTES_WATER] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'Countless scribblings on flow and force',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_WATER})
 });
 
@@ -51,6 +55,7 @@ resourceTypes[RTY.NOTES_EARTH] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'Clay, sand, and many hands to build with',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_EARTH})
 });
 
@@ -59,6 +64,7 @@ resourceTypes[RTY.NOTES_HEAT] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'Your oldest friend',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_HEAT})
 });
 
@@ -67,6 +73,7 @@ resourceTypes[RTY.NOTES_CULTIVATION] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
+  description: 'With care, life can be nurtured in any land',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_CULTIVATION})
 });
 
@@ -75,6 +82,7 @@ resourceTypes[RTY.WATER] = new ResourceType({
   category: RCA.MATERIAL,
   tags: [RTA.DRINK, RTA.INGREDIENT],
   value: 5,
+  description: 'The tether between life and death',
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
     shadow: '#2887c3', secondaryColor: '#aaebf0'})
 });
@@ -85,6 +93,7 @@ resourceTypes[RTY.LENTIL] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
   value: 10,
+  description: 'Dry, dull, sustaining',
   icon: new Icon({provider: 'svg', name: SVGS.LENTIL})
 });
 
@@ -221,6 +230,7 @@ resourceTypes[RTY.REEDS] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.CONSTRUCTION, RTA.FUEL],
   value: 8,
+  description: 'For roofing, fabric, paper, papyrus, etc, etc',
   icon: new Icon({provider: 'svg', name: SVGS.REEDS})
 });
 
@@ -230,6 +240,7 @@ resourceTypes[RTY.GRAIN] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT],
   value: 12,
+  description: 'Grind it and bake it, or wet it down and wait',
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN})
 });
 

@@ -48,7 +48,8 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SAND] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.SAND,
   value: 3,
   order: 5,
-  icon: new Icon({provider: 'svg', name: SVGS.SAND})
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
+    shadow: '#e6a960'})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.CLAY] = new ResourceSubcategory({
