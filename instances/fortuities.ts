@@ -102,7 +102,7 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
     new Memo({
       name: (FORTUITIES.SLIGHT_FIGURE + '1'),
       title: 'A Slight Figure',
-      text: ('Reims: "Anyway, I\'ve been talking these things over with some '
+      text: ('Reims: "Anyway, I\'ve been talking thes`e things over with some '
         + 'of the young from the trading crews. I might get a crew of my own '
         + 'going. Assuming that\'d be alright with you, boss."'),
       leaderJoined: LEADER_TYPES.AUSPICIOUS_WAIF
@@ -114,7 +114,7 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
   leaderJoins: LEADER_TYPES.AUSPICIOUS_WAIF,
   available: (fState: FortuityState) => {
     if (fState.researchStatus) {
-      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION]) {
+      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION] == 'completed') {
         return true;
       }
     }
@@ -305,7 +305,7 @@ fortuities[FORTUITIES.WATERY_CREVICE] = new Fortuity({
   ],
   available: (fState: FortuityState) => {
     if (fState.researchStatus) {
-      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION]) {
+      if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION] == 'completed') {
         return true;
       }
     }

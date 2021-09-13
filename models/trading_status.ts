@@ -29,13 +29,21 @@ export default class TradingStatus implements TradingStatusInterface {
   }
 
   createPendingTradingPartnerVisit() {
-    const tpName = selectTradingPartnerVisit(this.tradingPartnerVisits);
+    const tpName = selectTradingPartnerVisit(this.tradingPartners,
+      this.tpPending);
     const tPartner = this.tradingPartners[tpName];
     return tradingPartnerTypes[tpName].createTradingPartnerVisit(tPartner);
 
-    function selectTradingPartnerVisit(ctps: { [name: string] : TradingPartnerVisit }) {
-      const tps = Object.keys(tradingPartnerTypes);
-      return tps[Math.floor(utils.random() * tps.length)];
+    function selectTradingPartnerVisit(tradingPartners:
+      { [name: string] : TradingPartner },
+      tpPending: TradingPartnerVisit[]) {
+      const tps = Object.keys(tradingPartners);
+      const ftps = tps.filter((tradingPartnerName) => {
+        if (!utils.arrayIncludes(tpPending, tradingPartnerName)) {
+          return tradingPartnerName;
+        }
+      });
+      return ftps[Math.floor(utils.random() * ftps.length)];
     }
   }
 

@@ -112,6 +112,7 @@ export default function HourglassComponent() {
             paidResources: [],
             paidUpgradeCosts: {},
             paidUpgradeResources: [],
+            resourcesSelected: {},
             recipe: null
           });
           dispatch(addBuilding(building));
@@ -139,6 +140,7 @@ export default function HourglassComponent() {
               paidResources: [],
               paidUpgradeCosts: {},
               paidUpgradeResources: [],
+              resourcesSelected: {},
               recipe: null
             });
             dispatch(replaceBuilding(upgBuilding));

@@ -8,7 +8,7 @@ const TP = TRADING_PARTNERS;
 
 let tradingPartners: { [name: string] : TradingPartner } = {};
 const tradingPartnerTypeNames = [TP.FOXFIRE_ASCETICS, TP.TREFOIL_ISLANDS,
-  TP.RED_CROW_TRADERS, TP.TOURMALINE_JEWELERS, TP.SPRING_AUTUMN_KINGDOM];
+  TP.RED_CROW_TRADERS];
 tradingPartnerTypeNames.forEach((typeName) => {
   tradingPartners[typeName] = new TradingPartner({
     name: typeName,

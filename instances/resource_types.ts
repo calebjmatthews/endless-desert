@@ -93,7 +93,7 @@ resourceTypes[RTY.LENTIL] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
   value: 10,
-  description: 'Dry, dull, sustaining',
+  description: 'Dry, dull, sustaining, and unlike many crops you can eat them raw',
   icon: new Icon({provider: 'svg', name: SVGS.LENTIL})
 });
 
@@ -1205,6 +1205,15 @@ new ResourceType({
   tags: [EQUIPMENT_SLOTS.BACK],
   value: 3000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.BACK],
+  value: 3000,
+  icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 
 export { resourceTypes }
