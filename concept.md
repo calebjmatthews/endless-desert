@@ -496,6 +496,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Hide resources with zero quantity in selection components
   [ ] Show resource descriptive name, not id name in selection components
   [ ] Show detail modals when pressing on icon, e.g. on buildings
+  [ ] Olives before grain
+  [ ] Fish before quail
 
 ## Commands
 ### Delete all records from all tables:

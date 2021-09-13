@@ -12,8 +12,7 @@ import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import { setUserId, setSessionId } from '../actions/account';
 import { setGlobalState, displayModal } from '../actions/ui';
-
-const SIGNUP_URL = 'http://localhost:8080/api/signup/'
+import { SIGNUP_URL } from '../constants';
 
 export default function SignupComponent() {
   const dispatch = useDispatch();

@@ -27,12 +27,9 @@ import Vault from '../models/vault';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
+import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL }
+  from '../constants';
 
-const SAVE_INTERVAL = 60000;
-// const STORAGE_URL = 'http://64.225.48.128:8080/api/storage/';
-const STORAGE_GET_URL = 'http://localhost:8080/api/storage_get/';
-const STORAGE_UPSERT_URL = 'http://localhost:8080/api/storage_upsert/';
-const SESSION_URL = 'http://localhost:8080/api/session_check/';
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
   'research_status': setResearchStatus,

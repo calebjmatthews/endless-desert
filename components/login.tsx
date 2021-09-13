@@ -12,8 +12,7 @@ import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import { setUserId } from '../actions/account';
 import { setGlobalState, displayModal } from '../actions/ui';
-
-const LOGIN_URL = 'http://localhost:8080/api/login/'
+import { LOGIN_URL } from '../constants';
 
 export default function LoginComponent() {
   const dispatch = useDispatch();
