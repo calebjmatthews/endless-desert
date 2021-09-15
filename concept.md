@@ -382,6 +382,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/japan-52
     https://www.flaticon.com/packs/landmark-21
     https://www.flaticon.com/packs/prehistoric-age
+    https://www.flaticon.com/packs/morocco-16
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -597,6 +598,7 @@ Object.keys(buildingTypes).map((typeName) => {
     paidResources: [],
     paidUpgradeCosts: {},
     paidUpgradeResources: [],
+    resourcesSelected: {},
     recipe: null
   });
   dispatch(addBuilding(building));
