@@ -78,7 +78,7 @@ export default function BuildDetailComponent() {
   }, [recipeSelected])
 
   return (
-    <View style={styles.container}>
+    <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
         <BadgeComponent icon={buildingType.icon} size={55} />
         <Text style={styles.heading1}>{building.name}</Text>
