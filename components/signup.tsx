@@ -32,7 +32,7 @@ export default function SignupComponent() {
       <View style={styles.headingWrapper}>
         <Text style={styles.heading1}>{'Sign up'}</Text>
       </View>
-      <View style={styles.container}>
+      <View style={styles.columns}>
         <View>
           <Text style={styles.bareText}>{'Email:'}</Text>
           <TextInput style={inputBoxStyle}
@@ -55,7 +55,7 @@ export default function SignupComponent() {
         </View>
         <View style={styles.break}></View>
         {renderInvalidMessages()}
-        <View style={styles.buttonRow}>
+        <View style={styles.rows}>
           <TouchableOpacity style={submitButtonStyle} onPress={() => {submit()}} >
             <IconComponent provider="FontAwesome5" name="arrow-right" color="#fff"
               size={16} style={styles.headingIcon} />

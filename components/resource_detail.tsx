@@ -31,13 +31,13 @@ export default function ResourceDetailComponent() {
   const total = utils.formatNumberShort(resourceType.value * resource.quantity);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
         <BadgeComponent icon={resourceType.icon} quality={resource.quality}
           size={55} />
         <Text style={styles.heading1}>{utils.getResourceName(resource)}</Text>
       </View>
-      <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
+      <View style={{flex: 1, display: 'flex', alignItems: 'center'}}>
         <View style={flat([styles.descriptionBand,
           {minWidth: positioner.modalWidth,
             maxWidth: positioner.modalWidth}])}>
@@ -54,24 +54,28 @@ export default function ResourceDetailComponent() {
           </View>
 
         </View>
-        <View style={styles.spacedRows}>
-          {resourceType.tags.map((tagName) => {return renderTag(tagName)})}
+        <View style={StyleSheet.flatten([styles.container, {paddingHorizontal: 5,
+          justifyContent: 'space-between'}])}>
+          <View style={StyleSheet.flatten([styles.spacedRows,
+            {justifyContent: 'center'}])}>
+            {resourceType.tags.map((tagName) => {return renderTag(tagName)})}
+          </View>
+          <View style={styles.break} />
+          <View style={flat([styles.rows, {justifyContent: 'space-between',
+            alignItems: 'flex-end', minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}])}>
+            <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
+              {renderValue(resourceType.value, 20, styles.bareText)}
+              <Text style={styles.bareText}>{' value'}</Text>
+            </View>
+            <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
+              <Text style={styles.bareText}>{'total (x' + count + ') '}</Text>
+              {renderValue((resourceType.value * resource.quantity), 25, styles.bareText)}
+            </View>
+          </View>
         </View>
         <View style={styles.break} />
-        <View style={flat([styles.rows, {justifyContent: 'space-between',
-          alignItems: 'flex-end', minWidth: positioner.modalMajor,
-          maxWidth: positioner.modalMajor}])}>
-          <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
-            {renderValue(resourceType.value, 20, styles.bareText)}
-            <Text style={styles.bareText}>{' value'}</Text>
-          </View>
-          <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
-            <Text style={styles.bareText}>{'total (x' + count + ') '}</Text>
-            {renderValue((resourceType.value * resource.quantity), 25, styles.bareText)}
-          </View>
-        </View>
-        <View style={styles.break} />
-      </ScrollView>
+      </View>
     </View>
   );
 

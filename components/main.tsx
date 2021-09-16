@@ -177,7 +177,6 @@ export default function MainComponent() {
         </View>
       </View>
       <MessageBarComponent />
-      <ModalHandlerComponent />
       <View style={styles.buttonTabWrapper}>
         <TouchableOpacity style={styles.button}
           onPress={() => { dropdownSet(!dropdownExpanded) }} >
@@ -185,6 +184,7 @@ export default function MainComponent() {
         </TouchableOpacity>
       </View>
       {renderDropdown(dropdownExpanded, dropdownPress)}
+      <ModalHandlerComponent />
     </LinearGradient>
   );
 

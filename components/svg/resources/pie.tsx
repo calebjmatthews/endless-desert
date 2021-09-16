@@ -33,7 +33,7 @@ export default function PieSvgComponent(props: { icon: Icon }) {
       <Path d="m12 28.001v8h-7.09c1.37-2.38 1.37-5.62 0-8z" fill="#df9a61"/>
       <Path d="m12 20.001v8h-7.09c-.11-.18-.22-.36-.34-.53-.08-.12-.08-.239-.061-.319.01-.08.05-.19.17-.28 2.13-1.49 3.41-4.24 3.33-6.87h3.991z" fill="#c22235"/>
       <Path d="m12 15.281v4.72h-3.99c-.01-.56-.09-1.11-.229-1.64-.04-.141 0-.25.04-.32.05-.07.12-.17.26-.2 1.499-.4 2.879-1.34 3.919-2.56z" fill="#df9a61"/>
-      <Rect x=".52472" y=".19075" width="31.521" height="63.901" fill="#fff" fill-opacity=".19758" fill-rule="evenodd" stroke-width=".10618"/>
+      <Rect x=".52472" y=".19075" width="31.521" height="63.901" fill="#fff" fillOpacity=".19758" fillRule="evenodd" strokeWidth=".10618"/>
     </Svg>
   );
 }
