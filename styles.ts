@@ -355,7 +355,6 @@ export const styles = StyleSheet.create({
     zIndex: 100,
     minWidth: 300,
     maxWidth: 300,
-    minHeight: '80%',
     maxHeight: '80%',
     borderWidth: 2,
     borderStyle: 'solid',

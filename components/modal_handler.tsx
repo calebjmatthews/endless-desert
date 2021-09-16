@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import RootState from '../models/root_state';
@@ -23,17 +23,31 @@ import LoginComponent from './login';
 import SignupComponent from './signup';
 import { MODALS } from '../enums/modals';
 
+const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
+  [MODALS.RESOURCE_DETAIL]: '50%',
+  [MODALS.LOGIN]: '40%',
+  [MODALS.SIGNUP]: '50%'
+}
+
 export default function ModalHandlerComponent() {
   const dispatch = useDispatch();
   const modalType = useTypedSelector(state => state.ui.modalDisplayed);
   const memos = useTypedSelector(state => state.ui.memos);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
+  const [modalHeight, setModalHeight] = useState('80%');
+
   useEffect(() => {
     if (memos.length > 0) {
       dispatch(displayModal(MODALS.MEMO));
     }
   }, [memos])
+
+  useEffect(() => {
+    if (modalType) {
+      setModalHeight(MODAL_HEIGHT_MAP[modalType] || '80%');
+    }
+  }, [modalType])
 
   function modalCancel() {
     if (modalType != MODALS.MEMO) {
@@ -50,7 +64,8 @@ export default function ModalHandlerComponent() {
         onPress={() => modalCancel()}>
       </TouchableOpacity>
       <LinearGradient style={StyleSheet.flatten([styles.modal,
-        {minWidth: positioner.modalWidth, maxWidth: positioner.modalWidth}])}
+        {minWidth: positioner.modalWidth, maxWidth: positioner.modalWidth,
+          minHeight: modalHeight}])}
         colors={["#0034aa", "#6a41b4", "#f58f7d"]}>
         {renderModal(modalType)}
       </LinearGradient>
