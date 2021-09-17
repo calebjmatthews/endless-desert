@@ -65,7 +65,7 @@ export default function BuildingSelectComponent() {
   if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
     buildingsArray = [new Building({ id: BUILDING_TYPES.SKY,
       buildingType: BUILDING_TYPES.SKY, suffix: 0, name: BUILDING_TYPES.SKY,
-      recipe: null }), ...buildingsArray];
+      resourcesSelected: {}, recipe: null }), ...buildingsArray];
   }
 
   function setStartingSelected(): string|null {
