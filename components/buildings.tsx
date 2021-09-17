@@ -394,7 +394,7 @@ function BuildingDescription(props: any) {
       );
     }
     else {
-      const rateStyle = { background: '#cec3e4', paddingHorizontal: 4, maxHeight: 19,
+      const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4, maxHeight: 19,
         marginVertical: 6 };
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
         color: '#cec3e4', size: 21 });
@@ -466,11 +466,11 @@ function BuildingDescription(props: any) {
     if (!resourceKind) { return null; }
 
     let sign = '+';
-    let rateStyle: any = { background: '#b8ccfb', paddingHorizontal: 4, maxHeight: 19,
-      marginVertical: 6 };
+    let rateStyle: any = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
+      maxHeight: 19, marginVertical: 6 };
     if (rate < 0) {
       sign = '';
-      rateStyle.background = '#ffb4b1';
+      rateStyle.backgroundColor = '#ffb4b1';
     }
     if (problems.length > 0) {
       rateStyle.opacity = 0.6;

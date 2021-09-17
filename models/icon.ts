@@ -23,7 +23,7 @@ export default class Icon {
     if (!icon.secondaryShadow) { icon.secondaryShadow = '#000'; }
     if (!icon.tertiaryColor) { icon.tertiaryColor = '#000'; }
     if (!icon.tertiaryShadow) { icon.tertiaryShadow = '#000'; }
-    if (!icon. borderless) { icon.borderless = false; }
+    if (!icon.borderless) { icon.borderless = false; }
     if (!icon.quality) { icon.quality = 0; }
     Object.assign(this, icon);
   }

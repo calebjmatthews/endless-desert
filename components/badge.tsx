@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeIconComponent from './badge_icon';
@@ -30,11 +30,11 @@ export default function BadgeComponent(props: BadgeProps) {
       else if (size > 21) {
         size -= 2;
       }
+
       return (
         <View style={badgeStyle}>
-          <IconComponent provider={props.icon.provider} name={props.icon.name}
-            color={props.icon.color} size={size}
-            style={{lineHeight: 0}} />
+        <IconComponent provider={props.icon.provider} name={props.icon.name}
+          color={props.icon.color} size={size} />
         </View>
       );
     }

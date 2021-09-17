@@ -390,7 +390,7 @@ export default function BuildDetailComponent() {
   function renderRecipe(recipe: BuildingRecipe) {
     let rates: {specificity: string, type: string, quantity: number}[] = [];
     if (recipe.index == -1) {
-      const rateStyle = { background: '#cec3e4', paddingHorizontal: 4,
+      const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4,
         minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
         color: '#cec3e4', size: 21 });
@@ -423,11 +423,11 @@ export default function BuildDetailComponent() {
   function renderRate(rate: {specificity: string, type: string, quantity: number}) {
     const type = utils.getMatchingResourceKind(rate.specificity, rate.type);
     let sign = '+';
-    let rateStyle = { background: '#b8ccfb', paddingHorizontal: 4,
+    let rateStyle = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
       minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
     if (rate.quantity < 0) {
       sign = '';
-      rateStyle.background = '#ffb4b1';
+      rateStyle.backgroundColor = '#ffb4b1';
     }
     return (
       <View key={type.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>

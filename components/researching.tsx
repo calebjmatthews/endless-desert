@@ -237,7 +237,7 @@ function OptionDescription(props: any) {
       let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
-      let buttonStyle = styles.buttonRowItem;
+      let buttonStyle: any = styles.button;
       let buttonDisabled = false;
       let paidCost = false;
       if (rod.paidCosts[optionName]) {
@@ -245,8 +245,7 @@ function OptionDescription(props: any) {
       }
 
       if (resourceQuantity < aCost.quantity || paidCost) {
-        // @ts-ignore
-        buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
+        buttonStyle = StyleSheet.compose(styles.button, styles.buttonDisabled);
         buttonDisabled = true;
       }
       let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
