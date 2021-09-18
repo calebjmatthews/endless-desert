@@ -226,7 +226,7 @@ fortuities[FORTUITIES.FIERCE_WIND] = new Fortuity({
   type: 'Observation',
   repeatable: true,
   weight: 10,
-  gainResources: [{specificity: RSP.EXACT, type: RTY.SEEDS, value: 822}],
+  gainResources: [{specificity: RSP.SUBCATEGORY, type: RSC.SEEDS, value: 822}],
   available: (fState: FortuityState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {

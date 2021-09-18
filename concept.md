@@ -489,7 +489,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Multiple Sand types
   [X] New crops in trader pools
   [X] Resource selection for inexact building recipes
-  [ ] Multiple Seed types
+  [X] Multiple Seed types
   [ ] Fortuity should grant ore, equipment, food
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
@@ -568,7 +568,6 @@ let testKitchen = new Building({id: '12341234',
 let dish = testKitchen.getDishFromIngredients([
   resourceTypes[RESOURCE_TYPES.WATER],
   resourceTypes[RESOURCE_TYPES.GRAIN],
-  resourceTypes[RESOURCE_TYPES.SEEDS],
   resourceTypes[RESOURCE_TYPES.SALT]],
   resourceTypes);
 console.log('dish');

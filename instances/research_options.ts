@@ -119,7 +119,7 @@ researchOptions[RESEARCH_OPTIONS.GERMINATION] = new ResearchOption({
   description: ('Many of the seeds you plant never do anything, and you don\'t '
     + 'know why. But with enough experimentation, you could figure '
     + 'it out.'),
-  cost: [{specificity: RS.EXACT, type: RTY.SEEDS, quantity: 2},
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.SEEDS, quantity: 2},
     {specificity: RS.EXACT, type: RTY.WATER, quantity: 50}]
 });
 

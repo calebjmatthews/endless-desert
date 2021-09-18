@@ -11,7 +11,7 @@ vaultStarting.increaseResource(new Resource({
   quantity: 100
 }));
 vaultStarting.increaseResource(new Resource({
-  type: RESOURCE_TYPES.SEEDS,
+  type: RESOURCE_TYPES.SEEDS_LENTIL,
   quality: 0,
   quantity: 22
 }));

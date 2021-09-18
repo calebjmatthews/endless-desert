@@ -253,13 +253,44 @@ resourceTypes[RTY.OLIVE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE})
 });
 
-resourceTypes[RTY.SEEDS] = new ResourceType({
-  name: RTY.SEEDS,
+resourceTypes[RTY.SEEDS_LENTIL] = new ResourceType({
+  name: RTY.SEEDS_LENTIL,
   category: RCA.MATERIAL,
-  subcategory: RSC.SEED,
+  subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 40,
-  icon: new Icon({provider: 'svg', name: SVGS.SEEDS})
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#a0ddb0',
+    shadow: '#5bc980'})
+});
+
+resourceTypes[RTY.SEEDS_REED] = new ResourceType({
+  name: RTY.SEEDS_REED,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SEEDS,
+  tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 30,
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#78281e',
+    shadow: '#14aa6b'})
+});
+
+resourceTypes[RTY.SEEDS_OLIVE] = new ResourceType({
+  name: RTY.SEEDS_OLIVE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SEEDS,
+  tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#d2d02c',
+    shadow: '#b5b424'})
+});
+
+resourceTypes[RTY.SEEDS_GRAIN] = new ResourceType({
+  name: RTY.SEEDS_GRAIN,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SEEDS,
+  tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#ffbe00',
+    shadow: '#ffbe00'})
 });
 
 resourceTypes[RTY.FLOUR] = new ResourceType({

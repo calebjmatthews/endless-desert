@@ -21,8 +21,8 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SPICE] = new ResourceSubcategory({
     color:'#ca8826'})
 });
 
-resourceSubcategories[RESOURCE_SUBCATEGORIES.SEED] = new ResourceSubcategory({
-  name: RESOURCE_SUBCATEGORIES.SEED,
+resourceSubcategories[RESOURCE_SUBCATEGORIES.SEEDS] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.SEEDS,
   value: 40,
   order: 2,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS})
