@@ -20,6 +20,7 @@ import { INTRO_STATES } from '../enums/intro_states';
 
 export default function LookAroundComponent(props: {height: number, panelWidth: number}) {
   const dispatch = useDispatch();
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const [looking, setLooking] = useState(false);
 
   return (
@@ -59,6 +60,7 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
     else {
       return (
         <ProgressBarComponent startingProgress={0}
+          width={positioner.majorWidth - positioner.minorPadding}
           endingProgress={1} duration={3000}
           label={'Searching...'} />
       );

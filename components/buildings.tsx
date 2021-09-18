@@ -174,6 +174,7 @@ export default function BuildingsComponent() {
               maxWidth: positioner.majorWidth}])}>
             <Text>{label}</Text>
             <ProgressBarComponent staticDuration={true}
+              width={positioner.majorWidth - positioner.minorPadding}
               startingProgress={timer.progress} endingProgress={1}
               duration={timer.endsAt - new Date(Date.now()).valueOf()}
               label={timer.remainingLabel} />

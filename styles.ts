@@ -422,18 +422,16 @@ export const styles = StyleSheet.create({
   progressBarWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
-    width: '100%',
+    overflow: 'hidden',
     height: 14,
-    padding: 2,
     borderWidth: 2,
     borderStyle: 'solid',
     borderColor: '#071f56',
     borderRadius: 5
   },
   progressBar: {
-    height: 6,
-    backgroundColor: '#071f56',
-    borderRadius: 3
+    height: 11,
+    backgroundColor: '#071f56'
   },
   progressBarLabel: {
     display: 'flex',

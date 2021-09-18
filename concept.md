@@ -499,6 +499,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Show detail modals when pressing on icon, e.g. on buildings
   [ ] Olives before grain
   [ ] Fish before quail
+  [ ] Fix for stuck without sand before trading unlocked
 
 ## Commands
 ### Delete all records from all tables:

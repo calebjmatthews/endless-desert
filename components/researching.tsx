@@ -88,6 +88,7 @@ export default function ResearchingComponent() {
           </View>
         </View>
         <ProgressBarComponent startingProgress={lastProgress}
+          width={positioner.majorWidth - positioner.majorPadding}
           endingProgress={progress} duration={1000}
           label={pBarLabel} />
       </View>

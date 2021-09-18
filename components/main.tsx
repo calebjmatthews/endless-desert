@@ -101,12 +101,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
 
   // return (
   //   <LinearGradient

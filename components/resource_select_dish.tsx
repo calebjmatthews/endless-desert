@@ -162,6 +162,7 @@ export default function ResourceSelectDishComponent() {
     if (experimenting) {
       return (
         <ProgressBarComponent startingProgress={0}
+          width={positioner.majorWidth - positioner.minorPadding}
           endingProgress={1} duration={5000}
           label={'Experimenting...'} />
       );

@@ -161,6 +161,7 @@ export default function ResearchesComponent() {
         <>
           <View style={styles.break} />
           <ProgressBarComponent staticDuration={true}
+            width={positioner.majorWidth - positioner.minorPadding}
             startingProgress={matchingTimer.progress} endingProgress={1}
             duration={matchingTimer.endsAt - new Date(Date.now()).valueOf()}
             label={matchingTimer.remainingLabel} />

@@ -88,6 +88,7 @@ export default function LeaderDetailComponent() {
           {happinessExpanded && renderExplanation(LEADER_QUALITIES.HAPPINESS)}
           <View style={styles.break} />
           <ProgressBarComponent startingProgress={0}
+            width={positioner.majorWidth - positioner.majorPadding}
             endingProgress={(leader.happiness / 100)} duration={1000}
             labelStyle={styles.bareText}
             color={'#de0202'} label={(leader.happiness + '%')} />
