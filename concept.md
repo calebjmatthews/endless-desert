@@ -490,8 +490,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] New crops in trader pools
   [X] Resource selection for inexact building recipes
   [X] Multiple Seed types
-  [ ] Fortuity should grant ore, equipment, food
+  [X] Fix Android window height
   [ ] Travel-ready food like salted meat, dried fruit, waybread
+  [ ] Fortuity should grant ore, equipment, food
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   [ ] Consistent sorting in tabs/selection components
   [ ] Hide resources with zero quantity in selection components

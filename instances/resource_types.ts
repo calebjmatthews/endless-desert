@@ -269,8 +269,8 @@ resourceTypes[RTY.SEEDS_REED] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 30,
-  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#78281e',
-    shadow: '#14aa6b'})
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#14aa6b',
+    shadow: '#78281e'})
 });
 
 resourceTypes[RTY.SEEDS_OLIVE] = new ResourceType({
