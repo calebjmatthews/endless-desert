@@ -269,7 +269,7 @@ resourceTypes[RTY.SEEDS_REED] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 30,
-  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#14aa6b',
+  icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#9d4639',
     shadow: '#78281e'})
 });
 
@@ -1243,7 +1243,7 @@ new ResourceType({
   name: (EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
-  value: 3000,
+  value: 400,
   icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 

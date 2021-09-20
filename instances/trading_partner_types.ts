@@ -30,7 +30,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 20}
+    {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 20}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
@@ -39,7 +39,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SULFUR, weight: 50},
-    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 20}
+    {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 20}
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
@@ -69,7 +69,8 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.POTATO, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 25},
     {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 100},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 20},
@@ -79,6 +80,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
     {specificity: RSP.EXACT, type: RTY.POTATO, weight: 100},
     {specificity: RSP.EXACT, type: RTY.BLUEBERRY, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 50},

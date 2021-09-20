@@ -94,6 +94,7 @@ import SimpleRobeSvgComponent from './equipment/simple_robe';
 import JourneymansHaversackSvgComponent from './equipment/journeymans_haversack';
 import JourneymansGearbagSvgComponent from './equipment/journeymans_gearbag';
 import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
+import ShoulderPouchSvgComponent from './equipment/shoulder_pouch';
 
 import SkySvgComponent from './buildings/sky';
 import CisternSvgComponent from './buildings/cistern';
@@ -332,6 +333,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <JourneymansGearbagSvgComponent icon={props.icon} />;
     case SVGS.JOURNEYMANS_TOOLPACK:
     return <JourneymansToolpackSvgComponent icon={props.icon} />;
+    case SVGS.SHOULDER_POUCH:
+    return <ShoulderPouchSvgComponent icon={props.icon} />;
 
     case SVGS.SKY:
     return <SkySvgComponent icon={props.icon} />;

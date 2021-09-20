@@ -92,6 +92,7 @@ export enum SVGS {
   JOURNEYMANS_HAVERSACK = "Journeyman's Haversack",
   JOURNEYMANS_GEARBAG = "Journeyman's Gearbag",
   JOURNEYMANS_TOOLPACK = "Journeyman's Toolpack",
+  SHOULDER_POUCH = "Shoulder Pouch",
 
   SKY = "Sky",
   CISTERN = "Cistern",

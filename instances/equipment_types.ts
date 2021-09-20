@@ -406,4 +406,45 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
+equipmentTypes[EQUIPMENT_TYPES.SHOULDER_POUCH] = new EquipmentType({
+  name: EQUIPMENT_TYPES.SHOULDER_POUCH,
+  description: 'A small cloth bag tailor-made to carry specific goods',
+  slot: EQUIPMENT_SLOTS.BACK,
+  effectGenerators: [new EquipmentEffectGenerator({
+    defaultOption: {
+      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
+      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
+      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
+      type: RESOURCE_CATEGORIES.MATERIAL,
+      change: 10,
+      weight: 100
+    },
+    additionalOptions: [],
+    count: 1
+  }), new EquipmentEffectGenerator({
+    defaultOption: {
+      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
+      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
+      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
+      type: RESOURCE_CATEGORIES.MATERIAL,
+      change: 15,
+      weight: 100
+    },
+    additionalOptions: [],
+    count: 1
+  }), new EquipmentEffectGenerator({
+    defaultOption: {
+      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
+      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
+      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
+      type: RESOURCE_CATEGORIES.MATERIAL,
+      change: 20,
+      weight: 100
+    },
+    additionalOptions: [],
+    count: 1
+  })],
+  icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
+})
+
 export { equipmentTypes };
