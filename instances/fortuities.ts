@@ -1,6 +1,6 @@
 import Fortuity from '../models/fortuity';
 import Memo from '../models/memo';
-import { FortuityState } from '../models/fortuity_state';
+import { GameState } from '../models/game_state';
 import { FORTUITIES } from '../enums/fortuities';
 import { LEADER_TYPES } from '../enums/leader_types';
 import { INTRO_STATES } from '../enums/intro_states';
@@ -41,7 +41,7 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
   repeatable: false,
   weight: 1000,
   leaderJoins: LEADER_TYPES.SAMANNOUD,
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.account) {
       const iState = fState.account.introState;
       if (iState == INTRO_STATES.REFURBISH_HUTS || iState == INTRO_STATES.DONE) {
@@ -77,7 +77,7 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
   repeatable: false,
   weight: 20,
   leaderJoins: LEADER_TYPES.SHUDDERING_REFUGE,
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -112,7 +112,7 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
   repeatable: false,
   weight: 20,
   leaderJoins: LEADER_TYPES.AUSPICIOUS_WAIF,
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.researchStatus) {
       if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION] == 'completed') {
         return true;
@@ -145,7 +145,7 @@ fortuities[FORTUITIES.DOWNCAST_FIGURE] = new Fortuity({
   repeatable: false,
   weight: 10,
   leaderJoins: LEADER_TYPES.FOXFIRE_HERETIC,
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -174,7 +174,7 @@ fortuities[FORTUITIES.RAIN] = new Fortuity({
     {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 48},
     {specificity: RSP.EXACT, type: RTY.WATER, value: 580}
   ],
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -200,7 +200,7 @@ fortuities[FORTUITIES.UNSPEAKING] = new Fortuity({
   repeatable: false,
   weight: 5,
   gainResources: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 82}],
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -227,7 +227,7 @@ fortuities[FORTUITIES.FIERCE_WIND] = new Fortuity({
   repeatable: true,
   weight: 10,
   gainResources: [{specificity: RSP.SUBCATEGORY, type: RSC.SEEDS, value: 822}],
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -266,7 +266,7 @@ fortuities[FORTUITIES.BURIED_SHIP] = new Fortuity({
     {specificity: RSP.TAG, type: RTA.FOOD, value: 200},
     {specificity: RSP.TAG, type: RTA.DRINK, value: 200}
   ],
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
         return true;
@@ -303,7 +303,7 @@ fortuities[FORTUITIES.WATERY_CREVICE] = new Fortuity({
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, value: 100},
     {specificity: RSP.EXACT, type: RTY.WATER, value: 3221},
   ],
-  available: (fState: FortuityState) => {
+  available: (fState: GameState) => {
     if (fState.researchStatus) {
       if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION] == 'completed') {
         return true;

@@ -1,5 +1,5 @@
 import Memo from './memo';
-import { FortuityState } from './fortuity_state';
+import { GameState } from './game_state';
 
 export default class Fortuity implements FortuityInterface {
   name: string = '';
@@ -15,7 +15,7 @@ export default class Fortuity implements FortuityInterface {
     Object.assign(this, fortuity);
   }
 
-  available(fState: FortuityState) {
+  available(fState: GameState) {
     console.log('Fortuity available function not properly set');
     return false;
   }
@@ -31,5 +31,5 @@ interface FortuityInterface {
   leaderJoins?: string;
   gainResources?: {specificity: string, type: string, value: number}[];
 
-  available(fState: FortuityState): boolean;
+  available(fState: GameState): boolean;
 }

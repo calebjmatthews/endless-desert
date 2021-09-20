@@ -501,6 +501,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Olives before grain
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
+  [ ] Fix for building recipe un-selection when opening detail modal
 
 ## Commands
 ### Delete all records from all tables:

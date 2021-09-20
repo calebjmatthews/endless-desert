@@ -8,7 +8,7 @@ import Account from './account';
 import Leader from './leader';
 import Equipment from './equipment';
 
-export interface FortuityState {
+export interface GameState {
   vault?: Vault;
   researchStatus?: ResearchStatus;
   rates?: { productionRates: Rate, consumptionRates: Rate,
