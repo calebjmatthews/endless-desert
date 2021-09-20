@@ -25,8 +25,8 @@ import { MODALS } from '../enums/modals';
 
 const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
   [MODALS.RESOURCE_DETAIL]: '50%',
-  [MODALS.LOGIN]: '40%',
-  [MODALS.SIGNUP]: '50%'
+  [MODALS.LOGIN]: '60%',
+  [MODALS.SIGNUP]: '70%'
 }
 
 export default function ModalHandlerComponent() {

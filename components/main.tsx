@@ -4,7 +4,7 @@ import RootState from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { createStore } from 'redux';
 import { Text, View, Button, FlatList, TouchableOpacity, ScrollView, Dimensions,
-  ScaledSize } from 'react-native';
+  ScaledSize, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -72,7 +72,7 @@ export default function MainComponent() {
   useEffect(() => {
     if (!positionerInit) {
       setPositionerInit(true);
-      dispatch(setPositioner(new Positioner(window.width, window.height)));
+      dispatch(setPositioner(new Positioner(window.width, window.height, Platform.OS)));
     }
     Dimensions.addEventListener("change", onWindowChange);
     return () => {
@@ -82,7 +82,7 @@ export default function MainComponent() {
 
   const onWindowChange = ({window, screen}:
     {window: ScaledSize, screen: ScaledSize}) => {
-    dispatch(setPositioner(new Positioner(window.width, window.height)));
+    dispatch(setPositioner(new Positioner(window.width, window.height, Platform.OS)));
   }
 
   let tabsArray = Object.keys(tabs).map((tabName) => {

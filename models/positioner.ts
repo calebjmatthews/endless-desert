@@ -6,6 +6,7 @@ export default class Positioner {
   minorPadding: number = 10;
   iconSpacer: number = 55;
   headerSpacer: number = 70;
+  headerSpacerAndroid: number = 29;
   titleSpacer: number = 25;
   buildingButtonSpacer: number = 47;
 
@@ -23,10 +24,15 @@ export default class Positioner {
   modalHeightMajor: number = 210;
   modalHeightMinor: number = 140;
 
-  constructor(screenWidth?: number, screenHeight?: number) {
+  constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {
       this.screenWidth = screenWidth; this.screenHeight = screenHeight;
-      this.bodyHeight = screenHeight - (this.headerSpacer);
+      switch(os) {
+        case('android'):
+          this.bodyHeight = screenHeight - (this.headerSpacerAndroid); break;
+        default:
+        this.bodyHeight = screenHeight - (this.headerSpacer); break;
+      }
       this.majorWidth = screenWidth - (this.majorPadding * 2);
       this.minorWidth = (this.majorWidth / 2) - this.minorPadding;
       this.bodyMedWidth = this.majorWidth - this.iconSpacer;
