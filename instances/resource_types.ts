@@ -290,7 +290,7 @@ resourceTypes[RTY.SEEDS_GRAIN] = new ResourceType({
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#ffbe00',
-    shadow: '#ffbe00'})
+    shadow: '#ffb655'})
 });
 
 resourceTypes[RTY.FLOUR] = new ResourceType({
