@@ -286,7 +286,7 @@ researchOptions[RESEARCH_OPTIONS.MATERIAL_CONJUNCTION] = new ResearchOption({
   description: ('Your building materials are less strong when different types meet: '
     + 'brick against wood is never as stable and brick against brick. There may be '
     + 'a way around this, and you know where to start.'),
-  cost: [{specificity: RS.EXACT, type: RTY.BRICKS_RED, quantity: 1000},
+  cost: [{specificity: RS.SUBCATEGORY, type: RSC.BRICK, quantity: 1000},
     {specificity: RS.SUBCATEGORY, type: RSC.WOOD, quantity: 200}]
 });
 

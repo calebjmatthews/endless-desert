@@ -521,8 +521,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 40, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 40}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20, probability: 1},
         {specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 20, probability: 1}],
@@ -753,7 +753,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 3, produces:
-        [{specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 10, probability: 1}],
+        [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 10,
+          probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 4, produces:
@@ -790,7 +791,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 3, produces:
-        [{specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 10, probability: 1}],
+        [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 10, probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 4, produces:

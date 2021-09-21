@@ -154,7 +154,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
     {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
     {specificity: RSP.CATEGORY, type: RCA.EQUIPMENT, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
