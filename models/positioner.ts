@@ -23,6 +23,9 @@ export default class Positioner {
   modalHeight: number = 375;
   modalHeightMajor: number = 210;
   modalHeightMinor: number = 140;
+  speechPartnerWidth: number = 55;
+  speechBubbleWidth: number = 200;
+  speechButtonWidth: number = 270;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {
@@ -48,6 +51,9 @@ export default class Positioner {
         - this.minorPadding;
       this.modalHeightMinor = ((this.modalHeight - this.titleSpacer) * 0.4)
         - this.minorPadding;
+      this.speechBubbleWidth = this.modalWidth - this.speechPartnerWidth
+        - (this.majorPadding * 2);
+      this.speechButtonWidth = this.modalMajor - this.majorPadding;
     }
   }
 }

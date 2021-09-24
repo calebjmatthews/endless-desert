@@ -101,12 +101,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -261,11 +261,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'A Familiar Figure',
+        convoName: 'A Familiar Figure - 0'
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

@@ -128,7 +128,7 @@ resourceTags[RESOURCE_TAGS.TEXTILE] = new ResourceTag({
   name: RESOURCE_TAGS.TEXTILE,
   value: 200,
   extract: false,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'google-spreadsheet',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'grid',
     color:'#3f51b5'})});
 
 resourceTags[RESOURCE_TAGS.GLASS] = new ResourceTag({

@@ -131,6 +131,7 @@ export enum SVGS {
   TREFOIL_SOWER = "Louth",
   SCARRED_SCHOLAR = "Szczecin",
   AUSPICIOUS_WAIF = "Reims",
+  YOU = "You",
 
   FOXFIRE_ASCETICS = "Foxfire Ascetics",
   TREFOIL_KINGDOM = "Trefoil Kingdom",

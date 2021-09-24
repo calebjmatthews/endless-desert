@@ -14,7 +14,7 @@ export default function BadgeComponent(props: BadgeProps) {
     if (props.borderless) { props.icon.borderless = props.borderless; }
     let icon = new Icon(props.icon);
     let badgeStyle = getBadgeStyle(icon.size,
-      icon.borderless, icon.quality);
+      icon.borderless, props.marginless, icon.quality);
     if (icon.provider == 'svg') {
       return (
         <View style={badgeStyle}>
@@ -53,17 +53,18 @@ export default function BadgeComponent(props: BadgeProps) {
   return null;
 
   function getBadgeStyle(size: number|undefined, borderless: boolean|undefined,
-    quality: number|undefined) {
+    marginless: boolean|undefined, quality: number|undefined) {
     let backgroundColor = '#fff';
     if (props.backgroundColor) { backgroundColor = props.backgroundColor; }
     if (props.icon?.backgroundColor) { backgroundColor = props.icon.backgroundColor; }
+    const margin = marginless ? 0 : 5;
     let badgeStyle: any = {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       height: 30,
       width: 30,
-      margin: 5,
+      margin: margin,
       backgroundColor: backgroundColor,
       borderWidth: 1,
       borderStyle: 'solid',
@@ -106,5 +107,6 @@ interface BadgeProps {
   backgroundColor?: string,
   size?: number|undefined,
   borderless?: boolean,
+  marginless?: boolean,
   quality?: number
 }

@@ -11,7 +11,7 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
   title: 'of ten thousand paths',
   description: ('A bevy of scars, sun-bleached hair, and a fondness for cats. '
     + 'You\'ve known |name| as long as you can remember.'),
-  speechType: 'Rowdy',
+  speechType: 'Aggressive',
   toolStarting: EQUIPMENT_TYPES.FOUR_POINT_BANGLE,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
@@ -65,7 +65,7 @@ leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
   description: ('After a loud argument and what sounded like a fistfight, |name| '
     + 'left the Red Crow Traders and joined you. Whatever the scars are from, '
     + 'one apparently only needs a single working eye to be intimidatingly well read.'),
-  speechType: 'Rowdy',
+  speechType: 'Aggressive',
   toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,

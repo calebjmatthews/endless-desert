@@ -133,6 +133,7 @@ import FoxfireHereticSvgComponent from './leaders/foxfire_heretic';
 import TrefoilSowerSvgComponent from './leaders/trefoil_sower';
 import ScarredScholarSvgComponent from './leaders/scarred_scholar';
 import AuspiciousWaifSvgComponent from './leaders/auspicious_waif';
+import YouSvgComponent from './leaders/you';
 
 import RedCrowTradersSvgComponent from './trading_partners/red_crow_traders';
 import FoxfireAsceticsSvgComponent from './trading_partners/foxfire_ascetics';
@@ -409,6 +410,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <ScarredScholarSvgComponent icon={props.icon} />;
     case SVGS.AUSPICIOUS_WAIF:
     return <AuspiciousWaifSvgComponent icon={props.icon} />;
+    case SVGS.YOU:
+    return <YouSvgComponent icon={props.icon} />;
 
     case SVGS.RED_CROW_TRADERS:
     return <RedCrowTradersSvgComponent icon={props.icon} />;

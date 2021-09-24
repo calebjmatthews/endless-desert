@@ -3,8 +3,9 @@ import Message from './message';
 
 export default class Memo {
   name: string = '';
-  title: string = '';
-  text: string = '';
+  title?: string;
+  text?: string;
+  convoName?: string;
   resourcesGained?: Resource[]|null = null;
   resourcesLost?: Resource[]|null = null;
   messages?: Message[]|null = null;

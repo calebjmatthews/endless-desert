@@ -536,5 +536,14 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#73799f',
     borderRadius: 2
+  },
+
+  speechBubble: {
+    padding: 5,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#727f9c',
+    borderRadius: 10
   }
 });

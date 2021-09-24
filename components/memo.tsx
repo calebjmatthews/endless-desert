@@ -7,6 +7,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
+import ConversationComponent from './conversation';
 import { dismissMemo, displayModal } from '../actions/ui';
 
 import Resource from '../models/resource';
@@ -23,34 +24,40 @@ export default function MemoComponent() {
   const memo = memos[0];
   const modalHeight = positioner.modalHeight - positioner.majorPadding;
 
+  const containerStyle: any = (memo.text
+    ? StyleSheet.flatten([styles.panelFlexColumn,
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth,
+        justifyContent: 'space-between'}])
+    : StyleSheet.flatten([styles.container,
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth,
+        justifyContent: 'space-between'}]))
+
   return (
     <View style={styles.container}>
       {renderHeading()}
-      <View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth,
-          justifyContent: 'space-between'}])}>
-        <Text style={styles.bodyText}>
+      <ScrollView contentContainerStyle={containerStyle}>
+        {memo.text && (<Text style={styles.bodyText}>
           {memo.text}
-        </Text>
-        <ScrollView>
-          {renderMessages(memo.messages)}
-          {renderResources(memo.resourcesGained, true)}
-          {renderResources(memo.resourcesLost, false)}
-          {renderLeaderJoined()}
-        </ScrollView>
-        <View style={styles.break} />
-        <TouchableOpacity style={styles.buttonLarge}
-          onPress={() => {dismissPress()}} >
-          <IconComponent provider="FontAwesome" name="arrow-right" color="#fff" size={16}
-            style={styles.headingIcon} />
-          <Text style={styles.buttonTextLarge}>{' Next'}</Text>
-        </TouchableOpacity>
-      </View>
+        </Text>)}
+        {renderMessages(memo.messages)}
+        {memo.convoName && <ConversationComponent convoName={memo.convoName} />}
+        {renderResources(memo.resourcesGained, true)}
+        {renderResources(memo.resourcesLost, false)}
+        {renderLeaderJoined()}
+      </ScrollView>
+      <View style={styles.break} />
+      <TouchableOpacity style={styles.buttonLarge}
+        onPress={() => {dismissPress()}} >
+        <IconComponent provider="FontAwesome" name="arrow-right" color="#fff" size={16}
+          style={styles.headingIcon} />
+        <Text style={styles.buttonTextLarge}>{' Next'}</Text>
+      </TouchableOpacity>
+      <View style={styles.break} />
     </View>
   );
 
   function renderHeading() {
-    if (memo.title.length > 0) {
+    if (memo.title) {
       return (
         <View style={styles.headingWrapper}>
           <Text style={styles.heading1}>{memo.title}</Text>

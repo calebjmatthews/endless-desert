@@ -559,7 +559,7 @@ researches[RESEARCHES.WEAVING] = new Research({
 });
 
 researches[RESEARCHES.SAND_PURIFICATION] = new Research({
-  name: RESEARCHES.WEAVING,
+  name: RESEARCHES.SAND_PURIFICATION,
   unlocks: ('Unlocks Sand Cascades.'),
   description: ('You\'ve known for some time that sand is full of tiny '
     + 'particles of shocking variety, but it\'s only now that textiles are '

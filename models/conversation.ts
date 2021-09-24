@@ -28,6 +28,8 @@ interface ConversationInterface {
 
 export class ConversationStatement {
   name: string = '';
+  partnerKind: string = '';
+  partnerType: string = '';
   text: string = '';
   responseNames?: string[];
 
@@ -43,6 +45,7 @@ export class ConversationResponse implements ConversationResponseInterface {
   textIntro?: string;
   text: string = '';
   statementName: string = '';
+  speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
 
@@ -60,6 +63,7 @@ interface ConversationResponseInterface {
   textIntro?: string;
   text: string;
   statementName: string;
+  speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
 
