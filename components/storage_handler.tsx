@@ -15,6 +15,7 @@ import { setAccount, setUserId, setSessionId } from '../actions/account';
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
 import { setEquipment } from '../actions/equipment';
+import { setConversationStatus } from '../actions/conversation_status';
 import { setGlobalState } from '../actions/ui';
 
 import Hourglass from '../models/hourglass';
@@ -40,7 +41,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'trading_status': setTradingStatus,
   'accounts': setAccount,
   'leaders': setLeaders,
-  'equipment': setEquipment
+  'equipment': setEquipment,
+  'conversation_status': setConversationStatus
 }
 
 export default function StorageHandlerComponent() {
@@ -56,6 +58,7 @@ export default function StorageHandlerComponent() {
   const account = useTypedSelector(state => state.account);
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
+  const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const globalState = useTypedSelector(state => state.ui.globalState);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
@@ -152,7 +155,10 @@ export default function StorageHandlerComponent() {
         let vault: Vault = new Vault({ lastTimestamp: Date.now(), resources: {} });
         Object.keys(TABLE_SETTERS).map((tableName) => {
           if (dataRes.data[tableName]) {
-            let jsonValue = JSON.parse(dataRes.data[tableName][0].value);
+            let jsonValue: any = {};
+            if (dataRes.data[tableName][0]) {
+              jsonValue = JSON.parse(dataRes.data[tableName][0].value);
+            }
             if (tableName != 'research_status'
               && tableName != 'buildings' && tableName != 'leaders'
               && tableName != 'accounts' && tableName != 'equipment'
@@ -260,6 +266,7 @@ export default function StorageHandlerComponent() {
           accounts: accountToSave,
           leaders: leaders,
           equipment: equipment,
+          conversation_status: conversationStatus,
           sessionId: account.sessionId,
           userId: account.userId
         })

@@ -18,6 +18,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Group-specific happiness influenced by quality of house; kind and quality of food, drink, clothing, presence of cats, and treasure; desirability of job. Happiness has a large effect on work performance, is displayed prominently, and can lead to special events.
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
+  - Day gradient?: linear-gradient(#009aaa, #a1ded0, #f5cb7d);
+  - Night gradient?: linear-gradient(#2a196f, #2f1c94, #886eb1);
   - Chemistry research for Perfumery, need original perfume to be able to duplicate.
   - Logistics research that increases building output if located next to the source of its consumption resources.
   - Logistics research that increases output if group leader lives next to where he/she is working.
@@ -491,17 +493,24 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Resource selection for inexact building recipes
   [X] Multiple Seed types
   [X] Fix Android window height
+  [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   [ ] Consistent sorting in tabs/selection components
-  [ ] Hide resources with zero quantity in selection components
+  [ ] Hide resources with <1 quantity in selection components
   [ ] Show resource descriptive name, not id name in selection components
   [ ] Show detail modals when pressing on icon, e.g. on buildings
   [ ] Olives before grain
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Fix for building recipe un-selection when opening detail modal
+  [ ] Trader trust to affect # of items
+  [ ] Increase # of traders research
+  [ ] Easier to gain first trading level
+  [ ] Traders to use a mix of exact, tag, subcategory specificities
+  [ ] Glassware to use cloth subcategory an ingredient
+  [ ] Tool for Reed Deltas
 
 ## Commands
 ### Delete all records from all tables:

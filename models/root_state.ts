@@ -24,6 +24,8 @@ export default interface RootState {
   account: Account;
   leaders: { [id: string] : Leader };
   equipment: { [id: string] : Equipment };
+  conversationStatus: { seen: { [name: string] : number },
+    responsesChosen: { [name: string] : number } };
   ui: { globalState: string, tabSelected: string,
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[], memos: Memo[], positioner: Positioner };

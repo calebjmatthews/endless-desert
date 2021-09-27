@@ -6,6 +6,7 @@ import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-nati
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import { responseChosen } from '../actions/conversation_status';
 
 import Leader from '../models/leader';
 import Icon from '../models/icon';
@@ -21,8 +22,15 @@ const DEFAULT_PARTNER: Partner = {
 };
 
 export default function ConversationComponent(props: ConversationProps) {
+  const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
+  const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
+
+  useEffect(() => {
+    console.log('conversationStatus');
+    console.log(conversationStatus);
+  }, [])
 
   const [responseNames, setResponseNames] = useState<string[]>([]);
 
@@ -99,7 +107,8 @@ export default function ConversationComponent(props: ConversationProps) {
         <View key={index}>
           <TouchableOpacity style={styles.button} disabled={false}
             onPress={() => {
-              setResponseNames([...responseNames, response.name ])
+              dispatch(responseChosen(response.name)),
+              setResponseNames([...responseNames, response.name ]);
             }} >
             <View style={buttonStyle}>
               <Text style={styles.buttonText}>
