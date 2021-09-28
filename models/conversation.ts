@@ -1,5 +1,6 @@
 import Icon from '../models/icon';
 import { GameState } from './game_state';
+import { utils } from '../utils';
 
 export class Conversation implements ConversationInterface {
   name: string = '';
@@ -48,6 +49,7 @@ export class ConversationResponse implements ConversationResponseInterface {
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
+  cost?: {specificity: string, type: string, quantity: number};
 
   constructor(conversation: ConversationResponseInterface) {
     Object.assign(this, conversation);
@@ -66,6 +68,7 @@ interface ConversationResponseInterface {
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
+  cost?: {specificity: string, type: string, quantity: number};
 
   available?: (gState: GameState) => boolean;
 }

@@ -7,13 +7,17 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import { responseChosen } from '../actions/conversation_status';
+import { consumeResources } from '../actions/vault';
 
 import Leader from '../models/leader';
+import Resource from '../models/resource';
 import Icon from '../models/icon';
 import { Conversation, ConversationStatement, ConversationResponse }
   from '../models/conversation';
 import { conversations, convoStatements, convoResponses }
   from '../instances/conversations';
+import { utils } from '../utils';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { SVGS } from '../enums/svgs';
 
 const DEFAULT_PARTNER: Partner = {
@@ -25,6 +29,7 @@ export default function ConversationComponent(props: ConversationProps) {
   const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
+  const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   useEffect(() => {
@@ -99,18 +104,58 @@ export default function ConversationComponent(props: ConversationProps) {
     if (responseGiven) { return null; }
     return statement.responseNames.map((responseName, index) => {
       const response = convoResponses[responseName];
-      const buttonStyle: any = StyleSheet.flatten([styles.columns,
-        { minWidth: positioner.speechButtonWidth,
-          maxWidth: positioner.speechButtonWidth,
-          paddingVertical: 5, alignItems: 'flex-start' }]);
+      let buttonStyle: any = styles.button;
+      let buttonDisabled: boolean = false;
+      let requirement = null;
+      let requirementIcon = null;
+      let requirementLabel = null;
+      if (response.cost) {
+        const resourceKind = utils.getMatchingResourceKind(response.cost.specificity,
+          response.cost.type);
+        const resourceQuantity = Math.floor(vault
+          .getQuantity(response.cost.specificity, response.cost.type));
+        requirementIcon = resourceKind.icon;
+        requirementLabel = `${utils.formatNumberShort(response.cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${response.cost.type}`;
+        if (resourceQuantity < response.cost.quantity) {
+          buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
+          buttonDisabled = true;
+        }
+      }
+      else if (response.requirementLabel) {
+        requirementIcon = response.requirementIcon;
+        requirementLabel = response.requirementLabel;
+        if (!response.available({ vault })) {
+          buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
+          buttonDisabled = true;
+        }
+      }
+      if (response.cost || response.requirementLabel) {
+        requirement = (
+          <View style={styles.columns}>
+            <Text style={StyleSheet.flatten([styles.buttonText,
+              { alignSelf: 'flex-start', opacity: 0.75 }])}>
+              {'Requires:'}
+            </Text>
+            <View style={styles.rows}>
+              {requirementIcon && (
+                <BadgeComponent icon={requirementIcon} size={19} />
+              )}
+              <Text style={styles.buttonText}>
+                {requirementLabel}
+              </Text>
+            </View>
+          </View>
+        )
+      }
+
       return (
         <View key={index}>
-          <TouchableOpacity style={styles.button} disabled={false}
-            onPress={() => {
-              dispatch(responseChosen(response.name)),
-              setResponseNames([...responseNames, response.name ]);
-            }} >
-            <View style={buttonStyle}>
+          <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
+            onPress={() => responseOptionPress(response)} >
+            <View style={StyleSheet.flatten([styles.columns,
+              { minWidth: positioner.speechButtonWidth,
+                maxWidth: positioner.speechButtonWidth,
+                paddingVertical: 5, alignItems: 'flex-start' }])}>
               <Text style={styles.buttonText}>
                 {response.textIntro}
               </Text>
@@ -120,12 +165,13 @@ export default function ConversationComponent(props: ConversationProps) {
                   {`(${response.speechType})`}
                 </Text>
               )}
+              {requirement}
             </View>
           </TouchableOpacity>
           <View style={styles.break} />
         </View>
       )
-    })
+    });
   }
 
   function handleResponseName(responseName: string) {
@@ -160,6 +206,51 @@ export default function ConversationComponent(props: ConversationProps) {
         </View>
       </View>
     );
+  }
+
+  function responseOptionPress(response: ConversationResponse) {
+    if (response.cost) { applyCost(response.cost); }
+    dispatch(responseChosen(response.name));
+    setResponseNames([...responseNames, response.name ]);
+  }
+
+  function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
+    let rTypePool: string[] = [];
+    switch(aCost.specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      rTypePool = [(aCost.type + '|0')];
+      break;
+
+      case RESOURCE_SPECIFICITY.TAG:
+      let tagPool = vault.getTagResources(aCost.type);
+      rTypePool = tagPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      let scPool = vault.getSubcategoryResources(aCost.type);
+      rTypePool = scPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      let catPool = vault.getCategoryResources(aCost.type);
+      rTypePool = catPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+    }
+
+    if (rTypePool.length == 1) {
+      const qtSplit = rTypePool[0].split('|');
+      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
+    }
+    else {
+      console.log('Time to implement this!');
+    }
   }
 }
 
