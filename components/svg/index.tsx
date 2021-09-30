@@ -97,11 +97,18 @@ import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
 import ShoulderPouchSvgComponent from './equipment/shoulder_pouch';
 
 import SkySvgComponent from './buildings/sky';
+import BrokenCisternSvgComponent from './buildings/broken_cistern';
 import CisternSvgComponent from './buildings/cistern';
+import DecayingStudySvgComponent from './buildings/decaying_study';
 import StudySvgComponent from './buildings/study';
+import AbandonedMarketSvgComponent from './buildings/abandoned_market';
 import MarketSvgComponent from './buildings/market';
+import ShatteredDomeSvgComponent from './buildings/shattered_dome';
+import ObservatorySvgComponent from './buildings/observatory';
 import WatchtowerSvgComponent from './buildings/watchtower';
+import RuinedHutsSvgComponent from './buildings/ruined_huts';
 import HutSvgComponent from './buildings/hut';
+import FallowFieldSvgComponent from './buildings/fallow_field';
 import LentilFieldSvgComponent from './buildings/lentil_field';
 import ClayPitSvgComponent from './buildings/clay_pit';
 import SandPitSvgComponent from './buildings/sand_pit';
@@ -339,16 +346,30 @@ export default function SvgComponent(props: { icon: Icon }) {
 
     case SVGS.SKY:
     return <SkySvgComponent icon={props.icon} />;
+    case SVGS.BROKEN_CISTERN:
+    return <BrokenCisternSvgComponent icon={props.icon} />;
     case SVGS.CISTERN:
     return <CisternSvgComponent icon={props.icon} />;
     case SVGS.STUDY:
     return <StudySvgComponent icon={props.icon} />;
+    case SVGS.DECAYING_STUDY:
+    return <DecayingStudySvgComponent icon={props.icon} />;
+    case SVGS.ABANDONED_MARKET:
+    return <AbandonedMarketSvgComponent icon={props.icon} />;
     case SVGS.MARKET:
     return <MarketSvgComponent icon={props.icon} />;
+    case SVGS.SHATTERED_DOME:
+    return <ShatteredDomeSvgComponent icon={props.icon} />;
+    case SVGS.OBSERVATORY:
+    return <ObservatorySvgComponent icon={props.icon} />;
     case SVGS.WATCHTOWER:
     return <WatchtowerSvgComponent icon={props.icon} />;
-    case SVGS.HUT:
+    case SVGS.RUINED_HUTS:
+    return <RuinedHutsSvgComponent icon={props.icon} />;
+    case SVGS.HUTS:
     return <HutSvgComponent icon={props.icon} />;
+    case SVGS.FALLOW_FIELD:
+    return <FallowFieldSvgComponent icon={props.icon} />;
     case SVGS.LENTIL_FIELD:
     return <LentilFieldSvgComponent icon={props.icon} />;
     case SVGS.CLAY_PIT:

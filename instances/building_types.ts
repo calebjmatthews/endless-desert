@@ -45,7 +45,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       + 'you cannot reach'),
     order: 0,
     category: BCA.MATERIAL,
-    icon: new Icon({provider: 'svg', name: SVGS.CISTERN}),
+    icon: new Icon({provider: 'svg', name: SVGS.BROKEN_CISTERN}),
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 20},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 100}],
@@ -63,7 +63,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'A dusty, crooked room with a small desk in the corner',
     order: 1,
     category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.STUDY}),
+    icon: new Icon({provider: 'svg', name: SVGS.DECAYING_STUDY}),
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 10},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 50}],
@@ -78,7 +78,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'A handful of tiny, abandoned houses',
     order: 2,
     category: BCA.HOUSING,
-    icon: new Icon({provider: 'svg', name: SVGS.HUT}),
+    icon: new Icon({provider: 'svg', name: SVGS.RUINED_HUTS}),
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 150}],
@@ -93,7 +93,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'As it stands, it\'s primarily growing weeds and rocks',
     order: 3,
     category: BCA.FARMING,
-    icon: new Icon({provider: 'svg', name: SVGS.LENTIL_FIELD}),
+    icon: new Icon({provider: 'svg', name: SVGS.FALLOW_FIELD}),
     cost: null,
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, quantity: 4},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
@@ -112,7 +112,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       + 'be imagining it'),
     order: 4,
     category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.MARKET}),
+    icon: new Icon({provider: 'svg', name: SVGS.ABANDONED_MARKET}),
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30}],
     upgradesInto: BTY.MARKET,
@@ -121,17 +121,31 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null
   }),
 
-  [BTY.SHATTERED_GATE]: new BuildingType({
-    name: BTY.SHATTERED_GATE,
-    description: 'Two vast and trunkless legs of stone',
+  [BTY.SHATTERED_DOME]: new BuildingType({
+    name: BTY.SHATTERED_DOME,
+    description: 'Its floors are covered in shattered glass; what was this?',
     order: 5,
     category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.WATCHTOWER}),
+    icon: new Icon({provider: 'svg', name: SVGS.SHATTERED_DOME}),
     cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.STEEL, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.GLASS, quantity: 4000}],
     recipes: null,
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE
+    upgradesInto: BTY.OBSERVATORY
+  }),
+
+  [BTY.OBSERVATORY]: new BuildingType({
+    name: BTY.OBSERVATORY,
+    description: 'By star is the only way to navigate in the deepest desert',
+    order: 5,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.OBSERVATORY}),
+    cost: null,
+    recipes: null,
+    givesNote: RTY.NOTES_SKY,
+    noteCost: defaultNoteCost
   }),
 
   [BTY.STUDY]: new BuildingType({
@@ -162,7 +176,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.HUTS,
     description: 'Unglamorous but liveable shacks, clustered together',
     category: BCA.HOUSING,
-    icon: new Icon({provider: 'svg', name: SVGS.HUT}),
+    icon: new Icon({provider: 'svg', name: SVGS.HUTS}),
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 300}],
     recipes: null,
@@ -1058,7 +1072,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
 
   [BTY.BREWERY]: new BuildingType({
     name: BTY.BREWERY,
-    description: 'Large wooden or copper vats, shielded from the sun and air',
+    description: 'Large wooden and copper vats, shielded from the sun and air',
     category: BCA.ARTISAN_GOOD,
     icon: new Icon({provider: 'svg', name: SVGS.BREWERY}),
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 500},

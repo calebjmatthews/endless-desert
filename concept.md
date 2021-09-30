@@ -427,7 +427,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * "Your food and water are long gone, your breath gasping and your steps slow, when you find a ruined village."
   - Start with no tabs, just a single button that says "Look around". Clicking this displays another introductory message, unlocks the "Resources" and "Buildings" tabs, and gives a small quantity of water, lentils, seeds, clay, wood, and sand
     * "There are signs of conflict here: a shattered gate, broken doors, and ransacked huts. But there aren't any bodies. Maybe the villagers fled as the raiders approached. You find some meager leavings in the rubble."
-  - Inside the "Buildings" tab have "Broken cistern", "Decaying study", "Ruined huts", "Fallow field", "Shattered gate", and "Abandoned market"
+  - Inside the "Buildings" tab have "Broken cistern", "Decaying study", "Ruined huts", "Fallow field", "Shattered dome", and "Abandoned market"
   - Second action is in the "Build" button: "Repair cistern", which creates the cistern building and gives a large amount of water
     * Repairing the broken cistern wasn't difficult, and the results are well worth it. Instead of streaming through the cracked side, water begins steadily filling the gigantic basin.
   - Third action: "Refurbish housing", which creates one hut and the study, and unlocks the "Research" tab
@@ -455,7 +455,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
   - More complicated buildings require the skilled hand of a leader to keep them running. But as your research improves, you'll be able to build simplified versions that don't need a leader.
-  - It's only ever possible to analyze 100 of anything at a time, and the more valuable something is the longer it takes to analyze. However, it might eventually be possible to analyze much faster.
+  - It's only possible to analyze 100 of anything at a time, and the more valuable something is the longer it takes to analyze. However, it might eventually be possible to analyze much faster.
 
 ## Value checking table
   - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building

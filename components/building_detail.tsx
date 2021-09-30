@@ -98,7 +98,7 @@ export default function BuildDetailComponent() {
 
   function renderUpgradeCostContainer() {
     const brokenBuildings = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
-      BTY.DECAYING_STUDY, BTY.ABANDONED_MARKET, BTY.RUINED_HUTS, BTY.SHATTERED_GATE];
+      BTY.DECAYING_STUDY, BTY.ABANDONED_MARKET, BTY.RUINED_HUTS, BTY.SHATTERED_DOME];
 
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
