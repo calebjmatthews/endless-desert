@@ -33,6 +33,8 @@ export class ConversationStatement {
   partnerType: string = '';
   text: string = '';
   responseNames?: string[];
+  gainResources?: {specificity: string, type: string, value: number}[];
+  leaderJoins?: string;
 
   constructor(statement: ConversationStatement|null) {
     if (statement) {

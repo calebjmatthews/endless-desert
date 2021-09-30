@@ -539,6 +539,7 @@ export const styles = StyleSheet.create({
   },
 
   speechBubble: {
+    opacity: 0.9,
     padding: 5,
     backgroundColor: '#fff',
     borderWidth: 1,
