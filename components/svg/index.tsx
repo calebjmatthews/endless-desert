@@ -134,21 +134,21 @@ import LaboratorySvgComponent from './buildings/laboratory';
 import PotteryKilnSvgComponent from './buildings/pottery_kiln';
 import BrewerySvgComponent from './buildings/brewery';
 
-import SamannoudSvgComponent from './leaders/samannoud';
-import ShudderingRefugeSvgComponent from './leaders/shuddering_refuge';
-import FoxfireHereticSvgComponent from './leaders/foxfire_heretic';
-import TrefoilSowerSvgComponent from './leaders/trefoil_sower';
-import ScarredScholarSvgComponent from './leaders/scarred_scholar';
-import AuspiciousWaifSvgComponent from './leaders/auspicious_waif';
-import YouSvgComponent from './leaders/you';
+import SamannoudSvgComponent from './people/samannoud';
+import ShudderingRefugeSvgComponent from './people/shuddering_refuge';
+import FoxfireHereticSvgComponent from './people/foxfire_heretic';
+import TrefoilSowerSvgComponent from './people/trefoil_sower';
+import ScarredScholarSvgComponent from './people/scarred_scholar';
+import AuspiciousWaifSvgComponent from './people/auspicious_waif';
+import YouSvgComponent from './people/you';
 
-import RedCrowTradersSvgComponent from './trading_partners/red_crow_traders';
-import FoxfireAsceticsSvgComponent from './trading_partners/foxfire_ascetics';
-import TrefoilKingdomSvgComponent from './trading_partners/trefoil_kingdom';
-import TourmalineJewelersSvgComponent from './trading_partners/tourmaline_jewelers';
-import SpringAutumnKingdomSvgComponent from './trading_partners/spring_autumn_kingdom';
+import RedCrowTradersSvgComponent from './symbols/red_crow_traders';
+import FoxfireAsceticsSvgComponent from './symbols/foxfire_ascetics';
+import TrefoilKingdomSvgComponent from './symbols/trefoil_kingdom';
+import TourmalineJewelersSvgComponent from './symbols/tourmaline_jewelers';
+import SpringAutumnKingdomSvgComponent from './symbols/spring_autumn_kingdom';
 
-import HappinessSvgComponent from './ui/happiness';
+import HappinessSvgComponent from './symbols/happiness';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
