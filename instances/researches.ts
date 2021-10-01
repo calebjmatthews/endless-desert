@@ -446,7 +446,7 @@ researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
   unlocks: ('Unlocks Huts.'),
   description: ('Right now you have enough housing for you and one band of people. '
     + 'Adding more simple huts won\'t be too difficult a task.'),
-  icon: new Icon({provider: 'svg', name: SVGS.HUT}),
+  icon: new Icon({provider: 'svg', name: SVGS.HUTS}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,
   difficulty: 1,

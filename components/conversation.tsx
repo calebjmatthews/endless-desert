@@ -40,11 +40,6 @@ export default function ConversationComponent(props: ConversationProps) {
   const account = useTypedSelector(state => state.account);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
-  useEffect(() => {
-    console.log('conversationStatus');
-    console.log(conversationStatus);
-  }, []);
-
   const [responseNames, setResponseNames] = useState<string[]>([]);
   // statementResourcesGained, for multiple possible sets of resources between
   //  ConversationStatements
@@ -118,12 +113,15 @@ export default function ConversationComponent(props: ConversationProps) {
       </View>
     )
   }
-  function getLeaderByName(partnerType: string): Leader|null {
-    let leader: Leader|null = null;
+  function getLeaderByName(partnerType: string): Partner|null {
+    let leader: Partner|null = null;
     Object.keys(leaders).map((id) => {
       const cLeader = leaders[id];
       if (cLeader.name == partnerType) { leader = cLeader; }
     });
+    if (!leader) {
+      leader = leaderTypes[partnerType];
+    }
     return leader;
   }
 
