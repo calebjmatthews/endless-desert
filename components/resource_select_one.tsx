@@ -445,7 +445,7 @@ export default function ResourceSelectOneComponent() {
       return researchStatus.getResourcesToStudy(vault);
 
       case RESEARCHES.ANALYSIS:
-      return vault.getValuedResources();
+      return vault.getStudyResources();
 
       case 'Trading':
       const trade = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]

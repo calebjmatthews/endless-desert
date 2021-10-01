@@ -493,6 +493,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Resource selection for inexact building recipes
   [X] Multiple Seed types
   [X] Fix Android window height
+  [X] Add study/research blacklist
+  [ ] Add Special resource category and plot item
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food

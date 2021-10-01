@@ -4,6 +4,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceCategories } from '../instances/resource_categories';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { STUDY_CATEGORY_BLACKLIST, STUDY_TAG_BLACKLIST } from '../constants';
 
 export default class Vault {
   lastTimestamp: number = new Date(Date.now()).valueOf();
@@ -180,14 +181,20 @@ export default class Vault {
     return resources;
   }
 
-  getValuedResources() {
+  getStudyResources() {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = utils.getResourceType(resource);
-      if (resourceType.value != null
-        && this.resources[typeQuality].quantity >= 1) {
-        resources.push(this.resources[typeQuality]);
+      if (this.resources[typeQuality].quantity >= 1
+        && !utils.arrayIncludes(STUDY_CATEGORY_BLACKLIST, resourceType.category)) {
+        let tagBlacklisted = false;
+        resourceType.tags.map((tag) => {
+          if (utils.arrayIncludes(STUDY_TAG_BLACKLIST, tag)) {
+            tagBlacklisted = true;
+          }
+        });
+        if (!tagBlacklisted) { resources.push(this.resources[typeQuality]); }
       }
     });
     return resources;
