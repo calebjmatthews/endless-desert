@@ -123,5 +123,7 @@ export enum RESOURCE_TYPES {
   CAKE = "Cake",
   MISTAKE = "Mistake",
   BEER = "Beer",
-  LIQUOR = "Liquor"
+  LIQUOR = "Liquor",
+  THRICE_LOCKED_BOOK = "Thrice Locked Book",
+  BROKEN_RED_KEY = "Broken Red Key"
 }

@@ -1247,4 +1247,22 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 
+resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_BOOK] =
+new ResourceType({
+  name: (RESOURCE_TYPES.THRICE_LOCKED_BOOK),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 33000,
+  icon: new Icon({provider: 'svg', name: SVGS.TOME})
+});
+
+resourceTypes[RESOURCE_TYPES.BROKEN_RED_KEY] =
+new ResourceType({
+  name: (RESOURCE_TYPES.BROKEN_RED_KEY),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 10000,
+  icon: new Icon({provider: 'svg', name: SVGS.KEY})
+});
+
 export { resourceTypes }

@@ -86,6 +86,8 @@ import CakeSvgComponent from './resources/cake';
 import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
 import LiquorSvgComponent from './resources/liquor';
+import TomeSvgComponent from './resources/tome';
+import KeyComponent from './resources/key';
 
 import RoughMattockSvgComponent from './equipment/rough_mattock';
 import WoodenPoleSvgComponent from './equipment/wooden_pole';
@@ -326,6 +328,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BeerSvgComponent icon={props.icon} />;
     case SVGS.LIQUOR:
     return <LiquorSvgComponent icon={props.icon} />;
+    case SVGS.TOME:
+    return <TomeSvgComponent icon={props.icon} />;
+    case SVGS.KEY:
+    return <KeyComponent icon={props.icon} />;
 
     case SVGS.ROUGH_MATTOCK:
     return <RoughMattockSvgComponent icon={props.icon} />;

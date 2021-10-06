@@ -18,9 +18,9 @@ export default function BrokenCisternSvgComponent(props: { icon: Icon }) {
       <Path d="m270.8 374.3v-60c0-8.284-6.716-15-15-15v90c8.284 0 15-6.716 15-15z" fill="#0068a7"/>
       <Path d="m497 432h-120c-8.284 0-15-6.716-15-15v-382c0-19.299 15.701-35 35-35h80c19.299 0 35 15.701 35 35v382c0 8.284-6.716 15-15 15z" fill="#a8895d"/>
       <Path d="m135 432h-120c-8.284 0-15-6.716-15-15v-382c0-19.299 15.701-35 35-35h80c19.299 0 35 15.701 35 35v382c0 8.284-6.716 15-15 15z" fill="#c9bb9f"/>
-      <G fill-rule="evenodd">
-       <Rect x="-1.5425" y="401.31" width="516.41" height="109.74" fill="#0068a7" stroke-width="1.1783"/>
-       <Rect x="-1.5425" y="401.31" width="257.54" height="109.74" fill="#008adf" stroke-width="1.1976"/>
+      <G fillRule="evenodd">
+       <Rect x="-1.5425" y="401.31" width="516.41" height="109.74" fill="#0068a7" strokeWidth="1.1783"/>
+       <Rect x="-1.5425" y="401.31" width="257.54" height="109.74" fill="#008adf" strokeWidth="1.1976"/>
       </G>
     </Svg>
   );

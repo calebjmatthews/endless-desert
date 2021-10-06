@@ -301,4 +301,40 @@ fortuities[FORTUITIES.WATERY_CREVICE] = new Fortuity({
   }
 });
 
+fortuities[FORTUITIES.THRICE_LOCKED_BOOK] = new Fortuity({
+  name: FORTUITIES.THRICE_LOCKED_BOOK,
+  openLine: 'Wait, what\'s this?',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.THRICE_LOCKED_BOOK + '0'),
+      title: 'An Unexpected Find',
+      text: (`While walking through the exceptionally useful storage caverns underneath the town, you come across something strange. Behind a cluster of rocks is what looks like a study, its crumbling walls exposing to the underground air.`)
+    }),
+    new Memo({
+      name: (FORTUITIES.THRICE_LOCKED_BOOK + '1'),
+      title: 'An Unexpected Find',
+      text: (`There's a desk, an empty inkwell, and some loose sheets of partment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard yellow metal.`)
+    }),
+    new Memo({
+      name: (FORTUITIES.THRICE_LOCKED_BOOK + '2'),
+      title: 'An Unexpected Find',
+      text: (`The book has three separate sturdy locks; forcing them open isn't an option. On its cover is a pattern of white specks and the word "Unfound". You don't know what to make of it, but you take the book with you. Any information about the people who originally lived here could be paramount.`)
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 100,
+  gainResources: [
+    {specificity: RSP.EXACT, type: RTY.THRICE_LOCKED_BOOK, value: 33000}
+  ],
+  available: (fState: GameState) => {
+    if (fState.leaders) {
+      if (Object.keys(fState.leaders).length > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
 export { fortuities };

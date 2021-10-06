@@ -56,8 +56,14 @@ resourceCategories[RESOURCE_CATEGORIES.EQUIPMENT] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.EQUIPMENT,
   value: 2000,
   order: 6,
-  icon: new Icon({provider: 'FontAwesome5', name: 'tshirt',
-    color: '#2b2b2d'})
+  icon: new Icon({provider: 'FontAwesome5', name: 'tools', color: '#2b2b2d'})
+});
+
+resourceCategories[RESOURCE_CATEGORIES.SPECIAL] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.SPECIAL,
+  value: 10000,
+  order: 7,
+  icon: new Icon({provider: 'FontAwesome5', name: 'star', color: '#2b2b2d'})
 });
 
 export { resourceCategories }

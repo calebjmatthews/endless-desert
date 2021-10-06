@@ -84,6 +84,8 @@ export enum SVGS {
   MISTAKE = "Mistake",
   BEER = "Beer",
   LIQUOR = "Liquor",
+  TOME = "Tome",
+  KEY = "Key",
 
   ROUGH_MATTOCK = "Rough Mattock",
   WOODEN_POLE = "Wooden Pole",

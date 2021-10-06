@@ -16,7 +16,7 @@ export default function AbandonedMarketSvgComponent(props: { icon: Icon }) {
       </G><G>
         <Rect x="30" y="156.85" width="30" height="250.15" fill="#c3b296"/>
         <Rect x="241" y="302" width="30" height="105" fill="#c0a987"/>
-      <Rect x="241" y="302" width="15" height="105" fill="#c3b296" stroke-width=".70711"/></G>
+      <Rect x="241" y="302" width="15" height="105" fill="#c3b296" strokeWidth=".70711"/></G>
       <G fill="#707741">
         <Rect x="381.67" y="362" width="30" height="45"/>
         <Rect x="311.33" y="362" width="30" height="45"/>
