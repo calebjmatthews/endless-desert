@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import RootState from '../models/root_state';
@@ -12,6 +12,7 @@ import { displayModalValue, addMemos } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Building from '../models/building';
+import Vault from '../models/vault';
 import { Conversation } from '../models/conversation';
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
@@ -31,6 +32,16 @@ export default function LeadersComponent() {
   const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
+  const [newConvos, setNewConvos] = useState<{ [leaderId: string] : boolean }>({});
+  useEffect(() => {
+    let initNewConvos: { [leaderName: string] : boolean } = {};
+    leaderArray.map((leader) => {
+      const convoPool = getConvoPool(leader, conversationStatus, vault);
+      if (convoPool.length > 1) { initNewConvos[leader.id] = true; }
+    });
+    setNewConvos(initNewConvos);
+  }, [])
+
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
@@ -47,7 +58,8 @@ export default function LeadersComponent() {
   function renderLeaders(leaderArray: Leader[]) {
     return leaderArray.map((leader) => {
       return <LeaderDescription key={leader.id} leader={leader} positioner={positioner}
-        buildings={buildings} morePress={morePress} talkPress={talkPress} />
+        buildings={buildings} morePress={morePress} newConvo={newConvos[leader.id]}
+        talkPress={talkPress} />
     });
   }
 
@@ -56,17 +68,7 @@ export default function LeadersComponent() {
   }
 
   function talkPress(leader: Leader) {
-    let convoPool: Conversation[] = [];
-    Object.keys(conversations).map((name) => {
-      const conversation = conversations[name];
-      if (conversation.partnerType == leader.name && (conversation.repeatable
-        || conversationStatus.seen[name] == undefined)) {
-        if (conversation.available({ vault })) {
-          convoPool.push(conversation);
-        }
-      }
-    });
-
+    let convoPool: Conversation[] = getConvoPool(leader, conversationStatus, vault);
     if (convoPool.length > 0) {
       const conversationSelected: Conversation = utils.randomWeightedSelect(convoPool);
       dispatch(addMemos([new Memo({
@@ -79,7 +81,8 @@ export default function LeadersComponent() {
 }
 
 function LeaderDescription(props: {leader: Leader, positioner: Positioner,
-  buildings: { [id: string] : Building }, morePress: Function, talkPress: Function}) {
+  buildings: { [id: string] : Building }, newConvo: boolean,
+  morePress: Function, talkPress: Function}) {
   const leader: Leader = props.leader;
   const buildings: { [id: string] : Building } = props.buildings;
   const circleBgColor = '#000';
@@ -104,12 +107,7 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
             {renderAssignedTo()}
           </View>
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-              styles.buttonLight])} onPress={() => props.talkPress(leader)} >
-              <IconComponent provider="FontAwesome5" name="hand-paper"
-                color="#071f56" size={16} />
-              <Text style={styles.buttonTextDark}>{' Say hello'}</Text>
-            </TouchableOpacity>
+            {renderTalkButton()}
           </View>
         </View>
       </View>
@@ -183,4 +181,39 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       </View>
     );
   }
+
+  function renderTalkButton() {
+    let buttonStyle = StyleSheet.flatten([styles.buttonRowItem,
+      styles.buttonLight]);
+    let iconColor = "#071f56";
+    let textStyle = styles.buttonTextDark;
+    if (props.newConvo) {
+      buttonStyle = styles.buttonRowItem;
+      iconColor = "#fff";
+      textStyle = styles.buttonText;
+    }
+    return (
+      <TouchableOpacity style={buttonStyle} onPress={() => props.talkPress(leader)} >
+        <IconComponent provider="FontAwesome5" name="hand-paper"
+          color={iconColor} size={16} />
+        <Text style={textStyle}>{' Say hello'}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+function getConvoPool(leader: Leader, conversationStatus:
+  { seen: { [name: string] : number }, responsesChosen: { [name: string] : number } },
+  vault: Vault) {
+  let convoPool: Conversation[] = [];
+  Object.keys(conversations).map((name) => {
+    const conversation = conversations[name];
+    if (conversation.partnerType == leader.name && (conversation.repeatable
+      || conversationStatus.seen[name] == undefined)) {
+      if (conversation.available({ vault })) {
+        convoPool.push(conversation);
+      }
+    }
+  });
+  return convoPool;
 }

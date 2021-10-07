@@ -328,6 +328,8 @@ class Utils {
   }
 
   randomWeightedSelect(anArray: any[], weightName: string = 'weight') {
+    if (anArray.length == 0) { return null; }
+    
     let weightSum = 0;
     let buckets: number[] = [];
     anArray.map((aMember, index) => {

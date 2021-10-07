@@ -176,4 +176,55 @@ sndConvoStatements['A Thrice Locked Book - s2h'] = new ConversationStatement({
   gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
 });
 
+sndConversations['A Wound?'] = new Conversation({
+  name: 'A Wound?',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: 'A Wound? - s0',
+  repeatable: true,
+  weight: 1,
+  available: () => ( true )
+});
+sndConvoStatements['A Wound? - s0'] = new ConversationStatement({
+  name: 'A Wound? - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Hey, check out at my arm.`,
+  responseNames: ['A Wound? - r0g', 'A Wound? - r0c']
+});
+sndConvoResponses['A Wound? - r0g'] = new ConversationResponse({
+  name: 'A Wound? - r0g',
+  textIntro: `Hells, that looks terrible!`,
+  text: `Hells, that looks terrible!`,
+  statementName: 'A Wound? - s1g'
+});
+sndConvoStatements['A Wound? - s1g'] = new ConversationStatement({
+  name: 'A Wound? - s1g',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Ha ha ha! Calm down kid, I've had much worse. Worth it to see the look on your face, though!`,
+  responseNames: ['A Wound? - r1']
+});
+sndConvoResponses['A Wound? - r0c'] = new ConversationResponse({
+  name: 'A Wound? - r0c',
+  textIntro: `Let me take a closer look...`,
+  text: `Let me take a closer look... Hold still, I can fix that up.`,
+  statementName: 'A Wound? - s1c',
+  speechType: 'Calm'
+});
+sndConvoStatements['A Wound? - s1c'] = new ConversationStatement({
+  name: 'A Wound? - s1c',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Look at that! I was thinking I'd scare you and have a good laugh, but you took care of me! When did you get so cool headed, kid?`,
+  responseNames: ['A Wound? - r1']
+});
+sndConvoResponses['A Wound? - r1'] = new ConversationResponse({
+  name: 'A Wound? - r1',
+  textIntro: `How'd you get wounded, anyway?`,
+  text: `How'd you get wounded, anyway?`,
+  statementName: 'A Wound? - s2',
+});
+sndConvoStatements['A Wound? - s2'] = new ConversationStatement({
+  name: 'A Wound? - s2',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, eternal beasts... Don't give me that look. I can handle anything.`
+});
+
 export { sndConversations, sndConvoStatements, sndConvoResponses }
