@@ -49,14 +49,14 @@ export default function ConversationComponent(props: ConversationProps) {
   const conversation = conversations[props.convoName];
   const statementFirst = convoStatements[conversation.statementName];
   return (
-    <View style={styles.columns}>
+    <ScrollView style={styles.columns}>
       <View style={styles.columns}>
         {renderStatement(statementFirst)}
       </View>
       {responseNames.map((responseName) => (
         handleResponseName(responseName)
       ))}
-    </View>
+    </ScrollView>
   );
 
   function renderStatement(statement: ConversationStatement) {
