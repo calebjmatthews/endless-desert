@@ -17,8 +17,23 @@ let sndConversations: { [name: string] : Conversation } = {};
 let sndConvoStatements: { [name: string] : ConversationStatement } = {};
 let sndConvoResponses: { [name: string] : ConversationResponse } = {};
 
-sndConversations['A Familiar Figure - 0'] = new Conversation({
-  name: 'A Familiar Figure - 0',
+sndConversations['Saying Hello'] = new Conversation({
+  name: 'Saying Hello',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: 'Saying Hello - s0',
+  repeatable: true,
+  weight: 0,
+  available: () => ( true )
+});
+sndConvoStatements['Saying Hello - s0'] = new ConversationStatement({
+  name: 'Saying Hello - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Hey there, kid. Always good to see an old friend.`
+});
+
+sndConversations['A Familiar Figure'] = new Conversation({
+  name: 'A Familiar Figure',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'A Familiar Figure - s0',
   repeatable: false,
   weight: 0,
@@ -85,8 +100,9 @@ sndConvoStatements['A Familiar Figure - s1z'] = new ConversationStatement({
   leaderJoins: LEADER_TYPES.SAMANNOUD
 });
 
-sndConversations['A Thrice Locked Book - 0'] = new Conversation({
-  name: 'A Thrice Locked Book - 0',
+sndConversations['A Thrice Locked Book'] = new Conversation({
+  name: 'A Thrice Locked Book',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'A Thrice Locked Book - s0',
   repeatable: false,
   weight: 100,

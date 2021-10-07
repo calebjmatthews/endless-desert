@@ -8,22 +8,28 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
-import { displayModalValue } from '../actions/ui';
+import { displayModalValue, addMemos } from '../actions/ui';
 
 import Leader from '../models/leader';
-import Positioner from '../models/positioner';
 import Building from '../models/building';
+import { Conversation } from '../models/conversation';
+import Memo from '../models/memo';
+import Positioner from '../models/positioner';
 import { buildingTypes } from '../instances/building_types';
+import { conversations } from '../instances/conversations';
+import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
 export default function LeadersComponent() {
   const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
-  const positioner = useTypedSelector(state => state.ui.positioner);
-  const buildings = useTypedSelector(state => state.buildings);
   const leaderArray = Object.keys(leaders).map((id) => {
     return leaders[id];
   });
+  const buildings = useTypedSelector(state => state.buildings);
+  const conversationStatus = useTypedSelector(state => state.conversationStatus);
+  const vault = useTypedSelector(state => state.vault);
+  const positioner = useTypedSelector(state => state.ui.positioner);
 
   return (
     <View style={styles.container}>
@@ -40,19 +46,40 @@ export default function LeadersComponent() {
 
   function renderLeaders(leaderArray: Leader[]) {
     return leaderArray.map((leader) => {
-      return <LeaderDescription key={leader.id}
-        leader={leader} positioner={positioner}
-        buildings={buildings} morePress={morePress} />
+      return <LeaderDescription key={leader.id} leader={leader} positioner={positioner}
+        buildings={buildings} morePress={morePress} talkPress={talkPress} />
     });
   }
 
   function morePress(leader: Leader) {
     dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', leader));
   }
+
+  function talkPress(leader: Leader) {
+    let convoPool: Conversation[] = [];
+    Object.keys(conversations).map((name) => {
+      const conversation = conversations[name];
+      if (conversation.partnerType == leader.name && (conversation.repeatable
+        || conversationStatus.seen[name] == undefined)) {
+        if (conversation.available({ vault })) {
+          convoPool.push(conversation);
+        }
+      }
+    });
+
+    if (convoPool.length > 0) {
+      const conversationSelected: Conversation = utils.randomWeightedSelect(convoPool);
+      dispatch(addMemos([new Memo({
+        name: conversationSelected.name,
+        title: conversationSelected.name,
+        convoName: conversationSelected.name
+      })]));
+    }
+  }
 }
 
 function LeaderDescription(props: {leader: Leader, positioner: Positioner,
-  buildings: { [id: string] : Building }, morePress: Function}) {
+  buildings: { [id: string] : Building }, morePress: Function, talkPress: Function}) {
   const leader: Leader = props.leader;
   const buildings: { [id: string] : Building } = props.buildings;
   const circleBgColor = '#000';
@@ -64,9 +91,10 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       <View style={styles.containerStretchRow}>
         <BadgeComponent icon={leader.icon} size={43} />
         <View style={styles.containerStretchColumn}>
-          <Text>
-            {leader.name}
-          </Text>
+          <View style={styles.buttonTextRow}>
+            <Text>{leader.name}</Text>
+            {renderMoreButton()}
+          </View>
           <View>
             {leader.effects.map((anEffect, index) => {
               return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
@@ -77,10 +105,10 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
           </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-              styles.buttonLight])} onPress={() => props.morePress(leader)} >
-              <IconComponent provider="FontAwesome5" name="question-circle"
+              styles.buttonLight])} onPress={() => props.talkPress(leader)} >
+              <IconComponent provider="FontAwesome5" name="hand-paper"
                 color="#071f56" size={16} />
-              <Text style={styles.buttonTextDark}>{' Info'}</Text>
+              <Text style={styles.buttonTextDark}>{' Say hello'}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -88,45 +116,62 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
     </View>
   );
 
+  function renderMoreButton() {
+    return (
+      <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItemSmall,
+        styles.buttonLight])} onPress={() => props.morePress(leader)}>
+        <IconComponent provider="FontAwesome5" name="angle-down"
+          color="17265d" size={14} />
+        <Text style={StyleSheet.flatten([styles.buttonTextSmall,
+          styles.buttonTextDark])}>
+          {' More'}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+
   function renderAssignedTo() {
     let assignedObj: any = {
-      iconProvider: 'MaterialCommunityIcons',
-      iconName: 'sleep',
-      iconForegroundColor: '#000',
-      iconBackgroundColor: '#fff',
+      icon: {
+        provider: 'MaterialCommunityIcons',
+        name: 'sleep'
+      },
       text: 'Resting'
     };
     if (!leader.eating) {
       assignedObj = {
-        iconProvider: 'FontAwesome5',
-        iconName: 'paw',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
+        icon: {
+          provider: 'FontAwesome5',
+          name: 'paw'
+        },
         text: 'Scavenging'
       };
     }
     else if (!leader.drinking) {
       assignedObj = {
-        iconProvider: 'MaterialCommunityIcons',
-        iconName: 'water-off',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
+        icon: {
+          provider: 'MaterialCommunityIcons',
+          name: 'water-off'
+        },
         text: 'Scavenging'
       };
     }
     else if (!leader.livingAt) {
       assignedObj = {
-        iconProvider: 'MaterialCommunityIcons',
-        iconName: 'tent',
-        iconForegroundColor: '#000',
-        iconBackgroundColor: '#fff',
+        icon: {
+          provider: 'MaterialCommunityIcons',
+          name: 'tent'
+        },
         text: 'Camping'
       };
     }
     else if (leader.assignedTo) {
       const building = buildings[leader.assignedTo];
       const buildingType = buildingTypes[building.buildingType];
-      assignedObj = { icon: buildingType.icon, text: buildingType.name };
+      assignedObj = {
+        icon: buildingType.icon,
+        text: (building.name || buildingType.name)
+      };
     }
 
     return (

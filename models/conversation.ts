@@ -5,6 +5,8 @@ import { utils } from '../utils';
 export class Conversation implements ConversationInterface {
   name: string = '';
   statementName: string = '';
+  partnerKind?: string;
+  partnerType?: string;
   repeatable: boolean = false;
   weight: number = 100;
 
@@ -21,6 +23,8 @@ export class Conversation implements ConversationInterface {
 interface ConversationInterface {
   name: string;
   statementName: string;
+  partnerKind?: string;
+  partnerType?: string;
   repeatable: boolean;
   weight: number;
 
