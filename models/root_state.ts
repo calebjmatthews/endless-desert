@@ -11,6 +11,7 @@ import Positioner from './positioner';
 import Leader from './leader';
 import Equipment from './equipment';
 import Rates from './rates';
+import ConversationStatus from './conversation_status';
 
 export default interface RootState {
   vault: Vault;
@@ -24,8 +25,7 @@ export default interface RootState {
   account: Account;
   leaders: { [id: string] : Leader };
   equipment: { [id: string] : Equipment };
-  conversationStatus: { seen: { [name: string] : number },
-    responsesChosen: { [name: string] : number } };
+  conversationStatus: ConversationStatus;
   ui: { globalState: string, tabSelected: string,
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[], memos: Memo[], positioner: Positioner };

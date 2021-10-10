@@ -7,6 +7,7 @@ import TradingStatus from './trading_status';
 import Account from './account';
 import Leader from './leader';
 import Equipment from './equipment';
+import ConversationStatus from './conversation_status';
 
 export interface GameState {
   vault?: Vault;
@@ -22,6 +23,7 @@ export interface GameState {
   account?: Account;
   leaders?: { [id: string] : Leader };
   equipment?: { [id: string] : Equipment };
+  conversationStatus?: ConversationStatus;
 }
 
 interface Rate { [typeQuality: string] : number };

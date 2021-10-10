@@ -8,12 +8,14 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
+import { conversationSeen, useDailyConversation } from '../actions/conversation_status';
 import { displayModalValue, addMemos } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Building from '../models/building';
 import Vault from '../models/vault';
 import { Conversation } from '../models/conversation';
+import ConversationStatus from '../models/conversation_status';
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
 import { buildingTypes } from '../instances/building_types';
@@ -36,7 +38,7 @@ export default function LeadersComponent() {
   useEffect(() => {
     let initNewConvos: { [leaderName: string] : boolean } = {};
     leaderArray.map((leader) => {
-      const convoPool = getConvoPool(leader, conversationStatus, vault);
+      const convoPool = getConvoPool(leader, conversationStatus, vault, leaders);
       if (convoPool.length > 1) { initNewConvos[leader.id] = true; }
     });
     setNewConvos(initNewConvos);
@@ -68,9 +70,20 @@ export default function LeadersComponent() {
   }
 
   function talkPress(leader: Leader) {
-    let convoPool: Conversation[] = getConvoPool(leader, conversationStatus, vault);
+    let convoPool: Conversation[] = getConvoPool(leader, conversationStatus, vault,
+      leaders);
     if (convoPool.length > 0) {
       const conversationSelected: Conversation = utils.randomWeightedSelect(convoPool);
+
+      dispatch(conversationSeen(conversationSelected.name));
+      if (conversationSelected.daily) {
+        conversationStatus.lastDailyConvo[leader.id] = new Date(Date.now()).valueOf();
+        const convoPool = getConvoPool(leader, conversationStatus, vault, leaders);
+        if (convoPool.length == 1) {
+          setNewConvos({...newConvos, [leader.id] : false});
+        }
+        dispatch(useDailyConversation(leader.id));
+      }
       dispatch(addMemos([new Memo({
         name: conversationSelected.name,
         title: conversationSelected.name,
@@ -202,18 +215,26 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
   }
 }
 
-function getConvoPool(leader: Leader, conversationStatus:
-  { seen: { [name: string] : number }, responsesChosen: { [name: string] : number } },
-  vault: Vault) {
-  let convoPool: Conversation[] = [];
+function getConvoPool(leader: Leader, conversationStatus: ConversationStatus,
+  vault: Vault, leaders: { [id: string] : Leader }) {
+  let primaryPool: Conversation[] = [];
+  let secondaryPool: Conversation[] = [];
   Object.keys(conversations).map((name) => {
     const conversation = conversations[name];
-    if (conversation.partnerType == leader.name && (conversation.repeatable
-      || conversationStatus.seen[name] == undefined)) {
-      if (conversation.available({ vault })) {
-        convoPool.push(conversation);
+    if (conversation.partnerType == leader.name) {
+      if (conversationStatus.seen[name] == undefined) {
+        if (conversation.available({ vault, conversationStatus, leaders },
+          conversation)) {
+          primaryPool.push(conversation);
+        }
+      }
+      else if (conversation.repeatable) {
+        if (conversation.available({ vault, conversationStatus, leaders },
+          conversation)) {
+          secondaryPool.push(conversation);
+        }
       }
     }
   });
-  return convoPool;
+  return (primaryPool.length > 0) ? primaryPool : secondaryPool;
 }

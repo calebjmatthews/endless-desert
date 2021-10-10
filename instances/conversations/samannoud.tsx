@@ -1,5 +1,6 @@
-import { Conversation, ConversationStatement, ConversationResponse }
+import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
   from '../../models/conversation';
+import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
 import { LEADER_TYPES } from '../../enums/leader_types';
@@ -22,6 +23,7 @@ sndConversations['Saying Hello'] = new Conversation({
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'Saying Hello - s0',
   repeatable: true,
+  daily: false,
   weight: 0,
   available: () => ( true )
 });
@@ -36,6 +38,7 @@ sndConversations['A Familiar Figure'] = new Conversation({
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'A Familiar Figure - s0',
   repeatable: false,
+  daily: false,
   weight: 0,
   available: () => ( false )
 });
@@ -105,6 +108,7 @@ sndConversations['A Thrice Locked Book'] = new Conversation({
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'A Thrice Locked Book - s0',
   repeatable: false,
+  daily: false,
   weight: 100,
   available: (gState: GameState) => {
     if (gState.vault?.resources[RTY.THRICE_LOCKED_BOOK]) {
@@ -181,8 +185,11 @@ sndConversations['A Wound?'] = new Conversation({
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: 'A Wound? - s0',
   repeatable: true,
+  daily: true,
   weight: 1,
-  available: () => ( true )
+  available: (gState: GameState, conversation: Conversation) => {
+    return dailyConversationUsed(gState, conversation);
+  }
 });
 sndConvoStatements['A Wound? - s0'] = new ConversationStatement({
   name: 'A Wound? - s0',
