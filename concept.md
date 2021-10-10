@@ -301,6 +301,26 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Very early traders: give seeds, wood, sand, clay; receive water, lentils, reeds
   - Early traders: receive thatch, olive oil, flour, bricks, glass, payrus
   - Middle traders: receive dishes, textiles, pottery, tools, field notes
+  - Foxfire Ascetics
+    - Initial quantity: medium
+    - Quantity gain: fast
+    - Tier increase fast
+  - Trefoil Islands
+    - Initial quantity: medium
+    - Quantity gain: medium
+    - Tier increase: fast, then medium
+  - Red Crow Traders
+    - Initial quantity: medium
+    - Quantity gain: slow
+    - Tier increase: fast, then medium-slow
+  - Tourmaline Jewelers
+    - Initial quantity: very low
+    - Quantity gain: very slow
+    - Tier increase: slow
+  - Spring-Autumn Kingdom
+    - Initial quantity: high
+    - Quantity gain: slow
+    - Tier increase: slow
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
@@ -495,6 +515,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix Android window height
   [X] Add study/research blacklist
   [X] Add Special resource category and plot item
+  [X] Easier to gain first trading level
   [ ] Scarred Scholar => Scarred Navigator
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
@@ -510,7 +531,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Fix for building recipe un-selection when opening detail modal
   [ ] Trader trust to affect # of items
   [ ] Increase # of traders research
-  [ ] Easier to gain first trading level
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Glassware to use cloth subcategory an ingredient
   [ ] Tool for Reed Deltas

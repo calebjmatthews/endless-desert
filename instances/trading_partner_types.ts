@@ -48,16 +48,27 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100}
   ]],
-  initialTrust: 100,
+  initialTrust: 0,
   maxTrust: 1000,
   getTier(trust) {
-    let value = Math.floor((trust-100) / 80);
-    const toNext = (trust-100) % 80;
-    if (value < 0) { value = 0; }
-    if (value >= 1) { value = 1; }
+    let value = 0, toNext = 0;
+    if (trust < 25) {
+      value = 0;
+      toNext = (trust / 25) * 100;
+    }
+    else if (trust < (25 + 175)) {
+      value = 1;
+      toNext = ((trust - 25) / 175) * 100;
+    }
+    else {
+      value = 1;
+      toNext = 100;
+    }
     return { value, toNext };
   },
-  getAcceptQuantity(trust) { return Math.floor(trust * 0.8); }
+  getAcceptQuantity(trust) {
+    return Math.floor(108 + (trust * 1.5));
+  }
 });
 
 tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
@@ -104,16 +115,27 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ]],
-  initialTrust: 112,
+  initialTrust: 0,
   maxTrust: 1200,
   getTier(trust) {
-    let value = Math.floor((trust-112) / 100);
-    const toNext = (trust-100) % 100;
-    if (value < 0) { value = 0; }
-    if (value >= 1) { value = 1; }
+    let value = 0, toNext = 0;
+    if (trust < 50) {
+      value = 0;
+      toNext = (trust / 50) * 100;
+    }
+    else if (trust < (50 + 250)) {
+      value = 1;
+      toNext = ((trust - 50) / 250) * 100;
+    }
+    else {
+      value = 1;
+      toNext = 100;
+    }
     return { value, toNext };
   },
-  getAcceptQuantity(trust) { return Math.floor(trust); }
+  getAcceptQuantity(trust) {
+    return Math.floor(82 + trust);
+  }
 });
 
 tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType({
@@ -160,16 +182,27 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]],
-  initialTrust: 100,
+  initialTrust: 0,
   maxTrust: 1500,
   getTier(trust) {
-    let value = Math.floor((trust-100) / 110);
-    const toNext = (trust-100) % 110;
-    if (value < 0) { value = 0; }
-    if (value >= 1) { value = 1; }
+    let value = 0, toNext = 0;
+    if (trust < 80) {
+      value = 0;
+      toNext = (trust / 80) * 100;
+    }
+    else if (trust < (320 + 80)) {
+      value = 1;
+      toNext = ((trust - 80) / 320) * 100;
+    }
+    else {
+      value = 1;
+      toNext = 100;
+    }
     return { value, toNext };
   },
-  getAcceptQuantity(trust) { return Math.floor(trust * 1.1); }
+  getAcceptQuantity(trust) {
+    return Math.floor(77 + (trust * 0.7));
+  }
 });
 
 tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerType({
@@ -214,18 +247,27 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
     {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71}
   ]],
-  initialTrust: 100,
+  initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    if (trust < 1000) {
-      return { value: 0, toNext: ((trust-100) / 1000) }
+    let value = 0, toNext = 0;
+    if (trust < 200) {
+      value = 0;
+      toNext = (trust / 200) * 100;
     }
-    if (trust < 3000) {
-      return { value: 1, toNext: ((trust-1100) / 2000) }
+    else if (trust < (200 + 600)) {
+      value = 1;
+      toNext = ((trust - 200) / 600) * 100;
     }
-    return { value: 1, toNext: 1 };
+    else {
+      value = 1;
+      toNext = 100;
+    }
+    return { value, toNext };
   },
-  getAcceptQuantity(trust) { return Math.floor(trust * 0.1); }
+  getAcceptQuantity(trust) {
+    return Math.floor(10 + (trust * 0.1));
+  }
 });
 
 tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartnerType({
@@ -284,18 +326,27 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]],
-  initialTrust: 100,
+  initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    if (trust < 1000) {
-      return { value: 0, toNext: ((trust-100) / 1000) }
+    let value = 0, toNext = 0;
+    if (trust < 500) {
+      value = 0;
+      toNext = (trust / 500) * 100;
     }
-    if (trust < 2000) {
-      return { value: 1, toNext: ((trust-1100) / 1000) }
+    else if (trust < (500 + 500)) {
+      value = 1;
+      toNext = ((trust - 500) / 500) * 100;
     }
-    return { value: 1, toNext: 1 };
+    else {
+      value = 1;
+      toNext = 100;
+    }
+    return { value, toNext };
   },
-  getAcceptQuantity(trust) { return Math.floor(trust * 1); }
+  getAcceptQuantity(trust) {
+    return Math.floor(200 + (trust * 0.6));
+  }
 });
 
 export { tradingPartnerTypes };
