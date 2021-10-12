@@ -59,17 +59,17 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
   icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
 });
 
-leaderTypes[LEADER_TYPES.SCARRED_SCHOLAR] = new LeaderType({
-  name: LEADER_TYPES.SCARRED_SCHOLAR,
+leaderTypes[LEADER_TYPES.SCARRED_NAVIGATOR] = new LeaderType({
+  name: LEADER_TYPES.SCARRED_NAVIGATOR,
   title: 'the Scarred Scholar',
   description: ('After a loud argument and what sounded like a fistfight, |name| '
     + 'left the Red Crow Traders and joined you. Whatever the scars are from, '
-    + 'one apparently only needs a single working eye to be intimidatingly well read.'),
+    + 'apparently only a single working eye is needed to chart a route at a glance.'),
   speechType: 'Aggressive',
   toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_SCHOLAR})
+  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_NAVIGATOR})
 });
 
 leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({

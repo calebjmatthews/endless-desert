@@ -1,6 +1,6 @@
 export enum RESOURCE_SPECIFICITY {
-  EXACT = 'EXACT',
-  TAG = 'TAG',
-  SUBCATEGORY = 'SUBCATEGORY',
-  CATEGORY = 'CATEGORY'
+  EXACT = 'Exact',
+  TAG = 'Tag',
+  SUBCATEGORY = 'Subcategory',
+  CATEGORY = 'Category'
 }

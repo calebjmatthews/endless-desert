@@ -433,7 +433,7 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FoxfireHereticSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_SOWER:
     return <TrefoilSowerSvgComponent icon={props.icon} />;
-    case SVGS.SCARRED_SCHOLAR:
+    case SVGS.SCARRED_NAVIGATOR:
     return <ScarredScholarSvgComponent icon={props.icon} />;
     case SVGS.AUSPICIOUS_WAIF:
     return <AuspiciousWaifSvgComponent icon={props.icon} />;

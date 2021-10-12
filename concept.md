@@ -516,7 +516,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add study/research blacklist
   [X] Add Special resource category and plot item
   [X] Easier to gain first trading level
-  [ ] Scarred Scholar => Scarred Navigator
+  [X] Scarred Scholar => Scarred Navigator
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food
