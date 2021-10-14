@@ -517,7 +517,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add Special resource category and plot item
   [X] Easier to gain first trading level
   [X] Scarred Scholar => Scarred Navigator
-  [ ] Refactor leader joining events
+  [X] Refactor leader joining events
+  [ ] Maximum # buildings and town expansion researches
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food
