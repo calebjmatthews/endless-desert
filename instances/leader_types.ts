@@ -45,33 +45,6 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_HERETIC})
 });
 
-leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
-  name: LEADER_TYPES.TREFOIL_SOWER,
-  title: 'Trefoil Sower',
-  description: ('Apparently, in the Trefoil Kingdoms there is a custom called '
-    + '"The Sowing of Wild Oats". Their young men and women spend time living in '
-    + 'distant lands for a reason you can\'t quite discern. '
-    + '|name| told you the  "oats" aren\'t literal, so you know that much.'),
-  speechType: 'Humorous',
-  toolStarting: EQUIPMENT_TYPES.ROUGH_MATTOCK,
-  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
-  backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
-});
-
-leaderTypes[LEADER_TYPES.SCARRED_NAVIGATOR] = new LeaderType({
-  name: LEADER_TYPES.SCARRED_NAVIGATOR,
-  title: 'the Scarred Scholar',
-  description: ('After a loud argument and what sounded like a fistfight, |name| '
-    + 'left the Red Crow Traders and joined you. Whatever the scars are from, '
-    + 'apparently only a single working eye is needed to chart a route at a glance.'),
-  speechType: 'Aggressive',
-  toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
-  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
-  backStarting: null,
-  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_NAVIGATOR})
-});
-
 leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
   name: LEADER_TYPES.AUSPICIOUS_WAIF,
   title: 'the Auspicious Waif',
@@ -84,6 +57,33 @@ leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.AUSPICIOUS_WAIF})
+});
+
+leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
+  name: LEADER_TYPES.TREFOIL_SOWER,
+  title: 'Trefoil Sower',
+  description: ('Apparently, in the Trefoil Kingdoms there is a custom called '
+    + '"The Sowing of Wild Oats". Their young men and women spend time living in '
+    + 'distant lands for a reason you can\'t quite discern. '
+    + '|name| told you the  "oats" aren\'t literal, so you know that much.'),
+  speechType: 'Humorous',
+  toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
+  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  backStarting: null,
+  icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
+});
+
+leaderTypes[LEADER_TYPES.SCARRED_NAVIGATOR] = new LeaderType({
+  name: LEADER_TYPES.SCARRED_NAVIGATOR,
+  title: 'the Scarred Navigator',
+  description: ('After a loud argument and what sounded like a fistfight, |name| '
+    + 'left the Red Crow Traders and joined you. Whatever the scars are from, '
+    + 'apparently only a single working eye is needed to chart a route at a glance.'),
+  speechType: 'Aggressive',
+  toolStarting: EQUIPMENT_TYPES.ROUGH_MATTOCK,
+  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  backStarting: null,
+  icon: new Icon({provider: 'svg', name: SVGS.SCARRED_NAVIGATOR})
 });
 
 export { leaderTypes };

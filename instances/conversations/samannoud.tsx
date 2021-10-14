@@ -40,7 +40,7 @@ sndConvoStatements[CVS.SND_SAYING_HELLO + ' - s0'] = new ConversationStatement({
 
 sndConversations[FTU.FAMILIAR_FIGURE + ' - 0'] = new Conversation({
   name: FTU.FAMILIAR_FIGURE + ' - 0',
-  title: FTU.FAMILIAR_FIGURE + '',
+  title: 'A Familiar Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: FTU.FAMILIAR_FIGURE + ' - s0',
   repeatable: false,
@@ -110,8 +110,8 @@ sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s1z'] = new ConversationStatement({
 });
 
 sndConversations[CVS.SND_THRICE_LOCKED_BOOK + ' - 0'] = new Conversation({
-  name: CVS.SND_THRICE_LOCKED_BOOK,
-  title: CVS.SND_THRICE_LOCKED_BOOK + ' - 0',
+  name: CVS.SND_THRICE_LOCKED_BOOK + ' - 0',
+  title: 'A Thrice Locked Book',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s0',
   repeatable: false,
@@ -188,8 +188,8 @@ sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s2h'] = new ConversationStat
 });
 
 sndConversations[CVS.SND_A_WOUND + ' - 0'] = new Conversation({
-  name: CVS.SND_A_WOUND,
-  title: CVS.SND_A_WOUND + ' - 0',
+  name: CVS.SND_A_WOUND + ' - 0',
+  title: 'A Wound',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_A_WOUND + ' - s0',
   repeatable: true,

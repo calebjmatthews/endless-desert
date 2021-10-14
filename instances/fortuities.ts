@@ -2,9 +2,12 @@ import Fortuity from '../models/fortuity';
 import Memo from '../models/memo';
 import { GameState } from '../models/game_state';
 import { FORTUITIES } from '../enums/fortuities';
+import { CONVERSATIONS } from '../enums/conversations';
 import { LEADER_TYPES } from '../enums/leader_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { RESEARCHES } from '../enums/researches';
+import { TRADING_PARTNERS } from '../enums/trading_partners';
+const TPA = TRADING_PARTNERS;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -23,7 +26,7 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Familiar Figure',
       title: 'A Familiar Figure',
-      convoName: 'A Familiar Figure - 0'
+      convoName: FORTUITIES.FAMILIAR_FIGURE + ' - 0'
     })
   ],
   type: 'Conversation',
@@ -45,31 +48,17 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
   openLine: 'Someone is waiting to speak to you',
   memos: [
     new Memo({
-      name: (FORTUITIES.SHUDDERING_FIGURE + '0'),
+      name: 'A Shuddering Figure',
       title: 'A Shuddering Figure',
-      text: ('Da Nang: "My name is Da Nang. My people and I have traveled '
-        + 'thousands of miles, '
-        + 'across seas and forests, suffering every step of the way. '
-        + 'But these smooth waves of sand speak of a beginning. And perhaps '
-        + 'we are far enough away, now."')
-    }),
-    new Memo({
-      name: (FORTUITIES.SHUDDERING_FIGURE + '1'),
-      title: 'A Shuddering Figure',
-      text: ('Da Nang: "We will stay here, with you, in the desert. Unless you '
-        + 'remove us by force we will travel no longer."'),
-      leaderJoined: LEADER_TYPES.SHUDDERING_REFUGE
+      convoName: FORTUITIES.SHUDDERING_FIGURE + ' - 0'
     })
   ],
   type: 'Conversation',
   repeatable: false,
   weight: 20,
-  leaderJoins: LEADER_TYPES.SHUDDERING_REFUGE,
   available: (fState: GameState) => {
-    if (fState.leaders) {
-      if (Object.keys(fState.leaders).length > 0) {
-        return true;
-      }
+    if (fState.account?.fortuitiesSeen[FORTUITIES.THRICE_LOCKED_BOOK]) {
+      return true;
     }
     return false;
   }
@@ -80,26 +69,14 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
   openLine: 'Someone is waiting to speak to you',
   memos: [
     new Memo({
-      name: (FORTUITIES.SLIGHT_FIGURE + '0'),
+      name: 'A Slight Figure',
       title: 'A Slight Figure',
-      text: ('Reims: "Hey boss. Just wanting to say I appreciate the educating. '
-        + 'Never thought I had any use for book learning, but I can\'t keep '
-        + 'from rolling around all of it in my head. Had some thoughts about '
-        + 'that, er, math proof you showed us. Mind taking a look?"')
-    }),
-    new Memo({
-      name: (FORTUITIES.SLIGHT_FIGURE + '1'),
-      title: 'A Slight Figure',
-      text: ('Reims: "Anyway, I\'ve been talking thes`e things over with some '
-        + 'of the young from the trading crews. I might get a crew of my own '
-        + 'going. Assuming that\'d be alright with you, boss."'),
-      leaderJoined: LEADER_TYPES.AUSPICIOUS_WAIF
+      convoName: FORTUITIES.SLIGHT_FIGURE + ' - 0'
     })
   ],
   type: 'Conversation',
   repeatable: false,
   weight: 20,
-  leaderJoins: LEADER_TYPES.AUSPICIOUS_WAIF,
   available: (fState: GameState) => {
     if (fState.researchStatus) {
       if (fState.researchStatus.status[RESEARCHES.BASIC_EDUCATION] == 'completed') {
@@ -110,32 +87,71 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
   }
 });
 
-fortuities[FORTUITIES.DOWNCAST_FIGURE] = new Fortuity({
-  name: FORTUITIES.DOWNCAST_FIGURE,
+fortuities[FORTUITIES.UNREPENTANT_FIGURE] = new Fortuity({
+  name: FORTUITIES.UNREPENTANT_FIGURE,
   openLine: 'Someone is waiting to speak to you',
   memos: [
     new Memo({
-      name: (FORTUITIES.DOWNCAST_FIGURE + '0'),
-      title: 'A Downcast Figure',
-      text: ('Guangzhou: "I have been ejected from the ascetics, for... '
-        + 'For betraying my vows. I have no place to go."')
-    }),
-    new Memo({
-      name: (FORTUITIES.DOWNCAST_FIGURE + '1'),
-      title: 'A Downcast Figure',
-      text: ('Guangzhou: "Please. I can till a field, I can raise a building, '
-        + 'I can help an animal to give birth. Show mercy, if you can. '
-        + 'Allow me to stay."'),
-      leaderJoined: LEADER_TYPES.FOXFIRE_HERETIC
+      name: 'An Unrepentant Figure',
+      title: 'An Unrepentant Figure',
+      convoName: FORTUITIES.UNREPENTANT_FIGURE + ' - 0'
     })
   ],
   type: 'Conversation',
   repeatable: false,
   weight: 10,
-  leaderJoins: LEADER_TYPES.FOXFIRE_HERETIC,
   available: (fState: GameState) => {
-    if (fState.leaders) {
-      if (Object.keys(fState.leaders).length > 0) {
+    if (fState.tradingStatus) {
+      const ffa = fState.tradingStatus.tradingPartners[TPA.FOXFIRE_ASCETICS];
+      if (ffa?.trust >= 25) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.CHEERY_FIGURE] = new Fortuity({
+  name: FORTUITIES.CHEERY_FIGURE,
+  openLine: 'Someone is waiting to speak to you',
+  memos: [
+    new Memo({
+      name: 'A Cheery Figure',
+      title: 'A Cheery Figure',
+      convoName: FORTUITIES.CHEERY_FIGURE + ' - 0'
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 10,
+  available: (fState: GameState) => {
+    if (fState.tradingStatus) {
+      const tfi = fState.tradingStatus.tradingPartners[TPA.TREFOIL_ISLANDS];
+      if (tfi?.trust >= (50 + 250)) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.LIMPING_FIGURE] = new Fortuity({
+  name: FORTUITIES.LIMPING_FIGURE,
+  openLine: 'Someone is waiting to speak to you',
+  memos: [
+    new Memo({
+      name: 'A Limping Figure',
+      title: 'A Limping Figure',
+      convoName: FORTUITIES.LIMPING_FIGURE + ' - 0'
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 10,
+  available: (fState: GameState) => {
+    if (fState.tradingStatus) {
+      const rcr = fState.tradingStatus.tradingPartners[TPA.RED_CROW_TRADERS];
+      if (rcr?.trust >= (800)) {
         return true;
       }
     }
