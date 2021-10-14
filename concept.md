@@ -640,3 +640,10 @@ Object.keys(buildingTypes).map((typeName) => {
   dispatch(addBuilding(building));
 });
 ```
+
+### View a conversation:
+dispatch(addMemos([new Memo({
+  name: 'test',
+  title: 'A Familiar Figure',
+  convoName: 'A Thrice Locked Book - 0'
+})]));

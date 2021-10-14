@@ -20,29 +20,29 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     new DishType({name: 'Mistake', valueChange: -90, contains: [
 
     ]}),
-    new DishType({name: 'Soup', valueChange: 10, contains: [
+    new DishType({name: RTY.SOUP, valueChange: 10, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: 'Bread', valueChange: 30, contains: [
+    new DishType({name: RTY.BREAD, valueChange: 30, contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: 'Pie', valueChange: 60, contains: [
+    new DishType({name: RTY.PIE, valueChange: 60, contains: [
+      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: 'Omelet', valueChange: 60, contains: [
+    new DishType({name: RTY.OMELET, valueChange: 60, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: 'Stew', valueChange: 80, contains: [
+    new DishType({name: RTY.STEW, valueChange: 80, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: 'Cake', valueChange: 120, contains: [
+    new DishType({name: RTY.CAKE, valueChange: 120, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_DISH_COST },
@@ -65,11 +65,15 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   let adjective = 'Plain';
   // Main Tier Map: For determining the tier of the current main ingredient: lower tiers
   // are overwritten by higher tiers
-  const mtm : { [name : string] : number } = { [RTY.FLOUR] : 1, [RTY.LENTIL] : 3,
-    [RSC.SEEDS] : 3, [RTY.QUAIL] : 4 };
+  const mtm : { [name : string] : number } = { [RTY.LENTIL] : 1, [RTY.GRAPE] : 2,
+    [RTY.BLUEBERRY] : 3, [RTY.SQUASH] : 2, [RTY.TOMATO] : 3, [RTY.KUMQUAT] : 2,
+    [RTY.LEMON] : 3, [RTY.SPINACH]: 2, [RTY.RADISH] : 3, [RTY.ONION] : 2,
+    [RTY.CHILLI_PEPPER] : 3, [RTY.POTATO] : 2, [RTY.LOTUS_ROOT] : 3, [RTY.DATE] : 2,
+    [RTY.FIG] : 3,[RSC.SEEDS] : 2, [RTY.QUAIL] : 4 };
   let main = '';
   let mainColors: { foreground: string, background: string }|null = null;
-  const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD];
+  const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD,
+    RTA.POWDER];
   let tags: string[] = [RTA.FOOD];
 
   let dishTypeIndex = 0;
@@ -201,7 +205,12 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
   function getMainName(typeName: string) {
     const mainNameMap: { [typeName : string] : string } = { [RTY.LENTIL] : 'Lentil',
-      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail' };
+      [RTY.GRAPE] : 'Grape', [RTY.BLUEBERRY] : 'Blueberry', [RTY.SQUASH] : 'Squash',
+      [RTY.TOMATO] : 'Tomato', [RTY.KUMQUAT] : 'Kumquat', [RTY.LEMON] : 'Lemon',
+      [RTY.RADISH] : 'Radish', [RTY.ONION] : 'Onion',
+      [RTY.CHILLI_PEPPER] : 'Chilli Pepper', [RTY.POTATO] : 'Potato',
+      [RTY.LOTUS_ROOT] : 'Lotus Root', [RTY.DATE] : 'Date', [RTY.FIG] : 'Fig',
+      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail', [RTY.OX] : 'Beef' };
     return (mainNameMap[typeName] ? mainNameMap[typeName] : typeName);
   }
 }
@@ -217,16 +226,30 @@ class DishType implements DishTypeInterface {
 
   matches(ingredients: ResourceType[]) {
     let allMatch: boolean = true;
+    let ingredientsUsed: string[] = [];
+    let containsMatched: string[] = [];
     this.contains.map((contain) => {
       let thisMatch = false;
       ingredients.map((ingredient) => {
         switch(contain.specificity) {
           case RSP.TAG:
-          if (utils.arrayIncludes(ingredient.tags, contain.type)) { thisMatch = true; }
+          if (utils.arrayIncludes(ingredient.tags, contain.type)
+            && !utils.arrayIncludes(ingredientsUsed, ingredient.name)
+            && !utils.arrayIncludes(containsMatched, contain.type)) {
+            thisMatch = true;
+            ingredientsUsed.push(ingredient.name);
+            containsMatched.push(contain.type);
+          }
           break;
 
           case RSP.EXACT:
-          if (ingredient.name == contain.type) { thisMatch = true; }
+          if (ingredient.name == contain.type
+            && !utils.arrayIncludes(ingredientsUsed, ingredient.name)
+            && !utils.arrayIncludes(containsMatched, contain.type)) {
+            thisMatch = true;
+            ingredientsUsed.push(ingredient.name);
+            containsMatched.push(contain.type);
+          }
           break;
         }
       });

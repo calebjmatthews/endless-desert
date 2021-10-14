@@ -270,7 +270,7 @@ export default function MainComponent() {
       let dish = new Building(buildings['12341234']).getDishFromIngredients([
         resourceTypes[RESOURCE_TYPES.WATER],
         resourceTypes[RESOURCE_TYPES.FLOUR],
-        resourceTypes[RESOURCE_TYPES.SALT]],
+        resourceTypes[RESOURCE_TYPES.DATE]],
         resourceTypes);
       console.log('dish');
       console.log(dish);
