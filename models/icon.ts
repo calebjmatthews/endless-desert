@@ -14,18 +14,20 @@ export default class Icon {
   borderless: boolean = false;
   quality: number = 0;
 
-  constructor(icon: IconInterface) {
-    if (!icon.size) { icon.size = 29; icon.width = '29px'; icon.height = '29px'; }
-    else { icon.width = icon.size + 'px'; icon.height = icon.size + 'px'; }
-    if (!icon.color) { icon.color = '#000'; }
-    if (!icon.shadow) { icon.shadow = '#fff'; }
-    if (!icon.secondaryColor) { icon.secondaryColor = '#000'; }
-    if (!icon.secondaryShadow) { icon.secondaryShadow = '#000'; }
-    if (!icon.tertiaryColor) { icon.tertiaryColor = '#000'; }
-    if (!icon.tertiaryShadow) { icon.tertiaryShadow = '#000'; }
-    if (!icon.borderless) { icon.borderless = false; }
-    if (!icon.quality) { icon.quality = 0; }
-    Object.assign(this, icon);
+  constructor(icon: IconInterface|null) {
+    if (icon) {
+      if (!icon.size) { icon.size = 29; icon.width = '29px'; icon.height = '29px'; }
+      else { icon.width = icon.size + 'px'; icon.height = icon.size + 'px'; }
+      if (!icon.color) { icon.color = '#000'; }
+      if (!icon.shadow) { icon.shadow = '#fff'; }
+      if (!icon.secondaryColor) { icon.secondaryColor = '#000'; }
+      if (!icon.secondaryShadow) { icon.secondaryShadow = '#000'; }
+      if (!icon.tertiaryColor) { icon.tertiaryColor = '#000'; }
+      if (!icon.tertiaryShadow) { icon.tertiaryShadow = '#000'; }
+      if (!icon.borderless) { icon.borderless = false; }
+      if (!icon.quality) { icon.quality = 0; }
+      Object.assign(this, icon);
+    }
   }
 }
 

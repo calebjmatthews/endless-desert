@@ -7,6 +7,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
 
@@ -64,7 +66,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   // Main Tier Map: For determining the tier of the current main ingredient: lower tiers
   // are overwritten by higher tiers
   const mtm : { [name : string] : number } = { [RTY.FLOUR] : 1, [RTY.LENTIL] : 3,
-    [RTY.SEEDS] : 3, [RTY.QUAIL] : 4 };
+    [RSC.SEEDS] : 3, [RTY.QUAIL] : 4 };
   let main = '';
   let mainColors: { foreground: string, background: string }|null = null;
   const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD];
@@ -161,7 +163,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   const dishResource = new Resource({
     type: (dishType.name + '-' + id),
     quality: 0,
-    quantity: 0,
+    quantity: 20,
     id: id,
     name: name,
     category: RCA.DISH,
@@ -199,7 +201,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
   function getMainName(typeName: string) {
     const mainNameMap: { [typeName : string] : string } = { [RTY.LENTIL] : 'Lentil',
-      [RTY.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail' };
+      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail' };
     return (mainNameMap[typeName] ? mainNameMap[typeName] : typeName);
   }
 }

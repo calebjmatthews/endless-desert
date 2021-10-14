@@ -329,7 +329,7 @@ class Utils {
 
   randomWeightedSelect(anArray: any[], weightName: string = 'weight') {
     if (anArray.length == 0) { return null; }
-    
+
     let weightSum = 0;
     let buckets: number[] = [];
     anArray.map((aMember, index) => {
@@ -385,7 +385,7 @@ class Utils {
 
       case RESOURCE_SPECIFICITY.TAG:
       Object.keys(vault.resources).map((typeQuality) => {
-        let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        let resourceType = resourceTypes[typeQuality.split('|')[0].split('-')[0]];
         if (this.arrayIncludes(resourceType.tags, type)) {
           quantity += vault.resources[typeQuality].quantity;
         }
@@ -394,8 +394,8 @@ class Utils {
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
       Object.keys(vault.resources).map((typeQuality) => {
-        let resourceType = resourceTypes[typeQuality.split('|')[0]];
-        if (!resourceType) { console.log('typeQuality'); console.log(typeQuality); }
+        let resourceType = resourceTypes[typeQuality.split('|')[0].split('-')[0]];
+        if (!resourceType) { console.log('typeQuality'); console.log(typeQuality); console.log('vault'); console.log(vault); }
         if (resourceType.subcategory == type) {
           quantity += vault.resources[typeQuality].quantity;
         }
@@ -404,7 +404,7 @@ class Utils {
 
       case RESOURCE_SPECIFICITY.CATEGORY:
       Object.keys(vault.resources).map((typeQuality) => {
-        let resourceType = resourceTypes[typeQuality.split('|')[0]];
+        let resourceType = resourceTypes[typeQuality.split('|')[0].split('-')[0]];
         if (resourceType.category == type) {
           quantity += vault.resources[typeQuality].quantity;
         }

@@ -9,6 +9,7 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 
+import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
 import ResourceTag from '../models/resource_tag';
 import Vault from '../models/vault';
@@ -24,7 +25,8 @@ export default function ResourceDetailComponent() {
   const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const resource = vault.resources[modalValue];
-  const resourceType = resourceTypes[resource.type];
+  const rtSplit = resource.type.split('-');
+  const resourceType = new Resource(resource).toResourceType(resourceTypes);
   const resourceCategory = resourceCategories[resourceType.category];
   const value = utils.formatNumberShort(resourceType.value);
   const count = utils.formatNumberShort(resource.quantity);

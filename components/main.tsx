@@ -9,7 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab, setPositioner, addMemos } from '../actions/ui';
-import { addBuilding } from '../actions/buildings';
+import { addBuilding, setBuildingSpecificRecipe } from '../actions/buildings';
 import { changeSetting, setCurrentFortuity, unlockTab } from '../actions/account';
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
@@ -66,6 +66,7 @@ export default function MainComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const account = useTypedSelector(state => state.account);
   const vault = useTypedSelector(state => state.vault);
+  const buildings = useTypedSelector(state => state.buildings);
   const [dropdownExpanded, dropdownSet] = useState(false);
   const [positionerInit, setPositionerInit] = useState(false)
 
@@ -101,12 +102,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -261,11 +262,20 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'A Familiar Figure',
-        convoName: 'A Thrice Locked Book - 0'
-      })]));
+      // let testKitchen = new Building({id: '12341234',
+      //   buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
+      //   resourcesSelected: {}, recipeSelected: 0, recipe: null });
+      // dispatch(addBuilding(testKitchen));
+
+      let dish = new Building(buildings['12341234']).getDishFromIngredients([
+        resourceTypes[RESOURCE_TYPES.WATER],
+        resourceTypes[RESOURCE_TYPES.FLOUR],
+        resourceTypes[RESOURCE_TYPES.SALT]],
+        resourceTypes);
+      console.log('dish');
+      console.log(dish);
+      dispatch(increaseResources(vault, [dish.resource]));
+      dispatch(setBuildingSpecificRecipe(buildings['12341234'], dish.recipe, 0));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
