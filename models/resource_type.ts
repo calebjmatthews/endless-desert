@@ -8,12 +8,8 @@ export default class ResourceType {
   value: number = 0;
   description?: string;
   icon: Icon = new Icon({provider: '', name: ''});
-  foregroundColor: string = '#000';
-  backgroundColor: string = '#fff';
 
   constructor(resourceType: ResourceTypeInterface) {
-    if (!resourceType.foregroundColor) { resourceType.foregroundColor = '#000'; }
-    if (!resourceType.backgroundColor) { resourceType.backgroundColor = '#fff'; }
     Object.assign(this, resourceType);
   }
 
@@ -60,6 +56,4 @@ interface ResourceTypeInterface {
   value: number;
   description?: string;
   icon: Icon;
-  foregroundColor?: string;
-  backgroundColor?: string;
 }

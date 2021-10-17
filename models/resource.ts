@@ -11,9 +11,7 @@ export default class Resource implements ResourceInterface {
   subcategory?: string;
   tags?: string[];
   value?: number;
-  icon?: {provider: string, name: string};
-  foregroundColor?: string;
-  backgroundColor?: string;
+  icon?: Icon;
 
   constructor(resource: ResourceInterface) {
     if (resource.quality == undefined) { resource.quality = 0; }
@@ -31,9 +29,7 @@ export default class Resource implements ResourceInterface {
       subcategory: this.subcategory,
       tags: (this.tags) ? [...this.tags] : [],
       value: this.value,
-      icon: this.icon,
-      foregroundColor: this.foregroundColor,
-      backgroundColor: this.backgroundColor
+      icon: this.icon
     })
   }
 
@@ -45,9 +41,7 @@ export default class Resource implements ResourceInterface {
         subcategory: this.subcategory,
         tags: this.tags || [],
         value: this.value || 0,
-        icon: (this.icon) ? new Icon(this.icon) : new Icon(null),
-        foregroundColor: this.foregroundColor,
-        backgroundColor: this.backgroundColor
+        icon: (this.icon) ? new Icon(this.icon) : new Icon(null)
       });
     }
     return new ResourceType(resourceTypes[this.type]);
@@ -64,7 +58,5 @@ interface ResourceInterface {
   subcategory?: string;
   tags?: string[];
   value?: number;
-  icon?: {provider: string, name: string};
-  foregroundColor?: string;
-  backgroundColor?: string;
+  icon?: Icon;
 }

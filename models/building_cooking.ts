@@ -71,7 +71,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     [RTY.CHILLI_PEPPER] : 3, [RTY.POTATO] : 2, [RTY.LOTUS_ROOT] : 3, [RTY.DATE] : 2,
     [RTY.FIG] : 3,[RSC.SEEDS] : 2, [RTY.QUAIL] : 4 };
   let main = '';
-  let mainColors: { foreground: string, background: string }|null = null;
+  let mainColors: { color: string, shadow: string }|null = null;
   const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD,
     RTA.POWDER];
   let tags: string[] = [RTA.FOOD];
@@ -86,7 +86,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
   let dishValue = 0;
   let consumes: { specificity: string, type: string, quantity: number }[] = [];
-  ingredients.map((ingredient) => {
+  for (let index = 0; index < ingredients.length; index++) {
+    const ingredient = ingredients[index];
     let containMatch: boolean = false;
     let quantity: number = DEFAULT_DISH_COST;
     dishType.contains.map((contain) => {
@@ -144,8 +145,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     if (mtm[ingredient.name] > mtm[main] ||
       (mtm[main] == undefined && mtm[ingredient.name] != undefined)) {
       main = ingredient.name;
-      mainColors = { foreground: ingredient.foregroundColor,
-        background: ingredient.backgroundColor };
+      mainColors = { color: ingredient.icon.color,
+        shadow: ingredient.icon.shadow };
     }
 
     ingredient.tags.map((tag) => {
@@ -153,7 +154,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
         tags.push(tag);
       }
     });
-  });
+  }
   dishValue *= ((dishType.valueChange + 100) / 100);
 
   let name = dishType.name;
@@ -173,11 +174,9 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     category: RCA.DISH,
     tags: tags,
     value: dishValue,
-    icon: drt.icon,
-    // @ts-ignore
-    foregroundColor: (mainColors ? mainColors.foreground : drt.foregroundColor),
-    // @ts-ignore
-    backgroundColor: (mainColors ? mainColors.background : drt.backgroundColor)
+    icon: { ...drt.icon,
+      color: (mainColors ? mainColors.color : drt.icon.color),
+      shadow: (mainColors ? mainColors.shadow : drt.icon.shadow) }
   });
 
   const dishRecipe = { index: 0,

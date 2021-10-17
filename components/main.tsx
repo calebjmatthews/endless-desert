@@ -262,10 +262,10 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      // let testKitchen = new Building({id: '12341234',
-      //   buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
-      //   resourcesSelected: {}, recipeSelected: 0, recipe: null });
-      // dispatch(addBuilding(testKitchen));
+      let testKitchen = new Building({id: '12341234',
+        buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
+        resourcesSelected: {}, recipeSelected: 0, recipe: null });
+      dispatch(addBuilding(testKitchen));
 
       let dish = new Building(buildings['12341234']).getDishFromIngredients([
         resourceTypes[RESOURCE_TYPES.WATER],

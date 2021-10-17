@@ -12,10 +12,13 @@ import { scnConversations, scnConvoStatements, scnConvoResponses }
   from './scarred_navigator';
 
 const conversations = { ...sndConversations, ...sreConversations,
-  ffhConversations, auwConversations, tfsConversations, scnConversations };
+  ...ffhConversations, ...auwConversations, ...tfsConversations,
+  ...scnConversations };
 const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
-  ffhConvoStatements, auwConvoStatements, tfsConvoStatements, scnConvoStatements };
+  ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
+  ...scnConvoStatements };
 const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
-  ffhConvoResponses, auwConvoResponses, tfsConvoResponses, scnConvoResponses };
+  ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
+  ...scnConvoResponses };
 
 export { conversations, convoStatements, convoResponses };

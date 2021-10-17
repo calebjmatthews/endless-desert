@@ -535,9 +535,8 @@ class Utils {
 
   getResourceType(resource: Resource) {
     if (resource.name && resource.category && resource.tags && resource.value
-      && resource.icon && resource.foregroundColor && resource.backgroundColor) {
-      // @ts-ignore
-      return new ResourceType(resource);
+      && resource.icon) {
+      return new Resource(resource).toResourceType(resourceTypes);
     }
     return resourceTypes[resource.type];
   }

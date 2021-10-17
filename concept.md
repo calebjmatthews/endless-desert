@@ -600,14 +600,18 @@ dispatch(consumeResources(vault, resources));
 ```
 let testKitchen = new Building({id: '12341234',
   buildingType: BUILDING_TYPES.KITCHEN, suffix: 1, name: 'Kitchen',
-  recipeSelected: 0, recipe: null });
-let dish = testKitchen.getDishFromIngredients([
+  resourcesSelected: {}, recipeSelected: 0, recipe: null });
+dispatch(addBuilding(testKitchen));
+
+let dish = new Building(buildings['12341234']).getDishFromIngredients([
   resourceTypes[RESOURCE_TYPES.WATER],
-  resourceTypes[RESOURCE_TYPES.GRAIN],
-  resourceTypes[RESOURCE_TYPES.SALT]],
+  resourceTypes[RESOURCE_TYPES.FLOUR],
+  resourceTypes[RESOURCE_TYPES.DATE]],
   resourceTypes);
 console.log('dish');
 console.log(dish);
+dispatch(increaseResources(vault, [dish.resource]));
+dispatch(setBuildingSpecificRecipe(buildings['12341234'], dish.recipe, 0));
 ```
 
 ### Add one of every resource:
