@@ -2,6 +2,7 @@ import Icon from './icon';
 
 export default class ResourceType {
   name: string = '';
+  displayName?: string;
   category: string = '';
   subcategory?: string|null = null;
   tags: string[] = [];
@@ -50,6 +51,7 @@ export default class ResourceType {
 
 interface ResourceTypeInterface {
   name: string;
+  displayName?: string;
   category: string;
   subcategory?: string|null;
   tags: string[];

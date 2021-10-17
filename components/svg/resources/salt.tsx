@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs } from 'react-native-svg';
+import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs, Text } from 'react-native-svg';
 import Icon from '../../../models/icon';
 
 export default function SaltSvgComponent(props: { icon: Icon }) {
@@ -17,7 +17,7 @@ export default function SaltSvgComponent(props: { icon: Icon }) {
      <Path d="m271 147.65c-0.364-8.127-6.591-15-15-15v30c7.846 0 15.363-6.899 15-15z" fill="#b8b5d2"/>
      <Path d="m497 241h-48.05c-0.923 0-1.835 0.085-2.728 0.25h-190.22v105.13h256v-90.38c0-8.284-6.716-15-15-15z" fill="#87363e"/>
     </G>
-    <text transform="scale(.99513 1.0049)" x="179.26151" y="461.90277" fill="#efe8f9" fontFamily="sans-serif" fontSize="234.96px" strokeWidth="5.874" wordSpacing="0px" line-height="1.25"><tspan x="179.26151" y="461.90277" fill="#efe8f9" fontFamily="'Arial Black'" strokeWidth="5.874">S</tspan></text>
+    <Text transform="scale(.99513 1.0049)" x="179.26151" y="461.90277" fill="#efe8f9" fontFamily="sans-serif" fontSize="234.96px" strokeWidth="5.874" wordSpacing="0px" line-height="1.25">S</Text>
     </Svg>
   );
 }

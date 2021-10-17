@@ -357,6 +357,9 @@ class Utils {
     ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory {
     switch(specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
+      if (type.includes('-')) {
+        return resourceTypes[type.split('-')[0]];
+      }
       return resourceTypes[type];
 
       case RESOURCE_SPECIFICITY.TAG:

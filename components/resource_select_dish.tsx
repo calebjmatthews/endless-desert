@@ -138,7 +138,7 @@ export default function ResourceSelectDishComponent() {
           <Text>{' '}</Text>
           <BadgeComponent icon={dish.icon} size={21} />
           <Text>
-            {' ' + dish.name}
+            {' ' + dish.displayName }
           </Text>
         </View>
       );

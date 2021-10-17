@@ -60,6 +60,17 @@ export default function BuildDetailComponent() {
       if (buildingType.recipes) {
         setRecipes(buildingType.recipes);
       }
+
+      if (building.recipe) {
+        setRecipes([building.recipe]);
+      }
+
+      if (building.recipeSelected != undefined) {
+        setRecipeSelected(building.recipeSelected);
+      }
+      else {
+        setRecipeSelected(0);
+      }
     }
   }, []);
 
@@ -200,7 +211,8 @@ export default function BuildDetailComponent() {
     if (!cost) { return null; }
 
     return cost.map((aCost) => {
-      let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
+      let resourceKind = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
+
       let resourceQuantity =
         Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
       let buttonStyle = styles.buttonRowItem;
@@ -219,12 +231,12 @@ export default function BuildDetailComponent() {
         buttonDisabled = true;
       }
       let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
-        + utils.formatNumberShort(resourceQuantity) + ') ' + resource.name);
+        + utils.formatNumberShort(resourceQuantity) + ') ' + resourceKind.name);
       if (paidCost) { costText = 'Paid'; }
       return (
         <TouchableOpacity key={aCost.type} style={buttonStyle}
           disabled={buttonDisabled} onPress={() => { applyCost(aCost); }} >
-          <BadgeComponent icon={resource.icon} size={21} />
+          <BadgeComponent icon={resourceKind.icon} size={21} />
           <Text style={styles.buttonText}>
             {costText}
           </Text>
@@ -421,7 +433,16 @@ export default function BuildDetailComponent() {
   }
 
   function renderRate(rate: {specificity: string, type: string, quantity: number}) {
-    const type = utils.getMatchingResourceKind(rate.specificity, rate.type);
+    let resourceKind = utils.getMatchingResourceKind(rate.specificity, rate.type);
+    let name = resourceKind.name;
+    if (rate.type.includes('-')) {
+      const resource = vault.resources[rate.type + '|0'];
+      if (resource) {
+        resourceKind = new Resource(resource).toResourceType(resourceTypes);
+        name = resource.name || name;
+      }
+    }
+
     let sign = '+';
     let rateStyle = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
       minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
@@ -430,10 +451,10 @@ export default function BuildDetailComponent() {
       rateStyle.backgroundColor = '#ffb4b1';
     }
     return (
-      <View key={type.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
+      <View key={resourceKind.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
         <Text>{sign + rate.quantity}</Text>
-        <BadgeComponent icon={type.icon} size={21} />
-        <Text>{ type.name + '/m ' }</Text>
+        <BadgeComponent icon={resourceKind.icon} size={21} />
+        <Text>{ name + '/m ' }</Text>
       </View>
     );
   }

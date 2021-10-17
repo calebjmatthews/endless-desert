@@ -37,6 +37,7 @@ export default class Resource implements ResourceInterface {
     if (this.id) {
       return new ResourceType({
         name: this.type,
+        displayName: this.name,
         category: this.category || '',
         subcategory: this.subcategory,
         tags: this.tags || [],

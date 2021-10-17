@@ -464,6 +464,12 @@ function BuildingDescription(props: any) {
       inexact = true;
     }
     resourceKind = utils.getMatchingResourceKind(stqSplit[0], stqSplit[1]);
+    if (specTypeQuality.includes('-')) {
+      if (props.vault.resources[stqSplit[1] + '|' + stqSplit[2]]) {
+        const resource = props.vault.resources[stqSplit[1] + '|' + stqSplit[2]]
+        resourceKind = new Resource(resource).toResourceType(resourceTypes);
+      }
+    }
     if (!resourceKind) { return null; }
 
     let sign = '+';
