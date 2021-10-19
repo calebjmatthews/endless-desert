@@ -164,8 +164,14 @@ export default function ResearchingComponent() {
 
     if (rTypePool.length == 1) {
       const qtSplit = rTypePool[0].split('|');
-      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
-        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
+      let resource = new Resource({type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity});
+      Object.keys(vault.resources).map((typeQuality) => {
+        if (typeQuality == rTypePool[0]) {
+          resource = vault.resources[typeQuality];
+        }
+      });
+      dispatch(consumeResources(vault, [resource]));
       afterApplyCost(aCost, optionName);
     }
     else {

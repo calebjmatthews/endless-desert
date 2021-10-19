@@ -166,8 +166,8 @@ function CleanEquipmentDescription(props: any) {
     console.log(newEquipment);
     dispatch(addEquipment(newEquipment));
     dispatch(consumeResources(props.vault,
-      [{type: equipmentResource.type, quality: equipmentResource.quality,
-        quantity: 1}]));
+      [new Resource({type: equipmentResource.type, quality: equipmentResource.quality,
+        quantity: 1})]));
   }
 }
 

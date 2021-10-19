@@ -181,11 +181,17 @@ export default class Vault {
     return resources;
   }
 
-  getStudyResources() {
+  getStudyableResources() {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = utils.getResourceType(resource);
+      if (!resourceType) {
+        console.log('typeQuality');
+        console.log(typeQuality);
+        console.log('this');
+        console.log(this);
+      }
       if (this.resources[typeQuality].quantity >= 1
         && !utils.arrayIncludes(STUDY_CATEGORY_BLACKLIST, resourceType.category)) {
         let tagBlacklisted = false;

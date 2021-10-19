@@ -236,13 +236,15 @@ export default function ResourceSelectOneComponent() {
   function renderQuantityGiven(trade: Trade) {
     const resourceType = resourceTypes[trade.give.type];
     const typeQuality = (trade.give.type + '|' + trade.give.quality);
+    const resource = vault.resources[typeQuality];
+    const name = resource ? utils.getResourceName(resource)
+      : utils.typeQualityName(typeQuality);
     return (
       <View style={styles.rows}>
         <Text>{ ' for '}</Text>
         <BadgeComponent icon={resourceType.icon} quality={trade.give.quality}
           size={21} />
-        <Text>{' ' + utils.typeQualityName(typeQuality) + ' x'
-          + utils.formatNumberShort(quantityGiven)}</Text>
+        <Text>{' ' + name + ' x' + utils.formatNumberShort(quantityGiven)}</Text>
       </View>
     );
   }
@@ -319,11 +321,11 @@ export default function ResourceSelectOneComponent() {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
         const { knowledge, duration } = calcStudy();
-        const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+        const typeQuality = (resourceSelected.type.split('-')[0] + '|'
+          + resourceSelected.quality);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
           quantity: (knowledge)})];
-        const rsConsume = [new Resource({type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: 1})]
+        const rsConsume = [new Resource({...resourceSelected, quantity: 1})]
         let timer = new Timer({
           name: RESEARCHES.STUDY,
           startedAt: new Date(Date.now()).valueOf(),
@@ -442,26 +444,26 @@ export default function ResourceSelectOneComponent() {
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
-      return researchStatus.getResourcesToStudy(vault);
+      return rSort(researchStatus.getResourcesToStudy(vault));
 
       case RESEARCHES.ANALYSIS:
-      return vault.getStudyResources();
+      return rSort(vault.getStudyableResources());
 
       case 'Trading':
       const trade = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]
         .trades[modalValue.tradeId];
       switch(trade.receive.specificity) {
         case RESOURCE_SPECIFICITY.EXACT:
-        return vault.getExactResources(trade.receive.type);
+        return rSort(vault.getExactResources(trade.receive.type));
 
         case RESOURCE_SPECIFICITY.TAG:
-        return vault.getTagResources(trade.receive.type);
+        return rSort(vault.getTagResources(trade.receive.type));
 
         case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        return vault.getSubcategoryResources(trade.receive.type);
+        return rSort(vault.getSubcategoryResources(trade.receive.type));
 
         case RESOURCE_SPECIFICITY.CATEGORY:
-        return vault.getCategoryResources(trade.receive.type);
+        return rSort(vault.getCategoryResources(trade.receive.type));
       }
 
       case MODALS.LEADER_DETAIL:
@@ -474,6 +476,17 @@ export default function ResourceSelectOneComponent() {
 
       default:
       return [];
+    }
+
+    function rSort(resources: Resource[]) {
+      return resources.sort((a, b) => {
+        if (Math.floor(a.quantity) != Math.floor(b.quantity)) {
+          return b.quantity - a.quantity;
+        }
+        const aType = utils.getResourceType(a);
+        const bType = utils.getResourceType(b);
+        return aType.value - bType.value;
+      });
     }
   }
 }
@@ -513,7 +526,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
       <Text style={optionTextStyle}>
-        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+        {utils.getResourceName(props.resource)}
       </Text>
       <View style={styles.rows}>
         <BadgeComponent icon={resourceType.icon} quality={props.resource.quality}

@@ -149,7 +149,7 @@ function ResourceSelector(props: {resource: Resource,
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
       <Text style={optionTextStyle}>
-        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+        {utils.getResourceName(props.resource)}
       </Text>
       <View style={styles.rows}>
         <BadgeComponent icon={resourceType.icon} quality={props.resource.quality}

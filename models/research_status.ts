@@ -95,9 +95,10 @@ export default class ResearchStatus implements ResearchStatusInterface {
   }
 
   getResourcesToStudy(vault: Vault) {
-    let rts: Resource[] = vault.getStudyResources();
+    let rts: Resource[] = vault.getStudyableResources();
     rts = rts.filter((resource) => {
-      if (this.resourcesStudied[(resource.type + '|' + resource.quality)] != true) {
+      const typeQuality = (resource.type.split('-')[0] + '|' + resource.quality);
+      if (this.resourcesStudied[typeQuality] != true) {
         return resource;
       }
     });

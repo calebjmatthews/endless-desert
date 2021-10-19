@@ -283,6 +283,7 @@ function TradingPartnerVisitDescription(props: any) {
     const give = resourceTypes[wasTraded.given.type];
     const receive = utils.getResourceType(vault.resources[wasTraded.received.type
       + '|' + wasTraded.received.quality]);
+    const rName = receive.displayName || receive.name;
 
     return (
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
@@ -295,7 +296,7 @@ function TradingPartnerVisitDescription(props: any) {
         </Text>
         <BadgeComponent icon={receive.icon} size={21} />
         <Text style={styles.buttonTextDark}>
-          {receive.name + ' x' + utils.formatNumberShort(wasTraded.received.quantity)}
+          {rName + ' x' + utils.formatNumberShort(wasTraded.received.quantity)}
         </Text>
       </TouchableOpacity>
     );

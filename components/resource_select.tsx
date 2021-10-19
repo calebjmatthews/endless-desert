@@ -118,8 +118,13 @@ export default function ResourceSelectComponent() {
     let rs: Resource[] = []
     Object.keys(resourcesSelected).map((typeQuality) => {
       const tqSplit = typeQuality.split('|');
-      rs.push(new Resource({type: tqSplit[0], quality: parseInt(tqSplit[1]),
-        quantity: resourcesSelected[typeQuality]}));
+      let resource = new Resource({type: tqSplit[0], quality: parseInt(tqSplit[1]),
+        quantity: resourcesSelected[typeQuality]});
+      if (vault.resources[typeQuality]) {
+        resource = new Resource({...vault.resources[typeQuality],
+          quantity: resourcesSelected[typeQuality]});
+      }
+      rs.push(resource);
     });
     dispatch(consumeResources(vault, rs));
 
@@ -140,13 +145,13 @@ export default function ResourceSelectComponent() {
   function getResourcesArray() {
     switch (modalValue.aCost.specificity) {
       case RESOURCE_SPECIFICITY.TAG:
-      return filterOutZero(vault.getTagResources(modalValue.aCost.type));
+      return rSort(filterOutZero(vault.getTagResources(modalValue.aCost.type)));
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return filterOutZero(vault.getSubcategoryResources(modalValue.aCost.type));
+      return rSort(filterOutZero(vault.getSubcategoryResources(modalValue.aCost.type)));
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      return filterOutZero(vault.getCategoryResources(modalValue.aCost.type));
+      return rSort(filterOutZero(vault.getCategoryResources(modalValue.aCost.type)));
 
       default:
       return [];
@@ -154,7 +159,18 @@ export default function ResourceSelectComponent() {
 
     function filterOutZero(resources: Resource[]) {
       return resources.filter((resource) => {
-        if (Math.ceil(resource.quantity) > 0) { return resource; }
+        if (Math.ceil(resource.quantity) > 1) { return resource; }
+      });
+    }
+
+    function rSort(resources: Resource[]) {
+      return resources.sort((a, b) => {
+        if (Math.floor(a.quantity) != Math.floor(b.quantity)) {
+          return b.quantity - a.quantity;
+        }
+        const aType = utils.getResourceType(a);
+        const bType = utils.getResourceType(b);
+        return aType.value - bType.value;
       });
     }
   }
@@ -185,7 +201,7 @@ function ResourceSelector(props: {resource: Resource,
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
       <Text style={optionTextStyle}>
-        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+        {utils.getResourceName(props.resource)}
       </Text>
       <View style={styles.rows}>
         <BadgeComponent icon={resourceType.icon} quality={props.resource.quality}
