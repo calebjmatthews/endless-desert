@@ -26,6 +26,7 @@ export default class Positioner {
   speechPartnerWidth: number = 55;
   speechBubbleWidth: number = 200;
   speechButtonWidth: number = 270;
+  confirmationRowHeight: number = 108;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {

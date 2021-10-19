@@ -48,32 +48,23 @@ export default function ResourceSelectDishComponent() {
           color="#fff" size={20} style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Cooking'}</Text>
       </View>
-      <ScrollView contentContainerStyle={{minHeight: positioner.modalHeightMajor,
-        maxHeight: positioner.modalHeightMajor}}>
+      <ScrollView>
         <View style={styles.tileContainer}>
           {renderResources(resourcesArray, resourcesSelect)}
         </View>
       </ScrollView>
-      <ScrollView contentContainerStyle={{minWidth: positioner.modalMajor,
-        maxWidth: positioner.modalMajor, minHeight: positioner.modalHeightMinor,
-        maxHeight: positioner.modalHeightMinor, alignItems: 'flex-start'}} >
-        <View style={StyleSheet.flatten([styles.panelFlexColumn,
-          {alignItems: 'flex-start', minWidth: positioner.modalMajor,
-            minHeight: (positioner.modalHeightMinor - positioner.minorPadding)}])} >
-          <Text style={StyleSheet.flatten([styles.heading2, {alignSelf: 'center'}])}>
-            {'Ingredients:'}
-          </Text>
-          <View style={StyleSheet.flatten([styles.spacedRows,
-            {minWidth: (positioner.modalMajor - positioner.majorPadding),
-              maxWidth: (positioner.modalMajor - positioner.majorPadding)}])}>
-            {renderSelected(resourcesSelected)}
-            {renderDish(dishResourceType)}
-          </View>
-          <View style={styles.buttonRow}>
-            {renderSubmitButton()}
-          </View>
+      <View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {alignItems: 'flex-start', minWidth: positioner.modalMajor,
+        maxWidth: positioner.modalMajor,
+        maxHeight: positioner.confirmationRowHeight}])} >
+        <Text style={StyleSheet.flatten([styles.heading2, {alignSelf: 'center'}])}>
+          {'Ingredients:'}
+        </Text>
+        {renderDish(dishResourceType)}
+        <View style={styles.buttonRow}>
+          {renderSubmitButton()}
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 
@@ -98,25 +89,6 @@ export default function ResourceSelectDishComponent() {
     });
   }
 
-  function renderSelected(resourcesSelected: Resource[]) {
-    if (resourcesSelected.length > 0) {
-      return resourcesSelected.map((resource, index) => {
-        const resourceType = utils.getResourceType(resource);
-        const typeQuality = resource.type + '|' + resource.quality;
-        return (
-          <View key={index} style={styles.rows}>
-            <BadgeComponent icon={resourceType.icon} quality={resource.quality}
-              size={21} />
-            <Text>
-              {renderTypeQualityName(typeQuality, index, resourcesSelected)}
-            </Text>
-          </View>
-        );
-      })
-    }
-    return <Text>{'Select two to five ingredients'}</Text>;
-  }
-
   function renderTypeQualityName(typeQuality: string, index: number,
     resourcesSelected: Resource[]) {
     if (index < (resourcesSelected.length-1)) {
@@ -127,7 +99,7 @@ export default function ResourceSelectDishComponent() {
 
   function renderDish(dish: ResourceType | null) {
     if (resourcesSelected.length < 2) {
-      return null;
+      return <Text>{'Select two to five ingredients'}</Text>;
     }
     if (dish) {
       return (
