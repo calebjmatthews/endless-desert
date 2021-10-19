@@ -64,7 +64,7 @@ resourceTypes[RTY.NOTES_HEAT] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
-  description: 'Your oldest friend',
+  description: 'Your most constant companion',
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_HEAT})
 });
 
@@ -93,7 +93,7 @@ resourceTypes[RTY.LENTIL] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
   value: 10,
-  description: 'Dry, dull, sustaining, and unlike many crops you can eat them raw',
+  description: 'Dry, dull, sustaining, and unlike many crops can be eaten raw',
   icon: new Icon({provider: 'svg', name: SVGS.LENTIL, color: '#a0ddb0',
     shadow: '#5bc980'})
 });
@@ -104,6 +104,7 @@ resourceTypes[RTY.GRAPE] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
   value: 40,
+  description: 'Beloved for winemaking across the world',
   icon: new Icon({provider: 'svg', name: SVGS.GRAPE, color: "#be4dd8",
     shadow: "#7a3db4"})
 });
@@ -114,6 +115,7 @@ resourceTypes[RTY.BLUEBERRY] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
   value: 200,
+  description: 'Cool and juicy',
   icon: new Icon({provider: 'svg', name: SVGS.BLUEBERRY, color: "#888fe6",
     shadow: "#6e6ed9"})
 });
