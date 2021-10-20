@@ -107,6 +107,7 @@ import AbandonedMarketSvgComponent from './buildings/abandoned_market';
 import MarketSvgComponent from './buildings/market';
 import ShatteredDomeSvgComponent from './buildings/shattered_dome';
 import ObservatorySvgComponent from './buildings/observatory';
+import GateSvgComponent from './buildings/gate';
 import WatchtowerSvgComponent from './buildings/watchtower';
 import RuinedHutsSvgComponent from './buildings/ruined_huts';
 import HutSvgComponent from './buildings/hut';
@@ -368,6 +369,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <ShatteredDomeSvgComponent icon={props.icon} />;
     case SVGS.OBSERVATORY:
     return <ObservatorySvgComponent icon={props.icon} />;
+    case SVGS.GATE:
+    return <GateSvgComponent icon={props.icon} />;
     case SVGS.WATCHTOWER:
     return <WatchtowerSvgComponent icon={props.icon} />;
     case SVGS.RUINED_HUTS:

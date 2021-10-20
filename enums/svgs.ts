@@ -106,6 +106,7 @@ export enum SVGS {
   WATCHTOWER = "Watchtower",
   SHATTERED_DOME = "Shattered Dome",
   OBSERVATORY = "Observatory",
+  GATE = "Gate",
   RUINED_HUTS = "Ruined Huts",
   HUTS = "Huts",
   FALLOW_FIELD = "Fallow Field",

@@ -471,6 +471,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Buy as many things from the Hawk Bazaar as you wish
   - When sending out a hawk, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
 
+# Building Limits
+  - Initial stage, 6 to start: 3 special, 1 housing, 2 material
+  - At Field Notes stage, 22 is comfortable: 3 special, 4 housing, 10 material, 5 refinement
+  - Stages could go: 12, 15, 20, 25, 31, 36, 40
+  - Starting, Sand+Clay, Wood+Brick, Iron+Bronze, Steel+Ceramic, Artifact, Pearl-thing
+
 ## Tips
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
@@ -518,7 +524,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Easier to gain first trading level
   [X] Scarred Scholar => Scarred Navigator
   [X] Refactor leader joining events
+  [X] Sorta fix cooking
   [ ] Maximum # buildings and town expansion researches
+  [ ] Add cottage
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food

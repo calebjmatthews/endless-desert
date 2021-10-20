@@ -168,7 +168,8 @@ export default function ResearchingComponent() {
         quality: parseInt(qtSplit[1]), quantity: aCost.quantity});
       Object.keys(vault.resources).map((typeQuality) => {
         if (typeQuality == rTypePool[0]) {
-          resource = vault.resources[typeQuality];
+          resource = new Resource({...vault.resources[typeQuality],
+            quantity: aCost.quantity});
         }
       });
       dispatch(consumeResources(vault, [resource]));

@@ -32,10 +32,15 @@ import { buildingCategories } from '../instances/building_categories';
 import { resourceTypes } from '../instances/resource_types';
 import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
+const BTY = BUILDING_TYPES;
 import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { INTRO_STATES } from '../enums/intro_states';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
+
+const LIMIT_MAP: { [name: string] : number} = { [BTY.GATE] : 12,
+  [BTY.GATE_BAKED_CLAY] : 15, [BTY.GATE_BRICKWORK] : 20, [BTY.GATE_METAL_CLAD] : 25,
+  [BTY.GATE_SHINING] : 31, [BTY.GATE_RUNIC] : 36, [BTY.GATE_PEARLESCENT] : 40 };
 
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
@@ -137,21 +142,47 @@ export default function BuildingsComponent() {
   }
 
   function renderBuildButton() {
+    const buildingLimit = getBuildingLimit();
+    let isDisabled = false;
+    let buttonStyle: any = styles.buttonLarge;
+    if (buildingLimit.value >= 1) {
+      isDisabled = true;
+      buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
+    }
     if (toBuildArray.length > 0) {
       return (
         <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
           marginLeft: 10}}>
-          <TouchableOpacity style={styles.buttonLarge}
+          <TouchableOpacity style={buttonStyle} disabled={isDisabled}
             onPress={() => startBuilding()} >
             <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
               style={styles.headingIcon} />
-            <Text style={styles.buttonTextLarge}>{' Build'}</Text>
+            <Text style={styles.buttonTextLarge}>
+              {` Build ${buildingLimit.label}`}
+            </Text>
           </TouchableOpacity>
+          <Text>{}</Text>
         </View>
       );
     }
     else {
       return null;
+    }
+
+    function getBuildingLimit() {
+      const numerator = Object.keys(buildings).length;
+      let denominator = LIMIT_MAP[BTY.GATE];
+      Object.keys(buildings).forEach((id) => {
+        const building = buildings[id];
+        const buildingType = buildingTypes[building.buildingType];
+        if (buildingType.name.includes('Gate')) {
+          denominator = LIMIT_MAP[buildingType.name];
+        }
+      });
+      return {
+        value: (numerator / denominator),
+        label: `(${numerator}/${denominator})`
+      }
     }
   }
 
@@ -287,23 +318,23 @@ function BuildingDescription(props: any) {
     function isIntroStateCorrect(building: Building) {
       switch(props.introState) {
         case INTRO_STATES.REPAIR_CISTERN:
-        if (building.buildingType == BUILDING_TYPES.BROKEN_CISTERN) { return true; }
+        if (building.buildingType == BTY.BROKEN_CISTERN) { return true; }
         return false;
 
         case INTRO_STATES.RESTORE_FIELD:
-        if (building.buildingType == BUILDING_TYPES.FALLOW_FIELD) { return true; }
+        if (building.buildingType == BTY.FALLOW_FIELD) { return true; }
         return false;
 
         case INTRO_STATES.REFURBISH_STUDY:
-        if (building.buildingType == BUILDING_TYPES.DECAYING_STUDY) { return true; }
+        if (building.buildingType == BTY.DECAYING_STUDY) { return true; }
         return false;
 
         case INTRO_STATES.REVAMP_MARKET:
-        if (building.buildingType == BUILDING_TYPES.ABANDONED_MARKET) { return true; }
+        if (building.buildingType == BTY.ABANDONED_MARKET) { return true; }
         return false;
 
         case INTRO_STATES.REFURBISH_HUTS:
-        if (building.buildingType == BUILDING_TYPES.RUINED_HUTS) { return true; }
+        if (building.buildingType == BTY.RUINED_HUTS) { return true; }
         return false;
       }
     }

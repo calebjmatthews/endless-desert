@@ -43,7 +43,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.BROKEN_CISTERN,
     description: ('Water trickles through cracks in the wall, above a reservoir '
       + 'you cannot reach'),
-    order: 0,
+    order: 1,
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.BROKEN_CISTERN}),
     cost: null,
@@ -61,7 +61,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.DECAYING_STUDY]: new BuildingType({
     name: BTY.DECAYING_STUDY,
     description: 'A dusty, crooked room with a small desk in the corner',
-    order: 1,
+    order: 2,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.DECAYING_STUDY}),
     cost: null,
@@ -76,7 +76,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.RUINED_HUTS]: new BuildingType({
     name: BTY.RUINED_HUTS,
     description: 'A handful of tiny, abandoned houses',
-    order: 2,
+    order: 3,
     category: BCA.HOUSING,
     icon: new Icon({provider: 'svg', name: SVGS.RUINED_HUTS}),
     cost: null,
@@ -91,7 +91,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.FALLOW_FIELD]: new BuildingType({
     name: BTY.FALLOW_FIELD,
     description: 'As it stands, it\'s primarily growing weeds and rocks',
-    order: 3,
+    order: 4,
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.FALLOW_FIELD}),
     cost: null,
@@ -110,7 +110,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.ABANDONED_MARKET,
     description: ('There\'s a smell of spices in the air, so faint you might '
       + 'be imagining it'),
-    order: 4,
+    order: 5,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.ABANDONED_MARKET}),
     cost: null,
@@ -124,7 +124,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.SHATTERED_DOME]: new BuildingType({
     name: BTY.SHATTERED_DOME,
     description: 'Its floors are covered in shattered glass; what was this?',
-    order: 5,
+    order: 6,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.SHATTERED_DOME}),
     cost: null,
@@ -138,14 +138,76 @@ const buildingTypes: { [name: string] : BuildingType } = {
 
   [BTY.OBSERVATORY]: new BuildingType({
     name: BTY.OBSERVATORY,
-    description: 'By star is the only way to navigate in the deepest desert',
-    order: 5,
+    description: 'The deepest desert can only be navigated by star',
+    order: 6,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.OBSERVATORY}),
     cost: null,
     recipes: null,
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost
+  }),
+
+  [BTY.GATE]: new BuildingType({
+    name: BTY.GATE,
+    description: 'A wall encircling the town and its simple gate',
+    order: 7,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100},
+      {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 1000}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_BAKED_CLAY
+  }),
+
+  [BTY.GATE_BAKED_CLAY]: new BuildingType({
+    name: BTY.GATE_BAKED_CLAY,
+    description: 'A baked clay wall encircling the town and its rough gate',
+    order: 7,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 600},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 100},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_BRICKWORK
+  }),
+
+  [BTY.GATE_BRICKWORK]: new BuildingType({
+    name: BTY.GATE_BRICKWORK,
+    description: 'A many colored brick wall encircling the town and its sturdy gate',
+    order: 7,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 80}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_METAL_CLAD
+  }),
+
+  [BTY.GATE_METAL_CLAD]: new BuildingType({
+    name: BTY.GATE_METAL_CLAD,
+    description: 'A metal-plated wall encircling the town and its iron gate',
+    order: 7,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    // upgradeCost: [{specificity: RSP.EXACT, type: RTY.STEEL, quantity: 600}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    // upgradesInto: BTY.GATE_SHINING
   }),
 
   [BTY.STUDY]: new BuildingType({
