@@ -58,6 +58,53 @@ researches[RESEARCHES.ANALYSIS] = new Research({
   actionCategory: TABS.RESEARCH
 });
 
+researches[RESEARCHES.GATE_EXPANSION] = new Research({
+  name: RESEARCHES.GATE_EXPANSION,
+  unlocks: ('Increase the maximum number of buildings by three.'),
+  description: (`The wall that surrounds the town is small and crumbling. You'll need sand to level the ground outside and clay to build something at all functional.`),
+  icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 0,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SCHOLARSHIP, RESEARCHES.BIOLOGY, RESEARCHES.ANTHROPOLOGY,
+    RESEARCHES.PHYSICS, RESEARCHES.CHEMISTRY],
+  knowledgeReq: 400,
+  unlocksUpgrade: [BUILDING_TYPES.GATE_BAKED_CLAY]
+});
+
+researches[RESEARCHES.GATE_EXPANSION_BRICKWORK] = new Research({
+  name: RESEARCHES.GATE_EXPANSION_BRICKWORK,
+  unlocks: ('Increase the maximum number of buildings by five.'),
+  description: (`The desert around your town becomes less and less solid the farther you travel. In order to expand you'll need a more solid material than simple clay.`),
+  icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 0,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GATE_EXPANSION, RESEARCHES.TRADING, RESEARCHES.DEHYDRATION],
+  knowledgeReq: 1600,
+  unlocksUpgrade: [BUILDING_TYPES.GATE_BRICKWORK]
+});
+
+researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
+  name: RESEARCHES.GATE_EXPANSION_METAL_CLAD,
+  unlocks: ('Increase the maximum number of buildings by five.'),
+  description: (`You've been gaining an understanding of metals sturdy enough to expand the wall around your town even further.`),
+  icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GATE_EXPANSION_BRICKWORK, RESEARCHES.FIELD_NOTES,
+    RESEARCHES.COMBUSTION],
+  knowledgeReq: 6400,
+  unlocksUpgrade: [BUILDING_TYPES.GATE_METAL_CLAD]
+});
+
 researches[RESEARCHES.CONJECTURE] = new Research({
   name: RESEARCHES.CONJECTURE,
   unlocks: ('See one more option when researching.'),

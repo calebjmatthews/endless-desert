@@ -6,9 +6,14 @@ export enum RESEARCH_OPTIONS {
   VARIETY_IN_APPROACH = "Variety in Approach",
   A_SNACK = "A Snack",
   CASUAL_INSPECTION = "Casual Inspection",
+  SAND_VARIETY = "Sand Variety",
+  CLAY_VARIETY = "Clay Variety",
+  BRICK_VARIETY = "Brick Variety",
 
   // Scholarship Lv 1
   EXCESSIVE_NOTE_TAKING = "Excessive Note Taking",
+  METAL_VARIETY = "Metal Variety",
+  WOOD_VARIETY = "Wood Variety",
 
   // Biology Lv 1
   LEGUME_DISSECTION = "Legume Dissection",

@@ -525,7 +525,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Scarred Scholar => Scarred Navigator
   [X] Refactor leader joining events
   [X] Sorta fix cooking
-  [ ] Maximum # buildings and town expansion researches
+  [X] Maximum # buildings and town expansion researches
+  [ ] Store/Unstore buildings
   [ ] Add cottage
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
