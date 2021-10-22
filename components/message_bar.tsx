@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text } from 'react-native';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 

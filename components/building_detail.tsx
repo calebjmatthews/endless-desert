@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { selectBuildingRecipe, setBuildingSpecificRecipe, payBuildingUpgradeCost }
-  from '../actions/buildings';
+import { selectBuildingRecipe, setBuildingSpecificRecipe, payBuildingUpgradeCost,
+  removeBuilding } from '../actions/buildings';
 import { payBuildingCost, removeBuildingConstruction }
   from '../actions/buildings_construction';
+import { addBuildingToStorage } from '../actions/buildings_storage';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
 import { displayModal, displayModalValue, addMessage } from '../actions/ui';
@@ -30,6 +31,7 @@ import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 const BTY = BUILDING_TYPES;
+import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -100,12 +102,24 @@ export default function BuildDetailComponent() {
             maxWidth: positioner.modalWidth}])}>
           <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
         </View>
+        {renderToStorageButton()}
         {renderUpgradeCostContainer()}
         {renderRecipeContainer()}
         {renderKitchenButton()}
       </ScrollView>
     </View>
   );
+
+  function renderToStorageButton() {
+    return !buildingType.cannotStore && (
+      <TouchableOpacity onPress={() => { toStoragePress(building) }}
+        style={StyleSheet.flatten([styles.button, styles.buttonAway])}>
+        <IconComponent provider="FontAwesome5" name="level-down-alt" color="#fff"
+          size={12} />
+        <Text style={styles.buttonText}>{' Into storage'}</Text>
+      </TouchableOpacity>
+    );
+  }
 
   function renderUpgradeCostContainer() {
     const brokenBuildings = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
@@ -295,6 +309,19 @@ export default function BuildDetailComponent() {
           {type: 'Build detail', aCost, building}));
       }
     }
+  }
+
+  function toStoragePress(building: Building) {
+    dispatch(addBuildingToStorage(building));
+    dispatch(removeBuilding(building));
+    let tempBuildings: { [id: string] : Building } = {};
+    Object.keys(buildings).map((id) => {
+      tempBuildings[id] = new Building(buildings[id]);
+    });
+    delete tempBuildings[building.id];
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+    dispatch(setRates(newRates));
+    dispatch(displayModal(null));
   }
 
   function buildPress(building: Building) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet, ScrollView }
   from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import { consumeResources } from '../actions/vault';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';

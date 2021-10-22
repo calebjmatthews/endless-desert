@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';

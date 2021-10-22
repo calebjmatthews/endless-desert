@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles } from '../styles';
@@ -38,14 +38,15 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
 
-const LIMIT_MAP: { [name: string] : number} = { [BTY.GATE] : 12,
-  [BTY.GATE_BAKED_CLAY] : 15, [BTY.GATE_BRICKWORK] : 20, [BTY.GATE_METAL_CLAD] : 25,
-  [BTY.GATE_SHINING] : 31, [BTY.GATE_RUNIC] : 36, [BTY.GATE_PEARLESCENT] : 40 };
+const LIMIT_MAP: { [name: string] : number} = { [BTY.GATE] : 15,
+  [BTY.GATE_BAKED_CLAY] : 20, [BTY.GATE_BRICKWORK] : 25, [BTY.GATE_METAL_CLAD] : 31,
+  [BTY.GATE_SHINING] : 36, [BTY.GATE_RUNIC] : 40, [BTY.GATE_PEARLESCENT] : 46 };
 
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
   const buildTimer = useTypedSelector(state => state.timers['Build']);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const introState = useTypedSelector(state => state.account.introState);
@@ -133,12 +134,18 @@ export default function BuildingsComponent() {
   }
 
   function renderBuildHeader() {
-    if (buildTimer) {
-      return <>{renderBuildTimer(buildTimer)}</>;
-    }
-    else {
-      return <>{renderBuildButton()}</>;
-    }
+    return (
+      <View style={styles.rows}>
+        {buildTimer && renderBuildTimer(buildTimer)}
+        {!buildTimer && (
+          <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
+            marginLeft: 10}}>
+            {renderBuildButton()}
+            {renderStorageButton()}
+          </View>
+        )}
+      </View>
+    );
   }
 
   function renderBuildButton() {
@@ -161,29 +168,35 @@ export default function BuildingsComponent() {
               {` Build ${buildingLimit.label}`}
             </Text>
           </TouchableOpacity>
-          <Text>{}</Text>
         </View>
       );
     }
     else {
       return null;
     }
+  }
 
-    function getBuildingLimit() {
-      const numerator = Object.keys(buildings).length;
-      let denominator = LIMIT_MAP[BTY.GATE];
-      Object.keys(buildings).forEach((id) => {
-        const building = buildings[id];
-        const buildingType = buildingTypes[building.buildingType];
-        if (buildingType.name.includes('Gate')) {
-          denominator = LIMIT_MAP[buildingType.name];
-        }
-      });
-      return {
-        value: (numerator / denominator),
-        label: `(${numerator}/${denominator})`
-      }
+  function renderStorageButton() {
+    const buildingLimit = getBuildingLimit();
+    let isDisabled = false;
+    let buttonStyle: any = styles.buttonLarge;
+    if (Object.keys(buildingsStorage).length < 1 || buildingLimit.value >= 1) {
+      isDisabled = true;
+      buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
     }
+    return (
+      <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
+        marginLeft: 10}}>
+        <TouchableOpacity style={buttonStyle} disabled={isDisabled}
+          onPress={() => {}} >
+          <IconComponent provider="FontAwesome5" name="level-up-alt" color="#fff"
+            size={16} style={styles.headingIcon} />
+          <Text style={styles.buttonTextLarge}>
+            {` Storage(${Object.keys(buildingsStorage).length})`}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   function startBuilding() {
@@ -245,6 +258,22 @@ export default function BuildingsComponent() {
   function inexactRateOpen(building: Building, specTypeQuality: string, rate: number) {
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_RATE, 'open',
       {type: MODALS.RESOURCE_SELECT_RATE, building, specTypeQuality, rate}));
+  }
+
+  function getBuildingLimit() {
+    const numerator = Object.keys(buildings).length;
+    let denominator = LIMIT_MAP[BTY.GATE];
+    Object.keys(buildings).forEach((id) => {
+      const building = buildings[id];
+      const buildingType = buildingTypes[building.buildingType];
+      if (buildingType.name.includes('Gate')) {
+        denominator = LIMIT_MAP[buildingType.name];
+      }
+    });
+    return {
+      value: (numerator / denominator),
+      label: `(${numerator}/${denominator})`
+    }
   }
 }
 

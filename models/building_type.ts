@@ -19,6 +19,7 @@ export default class BuildingType implements BuildingTypeInterface {
   upgradeDuration?: number;
   livingHappiness?: number;
   requiresLeader?: boolean;
+  cannotStore?: boolean;
 
   constructor(buildingType: BuildingTypeInterface) {
     let newRecipes = null;
@@ -81,4 +82,5 @@ interface BuildingTypeInterface {
   upgradeDuration?: number;
   livingHappiness?: number;
   requiresLeader?: boolean;
+  cannotStore?: boolean;
 }

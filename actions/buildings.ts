@@ -30,6 +30,14 @@ export function replaceBuilding(building: Building) {
   }
 }
 
+export const REMOVE_BUILDING = 'REMOVE_BUILDING';
+export function removeBuilding(building: Building) {
+  return {
+    type: REMOVE_BUILDING,
+    building: building
+  }
+}
+
 export const SELECT_BUILDING_RECIPE = 'SELECT_BUILDING_RECIPE';
 export function selectBuildingRecipe(building: Building, recipeIndex: number|undefined) {
   return {

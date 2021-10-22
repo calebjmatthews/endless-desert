@@ -12,12 +12,8 @@ import ConversationStatus from './conversation_status';
 export interface GameState {
   vault?: Vault;
   researchStatus?: ResearchStatus;
-  rates?: { productionRates: Rate, consumptionRates: Rate,
-    buildingRates: { [buildingId: string] : Rate },
-    bGroupRates: { [typeName: string] : Rate }, netRates: Rate };
   buildings?: { [id: string] : Building };
-  buildingsConstruction?: { [typeName: string] : Building };
-  researchOptionDecks?: { [researchName: string] : ResearchOptionDeck};
+  buildingsStorage?: { [id: string] : Building };
   timers?: { [name: string] : Timer };
   tradingStatus?: TradingStatus;
   account?: Account;

@@ -4,6 +4,7 @@ import ResearchStatusReducer from './research_status';
 import RatesReducer from './rates';
 import BuildingsReducer from './buildings';
 import BuildingsConstructionReducer from './buildings_construction';
+import BuildingsStorageReducer from './buildings_storage';
 import ResearchOptionDecksReducer from './research_option_decks';
 import TimersReducer from './timers';
 import TradingStatusReducer from './trading_status';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   rates: RatesReducer,
   buildings: BuildingsReducer,
   buildingsConstruction: BuildingsConstructionReducer,
+  buildingsStorage: BuildingsStorageReducer,
   researchOptionDecks: ResearchOptionDecksReducer,
   timers: TimersReducer,
   tradingStatus: TradingStatusReducer,

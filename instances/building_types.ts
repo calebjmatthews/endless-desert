@@ -36,7 +36,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost,
-    requiresLeader: false
+    requiresLeader: false,
+    cannotStore: true
   }),
 
   [BTY.BROKEN_CISTERN]:  new BuildingType({
@@ -55,7 +56,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: null}) ],
     givesNote: RTY.NOTES_WATER,
     noteCost: defaultNoteCost,
-    requiresLeader: false
+    requiresLeader: false,
+    cannotStore: true
   }),
 
   [BTY.DECAYING_STUDY]: new BuildingType({
@@ -70,7 +72,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.STUDY,
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost
+    noteCost: defaultNoteCost,
+    cannotStore: true
   }),
 
   [BTY.RUINED_HUTS]: new BuildingType({
@@ -85,7 +88,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.HUTS,
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost
+    noteCost: defaultNoteCost,
+    cannotStore: true
   }),
 
   [BTY.FALLOW_FIELD]: new BuildingType({
@@ -103,7 +107,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: null}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
-    requiresLeader: false
+    requiresLeader: false,
+    cannotStore: true
   }),
 
   [BTY.ABANDONED_MARKET]: new BuildingType({
@@ -118,7 +123,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.MARKET,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    recipes: null
+    recipes: null,
+    cannotStore: true
   }),
 
   [BTY.SHATTERED_DOME]: new BuildingType({
@@ -133,7 +139,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost,
-    upgradesInto: BTY.OBSERVATORY
+    upgradesInto: BTY.OBSERVATORY,
+    cannotStore: true
   }),
 
   [BTY.OBSERVATORY]: new BuildingType({
@@ -145,7 +152,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     recipes: null,
     givesNote: RTY.NOTES_SKY,
-    noteCost: defaultNoteCost
+    noteCost: defaultNoteCost,
+    cannotStore: true
   }),
 
   [BTY.GATE]: new BuildingType({
@@ -160,7 +168,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_BAKED_CLAY
+    upgradesInto: BTY.GATE_BAKED_CLAY,
+    cannotStore: true
   }),
 
   [BTY.GATE_BAKED_CLAY]: new BuildingType({
@@ -177,7 +186,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_BRICKWORK
+    upgradesInto: BTY.GATE_BRICKWORK,
+    cannotStore: true
   }),
 
   [BTY.GATE_BRICKWORK]: new BuildingType({
@@ -193,7 +203,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_METAL_CLAD
+    upgradesInto: BTY.GATE_METAL_CLAD,
+    cannotStore: true
   }),
 
   [BTY.GATE_METAL_CLAD]: new BuildingType({
@@ -207,7 +218,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    // upgradesInto: BTY.GATE_SHINING
+    // upgradesInto: BTY.GATE_SHINING,
+    cannotStore: true
   }),
 
   [BTY.STUDY]: new BuildingType({
@@ -219,7 +231,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost
+    noteCost: defaultNoteCost,
+    cannotStore: true
   }),
 
   [BTY.MARKET]: new BuildingType({
@@ -231,7 +244,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost
+    noteCost: defaultNoteCost,
+    cannotStore: true
   }),
 
   [BTY.HUTS]: new BuildingType({
@@ -829,7 +843,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),
       new BuildingRecipe({index: 3, produces:
-        [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 10,
+        [{specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 10,
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}),

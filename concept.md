@@ -545,6 +545,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Glassware to use cloth subcategory an ingredient
   [ ] Tool for Reed Deltas
+  [ ] Storing an occupied house kicks out the leader
 
 ## Commands
 ### Delete all records from all tables:

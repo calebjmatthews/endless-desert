@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,6 +8,7 @@ import { setVault } from '../actions/vault';
 import { setResearchStatus } from '../actions/research_status';
 import { setBuildings } from '../actions/buildings';
 import { setBuildingsConstruction } from '../actions/buildings_construction';
+import { setBuildingsStorage } from '../actions/buildings_storage';
 import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
@@ -36,6 +37,7 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'research_status': setResearchStatus,
   'buildings': setBuildings,
   'buildings_construction': setBuildingsConstruction,
+  'buildings_storage': setBuildingsStorage,
   'research_option_decks': setResearchOptionDecks,
   'timers': setTimers,
   'trading_status': setTradingStatus,
@@ -52,6 +54,7 @@ export default function StorageHandlerComponent() {
   const rates = useTypedSelector(state => state.rates);
   const buildings = useTypedSelector(state => state.buildings);
   const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
+  const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
   const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const timers = useTypedSelector(state => state.timers);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
@@ -260,6 +263,7 @@ export default function StorageHandlerComponent() {
           research_status: researchStatus,
           buildings: buildings,
           buildings_construction: buildingsConstruction,
+          buildings_storage: buildingsStorage,
           research_option_decks: researchOptionDecks,
           timers: timers,
           trading_status: tradingStatus,

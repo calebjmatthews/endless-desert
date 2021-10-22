@@ -320,6 +320,13 @@ export const styles = StyleSheet.create({
     borderColor: '#73799f',
     borderRadius: 2
   },
+  buttonAway: {
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    marginBottom: 6,
+    backgroundColor: '#5a201e',
+    borderColor: '#5a201e'
+  },
   sideButtonContainer: {
     display: 'flex',
     flexDirection: 'row',

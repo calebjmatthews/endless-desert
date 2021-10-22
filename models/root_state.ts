@@ -13,12 +13,13 @@ import Equipment from './equipment';
 import Rates from './rates';
 import ConversationStatus from './conversation_status';
 
-export default interface RootState {
+export interface RootState {
   vault: Vault;
   researchStatus: ResearchStatus;
   rates: Rates;
   buildings: { [id: string] : Building };
   buildingsConstruction: { [typeName: string] : Building };
+  buildingsStorage: { [id: string] : Building };
   researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;

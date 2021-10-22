@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 const flat = StyleSheet.flatten;

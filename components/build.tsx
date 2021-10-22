@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import RootState from '../models/root_state';
+import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles } from '../styles';
