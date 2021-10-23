@@ -12,6 +12,8 @@ import SvgComponent from './svg';
 import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, setLeaders }
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
+import { addBuilding } from '../actions/buildings';
+import { removeBuildingFromStorage } from '../actions/buildings_storage';
 import { addTimer } from '../actions/timers';
 import { displayModalValue } from '../actions/ui';
 
@@ -32,6 +34,7 @@ import { BUILDING_TYPES } from '../enums/building_types';
 export default function BuildingSelectComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
+  const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const equipment = useTypedSelector(state => state.equipment);
@@ -48,25 +51,7 @@ export default function BuildingSelectComponent() {
       buildingsLeader[leader.livingAt] = leader;
     }
   });
-  let buildingsArray = Object.keys(buildings).map((buildingId) => {
-    return buildings[buildingId];
-  });
-  buildingsArray = buildingsArray.filter((building) => {
-    if (modalValue.subType == ASSIGN_TO_BUILDING) {
-      const buildingType = buildingTypes[building.buildingType];
-      if (buildingType.recipes || building.recipe) { return building; }
-    }
-    else if (modalValue.subType == LIVE_AT_BUILDING) {
-      const buildingType = buildingTypes[building.buildingType];
-      if (buildingType.livingHappiness != undefined) { return building; }
-    }
-    else { return building; }
-  });
-  if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
-    buildingsArray = [new Building({ id: BUILDING_TYPES.SKY,
-      buildingType: BUILDING_TYPES.SKY, suffix: 0, name: BUILDING_TYPES.SKY,
-      resourcesSelected: {}, recipe: null }), ...buildingsArray];
-  }
+  const buildingsArray = getBuildingsArray();
 
   function setStartingSelected(): string|null {
     if (buildingsArray.length == 1) { return buildingsArray[0].id; }
@@ -113,8 +98,12 @@ export default function BuildingSelectComponent() {
 
   function renderAboveButton() {
     let costs = null;
+    let sBuildings = buildings;
+    if (modalValue.subType == 'from_storage') {
+      sBuildings = buildingsStorage;
+    }
     if (buildingSelected) {
-      let building = buildings[buildingSelected];
+      let building = sBuildings[buildingSelected];
       if (building) {
         costs = buildingTypes[building.buildingType].noteCost;
       }
@@ -161,9 +150,14 @@ export default function BuildingSelectComponent() {
       buttonStyle = StyleSheet.flatten([styles.buttonLarge,
         styles.buttonRowItem]);
     }
+    let sBuildings = buildings;
+    if (modalValue.subType == 'from_storage') {
+      sBuildings = buildingsStorage;
+    }
+
     let resourceMissing: string|null = null;
     if (modalValue.subType == RESEARCHES.FIELD_NOTES && buildingSelected) {
-      let building = buildings[buildingSelected];
+      let building = sBuildings[buildingSelected];
       let costs: any[] = [];
       if (building) {
         costs = buildingTypes[building.buildingType].noteCost;
@@ -211,6 +205,7 @@ export default function BuildingSelectComponent() {
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
+
       else if (modalValue.subType == LIVE_AT_BUILDING) {
         let newLeaders = Object.assign({}, leaders);
         newLeaders[modalValue.leader.id].livingAt = buildingSelected;
@@ -225,6 +220,7 @@ export default function BuildingSelectComponent() {
         dispatch(setRates(newRates));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
+
       else if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
         let buildingName = buildingSelected;
         let buildingType = buildingTypes[buildingSelected];
@@ -253,7 +249,51 @@ export default function BuildingSelectComponent() {
         dispatch(addTimer(timer));
         dispatch(displayModalValue(null, 'closed', null));
       }
+
+      else if (modalValue.subType == 'from_storage') {
+        const building = buildingsStorage[buildingSelected];
+        dispatch(removeBuildingFromStorage(building));
+        dispatch(addBuilding(building));
+        let tempBuildings: { [id: string] : Building } = {};
+        Object.keys(buildings).map((id) => {
+          tempBuildings[id] = new Building(buildings[id]);
+        });
+        tempBuildings[building.id] = building;
+        const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+        dispatch(setRates(newRates));
+        dispatch(displayModalValue(null, 'closed', null));
+      }
     }
+  }
+
+  function getBuildingsArray() {
+    let buildingsArray = Object.keys(buildings).map((buildingId) => {
+      return buildings[buildingId];
+    });
+    if (modalValue.subType == 'from_storage') {
+      buildingsArray = Object.keys(buildingsStorage).map((buildingId) => {
+        return buildingsStorage[buildingId];
+      });
+    }
+    else {
+      buildingsArray = buildingsArray.filter((building) => {
+        if (modalValue.subType == ASSIGN_TO_BUILDING) {
+          const buildingType = buildingTypes[building.buildingType];
+          if (buildingType.recipes || building.recipe) { return building; }
+        }
+        else if (modalValue.subType == LIVE_AT_BUILDING) {
+          const buildingType = buildingTypes[building.buildingType];
+          if (buildingType.livingHappiness != undefined) { return building; }
+        }
+        else { return building; }
+      });
+      if (modalValue.subType == RESEARCHES.FIELD_NOTES) {
+        buildingsArray = [new Building({ id: BUILDING_TYPES.SKY,
+          buildingType: BUILDING_TYPES.SKY, suffix: 0, name: BUILDING_TYPES.SKY,
+          resourcesSelected: {}, recipe: null }), ...buildingsArray];
+      }
+    }
+    return buildingsArray;
   }
 }
 
@@ -265,7 +305,7 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
   let panelStyle = StyleSheet.flatten([styles.panelTile,
     {minWidth: props.positioner.majorWidth,
       maxWidth: props.positioner.majorWidth}]);
-  if (props.subType == RESEARCHES.FIELD_NOTES) {
+  if (props.subType == RESEARCHES.FIELD_NOTES || props.subType == 'from_storage') {
     panelStyle = StyleSheet.flatten([styles.panelTile,
       {minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}]);

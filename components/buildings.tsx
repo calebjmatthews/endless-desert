@@ -137,9 +137,10 @@ export default function BuildingsComponent() {
     return (
       <View style={styles.rows}>
         {buildTimer && renderBuildTimer(buildTimer)}
-        {!buildTimer && (
-          <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
-            marginLeft: 10}}>
+        {!buildTimer && (toBuildArray.length > 0) && (
+          <View style={StyleSheet.flatten([styles.rows,
+            { justifyContent: 'space-between', minWidth: positioner.majorWidth,
+              maxWidth: positioner.majorWidth}]) }>
             {renderBuildButton()}
             {renderStorageButton()}
           </View>
@@ -156,24 +157,16 @@ export default function BuildingsComponent() {
       isDisabled = true;
       buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
     }
-    if (toBuildArray.length > 0) {
-      return (
-        <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
-          marginLeft: 10}}>
-          <TouchableOpacity style={buttonStyle} disabled={isDisabled}
-            onPress={() => startBuilding()} >
-            <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
-              style={styles.headingIcon} />
-            <Text style={styles.buttonTextLarge}>
-              {` Build ${buildingLimit.label}`}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-    else {
-      return null;
-    }
+    return (
+      <TouchableOpacity style={buttonStyle} disabled={isDisabled}
+        onPress={() => buildPress()} >
+        <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
+          style={styles.headingIcon} />
+        <Text style={styles.buttonTextLarge}>
+          {` Build ${buildingLimit.label}`}
+        </Text>
+      </TouchableOpacity>
+    );
   }
 
   function renderStorageButton() {
@@ -185,22 +178,15 @@ export default function BuildingsComponent() {
       buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
     }
     return (
-      <View style={{display: 'flex', alignItems: 'flex-start', width: '100%',
-        marginLeft: 10}}>
-        <TouchableOpacity style={buttonStyle} disabled={isDisabled}
-          onPress={() => {}} >
-          <IconComponent provider="FontAwesome5" name="level-up-alt" color="#fff"
-            size={16} style={styles.headingIcon} />
-          <Text style={styles.buttonTextLarge}>
-            {` Storage(${Object.keys(buildingsStorage).length})`}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={buttonStyle} disabled={isDisabled}
+        onPress={() => storagePress()} >
+        <IconComponent provider="FontAwesome5" name="level-up-alt" color="#fff"
+          size={16} style={styles.headingIcon} />
+        <Text style={styles.buttonTextLarge}>
+          {` Storage(${Object.keys(buildingsStorage).length})`}
+        </Text>
+      </TouchableOpacity>
     );
-  }
-
-  function startBuilding() {
-    dispatch(displayModal(MODALS.BUILD));
   }
 
   function renderBuildTimer(timer: Timer) {
@@ -227,6 +213,15 @@ export default function BuildingsComponent() {
       }
     }
     return null;
+  }
+
+  function buildPress() {
+    dispatch(displayModal(MODALS.BUILD));
+  }
+
+  function storagePress() {
+    dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
+      {subType: 'from_storage'}));
   }
 
   function morePress(building: Building) {

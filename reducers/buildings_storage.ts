@@ -10,12 +10,12 @@ export default function (buildingsStorage: { [typeName: string] : Building } = {
 
     case ADD_BUILDING_TO_STORAGE:
     let newABuildings = Object.assign({}, buildingsStorage);
-    newABuildings[action.building.buildingType] = action.building;
+    newABuildings[action.building.id] = action.building;
     return newABuildings;
 
     case REMOVE_BUILDING_FROM_STORAGE:
     let newRBuildings = Object.assign({}, buildingsStorage);
-    delete newRBuildings[action.building.buildingType];
+    delete newRBuildings[action.building.id];
     return newRBuildings;
 
 		default:

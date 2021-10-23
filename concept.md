@@ -526,7 +526,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Refactor leader joining events
   [X] Sorta fix cooking
   [X] Maximum # buildings and town expansion researches
-  [ ] Store/Unstore buildings
+  [X] Store/Unstore buildings
   [ ] Add cottage
   [ ] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
