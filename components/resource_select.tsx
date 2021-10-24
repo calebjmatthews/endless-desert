@@ -159,7 +159,7 @@ export default function ResourceSelectComponent() {
 
     function filterOutZero(resources: Resource[]) {
       return resources.filter((resource) => {
-        if (Math.ceil(resource.quantity) > 1) { return resource; }
+        if (Math.floor(resource.quantity) > 1) { return resource; }
       });
     }
 
