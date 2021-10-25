@@ -34,6 +34,7 @@ export enum BUILDING_TYPES {
   SAND_PIT = "Sand Pit",
   SAND_PIT_RAPID = "Rapid Sand Pit",
   HUTS = "Huts",
+  COTTAGES = "Cottages",
   HOUSES = "Houses",
   PRESS = "Press",
   PRESS_SIMPLIFIED = "Simplified Press",

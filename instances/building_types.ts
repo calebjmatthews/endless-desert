@@ -255,10 +255,42 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.HUTS}),
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 300}],
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 120},
+      {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 300}],
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    livingHappiness: 10
+    upgradesInto: BTY.COTTAGES,
+    livingHappiness: 0
+  }),
+
+  [BTY.COTTAGES]: new BuildingType({
+    name: BTY.COTTAGES,
+    description: 'Thatch roofed cottages to keep the wind and sun out',
+    category: BCA.HOUSING,
+    icon: new Icon({provider: 'svg', name: SVGS.COTTAGES}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 300},
+      {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 800},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.COTTAGES,
+    livingHappiness: 15
+  }),
+
+  [BTY.HOUSES]: new BuildingType({
+    name: BTY.HOUSES,
+    description: 'Beautiful wooden homes with glass windows and rambling pathways '
+      + 'running between them',
+    category: BCA.HOUSING,
+    icon: new Icon({provider: 'svg', name: SVGS.HOUSE}),
+    cost: null,
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    livingHappiness: 30
   }),
 
   [BTY.CISTERN]: new BuildingType({
@@ -540,21 +572,6 @@ const buildingTypes: { [name: string] : BuildingType } = {
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
-  }),
-
-  [BTY.HOUSES]: new BuildingType({
-    name: BTY.HOUSES,
-    description: 'Beautiful wooden homes with glass windows and rambling pathways '
-      + 'running between them',
-    category: BCA.HOUSING,
-    icon: new Icon({provider: 'svg', name: SVGS.HOUSE}),
-    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 300},
-      {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 800},
-      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200}],
-    recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
-    livingHappiness: 20
   }),
 
   [BTY.PRESS]: new BuildingType({

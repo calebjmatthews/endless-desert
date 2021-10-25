@@ -525,10 +525,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Scarred Scholar => Scarred Navigator
   [X] Refactor leader joining events
   [X] Sorta fix cooking
+  [X] Fix for building recipe un-selection when opening detail modal
   [X] Maximum # buildings and town expansion researches
   [X] Store/Unstore buildings
-  [ ] Add cottage
-  [ ] House into upgrade, rather than stand-alone
+  [X] Add cottage
+  [X] House into upgrade, rather than stand-alone
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
@@ -539,13 +540,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Olives before grain
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
-  [ ] Fix for building recipe un-selection when opening detail modal
   [ ] Trader trust to affect # of items
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Glassware to use cloth subcategory an ingredient
   [ ] Tool for Reed Deltas
   [ ] Storing an occupied house kicks out the leader
+  [ ] Upgrading house and changing leader equipment recalc rates
+  [ ] Building and analyzing high value things goes faster
 
 ## Commands
 ### Delete all records from all tables:

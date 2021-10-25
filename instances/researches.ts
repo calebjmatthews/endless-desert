@@ -488,8 +488,8 @@ researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
   unlocksUpgrade: [BUILDING_TYPES.SAND_PIT_RAPID]
 });
 
-researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
-  name: RESEARCHES.HOME_CONSTRUCTION,
+researches[RESEARCHES.HUT_CONSTRUCTION] = new Research({
+  name: RESEARCHES.HUT_CONSTRUCTION,
   unlocks: ('Unlocks Huts.'),
   description: ('Right now you have enough housing for you and one band of people. '
     + 'Adding more simple huts won\'t be too difficult a task.'),
@@ -504,8 +504,23 @@ researches[RESEARCHES.HOME_CONSTRUCTION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.HUTS]
 });
 
-researches[RESEARCHES.HOME_CONSTRUCTION_IMRPOVED] = new Research({
-  name: RESEARCHES.HOME_CONSTRUCTION_IMRPOVED,
+researches[RESEARCHES.COTTAGE_CONSTRUCTION] = new Research({
+  name: RESEARCHES.COTTAGE_CONSTRUCTION,
+  unlocks: ('Unlocks Cottages.'),
+  description: (`Wood and thatched roofs are a good start to making the dwellings in  your town feel more like homes and less like sand-covered mounds of clay.`),
+  icon: new Icon({provider: 'svg', name: SVGS.COTTAGES}),
+  category: RESEARCHES.PHYSICS,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.HUT_CONSTRUCTION],
+  knowledgeReq: 600,
+  unlocksUpgrade: [BUILDING_TYPES.COTTAGES]
+});
+
+researches[RESEARCHES.HOUSE_CONSTRUCTION] = new Research({
+  name: RESEARCHES.HOUSE_CONSTRUCTION,
   unlocks: ('Unlocks Houses.'),
   description: ('Now that you have the capabity to produce some basic comforts, '
     + 'you can do better than the huts you\'ve delt with until now. Much better.'),
@@ -515,9 +530,9 @@ researches[RESEARCHES.HOME_CONSTRUCTION_IMRPOVED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.HOME_CONSTRUCTION, RESEARCHES.FIELD_NOTES],
+  prereq: [RESEARCHES.HUT_CONSTRUCTION, RESEARCHES.FIELD_NOTES],
   knowledgeReq: 6000,
-  unlocksBuilding: [BUILDING_TYPES.HOUSES]
+  unlocksUpgrade: [BUILDING_TYPES.HOUSES]
 });
 
 researches[RESEARCHES.COMPACTION] = new Research({

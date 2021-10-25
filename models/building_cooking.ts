@@ -107,7 +107,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
         break;
       }
     });
-    if (!containMatch && utils.arrayIncludes(ingredient.tags, RTA.SPICE)) {
+    if (!containMatch && (utils.arrayIncludes(ingredient.tags, RTA.SPICE
+      || ingredient.name == RTY.WATER))) {
       quantity = DEFAULT_SPICE_COST;
     }
     consumes.push({ specificity: RSP.EXACT, type: ingredient.name,
@@ -168,7 +169,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   const dishResource = new Resource({
     type: (dishType.name + '-' + id),
     quality: 0,
-    quantity: 20,
+    quantity: DEFAULT_DISH_COST,
     id: id,
     name: name,
     category: RCA.DISH,

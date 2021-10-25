@@ -22,6 +22,7 @@ import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { MODALS } from '../enums/modals';
 import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
@@ -304,9 +305,10 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
 
 function getExperimentCost(resource: Resource) {
   const resourceType = utils.getResourceType(resource);
+  if (resource.type == RESOURCE_TYPES.WATER) { return DEFAULT_SPICE_COST; }
   for (let index = 0; index < resourceType.tags.length; index++) {
     const tag = resourceType.tags[index];
-    if (tag == RESOURCE_TAGS.SPICE) { return 1; }
+    if (tag == RESOURCE_TAGS.SPICE) { return DEFAULT_SPICE_COST; }
   }
-  return Math.ceil(DEFAULT_DISH_COST / DEFAULT_SPICE_COST);
+  return DEFAULT_DISH_COST;
 }

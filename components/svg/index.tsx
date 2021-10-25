@@ -111,6 +111,7 @@ import GateSvgComponent from './buildings/gate';
 import WatchtowerSvgComponent from './buildings/watchtower';
 import RuinedHutsSvgComponent from './buildings/ruined_huts';
 import HutSvgComponent from './buildings/hut';
+import CottagesSvgComponent from './buildings/cottages';
 import FallowFieldSvgComponent from './buildings/fallow_field';
 import LentilFieldSvgComponent from './buildings/lentil_field';
 import ClayPitSvgComponent from './buildings/clay_pit';
@@ -377,6 +378,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <RuinedHutsSvgComponent icon={props.icon} />;
     case SVGS.HUTS:
     return <HutSvgComponent icon={props.icon} />;
+    case SVGS.COTTAGES:
+    return <CottagesSvgComponent icon={props.icon} />;
     case SVGS.FALLOW_FIELD:
     return <FallowFieldSvgComponent icon={props.icon} />;
     case SVGS.LENTIL_FIELD:
