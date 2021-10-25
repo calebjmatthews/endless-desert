@@ -5,11 +5,17 @@ import Icon from '../models/icon';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
+const LDQ = LEADER_QUALITIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+const RSP = RESOURCE_SPECIFICITY;
 import { RESOURCE_TYPES } from '../enums/resource_types';
+const RTY = RESOURCE_TYPES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 import { SVGS } from '../enums/svgs';
 
 let equipmentTypes: { [name: string] : EquipmentType } = {};
@@ -19,48 +25,18 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
   description: 'A bangle shaped like a four pointed star; Samannoud is never without it',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 35,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], change: 35, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 45,
-      weight: 100
-    }, {
-      qualities: [LEADER_QUALITIES.QUALITY],
-      change: 15,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], change: 45, weight: 100 },
+      { qualities: [LDQ.QUALITY], change: 15, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 55,
-      weight: 100
-    }, {
-      qualities: [LEADER_QUALITIES.QUALITY],
-      change: 25,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], change: 55, weight: 100 },
+      { qualities: [LDQ.QUALITY], change: 25, weight: 100 }],
     count: 3
   })],
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
@@ -71,49 +47,19 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
   description: 'A rough stone tool made for digging soil and splitting rocks',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_SPEED],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
   icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
@@ -124,49 +70,22 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
   description: 'An iron-capped wooden pole: only limited by your creativity',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_EFFICIENCY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], change: 100,
+      weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_EFFICIENCY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], change: 100,
+      weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_EFFICIENCY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], change: 100,
+      weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
@@ -177,49 +96,19 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
   description: 'A set of small tools made out of crude metal',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_QUALITY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_QUALITY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS_TO_QUALITY],
-      change: 100,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+      finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
@@ -230,44 +119,20 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
   description: 'An uncomplicated, long-lived robe made of reed linen',
   slot: EQUIPMENT_SLOTS.CLOTHING,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS],
-      change: 10,
-      weight: 100
-    },
+    defaultOption: { qualities: [LDQ.HAPPINESS], change: 10, weight: 100 },
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS],
-      change: 15,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY,
-        LEADER_QUALITIES.QUALITY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS], change: 15, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+      givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
+      type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.HAPPINESS],
-      change: 20,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY,
-        LEADER_QUALITIES.QUALITY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    }],
+    defaultOption: { qualities: [LDQ.HAPPINESS], change: 20, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+      givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
+      type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   })],
   icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
@@ -279,40 +144,19 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK] = new EquipmentType({
     + 'remembering what you put where'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 10,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY, LEADER_QUALITIES.QUALITY],
-      change: -5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.SPEED], change: 10, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], change: -5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 15,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY, LEADER_QUALITIES.QUALITY],
-      change: -7.5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.SPEED], change: 15, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], change: -7.5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED],
-      change: 20,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.EFFICIENCY, LEADER_QUALITIES.QUALITY],
-      change: -10,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.SPEED], change: 20, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], change: -10,
+      weight: 50 }],
     count: 2
   })],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
@@ -323,40 +167,19 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
   description: ('Smaller than you might like, but everything\'s within easy reach'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      change: 10,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.QUALITY],
-      change: -5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.EFFICIENCY], change: 10, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], change: -5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      change: 15,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.QUALITY],
-      change: -7.5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.EFFICIENCY], change: 15, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], change: -7.5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.EFFICIENCY],
-      change: 20,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.QUALITY],
-      change: -10,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.EFFICIENCY], change: 20, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], change: -10,
+      weight: 50 }],
     count: 2
   })],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
@@ -367,40 +190,19 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
   description: ('Filled with crude tools to inspect and measure'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.QUALITY],
-      change: 10,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      change: -5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.QUALITY], change: 10, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], change: -5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.QUALITY],
-      change: 15,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      change: -7.5,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.QUALITY], change: 15, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], change: -7.5,
+      weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.QUALITY],
-      change: 20,
-      weight: 100
-    },
-    additionalOptions: [{
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      change: -10,
-      weight: 50
-    }],
+    defaultOption: { qualities: [LDQ.QUALITY], change: 20, weight: 100 },
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], change: -10,
+      weight: 50 }],
     count: 2
   })],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
@@ -411,36 +213,21 @@ equipmentTypes[EQUIPMENT_TYPES.SHOULDER_POUCH] = new EquipmentType({
   description: 'A small cloth bag tailor-made to carry specific goods',
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 10,
-      weight: 100
-    },
+    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+      givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
+      type: RCA.MATERIAL, change: 10, weight: 100 },
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 15,
-      weight: 100
-    },
+    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+      givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
+      type: RCA.MATERIAL, change: 15, weight: 100 },
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: {
-      qualities: [LEADER_QUALITIES.SPEED, LEADER_QUALITIES.EFFICIENCY],
-      givenSpecificity: RESOURCE_SPECIFICITY.CATEGORY,
-      finalSpecificity: RESOURCE_SPECIFICITY.EXACT,
-      type: RESOURCE_CATEGORIES.MATERIAL,
-      change: 20,
-      weight: 100
-    },
+    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+      givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
+      type: RCA.MATERIAL, change: 20, weight: 100 },
     additionalOptions: [],
     count: 1
   })],
