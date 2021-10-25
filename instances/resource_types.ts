@@ -465,7 +465,7 @@ resourceTypes[RTY.CLAY_RICH] = new ResourceType({
   name: RTY.CLAY_RICH,
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
-  tags: [RTA.EARTH],
+  tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#5d2d00',
     shadow: '#2d1600'})
@@ -475,7 +475,7 @@ resourceTypes[RTY.CLAY_RED] = new ResourceType({
   name: RTY.CLAY_RED,
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
-  tags: [RTA.EARTH],
+  tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 35,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'})
@@ -485,7 +485,7 @@ resourceTypes[RTY.CLAY_BLUE] = new ResourceType({
   name: RTY.CLAY_BLUE,
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
-  tags: [RTA.EARTH],
+  tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 45,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#9cb0d2',
     shadow: '#818ea2'})
@@ -495,7 +495,7 @@ resourceTypes[RTY.CLAY_KAOLIN] = new ResourceType({
   name: RTY.CLAY_KAOLIN,
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
-  tags: [RTA.EARTH],
+  tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 840,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#f7e0c5',
     shadow: '#d6bfa4'})
@@ -573,7 +573,7 @@ resourceTypes[RTY.SAND_DUNE] = new ResourceType({
   name: RTY.SAND_DUNE,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.SWEET],
+  tags: [RTA.EARTH, RTA.SWEET, RTA.TRADE_GOOD],
   value: 5,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f9c29e',
     shadow: '#c79573'})
@@ -583,7 +583,7 @@ resourceTypes[RTY.SAND_PALE] = new ResourceType({
   name: RTY.SAND_PALE,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.COOLING],
+  tags: [RTA.EARTH, RTA.COOLING, RTA.TRADE_GOOD],
   value: 6,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#d6d8dc',
     shadow: '#afbad0'})
@@ -593,7 +593,7 @@ resourceTypes[RTY.SAND_VOLCANIC] = new ResourceType({
   name: RTY.SAND_VOLCANIC,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.SPICY],
+  tags: [RTA.EARTH, RTA.SPICY, RTA.TRADE_GOOD],
   value: 4,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#866262',
     shadow: '#6f3a3a'})
@@ -603,7 +603,7 @@ resourceTypes[RTY.SAND_CORAL] = new ResourceType({
   name: RTY.SAND_CORAL,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.BRACKISH],
+  tags: [RTA.EARTH, RTA.BRACKISH, RTA.TRADE_GOOD],
   value: 5,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#e24242',
     shadow: '#bd3b3b'})
@@ -613,7 +613,7 @@ resourceTypes[RTY.SAND_OLIVINE] = new ResourceType({
   name: RTY.SAND_OLIVINE,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.HERBAL],
+  tags: [RTA.EARTH, RTA.HERBAL, RTA.TRADE_GOOD],
   value: 4,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#579e0f',
     shadow: '#507926'})
@@ -633,7 +633,7 @@ resourceTypes[RTY.SAND_OCHRE] = new ResourceType({
   name: RTY.SAND_OCHRE,
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
-  tags: [RTA.EARTH, RTA.SOUR],
+  tags: [RTA.EARTH, RTA.SOUR, RTA.TRADE_GOOD],
   value: 6,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f9873e',
     shadow: '#ce6b2d'})

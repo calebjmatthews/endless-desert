@@ -2,6 +2,7 @@ import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
 import EquipmentEffectGenerator from './equipment_effect_gen';
 import Vault from './vault';
+import ResourceType from './resource_type';
 import Icon from './icon';
 import { utils } from '../utils';
 
@@ -16,8 +17,9 @@ export default class EquipmentType implements EquipmentTypeInterface {
     Object.assign(this, equipmentType);
   }
 
-  createEquipment(tier: number, vault: Vault) {
-    let effects = this.effectGenerators[tier].generateEffects(vault);
+  createEquipment(tier: number, vault: Vault,
+    resourceTypes: { [name: string] : ResourceType}) {
+    let effects = this.effectGenerators[tier].generateEffects(vault, resourceTypes);
     return new Equipment({
       id: utils.randHex(16),
       typeName: this.name,

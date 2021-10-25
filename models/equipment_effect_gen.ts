@@ -1,7 +1,10 @@
 import EquipmentEffect from './equipment_effect';
 import Vault from './vault';
+import Resource from './resource';
+import ResourceType from './resource_type';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 
 export default class EquipmentEffectGenerator
   implements EquipmentEffectGeneratorInterface {
@@ -13,19 +16,20 @@ export default class EquipmentEffectGenerator
     Object.assign(this, equipmentEffectGenerator);
   }
 
-  generateEffects(vault: Vault) {
+  generateEffects(vault: Vault, resourceTypes: { [name: string] : ResourceType}) {
     let effects: EquipmentEffect[] = [];
     for (let index = 0; index < this.count; index++) {
       let gos = this.additionalOptions;
       if (index == 0 && this.defaultOption) {
         gos = [this.defaultOption];
       }
-      effects.push(this.generateOneEffect(gos, vault));
+      effects.push(this.generateOneEffect(gos, vault, resourceTypes));
     }
     return effects;
   }
 
-  generateOneEffect(gos: GeneratorOption[], vault: Vault) {
+  generateOneEffect(gos: GeneratorOption[], vault: Vault,
+    resourceTypes: { [name: string] : ResourceType}) {
     const go: GeneratorOption = utils.randomWeightedSelect(gos);
     const quality = go.qualities[
       Math.floor(go.qualities.length * utils.random())
@@ -40,21 +44,21 @@ export default class EquipmentEffectGenerator
         break;
 
         case RESOURCE_SPECIFICITY.TAG:
-        const mTRsc = vault.getTagResources(go.type);
+        let mTRsc = filterOutTradeGoods(vault.getTagResources(go.type));
         if (mTRsc.length > 0) {
           type = mTRsc[Math.floor(mTRsc.length * utils.random())].type;
         }
         break;
 
         case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        const mSRsc = vault.getSubcategoryResources(go.type);
+        const mSRsc = filterOutTradeGoods(vault.getSubcategoryResources(go.type));
         if (mSRsc.length > 0) {
           type = mSRsc[Math.floor(mSRsc.length * utils.random())].type;
         }
         break;
 
         case RESOURCE_SPECIFICITY.CATEGORY:
-        const mCRsc = vault.getCategoryResources(go.type);
+        const mCRsc = filterOutTradeGoods(vault.getCategoryResources(go.type));
         if (mCRsc.length > 0) {
           type = mCRsc[Math.floor(mCRsc.length * utils.random())].type;
         }
@@ -73,6 +77,15 @@ export default class EquipmentEffectGenerator
 
     return new EquipmentEffect({ quality, specificity,
       type, change: go.change });
+
+    function filterOutTradeGoods(resources: Resource[]) {
+      return resources.filter((resource) => {
+        const resourceType = resourceTypes[resource.type];
+        const isTradeGood = utils.arrayIncludes(resourceType.tags,
+          RESOURCE_TAGS.TRADE_GOOD);
+        if (!isTradeGood) { return resource; }
+      });;
+    }
   }
 }
 

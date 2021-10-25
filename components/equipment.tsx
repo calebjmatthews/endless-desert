@@ -161,7 +161,7 @@ function CleanEquipmentDescription(props: any) {
     const equipmentResource: Resource = props.info.item;
     const equipmentTypeName = equipmentResource.type.split(' (')[0];
     const equipmentType = equipmentTypes[equipmentTypeName];
-    const newEquipment = equipmentType.createEquipment(1, props.vault);
+    const newEquipment = equipmentType.createEquipment(1, props.vault, resourceTypes);
     console.log('newEquipment');
     console.log(newEquipment);
     dispatch(addEquipment(newEquipment));
