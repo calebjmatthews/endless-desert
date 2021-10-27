@@ -531,7 +531,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add cottage
   [X] House into upgrade, rather than stand-alone
   [X] Equipment effects exclude trade items
-  [ ] Disassembly of equipment
+  [X] Disassembly of equipment
   [ ] Travel-ready food like salted meat, dried fruit, waybread
   [ ] Fortuity should grant ore, equipment, food
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"

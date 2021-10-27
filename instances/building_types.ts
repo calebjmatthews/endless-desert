@@ -507,13 +507,16 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}),
+      [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 2}]}) ],
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: 8, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 8}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -529,12 +532,15 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 500}],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OX, quantity: 1, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.MILK, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}) ],
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.OX_MEAT, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 8}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true

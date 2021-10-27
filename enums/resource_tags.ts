@@ -5,6 +5,7 @@ export enum RESOURCE_TAGS {
   ANIMAL = "Animal",
   EARTH = "Earth",
   FOOD = "Food",
+  PROVISION = "Provision",
   CONSTRUCTION = "Construction",
   FUEL = "Fuel",
   PRECIOUS = "Precious",

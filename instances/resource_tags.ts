@@ -33,6 +33,13 @@ resourceTags[RESOURCE_TAGS.FOOD] = new ResourceTag({
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'food-apple',
     color:'#f44336'})});
 
+resourceTags[RESOURCE_TAGS.PROVISION] = new ResourceTag({
+  name: RESOURCE_TAGS.PROVISION,
+  value: 60,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'map',
+    color:'#986127'})});
+
 resourceTags[RESOURCE_TAGS.MIND] = new ResourceTag({
   name: RESOURCE_TAGS.MIND,
   value: 5,

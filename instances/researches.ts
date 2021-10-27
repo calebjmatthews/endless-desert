@@ -797,7 +797,8 @@ researches[RESEARCHES.COOKING] = new Research({
   unlocks: ('Unlocks Kitchens.'),
   description: ('Eating raw lentils gets old fast. Real, enjoyable food will be '
     + 'a crucial part of making your settlement a livable place.'),
-  icon: new Icon({provider: 'svg', name: SVGS.OMELET}),
+  icon: new Icon({provider: 'svg', name: SVGS.OMELET, color: '#18c08b',
+    shadow: '#0caf7b'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 1,
@@ -813,7 +814,8 @@ researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
   unlocks: ('Allows an upgrade to Kitchens.'),
   description: ('Some say that cooking is an art, but that\'s debatable. If it '
     + 'were truly art, would you be able to make it this efficient?'),
-  icon: new Icon({provider: 'svg', name: SVGS.CAKE}),
+  icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#ffa6b7',
+    shadow: '#d16479'}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,

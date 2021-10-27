@@ -321,14 +321,23 @@ resourceTypes[RTY.QUAIL] = new ResourceType({
   name: RTY.QUAIL,
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
-  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  tags: [RTA.ANIMAL],
   value: 200,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
 
+resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
+  name: RTY.QUAIL_MEAT,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.ANIMAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 160,
+  icon: new Icon({provider: 'svg', name: SVGS.QUAIL_MEAT})
+});
+
 resourceTypes[RTY.EGG] = new ResourceType({
   name: RTY.EGG,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
@@ -337,7 +346,7 @@ resourceTypes[RTY.EGG] = new ResourceType({
 
 resourceTypes[RTY.FERTILIZER] = new ResourceType({
   name: RTY.FERTILIZER,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 10,
@@ -348,14 +357,23 @@ resourceTypes[RTY.OX] = new ResourceType({
   name: RTY.OX,
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
-  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  tags: [RTA.ANIMAL],
   value: 400,
   icon: new Icon({provider: 'svg', name: SVGS.OX})
 });
 
+resourceTypes[RTY.OX_MEAT] = new ResourceType({
+  name: RTY.OX_MEAT,
+  category: RCA.MATERIAL_REFINED,
+  subcategory: RSC.ANIMAL,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 320,
+  icon: new Icon({provider: 'svg', name: SVGS.OX_MEAT})
+});
+
 resourceTypes[RTY.MILK] = new ResourceType({
   name: RTY.MILK,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 100,
@@ -1123,7 +1141,7 @@ resourceTypes[RTY.SOUP] = new ResourceType({
   name: RTY.SOUP,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 80,
+  value: 30,
   icon: new Icon({provider: 'svg', name: SVGS.SOUP, color: '#F47400',
     shadow: '#f25600'})
 });
@@ -1132,7 +1150,7 @@ resourceTypes[RTY.BREAD] = new ResourceType({
   name: RTY.BREAD,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 200,
+  value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.BREAD })
 });
 
@@ -1140,7 +1158,7 @@ resourceTypes[RTY.OMELET] = new ResourceType({
   name: RTY.OMELET,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 80,
+  value: 160,
   icon: new Icon({provider: 'svg', name: SVGS.OMELET, color: '#18c08b',
     shadow: '#0caf7b'})
 });
@@ -1149,7 +1167,7 @@ resourceTypes[RTY.STEW] = new ResourceType({
   name: RTY.STEW,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 80,
+  value: 220,
   icon: new Icon({provider: 'svg', name: SVGS.STEW, color: '#fa690e',
     shadow: '#f94c10'})
 });
@@ -1158,7 +1176,7 @@ resourceTypes[RTY.PIE] = new ResourceType({
   name: RTY.PIE,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 80,
+  value: 120,
   icon: new Icon({provider: 'svg', name: SVGS.PIE, color: '#c22235'})
 });
 
@@ -1166,9 +1184,33 @@ resourceTypes[RTY.CAKE] = new ResourceType({
   name: RTY.CAKE,
   category: RCA.DISH,
   tags: [RTA.FOOD],
-  value: 80,
+  value: 280,
   icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#ffa6b7',
     shadow: '#d16479'})
+});
+
+resourceTypes[RTY.WAYBREAD] = new ResourceType({
+  name: RTY.WAYBREAD,
+  category: RCA.DISH,
+  tags: [RTA.FOOD, RTA.PROVISION, RTA.BRACKISH],
+  value: 60,
+  icon: new Icon({provider: 'svg', name: SVGS.WAYBREAD})
+});
+
+resourceTypes[RTY.DRIED_FRUIT] = new ResourceType({
+  name: RTY.DRIED_FRUIT,
+  category: RCA.DISH,
+  tags: [RTA.FOOD, RTA.PROVISION,  RTA.BRACKISH],
+  value: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.DRIED_FRUIT})
+});
+
+resourceTypes[RTY.SALTED_MEAT] = new ResourceType({
+  name: RTY.SALTED_MEAT,
+  category: RCA.DISH,
+  tags: [RTA.FOOD, RTA.PROVISION,  RTA.BRACKISH],
+  value: 280,
+  icon: new Icon({provider: 'svg', name: SVGS.SALTED_MEAT})
 });
 
 resourceTypes[RTY.MISTAKE] = new ResourceType({

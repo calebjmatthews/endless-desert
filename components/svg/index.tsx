@@ -30,9 +30,11 @@ import GrainSvgComponent from './resources/grain';
 import FlourSvgComponent from './resources/flour';
 import OliveSvgComponent from './resources/olive';
 import QuailSvgComponent from './resources/quail';
+import QuailMeatSvgComponent from './resources/quail_meat';
 import EggSvgComponent from './resources/egg';
 import FertilizerSvgComponent from './resources/fertilizer';
 import OxSvgComponent from './resources/ox';
+import OxMeatSvgComponent from './resources/ox_meat';
 import MilkSvgComponent from './resources/milk';
 import SilkwormCocoonSvgComponent from './resources/silkworm_cocoon';
 import WoodSvgComponent from './resources/wood';
@@ -83,6 +85,9 @@ import StewSvgComponent from './resources/stew';
 import OmeletSvgComponent from './resources/omelet';
 import PieSvgComponent from './resources/pie';
 import CakeSvgComponent from './resources/cake';
+import WaybreadSvgComponent from './resources/waybread';
+import DriedFruitSvgComponent from './resources/dried_fruit';
+import SaltedMeatSvgComponent from './resources/salted_meat';
 import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
 import LiquorSvgComponent from './resources/liquor';
@@ -217,12 +222,16 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <OliveSvgComponent icon={props.icon} />;
     case SVGS.QUAIL:
     return <QuailSvgComponent icon={props.icon} />;
+    case SVGS.QUAIL_MEAT:
+    return <QuailMeatSvgComponent icon={props.icon} />;
     case SVGS.EGG:
     return <EggSvgComponent icon={props.icon} />;
     case SVGS.FERTILIZER:
     return <FertilizerSvgComponent icon={props.icon} />;
     case SVGS.OX:
     return <OxSvgComponent icon={props.icon} />;
+    case SVGS.OX_MEAT:
+    return <OxMeatSvgComponent icon={props.icon} />;
     case SVGS.MILK:
     return <MilkSvgComponent icon={props.icon} />;
     case SVGS.SILKWORM_COCOON:
@@ -324,6 +333,12 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PieSvgComponent icon={props.icon} />;
     case SVGS.CAKE:
     return <CakeSvgComponent icon={props.icon} />;
+    case SVGS.WAYBREAD:
+    return <WaybreadSvgComponent icon={props.icon} />;
+    case SVGS.DRIED_FRUIT:
+    return <DriedFruitSvgComponent icon={props.icon} />;
+    case SVGS.SALTED_MEAT:
+    return <SaltedMeatSvgComponent icon={props.icon} />;
     case SVGS.MISTAKE:
     return <MistakeSvgComponent icon={props.icon} />;
     case SVGS.BEER:
