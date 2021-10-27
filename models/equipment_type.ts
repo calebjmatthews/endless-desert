@@ -12,6 +12,7 @@ export default class EquipmentType implements EquipmentTypeInterface {
   slot: string = '';
   effectGenerators: EquipmentEffectGenerator[] = [];
   icon: Icon = new Icon({provider: '', name: ''});
+  recipeConsumes: { specificity: string, type: string, quantity: number }[]|null = null;
 
   constructor(equipmentType: EquipmentTypeInterface) {
     Object.assign(this, equipmentType);
@@ -34,4 +35,5 @@ interface EquipmentTypeInterface {
   slot: string;
   effectGenerators: EquipmentEffectGenerator[];
   icon: Icon;
+  recipeConsumes: { specificity: string, type: string, quantity: number }[]|null;
 }

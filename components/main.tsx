@@ -283,24 +283,24 @@ export default function MainComponent() {
     else {
       if (account.fortuityCurrent) {
         let memos = account.fortuityCurrent.memos.slice();
-        if (account.fortuityCurrent.leaderJoins) {
-          if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
-            dispatch(unlockTab(TABS.LEADERS));
-            dispatch(unlockTab(TABS.EQUIPMENT));
-          }
-          const leaderCreateRes =
-            leaderTypes[account.fortuityCurrent.leaderJoins].createLeader(vault);
-          let tempEquipment: { [id: string] : Equipment } = {};
-          leaderCreateRes.equipment.map((equip) => {
-            if (equip) {
-              tempEquipment[equip.id] = equip;
-              dispatch(addEquipment(equip));
-            }
-          });
-          let leader = new Leader(leaderCreateRes.leader);
-          leader.calcEffects(tempEquipment, {}, new Vault(null));
-          dispatch(addLeader(leader));
-        }
+        // if (account.fortuityCurrent.leaderJoins) {
+        //   if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
+        //     dispatch(unlockTab(TABS.LEADERS));
+        //     dispatch(unlockTab(TABS.EQUIPMENT));
+        //   }
+        //   const leaderCreateRes =
+        //     leaderTypes[account.fortuityCurrent.leaderJoins].createLeader(vault);
+        //   let tempEquipment: { [id: string] : Equipment } = {};
+        //   leaderCreateRes.equipment.map((equip) => {
+        //     if (equip) {
+        //       tempEquipment[equip.id] = equip;
+        //       dispatch(addEquipment(equip));
+        //     }
+        //   });
+        //   let leader = new Leader(leaderCreateRes.leader);
+        //   leader.calcEffects(tempEquipment, {}, new Vault(null));
+        //   dispatch(addLeader(leader));
+        // }
         if (account.fortuityCurrent.gainResources) {
           const fgr = account.fortuityCurrent.gainResources;
           let resourcesGained: Resource[] = [];

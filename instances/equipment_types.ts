@@ -39,6 +39,7 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
       { qualities: [LDQ.QUALITY], change: 25, weight: 100 }],
     count: 3
   })],
+  recipeConsumes: null,
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
 });
 
@@ -62,6 +63,8 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
+  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 20},
+    {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 20}],
   icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
 })
 
@@ -88,6 +91,8 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
+  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
+    {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}],
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
@@ -111,6 +116,7 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 40}],
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
 });
 
@@ -135,6 +141,7 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
       type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 10}],
   icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
 });
 
@@ -159,6 +166,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK] = new EquipmentType({
       weight: 50 }],
     count: 2
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 20}],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
 });
 
@@ -182,6 +190,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
       weight: 50 }],
     count: 2
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 20}],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
 });
 
@@ -205,6 +214,7 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
       weight: 50 }],
     count: 2
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 20}],
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
@@ -231,6 +241,7 @@ equipmentTypes[EQUIPMENT_TYPES.SHOULDER_POUCH] = new EquipmentType({
     additionalOptions: [],
     count: 1
   })],
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 5}],
   icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 })
 

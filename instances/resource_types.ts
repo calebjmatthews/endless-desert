@@ -1195,6 +1195,14 @@ resourceTypes[RTY.LIQUOR] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.LIQUOR})
 });
 
+resourceTypes[(EQUIPMENT_TYPES.FOUR_POINT_BANGLE + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.FOUR_POINT_BANGLE + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 800000,
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
+});
+
 resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)'),
   category: RCA.EQUIPMENT,

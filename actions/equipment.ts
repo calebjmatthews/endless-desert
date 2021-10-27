@@ -9,9 +9,17 @@ export function setEquipment(equipment: { [ id: string ] : Equipment }) {
 }
 
 export const ADD_EQUIPMENT = 'ADD_EQUIPMENT';
-export function addEquipment(equipment: Equipment) {
+export function addEquipment(equipment: Equipment[]) {
   return {
     type: ADD_EQUIPMENT,
+    equipment: equipment
+  }
+}
+
+export const REMOVE_EQUIPMENT = 'REMOVE_EQUIPMENT';
+export function removeEquipment(equipment: Equipment[]) {
+  return {
+    type: REMOVE_EQUIPMENT,
     equipment: equipment
   }
 }

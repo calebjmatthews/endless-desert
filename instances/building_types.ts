@@ -793,14 +793,18 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: EQT.SHOULDER_POUCH + " (Unmarked)",
+        quantity: 0.1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 0.5}]}),
+    new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_HAVERSACK + " (Unmarked)",
         quantity: 0.05, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}),
-    new BuildingRecipe({index: 1, produces:
+    new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_GEARBAG + " (Unmarked)",
         quantity: 0.05, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}),
-    new BuildingRecipe({index: 2, produces:
+    new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: EQT.JOURNEYMANS_TOOLPACK + " (Unmarked)",
         quantity: 0.05, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}) ],

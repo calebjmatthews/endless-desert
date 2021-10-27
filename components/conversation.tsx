@@ -22,6 +22,7 @@ import { Conversation, ConversationStatement, ConversationResponse }
 import { conversations, convoStatements, convoResponses }
   from '../instances/conversations';
 import { leaderTypes } from '../instances/leader_types';
+import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { TABS } from '../enums/tabs';
@@ -256,14 +257,16 @@ export default function ConversationComponent(props: ConversationProps) {
         dispatch(unlockTab(TABS.EQUIPMENT));
       }
       const leaderCreateRes =
-        leaderTypes[statement.leaderJoins].createLeader(vault);
+        leaderTypes[statement.leaderJoins].createLeader(vault, resourceTypes);
       let tempEquipment: { [id: string] : Equipment } = {};
-      leaderCreateRes.equipment.map((equip) => {
-        if (equip) {
-          tempEquipment[equip.id] = equip;
-          dispatch(addEquipment(equip));
+      let equipmentArray: Equipment[] = [];
+      leaderCreateRes.equipment.map((anEquipment) => {
+        if (anEquipment) {
+          tempEquipment[anEquipment.id] = anEquipment;
+          equipmentArray.push(anEquipment);
         }
       });
+      dispatch(addEquipment(equipmentArray));
       let leader = new Leader(leaderCreateRes.leader);
       leader.calcEffects(tempEquipment, {}, new Vault(null));
       dispatch(addLeader(leader));

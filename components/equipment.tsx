@@ -9,8 +9,8 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
-import { addEquipment } from '../actions/equipment';
-import { consumeResources } from '../actions/vault';
+import { addEquipment, removeEquipment } from '../actions/equipment';
+import { increaseResources, consumeResources } from '../actions/vault';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
@@ -20,6 +20,8 @@ import ResourceCategory from '../models/resource_category';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import EquipmentEffect from '../models/equipment_effect';
+import Vault from '../models/vault';
+import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
@@ -27,33 +29,18 @@ import { resourceCategories } from '../instances/resource_categories';
 import { equipmentTypes } from '../instances/equipment_types';
 import { leaderQualities } from '../instances/leader_qualities';
 import { utils } from '../utils';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
+const EQS = EQUIPMENT_SLOTS;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 export default function EquipmentComponent() {
+  const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const equipment = useTypedSelector(state => state.equipment);
   const leaders = useTypedSelector(state => state.leaders);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  let equipmentArray: any[] = [];
-  Object.keys(vault.resources).map((typeQuality) => {
-    const resource = vault.resources[typeQuality];
-    const resourceType = utils.getResourceType(resource);
-    const quantity = vault.resources[typeQuality].quantity;
-    if (resourceType.category == RESOURCE_CATEGORIES.EQUIPMENT
-      && quantity >= 1) {
-      let obj: any = vault.resources[typeQuality];
-      obj.marked = false;
-      obj.key = obj.type;
-      equipmentArray.push(obj);
-    }
-  });
-  Object.keys(equipment).map((id) => {
-    let obj: any = equipment[id];
-    obj.marked = true;
-    obj.key = obj.id;
-    equipmentArray.push(obj);
-  });
+
   let leaderMap: { [equipmentId: string] : Leader } = {};
   Object.keys(leaders).map((id) => {
     const leader = leaders[id];
@@ -68,6 +55,8 @@ export default function EquipmentComponent() {
     }
   });
 
+  const uiArray: UiItem[] = getUiArray(leaderMap);
+
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
@@ -77,37 +66,133 @@ export default function EquipmentComponent() {
         <Text style={styles.heading1}>{' Equipment'}</Text>
       </View>
       <FlatList
-        data={equipmentArray}
-        renderItem={renderAllEquipment}
-        keyExtractor={anEquipment => anEquipment.key}>
+        data={uiArray}
+        renderItem={renderUiArray}
+        keyExtractor={anEquipment => anEquipment.id}>
       </FlatList>
     </View>
   );
 
-  function renderAllEquipment(info: any) {
-    if (info.item.marked == true) {
-      return <MarkedEquipmentDescription info={info} positioner={positioner}
-        equipment={equipment} leaderMap={leaderMap} />
+  function renderUiArray(data: { item: UiItem }) {
+    switch(data.item.type) {
+      case 'category':
+      return <CategoryDescription name={data.item.id}
+        deconstructNotEquipped={deconstructNotEquipped} positioner={positioner} />;
+
+      case 'resource':
+      if (data.item.resource) {
+        return <CleanEquipmentDescription resource={data.item.resource}
+          positioner={positioner} vault={vault} />;
+      } break;
+
+      case 'equipment':
+      if (data.item.anEquipment) {
+        return <MarkedEquipmentDescription anEquipment={data.item.anEquipment}
+          positioner={positioner} equipment={equipment} leaderMap={leaderMap} />;
+      } break;
     }
-    else {
-      return <CleanEquipmentDescription info={info} positioner={positioner}
-        vault={vault} />
+    return null;
+  }
+
+  function getUiArray(leaderMap: { [equipmentId: string] : Leader }) {
+    let uiArray: UiItem[] = [];
+
+    let resourceArray: UiItem[] = [];
+    Object.keys(vault.resources).forEach((typeQuality) => {
+      const resource = vault.resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.category == RESOURCE_CATEGORIES.EQUIPMENT
+        && resource.quantity >= 1) {
+        resourceArray.push({ type: 'resource', id: resource.type, resource });
+      }
+    });
+    resourceArray = resourceArray.sort((a, b) => {
+      const rTypeA = resourceTypes[a.id];
+      const rTypeB = resourceTypes[b.id];
+      return rTypeA.value - rTypeB.value;
+    });
+    uiArray = [...resourceArray];
+
+    if (uiArray.length > 0) {
+      uiArray.unshift({ type: 'category', id: 'resource' });
+    }
+
+    if (Object.keys(equipment).length > 0) {
+      uiArray.push({ type: 'category', id: 'equipment' });
+    }
+
+    let equipmentArray: UiItem[] = [];
+    Object.keys(equipment).forEach((id) => {
+      const anEquipment = equipment[id];
+      equipmentArray.push({ type: 'equipment', id, anEquipment });
+    });
+    equipmentArray = equipmentArray.sort((a, b) => {
+      if (leaderMap[a.id] && !leaderMap[b.id]) { return -1; }
+      if (leaderMap[b.id] && !leaderMap[a.id]) { return 1; }
+
+      if (!a.anEquipment || !b.anEquipment) { return 0; }
+
+      const eTypeA = equipmentTypes[a.anEquipment.typeName];
+      const eTypeB = equipmentTypes[b.anEquipment.typeName];
+      if (eTypeA.slot != eTypeB.slot) {
+        const slotSort: { [name: string] : number } =
+          { [EQS.TOOL] : -1, [EQS.CLOTHING] : 0, [EQS.BACK] : 1 };
+        return slotSort[eTypeA.slot];
+      }
+
+      const rTypeA = resourceTypes[a.anEquipment.typeName + ' (Unmarked)'];
+      const rTypeB = resourceTypes[b.anEquipment.typeName + ' (Unmarked)'];
+      return rTypeA.value - rTypeB.value;
+    });
+
+    uiArray = [...uiArray, ...equipmentArray];
+
+    return uiArray;
+  }
+
+  function deconstructNotEquipped() {
+    const etd: Equipment[] = [];
+    const rti: Resource[] = [];
+    Object.keys(equipment).forEach((id) => {
+      const anEquipment = equipment[id];
+      if (!leaderMap[id]) {
+        etd.push(anEquipment);
+        const equipmentType = equipmentTypes[anEquipment.typeName];
+        if (equipmentType.recipeConsumes) {
+          equipmentType.recipeConsumes.forEach((resource) => {
+            rti.push(new Resource({ ...resource, quality: 0 }));
+          })
+        }
+      }
+    });
+    if (etd.length > 0) {
+      console.log('etd');
+      console.log(etd);
+      dispatch(removeEquipment(etd));
+      if (rti.length > 0) {
+        console.log('rti');
+        console.log(rti);
+        dispatch(increaseResources(vault, rti));
+      }
     }
   }
 }
 
-function CleanEquipmentDescription(props: any) {
+function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
+    positioner: Positioner }) {
   const dispatch = useDispatch();
-  const equipment = props.info.item;
-  const equipmentType = resourceTypes[equipment.type];
+  const resource = props.resource;
+  const resourceType = resourceTypes[resource.type];
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent icon={equipmentType.icon} size={29} />
+      <BadgeComponent icon={resourceType.icon} size={29} />
       <View style={styles.containerStretchColumn}>
-        <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
-          <Text>{equipment.type}</Text>
+        <View style={StyleSheet.flatten([styles.buttonTextRow,
+          {minWidth: props.positioner.bodyMedWidth,
+            maxWidth: props.positioner.bodyMedWidth}])}>
+          <Text>{resource.type}</Text>
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
             onPress={() => {}}>
@@ -119,11 +204,12 @@ function CleanEquipmentDescription(props: any) {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230,
-          minHeight: 24}])}>
+        <View style={StyleSheet.flatten([styles.buttonTextRow,
+          {minWidth: props.positioner.bodyMedWidth,
+            maxWidth: props.positioner.bodyMedWidth, minHeight: 24}])}>
           {renderMarkButtons()}
           <Text style={{fontSize: 20}}>
-            {"x" + utils.formatNumberShort(equipment.quantity)}
+            {"x" + utils.formatNumberShort(resource.quantity)}
           </Text>
         </View>
       </View>
@@ -137,7 +223,7 @@ function CleanEquipmentDescription(props: any) {
         <Text>{"Mark: "}</Text>
         <TouchableOpacity
           style={StyleSheet.flatten([styles.buttonRowItemSmall])}
-          onPress={() => markOneEquipment()}>
+          onPress={() => markEquipment(1)}>
           <Text style={styles.buttonTextSmall}>{'1'}</Text>
         </TouchableOpacity>
         <Text>{" "}</Text>
@@ -151,28 +237,39 @@ function CleanEquipmentDescription(props: any) {
   }
 
   function markAllEquipment() {
-    const equipment = props.info.item;
-    for (let loop = 0; loop <= Math.floor(equipment.quantity); loop++) {
-      markOneEquipment();
-    }
+    const resource = props.resource;
+    markEquipment(Math.floor(resource.quantity));
   }
 
-  function markOneEquipment() {
-    const equipmentResource: Resource = props.info.item;
+  function markEquipment(count: number) {
+    let equipmentArray: Equipment[] = [];
+    let rtc: Resource[] = [];
+    for (let loop = 0; loop < count; loop++) {
+      const moeRes = createEquipment();
+      equipmentArray.push(moeRes.anEquipment);
+      rtc.push(moeRes.resource);
+    }
+    dispatch(addEquipment(equipmentArray));
+    dispatch(consumeResources(props.vault, rtc));
+  }
+
+  function createEquipment() {
+    const equipmentResource: Resource = props.resource;
     const equipmentTypeName = equipmentResource.type.split(' (')[0];
     const equipmentType = equipmentTypes[equipmentTypeName];
-    const newEquipment = equipmentType.createEquipment(1, props.vault, resourceTypes);
-    console.log('newEquipment');
-    console.log(newEquipment);
-    dispatch(addEquipment(newEquipment));
-    dispatch(consumeResources(props.vault,
-      [new Resource({type: equipmentResource.type, quality: equipmentResource.quality,
-        quantity: 1})]));
+    const anEquipment = equipmentType.createEquipment(1, props.vault, resourceTypes);
+    const resource = new Resource({type: equipmentResource.type, quality:
+      equipmentResource.quality, quantity: 1})
+    console.log('anEquipment');
+    console.log(anEquipment);
+    return { anEquipment, resource };
   }
 }
 
-function MarkedEquipmentDescription(props: any) {
-  const anEquipment: Equipment = props.equipment[props.info.item.id];
+function MarkedEquipmentDescription(props: { anEquipment: Equipment,
+  positioner: Positioner, equipment: { [id: string] : Equipment},
+  leaderMap: { [equipmentId: string] : Leader } }) {
+  const anEquipment: Equipment = props.equipment[props.anEquipment.id];
   const equipmentType = equipmentTypes[anEquipment.typeName];
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
@@ -180,7 +277,9 @@ function MarkedEquipmentDescription(props: any) {
         maxWidth: props.positioner.majorWidth}])}>
       <BadgeComponent icon={equipmentType.icon} size={29} />
       <View style={styles.containerStretchColumn}>
-        <View style={StyleSheet.flatten([styles.buttonTextRow, {minWidth: 230}])}>
+        <View style={StyleSheet.flatten([styles.buttonTextRow,
+          {minWidth: props.positioner.bodyMedWidth,
+            maxWidth: props.positioner.bodyMedWidth}])}>
           <Text>{anEquipment.typeName}</Text>
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
@@ -227,4 +326,47 @@ function MarkedEquipmentDescription(props: any) {
     }
     return null;
   }
+}
+
+const display: { [name: string] : { provider: string, name: string, label: string }} = {
+  'resource': { provider: 'FontAwesome', name: 'cube', label: 'Unmarked' },
+  'equipment': { provider: "FontAwesome5", name: "stamp", label: 'Marked' }
+}
+function CategoryDescription(props: { name: string,
+  deconstructNotEquipped: () => void, positioner: Positioner }) {
+  const width = props.positioner.majorWidth - 5;
+  return (
+    <View style={StyleSheet.flatten([styles.rows,
+      {marginLeft: 10, marginTop: 10, minWidth: width, maxWidth: width}])} >
+      <IconComponent provider={display[props.name].provider} style={styles.headingIcon}
+        name={display[props.name].name} color="#fff" size={20} />
+      <View style={StyleSheet.flatten([styles.containerStretchRow,
+        {justifyContent: 'space-between'}])}>
+        <View>
+          <Text style={styles.bareText}>
+            {` ${display[props.name].label}`}
+          </Text>
+        </View>
+        {props.name == 'equipment' && renderDeconstructButton()}
+      </View>
+
+    </View>
+  );
+
+  function renderDeconstructButton() {
+    return (
+      <TouchableOpacity
+        style={StyleSheet.flatten([styles.buttonRowItemSmall])}
+        onPress={() => { props.deconstructNotEquipped() }}>
+        <Text style={styles.buttonTextSmall}>{`Deconstruct`}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+interface UiItem {
+  type: string;
+  id: string;
+  resource?: Resource;
+  anEquipment?: Equipment;
 }
