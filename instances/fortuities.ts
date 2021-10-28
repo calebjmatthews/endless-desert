@@ -195,15 +195,13 @@ fortuities[FORTUITIES.UNSPEAKING] = new Fortuity({
     new Memo({
       name: (FORTUITIES.UNSPEAKING),
       title: 'Unspeaking',
-      text: ('No one speaks today. You wish you knew why; the faces you pass don\'t '
-        + 'look upset or unhappy. Solumn, perhaps. Is it a holiday you\'ve never heard '
-        + 'of, or a religious observance? You spend the day in unsettling silence.')
+      text: (`No one speaks today. You wish you knew why; the faces you pass don't look upset or unhappy. Solumn, perhaps. Is it a holiday you've never heard of, or a religious observance? You spend the day in unsettling silence. The next morning you realize someone slipped a jade broach shaped like a beetle into your robe's pocket.`)
     })
   ],
   type: 'Observation',
   repeatable: false,
   weight: 5,
-  gainResources: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 82}],
+  gainResources: [{specificity: RSP.EXACT, type: RTY.JADE, value: 8000}],
   available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
@@ -230,7 +228,7 @@ fortuities[FORTUITIES.FIERCE_WIND] = new Fortuity({
   type: 'Observation',
   repeatable: true,
   weight: 10,
-  gainResources: [{specificity: RSP.SUBCATEGORY, type: RSC.SEEDS, value: 822}],
+  gainResources: [{specificity: RSP.SUBCATEGORY, type: RSC.SEEDS, value: 2000}],
   available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {

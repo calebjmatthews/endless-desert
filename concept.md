@@ -404,7 +404,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/japan-52
     https://www.flaticon.com/packs/landmark-21
     https://www.flaticon.com/packs/prehistoric-age
-    https://www.flaticon.com/packs/morocco-16
+    https://www.flaticon.com/packs/morocco-16\
+    https://www.svgrepo.com/collection/landscapes-collection/
+    https://www.svgrepo.com/collection/tools-flat-vectors/
+    https://www.svgrepo.com/collection/italy-4/
+    https://www.svgrepo.com/collection/japan-13/
+    https://www.svgrepo.com/collection/japan-10/
+    https://www.svgrepo.com/collection/japan-9/
+    https://www.svgrepo.com/collection/bugs-insects-4/
+    https://www.svgrepo.com/collection/safari/
+    https://www.svgrepo.com/collection/meals-3/
+    https://www.svgrepo.com/collection/knowledge-4/
+    https://www.svgrepo.com/collection/labour-day/
+    https://www.svgrepo.com/collection/in-the-forest-6/
+    https://www.svgrepo.com/collection/man-clothes/
+    https://www.svgrepo.com/collection/woman-clothes/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -533,7 +547,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Equipment effects exclude trade items
   [X] Disassembly of equipment
   [X] Travel-ready food like salted meat, dried fruit, waybread
-  [ ] Repeatable fortuities happen once per day
+  [X] Repeatable fortuities happen only once per day
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   [ ] Consistent sorting in tabs/selection components
   [ ] Hide resources with <1 quantity in selection components
@@ -543,6 +557,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Trader trust to affect # of items
+  [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Glassware to use cloth subcategory an ingredient

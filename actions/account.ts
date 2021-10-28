@@ -66,3 +66,11 @@ export function fortuitySeen(fortuityName: string) {
     fortuityName: fortuityName
   }
 }
+
+export const SET_FORTUITY_DAILY_LAST = 'SET_FORTUITY_DAILY_LAST';
+export function setFortuityDailyLast(timestamp: number) {
+  return {
+    type: SET_FORTUITY_DAILY_LAST,
+    timestamp: timestamp
+  }
+}

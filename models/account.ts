@@ -7,6 +7,7 @@ export default class Account {
   tabsUnloked: string[] = [];
   fortuityCurrent: Fortuity|null = null;
   fortuitiesSeen: { [name: string] : number } = {};
+  fortuityDailyLast: number = 0;
   showCompletedResearches: boolean = false;
 
   constructor(account: Account) {

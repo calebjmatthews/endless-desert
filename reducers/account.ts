@@ -1,5 +1,6 @@
 import { SET_ACCOUNT, SET_USER_ID, SET_SESSION_ID, CHANGE_SETTING, SET_INTRO_STATE,
-  UNLOCK_TAB, SET_CURRENT_FORTUITY, FORTUITY_SEEN } from '../actions/account';
+  UNLOCK_TAB, SET_CURRENT_FORTUITY, FORTUITY_SEEN, SET_FORTUITY_DAILY_LAST }
+  from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
@@ -13,6 +14,7 @@ let accountStarting = new Account({
   tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
   fortuityCurrent: null,
   fortuitiesSeen: {},
+  fortuityDailyLast: 0,
   showCompletedResearches: false
 });
 
@@ -57,6 +59,11 @@ export default function (account: Account = accountStarting,
     let newFSAccount = new Account(account);
     newFSAccount.fortuitiesSeen[action.fortuityName] = new Date(Date.now()).valueOf();
     return newFSAccount;
+
+    case SET_FORTUITY_DAILY_LAST:
+    let newFDLAccount = new Account(account);
+    newFDLAccount.fortuityDailyLast = action.timestamp;
+    return newFDLAccount;
 
 		default:
 		return account;

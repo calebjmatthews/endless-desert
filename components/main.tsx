@@ -262,11 +262,16 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
+      dispatch(addTimer(new Timer({
+        name: 'Fortuity',
+        startedAt: new Date(Date.now()).valueOf(),
+        endsAt: (new Date(Date.now()).valueOf() + 100),
+        progress: 0,
+        fortuityCheck: true,
+        remainingLabel: '',
+        messageToDisplay: null,
+        iconToDisplay: null
+      })));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

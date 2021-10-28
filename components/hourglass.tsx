@@ -8,8 +8,8 @@ import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addMessage, addMemos } from '../actions/ui';
-import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen }
-  from '../actions/account';
+import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
+  setFortuityDailyLast } from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Timer from '../models/timer';
@@ -21,6 +21,7 @@ import Memo from '../models/memo';
 import Resource from '../models/resource';
 import Rates from '../models/rates';
 import Leader from '../models/leader';
+import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
@@ -177,6 +178,10 @@ export default function HourglassComponent() {
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
             dispatch(fortuitySeen(fortuity.name));
+            if (fortuity.repeatable) {
+              const currentTimestamp = new Date(Date.now()).valueOf();
+              dispatch(setFortuityDailyLast(currentTimestamp));
+            }
           }
           else {
             dispatch(addTimer(new Timer({
@@ -214,13 +219,13 @@ export default function HourglassComponent() {
     }
   }, [callTick]);
 
-  function fortuityCheck() {
+  function fortuityCheck(): Fortuity|null {
     let fortuityPool: Fortuity[] = [];
     Object.keys(fortuities).map((fName) => {
       const fortuity = fortuities[fName];
       if (fortuity.repeatable || account.fortuitiesSeen[fName] == undefined) {
-        if (fortuity.available({ vault, researchStatus, rates, buildings,
-          buildingsConstruction, researchOptionDecks, timers, tradingStatus, account, leaders, equipment })) {
+        if (!dailyFortuityUsed(fortuity, account)
+          && fortuity.available({ vault, researchStatus, buildings, timers,  tradingStatus, account, leaders, equipment })) {
           fortuityPool.push(fortuity);
         }
       }
@@ -230,6 +235,16 @@ export default function HourglassComponent() {
       return utils.randomWeightedSelect(fortuityPool);
     }
     return null;
+  }
+
+  function dailyFortuityUsed(fortuity: Fortuity, account: Account) {
+    if (fortuity.repeatable) {
+      const currentTimestamp = new Date(Date.now()).valueOf() - (1000 * 60 * 60 * 24);
+      if (account.fortuityDailyLast >= currentTimestamp) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function cisternRepaired() {
