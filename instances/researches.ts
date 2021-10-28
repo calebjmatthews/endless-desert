@@ -221,38 +221,6 @@ researches[RESEARCHES.REED_CULTIVATION_BOUNTIFUL] = new Research({
   unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_BOUNTIFUL]
 });
 
-researches[RESEARCHES.GRAIN_FARMING] = new Research({
-  name: RESEARCHES.GRAIN_FARMING,
-  unlocks: ('Unlocks Grain Fields.'),
-  description: ('Grain is more difficult to grow than lentils, and takes grinding '
-    + 'before it can be eaten. But it is useful both as flour and animal feed.'),
-  icon: new Icon({provider: 'svg', name: SVGS.GRAIN}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 1,
-  stepsNeeded: 3,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 100,
-  unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
-});
-
-researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
-  name: RESEARCHES.GRAIN_FARMING_SIMPLIFIED,
-  unlocks: ('Allows Grain Fields to be run without a leader.'),
-  description: ('You\'ve perfected the tools and learned the tricks, with some '
-    + 'quick instructions a total novice can grow perfect grain.'),
-  icon: new Icon({provider: 'svg', name: SVGS.GRAIN}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 1,
-  stepsNeeded: 4,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.GRAIN_FARMING],
-  knowledgeReq: 400,
-  unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
-});
-
 researches[RESEARCHES.OLIVE_FARMING] = new Research({
   name: RESEARCHES.OLIVE_FARMING,
   unlocks: ('Unlocks Olive Groves.'),
@@ -263,10 +231,10 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
-  stepsNeeded: 3,
+  stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: [RESEARCHES.GRAIN_FARMING],
-  knowledgeReq: 200,
+  prereq: [RESEARCHES.BIOLOGY],
+  knowledgeReq: 100,
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
@@ -286,6 +254,38 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   knowledgeReq: 4000,
   unlocksUpgrade: [BUILDING_TYPES.OLIVE_GROVE_SIMPLIFIED]
 });
+
+researches[RESEARCHES.GRAIN_FARMING] = new Research({
+  name: RESEARCHES.GRAIN_FARMING,
+  unlocks: ('Unlocks Grain Fields.'),
+  description: ('Grain is more difficult to grow than lentils, and takes grinding '
+    + 'before it can be eaten. But it is useful both as flour and animal feed.'),
+  icon: new Icon({provider: 'svg', name: SVGS.GRAIN}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.OLIVE_FARMING],
+  knowledgeReq: 200,
+  unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
+});
+
+researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
+  name: RESEARCHES.GRAIN_FARMING_SIMPLIFIED,
+  unlocks: ('Allows Grain Fields to be run without a leader.'),
+  description: ('You\'ve perfected the tools and learned the tricks, with some '
+    + 'quick instructions a total novice can grow perfect grain.'),
+  icon: new Icon({provider: 'svg', name: SVGS.GRAIN}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GRAIN_FARMING],
+  knowledgeReq: 400,
+  unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
+})
 
 researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   name: RESEARCHES.QUAIL_HUSBANDRY,

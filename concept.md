@@ -553,7 +553,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Consistent sorting in tabs/selection components
   [X] Hide resources with <1 quantity in selection components
   [X] Show detail modals when pressing on icon, e.g. on buildings
-  [ ] Olives before grain
+  [X] Olives before grain
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Trader trust to affect # of items
