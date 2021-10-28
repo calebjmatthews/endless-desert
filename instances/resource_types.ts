@@ -313,7 +313,7 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   name: RTY.FLOUR,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.POWDER, RTA.INGREDIENT],
-  value: 20,
+  value: 30,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
@@ -367,7 +367,7 @@ resourceTypes[RTY.OX_MEAT] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 320,
+  value: 240,
   icon: new Icon({provider: 'svg', name: SVGS.OX_MEAT})
 });
 
@@ -980,7 +980,7 @@ resourceTypes[RTY.OLIVE_OIL] = new ResourceType({
   subcategory: RSC.OIL,
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.PRESSED, RTA.SPICE],
-  value: 250,
+  value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
 });
 
@@ -996,7 +996,7 @@ resourceTypes[RTY.PAPYRUS] = new ResourceType({
   name: RTY.PAPYRUS,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.PRESSED],
-  value: 150,
+  value: 100,
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})
 });
 

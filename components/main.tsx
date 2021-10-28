@@ -109,20 +109,20 @@ export default function MainComponent() {
     settings: []
   }), ...tabsArray];
 
-  // return (
-  //   <LinearGradient
-  //     colors={["#0034aa", "#6a41b4", "#f58f7d"]}
-  //     style={styles.mainContainer}>
-  //     <StorageHandlerComponent />
-  //     <StatusBar style="auto" />
-  //     <View style={styles.statusBarSpacer}></View>
-  //     <View style={styles.scrollWrapper}>
-  //       <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
-  //         <ValueCheckComponent />
-  //       </View>
-  //     </View>
-  //   </LinearGradient>
-  // );
+  return (
+    <LinearGradient
+      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+      style={styles.mainContainer}>
+      <StorageHandlerComponent />
+      <StatusBar style="auto" />
+      <View style={styles.statusBarSpacer}></View>
+      <View style={styles.scrollWrapper}>
+        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+          <ValueCheckComponent />
+        </View>
+      </View>
+    </LinearGradient>
+  );
 
   // return (
   //   <LinearGradient

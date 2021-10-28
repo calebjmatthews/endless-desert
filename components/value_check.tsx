@@ -64,7 +64,7 @@ export default function ValueCheckComponent() {
   function renderDisplay() {
     const displayArray = createDisplayArray();
 
-    return displayArray.map((valueDisplay) => {
+    return displayArray.map((valueDisplay, index) => {
       return (
         <View style={StyleSheet.flatten([styles.rows, { borderBottomStyle: 'solid',
           borderBottomWidth: 1, borderBottomColor: '#000' }])}>
@@ -75,7 +75,7 @@ export default function ValueCheckComponent() {
             <Text>{valueDisplay.currentValue}</Text>
           </View>
           <View style={{minWidth: 50, maxWidth: 50}}>
-            <Text>{valueDisplay.computedValue}</Text>
+            <Text>{utils.formatNumberShort(valueDisplay.computedValue)}</Text>
           </View>
           <View style={{minWidth: 100, maxWidth: 100}}>
             <Text>{valueDisplay.building}</Text>
@@ -106,7 +106,7 @@ export default function ValueCheckComponent() {
           let comma = ', ';
           if (index == ingredients.length-1) { comma = ''; }
           return (
-            <Text>{(ingredient.type + 'x' + ingredient.quantity + comma)}</Text>
+            <Text>{(ingredient.type + ' x' + ingredient.quantity + comma)}</Text>
           );
         })}
       </View>
@@ -115,6 +115,7 @@ export default function ValueCheckComponent() {
 
   function createDisplayArray() {
     let displayArray: ValueDisplay[] = [];
+    const upgradeCostMap = formUpgradeCostMap();
 
     Object.keys(buildingTypes).map((typeName) => {
       const buildingType = buildingTypes[typeName];
@@ -122,7 +123,8 @@ export default function ValueCheckComponent() {
         buildingType.recipes.map((recipe) => {
           if (recipe.produces) {
             recipe.produces.map((p) => {
-              displayArray.push(createOneValueDisplay(p, buildingType, recipe));
+              displayArray.push(createOneValueDisplay(p, buildingType, recipe,
+                upgradeCostMap));
             });
           }
         });
@@ -133,7 +135,8 @@ export default function ValueCheckComponent() {
   }
 
   function createOneValueDisplay(p: { specificity: string, type: string,
-    quantity: number, probability: number }, bt: BuildingType, br: BuildingRecipe) {
+    quantity: number, probability: number }, bt: BuildingType, br: BuildingRecipe,
+    ucm: { [type: string] : number }) {
     let currentValue = 0;
     const rt = utils.getMatchingResourceKind(p.specificity, p.type);
     if (rt) {
@@ -144,9 +147,12 @@ export default function ValueCheckComponent() {
       bt.cost.map((cost) => {
         const bct = utils.getMatchingResourceKind(cost.specificity, cost.type);
         if (bct) {
-          if (bct.value) { buildingValue += bct.value; }
+          if (bct.value) { buildingValue += (bct.value * cost.quantity); }
         }
       });
+    }
+    if (buildingValue == 0 && ucm[bt.name]) {
+      buildingValue = ucm[bt.name];
     }
     let computedValue = 1;
     if (br.consumes) {
@@ -160,11 +166,29 @@ export default function ValueCheckComponent() {
       });
     }
     computedValue *= (RATE_ADJ / p.quantity);
-    computedValue += (buildingValue * 0.1);
+    computedValue += (buildingValue * 0.001);
     let newValueDisplay = new ValueDisplay({ resourceName: p.type, currentValue,
       building: bt.name, buildingValue, rate: p.quantity,
       ingredients: br.consumes, computedValue });
     return newValueDisplay;
+  }
+
+  function formUpgradeCostMap() {
+    let upgradeCostMap: { [type: string] : number } = {};
+    Object.keys(buildingTypes).forEach((typeName) => {
+      const buildingType = buildingTypes[typeName];
+      if (buildingType.upgradeCost && buildingType.upgradesInto) {
+        let upgradeCost = 0;
+        buildingType.upgradeCost.map((cost) => {
+          const bct = utils.getMatchingResourceKind(cost.specificity, cost.type);
+          if (bct) {
+            if (bct.value) { upgradeCost += (bct.value * cost.quantity); }
+          }
+        });
+        upgradeCostMap[buildingType.upgradesInto] = upgradeCost;
+      }
+    });
+    return upgradeCostMap;
   }
 }
 
