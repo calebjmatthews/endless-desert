@@ -548,6 +548,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Disassembly of equipment
   [X] Travel-ready food like salted meat, dried fruit, waybread
   [X] Repeatable fortuities happen only once per day
+  [X] Building and analyzing high value things goes faster
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   [ ] Consistent sorting in tabs/selection components
   [ ] Hide resources with <1 quantity in selection components
@@ -560,11 +561,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Glassware to use cloth subcategory an ingredient
+  [ ] Reedcloth resource type
+  [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Tool for Reed Deltas
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
-  [ ] Building and analyzing high value things goes faster
   [ ] Fortuity should grant ore, equipment, food
 
 ## Commands

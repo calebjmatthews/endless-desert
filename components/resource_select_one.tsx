@@ -352,7 +352,7 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       knowledge = resourceType.value * QV[resourceSelected.quality];
-      duration = (resourceType.value / 10) * 1000;
+      duration = (knowledge / Math.pow(2, Math.log10(knowledge))) * 1000;
       if (duration < 1000) { duration = 1000; }
     }
     return { knowledge, duration };
@@ -396,7 +396,7 @@ export default function ResourceSelectOneComponent() {
       if (resourceType.value != null) {
         knowledge = ((resourceType.value * QV[resourceSelected.quality]
           * parseInt(quantitySelected)) / 4);
-        duration = (resourceType.value * parseInt(quantitySelected) / 10) * 1000;
+        duration = ((knowledge / Math.pow(2, Math.log10(knowledge))) * 1.5) * 1000;
         if (duration < 1000) { duration = 1000; }
       }
     }

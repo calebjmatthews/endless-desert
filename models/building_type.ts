@@ -33,7 +33,7 @@ export default class BuildingType implements BuildingTypeInterface {
   }
 
   setDurations() {
-    let newDuration = 0;
+    let buildValue = 0;
     if (this.cost) {
       this.cost.map((aCost) => {
         let resourceType = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
@@ -42,11 +42,16 @@ export default class BuildingType implements BuildingTypeInterface {
           console.log(aCost);
         }
         if (resourceType.value) {
-          newDuration += ((resourceType.value * aCost.quantity) / 10);
+          buildValue += (resourceType.value * aCost.quantity);
         }
       });
     }
-    let newUpgradeDuration = 0;
+    if (buildValue <= 10) { this.duration = 5; }
+    else {
+      this.duration = (buildValue / Math.pow(3, Math.log10(buildValue)));
+    }
+
+    let upgradeValue = 0;
     if (this.upgradeCost) {
       this.upgradeCost.map((aCost) => {
         let resourceType = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
@@ -55,14 +60,14 @@ export default class BuildingType implements BuildingTypeInterface {
           console.log(aCost);
         }
         if (resourceType.value) {
-          newUpgradeDuration += ((resourceType.value * aCost.quantity) / 10);
+          upgradeValue += (resourceType.value * aCost.quantity);
         }
       });
     }
-    if (newDuration <= 0) { newDuration = 5; }
-    this.duration = newDuration;
-    if (newUpgradeDuration <= 0) { newUpgradeDuration = 5; }
-    this.upgradeDuration = newUpgradeDuration
+    if (upgradeValue <= 10) { this.upgradeDuration = 5; }
+    else {
+      this.upgradeDuration = (upgradeValue / Math.pow(3, Math.log10(upgradeValue)));
+    }
   }
 }
 
