@@ -175,8 +175,8 @@ fortuities[FORTUITIES.RAIN] = new Fortuity({
   repeatable: true,
   weight: 10,
   gainResources: [
-    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 48},
-    {specificity: RSP.EXACT, type: RTY.WATER, value: 580}
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 320},
+    {specificity: RSP.EXACT, type: RTY.WATER, value: 20400}
   ],
   available: (fState: GameState) => {
     if (fState.leaders) {
@@ -266,9 +266,8 @@ fortuities[FORTUITIES.BURIED_SHIP] = new Fortuity({
   repeatable: true,
   weight: 5,
   gainResources: [
-    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, value: 200},
-    {specificity: RSP.TAG, type: RTA.FOOD, value: 200},
-    {specificity: RSP.TAG, type: RTA.DRINK, value: 200}
+    {specificity: RSP.TAG, type: RTA.PROVISION, value: 10000},
+    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, value: 5000}
   ],
   available: (fState: GameState) => {
     if (fState.leaders) {
@@ -280,32 +279,27 @@ fortuities[FORTUITIES.BURIED_SHIP] = new Fortuity({
   }
 });
 
-fortuities[FORTUITIES.WATERY_CREVICE] = new Fortuity({
-  name: FORTUITIES.WATERY_CREVICE,
+fortuities[FORTUITIES.UNUSUAL_SOIL] = new Fortuity({
+  name: FORTUITIES.UNUSUAL_SOIL,
   openLine: 'Education is paying off',
   memos: [
     new Memo({
-      name: (FORTUITIES.WATERY_CREVICE + '0'),
-      title: 'A Watery Crevice',
-      text: ('"After that geology lecture you gave us we\'ve been looking at sand '
-        + 'formations-", "And take a look at that!", "Yeah, that\'s a '
-        + '\'downward proclivity\', right?", "Sign that water is underneath, if '
-        + 'I remember my lessons".')
+      name: (FORTUITIES.UNUSUAL_SOIL + '0'),
+      title: 'Unusual Soil',
+      text: (`"After that geology lecture you gave us we\'ve been looking at sand formations-", "And take a look at that!", "That patch of sand looks to have an unusually low silica ratio-", "And the particle size is nothing like the sand endemic to our part of the desert!"`)
     }),
     new Memo({
-      name: (FORTUITIES.WATERY_CREVICE + '1'),
-      title: 'A Watery Crevice',
-      text: ('The crowd around you is enthusiastic, if a little intense. But they\'re '
-        + 'right; a short distance outside your settlement there\'s a telltale '
-        + 'sign of a small pocket of underground water.')
+      name: (FORTUITIES.UNUSUAL_SOIL + '1'),
+      title: 'Unusual Soil',
+      text: (`The crowd around you is enthusiastic, if a little intense. But they're right; a short distance outside your settlement there's a strange patch of unusual sand, and the clay beneath it is just as out of place.`)
     })
   ],
   type: 'Observation',
-  repeatable: false,
+  repeatable: true,
   weight: 10,
   gainResources: [
-    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, value: 100},
-    {specificity: RSP.EXACT, type: RTY.WATER, value: 3221},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, value: 3000},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, value: 5000},
   ],
   available: (fState: GameState) => {
     if (fState.researchStatus) {

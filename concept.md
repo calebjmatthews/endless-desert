@@ -532,8 +532,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] House into upgrade, rather than stand-alone
   [X] Equipment effects exclude trade items
   [X] Disassembly of equipment
-  [ ] Travel-ready food like salted meat, dried fruit, waybread
-  [ ] Fortuity should grant ore, equipment, food
+  [X] Travel-ready food like salted meat, dried fruit, waybread
+  [ ] Repeatable fortuities happen once per day
   [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
   [ ] Consistent sorting in tabs/selection components
   [ ] Hide resources with <1 quantity in selection components
@@ -550,6 +550,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Building and analyzing high value things goes faster
+  [ ] Fortuity should grant ore, equipment, food
 
 ## Commands
 ### Delete all records from all tables:

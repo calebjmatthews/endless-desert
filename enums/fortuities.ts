@@ -9,6 +9,6 @@ export enum FORTUITIES {
   UNSPEAKING = "Unspeaking",
   FIERCE_WIND = "Fierce Wind",
   BURIED_SHIP = "Buried Ship",
-  WATERY_CREVICE = "Watery Crevice",
+  UNUSUAL_SOIL = "Unusual Soil",
   THRICE_LOCKED_BOOK = "Thrice Locked Book"
 }
