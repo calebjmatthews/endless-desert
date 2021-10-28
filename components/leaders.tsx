@@ -105,7 +105,9 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.containerStretchRow}>
-        <BadgeComponent icon={leader.icon} size={43} />
+        <TouchableOpacity onPress={() => props.morePress(leader)}>
+          <BadgeComponent icon={leader.icon} size={43} />
+        </TouchableOpacity>
         <View style={styles.containerStretchColumn}>
           <View style={styles.buttonTextRow}>
             <Text>{leader.name}</Text>

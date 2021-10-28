@@ -282,7 +282,9 @@ function BuildingDescription(props: any) {
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
       <View style={styles.rows}>
-        <BadgeComponent icon={buildingType.icon} size={29} />
+        <TouchableOpacity onPress={() => props.morePress(building)}>
+          <BadgeComponent icon={buildingType.icon} size={29} />
+        </TouchableOpacity>
         <View style={StyleSheet.flatten([styles.containerStretchColumn,
           {minWidth: props.positioner.bodyMedWidth,
             maxWidth: props.positioner.bodyMedWidth}])}>

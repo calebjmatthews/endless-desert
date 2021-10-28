@@ -549,11 +549,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Travel-ready food like salted meat, dried fruit, waybread
   [X] Repeatable fortuities happen only once per day
   [X] Building and analyzing high value things goes faster
-  [ ] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
-  [ ] Consistent sorting in tabs/selection components
-  [ ] Hide resources with <1 quantity in selection components
-  [ ] Show resource descriptive name, not id name in selection components
-  [ ] Show detail modals when pressing on icon, e.g. on buildings
+  [X] Consistent rounding of numbers, probably floor() for formatting, so supply doesn't show "20" while upgrade shows insufficient "19"
+  [X] Consistent sorting in tabs/selection components
+  [X] Hide resources with <1 quantity in selection components
+  [X] Show detail modals when pressing on icon, e.g. on buildings
   [ ] Olives before grain
   [ ] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
@@ -567,6 +566,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Fortuity should grant ore, equipment, food
+  [ ] Show resource descriptive name, not id name in selection components
 
 ## Commands
 ### Delete all records from all tables:
