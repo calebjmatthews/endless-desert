@@ -90,13 +90,13 @@ export default function ResourceSelectRateComponent() {
     const stqSplit = modalValue.specTypeQuality.split('|');
     switch (stqSplit[0]) {
       case RESOURCE_SPECIFICITY.TAG:
-      return filterOutZero(vault.getTagResources(stqSplit[1]));
+      return rSort(filterOutZero(vault.getTagResources(stqSplit[1])));
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return filterOutZero(vault.getSubcategoryResources(stqSplit[1]));
+      return rSort(filterOutZero(vault.getSubcategoryResources(stqSplit[1])));
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      return filterOutZero(vault.getCategoryResources(stqSplit[1]));
+      return rSort(filterOutZero(vault.getCategoryResources(stqSplit[1])));
 
       default:
       return [];
@@ -104,7 +104,18 @@ export default function ResourceSelectRateComponent() {
 
     function filterOutZero(resources: Resource[]) {
       return resources.filter((resource) => {
-        if (Math.ceil(resource.quantity) > 0) { return resource; }
+        if (Math.ceil(resource.quantity) >= 1) { return resource; }
+      });
+    }
+
+    function rSort(resources: Resource[]) {
+      return resources.sort((a, b) => {
+        if (Math.floor(a.quantity) != Math.floor(b.quantity)) {
+          return b.quantity - a.quantity;
+        }
+        const aType = utils.getResourceType(a);
+        const bType = utils.getResourceType(b);
+        return aType.value - bType.value;
       });
     }
   }

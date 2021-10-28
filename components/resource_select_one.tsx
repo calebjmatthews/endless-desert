@@ -444,38 +444,44 @@ export default function ResourceSelectOneComponent() {
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
-      return rSort(researchStatus.getResourcesToStudy(vault));
+      return rSort(filterOutZero(researchStatus.getResourcesToStudy(vault)));
 
       case RESEARCHES.ANALYSIS:
-      return rSort(vault.getStudyableResources());
+      return rSort(filterOutZero(vault.getStudyableResources()));
 
       case 'Trading':
       const trade = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]
         .trades[modalValue.tradeId];
       switch(trade.receive.specificity) {
         case RESOURCE_SPECIFICITY.EXACT:
-        return rSort(vault.getExactResources(trade.receive.type));
+        return rSort(filterOutZero(vault.getExactResources(trade.receive.type)));
 
         case RESOURCE_SPECIFICITY.TAG:
-        return rSort(vault.getTagResources(trade.receive.type));
+        return rSort(filterOutZero(vault.getTagResources(trade.receive.type)));
 
         case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        return rSort(vault.getSubcategoryResources(trade.receive.type));
+        return rSort(filterOutZero(vault.getSubcategoryResources(trade.receive.type)));
 
         case RESOURCE_SPECIFICITY.CATEGORY:
-        return rSort(vault.getCategoryResources(trade.receive.type));
+        return rSort(filterOutZero(vault.getCategoryResources(trade.receive.type)));
       }
 
       case MODALS.LEADER_DETAIL:
       if (modalValue.subType == SET_EATING) {
-        return vault.getTagResources(RESOURCE_TAGS.FOOD);
+        return rSort(filterOutZero(vault.getTagResources(RESOURCE_TAGS.FOOD)));
       }
       else if (modalValue.subType == SET_DRINKING) {
-        return vault.getTagResources(RESOURCE_TAGS.DRINK);
+        return rSort(filterOutZero(vault.getTagResources(RESOURCE_TAGS.DRINK)));
       }
 
       default:
       return [];
+    }
+
+    function filterOutZero(resources: Resource[]) {
+      return resources.filter((resource) => {
+        if (Math.floor(resource.quantity) >= 1) { return resource; }
+      });
     }
 
     function rSort(resources: Resource[]) {
@@ -590,14 +596,15 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
     setQuantityGiven: (quantity: number) => void
   ) {
     setResourceSelected(resource);
+    const typeQuality = resource.type + '|' + resource.quality;
+    let quantity = Math.floor(props.vault.resources[typeQuality].quantity);
     if (tpVisit) {
-      const qSelected = tpVisit.acceptQuantity.toString();
-      setQuantitySelected(qSelected);
-      setQuantityGiven(calcQuantityGiven(qSelected, modalValue, resource, tpVisit));
+      if (quantity > tpVisit.acceptQuantity) { quantity = tpVisit.acceptQuantity; }
+      setQuantitySelected(quantity.toString());
+      setQuantityGiven(calcQuantityGiven(quantity.toString(), modalValue, resource,
+        tpVisit));
     }
     if (modalValue.type == RESEARCHES.ANALYSIS) {
-      const typeQuality = resource.type + '|' + resource.quality;
-      let quantity = Math.floor(props.vault.resources[typeQuality].quantity);
       if (quantity > 100) { quantity = 100; }
       setQuantitySelected(quantity.toString());
     }

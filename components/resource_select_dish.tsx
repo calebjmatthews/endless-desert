@@ -70,12 +70,23 @@ export default function ResourceSelectDishComponent() {
   );
 
   function getResourcesArray() {
-    return [...filterOutZero(vault.getTagResources(RESOURCE_TAGS.INGREDIENT)),
-      ...filterOutZero(vault.getTagResources(RESOURCE_TAGS.SPICE))];
+    return rSort([...filterOutZero(vault.getTagResources(RESOURCE_TAGS.INGREDIENT)),
+      ...filterOutZero(vault.getTagResources(RESOURCE_TAGS.SPICE))]);
 
     function filterOutZero(resources: Resource[]) {
       return resources.filter((resource) => {
-        if (Math.floor(resource.quantity) > 0) { return resource; }
+        if (Math.floor(resource.quantity) >= 1) { return resource; }
+      });
+    }
+
+    function rSort(resources: Resource[]) {
+      return resources.sort((a, b) => {
+        if (Math.floor(a.quantity) != Math.floor(b.quantity)) {
+          return b.quantity - a.quantity;
+        }
+        const aType = utils.getResourceType(a);
+        const bType = utils.getResourceType(b);
+        return aType.value - bType.value;
       });
     }
   }
