@@ -16,6 +16,7 @@ export enum RESEARCHES {
   GRAIN_FARMING_SIMPLIFIED = "Simplified Grain Farming",
   OLIVE_FARMING = "Olive Farming",
   OLIVE_FARMING_SIMPLIFIED = "Simplified Olive Farming",
+  FISHING = "Fishing",
   QUAIL_HUSBANDRY = "Quail Husbandry",
   QUAIL_HUSBANDRY_SIMPLIFIED = "Simplified Quail Husbandry",
   OX_HUSBANDRY = "Ox Husbandry",

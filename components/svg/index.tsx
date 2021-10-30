@@ -29,6 +29,9 @@ import ReedsSvgComponent from './resources/reeds';
 import GrainSvgComponent from './resources/grain';
 import FlourSvgComponent from './resources/flour';
 import OliveSvgComponent from './resources/olive';
+import CarpSvgComponent from './resources/carp';
+import MinnowSvgComponent from './resources/minnow';
+import BarramundiSvgComponent from './resources/barramundi';
 import QuailSvgComponent from './resources/quail';
 import QuailMeatSvgComponent from './resources/quail_meat';
 import EggSvgComponent from './resources/egg';
@@ -124,6 +127,7 @@ import SandPitSvgComponent from './buildings/sand_pit';
 import ReedDeltaSvgComponent from './buildings/reed_delta';
 import GrainFieldSvgComponent from './buildings/grain_field';
 import OliveGroveSvgComponent from './buildings/olive_grove';
+import FishingPondSvgComponent from './buildings/fishing_pond';
 import QuailPastureSvgComponent from './buildings/quail_pasture';
 import OxPastureSvgComponent from './buildings/ox_pasture';
 import PressSvgComponent from './buildings/press';
@@ -220,6 +224,12 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FlourSvgComponent icon={props.icon} />;
     case SVGS.OLIVE:
     return <OliveSvgComponent icon={props.icon} />;
+    case SVGS.MINNOW:
+    return <MinnowSvgComponent icon={props.icon} />;
+    case SVGS.CARP:
+    return <CarpSvgComponent icon={props.icon} />;
+    case SVGS.BARRAMUNDI:
+    return <BarramundiSvgComponent icon={props.icon} />;
     case SVGS.QUAIL:
     return <QuailSvgComponent icon={props.icon} />;
     case SVGS.QUAIL_MEAT:
@@ -409,6 +419,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <GrainFieldSvgComponent icon={props.icon} />;
     case SVGS.OLIVE_GROVE:
     return <OliveGroveSvgComponent icon={props.icon} />;
+    case SVGS.FISHING_POND:
+    return <FishingPondSvgComponent icon={props.icon} />;
     case SVGS.QUAIL_PASTURE:
     return <QuailPastureSvgComponent icon={props.icon} />;
     case SVGS.OX_PASTURE:

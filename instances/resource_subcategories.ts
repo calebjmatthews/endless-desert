@@ -45,10 +45,18 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.ANIMAL] = new ResourceSubcategory({
     color:'#881919'})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.FISH] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.FISH,
+  value: 24,
+  order: 5,
+  icon: new Icon({provider: 'FontAwesome5', name: 'fish',
+    color:'#03a9f4'})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.SAND] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.SAND,
   value: 3,
-  order: 5,
+  order: 6,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
     shadow: '#e6a960'})
 });
@@ -56,7 +64,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SAND] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.CLAY] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.CLAY,
   value: 15,
-  order: 6,
+  order: 7,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'})
 });
@@ -64,7 +72,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.CLAY] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.ORE] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.ORE,
   value: 200,
-  order: 7,
+  order: 8,
   icon: new Icon({provider: 'svg', name: SVGS.ORE, color: '#61676d',
     shadow: '#4b4b65', secondaryColor: '#758da2', secondaryShadow: '#94a2bd'})
 });
@@ -72,7 +80,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.ORE] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.GEM] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.GEM,
   value: 1000,
-  order: 8,
+  order: 9,
   icon: new Icon({provider: 'FontAwesome5', name: 'gem',
     color: '#33cee2'})
 });
@@ -80,7 +88,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.GEM] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.BRICK] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.BRICK,
   value: 80,
-  order: 9,
+  order: 10,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#a91f1f',
     shadow: '#6f1b1b', secondaryColor: '#de6363'})
 });
@@ -88,7 +96,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.BRICK] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.OIL] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.OIL,
   value: 100,
-  order: 10,
+  order: 11,
   icon: new Icon({provider: 'FontAwesome5', name: 'oil-can',
     color: '#000'}),
 });
@@ -96,7 +104,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.OIL] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.METAL_POWDER] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.METAL_POWDER,
   value: 350,
-  order: 11,
+  order: 12,
   icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#4d4d4d',
     shadow: '#333', secondaryColor: '#666'})
 });
@@ -104,7 +112,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.METAL_POWDER] = new ResourceSubcate
 resourceSubcategories[RESOURCE_SUBCATEGORIES.METAL_INGOT] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.METAL_INGOT,
   value: 400,
-  order: 12,
+  order: 13,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#4d4d4d',
     shadow: '#333', secondaryColor: '#666'})
 });
@@ -112,7 +120,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.METAL_INGOT] = new ResourceSubcateg
 resourceSubcategories[RESOURCE_SUBCATEGORIES.GLAZE] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.GLAZE,
   value: 240,
-  order: 13,
+  order: 14,
   icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#94a2bd',
     shadow: '#758da2'})
 });
@@ -120,21 +128,21 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.GLAZE] = new ResourceSubcategory({
 resourceSubcategories[RESOURCE_SUBCATEGORIES.GLASS] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.GLASS,
   value: 120,
-  order: 14,
+  order: 15,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.CERAMIC] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.CERAMIC,
   value: 60,
-  order: 15,
+  order: 16,
   icon: new Icon({provider: 'svg', name: SVGS.TERRACOTTA})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.TEXTILE] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.TEXTILE,
   value: 200,
-  order: 16,
+  order: 17,
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 

@@ -285,7 +285,22 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   prereq: [RESEARCHES.GRAIN_FARMING],
   knowledgeReq: 400,
   unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
-})
+});
+
+researches[RESEARCHES.FISHING] = new Research({
+  name: RESEARCHES.FISHING,
+  unlocks: ('Unlocks Fishing Ponds.'),
+  description: (`It's common practice in desert towns to divert a river into still ponds that are perfect for fish. The kind of fish attracted will depend on what you use as bait.`),
+  icon: new Icon({provider: 'svg', name: SVGS.CARP}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY],
+  knowledgeReq: 100,
+  unlocksBuilding: [BUILDING_TYPES.FISHING_POND]
+});
 
 researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   name: RESEARCHES.QUAIL_HUSBANDRY,
@@ -299,7 +314,7 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BIOLOGY],
+  prereq: [RESEARCHES.FISHING],
   knowledgeReq: 200,
   unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
 });

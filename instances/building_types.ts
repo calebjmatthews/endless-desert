@@ -498,6 +498,28 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
+  [BTY.FISHING_POND]: new BuildingType({
+    name: BTY.FISHING_POND,
+    description: '- Gone fishing -',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
+    cost: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 2000},
+      {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
+      {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 40}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.CARP, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.TAG, type: RTA.FOOD, quantity: 800}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.BARRAMUNDI, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 6}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
+  }),
+
   [BTY.QUAIL_PASTURE]: new BuildingType({
     name: BTY.QUAIL_PASTURE,
     description: 'Quail frolick around in the dawn and the dusk',

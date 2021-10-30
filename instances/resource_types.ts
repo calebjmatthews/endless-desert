@@ -317,6 +317,33 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
+resourceTypes[RTY.MINNOW] = new ResourceType({
+  name: RTY.MINNOW,
+  category: RCA.MATERIAL,
+  subcategory: RSC.FISH,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 24,
+  icon: new Icon({provider: 'svg', name: SVGS.MINNOW})
+});
+
+resourceTypes[RTY.CARP] = new ResourceType({
+  name: RTY.CARP,
+  category: RCA.MATERIAL,
+  subcategory: RSC.FISH,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.CARP})
+});
+
+resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
+  name: RTY.BARRAMUNDI,
+  category: RCA.MATERIAL,
+  subcategory: RSC.FISH,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 400,
+  icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI})
+});
+
 resourceTypes[RTY.QUAIL] = new ResourceType({
   name: RTY.QUAIL,
   category: RCA.MATERIAL,

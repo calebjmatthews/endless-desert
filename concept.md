@@ -204,7 +204,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Clay Seals: Decreased water usage when cooking
 - Astrology
 - Exaltation
-  - Questline around magic lamp with Djinn inside
+  - Questline around magic coin? with Djinn inside
 - Mysticism
 
 ## Research options:
@@ -554,19 +554,23 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Hide resources with <1 quantity in selection components
   [X] Show detail modals when pressing on icon, e.g. on buildings
   [X] Olives before grain
-  [ ] Fish before quail
+  [X] Fish before quail
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Trader trust to affect # of items
   [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research
+  [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Tool for Reed Deltas
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
+  [ ] Mysticism research
   [ ] Fortuity should grant ore, equipment, food
   [ ] Show resource descriptive name, not id name in selection components
+  [ ] Hide recipes missing ingredients
+  [ ] Add time elapsed to "While you were gone" memo
 
 ## Commands
 ### Delete all records from all tables:
@@ -677,8 +681,24 @@ Object.keys(buildingTypes).map((typeName) => {
 ```
 
 ### View a conversation:
+```
 dispatch(addMemos([new Memo({
   name: 'test',
   title: 'A Familiar Figure',
   convoName: 'A Thrice Locked Book - 0'
 })]));
+```
+
+### Trigger a fortuity check
+```
+dispatch(addTimer(new Timer({
+  name: 'Fortuity',
+  startedAt: new Date(Date.now()).valueOf(),
+  endsAt: (new Date(Date.now()).valueOf() + 100),
+  progress: 0,
+  fortuityCheck: true,
+  remainingLabel: '',
+  messageToDisplay: null,
+  iconToDisplay: null
+})));
+```
