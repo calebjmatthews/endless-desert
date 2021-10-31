@@ -369,6 +369,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     -  Notes on Scintillating Heat (Drying Yard, Furnace, etc)
     -  Notes on Gentle Cultivation (Lentil Field, Quail Pen, etc)
 
+## Quests:
+  - Introduction of concepts:
+    - Complete "Study" research and study five different resources
+    - Put a building into storage
+    - Upgrade three buildings
+    - Give leader food, drink, shelter, and a place to work
+    - Claim an unmarked piece of equipment for your town
+    - Increase a trader's trust by one tier
+  - Daily quests:
+    - Produce some # of a specific resource
+    - Cook a dish with X traits
+    - Complete some # of trades
+    - Mark some # of equipment
+    - Mark one equipment of X rarity
+
 ## Tabs:
   - Map, showing locations of each building and the river running through the middle
   - Buildings, with an expandable list of buildings with the resources consumed/produced by each
@@ -555,7 +570,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Show detail modals when pressing on icon, e.g. on buildings
   [X] Olives before grain
   [X] Fish before quail
-  [ ] Fix for stuck without sand before trading unlocked
+  [X] Resource exhaustion display
+  [ ] Quest system
   [ ] Trader trust to affect # of items
   [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research
@@ -568,6 +584,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Mysticism research
   [ ] Fortuity should grant ore, equipment, food
+  [ ] Fix for stuck without sand before trading unlocked
   [ ] Show resource descriptive name, not id name in selection components
   [ ] Hide recipes missing ingredients
   [ ] Add time elapsed to "While you were gone" memo

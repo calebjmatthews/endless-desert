@@ -254,13 +254,9 @@ export default class Hourglass {
           recipe.consumes.map((rawConsumption) => {
             let consumption = rawConsumption;
             if (rawConsumption.specificity != RESOURCE_SPECIFICITY.EXACT) {
-              console.log('rawConsumption');
-              console.log(rawConsumption);
               const specType = rawConsumption.specificity + '|' + rawConsumption.type;
               const resource = building.resourcesSelected[specType];
               const resourceType = resourceTypes[resource.type];
-              console.log('resourceType');
-              console.log(resourceType);
               consumption = {
                 specificity: RESOURCE_SPECIFICITY.EXACT,
                 type: resource.type,
@@ -310,6 +306,7 @@ export default class Hourglass {
           const quantity = vault.resources[typeQuality].quantity;
           if (quantity > Math.abs(rate)) {
             const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
+            r.exhaustions[typeQuality] = exhaustion;
             if (r.soonestExhaustion == null || r.soonestExhaustion > exhaustion) {
               r.soonestExhaustion = exhaustion;
             }

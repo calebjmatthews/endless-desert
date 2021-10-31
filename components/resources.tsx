@@ -88,22 +88,23 @@ export default function ResourcesComponent() {
   );
 }
 
-function UiSplitter(props: any) {
-
-
-}
-
 function ResourceDescription(props: UiItemProps) {
   if (!props.resource) { return null; }
   const resource: Resource = props.resource;
   let resourceType = utils.getResourceType(resource);
-  const rate = props.rates.netRates[resource.type + '|' + resource.quality];
+  const typeQuality = (resource.type + '|' + resource.quality);
+  const rate = props.rates.netRates[typeQuality];
   let rateString = '';
   if (rate) {
     rateString = rate.toString();
     let sign = '+';
     if (rate < 0) { sign = ''; }
     rateString = (sign + (Math.round(rate)) + '/m');
+  }
+  let exhaustionString: string|null = null;
+  const exhaustion = props.rates.exhaustions[typeQuality];
+  if (exhaustion) {
+    exhaustionString = `Out in ${utils.formatDuration(exhaustion)}`
   }
   let textStyle: any = { color: '#000' };
   if (resource.quality == 1) {
@@ -124,6 +125,11 @@ function ResourceDescription(props: UiItemProps) {
           <Text>
             {rateString}
           </Text>
+          {exhaustionString && (
+            <Text>
+              {exhaustionString}
+            </Text>
+          )}
         </View>
         <View style={styles.quantityContainer}>
           <Text style={{fontSize: 20}}>
