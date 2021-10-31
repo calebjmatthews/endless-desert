@@ -104,7 +104,8 @@ function ResourceDescription(props: UiItemProps) {
   let exhaustionString: string|null = null;
   const exhaustion = props.rates.exhaustions[typeQuality];
   if (exhaustion) {
-    exhaustionString = `Out in ${utils.formatDuration(exhaustion)}`
+    const diff = exhaustion - new Date(Date.now()).valueOf();
+    exhaustionString = `Out in ${utils.formatDuration(diff)}`
   }
   let textStyle: any = { color: '#000' };
   if (resource.quality == 1) {
