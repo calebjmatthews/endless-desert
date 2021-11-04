@@ -12,6 +12,7 @@ import AccountReducer from './account';
 import LeadersReducer from './leaders';
 import EquipmentReducer from './equipment';
 import ConversationStatusReducer from './conversation_status';
+import QuestStatusReducer from './quest_status';
 import UIReducer from './ui';
 
 const rootReducer = combineReducers({
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   leaders: LeadersReducer,
   equipment: EquipmentReducer,
   conversationStatus: ConversationStatusReducer,
+  questStatus: QuestStatusReducer,
   ui: UIReducer
 });
 

@@ -19,7 +19,7 @@ interface QuestActivityInterface {
   resourcesProduced?: {type: string, quantity: number}[];
   resourceAnalyzed?: {type: string, quantity: number};
   dishesCooked?: {type: string, tags: string[], quantity: number}[];
-  tradedWith?: {typeName: string, quantity: string};
+  tradedWith?: {typeName: string, quantity: number};
   equipmentMarked?: {typeName: string, rarity: number, quantity: number};
   actionPerformed?: {kind: string, value: string|null, quantity: number|null};
 }

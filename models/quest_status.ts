@@ -9,23 +9,32 @@ export default class QuestStatus {
   resourcesToCheck: { [typeQuality: string] : string } = {};
 
   constructor(questStatus: QuestStatus) {
-    const quests: { [id: string] : Quest } = {};
-    Object.keys(questStatus.quests).forEach((id) => {
-      quests[id] = new Quest(questStatus.quests[id]);
-    });
+    let questStatusValid: boolean = false;
+    if (questStatus) {
+      if (questStatus.quests && questStatus.questsCompleted && questStatus.activityQueue
+        && questStatus.resourcesToCheck) {
+        questStatusValid = true;
+      }
+    }
+    if (questStatusValid) {
+      const quests: { [id: string] : Quest } = {};
+      Object.keys(questStatus.quests).forEach((id) => {
+        quests[id] = new Quest(questStatus.quests[id]);
+      });
 
-    const questsCompleted: { [id: string] : QuestCompleted } = {};
-    Object.keys(questStatus.questsCompleted).forEach((id) => {
-      questsCompleted[id] = new QuestCompleted(questStatus.questsCompleted[id]);
-    });
+      const questsCompleted: { [id: string] : QuestCompleted } = {};
+      Object.keys(questStatus.questsCompleted).forEach((id) => {
+        questsCompleted[id] = new QuestCompleted(questStatus.questsCompleted[id]);
+      });
 
-    const activityQueue: QuestActivity[] =
-      questStatus.activityQueue.map((questActivity) => {
-      return new QuestActivity(questActivity);
-    });
+      const activityQueue: QuestActivity[] =
+        questStatus.activityQueue.map((questActivity) => {
+        return new QuestActivity(questActivity);
+      });
 
-    const resourcesToCheck = { ...questStatus.resourcesToCheck };
+      const resourcesToCheck = { ...questStatus.resourcesToCheck };
 
-    Object.assign(this, { quests, questStatus, activityQueue, resourcesToCheck });
+      Object.assign(this, { quests, questsCompleted, activityQueue, resourcesToCheck });
+    }
   }
 }

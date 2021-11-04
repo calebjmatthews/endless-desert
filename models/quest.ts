@@ -28,7 +28,7 @@ interface QuestInterface {
   tasks: QuestTask[];
   beganAt?: number;
   progress: QuestProgress[];
-  readyToComplete: boolean;
+  readyToComplete?: boolean;
   isDaily?: boolean;
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;

@@ -611,7 +611,7 @@ DELETE FROM `equipment`;
 DELETE FROM `users`;
 DELETE FROM `sessions`;
 
-### Create user table:
+### Create data tables:
 CREATE TABLE `endless_desert`.`users` (
   `id` VARCHAR(8) NOT NULL,
   `email` VARCHAR(254) NOT NULL,
@@ -624,6 +624,14 @@ CREATE TABLE `endless_desert`.`sessions` (
   `user_id` VARCHAR(8) NOT NULL,
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
+
+CREATE TABLE `quest_status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(16) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `value` mediumtext,
+  PRIMARY KEY (`id`));
+
 
 ## Debug functions
 ### Get one of every basic equipment:
