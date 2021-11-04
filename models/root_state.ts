@@ -12,6 +12,7 @@ import Leader from './leader';
 import Equipment from './equipment';
 import Rates from './rates';
 import ConversationStatus from './conversation_status';
+import QuestStatus from './quest_status';
 
 export interface RootState {
   vault: Vault;
@@ -27,6 +28,7 @@ export interface RootState {
   leaders: { [id: string] : Leader };
   equipment: { [id: string] : Equipment };
   conversationStatus: ConversationStatus;
+  questStatus: QuestStatus;
   ui: { globalState: string, tabSelected: string,
     valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
     messages: Message[], memos: Memo[], positioner: Positioner };

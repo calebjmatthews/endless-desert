@@ -67,10 +67,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - South: River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
     - West: Mirages? Constant fires? Oceans made from glass? Hanging gardens?
   - Four gods:
-    - Branching creation: bountiful, many-from-one. Cicada whose exuvia embody one trait and continue living.
-    - Enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself.
-    - Merging creation: harmonious, one-from-many. Termite mound made of termites bonded to one another.
-    - Detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
+    - Branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living. East.
+    - Enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself. South.
+    - Merging creation: harmonious, one-from-many. Swarm of cicadas that create weather, visions, etc. West.
+    - Detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb. North.
+  - The Firefly
+    - "Who are you?" "flame     flying   fires      soaring     heat air     fiery wind"
+    - Giver of most quests
 
 ## Resource Subcategories:
   - Sand
@@ -372,11 +375,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Quests:
   - Introduction of concepts:
     - Complete "Study" research and study five different resources
+    - Construct a building
     - Put a building into storage
     - Upgrade three buildings
     - Give leader food, drink, shelter, and a place to work
     - Claim an unmarked piece of equipment for your town
     - Increase a trader's trust by one tier
+  - Story quests:
+    - Thrice locked book
   - Daily quests:
     - Produce some # of a specific resource
     - Cook a dish with X traits
