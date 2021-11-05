@@ -237,10 +237,7 @@ export default function BuildingSelectComponent() {
         })
         let timer = new Timer({
           name: RESEARCHES.FIELD_NOTES,
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf() + 3600000),
-          progress: 0,
-          remainingLabel: '',
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
           messageToDisplay: ('Your notes on the ' + buildingName + ' are finished.'),

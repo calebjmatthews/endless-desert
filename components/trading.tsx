@@ -100,10 +100,7 @@ export default function TradingComponent() {
     let newTradingPartnerVisit = tradingStatus.createPendingTradingPartnerVisit();
     let newTimer = new Timer({
       name: ('Trading' + 0),
-      startedAt: new Date(Date.now()).valueOf(),
       endsAt: (new Date(Date.now()).valueOf() + 300000),
-      progress: 0,
-      remainingLabel: '1m',
       tradingPartnerToArrive: newTradingPartnerVisit.name,
       messageToDisplay: 'A trader is waiting outside the gate.',
       iconToDisplay: new Icon({provider: 'FontAwesome5', name: 'question'})

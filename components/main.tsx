@@ -15,6 +15,7 @@ import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
 import { increaseResources, consumeResources } from '../actions/vault';
+import { addQuest } from '../actions/quest_status';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -48,6 +49,7 @@ import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
+import { quests } from '../instances/quests';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
@@ -262,11 +264,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
+      dispatch(addQuest(quests['Testing']));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
@@ -309,14 +307,9 @@ export default function MainComponent() {
         dispatch(setCurrentFortuity(null));
         dispatch(addTimer(new Timer({
           name: 'Fortuity',
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf()
             + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
-          progress: 0,
-          fortuityCheck: true,
-          remainingLabel: '',
-          messageToDisplay: null,
-          iconToDisplay: null
+          fortuityCheck: true
         })));
       }
     }

@@ -333,11 +333,8 @@ export default function BuildDetailComponent() {
       if (buildingType.upgradeDuration) {
         dispatch(addTimer(new Timer({
           name: 'Build',
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf()
             + buildingType.upgradeDuration * 1000),
-          progress: 0,
-          remainingLabel: '',
           buildingToUpgrade: building.id,
           messageToDisplay: ('You upgraded ' + buildingType.name + ' into '
             + upgType.name + '.'),
@@ -350,10 +347,7 @@ export default function BuildDetailComponent() {
       if (buildingType.duration) {
         dispatch(addTimer(new Timer({
           name: 'Build',
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf() + buildingType.duration * 1000),
-          progress: 0,
-          remainingLabel: '',
           buildingToBuild: building.buildingType,
           messageToDisplay: ('You built a new ' + buildingType.name + '.'),
           iconToDisplay: buildingType.icon

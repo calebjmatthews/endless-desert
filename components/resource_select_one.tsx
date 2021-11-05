@@ -328,10 +328,7 @@ export default function ResourceSelectOneComponent() {
         const rsConsume = [new Resource({...resourceSelected, quantity: 1})]
         let timer = new Timer({
           name: RESEARCHES.STUDY,
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf() + duration),
-          progress: 0,
-          remainingLabel: '',
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
           messageToDisplay: ('You studied '
@@ -370,10 +367,7 @@ export default function ResourceSelectOneComponent() {
           quality: resourceSelected.quality, quantity: parseInt(quantitySelected)})];
         let timer = new Timer({
           name: RESEARCHES.ANALYSIS,
-          startedAt: new Date(Date.now()).valueOf(),
           endsAt: (new Date(Date.now()).valueOf() + duration),
-          progress: 0,
-          remainingLabel: '',
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
           messageToDisplay: ('You analyzed '

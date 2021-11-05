@@ -23,6 +23,8 @@ export default class Timer implements TimerInterface {
 
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
+    if (!timer.startedAt) { this.startedAt = new Date(Date.now()).valueOf(); }
+    if (!timer.progress) { this.progress = 0; }
     if (!timer.resourcesToIncrease) { this.resourcesToIncrease = []; }
     if (!timer.resourcesToConsume) { this.resourcesToConsume = []; }
     this.setProgress();
@@ -53,16 +55,16 @@ export default class Timer implements TimerInterface {
 
 interface TimerInterface {
   name: string;
-  startedAt: number;
+  startedAt?: number;
   endsAt: number;
-  progress: number;
-  remainingLabel: string;
+  progress?: number;
+  remainingLabel?: string;
   resourcesToIncrease?: Resource[];
   resourcesToConsume?: Resource[];
   buildingToBuild?: string|null;
   buildingToUpgrade?: string|null;
   tradingPartnerToArrive?: string|null;
   fortuityCheck?: boolean;
-  messageToDisplay: string|null;
-  iconToDisplay: {provider: string, name: string}|null;
+  messageToDisplay?: string|null;
+  iconToDisplay?: {provider: string, name: string}|null;
 }

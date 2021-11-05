@@ -1,4 +1,5 @@
 export enum QUESTS {
   STUDY = "Study",
-  BUILD = "Build"
+  BUILD = "Build",
+  TESTING = "Testing"
 }

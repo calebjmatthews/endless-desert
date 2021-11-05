@@ -186,14 +186,9 @@ export default function HourglassComponent() {
           else {
             dispatch(addTimer(new Timer({
               name: 'Fortuity',
-              startedAt: new Date(Date.now()).valueOf(),
               endsAt: (new Date(Date.now()).valueOf()
                 + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
-              progress: 0,
-              fortuityCheck: true,
-              remainingLabel: '',
-              messageToDisplay: null,
-              iconToDisplay: null
+              fortuityCheck: true
             })));
           }
         }
@@ -276,14 +271,9 @@ export default function HourglassComponent() {
     dispatch(setIntroState(INTRO_STATES.DONE));
     dispatch(addTimer(new Timer({
       name: 'Fortuity',
-      startedAt: new Date(Date.now()).valueOf(),
       endsAt: (new Date(Date.now()).valueOf()
         + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
-      progress: 0,
-      fortuityCheck: true,
-      remainingLabel: '',
-      messageToDisplay: null,
-      iconToDisplay: null
+      fortuityCheck: true
     })));
   }
 
