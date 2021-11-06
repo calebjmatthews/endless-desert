@@ -11,6 +11,7 @@ import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
 import { addEquipment, removeEquipment } from '../actions/equipment';
 import { increaseResources, consumeResources } from '../actions/vault';
+import { addToActivityQueue } from '../actions/quest_status';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
@@ -21,6 +22,7 @@ import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import EquipmentEffect from '../models/equipment_effect';
 import Vault from '../models/vault';
+import QuestActivity from '../models/quest_activity';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
@@ -33,6 +35,7 @@ import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 const EQS = EQUIPMENT_SLOTS;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { ACTIVITIES } from '../enums/activities';
 
 export default function EquipmentComponent() {
   const dispatch = useDispatch();
@@ -257,11 +260,14 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
     const equipmentResource: Resource = props.resource;
     const equipmentTypeName = equipmentResource.type.split(' (')[0];
     const equipmentType = equipmentTypes[equipmentTypeName];
-    const anEquipment = equipmentType.createEquipment(1, props.vault, resourceTypes);
+    const tier = 1;
+    const anEquipment = equipmentType.createEquipment(tier, props.vault, resourceTypes);
     const resource = new Resource({type: equipmentResource.type, quality:
-      equipmentResource.quality, quantity: 1})
+      equipmentResource.quality, quantity: 1});
     console.log('anEquipment');
     console.log(anEquipment);
+    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+      equipmentMarked: { typeName: equipmentTypeName, tier, quantity: 1 } })));
     return { anEquipment, resource };
   }
 }

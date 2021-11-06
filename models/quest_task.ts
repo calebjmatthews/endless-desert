@@ -9,7 +9,7 @@ export default class QuestTask {
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};
-  equipmentToMark?: {specificity?: string, type?: string, rarity?: number,
+  equipmentToMark?: {specificity?: string, type?: string, tier?: number,
     quantity: number};
   actionToPerform?: {kind: string, value?: string, quantity?: number};
 

@@ -26,6 +26,7 @@ import MessageBarComponent from '../components/message_bar';
 import TradingComponent from '../components/trading';
 import IconComponent from '../components/icon';
 import StorageHandlerComponent from '../components/storage_handler';
+import QuestHandlerComponent from '../components/quest_handler';
 import LookAroundComponent from '../components/look_around';
 import LeadersComponent from '../components/leaders';
 import LandingComponent from '../components/landing';
@@ -172,6 +173,7 @@ export default function MainComponent() {
       style={styles.mainContainer}>
       <HourglassComponent />
       <StorageHandlerComponent />
+      <QuestHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
       <View style={styles.scrollWrapper}>

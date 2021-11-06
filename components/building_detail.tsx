@@ -16,6 +16,7 @@ import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
 import { displayModal, displayModalValue, addMessage } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
+import { addToActivityQueue } from '../actions/quest_status';
 
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
@@ -24,6 +25,7 @@ import Hourglass from '../models/hourglass';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
 import Resource from '../models/resource';
+import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -35,6 +37,7 @@ import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
+import { ACTIVITIES } from '../enums/activities';
 
 export default function BuildDetailComponent() {
   const dispatch = useDispatch();
@@ -313,6 +316,9 @@ export default function BuildDetailComponent() {
 
   function toStoragePress(building: Building) {
     dispatch(addBuildingToStorage(building));
+    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+      actionPerformed: { kind: ACTIVITIES.BUILDING_INTO_STORAGE,
+      value: buildingType.name } })));
     dispatch(removeBuilding(building));
     let tempBuildings: { [id: string] : Building } = {};
     Object.keys(buildings).map((id) => {

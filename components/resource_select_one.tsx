@@ -14,6 +14,7 @@ import { studyResource } from '../actions/research_status';
 import { completeTrade } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
 import { SET_EATING, setEating, SET_DRINKING, setDrinking } from '../actions/leaders';
+import { addToActivityQueue } from '../actions/quest_status';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
@@ -22,6 +23,7 @@ import Timer from '../models/timer';
 import TradingPartnerVisit from '../models/trading_partner_visit';
 import Trade from '../models/trade';
 import Icon from '../models/icon';
+import QuestActivity from '../models/quest_activity';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -31,6 +33,7 @@ const RTY = RESOURCE_TYPES;
 import { RESEARCHES } from '../enums/researches';
 import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { ACTIVITIES } from '../enums/activities';
 import { QUALITY_VALUES } from '../constants';
 const QV = QUALITY_VALUES;
 
@@ -331,6 +334,8 @@ export default function ResourceSelectOneComponent() {
           endsAt: (new Date(Date.now()).valueOf() + duration),
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
+          questActivity: new QuestActivity({ id: utils.randHex(16),
+            actionPerformed: { kind: RESEARCHES.STUDY, quantity: 1 } }),
           messageToDisplay: ('You studied '
             + utils.getResourceName(resourceSelected) + ' for '
             + utils.formatNumberShort(knowledge) + ' knowledge.'),
@@ -370,6 +375,9 @@ export default function ResourceSelectOneComponent() {
           endsAt: (new Date(Date.now()).valueOf() + duration),
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
+          questActivity: new QuestActivity({ id: utils.randHex(16),
+            resourceAnalyzed: { type: resourceSelected.type,
+            quantity: parseInt(quantitySelected) } }),
           messageToDisplay: ('You analyzed '
             + utils.formatNumberShort(parseInt(quantitySelected)) + ' '
             + utils.getResourceName(resourceSelected) + ' for '
@@ -415,6 +423,8 @@ export default function ResourceSelectOneComponent() {
           quality: resourceSelected.quality,
           quantity: parseInt(quantitySelected) })
       }));
+      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+        tradedWith: { typeName: trade.tradingPartnerType, quantity: quantityGiven } })));
       dispatch(displayModalValue(null, 'closed', null));
     }
   }
@@ -423,6 +433,9 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
       dispatch(setEating(modalValue.leader, typeQuality));
+      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+        actionPerformed: { kind: ACTIVITIES.LEADER_SET_EATING,
+          value: resourceSelected.type } })));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
     }
   }
@@ -431,6 +444,9 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
       dispatch(setDrinking(modalValue.leader, typeQuality));
+      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+        actionPerformed: { kind: ACTIVITIES.LEADER_SET_DRINKING,
+          value: resourceSelected.type } })));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
     }
   }

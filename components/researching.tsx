@@ -12,6 +12,7 @@ import { displayModalValue, selectTab, addMessage } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
+import { addToActivityQueue } from '../actions/quest_status';
 import { unlockTab } from '../actions/account';
 
 import ResearchOption from '../models/research_option';
@@ -22,6 +23,7 @@ import ResourceSubcategory from '../models/resource_subcategory';
 import ResourceCategory from '../models/resource_category';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
+import QuestActivity from '../models/quest_activity';
 import Message from '../models/message';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
@@ -33,6 +35,7 @@ import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 import { TABS } from '../enums/tabs';
+import { ACTIVITIES } from '../enums/activities';
 
 export default function ResearchingComponent() {
   const dispatch = useDispatch();
@@ -207,11 +210,12 @@ export default function ResearchingComponent() {
       timestamp: new Date(Date.now()),
       icon: research.icon
     })));
-
     switch (research.unlocksTab) {
       case TABS.TRADING:
       dispatch(unlockTab(TABS.TRADING));
     }
+    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+      actionPerformed: { kind: ACTIVITIES.RESEARCH, value: research.name } })));
   }
 
   function backClick() {

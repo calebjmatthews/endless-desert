@@ -15,6 +15,7 @@ import { setRates } from '../actions/rates';
 import { addBuilding } from '../actions/buildings';
 import { removeBuildingFromStorage } from '../actions/buildings_storage';
 import { addTimer } from '../actions/timers';
+import { addToActivityQueue } from '../actions/quest_status';
 import { displayModalValue } from '../actions/ui';
 
 import Building from '../models/building';
@@ -23,6 +24,7 @@ import Resource from '../models/resource';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import Timer from '../models/timer';
+import QuestActivity from '../models/quest_activity';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -30,6 +32,7 @@ import { MODALS } from '../enums/modals';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { ACTIVITIES } from '../enums/activities';
 
 export default function BuildingSelectComponent() {
   const dispatch = useDispatch();
@@ -203,6 +206,9 @@ export default function BuildingSelectComponent() {
         }
         let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          actionPerformed: { kind: ACTIVITIES.LEADER_WORKING_AT,
+            value: buildingSelected } })));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
 
@@ -218,6 +224,9 @@ export default function BuildingSelectComponent() {
         dispatch(setLeaders(newLeaders));
         let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          actionPerformed: { kind: ACTIVITIES.LEADER_LIVING_AT,
+            value: buildingSelected } })));
         dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
       }
 

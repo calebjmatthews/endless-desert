@@ -1,4 +1,5 @@
 import Resource from './resource';
+import QuestActivity from './quest_activity';
 import Icon from './icon';
 import { utils } from '../utils';
 
@@ -18,6 +19,7 @@ export default class Timer implements TimerInterface {
   buildingToUpgrade?: string|null = null;
   tradingPartnerToArrive?: string|null = null;
   fortuityCheck?: boolean = false;
+  questActivity?: QuestActivity|null = null;
   messageToDisplay: string|null = null;
   iconToDisplay: Icon|null = null;
 
@@ -65,6 +67,7 @@ interface TimerInterface {
   buildingToUpgrade?: string|null;
   tradingPartnerToArrive?: string|null;
   fortuityCheck?: boolean;
+  questActivity?: QuestActivity|null;
   messageToDisplay?: string|null;
   iconToDisplay?: {provider: string, name: string}|null;
 }

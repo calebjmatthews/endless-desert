@@ -380,7 +380,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Upgrade three buildings
     - Give leader food, drink, shelter, and a place to work
     - Claim an unmarked piece of equipment for your town
-    - Increase a trader's trust by one tier
+    - Complete a trade
   - Story quests:
     - Thrice locked book
   - Daily quests:
@@ -388,7 +388,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Cook a dish with X traits
     - Complete some # of trades
     - Mark some # of equipment
-    - Mark one equipment of X rarity
+    - Mark one equipment of X tier
 
 ## Tabs:
   - Map, showing locations of each building and the river running through the middle
@@ -440,6 +440,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/in-the-forest-6/
     https://www.svgrepo.com/collection/man-clothes/
     https://www.svgrepo.com/collection/woman-clothes/
+    https://www.svgrepo.com/collection/animals-26/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

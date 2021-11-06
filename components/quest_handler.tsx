@@ -11,7 +11,8 @@ import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 
-import { setQuestProgress, setQuestReadyToComplete } from '../actions/quest_status';
+import { setQuestProgress, setQuestReadyToComplete, removeFromActivityQueue }
+  from '../actions/quest_status';
 
 export default function QuestHandlerComponent() {
   const dispatch = useDispatch();
@@ -138,6 +139,7 @@ export default function QuestHandlerComponent() {
           }
         });
       }
+      dispatch(removeFromActivityQueue(questActivity.id));
     }
   }, [questStatus.activityQueue]);
 
@@ -178,6 +180,7 @@ export default function QuestHandlerComponent() {
         }
       }
     });
+    if (readyToComplete) { console.log('Ready to complete!'); console.log(quest); }
     if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
     dispatch(setQuestProgress(questProgress));
   }
@@ -294,12 +297,12 @@ function taskMatchTradeWith(tradeWith: {typeName: string, quantity: number},
 }
 
 function taskMatchEquipmentToMark(equipmentToMark:
-  {specificity?: string, type?: string, rarity?: number, quantity: number},
+  {specificity?: string, type?: string, tier?: number, quantity: number},
   equipmentMarked:
-  {typeName: string, rarity: number, quantity: number}|undefined) {
+  {typeName: string, tier: number, quantity: number}|undefined) {
   if (!equipmentMarked) { return 0; }
   let quantity = 0;
-  if (equipmentToMark.rarity && equipmentToMark.rarity > equipmentMarked.rarity) {
+  if (equipmentToMark.tier && equipmentToMark.tier > equipmentMarked.tier) {
     return 0;
   }
   const resourceType = resourceTypes[equipmentMarked.typeName + ' (Unmarked)'];

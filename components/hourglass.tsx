@@ -7,6 +7,7 @@ import { increaseResources, consumeResources, setLastTimestamp }
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
+import { addToActivityQueue } from '../actions/quest_status';
 import { addMessage, addMemos } from '../actions/ui';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
   setFortuityDailyLast } from '../actions/account';
@@ -22,6 +23,7 @@ import Resource from '../models/resource';
 import Rates from '../models/rates';
 import Leader from '../models/leader';
 import Account from '../models/account';
+import QuestActivity from '../models/quest_activity';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
@@ -32,6 +34,7 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
+import { ACTIVITIES } from '../enums/activities';
 
 const FORTUITY_BASE = 10000;
 
@@ -117,6 +120,9 @@ export default function HourglassComponent() {
             recipe: null
           });
           dispatch(addBuilding(building));
+          dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+            actionPerformed: { kind: ACTIVITIES.BUILDING_CONSTRUCTION,
+              value: buildingType.name } })));
           tempBuildings[building.id] = building;
           recalcRates = true;
         }
@@ -145,6 +151,9 @@ export default function HourglassComponent() {
               recipe: null
             });
             dispatch(replaceBuilding(upgBuilding));
+            dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+              actionPerformed: { kind: ACTIVITIES.BUILDING_UPGRADE,
+              value: buildingType.name } })));
             tempBuildings[building.id] = upgBuilding;
             recalcRates = true;
           }
@@ -191,6 +200,9 @@ export default function HourglassComponent() {
               fortuityCheck: true
             })));
           }
+        }
+        if (timer.questActivity) {
+          dispatch(addToActivityQueue(timer.questActivity));
         }
         dispatch(removeTimer(timer));
       });
