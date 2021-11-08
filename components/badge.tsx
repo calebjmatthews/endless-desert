@@ -74,8 +74,8 @@ export default function BadgeComponent(props: BadgeProps) {
 
     if (size) {
       if (size < 21) {
-        badgeStyle.height = size + 3;
-        badgeStyle.width = size + 3;
+        badgeStyle.height = size + 4;
+        badgeStyle.width = size + 4;
         badgeStyle.margin = 2;
       }
       else if (size > 41) {

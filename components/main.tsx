@@ -32,6 +32,7 @@ import LeadersComponent from '../components/leaders';
 import LandingComponent from '../components/landing';
 import EquipmentComponent from '../components/equipment';
 import ValueCheckComponent from '../components/value_check';
+import QuestsComponent from '../components/quests';
 import BadgeComponent from '../components/badge';
 import { styles } from '../styles';
 
@@ -266,6 +267,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
+      dispatch(unlockTab(TABS.QUESTS));
       dispatch(addQuest(quests['Testing']));
     }
     else if (tabName != TABS.FORTUITY) {
@@ -334,20 +336,22 @@ export default function MainComponent() {
 
   function renderTab(tabName: string) {
     switch(tabName) {
-      case "Buildings":
+      case TABS.BUILDINGS:
       return <BuildingsComponent />;
-      case "Resources":
-      return <ResourcesComponent />
-      case "Research":
-      return <ResearchesComponent />
-      case "Researching":
-      return <ResearchingComponent />
-      case "Trading":
-      return <TradingComponent />
-      case "Leaders":
-      return <LeadersComponent />
-      case "Equipment":
-      return <EquipmentComponent />
+      case TABS.RESOURCES:
+      return <ResourcesComponent />;
+      case TABS.RESEARCH:
+      return <ResearchesComponent />;
+      case TABS.RESEARCHING:
+      return <ResearchingComponent />;
+      case TABS.TRADING:
+      return <TradingComponent />;
+      case TABS.LEADERS:
+      return <LeadersComponent />;
+      case TABS.EQUIPMENT:
+      return <EquipmentComponent />;
+      case TABS.QUESTS:
+      return <QuestsComponent />;
       default:
       return null;
     }

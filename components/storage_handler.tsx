@@ -253,8 +253,6 @@ export default function StorageHandlerComponent() {
   }), [callSave];
 
   function saveIntoStorage() {
-    console.log('questStatus');
-    console.log(questStatus);
     if (account.sessionId && account.userId) {
       let accountToSave = new Account(account);
       delete accountToSave.sessionId;

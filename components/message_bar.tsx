@@ -25,7 +25,7 @@ export default function MessageBarComponent() {
   if (message) {
     let icon = null;
     if (message.icon) {
-      icon = <BadgeComponent icon={message.icon} size={19} borderless={true} />
+      icon = <BadgeComponent icon={message.icon} size={17} borderless={true} />
     }
     return (
       <View style={styles.messageBarContainer}>

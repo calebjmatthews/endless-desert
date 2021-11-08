@@ -1,10 +1,12 @@
 import QuestTask from './quest_task';
 import QuestProgress from './quest_progress';
+import Icon from './icon';
 
 export default class Quest implements QuestInterface {
   id: string = '';
   name: string = '';
   givenBy: string = '';
+  icon?: Icon;
   description: string = '';
   tasks: QuestTask[] = [];
   progress: QuestProgress[] = [];
@@ -17,6 +19,7 @@ export default class Quest implements QuestInterface {
 
   constructor(quest: QuestInterface) {
     Object.assign(this, quest);
+    this.tasks = quest.tasks.map((task) => ( new QuestTask(task) ));
   }
 }
 
@@ -24,6 +27,7 @@ interface QuestInterface {
   id: string;
   name: string;
   givenBy: string;
+  icon?: Icon;
   description: string;
   tasks: QuestTask[];
   beganAt?: number;

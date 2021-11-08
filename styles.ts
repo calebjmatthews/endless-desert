@@ -23,6 +23,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'stretch'
   },
+  containerSpacedColumn: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    rowGap: 5
+  },
   scrollWrapper: {
     flex: 1,
     maxHeight: 473

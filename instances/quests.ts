@@ -1,6 +1,7 @@
 import Quest from '../models/quest';
 import QuestTask from '../models/quest_task';
 import QuestProgress from '../models/quest_progress';
+import { utils } from '../utils';
 import { QUESTS } from '../enums/quests';
 import { TABS } from '../enums/tabs';
 import { RESEARCHES } from '../enums/researches';
@@ -9,6 +10,7 @@ const RTY = RESOURCE_TYPES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 
+const testingId = utils.randHex(16);
 const quests: { [id: string] : Quest } = {
   [QUESTS.STUDY]: new Quest({
     id: QUESTS.STUDY,
@@ -24,10 +26,11 @@ const quests: { [id: string] : Quest } = {
         actionToPerform: { kind: RESEARCHES.STUDY, quantity: 5 } })
     ],
     progress: createNewProgress(2, QUESTS.STUDY),
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 200 }],
     questsBegin: [QUESTS.BUILD]
   }),
   [QUESTS.TESTING]: new Quest({
-    id: QUESTS.TESTING,
+    id: testingId,
     name: QUESTS.TESTING,
     givenBy: 'Firefly',
     description: `Is Water an inside job??? Or Lentils!?!?`,
@@ -39,7 +42,8 @@ const quests: { [id: string] : Quest } = {
         label: `Analyze 100 bushels of Lentils.`,
         resourceToAnalyze: { specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 100 }})
     ],
-    progress: createNewProgress(2, QUESTS.TESTING)
+    progress: createNewProgress(2, testingId),
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
   })
 }
 

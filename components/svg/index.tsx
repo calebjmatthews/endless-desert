@@ -162,6 +162,7 @@ import TourmalineJewelersSvgComponent from './symbols/tourmaline_jewelers';
 import SpringAutumnKingdomSvgComponent from './symbols/spring_autumn_kingdom';
 
 import HappinessSvgComponent from './symbols/happiness';
+import RoadSignSvgComponent from './symbols/road_sign';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -486,6 +487,8 @@ export default function SvgComponent(props: { icon: Icon }) {
 
     case SVGS.HAPPINESS:
     return <HappinessSvgComponent icon={props.icon} />;
+    case SVGS.ROAD_SIGN:
+    return <RoadSignSvgComponent icon={props.icon} />;
   }
   return null;
 }

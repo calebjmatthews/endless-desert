@@ -148,37 +148,7 @@ export default function QuestHandlerComponent() {
     tempQuest.progress[questProgress.index] = new QuestProgress(questProgress);
     let readyToComplete = true;
     tempQuest.tasks.forEach((task, index) => {
-      const progress = quest.progress[index];
-      if (task.resourceToProduce) {
-        if ((progress.resourceProduced || 0) < task.resourceToProduce.quantity) {
-          readyToComplete = false;
-        }
-      }
-      if (task.resourceToAnalyze) {
-        if ((progress.resourceAnalyzed || 0) < task.resourceToAnalyze.quantity) {
-          readyToComplete = false;
-        }
-      }
-      if (task.dishToCook) {
-        if ((progress.dishCooked || 0) < task.dishToCook.quantity) {
-          readyToComplete = false;
-        }
-      }
-      if (task.tradeWith) {
-        if ((progress.tradedWith || 0) < task.tradeWith.quantity) {
-          readyToComplete = false;
-        }
-      }
-      if (task.equipmentToMark) {
-        if ((progress.equipmentMarked || 0) < task.equipmentToMark.quantity) {
-          readyToComplete = false;
-        }
-      }
-      if (task.actionToPerform) {
-        if ((progress.actionPerformed || 0) < (task.actionToPerform.quantity || 1)) {
-          readyToComplete = false;
-        }
-      }
+      if (!task.isCompleted(quest.progress[index])) { readyToComplete = false; }
     });
     if (readyToComplete) { console.log('Ready to complete!'); console.log(quest); }
     if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
