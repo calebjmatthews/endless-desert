@@ -27,7 +27,7 @@ import QuestActivity from '../models/quest_activity';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
-import { fortuities } from '../instances/fortuities';1
+import { fortuities } from '../instances/fortuities';
 import { utils } from '../utils';
 import { MEMOS } from '../enums/memos';
 import { RESOURCE_TYPES } from '../enums/resource_types';

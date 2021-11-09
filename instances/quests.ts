@@ -17,6 +17,7 @@ const quests: { [id: string] : Quest } = {
     name: QUESTS.STUDY,
     givenBy: 'Firefly',
     description: `Some force wants you to examine the world.`,
+    finishText: `Studying each new resource you find keeps the Knowledge flowing, and something tells you there may be even more benefits you haven't yet discovered.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.STUDY,
         label: `Complete the "Study" research.`,
@@ -34,6 +35,7 @@ const quests: { [id: string] : Quest } = {
     name: QUESTS.TESTING,
     givenBy: 'Firefly',
     description: `Is Water an inside job??? Or Lentils!?!?`,
+    finishText: `Turns out, neither Water nor Lentils are an inside job.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.TESTING,
         label: `Analyze 100 Water.`,

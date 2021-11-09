@@ -21,7 +21,7 @@ export function addQuest(quest: Quest) {
 }
 
 export const REMOVE_QUEST = 'REMOVE_QUEST';
-export function removeQuest(id: number) {
+export function removeQuest(id: string) {
   return {
     type: REMOVE_QUEST,
     id: id
@@ -61,7 +61,7 @@ export function setQuestReadyToComplete(id: string) {
 }
 
 export const ADD_QUEST_COMPLETED = 'ADD_QUEST_COMPLETED';
-function addQuestCompleted(questCompleted: QuestCompleted) {
+export function addQuestCompleted(questCompleted: QuestCompleted) {
   return {
     type: ADD_QUEST_COMPLETED,
     questCompleted: questCompleted

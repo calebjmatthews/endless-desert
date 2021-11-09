@@ -8,6 +8,7 @@ export default class Quest implements QuestInterface {
   givenBy: string = '';
   icon?: Icon;
   description: string = '';
+  finishText: string = '';
   tasks: QuestTask[] = [];
   progress: QuestProgress[] = [];
   readyToComplete: boolean = false;
@@ -29,6 +30,7 @@ interface QuestInterface {
   givenBy: string;
   icon?: Icon;
   description: string;
+  finishText: string;
   tasks: QuestTask[];
   beganAt?: number;
   progress: QuestProgress[];

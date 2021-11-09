@@ -8,15 +8,27 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import { addQuest, removeQuest, addQuestCompleted } from '../actions/quest_status';
+import { increaseResources } from '../actions/vault';
+import { addEquipment } from '../actions/equipment';
+import { addLeader } from '../actions/leaders';
+import { addMemos } from '../actions/ui';
 
 import QuestStatus from '../models/quest_status';
 import Quest from '../models/quest';
 import QuestCompleted from '../models/quest_completed';
 import QuestTask from '../models/quest_task';
 import QuestProgress from '../models/quest_progress';
+import Resource from '../models/resource';
+import Equipment from '../models/equipment';
+import Leader from '../models/leader';
+import Vault from '../models/vault';
+import Memo from '../models/memo';
 import Icon from '../models/icon';
 import Positioner from '../models/positioner';
+import { quests } from '../instances/quests';
 import { leaderTypes } from '../instances/leader_types';
+import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { SVGS } from '../enums/svgs';
@@ -24,6 +36,7 @@ import { SVGS } from '../enums/svgs';
 export default function QuestsComponent() {
   const dispatch = useDispatch();
   const questStatus = useTypedSelector(state => state.questStatus);
+  const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   const uiArray: UiItem[] = getUiArray(questStatus);
@@ -50,7 +63,14 @@ export default function QuestsComponent() {
 
       case 'quest':
       if (data.item.quest) {
-        return <QuestDescription quest={data.item.quest} positioner={positioner} />;
+        return <QuestDescription quest={data.item.quest} completeQuest={completeQuest}
+          positioner={positioner} />;
+      } break;
+
+      case 'quest_completed':
+      if (data.item.questCompleted) {
+        return <QuestCompletedDescription questCompleted={data.item.questCompleted}
+          positioner={positioner} />;
       } break;
     }
     return null;
@@ -73,7 +93,8 @@ export default function QuestsComponent() {
     let questsCompleted: UiItem[] = [];
     Object.keys(questStatus.questsCompleted).forEach((id) => {
       const questCompleted = questStatus.questsCompleted[id];
-      questsCompleted.push({ type: 'quest', id: questCompleted.id, questCompleted });
+      questsCompleted.push({ type: 'quest_completed', id: questCompleted.id,
+        questCompleted });
     });
     questsCompleted = questsCompleted.sort((a, b) =>
       ( (a.questCompleted?.completedAt || 0) - (b.questCompleted?.completedAt || 0) ));
@@ -81,10 +102,52 @@ export default function QuestsComponent() {
 
     return uiArray;
   }
+
+  function completeQuest(quest: Quest) {
+    let memo = new Memo({ name: quest.id, title: quest.name, text: quest.finishText });
+    if (quest.gainResources) {
+      let resourcesGained: Resource[] = [];
+      let resourceNames: string[] = [];
+      quest.gainResources.forEach((gain) => {
+        const rToGain = utils.getMatchingResourceQuantity(gain, resourceNames);
+        resourcesGained.push(new Resource(rToGain));
+        resourceNames.push(rToGain.type);
+      });
+      dispatch(increaseResources(vault, resourcesGained));
+      memo.resourcesGained = resourcesGained;
+    }
+    if (quest.leaderJoins) {
+      const leaderCreateRes =
+          leaderTypes[quest.leaderJoins].createLeader(vault, resourceTypes);
+      let tempEquipment: { [id: string] : Equipment } = {};
+      let newEquipment: Equipment[] = [];
+      leaderCreateRes.equipment.map((anEquipment) => {
+        if (anEquipment) {
+          tempEquipment[anEquipment.id] = anEquipment;
+          newEquipment.push(anEquipment);
+        }
+      });
+      dispatch(addEquipment(newEquipment));
+      let leader = new Leader(leaderCreateRes.leader);
+      leader.calcEffects(tempEquipment, {}, new Vault(null));
+      dispatch(addLeader(leader));
+      memo.leaderJoined = quest.leaderJoins;
+    }
+    if (quest.questsBegin) {
+      quest.questsBegin.forEach((questName) => {
+        dispatch(addQuest(quests[questName]));
+      });
+    }
+    dispatch(removeQuest(quest.id));
+    dispatch(addQuestCompleted(new QuestCompleted({ id: quest.id, name: quest.name,
+      icon: quest.icon, isDaily: quest.isDaily })));
+    dispatch(addMemos([memo]));
+  }
 }
 
 const defaultIcon = new Icon({ provider: 'svg', name: SVGS.ROAD_SIGN });
-function QuestDescription(props: { quest: Quest, positioner: Positioner }) {
+function QuestDescription(props: { quest: Quest,
+  completeQuest: (quest: Quest) => void, positioner: Positioner }) {
   const icon = props.quest.icon || defaultIcon;
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
@@ -158,7 +221,7 @@ function QuestDescription(props: { quest: Quest, positioner: Positioner }) {
     return (
       <View style={styles.buttonRow}>
         <TouchableOpacity style={buttonStyle} disabled={!quest.readyToComplete}
-          onPress={() => { }} >
+          onPress={() => { rewardPress(quest) }} >
           <Text style={styles.buttonText}>{actionLabel}</Text>
           {icon && <BadgeComponent icon={icon} size={19} />}
           <Text style={styles.buttonText}>{subjectLabel}</Text>
@@ -166,6 +229,27 @@ function QuestDescription(props: { quest: Quest, positioner: Positioner }) {
       </View>
     );
   }
+
+  function rewardPress(quest: Quest) {
+    props.completeQuest(quest);
+  }
+}
+
+function QuestCompletedDescription(props: { questCompleted: QuestCompleted,
+  positioner: Positioner }) {
+  const icon = props.questCompleted.icon || defaultIcon;
+  return (
+    <View style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: props.positioner.majorWidth,
+        maxWidth: props.positioner.majorWidth, opacity: 0.75}])} >
+      <BadgeComponent icon={icon} size={23} />
+      <View style={styles.containerSpacedColumn}>
+        <Text>
+          {props.questCompleted.name}
+        </Text>
+      </View>
+    </View>
+  );
 }
 
 const display: { [name: string] : { provider: string, name: string, label: string }} = {
