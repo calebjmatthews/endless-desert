@@ -578,7 +578,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Olives before grain
   [X] Fish before quail
   [X] Resource exhaustion display
-  [ ] Quest system
+  [X] Quest system
   [ ] Trader trust to affect # of items
   [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research

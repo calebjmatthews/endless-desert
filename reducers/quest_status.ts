@@ -20,8 +20,6 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
         aqResourcesToCheck[task.resourceToProduce.specType] = true;
       }
     });
-    console.log('aqResourcesToCheck');
-    console.log(aqResourcesToCheck);
     return new QuestStatus({ ...questStatus,
       quests: {...questStatus.quests, [aqQuest.id]: aqQuest},
       resourcesToCheck: aqResourcesToCheck });
@@ -35,7 +33,7 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
       const quest = rqQuests[id];
       quest.tasks.forEach((task) => {
         if (task.resourceToProduce) {
-          aqResourcesToCheck[task.resourceToProduce.specType] = true;
+          rqResourcesToCheck[task.resourceToProduce.specType] = true;
         }
       });
     });

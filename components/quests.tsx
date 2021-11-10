@@ -180,14 +180,21 @@ function QuestDescription(props: { quest: Quest,
   function renderTask(task: QuestTask, progress: QuestProgress) {
     const completed = task.isCompleted(progress);
     const color = completed ? "#6e78a2" : "#000";
+    const progressLabel = task.getProgressLabel(progress);
     return (
-      <View key={`${task.parentId}|${task.index}`} style={styles.rows}>
-        {completed ?
+      <View key={`${task.parentId}|${task.index}`}
+        style={StyleSheet.flatten([styles.rows,
+          {maxWidth: props.positioner.bodyMedWidth}])}>
+        <View style={{marginRight: 3}}>
+          {completed ?
           <IconComponent provider="FontAwesome" name="check-square-o"
             color={color} size={16} /> :
           <IconComponent provider="FontAwesome" name="square-o"
             color={color} size={16} />}
-        <Text style={{fontSize: 12, color: color}}>{` ${task.label}`}</Text>
+        </View>
+        <Text style={{fontSize: 12, color: color}}>
+          {`${task.label} ${progressLabel}`}
+        </Text>
       </View>
     )
   }

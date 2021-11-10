@@ -243,7 +243,7 @@ class Utils {
       return number.toFixed(2);
     }
     if (number < 1000) {
-      return Math.round(number).toString();
+      return Math.floor(number).toString();
     }
     let powers = Object.keys(exponents);
     let strNumber = '';
