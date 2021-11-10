@@ -38,11 +38,11 @@ const quests: { [id: string] : Quest } = {
     finishText: `Turns out, neither Water nor Lentils are an inside job.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.TESTING,
-        label: `Analyze 100 Water.`,
-        resourceToAnalyze: { specificity: RSP.EXACT, type: RTY.WATER, quantity: 100 }}),
+        label: `Produce 100 Water.`,
+        resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.WATER}`), quantity: 100 }}),
       new QuestTask({ index: 1, parentId: QUESTS.TESTING,
-        label: `Analyze 100 bushels of Lentils.`,
-        resourceToAnalyze: { specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 100 }})
+        label: `Produce 10 Lentil.`,
+        resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.LENTIL}`), quantity: 10 }})
     ],
     progress: createNewProgress(2, testingId),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],

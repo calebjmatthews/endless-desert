@@ -6,7 +6,7 @@ export default class QuestTask {
   parentId: string = '';
   label: string = '';
   icon?: Icon;
-  resourceToProduce?: {specificity: string, type: string, quantity: number};
+  resourceToProduce?: {specType: string, quantity: number};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};
@@ -59,7 +59,7 @@ interface QuestTaskInterface {
   parentId: string;
   label: string;
   icon?: Icon;
-  resourceToProduce?: {specificity: string, type: string, quantity: number};
+  resourceToProduce?: {specType: string, quantity: number};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};

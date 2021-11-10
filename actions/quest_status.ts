@@ -21,10 +21,10 @@ export function addQuest(quest: Quest) {
 }
 
 export const REMOVE_QUEST = 'REMOVE_QUEST';
-export function removeQuest(id: string) {
+export function removeQuest(quest: Quest) {
   return {
     type: REMOVE_QUEST,
-    id: id
+    quest: quest
   }
 }
 

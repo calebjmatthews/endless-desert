@@ -51,6 +51,7 @@ export default function HourglassComponent() {
   const account = useTypedSelector(state => state.account);
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
+  const questStatus = useTypedSelector(state => state.questStatus);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callTick, setCallTick] = useState(false);
@@ -80,9 +81,19 @@ export default function HourglassComponent() {
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
-        const results = hourglass.callCalcs(rates, vault, tempBuildings, {});
+        const results = hourglass.callCalcs(rates, vault, tempBuildings, {},
+          vault.lastTimestamp, questStatus.resourcesToCheck);
         rti = utils.sumToResources(vault, results.productionSum);
         rtc = utils.sumToResources(vault, results.consumptionSum);
+        if (Object.keys(results.questResourceChecks).length > 0) {
+          let resourcesProduced: {specType: string, quantity: number}[] = [];
+          Object.keys(results.questResourceChecks).forEach((specType) => {
+            resourcesProduced.push({ specType,
+              quantity: results.questResourceChecks[specType]})
+          });
+          dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+            resourcesProduced })));
+        }
         whileAway = Object.assign(whileAway, { rti, rtc });
       }
       let nTimers = Object.assign({}, timers);

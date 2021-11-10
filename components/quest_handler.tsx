@@ -36,8 +36,8 @@ export default function QuestHandlerComponent() {
                     quantityAdd);
                 }
               }
+              if (questProgress) { handleQuestProgress(quest, questProgress); }
             });
-            if (questProgress) { handleQuestProgress(quest, questProgress); }
           }
         });
       }
@@ -159,35 +159,13 @@ export default function QuestHandlerComponent() {
 }
 
 function taskMatchResourceToProduce(resourceToProduce:
-  {specificity: string, type: string, quantity: number}, resourcesProduced:
-  {type: string, quantity: number}[]|undefined) {
+  {specType: string, quantity: number}, resourcesProduced:
+  {specType: string, quantity: number}[]|undefined) {
   if (!resourcesProduced) { return 0; }
   let quantity = 0;
   resourcesProduced.forEach((resourceProduced) => {
-    const resourceType = resourceTypes[resourceProduced.type];
-    switch(resourceToProduce.specificity) {
-      case RSP.CATEGORY:
-      if (resourceType.category === resourceToProduce.type) {
-        quantity += resourceProduced.quantity;
-      }
-      break;
-      case RSP.SUBCATEGORY:
-      if (resourceType.subcategory === resourceToProduce.type) {
-        quantity += resourceProduced.quantity;
-      }
-      break;
-      case RSP.TAG:
-      resourceType.tags.forEach((tag) => {
-        if (tag === resourceToProduce.type) {
-          quantity += resourceProduced.quantity;
-        }
-      });
-      break;
-      case RSP.EXACT:
-      if (resourceProduced.type === resourceToProduce.type) {
-        quantity += resourceProduced.quantity;
-      }
-      break;
+    if (resourceToProduce.specType == resourceProduced.specType) {
+      quantity = resourceProduced.quantity;
     }
   });
   return quantity;

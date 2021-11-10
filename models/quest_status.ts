@@ -6,7 +6,7 @@ export default class QuestStatus {
   quests: { [id: string] : Quest } = {};
   questsCompleted: { [id: string] : QuestCompleted } = {};
   activityQueue: QuestActivity[] = [];
-  resourcesToCheck: { [typeQuality: string] : string } = {};
+  resourcesToCheck: { [specType: string] : boolean } = {};
 
   constructor(questStatus: QuestStatus) {
     let questStatusValid: boolean = false;

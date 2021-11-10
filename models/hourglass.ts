@@ -77,10 +77,13 @@ export default class Hourglass {
   callCalcs(rates: Rates, vault: Vault,
     buildings: { [id: string] : Building }, leaders: { [id: string] : Leader },
     startingTimestamp: number = vault.lastTimestamp,
+    resourcesToCheck: { [specType: string] : boolean } = {},
     productionSum: { [typeQuality: string] : number } = {},
-    consumptionSum: { [typeQuality: string] : number } = {}) :
+    consumptionSum: { [typeQuality: string] : number } = {},
+    questResourceChecks: { [specType: string] : number } = {}) :
     { productionSum: { [typeQuality: string] : number },
-    consumptionSum: { [typeQuality: string] : number } } {
+    consumptionSum: { [typeQuality: string] : number },
+    questResourceChecks: { [specType: string] : number } } {
 
     if (rates.soonestExhaustion) {
       if (rates.soonestExhaustion < new Date(Date.now()).valueOf()) {
@@ -88,6 +91,8 @@ export default class Hourglass {
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
         const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
+        const newQRChecks = utils.mapsCombine(questResourceChecks,
+          this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
         const pResources = utils.sumToResources(vault, newPSum);
         const cResources = utils.sumToResources(vault, newCSum);
         const newVault = new Vault(vault);
@@ -95,13 +100,61 @@ export default class Hourglass {
         cResources.map((resource) => newVault.consumeResource(resource));
         const newRates = this.calcRates(buildings, leaders, newVault);
         return this.callCalcs(newRates, vault, buildings, leaders,
-          rates.soonestExhaustion, newPSum, newCSum);
+          rates.soonestExhaustion, resourcesToCheck, newPSum, newCSum, newQRChecks);
       }
     }
     const results = this.calculate(rates, vault, startingTimestamp);
     const newPSum = utils.mapsCombine(productionSum, results.productionSum);
     const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
-    return { productionSum: newPSum, consumptionSum: newCSum };
+    const newQRChecks = utils.mapsCombine(questResourceChecks,
+      this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
+    return { productionSum: newPSum, consumptionSum: newCSum,
+      questResourceChecks: newQRChecks };
+  }
+
+  formQuestResourceChecks(resourcesToCheck: { [specType: string] : boolean },
+    productionSum: { [typeQuality: string] : number }) {
+    const exactMap: { [typeName: string] : number } = {};
+    const tagMap: { [tagName: string] : number } = {};
+    const subcategoryMap: { [subcategoryName: string] : number } = {};
+    const categoryMap: { [categoryName: string] : number } = {};
+    Object.keys(productionSum).forEach((typeQuality) => {
+      const typeName = typeQuality.split('|')[0];
+      const production = productionSum[typeQuality];
+      const resourceType = resourceTypes[typeName];
+      utils.mapAdd(exactMap, typeName, production);
+      resourceType.tags.forEach((tagName) => {
+        utils.mapAdd(tagMap, tagName, production);
+      });
+      if (resourceType.subcategory) {
+        utils.mapAdd(subcategoryMap, resourceType.subcategory, production);
+      }
+      utils.mapAdd(categoryMap, resourceType.category, production);
+    });
+
+    const questResourceChecks: { [specType: string] : number } = {};
+    Object.keys(resourcesToCheck).forEach((specType) => {
+      const [specificity, type] = specType.split('|');
+      switch(specificity) {
+        case RESOURCE_SPECIFICITY.EXACT:
+        if (exactMap[type]) {
+          questResourceChecks[specType] = exactMap[type];
+        } break;
+        case RESOURCE_SPECIFICITY.TAG:
+        if (tagMap[type]) {
+          questResourceChecks[specType] = tagMap[type];
+        } break;
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        if (subcategoryMap[type]) {
+          questResourceChecks[specType] = subcategoryMap[type];
+        }
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        if (categoryMap[type]) {
+          questResourceChecks[specType] = categoryMap[type];
+        }
+      }
+    });
+    return questResourceChecks;
   }
 
   calcRates(buildings: { [id: string] : Building },

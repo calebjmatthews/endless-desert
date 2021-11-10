@@ -138,7 +138,7 @@ export default function QuestsComponent() {
         dispatch(addQuest(quests[questName]));
       });
     }
-    dispatch(removeQuest(quest.id));
+    dispatch(removeQuest(quest));
     dispatch(addQuestCompleted(new QuestCompleted({ id: quest.id, name: quest.name,
       icon: quest.icon, isDaily: quest.isDaily })));
     dispatch(addMemos([memo]));

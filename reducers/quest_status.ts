@@ -13,13 +13,34 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
     return new QuestStatus(action.questStatus);
 
     case ADD_QUEST:
+    const aqQuest: Quest = action.quest;
+    const aqResourcesToCheck = { ...questStatus.resourcesToCheck };
+    aqQuest.tasks.forEach((task) => {
+      if (task.resourceToProduce) {
+        aqResourcesToCheck[task.resourceToProduce.specType] = true;
+      }
+    });
+    console.log('aqResourcesToCheck');
+    console.log(aqResourcesToCheck);
     return new QuestStatus({ ...questStatus,
-      quests: {...questStatus.quests, [action.quest.id]: action.quest} });
+      quests: {...questStatus.quests, [aqQuest.id]: aqQuest},
+      resourcesToCheck: aqResourcesToCheck });
 
     case REMOVE_QUEST:
+    const rqQuest: Quest = action.quest;
     let rqQuests = {...questStatus.quests};
-    delete rqQuests[action.id];
-    return new QuestStatus({ ...questStatus, quests: rqQuests });
+    delete rqQuests[rqQuest.id];
+    const rqResourcesToCheck: { [specType: string] : boolean } = { };
+    Object.keys(rqQuests).forEach((id) => {
+      const quest = rqQuests[id];
+      quest.tasks.forEach((task) => {
+        if (task.resourceToProduce) {
+          aqResourcesToCheck[task.resourceToProduce.specType] = true;
+        }
+      });
+    });
+    return new QuestStatus({ ...questStatus, quests: rqQuests,
+      resourcesToCheck: rqResourcesToCheck });
 
     case ADD_TO_ACTIVITY_QUEUE:
     return new QuestStatus({ ...questStatus,
