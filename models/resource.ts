@@ -13,9 +13,11 @@ export default class Resource implements ResourceInterface {
   value?: number;
   icon?: Icon;
 
-  constructor(resource: ResourceInterface) {
-    if (resource.quality == undefined) { resource.quality = 0; }
-    Object.assign(this, resource);
+  constructor(resource: ResourceInterface|null) {
+    if (resource != null) {
+      if (resource.quality == undefined) { resource.quality = 0; }
+      Object.assign(this, resource);
+    }
   }
 
   getResourceWithoutQuantity() {

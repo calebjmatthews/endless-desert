@@ -376,19 +376,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Introduction of concepts:
     - Complete "Study" research and study five different resources
     - Construct a building
-    - Put a building into storage
+    - Complete a trade
     - Upgrade three buildings
+    - Put a building into storage
     - Give leader food, drink, shelter, and a place to work
     - Claim an unmarked piece of equipment for your town
-    - Complete a trade
   - Story quests:
     - Thrice locked book
   - Daily quests:
-    - Produce some # of a specific resource
+    - Produce some # of a resource
+    - Analyse some # of a resource
     - Cook a dish with X traits
     - Complete some # of trades
     - Mark some # of equipment
     - Mark one equipment of X tier
+    - Rewards are: Knowledge, unlocked Trade Goods
 
 ## Tabs:
   - Map, showing locations of each building and the river running through the middle
@@ -441,6 +443,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/man-clothes/
     https://www.svgrepo.com/collection/woman-clothes/
     https://www.svgrepo.com/collection/animals-26/
+    https://www.svgrepo.com/collection/food-set-2/1
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -579,6 +582,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fish before quail
   [X] Resource exhaustion display
   [X] Quest system
+  [X] Tutorial quests
+  [ ] Daily quests
+  [ ] Fun/story quests
   [ ] Trader trust to affect # of items
   [ ] Field note reasearch to use large quantities of other resources
   [ ] Increase # of traders research
@@ -728,4 +734,10 @@ dispatch(addTimer(new Timer({
   endsAt: (new Date(Date.now()).valueOf() + 100),
   fortuityCheck: true
 })));
+```
+
+### Add the "Testing" quest
+```
+dispatch(unlockTab(TABS.QUESTS));
+dispatch(addQuest(quests['Testing']));
 ```

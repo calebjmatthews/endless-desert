@@ -52,6 +52,7 @@ import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
 import { quests } from '../instances/quests';
+import { questGen } from '../instances/quest_gen';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
@@ -267,8 +268,10 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(unlockTab(TABS.QUESTS));
-      dispatch(addQuest(quests['Testing']));
+      const quest = questGen({ vault });
+      console.log('quest');
+      console.log(quest);
+      if (quest) { dispatch(addQuest(quest)); }
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

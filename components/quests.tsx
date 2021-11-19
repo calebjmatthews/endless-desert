@@ -158,7 +158,8 @@ function QuestDescription(props: { quest: Quest,
         <Text>
           {props.quest.name}
         </Text>
-        <Text style={{fontSize: 12, fontStyle: 'italic'}}>
+        <Text style={{fontSize: 12, fontStyle: 'italic',
+          maxWidth: props.positioner.bodyMedWidth}}>
           {props.quest.description}
         </Text>
         {renderTasks(props.quest)}

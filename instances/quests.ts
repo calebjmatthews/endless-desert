@@ -32,7 +32,6 @@ const quests: { [id: string] : Quest } = {
         label: `Study five different resources (destroying one of each in the process).`,
         actionToPerform: { kind: RESEARCHES.STUDY, quantity: 5 } })
     ],
-    progress: createNewProgress(2, QUESTS.STUDY),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 200 }],
     questsBegin: [QUESTS.BUILD, QUESTS.TRADE]
   }),
@@ -48,7 +47,6 @@ const quests: { [id: string] : Quest } = {
         label: `Construct any building.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_CONSTRUCTION } })
     ],
-    progress: createNewProgress(1, QUESTS.BUILD),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.WOOD_OAK, value: 2500 }],
     questsBegin: [QUESTS.BUILDING_STORAGE]
   }),
@@ -64,7 +62,6 @@ const quests: { [id: string] : Quest } = {
         label: `Complete a trade with the Foxfire Ascetics.`,
         tradeWith: { typeName: TRADING_PARTNERS.FOXFIRE_ASCETICS, quantity: 1 } })
     ],
-    progress: createNewProgress(1, QUESTS.TRADE),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, value: 400 }]
   }),
   [QUESTS.BUILDING_STORAGE]: new Quest({
@@ -79,7 +76,6 @@ const quests: { [id: string] : Quest } = {
         label: `Put a building into storage.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_INTO_STORAGE } })
     ],
-    progress: createNewProgress(1, QUESTS.BUILDING_STORAGE),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, value: 1400 }]
   }),
   [QUESTS.BUILDING_UPGRADE]: new Quest({
@@ -94,7 +90,6 @@ const quests: { [id: string] : Quest } = {
         label: `Construct any building.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_CONSTRUCTION } })
     ],
-    progress: createNewProgress(1, QUESTS.BUILDING_UPGRADE),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.RUST_ORE, value: 2800 }]
   }),
   [QUESTS.LEADER_SETUP]: new Quest({
@@ -118,7 +113,6 @@ const quests: { [id: string] : Quest } = {
         label: `Give a leader something to do.`,
         actionToPerform: { kind: ACTIVITIES.LEADER_WORKING_AT } }),
     ],
-    progress: createNewProgress(4, QUESTS.LEADER_SETUP),
     gainResources: [{ specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), value: 4000 }],
     questsBegin: [QUESTS.MARK_EQUIPMENT]
   }),
@@ -134,7 +128,6 @@ const quests: { [id: string] : Quest } = {
         label: `Mark one piece of equipment.`,
         equipmentToMark: { quantity: 1 } })
     ],
-    progress: createNewProgress(1, QUESTS.MARK_EQUIPMENT),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.PALE_ORE, value: 5250 }]
   }),
   [QUESTS.TESTING]: new Quest({
@@ -151,17 +144,8 @@ const quests: { [id: string] : Quest } = {
         label: `Produce 10 Lentil.`,
         resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.LENTIL}`), quantity: 10 }})
     ],
-    progress: createNewProgress(2, testingId),
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
   })
-}
-
-function createNewProgress(count: number, parentId: string) {
-  let progress: QuestProgress[] = [];
-  for (let index = 0; index < count; index++) {
-    progress.push(new QuestProgress({ index, parentId }));
-  }
-  return progress;
 }
 
 export { quests };

@@ -18,10 +18,23 @@ export default class Quest implements QuestInterface {
   leaderJoins?: string;
   questsBegin?: string[];
 
-  constructor(quest: QuestInterface) {
-    Object.assign(this, quest);
-    this.tasks = quest.tasks.map((task) => ( new QuestTask(task) ));
+  constructor(quest: QuestInterface|null) {
+    if (quest != null) {
+      Object.assign(this, quest);
+      this.tasks = quest.tasks.map((task) => ( new QuestTask(task) ));
+      if (this.progress.length == 0) {
+        this.progress = createNewProgress(this.tasks.length, this.id);
+      }
+    }
   }
+}
+
+function createNewProgress(count: number, parentId: string) {
+  let progress: QuestProgress[] = [];
+  for (let index = 0; index < count; index++) {
+    progress.push(new QuestProgress({ index, parentId }));
+  }
+  return progress;
 }
 
 interface QuestInterface {
@@ -33,7 +46,7 @@ interface QuestInterface {
   finishText: string;
   tasks: QuestTask[];
   beganAt?: number;
-  progress: QuestProgress[];
+  progress?: QuestProgress[];
   readyToComplete?: boolean;
   isDaily?: boolean;
   gainResources?: {specificity: string, type: string, value: number}[];

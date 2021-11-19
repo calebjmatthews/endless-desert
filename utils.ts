@@ -50,6 +50,34 @@ class Utils {
     return r;
   }
 
+  randomGaussian() {
+    const a = this.random();
+    const b = this.random();
+    return (Math.abs(a - 0.5) < Math.abs(b - 0.5)) ? a : b;
+  }
+
+  randomSelect(anArray: any[]) {
+    return anArray[Math.floor(this.random() * anArray.length)];
+  }
+
+  randomWeightedSelect(anArray: any[], weightName: string = 'weight') {
+    if (anArray.length == 0) { return null; }
+
+    let weightSum = 0;
+    let buckets: number[] = [];
+    anArray.map((aMember, index) => {
+      weightSum += aMember[weightName];
+      buckets.push(weightSum);
+    });
+    let roll = this.random() * weightSum;
+    for (let index = 0; index < anArray.length; index++) {
+      if (roll < buckets[index]) {
+        return anArray[index];
+      }
+    }
+    return anArray[0];
+  }
+
   getDateString(date: Date) {
     let dateString = '';
     dateString += date.getFullYear() + '-';
@@ -123,6 +151,14 @@ class Utils {
       });
     }
     return included;
+  }
+
+  arrayGaussianTruncate(anArray: any[], min?: number, max?: number) {
+    let initialLength = (max && anArray.length > max) ? max : anArray.length;
+    let newLength = Math.ceil(this.randomGaussian() * initialLength);
+    if (max && newLength > max) { newLength = max; }
+    if (min && newLength < min) { newLength = min; }
+    return anArray.slice(0, newLength);
   }
 
   // Take in a string of various format and output an internationally formatted string
@@ -325,24 +361,6 @@ class Utils {
     };
 
     return result;
-  }
-
-  randomWeightedSelect(anArray: any[], weightName: string = 'weight') {
-    if (anArray.length == 0) { return null; }
-
-    let weightSum = 0;
-    let buckets: number[] = [];
-    anArray.map((aMember, index) => {
-      weightSum += aMember[weightName];
-      buckets.push(weightSum);
-    });
-    let roll = this.random() * weightSum;
-    for (let index = 0; index < anArray.length; index++) {
-      if (roll < buckets[index]) {
-        return anArray[index];
-      }
-    }
-    return anArray[0];
   }
 
   range(min: number, max: number) {
@@ -571,6 +589,34 @@ class Utils {
 
     });
     return resourcesArray;
+  }
+
+  isForbidden(resourceType: ResourceType, forbiddenRT: string[] = [],
+    forbiddenRS: string[] = [], forbiddenRC: string[] = []) {
+    let forbidden = false;
+    forbiddenRT.forEach((frt) => {
+      if (utils.arrayIncludes(resourceType.tags, frt)) { forbidden = true; }
+    });
+    forbiddenRS.forEach((frs) => {
+      if (resourceType.subcategory == frs) { forbidden = true; }
+    });
+    forbiddenRC.forEach((frc) => {
+      if (resourceType.category == frc) { forbidden = true; }
+    });
+    return forbidden;
+  }
+
+  addCommaAnd(words: string[]) {
+    if (words.length === 0) { return ''; }
+    if (words.length === 1) { return words[0]; }
+    if (words.length === 2) { return `${words[0]} and ${words[1]}`; }
+    let combined = '';
+    words.forEach((word, index) => {
+      if (index <= words.length - 3) { combined += `${word}, `; }
+      else if (index == words.length - 2) { combined += `${word}, and `; }
+      else { combined += word; }
+    });
+    return combined;
   }
 }
 
