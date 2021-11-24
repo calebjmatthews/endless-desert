@@ -11,6 +11,7 @@ import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { unlockTab } from '../actions/account';
+import { addQuest } from '../actions/quest_status';
 
 import Leader from '../models/leader';
 import Resource from '../models/resource';
@@ -23,10 +24,12 @@ import { conversations, convoStatements, convoResponses }
   from '../instances/conversations';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
+import { quests } from '../instances/quests';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
+import { QUESTS } from '../enums/quests';
 
 const DEFAULT_PARTNER: Partner = {
   name: 'You',
@@ -255,6 +258,7 @@ export default function ConversationComponent(props: ConversationProps) {
       if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
         dispatch(unlockTab(TABS.LEADERS));
         dispatch(unlockTab(TABS.EQUIPMENT));
+        dispatch(addQuest(quests[QUESTS.LEADER_SETUP]));
       }
       const leaderCreateRes =
         leaderTypes[statement.leaderJoins].createLeader(vault, resourceTypes);

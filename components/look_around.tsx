@@ -11,12 +11,16 @@ import MessageBarComponent from '../components/message_bar';
 import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import ProgressBarComponent from '../components/progress_bar';
-import { setIntroState } from '../actions/account';
+import { setIntroState, unlockTab } from '../actions/account';
 import { addMemos } from '../actions/ui';
+import { addQuest } from '../actions/quest_status';
 
 import { memos } from '../instances/memos';
+import { quests } from '../instances/quests';
 import { MEMOS } from '../enums/memos';
 import { INTRO_STATES } from '../enums/intro_states';
+import { TABS } from '../enums/tabs';
+import { QUESTS } from '../enums/quests';
 
 export default function LookAroundComponent(props: {height: number, panelWidth: number}) {
   const dispatch = useDispatch();
@@ -73,6 +77,8 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
       dispatch(addMemos([memos[MEMOS.LOOK_AROUND], memos[MEMOS.LOOK_AROUND_LOOT],
         memos[MEMOS.LOOK_AROUND_REPAIR]]));
       dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
+      dispatch(unlockTab(TABS.QUESTS));
+      dispatch(addQuest(quests[QUESTS.SURVIVE]));
     }, 3000);
 
     return () => { clearTimeout(timeout); }

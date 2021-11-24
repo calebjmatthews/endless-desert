@@ -13,17 +13,45 @@ const RSP = RESOURCE_SPECIFICITY;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 const ETY = EQUIPMENT_TYPES;
 import { TRADING_PARTNERS } from '../enums/trading_partners';
+import { BUILDING_TYPES } from '../enums/building_types';
 import { SVGS } from '../enums/svgs';
 
 const testingId = utils.randHex(16);
 const quests: { [id: string] : Quest } = {
+  [QUESTS.SURVIVE]: new Quest({
+    id: QUESTS.SURVIVE,
+    name: QUESTS.SURVIVE,
+    givenBy: 'Firefly',
+    icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
+      shadow: '#2887c3', secondaryColor: '#aaebf0'}),
+    description: `A quiet voice inside you begs you to survive.`,
+    finishText: `What's this? There's a box you hadn't noticed in front of your Study, and it smells strangely beautiful, like something you can't quite remember. Inside is a single piece of Jade.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SURVIVE,
+        label: `You need water: repair the Broken Cistern.`,
+        actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
+          value: BUILDING_TYPES.BROKEN_CISTERN } }),
+      new QuestTask({ index: 1, parentId: QUESTS.SURVIVE,
+        label: `You need food: restore the Fallow Field.`,
+        actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
+          value: BUILDING_TYPES.FALLOW_FIELD } }),
+      new QuestTask({ index: 2, parentId: QUESTS.SURVIVE,
+        label: `You need shelter: rebuild the Decaying Study.`,
+        actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
+          value: BUILDING_TYPES.DECAYING_STUDY } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 1000 }],
+    questsBegin: [QUESTS.STUDY]
+  }),
   [QUESTS.STUDY]: new Quest({
     id: QUESTS.STUDY,
     name: QUESTS.STUDY,
     givenBy: 'Firefly',
     icon: new Icon({ provider: 'svg', name: SVGS.STUDY }),
     description: `You feel like someone wants you to examine the world. Check the "Research" tab.`,
-    finishText: `Studying each new resource you find keeps the Knowledge flowing, and something tells you there may be even more benefits you haven't yet discovered.`,
+    finishText: `Studying each new resource you find keeps the Knowledge flowing, and something tells you there may be even more benefits you haven't yet discovered.
+
+You're not sure if it's related to your actions, but someone has put a set of rudimentary building materials in the scented box in front of your Study.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.STUDY,
         label: `Complete the "Study" research.`,
@@ -32,8 +60,27 @@ const quests: { [id: string] : Quest } = {
         label: `Study five different resources (destroying one of each in the process).`,
         actionToPerform: { kind: RESEARCHES.STUDY, quantity: 5 } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 200 }],
-    questsBegin: [QUESTS.BUILD, QUESTS.TRADE]
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.SAND_YELLOW, value: 200 },
+      { specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, value: 200 },
+      { specificity: RSP.EXACT, type: RTY.REEDS, value: 200 }],
+    questsBegin: [QUESTS.BUILD, QUESTS.TRADE, QUESTS.ANALYZE]
+  }),
+  [QUESTS.ANALYZE]: new Quest({
+    id: QUESTS.ANALYZE,
+    name: QUESTS.ANALYZE,
+    givenBy: 'Firefly',
+    icon: new Icon({ provider: 'svg', name: SVGS.KNOWLEDGE }),
+    description: `You feel like someone wants you to examine the world even further.`,
+    finishText: `Analyzing gives less Knowledge than studying, but its the best way to gain more if you have nothing new to study.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.STUDY,
+        label: `Complete the "Analysis" research.`,
+        actionToPerform: { kind: ACTIVITIES.RESEARCH, value: RESEARCHES.ANALYSIS } }),
+      new QuestTask({ index: 1, parentId: QUESTS.STUDY,
+        label: `Analyze 100 Water.`,
+        resourceToAnalyze: { specificity: RSP.EXACT, type: RTY.WATER, quantity: 100 } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, value: 400 }]
   }),
   [QUESTS.BUILD]: new Quest({
     id: QUESTS.BUILD,
@@ -68,7 +115,7 @@ const quests: { [id: string] : Quest } = {
     id: QUESTS.BUILDING_STORAGE,
     name: QUESTS.BUILDING_STORAGE,
     givenBy: 'Firefly',
-    icon: new Icon({provider: 'FontAwesome5', name: 'building', color: '#2b2b2d'}),
+    icon: new Icon({provider: 'svg', name: SVGS.FURNACE}),
     description: `A voice in your mind tells you to put buildings away. We are all descendants of desert nomads, and our buildings can be easily packed away and brought back out. Put one into storage after inspecting it within the "Buildings" tab.`,
     finishText: `The caverns beneath the town are colossal, there's almost no end to the buildings you can store there.`,
     tasks: [
@@ -96,7 +143,7 @@ const quests: { [id: string] : Quest } = {
     id: QUESTS.LEADER_SETUP,
     name: QUESTS.LEADER_SETUP,
     givenBy: 'Firefly',
-    icon: new Icon({ provider: 'FontAwesome5', name: SVGS.BREAD }),
+    icon: new Icon({ provider: 'svg', name: SVGS.BREAD }),
     description: `A subtle feeling advises you that you need to take care of your leaders. After inspecting them in the "Leaders" tab, you can give them what they need to get by.`,
     finishText: `Leaders can take care of themselves. But if you want them to contribute to the town, they'll need food, drink, and shelter.`,
     tasks: [
@@ -120,7 +167,7 @@ const quests: { [id: string] : Quest } = {
     id: QUESTS.MARK_EQUIPMENT,
     name: QUESTS.MARK_EQUIPMENT,
     givenBy: 'Firefly',
-    icon: new Icon({ provider: 'FontAwesome5', name: SVGS.SIMPLE_ROBE }),
+    icon: new Icon({ provider: 'svg', name: SVGS.SIMPLE_ROBE }),
     description: `A whisper tells you that the generic equipment you make or find needs to be inspected and marked with your town's seal before it can be used.`,
     finishText: `Marked equipment belongs to your town forever; it can be deconstructed back into some of its original materials, but you can't trade it away.`,
     tasks: [

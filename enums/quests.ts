@@ -1,5 +1,7 @@
 export enum QUESTS {
+  SURVIVE = "Survive",
   STUDY = "Study",
+  ANALYZE = "Analyze",
   BUILD = "Build",
   TRADE = "Trade",
   BUILDING_UPGRADE = "Building upgrade",

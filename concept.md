@@ -584,15 +584,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Quest system
   [X] Tutorial quests
   [ ] Daily quests
-  [ ] Fun/story quests
   [ ] Trader trust to affect # of items
-  [ ] Field note reasearch to use large quantities of other resources
+  [ ] Field note reasearch costs to use large quantities of other resources
   [ ] Increase # of traders research
   [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
-  [ ] Tool for Reed Deltas
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Mysticism research
