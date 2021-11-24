@@ -268,10 +268,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const quest = questGen({ vault });
-      console.log('quest');
-      console.log(quest);
-      if (quest) { dispatch(addQuest(quest)); }
+      dispatch(addMemos([new Memo({
+        name: 'Firefly Introduction',
+        title: `The Voice You've Been Hearing`,
+        convoName: 'Firefly Introduction - 0'
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

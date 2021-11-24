@@ -1,3 +1,5 @@
+import { fifConversations, fifConvoStatements, fifConvoResponses }
+  from './firefly';
 import { sndConversations, sndConvoStatements, sndConvoResponses }
   from './samannoud';
 import { sreConversations, sreConvoStatements, sreConvoResponses }
@@ -13,12 +15,12 @@ import { scnConversations, scnConvoStatements, scnConvoResponses }
 
 const conversations = { ...sndConversations, ...sreConversations,
   ...ffhConversations, ...auwConversations, ...tfsConversations,
-  ...scnConversations };
+  ...scnConversations, ...fifConversations };
 const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
   ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
-  ...scnConvoStatements };
+  ...scnConvoStatements, ...fifConvoStatements };
 const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
-  ...scnConvoResponses };
+  ...scnConvoResponses, ...fifConvoResponses };
 
 export { conversations, convoStatements, convoResponses };

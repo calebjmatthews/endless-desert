@@ -739,3 +739,11 @@ dispatch(addTimer(new Timer({
 dispatch(unlockTab(TABS.QUESTS));
 dispatch(addQuest(quests['Testing']));
 ```
+
+### Generate a quest
+```
+const quest = questGen({ vault });
+console.log('quest');
+console.log(quest);
+if (quest) { dispatch(addQuest(quest)); }
+```

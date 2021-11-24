@@ -1,6 +1,7 @@
 import QuestTask from './quest_task';
 import QuestProgress from './quest_progress';
 import Icon from './icon';
+import { Conversation } from './conversation';
 
 export default class Quest implements QuestInterface {
   id: string = '';
@@ -17,6 +18,7 @@ export default class Quest implements QuestInterface {
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
   questsBegin?: string[];
+  conversationBegins?: Conversation;
 
   constructor(quest: QuestInterface|null) {
     if (quest != null) {

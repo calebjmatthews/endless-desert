@@ -138,6 +138,13 @@ export default function QuestsComponent() {
         dispatch(addQuest(quests[questName]));
       });
     }
+    if (quest.conversationBegins) {
+      dispatch(addMemos([new Memo({
+        name: quest.conversationBegins.name,
+        title: quest.conversationBegins.title,
+        convoName: quest.conversationBegins.name
+      })]));
+    }
     dispatch(removeQuest(quest));
     dispatch(addQuestCompleted(new QuestCompleted({ id: quest.id, name: quest.name,
       icon: quest.icon, isDaily: quest.isDaily })));

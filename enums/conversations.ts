@@ -11,5 +11,7 @@ export enum CONVERSATIONS {
 
   TFS_SAYING_HELLO = "Trefoil Sower: Saying Hello",
 
-  SCN_SAYING_HELLO = "Scarred Navigator: Saying Hello"
+  SCN_SAYING_HELLO = "Scarred Navigator: Saying Hello",
+
+  FIF_INTRODUCTION = "Firefly Introduction"
 }

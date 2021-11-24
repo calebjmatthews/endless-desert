@@ -30,6 +30,7 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
 import { QUESTS } from '../enums/quests';
+import { SPECIAL } from '../enums/special';
 
 const DEFAULT_PARTNER: Partner = {
   name: 'You',
@@ -68,6 +69,12 @@ export default function ConversationComponent(props: ConversationProps) {
     if (statement.partnerKind == 'leader') {
       const leader = getLeaderByName(statement.partnerType);
       if (leader) { partner = leader; }
+    }
+    else if (statement.partnerKind == 'special') {
+      partner = {
+        name: statement.partnerType,
+        icon: new Icon({ provider: 'svg', name: statement.partnerType})
+      };
     }
     const leaderJoining = (statement.leaderJoins)
       ? leaderTypes[statement.leaderJoins] : null;

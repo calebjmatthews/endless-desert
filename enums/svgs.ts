@@ -152,6 +152,7 @@ export enum SVGS {
   SCARRED_NAVIGATOR = "Szczecin",
   AUSPICIOUS_WAIF = "Reims",
   YOU = "You",
+  FIREFLY = "Firefly",
 
   FOXFIRE_ASCETICS = "Foxfire Ascetics",
   TREFOIL_KINGDOM = "Trefoil Kingdom",
