@@ -321,7 +321,7 @@ fortuities[FORTUITIES.THRICE_LOCKED_BOOK] = new Fortuity({
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_BOOK + '1'),
       title: 'An Unexpected Find',
-      text: (`There's a desk, an empty inkwell, and some loose sheets of partment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard yellow metal.`)
+      text: (`There's a desk, an empty inkwell, and some loose sheets of partment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard red metal.`)
     }),
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_BOOK + '2'),

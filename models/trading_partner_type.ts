@@ -38,9 +38,37 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     const tier = this.getTier(tradingPartner.trust);
     const acceptQuantity = this.getAcceptQuantity(tradingPartner.trust);
     let tCount = 4;
-    const roll = Math.random();
-    if (roll < 0.1) { tCount = 5; }
-    else if (roll < 0.35) { tCount = 3; }
+    const roll = utils.random();
+    switch(tier.value) {
+      case 0:
+      if (roll > 0.9) { tCount = 5; }
+      else if (roll < 0.25) { tCount = 3; }
+      else { tCount = 4; }
+      break;
+
+      case 1:
+      if (roll > 0.9) { tCount = 6; }
+      else if (roll > 0.45) { tCount = 5; }
+      else if (roll < 0.1) { tCount = 3; }
+      else { tCount = 4; }
+      break;
+
+      case 2:
+      if (roll > 0.9) { tCount = 7; }
+      else if (roll > 0.65) { tCount = 6; }
+      else if (roll < 0.15) { tCount = 4; }
+      else if (roll < 0.05) { tCount = 3; }
+      else { tCount = 5; }
+      break;
+
+      case 3:
+      if (roll > 0.8) { tCount = 7; }
+      else if (roll > 0.45) { tCount = 6; }
+      else if (roll < 0.1) { tCount = 4; }
+      else { tCount = 5; }
+      break;
+    }
+
     let trades: { [id: string] : Trade} = {};
     let pGives: {specificity: string, type: string, quality?: number,
       weight: number}[] = [];
