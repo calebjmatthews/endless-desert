@@ -22,7 +22,9 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
     });
     return new QuestStatus({ ...questStatus,
       quests: {...questStatus.quests, [aqQuest.id]: aqQuest},
-      resourcesToCheck: aqResourcesToCheck });
+      resourcesToCheck: aqResourcesToCheck,
+      lastDailyCompleted: (aqQuest.isDaily) ? new Date(Date.now()).valueOf()
+        : questStatus.lastDailyCompleted });
 
     case REMOVE_QUEST:
     const rqQuest: Quest = action.quest;
@@ -67,7 +69,7 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
     case ADD_QUEST_COMPLETED:
     return new QuestStatus({ ...questStatus, questsCompleted: {
       ...questStatus.questsCompleted, [action.questCompleted.id]: action.questCompleted
-    }, lastDailyCompleted: new Date(Date.now()).valueOf() });
+    } });
 
 		default:
 		return questStatus;

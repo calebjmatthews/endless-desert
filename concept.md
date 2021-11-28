@@ -589,6 +589,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Increase # of traders research
   [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
+  [ ] Tag and subcategory specificities have a worse rate of return
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Storing an occupied house kicks out the leader
