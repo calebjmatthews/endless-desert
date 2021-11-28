@@ -193,7 +193,9 @@ researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
   difficulty: 2,
   description: ('Some detailed notes on the properties of desert soil '
     + 'could give you options for growing crops faster, better, and more efficiently.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 4800},
+    {specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 560}]
 });
 
 researchOptions[RESEARCH_OPTIONS.FROM_DOMESTICATION] = new ResearchOption({
@@ -202,7 +204,9 @@ researchOptions[RESEARCH_OPTIONS.FROM_DOMESTICATION] = new ResearchOption({
   difficulty: 2,
   description: ('Tending to pregnant livestock, treating animal sickness, foods '
     + 'that are preffered and foods that are rejected, it\'s all here in your notes.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_CULTIVATION, quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_CULTIVATION, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.FISH, quantity: 580},
+    {specificity: RSP.SUBCATEGORY, type: RSC.ANIMAL, quantity: 460}]
 });
 
 researchOptions[RESEARCH_OPTIONS.FINAL_EDIBILITY] = new ResearchOption({
@@ -211,7 +215,7 @@ researchOptions[RESEARCH_OPTIONS.FINAL_EDIBILITY] = new ResearchOption({
   difficulty: 2,
   description: ('Flavor in your town\'s food is important, but so is efficiency '
     + 'and effect. You\'ve begun to study and compare foods from different sources.'),
-  cost: [{specificity: RSP.CATEGORY, type: RCA.DISH, quantity: 100}]
+  cost: [{specificity: RSP.CATEGORY, type: RCA.DISH, quantity: 1000}]
 });
 
 researchOptions[RESEARCH_OPTIONS.REMEMBERED_MEETINGS] = new ResearchOption({
@@ -305,7 +309,7 @@ researchOptions[RESEARCH_OPTIONS.MIDDLE_PRICIPLES] = new ResearchOption({
   description: ('The numbers that govern everything around you can be understood '
     + 'from deep observation. Not necessarily observation of anything at all... '
     + 'But close.'),
-  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1}]
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 2}]
 });
 
 researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
@@ -329,7 +333,7 @@ researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
     + 'surprisingly similar in style, although different in speed. '
     + 'Understanding their differences may help you harness both more effectively.'),
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_WATER, quantity: 1},
-    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}]
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10000}]
 });
 
 researchOptions[RESEARCH_OPTIONS.MATERIAL_CONJUNCTION] = new ResearchOption({
@@ -401,7 +405,9 @@ researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
   description: ('Making a fire as hot and concentrated as possible is more difficult '
     + 'than expected. It\'s all about fuel and airflow, but the fire itself '
     + 'creates its own updraft that throws everything off.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_HEAT, quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_HEAT, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.REEDS, quantity: 1200},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 320}]
 });
 
 researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
@@ -412,8 +418,9 @@ researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
     + 'called sulfur, and the ways it can change solid objects into liquids '
     + 'with completely different properties. But it sure isn\'t pleasant '
     + 'to work with.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 20},
-    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 80}]
+  cost: [{specificity: RSP.EXACT, type: RCA.FIELD_NOTES, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 40},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}]
 });
 
 researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
@@ -423,7 +430,9 @@ researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   description: ('Metals, clay, glass, and materials of all kinds change with time, '
     + 'becoming dull or brittle. There must be a way to make them, if not '
     + 'unchangeable, at least better able to resist this decay from the air.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.METAL_INGOT, quantity: 20},
+    {specificity: RSP.EXACT, type: RSC.GLASS, quantity: 200}]
 });
 
 export { researchOptions };

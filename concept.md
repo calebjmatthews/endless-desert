@@ -585,7 +585,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Tutorial quests
   [X] Daily quests
   [X] Trader trust to affect # of items
-  [ ] Field note research costs to use large quantities of other resources
+  [X] Field note research costs to use large quantities of other resources
   [ ] Increase # of traders research
   [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
