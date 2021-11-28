@@ -19,8 +19,8 @@ let fifConversations: { [name: string] : Conversation } = {};
 let fifConvoStatements: { [name: string] : ConversationStatement } = {};
 let fifConvoResponses: { [name: string] : ConversationResponse } = {};
 
-fifConversations[CVS.FIF_INTRODUCTION + ' - 0'] = new Conversation({
-  name: CVS.FIF_INTRODUCTION + ' - 0',
+fifConversations[CVS.FIF_INTRODUCTION] = new Conversation({
+  name: CVS.FIF_INTRODUCTION,
   title: `The Voice You've Been Hearing...`,
   partnerKind: 'special', partnerType: SPECIAL.FIREFLY,
   statementName: CVS.FIF_INTRODUCTION + ' - s0',

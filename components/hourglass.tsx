@@ -7,7 +7,7 @@ import { increaseResources, consumeResources, setLastTimestamp }
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding } from '../actions/buildings';
-import { addToActivityQueue } from '../actions/quest_status';
+import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMessage, addMemos } from '../actions/ui';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
   setFortuityDailyLast } from '../actions/account';
@@ -23,11 +23,13 @@ import Resource from '../models/resource';
 import Rates from '../models/rates';
 import Leader from '../models/leader';
 import Account from '../models/account';
+import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
 import { fortuities } from '../instances/fortuities';
+import { questGen } from '../instances/quest_gen';
 import { utils } from '../utils';
 import { MEMOS } from '../enums/memos';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -35,8 +37,7 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
 import { ACTIVITIES } from '../enums/activities';
-
-const FORTUITY_BASE = 10000;
+import { CHECK_INTERVAL } from '../constants';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -207,8 +208,22 @@ export default function HourglassComponent() {
             dispatch(addTimer(new Timer({
               name: 'Fortuity',
               endsAt: (new Date(Date.now()).valueOf()
-                + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
+                + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
               fortuityCheck: true
+            })));
+          }
+        }
+        if (timer.dailyQuestCheck) {
+          const quest = dailyQuestCheck();
+          if (quest) {
+            dispatch(addQuest(quest));
+          }
+          else {
+            dispatch(addTimer(new Timer({
+              name: 'Daily quest',
+              endsAt: (new Date(Date.now()).valueOf()
+                + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
+              dailyQuestCheck: true
             })));
           }
         }
@@ -242,7 +257,7 @@ export default function HourglassComponent() {
     Object.keys(fortuities).map((fName) => {
       const fortuity = fortuities[fName];
       if (fortuity.repeatable || account.fortuitiesSeen[fName] == undefined) {
-        if (!dailyFortuityUsed(fortuity, account)
+        if (!(fortuity.repeatable && withinLastDay(account.fortuityDailyLast))
           && fortuity.available({ vault, researchStatus, buildings, timers,  tradingStatus, account, leaders, equipment })) {
           fortuityPool.push(fortuity);
         }
@@ -254,16 +269,23 @@ export default function HourglassComponent() {
     }
     return null;
   }
-
-  function dailyFortuityUsed(fortuity: Fortuity, account: Account) {
-    if (fortuity.repeatable) {
-      const currentTimestamp = new Date(Date.now()).valueOf() - (1000 * 60 * 60 * 24);
-      if (account.fortuityDailyLast >= currentTimestamp) {
-        return true;
-      }
-    }
-    return false;
+  function withinLastDay(timestamp: number) {
+    const threshold = new Date(Date.now()).valueOf() - (1000 * 60 * 60 * 24);
+    return (timestamp >= threshold);
   }
+
+  function dailyQuestCheck(): Quest|null {
+    let currentDaily: boolean = false;
+    Object.keys(questStatus.quests).forEach((id) => {
+      const quest = questStatus.quests[id];
+      if (quest.isDaily) { currentDaily = true; }
+    });
+    if (!currentDaily && !withinLastDay(questStatus.lastDailyCompleted)) {
+      return questGen({ vault });
+    }
+    return null;
+  }
+
 
   function cisternRepaired() {
     dispatch(addMemos([memos[MEMOS.CISTERN_REPAIRED],
@@ -295,7 +317,7 @@ export default function HourglassComponent() {
     dispatch(addTimer(new Timer({
       name: 'Fortuity',
       endsAt: (new Date(Date.now()).valueOf()
-        + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
+        + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
       fortuityCheck: true
     })));
   }

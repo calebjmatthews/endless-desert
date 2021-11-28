@@ -19,6 +19,7 @@ export default class Timer implements TimerInterface {
   buildingToUpgrade?: string|null = null;
   tradingPartnerToArrive?: string|null = null;
   fortuityCheck?: boolean = false;
+  dailyQuestCheck?: boolean = false;
   questActivity?: QuestActivity|null = null;
   messageToDisplay: string|null = null;
   iconToDisplay: Icon|null = null;
@@ -67,6 +68,7 @@ interface TimerInterface {
   buildingToUpgrade?: string|null;
   tradingPartnerToArrive?: string|null;
   fortuityCheck?: boolean;
+  dailyQuestCheck?: boolean;
   questActivity?: QuestActivity|null;
   messageToDisplay?: string|null;
   iconToDisplay?: {provider: string, name: string}|null;

@@ -254,6 +254,7 @@ function taskMatchEquipmentToMark(equipmentToMark:
     return 0;
   }
   const resourceType = resourceTypes[equipmentMarked.typeName + ' (Unmarked)'];
+  if (!equipmentToMark.specificity) { quantity = equipmentMarked.quantity; }
   switch(equipmentToMark.specificity) {
     case RSP.CATEGORY:
     if (resourceType.category === equipmentToMark.type) {

@@ -2,6 +2,7 @@ import { RESOURCE_CATEGORIES } from './enums/resource_categories';
 import { RESOURCE_TAGS } from './enums/resource_tags';
 
 export const SAVE_INTERVAL = 60000;
+export const CHECK_INTERVAL = 60000;
 // export const STORAGE_BASE_URL = 'http://localhost:8080/';
 export const BASE_URL = 'https://endlessdesert.app/';
 export const STORAGE_GET_URL = `${BASE_URL}api/storage_get/`;

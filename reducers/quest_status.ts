@@ -7,7 +7,7 @@ import { SET_QUEST_STATUS, ADD_QUEST, REMOVE_QUEST, ADD_TO_ACTIVITY_QUEUE,
   ADD_QUEST_COMPLETED } from '../actions/quest_status';
 
 export default function (questStatus: QuestStatus = { quests: {}, questsCompleted: {},
-  activityQueue: [], resourcesToCheck: {} }, action: any = null) {
+  lastDailyCompleted: 0, activityQueue: [], resourcesToCheck: {} }, action: any = null) {
 	switch(action.type) {
     case SET_QUEST_STATUS:
     return new QuestStatus(action.questStatus);
@@ -67,7 +67,7 @@ export default function (questStatus: QuestStatus = { quests: {}, questsComplete
     case ADD_QUEST_COMPLETED:
     return new QuestStatus({ ...questStatus, questsCompleted: {
       ...questStatus.questsCompleted, [action.questCompleted.id]: action.questCompleted
-    } });
+    }, lastDailyCompleted: new Date(Date.now()).valueOf() });
 
 		default:
 		return questStatus;

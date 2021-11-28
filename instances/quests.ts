@@ -2,6 +2,7 @@ import Quest from '../models/quest';
 import QuestTask from '../models/quest_task';
 import QuestProgress from '../models/quest_progress';
 import Icon from '../models/icon';
+import { conversations } from '../instances/conversations';
 import { utils } from '../utils';
 import { QUESTS } from '../enums/quests';
 import { ACTIVITIES } from '../enums/activities';
@@ -14,6 +15,7 @@ import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 const ETY = EQUIPMENT_TYPES;
 import { TRADING_PARTNERS } from '../enums/trading_partners';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { CONVERSATIONS } from '../enums/conversations';
 import { SVGS } from '../enums/svgs';
 
 const testingId = utils.randHex(16);
@@ -63,7 +65,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     gainResources: [{ specificity: RSP.EXACT, type: RTY.SAND_YELLOW, value: 200 },
       { specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, value: 200 },
       { specificity: RSP.EXACT, type: RTY.REEDS, value: 200 }],
-    questsBegin: [QUESTS.BUILD, QUESTS.TRADE, QUESTS.ANALYZE]
+    questsBegin: [QUESTS.ANALYZE, QUESTS.BUILD, QUESTS.TRADE]
   }),
   [QUESTS.ANALYZE]: new Quest({
     id: QUESTS.ANALYZE,
@@ -71,7 +73,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     givenBy: 'Firefly',
     icon: new Icon({ provider: 'svg', name: SVGS.KNOWLEDGE }),
     description: `You feel like someone wants you to examine the world even further.`,
-    finishText: `Analyzing gives less Knowledge than studying, but its the best way to gain more if you have nothing new to study.`,
+    finishText: `Analyzing gives less Knowledge than studying, but its the only source if you have nothing new to study.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.STUDY,
         label: `Complete the "Analysis" research.`,
@@ -192,6 +194,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.LENTIL}`), quantity: 10 }})
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
+    conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   })
 }
 

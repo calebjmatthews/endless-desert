@@ -5,6 +5,7 @@ import QuestActivity from './quest_activity';
 export default class QuestStatus {
   quests: { [id: string] : Quest } = {};
   questsCompleted: { [id: string] : QuestCompleted } = {};
+  lastDailyCompleted: number = 0;
   activityQueue: QuestActivity[] = [];
   resourcesToCheck: { [specType: string] : boolean } = {};
 

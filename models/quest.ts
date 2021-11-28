@@ -54,4 +54,5 @@ interface QuestInterface {
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
   questsBegin?: string[];
+  conversationBegins?: Conversation;
 }

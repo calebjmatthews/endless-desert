@@ -268,11 +268,8 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'Firefly Introduction',
-        title: `The Voice You've Been Hearing`,
-        convoName: 'Firefly Introduction - 0'
-      })]));
+      dispatch(unlockTab(TABS.QUESTS));
+      dispatch(addQuest(quests['Testing']));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

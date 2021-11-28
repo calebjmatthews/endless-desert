@@ -12,6 +12,7 @@ import { addQuest, removeQuest, addQuestCompleted } from '../actions/quest_statu
 import { increaseResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
+import { addTimer } from '../actions/timers';
 import { addMemos } from '../actions/ui';
 
 import QuestStatus from '../models/quest_status';
@@ -25,13 +26,16 @@ import Leader from '../models/leader';
 import Vault from '../models/vault';
 import Memo from '../models/memo';
 import Icon from '../models/icon';
+import Timer from '../models/timer';
 import Positioner from '../models/positioner';
 import { quests } from '../instances/quests';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { QUESTS } from '../enums/quests';
 import { SVGS } from '../enums/svgs';
+import { CHECK_INTERVAL } from '../constants';
 
 export default function QuestsComponent() {
   const dispatch = useDispatch();
@@ -104,7 +108,8 @@ export default function QuestsComponent() {
   }
 
   function completeQuest(quest: Quest) {
-    let memo = new Memo({ name: quest.id, title: quest.name, text: quest.finishText });
+    let memos = [new Memo({ name: quest.id, title: quest.name,
+      text: quest.finishText })];
     if (quest.gainResources) {
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -114,7 +119,7 @@ export default function QuestsComponent() {
         resourceNames.push(rToGain.type);
       });
       dispatch(increaseResources(vault, resourcesGained));
-      memo.resourcesGained = resourcesGained;
+      memos[0].resourcesGained = resourcesGained;
     }
     if (quest.leaderJoins) {
       const leaderCreateRes =
@@ -131,7 +136,7 @@ export default function QuestsComponent() {
       let leader = new Leader(leaderCreateRes.leader);
       leader.calcEffects(tempEquipment, {}, new Vault(null));
       dispatch(addLeader(leader));
-      memo.leaderJoined = quest.leaderJoins;
+      memos[0].leaderJoined = quest.leaderJoins;
     }
     if (quest.questsBegin) {
       quest.questsBegin.forEach((questName) => {
@@ -139,16 +144,27 @@ export default function QuestsComponent() {
       });
     }
     if (quest.conversationBegins) {
-      dispatch(addMemos([new Memo({
+      memos.push(new Memo({
         name: quest.conversationBegins.name,
         title: quest.conversationBegins.title,
         convoName: quest.conversationBegins.name
-      })]));
+      }));
     }
+
+    if (quest.name == QUESTS.MARK_EQUIPMENT) {
+      dispatch(addTimer(new Timer({
+        name: 'Daily quest',
+        endsAt: (new Date(Date.now()).valueOf() + 100),
+        // endsAt: (new Date(Date.now()).valueOf()
+        //   + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
+        dailyQuestCheck: true
+      })));
+    }
+
     dispatch(removeQuest(quest));
     dispatch(addQuestCompleted(new QuestCompleted({ id: quest.id, name: quest.name,
       icon: quest.icon, isDaily: quest.isDaily })));
-    dispatch(addMemos([memo]));
+    dispatch(addMemos(memos));
   }
 }
 

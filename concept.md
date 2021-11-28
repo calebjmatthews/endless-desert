@@ -583,9 +583,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Resource exhaustion display
   [X] Quest system
   [X] Tutorial quests
-  [ ] Daily quests
+  [X] Daily quests
   [ ] Trader trust to affect # of items
-  [ ] Field note reasearch costs to use large quantities of other resources
+  [ ] Field note research costs to use large quantities of other resources
   [ ] Increase # of traders research
   [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
