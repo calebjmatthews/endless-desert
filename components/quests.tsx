@@ -35,7 +35,6 @@ import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUESTS } from '../enums/quests';
 import { SVGS } from '../enums/svgs';
-import { CHECK_INTERVAL } from '../constants';
 
 export default function QuestsComponent() {
   const dispatch = useDispatch();
@@ -155,8 +154,6 @@ export default function QuestsComponent() {
       dispatch(addTimer(new Timer({
         name: 'Daily quest',
         endsAt: (new Date(Date.now()).valueOf() + 100),
-        // endsAt: (new Date(Date.now()).valueOf()
-        //   + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
         dailyQuestCheck: true
       })));
     }

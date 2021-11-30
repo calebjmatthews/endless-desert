@@ -204,28 +204,24 @@ export default function HourglassComponent() {
               dispatch(setFortuityDailyLast(currentTimestamp));
             }
           }
-          else {
-            dispatch(addTimer(new Timer({
-              name: 'Fortuity',
-              endsAt: (new Date(Date.now()).valueOf()
-                + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
-              fortuityCheck: true
-            })));
-          }
+          dispatch(addTimer(new Timer({
+            name: `Fortuity-${utils.randHex(8)}`,
+            endsAt: (new Date(Date.now()).valueOf()
+              + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
+            fortuityCheck: true
+          })));
         }
         if (timer.dailyQuestCheck) {
           const quest = dailyQuestCheck();
           if (quest) {
             dispatch(addQuest(quest));
           }
-          else {
-            dispatch(addTimer(new Timer({
-              name: 'Daily quest',
-              endsAt: (new Date(Date.now()).valueOf()
-                + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
-              dailyQuestCheck: true
-            })));
-          }
+          dispatch(addTimer(new Timer({
+            name: `Daily Quest-${utils.randHex(8)}`,
+            endsAt: (new Date(Date.now()).valueOf()
+              + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
+            dailyQuestCheck: true
+          })));
         }
         if (timer.questActivity) {
           dispatch(addToActivityQueue(timer.questActivity));

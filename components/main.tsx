@@ -268,8 +268,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(unlockTab(TABS.QUESTS));
-      dispatch(addQuest(quests['Testing']));
+      dispatch(addTimer(new Timer({
+        name: 'Daily quest',
+        endsAt: (new Date(Date.now()).valueOf() + 100),
+        dailyQuestCheck: true
+      })));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

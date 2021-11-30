@@ -586,6 +586,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Daily quests
   [X] Trader trust to affect # of items
   [X] Field note research costs to use large quantities of other resources
+  [ ] Mussels in Fishing Pond
+  [ ] Brine trade good
   [ ] Increase # of traders research
   [ ] Conjecture research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
