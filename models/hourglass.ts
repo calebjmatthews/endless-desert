@@ -123,13 +123,13 @@ export default class Hourglass {
       const production = productionSum[typeQuality];
       const resourceType = resourceTypes[typeName];
       utils.mapAdd(exactMap, typeName, production);
-      resourceType.tags.forEach((tagName) => {
+      resourceType?.tags.forEach((tagName) => {
         utils.mapAdd(tagMap, tagName, production);
       });
-      if (resourceType.subcategory) {
+      if (resourceType?.subcategory) {
         utils.mapAdd(subcategoryMap, resourceType.subcategory, production);
       }
-      utils.mapAdd(categoryMap, resourceType.category, production);
+      utils.mapAdd(categoryMap, resourceType?.category, production);
     });
 
     const questResourceChecks: { [specType: string] : number } = {};

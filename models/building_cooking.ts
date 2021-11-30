@@ -22,31 +22,31 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     ]}),
     new DishType({name: RTY.SOUP, valueChange: 10, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.BREAD, valueChange: 30, contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.PIE, valueChange: 60, contains: [
-      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.OMELET, valueChange: 60, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.STEW, valueChange: 80, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.CAKE, valueChange: 120, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST }
+      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST }
     ]})
   ];
 
@@ -84,31 +84,35 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   });
   const dishType = dishTypes[dishTypeIndex];
 
-  let dishValue = 0;
+  let dishValue = dishType.valueChange;
   let consumes: { specificity: string, type: string, quantity: number }[] = [];
+  let matched: { [kind: string] : boolean } = {};
   for (let index = 0; index < ingredients.length; index++) {
     const ingredient = ingredients[index];
-    let containMatch: boolean = false;
     let quantity: number = DEFAULT_DISH_COST;
-    dishType.contains.map((contain) => {
+    let anyMatch: boolean = false;
+    dishType.contains.forEach((contain) => {
       switch(contain.specificity) {
-        case RSP.TAG:
-        if (utils.arrayIncludes(ingredient.tags, contain.type) && !containMatch) {
-          containMatch = true;
+        case RSP.EXACT:
+        if (ingredient.name == contain.type && !matched[contain.type]) {
+          matched[contain.type] = true;
+          anyMatch = true;
           quantity = contain.quantity;
         }
         break;
 
-        case RSP.EXACT:
-        if (ingredient.name == contain.type && !containMatch) {
-          containMatch = true;
+        case RSP.TAG:
+        if (utils.arrayIncludes(ingredient.tags, contain.type)
+          && !matched[contain.type]) {
+          matched[contain.type] = true;
+          anyMatch = true;
           quantity = contain.quantity;
         }
         break;
       }
     });
-    if (!containMatch && (utils.arrayIncludes(ingredient.tags, RTA.SPICE
-      || ingredient.name == RTY.WATER))) {
+    if (!anyMatch && (utils.arrayIncludes(ingredient.tags, RTA.SPICE)
+      || ingredient.name == RTY.WATER)) {
       quantity = DEFAULT_SPICE_COST;
     }
     consumes.push({ specificity: RSP.EXACT, type: ingredient.name,
