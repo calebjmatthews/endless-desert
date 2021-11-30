@@ -86,7 +86,7 @@ export default class Hourglass {
     questResourceChecks: { [specType: string] : number } } {
 
     if (rates.soonestExhaustion) {
-      if (rates.soonestExhaustion < new Date(Date.now()).valueOf()) {
+      if (rates.soonestExhaustion < (new Date(Date.now()).valueOf() + 1000)) {
         const results = this.calculate(rates, vault, startingTimestamp,
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
@@ -257,7 +257,8 @@ export default class Hourglass {
 
             if (cResource) {
               if (vault.resources[cResource.type + '|0']) {
-                if (vault.resources[cResource.type + '|0'].quantity < 1) {
+                if (vault.resources[cResource.type + '|0'].quantity
+                  < (consumption.quantity / 60)) {
                   console.log('missingConsumption for: ' + cResource.type);
                   r.problems[id].push(cResource.type + ' missing');
                   missingConsumption = true;
