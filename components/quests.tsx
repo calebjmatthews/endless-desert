@@ -192,7 +192,14 @@ function QuestDescription(props: { quest: Quest,
     return (
       <View style={styles.columns}>
         {quest.tasks.map((task, index) => {
-          return renderTask(task, quest.progress[index]);
+          return (
+            <View key={index}>
+              {renderTask(task, quest.progress[index])}
+              {(index < (quest.tasks.length-1)) && (
+                <View style={styles.breakSmall} />
+              )}
+            </View>
+          );
         })}
       </View>
     );
@@ -206,7 +213,7 @@ function QuestDescription(props: { quest: Quest,
       <View key={`${task.parentId}|${task.index}`}
         style={StyleSheet.flatten([styles.rows,
           {maxWidth: props.positioner.bodyMedWidth}])}>
-        <View style={{marginRight: 3}}>
+        <View style={{width: 15, marginRight: 3}}>
           {completed ?
           <IconComponent provider="FontAwesome" name="check-square-o"
             color={color} size={16} /> :
@@ -248,7 +255,10 @@ function QuestDescription(props: { quest: Quest,
     }
     return (
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={buttonStyle} disabled={!quest.readyToComplete}
+        <TouchableOpacity style={StyleSheet.flatten([buttonStyle,
+          {minWidth: (props.positioner.bodyMedWidth - 10),
+            maxWidth: (props.positioner.bodyMedWidth - 10)}])} 
+          disabled={!quest.readyToComplete}
           onPress={() => { rewardPress(quest) }} >
           <Text style={styles.buttonText}>{actionLabel}</Text>
           {icon && <BadgeComponent icon={icon} size={19} />}

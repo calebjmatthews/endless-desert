@@ -389,6 +389,9 @@ export const styles = StyleSheet.create({
   break: {
     marginTop: 10
   },
+  breakSmall: {
+    marginTop: 4
+  },
 
   statusBarSpacer: {
     height: 50

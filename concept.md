@@ -586,6 +586,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Daily quests
   [X] Trader trust to affect # of items
   [X] Field note research costs to use large quantities of other resources
+  [ ] Swap Lentil Farming and Reed Cultivation difficulties
   [ ] Mussels in Fishing Pond
   [ ] Brine trade good
   [ ] Increase # of traders research
@@ -750,3 +751,5 @@ console.log('quest');
 console.log(quest);
 if (quest) { dispatch(addQuest(quest)); }
 ```
+
+001211201190600
