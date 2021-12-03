@@ -680,7 +680,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]}),
     new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, quantity: 40}]})],
+      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 40}]})],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: true

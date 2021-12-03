@@ -86,13 +86,18 @@ export default class Vault {
 
   getTypeQuantity(typeName: string, qualityMin: number, qualityMax: number) {
     let quantity = 0;
-    utils.range(qualityMin, qualityMax).map((quality) => {
-      const key = (typeName + '|' + quality);
-      if (this.resources[key]) {
-        quantity += this.resources[key].quantity;
+    Object.keys(this.resources).map((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      const resourceTypeName = typeQuality.split('|')[0];
+      if (!resourceTypeName.includes('-')) {
+        if (typeQuality.split('|')[0] == typeName) {
+          quantity += resource.quantity;
+        }
       }
-    })
-
+      else if (resourceTypeName.split('-')[0] == typeName) {
+        quantity += resource.quantity;
+      }
+    });
     return quantity;
   }
 

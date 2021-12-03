@@ -268,11 +268,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addTimer(new Timer({
-        name: 'Daily quest',
-        endsAt: (new Date(Date.now()).valueOf() + 100),
-        dailyQuestCheck: true
-      })));
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'A Cheery Figure',
+        convoName: 'A Cheery Figure - 0'
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
