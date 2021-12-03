@@ -586,7 +586,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Daily quests
   [X] Trader trust to affect # of items
   [X] Field note research costs to use large quantities of other resources
-  [ ] Conversation doesn't correctly check for dishes
+  [X] Dish-specific subcategory
+  [X] Conversation doesn't correctly check for dishes
   [ ] Swap Lentil Farming and Reed Cultivation difficulties
   [ ] Increase difficulty of Field Notes-locked upgrades
   [ ] Mussels in Fishing Pond

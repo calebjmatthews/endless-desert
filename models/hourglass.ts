@@ -402,7 +402,7 @@ export default class Hourglass {
     function findLeaderMod(leader: Leader, prodResource: string, quality: string) {
       let leaderMod = 0;
       leader.effects.map((anEffect) => {
-        const resourceName = prodResource.split('|')[0];
+        const resourceName = prodResource.split('|')[0].split('-')[0];
         if (anEffect.quality == quality && doesResourceMatch(resourceName,
           anEffect) && anEffect.change > leaderMod) {
           leaderMod = anEffect.change;
