@@ -140,14 +140,20 @@ export default class Vault {
     return quantity;
   }
 
-  getExactResources(resourceName: string) {
+  getExactResources(typeName: string) {
     let resources: Resource[] = [];
-    utils.range(0, 2).map((quality) => {
-      const key = (resourceName + '|' + quality);
-      if (this.resources[key]) {
-        resources.push(this.resources[key]);
+    Object.keys(this.resources).forEach((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      const resourceTypeName = typeQuality.split('|')[0];
+      if (!resourceTypeName.includes('-')) {
+        if (typeQuality.split('|')[0] == typeName) {
+          resources.push(resource);
+        }
       }
-    })
+      else if (resourceTypeName.split('-')[0] == typeName) {
+        resources.push(resource);
+      }
+    });
     return resources;
   }
 
@@ -225,6 +231,10 @@ export default class Vault {
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = utils.getResourceType(resource);
+      if (!resourceType) {
+        console.log('resourceType missing for:');
+        console.log(resource);
+      }
       if (resourceType.category == catName
         && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
         resources.push(this.resources[typeQuality]);
@@ -238,12 +248,6 @@ export default class Vault {
     Object.keys(this.resources).map((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = utils.getResourceType(resource);
-      if (!resourceType) {
-        console.log('typeQuality');
-        console.log(typeQuality);
-        console.log('this');
-        console.log(this);
-      }
       if (this.resources[typeQuality].quantity >= 1
         && !utils.arrayIncludes(STUDY_CATEGORY_BLACKLIST, resourceType.category)) {
         let tagBlacklisted = false;

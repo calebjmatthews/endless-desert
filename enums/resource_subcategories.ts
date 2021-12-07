@@ -16,5 +16,15 @@ export enum RESOURCE_SUBCATEGORIES {
   GLAZE = "Glaze",
   GLASS = "Glass",
   CERAMIC = "Ceramic",
-  TEXTILE = "Textile"
+  TEXTILE = "Textile",
+  SOUP = "Soup",
+  BREAD = "Bread",
+  OMELET = "Omelet",
+  STEW = "Stew",
+  PIE = "Pie",
+  CAKE = "Cake",
+  WAYBREAD = "Waybread",
+  DRIED_FRUIT = "Dried Fruit",
+  SALTED_MEAT = "Salted Meat",
+  MISTAKE = "Mistake",
 }

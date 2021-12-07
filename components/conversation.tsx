@@ -300,38 +300,41 @@ export default function ConversationComponent(props: ConversationProps) {
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
-    let rTypePool: string[] = [];
+    let resourceMap:{ [typeQuality: string] : Resource } = {};
     switch(aCost.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
-      rTypePool = [(aCost.type + '|0')];
+      let exPool = vault.getExactResources(aCost.type);
+      exPool.forEach((resource) => {
+        resourceMap[resource.type + '|' + resource.quality] = resource;
+      });
       break;
 
       case RESOURCE_SPECIFICITY.TAG:
       let tagPool = vault.getTagResources(aCost.type);
-      rTypePool = tagPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
+      tagPool.forEach((resource) => {
+        resourceMap[resource.type + '|' + resource.quality] = resource;
       });
       break;
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
       let scPool = vault.getSubcategoryResources(aCost.type);
-      rTypePool = scPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
+      scPool.forEach((resource) => {
+        resourceMap[resource.type + '|' + resource.quality] = resource;
       });
       break;
 
       case RESOURCE_SPECIFICITY.CATEGORY:
       let catPool = vault.getCategoryResources(aCost.type);
-      rTypePool = catPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
+      catPool.forEach((resource) => {
+        resourceMap[resource.type + '|' + resource.quality] = resource;
       });
       break;
     }
 
-    if (rTypePool.length == 1) {
-      const qtSplit = rTypePool[0].split('|');
-      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
-        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
+    if (Object.keys(resourceMap).length == 1) {
+      const resource = resourceMap[Object.keys(resourceMap)[0]];
+      dispatch(consumeResources(vault, [new Resource({...resource,
+        quantity: aCost.quantity})]));
     }
     else {
       console.log('Time to implement this!');

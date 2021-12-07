@@ -164,4 +164,88 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.TEXTILE] = new ResourceSubcategory(
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.SOUP] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.SOUP,
+  plural: 'Bowls of Soup',
+  value: 30,
+  order: 100,
+  icon: new Icon({provider: 'svg', name: SVGS.SOUP, color: '#F47400',
+    shadow: '#f25600'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.BREAD] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.BREAD,
+  plural: 'Loaves of Bread',
+  value: 40,
+  order: 101,
+  icon: new Icon({provider: 'svg', name: SVGS.BREAD })
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.OMELET] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.OMELET,
+  plural: 'Omelets',
+  value: 160,
+  order: 102,
+  icon: new Icon({provider: 'svg', name: SVGS.OMELET, color: '#18c08b',
+    shadow: '#0caf7b'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.STEW] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.STEW,
+  plural: 'Bowls of Stew',
+  value: 220,
+  order: 103,
+  icon: new Icon({provider: 'svg', name: SVGS.STEW, color: '#fa690e',
+    shadow: '#f94c10'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.PIE] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.PIE,
+  plural: 'Pies',
+  value: 120,
+  order: 104,
+  icon: new Icon({provider: 'svg', name: SVGS.PIE, color: '#c22235'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.CAKE] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.CAKE,
+  plural: 'Cakes',
+  value: 280,
+  order: 105,
+  icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#ffa6b7',
+    shadow: '#d16479'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.WAYBREAD] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.WAYBREAD,
+  plural: 'Wafers of Waybread',
+  value: 60,
+  order: 106,
+  icon: new Icon({provider: 'svg', name: SVGS.WAYBREAD})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.DRIED_FRUIT] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.DRIED_FRUIT,
+  plural: 'Dried Fruits',
+  value: 80,
+  order: 107,
+  icon: new Icon({provider: 'svg', name: SVGS.DRIED_FRUIT})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.SALTED_MEAT] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.SALTED_MEAT,
+  plural: 'Salted Meats',
+  value: 280,
+  order: 108,
+  icon: new Icon({provider: 'svg', name: SVGS.SALTED_MEAT})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.MISTAKE] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.MISTAKE,
+  plural: 'Mistake',
+  value: 1,
+  order: 199,
+  icon: new Icon({provider: 'svg', name: SVGS.MISTAKE})
+});
+
 export { resourceSubcategories };

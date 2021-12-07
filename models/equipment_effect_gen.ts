@@ -30,6 +30,8 @@ export default class EquipmentEffectGenerator
 
   generateOneEffect(gos: GeneratorOption[], vault: Vault,
     resourceTypes: { [name: string] : ResourceType}) {
+    console.log('arguments');
+    console.log(arguments);
     const go: GeneratorOption = utils.randomWeightedSelect(gos);
     const quality = go.qualities[
       Math.floor(go.qualities.length * utils.random())

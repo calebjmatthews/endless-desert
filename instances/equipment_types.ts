@@ -102,17 +102,17 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+    additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
     defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+    additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
     defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], change: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
+    additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, change: 10, weight: 100 }],
     count: 4
   })],
