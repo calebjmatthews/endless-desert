@@ -118,8 +118,8 @@ sndConversations[CVS.SND_THRICE_LOCKED_BOOK + ' - 0'] = new Conversation({
   daily: false,
   weight: 100,
   available: (gState: GameState) => {
-    if (gState.vault?.resources[RTY.THRICE_LOCKED_BOOK]) {
-      if (gState.vault?.resources[RTY.THRICE_LOCKED_BOOK].quantity >= 1) {
+    if (gState.vault?.resources[`${RTY.THRICE_LOCKED_BOOK}|0`]) {
+      if (gState.vault?.resources[`${RTY.THRICE_LOCKED_BOOK}|0`].quantity >= 1) {
         return true;
       }
     }

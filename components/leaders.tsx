@@ -38,8 +38,8 @@ export default function LeadersComponent() {
   useEffect(() => {
     let initNewConvos: { [leaderName: string] : boolean } = {};
     leaderArray.map((leader) => {
-      const convoPool = getConvoPool(leader, conversationStatus, vault, leaders);
-      if (convoPool.length > 1) { initNewConvos[leader.id] = true; }
+      const convoPoolRes = getConvoPool(leader, conversationStatus, vault, leaders);
+      if (convoPoolRes.newConvo) { initNewConvos[leader.id] = true; }
     });
     setNewConvos(initNewConvos);
   }, [])
@@ -70,18 +70,15 @@ export default function LeadersComponent() {
   }
 
   function talkPress(leader: Leader) {
-    let convoPool: Conversation[] = getConvoPool(leader, conversationStatus, vault,
+    let convoPoolRes = getConvoPool(leader, conversationStatus, vault,
       leaders);
-    if (convoPool.length > 0) {
-      const conversationSelected: Conversation = utils.randomWeightedSelect(convoPool);
+    if (convoPoolRes.convoPool.length > 0) {
+      const conversationSelected: Conversation =
+        utils.randomWeightedSelect(convoPoolRes.convoPool);
 
       dispatch(conversationSeen(conversationSelected.name));
       if (conversationSelected.daily) {
         conversationStatus.lastDailyConvo[leader.id] = new Date(Date.now()).valueOf();
-        const convoPool = getConvoPool(leader, conversationStatus, vault, leaders);
-        if (convoPool.length == 1) {
-          setNewConvos({...newConvos, [leader.id] : false});
-        }
         dispatch(useDailyConversation(leader.id));
       }
       dispatch(addMemos([new Memo({
@@ -89,6 +86,11 @@ export default function LeadersComponent() {
         title: conversationSelected.name,
         convoName: conversationSelected.name
       })]));
+      const secondConvoPoolRes = getConvoPool(leader, conversationStatus,
+        vault, leaders);
+      if (!secondConvoPoolRes.newConvo) {
+        setNewConvos({...newConvos, [leader.id] : false});
+      }
     }
   }
 }
@@ -238,5 +240,7 @@ function getConvoPool(leader: Leader, conversationStatus: ConversationStatus,
       }
     }
   });
-  return (primaryPool.length > 0) ? primaryPool : secondaryPool;
+  const convoPool = (primaryPool.length > 0) ? primaryPool : secondaryPool;
+  const newConvo = (primaryPool.length > 0);
+  return { convoPool, newConvo };
 }
