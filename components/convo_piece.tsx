@@ -7,10 +7,11 @@ import BadgeComponent from './badge';
 import { ConversationStatement, ConversationResponse }
   from '../models/conversation';
 import Icon from '../models/icon';
+import { utils } from '../utils';
 
 const INIT_DELAY = 400;
-const REVEAL_MULT = 40;
-const RESET_DELAY = 10;
+const CHAR_DELAY = 30;
+const CHAR_MULT = 8;
 
 export default function ConvoPieceComponent(props: ConvoPieceProps) {
   const opacityAnim = useRef(new Animated.Value(0)).current;
@@ -69,43 +70,46 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
 function ConvoText(props: { text: string }) {
   const [state, setState] = useState('initializing');
   const [revealedText, setRevealedText] = useState('');
-  const [revealingText, setRevealingText] = useState<RevealTextProps|null>(null);
+  const [revealingText, setRevealingText] =
+    useState<{ id: string, text: string }[]>([]);
+  const [toReset, setToReset] = useState(false);
   const [unrevealedText, setUnrevealedText] = useState(['']);
 
   useEffect(() => {
     if (state == 'initializing') {
       setState('initialized');
-      setUnrevealedText(processText(props.text));
+      setUnrevealedText(splitText(props.text));
       setTimeout(() => { setState('canReveal') }, (INIT_DELAY/4));
     }
 
     if (state == 'canReveal') {
       setState('revealing');
-      const newRevealingText = {
-        text: unrevealedText[0],
-        delay: getDelay(unrevealedText[0])
-      };
-      setRevealingText(newRevealingText);
+      const newRevealingText = { id: utils.randHex(8), text: unrevealedText[0]};
+      setRevealingText([...revealingText, newRevealingText]);
       setUnrevealedText(unrevealedText.slice(1));
-      setTimeout(() => { setState('reset') }, newRevealingText.delay);
-    }
-
-    if (state == 'reset') {
-      setState('resetting');
-      setRevealedText(revealedText + revealingText?.text);
-      setRevealingText(null);
       if (unrevealedText.length > 0) {
-        setTimeout(() => { setState('canReveal') }, RESET_DELAY);
+        setTimeout(() => { setState('canReveal'); }, getDelay(newRevealingText.text));
       }
-      else { setState('done'); }
+      setTimeout(() => { setToReset(true); },  (CHAR_DELAY * CHAR_MULT));
     }
   }, [state]);
+
+  useEffect(() => {
+    if (toReset) {
+      setToReset(false);
+      const cRevealingText = revealingText[0];
+      setRevealedText(revealedText + (cRevealingText?.text || ''));
+      setRevealingText(revealingText.slice(1));
+    }
+  }, [toReset])
 
   return (
     <Text>
       <Text>{revealedText}</Text>
-      {revealingText && <RevealingText text={revealingText?.text}
-        delay={revealingText?.delay} />}
+      {revealingText.map((aRevealingText, index) => (
+        <RevealingText key={aRevealingText.id} id={aRevealingText.id}
+          text={aRevealingText.text} />
+      ))}
     </Text>
   );
 
@@ -133,25 +137,25 @@ function ConvoText(props: { text: string }) {
   }
 
   function getDelay(text: string) {
-    if (text.includes(',')) { return REVEAL_MULT * 2 * 3; }
-    if (text.includes('.') || text.includes('!')) { return REVEAL_MULT * 2 * 6; }
-    return text.length * REVEAL_MULT;
+    if (text.includes(',')) { return CHAR_DELAY * 2 * 3; }
+    if (text.includes('.') || text.includes('!')) { return CHAR_DELAY * 2 * 6; }
+    return text.length * CHAR_DELAY;
   }
 }
 
-function RevealingText(props: { text: string, delay: number }) {
-  const opacityAnim = useRef(new Animated.Value(0)).current;
+function RevealingText(props: { id: string, text: string }) {
+  const opacityAnim = { [props.id] : useRef(new Animated.Value(0)).current};
   useEffect(() => {
     Animated.timing(
-      opacityAnim, {
+      opacityAnim[props.id], {
         toValue: 1,
-        duration: props.delay,
+        duration: (CHAR_DELAY * CHAR_MULT),
         useNativeDriver: true }
     ).start();
   }, []);
 
   return (
-    <Animated.Text style={{ opacity: opacityAnim }}>
+    <Animated.Text key={props.text} style={{ opacity: opacityAnim[props.id] }}>
       {props.text}
     </Animated.Text>
   );
@@ -167,9 +171,4 @@ interface ConvoPieceProps {
 interface Partner {
   name: string;
   icon: Icon;
-}
-
-interface RevealTextProps {
-  text: string;
-  delay: number;
 }
