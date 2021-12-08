@@ -254,7 +254,7 @@ resourceTypes[RTY.GRAIN] = new ResourceType({
   name: RTY.GRAIN,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT],
+  tags: [RTA.CROP],
   value: 12,
   description: 'Grind it and bake it, or wet it down and wait',
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN})

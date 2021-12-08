@@ -763,5 +763,3 @@ console.log('quest');
 console.log(quest);
 if (quest) { dispatch(addQuest(quest)); }
 ```
-
-001211201190600

@@ -6,6 +6,7 @@ import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-nati
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import ConvoPieceComponent from './convo_piece';
 import { responseChosen } from '../actions/conversation_status';
 import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
@@ -80,21 +81,8 @@ export default function ConversationComponent(props: ConversationProps) {
       ? leaderTypes[statement.leaderJoins] : null;
     return (
       <View style={styles.columns}>
-        <View style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
-          <View style={StyleSheet.flatten([styles.columns, { marginTop: 17 }])}>
-            <BadgeComponent icon={partner.icon} size={55} marginless={true} />
-          </View>
-          <View style={styles.columns}>
-            <Text style={StyleSheet.flatten([styles.bareText, {marginLeft: 5}])}>
-              {partner.name}
-            </Text>
-            <View style={StyleSheet.flatten([styles.speechBubble,
-              { maxWidth: positioner.speechBubbleWidth, marginLeft: 5,
-                borderTopLeftRadius: 0 }])}>
-              <Text>{statement.text}</Text>
-            </View>
-          </View>
-        </View>
+        {<ConvoPieceComponent convoStatement={statement} partner={partner}
+          speechBubbleWidth={positioner.speechBubbleWidth} />}
         <View style={styles.break} />
         {leaderJoining && (
           <View style={styles.containerStretchRow}>
@@ -226,33 +214,15 @@ export default function ConversationComponent(props: ConversationProps) {
     const statement = convoStatements[response.statementName];
     return (
       <View style={styles.columns} key={responseName}>
-        {renderResponse(response)}
+        <View style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
+          {<ConvoPieceComponent convoResponse={response} partner={DEFAULT_PARTNER}
+            speechBubbleWidth={positioner.speechBubbleWidth} />}
+        </View>
         <View style={styles.break} />
         {renderStatement(statement)}
         <View style={styles.break} />
       </View>
     )
-  }
-
-  function renderResponse(response: ConversationResponse) {
-    const partner = DEFAULT_PARTNER;
-    return (
-      <View style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
-        <View style={styles.columns}>
-          <Text style={StyleSheet.flatten([styles.bareText, {marginLeft: 5}])}>
-            {partner.name}
-          </Text>
-          <View style={StyleSheet.flatten([styles.speechBubble,
-            { maxWidth: positioner.speechBubbleWidth, marginRight: 5,
-              borderTopRightRadius: 0 }])}>
-            <Text>{response.text}</Text>
-          </View>
-        </View>
-        <View style={StyleSheet.flatten([styles.columns, { marginTop: 17 }])}>
-          <BadgeComponent icon={partner.icon} size={55} marginless={true} />
-        </View>
-      </View>
-    );
   }
 
   function responseOptionPress(response: ConversationResponse) {
