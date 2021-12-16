@@ -1,5 +1,5 @@
 import { Conversation, ConversationStatement, ConversationResponse,
-  dailyConversationUsed } from '../../models/conversation';
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
 import { CONVERSATIONS } from '../../enums/conversations';
@@ -18,6 +18,7 @@ import { SVGS } from '../../enums/svgs';
 let fifConversations: { [name: string] : Conversation } = {};
 let fifConvoStatements: { [name: string] : ConversationStatement } = {};
 let fifConvoResponses: { [name: string] : ConversationResponse } = {};
+let fifConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 fifConversations[CVS.FIF_INTRODUCTION] = new Conversation({
   name: CVS.FIF_INTRODUCTION,
@@ -154,4 +155,4 @@ fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s4'] = new ConversationStatement({
 offerings for you`
 });
 
-export { fifConversations, fifConvoStatements, fifConvoResponses };
+export { fifConversations, fifConvoStatements, fifConvoResponses, fifConvoNarrations };

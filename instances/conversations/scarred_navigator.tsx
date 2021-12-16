@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -23,6 +23,7 @@ import { SVGS } from '../../enums/svgs';
 let scnConversations: { [name: string] : Conversation } = {};
 let scnConvoStatements: { [name: string] : ConversationStatement } = {};
 let scnConvoResponses: { [name: string] : ConversationResponse } = {};
+let scnConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 scnConversations[CVS.SCN_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.SCN_SAYING_HELLO + ' - 0',
@@ -99,4 +100,4 @@ scnConvoStatements[FTU.LIMPING_FIGURE + ' - s1h'] = new ConversationStatement({
   text: `Hahaha, Go kick sand, you lout! Although I take your point well enough; does no good to mope about like my best days are behind me. I ought to be better than that.`
 });
 
-export { scnConversations, scnConvoStatements, scnConvoResponses }
+export { scnConversations, scnConvoStatements, scnConvoResponses, scnConvoNarrations }

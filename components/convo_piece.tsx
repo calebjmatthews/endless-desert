@@ -9,18 +9,15 @@ import { ConversationStatement, ConversationResponse }
 import Icon from '../models/icon';
 import { utils } from '../utils';
 
-const INIT_DELAY = 400;
-const CHAR_DELAY = 30;
-const CHAR_MULT = 8;
+import { FADE_IN_DELAY, FADE_CHAR_DELAY, FADE_CHAR_MULT } from '../constants';
 
 export default function ConvoPieceComponent(props: ConvoPieceProps) {
+  console.log('ConvoPieceProps:');
+  console.log(props);
   const opacityAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(
-      opacityAnim, {
-        toValue: 1,
-        duration: INIT_DELAY,
-        useNativeDriver: true }
+      opacityAnim, { toValue: 1, duration: FADE_IN_DELAY, useNativeDriver: true }
     ).start();
   }, []);
 
@@ -38,7 +35,8 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth,  maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginLeft: 5, borderTopLeftRadius: 0 }])}>
-            <ConvoText text={props.convoStatement.text} />
+            <ConvoText text={props.convoStatement.text}
+              finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
       </Animated.View>
@@ -55,7 +53,8 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth, maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginRight: 5, borderTopRightRadius: 0 }])}>
-            <ConvoText text={props.convoResponse.text} />
+            <ConvoText text={props.convoResponse.text}
+              finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
         <View style={StyleSheet.flatten([styles.columns, { marginTop: 17 }])}>
@@ -67,7 +66,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
   return null;
 }
 
-function ConvoText(props: { text: string }) {
+function ConvoText(props: { text: string, finishedAnimating: () => void }) {
   const [state, setState] = useState('initializing');
   const [revealedText, setRevealedText] = useState('');
   const [revealingText, setRevealingText] =
@@ -79,7 +78,7 @@ function ConvoText(props: { text: string }) {
     if (state == 'initializing') {
       setState('initialized');
       setUnrevealedText(splitText(props.text));
-      setTimeout(() => { setState('canReveal') }, (INIT_DELAY/4));
+      setTimeout(() => { setState('canReveal') }, (FADE_IN_DELAY/4));
     }
 
     if (state == 'canReveal') {
@@ -88,9 +87,15 @@ function ConvoText(props: { text: string }) {
       setRevealingText([...revealingText, newRevealingText]);
       setUnrevealedText(unrevealedText.slice(1));
       if (unrevealedText.length > 0) {
-        setTimeout(() => { setState('canReveal'); }, getDelay(newRevealingText.text));
+        setTimeout(() => { setState('canReveal'); },
+          utils.getCharDelay(newRevealingText.text, FADE_CHAR_DELAY));
       }
-      setTimeout(() => { setToReset(true); },  (CHAR_DELAY * CHAR_MULT));
+      else {
+        console.log('Finished!');
+        setState('done');
+        props.finishedAnimating();
+      }
+      setTimeout(() => { setToReset(true); },  (FADE_CHAR_DELAY * FADE_CHAR_MULT));
     }
   }, [state]);
 
@@ -101,7 +106,7 @@ function ConvoText(props: { text: string }) {
       setRevealedText(revealedText + (cRevealingText?.text || ''));
       setRevealingText(revealingText.slice(1));
     }
-  }, [toReset])
+  }, [toReset]);
 
   return (
     <Text>
@@ -135,12 +140,6 @@ function ConvoText(props: { text: string }) {
     }
     return array;
   }
-
-  function getDelay(text: string) {
-    if (text.includes(',')) { return CHAR_DELAY * 2 * 3; }
-    if (text.includes('.') || text.includes('!')) { return CHAR_DELAY * 2 * 6; }
-    return text.length * CHAR_DELAY;
-  }
 }
 
 function RevealingText(props: { id: string, text: string }) {
@@ -149,7 +148,7 @@ function RevealingText(props: { id: string, text: string }) {
     Animated.timing(
       opacityAnim[props.id], {
         toValue: 1,
-        duration: (CHAR_DELAY * CHAR_MULT),
+        duration: (FADE_CHAR_DELAY * FADE_CHAR_MULT),
         useNativeDriver: true }
     ).start();
   }, []);
@@ -166,6 +165,7 @@ interface ConvoPieceProps {
   convoResponse?: ConversationResponse;
   partner: Partner;
   speechBubbleWidth: number;
+  finishedAnimating: () => void;
 }
 
 interface Partner {

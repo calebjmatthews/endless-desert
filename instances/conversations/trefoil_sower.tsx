@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -21,6 +21,7 @@ import { SVGS } from '../../enums/svgs';
 let tfsConversations: { [name: string] : Conversation } = {};
 let tfsConvoStatements: { [name: string] : ConversationStatement } = {};
 let tfsConvoResponses: { [name: string] : ConversationResponse } = {};
+let tfsConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 tfsConversations[CVS.TFS_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.TFS_SAYING_HELLO + ' - 0',
@@ -89,10 +90,10 @@ tfsConvoResponses[FTU.CHEERY_FIGURE + ' - r0p'] = new ConversationResponse({
 tfsConvoStatements[FTU.CHEERY_FIGURE + ' - s1p'] = new ConversationStatement({
   name: FTU.CHEERY_FIGURE + ' - s1p',
   partnerKind: 'leader', partnerType: LEADER_TYPES.TREFOIL_SOWER,
-  text: `Now here is a dish worth talking about! Savory flaky crust, and the filling steaming hot... Mmmm. My thanks to the cook!
+  text: `Now here's something worth talking about! Flaky crust and the filling steaming hot... Mmmm. My thanks to the cook!
 
-  Is this typical, in your town? What a world! The best food I've found, here on the edge of the Endless Desert! I'll be staying here, of course.`,
+Is this typical, in your town? What a strange world! The best food I've found, here on the edge of the Endless Desert! I'll be staying here, of course.`,
   leaderJoins: LEADER_TYPES.TREFOIL_SOWER
 });
 
-export { tfsConversations, tfsConvoStatements, tfsConvoResponses }
+export { tfsConversations, tfsConvoStatements, tfsConvoResponses, tfsConvoNarrations }

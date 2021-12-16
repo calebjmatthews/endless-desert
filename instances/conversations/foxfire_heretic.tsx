@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -21,6 +21,7 @@ import { SVGS } from '../../enums/svgs';
 let ffhConversations: { [name: string] : Conversation } = {};
 let ffhConvoStatements: { [name: string] : ConversationStatement } = {};
 let ffhConvoResponses: { [name: string] : ConversationResponse } = {};
+let ffhConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 ffhConversations[CVS.FFH_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.FFH_SAYING_HELLO + ' - 0',
@@ -101,4 +102,4 @@ ffhConvoStatements[FTU.UNREPENTANT_FIGURE + ' - s1h'] = new ConversationStatemen
   leaderJoins: LEADER_TYPES.FOXFIRE_HERETIC
 });
 
-export { ffhConversations, ffhConvoStatements, ffhConvoResponses }
+export { ffhConversations, ffhConvoStatements, ffhConvoResponses, ffhConvoNarrations }

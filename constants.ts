@@ -3,6 +3,10 @@ import { RESOURCE_TAGS } from './enums/resource_tags';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
+export const FADE_IN_DELAY = 400;
+export const FADE_CHAR_DELAY = 30;
+export const FADE_CHAR_MULT = 8;
+
 // export const STORAGE_BASE_URL = 'http://localhost:8080/';
 export const BASE_URL = 'https://endlessdesert.app/';
 export const STORAGE_GET_URL = `${BASE_URL}api/storage_get/`;

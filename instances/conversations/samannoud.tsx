@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -21,6 +21,7 @@ import { SVGS } from '../../enums/svgs';
 let sndConversations: { [name: string] : Conversation } = {};
 let sndConvoStatements: { [name: string] : ConversationStatement } = {};
 let sndConvoResponses: { [name: string] : ConversationResponse } = {};
+let sndConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 sndConversations[CVS.SND_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.SND_SAYING_HELLO + ' - 0',
@@ -242,4 +243,4 @@ sndConvoStatements[CVS.SND_A_WOUND + ' - s2'] = new ConversationStatement({
   text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, eternal beasts... Don't give me that look. I can handle anything.`
 });
 
-export { sndConversations, sndConvoStatements, sndConvoResponses }
+export { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }

@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -21,6 +21,7 @@ import { SVGS } from '../../enums/svgs';
 let sreConversations: { [name: string] : Conversation } = {};
 let sreConvoStatements: { [name: string] : ConversationStatement } = {};
 let sreConvoResponses: { [name: string] : ConversationResponse } = {};
+let sreConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 sreConversations[CVS.SRE_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.SRE_SAYING_HELLO + ' - 0',
@@ -95,4 +96,4 @@ sreConvoStatements[FTU.SHUDDERING_FIGURE + ' - s1h'] = new ConversationStatement
   leaderJoins: LEADER_TYPES.SHUDDERING_REFUGE
 });
 
-export { sreConversations, sreConvoStatements, sreConvoResponses }
+export { sreConversations, sreConvoStatements, sreConvoResponses, sreConvoNarrations }

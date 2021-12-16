@@ -618,6 +618,20 @@ class Utils {
     });
     return combined;
   }
+
+  getTextDelay(text: string, fadeCharDelay: number) {
+    let delay = 0;
+    for (let index = 0; index < text.length; index++) {
+      delay += this.getCharDelay(text[index], fadeCharDelay);
+    }
+    return delay;
+  }
+
+  getCharDelay(char: string, fadeCharDelay: number) {
+    if (char.includes(',')) { return fadeCharDelay * 2 * 3; }
+    if (char.includes('.') || char.includes('!')) { return fadeCharDelay * 2 * 6; }
+    return fadeCharDelay;
+  }
 }
 
 export let utils = new Utils();

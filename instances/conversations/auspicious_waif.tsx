@@ -1,5 +1,5 @@
-import { Conversation, ConversationStatement, ConversationResponse, dailyConversationUsed }
-  from '../../models/conversation';
+import { Conversation, ConversationStatement, ConversationResponse,
+  ConversationNarration, dailyConversationUsed } from '../../models/conversation';
 import Leader from '../../models/leader';
 import Icon from '../../models/icon';
 import { GameState } from '../../models/game_state';
@@ -21,6 +21,7 @@ import { SVGS } from '../../enums/svgs';
 let auwConversations: { [name: string] : Conversation } = {};
 let auwConvoStatements: { [name: string] : ConversationStatement } = {};
 let auwConvoResponses: { [name: string] : ConversationResponse } = {};
+let auwConvoNarrations: { [name: string] : ConversationNarration } = {};
 
 auwConversations[CVS.AUW_SAYING_HELLO + ' - 0'] = new Conversation({
   name: CVS.AUW_SAYING_HELLO + ' - 0',
@@ -101,4 +102,4 @@ auwConvoStatements[FTU.SLIGHT_FIGURE + ' - s1h'] = new ConversationStatement({
   leaderJoins: LEADER_TYPES.AUSPICIOUS_WAIF
 });
 
-export { auwConversations, auwConvoStatements, auwConvoResponses }
+export { auwConversations, auwConvoStatements, auwConvoResponses, auwConvoNarrations }

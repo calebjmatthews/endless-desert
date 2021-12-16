@@ -1,16 +1,16 @@
-import { fifConversations, fifConvoStatements, fifConvoResponses }
+import { fifConversations, fifConvoStatements, fifConvoResponses, fifConvoNarrations }
   from './firefly';
-import { sndConversations, sndConvoStatements, sndConvoResponses }
+import { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }
   from './samannoud';
-import { sreConversations, sreConvoStatements, sreConvoResponses }
+import { sreConversations, sreConvoStatements, sreConvoResponses, sreConvoNarrations }
   from './shuddering_refuge';
-import { ffhConversations, ffhConvoStatements, ffhConvoResponses }
+import { ffhConversations, ffhConvoStatements, ffhConvoResponses, ffhConvoNarrations }
   from './foxfire_heretic';
-import { auwConversations, auwConvoStatements, auwConvoResponses }
+import { auwConversations, auwConvoStatements, auwConvoResponses, auwConvoNarrations }
   from './auspicious_waif';
-import { tfsConversations, tfsConvoStatements, tfsConvoResponses }
+import { tfsConversations, tfsConvoStatements, tfsConvoResponses, tfsConvoNarrations }
   from './trefoil_sower';
-import { scnConversations, scnConvoStatements, scnConvoResponses }
+import { scnConversations, scnConvoStatements, scnConvoResponses, scnConvoNarrations }
   from './scarred_navigator';
 
 const conversations = { ...sndConversations, ...sreConversations,
@@ -22,5 +22,8 @@ const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
 const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
   ...scnConvoResponses, ...fifConvoResponses };
+const convoNarrations = { ...sndConvoNarrations, ...sreConvoNarrations,
+  ...ffhConvoNarrations, ...auwConvoNarrations, ...tfsConvoNarrations,
+  ...scnConvoNarrations, ...fifConvoNarrations };
 
-export { conversations, convoStatements, convoResponses };
+export { conversations, convoStatements, convoResponses, convoNarrations };

@@ -3,19 +3,19 @@ import Leader from './leader';
 import { GameState } from './game_state';
 import { utils } from '../utils';
 
-
 export class Conversation implements ConversationInterface {
   name: string = '';
   title: string = '';
   statementName: string = '';
+  narrationName?: string;
   partnerKind?: string;
   partnerType?: string;
   repeatable: boolean = false;
   daily: boolean = false;
   weight: number = 100;
 
-  constructor(conversation: ConversationInterface) {
-    Object.assign(this, conversation);
+  constructor(conversation: ConversationInterface|null) {
+    if (conversation) { Object.assign(this, conversation); }
   }
 
   available(gState: GameState, conversation: Conversation) {
@@ -28,6 +28,7 @@ interface ConversationInterface {
   name: string;
   title: string;
   statementName: string;
+  narrationName?: string;
   partnerKind?: string;
   partnerType?: string;
   repeatable: boolean;
@@ -43,6 +44,7 @@ export class ConversationStatement {
   partnerType: string = '';
   text: string = '';
   responseNames?: string[];
+  narrationName?: string;
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
 
@@ -58,6 +60,7 @@ export class ConversationResponse implements ConversationResponseInterface {
   textIntro?: string;
   text: string = '';
   statementName: string = '';
+  narrationName?: string;
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
@@ -77,12 +80,20 @@ interface ConversationResponseInterface {
   textIntro?: string;
   text: string;
   statementName: string;
+  narrationName?: string;
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
   cost?: {specificity: string, type: string, quantity: number};
 
   available?: (gState: GameState) => boolean;
+}
+
+export class ConversationNarration {
+  name: string = '';
+  text: string = '';
+  statementName: string = '';
+  responseName: string = '';
 }
 
 export function dailyConversationUsed(gState: GameState, conversation: Conversation) {
