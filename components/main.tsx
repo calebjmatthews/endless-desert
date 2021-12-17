@@ -271,7 +271,7 @@ export default function MainComponent() {
       dispatch(addMemos([new Memo({
         name: 'test',
         title: 'A Cheery Figure',
-        convoName: 'A Cheery Figure - 0'
+        convoName: 'A Cheery Figure'
       })]));
     }
     else if (tabName != TABS.FORTUITY) {

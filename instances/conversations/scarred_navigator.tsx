@@ -25,8 +25,8 @@ let scnConvoStatements: { [name: string] : ConversationStatement } = {};
 let scnConvoResponses: { [name: string] : ConversationResponse } = {};
 let scnConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-scnConversations[CVS.SCN_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.SCN_SAYING_HELLO + ' - 0',
+scnConversations[CVS.SCN_SAYING_HELLO] = new Conversation({
+  name: CVS.SCN_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SCARRED_NAVIGATOR,
   statementName: CVS.SCN_SAYING_HELLO + ' - s0',
@@ -41,8 +41,8 @@ scnConvoStatements[CVS.SCN_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `Hello. Sorry, I'm not exactly in the mood for casual conversation.`
 });
 
-scnConversations[FTU.LIMPING_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.LIMPING_FIGURE + ' - 0',
+scnConversations[FTU.LIMPING_FIGURE] = new Conversation({
+  name: FTU.LIMPING_FIGURE,
   title: 'A Limping Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SCARRED_NAVIGATOR,
   statementName: FTU.LIMPING_FIGURE + ' - s0',

@@ -23,8 +23,8 @@ let ffhConvoStatements: { [name: string] : ConversationStatement } = {};
 let ffhConvoResponses: { [name: string] : ConversationResponse } = {};
 let ffhConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-ffhConversations[CVS.FFH_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.FFH_SAYING_HELLO + ' - 0',
+ffhConversations[CVS.FFH_SAYING_HELLO] = new Conversation({
+  name: CVS.FFH_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
   statementName: CVS.FFH_SAYING_HELLO + ' - s0',
@@ -39,8 +39,8 @@ ffhConvoStatements[CVS.FFH_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `Keeping safe, |me_prefix|? I, of all people, understand the drive to sate curiosity. But don't lose caution.`
 });
 
-ffhConversations[FTU.UNREPENTANT_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.UNREPENTANT_FIGURE + ' - 0',
+ffhConversations[FTU.UNREPENTANT_FIGURE] = new Conversation({
+  name: FTU.UNREPENTANT_FIGURE,
   title: 'An Unrepentant Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
   statementName: FTU.UNREPENTANT_FIGURE + ' - s0',

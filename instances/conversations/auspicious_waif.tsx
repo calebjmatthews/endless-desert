@@ -23,8 +23,8 @@ let auwConvoStatements: { [name: string] : ConversationStatement } = {};
 let auwConvoResponses: { [name: string] : ConversationResponse } = {};
 let auwConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-auwConversations[CVS.AUW_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.AUW_SAYING_HELLO + ' - 0',
+auwConversations[CVS.AUW_SAYING_HELLO] = new Conversation({
+  name: CVS.AUW_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.AUSPICIOUS_WAIF,
   statementName: CVS.AUW_SAYING_HELLO + ' - s0',
@@ -39,8 +39,8 @@ auwConvoStatements[CVS.AUW_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `How's it going, boss? Staying productive? The ink on your fingers says yes.`
 });
 
-auwConversations[FTU.SLIGHT_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.SLIGHT_FIGURE + ' - 0',
+auwConversations[FTU.SLIGHT_FIGURE] = new Conversation({
+  name: FTU.SLIGHT_FIGURE,
   title: 'A Slight Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.AUSPICIOUS_WAIF,
   statementName: FTU.SLIGHT_FIGURE + ' - s0',

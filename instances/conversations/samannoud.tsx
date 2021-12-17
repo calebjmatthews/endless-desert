@@ -23,8 +23,8 @@ let sndConvoStatements: { [name: string] : ConversationStatement } = {};
 let sndConvoResponses: { [name: string] : ConversationResponse } = {};
 let sndConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-sndConversations[CVS.SND_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.SND_SAYING_HELLO + ' - 0',
+sndConversations[CVS.SND_SAYING_HELLO] = new Conversation({
+  name: CVS.SND_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_SAYING_HELLO + ' - s0',
@@ -39,8 +39,8 @@ sndConvoStatements[CVS.SND_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `Hey there, kid. Always good to see an old friend.`
 });
 
-sndConversations[FTU.FAMILIAR_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.FAMILIAR_FIGURE + ' - 0',
+sndConversations[FTU.FAMILIAR_FIGURE] = new Conversation({
+  name: FTU.FAMILIAR_FIGURE,
   title: 'A Familiar Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: FTU.FAMILIAR_FIGURE + ' - s0',
@@ -110,8 +110,8 @@ sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s1z'] = new ConversationStatement({
   leaderJoins: LEADER_TYPES.SAMANNOUD
 });
 
-sndConversations[CVS.SND_THRICE_LOCKED_BOOK + ' - 0'] = new Conversation({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - 0',
+sndConversations[CVS.SND_THRICE_LOCKED_BOOK] = new Conversation({
+  name: CVS.SND_THRICE_LOCKED_BOOK,
   title: 'A Thrice Locked Book',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s0',
@@ -188,8 +188,8 @@ sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s2h'] = new ConversationStat
   gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
 });
 
-sndConversations[CVS.SND_A_WOUND + ' - 0'] = new Conversation({
-  name: CVS.SND_A_WOUND + ' - 0',
+sndConversations[CVS.SND_A_WOUND] = new Conversation({
+  name: CVS.SND_A_WOUND,
   title: 'A Wound',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_A_WOUND + ' - s0',

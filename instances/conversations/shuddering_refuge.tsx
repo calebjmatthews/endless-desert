@@ -23,8 +23,8 @@ let sreConvoStatements: { [name: string] : ConversationStatement } = {};
 let sreConvoResponses: { [name: string] : ConversationResponse } = {};
 let sreConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-sreConversations[CVS.SRE_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.SRE_SAYING_HELLO + ' - 0',
+sreConversations[CVS.SRE_SAYING_HELLO] = new Conversation({
+  name: CVS.SRE_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SHUDDERING_REFUGE,
   statementName: CVS.SND_SAYING_HELLO + ' - s0',
@@ -39,8 +39,8 @@ sreConvoStatements[CVS.SRE_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `Good day, |me_prefix|. I hope you are leaving your study on occasion; one should know the color of the sky.`
 });
 
-sreConversations[FTU.SHUDDERING_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.SHUDDERING_FIGURE + ' - 0',
+sreConversations[FTU.SHUDDERING_FIGURE] = new Conversation({
+  name: FTU.SHUDDERING_FIGURE,
   title: 'A Shuddering Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SHUDDERING_REFUGE,
   statementName: FTU.SHUDDERING_FIGURE + ' - s0',

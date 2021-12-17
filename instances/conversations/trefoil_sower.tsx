@@ -23,8 +23,8 @@ let tfsConvoStatements: { [name: string] : ConversationStatement } = {};
 let tfsConvoResponses: { [name: string] : ConversationResponse } = {};
 let tfsConvoNarrations: { [name: string] : ConversationNarration } = {};
 
-tfsConversations[CVS.TFS_SAYING_HELLO + ' - 0'] = new Conversation({
-  name: CVS.TFS_SAYING_HELLO + ' - 0',
+tfsConversations[CVS.TFS_SAYING_HELLO] = new Conversation({
+  name: CVS.TFS_SAYING_HELLO,
   title: 'Saying Hello',
   partnerKind: 'leader', partnerType: LEADER_TYPES.TREFOIL_SOWER,
   statementName: CVS.TFS_SAYING_HELLO + ' - s0',
@@ -39,8 +39,8 @@ tfsConvoStatements[CVS.TFS_SAYING_HELLO + ' - s0'] = new ConversationStatement({
   text: `So many coming in and out of the town today! Hope they're not tracking sand all over our streets, eh?`
 });
 
-tfsConversations[FTU.CHEERY_FIGURE + ' - 0'] = new Conversation({
-  name: FTU.CHEERY_FIGURE + ' - 0',
+tfsConversations[FTU.CHEERY_FIGURE] = new Conversation({
+  name: FTU.CHEERY_FIGURE,
   title: 'A Cheery Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.TREFOIL_SOWER,
   statementName: FTU.CHEERY_FIGURE + ' - s0',
