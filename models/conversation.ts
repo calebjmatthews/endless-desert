@@ -6,7 +6,7 @@ import { utils } from '../utils';
 export class Conversation implements ConversationInterface {
   name: string = '';
   title: string = '';
-  statementName: string = '';
+  statementName?: string;
   narrationName?: string;
   partnerKind?: string;
   partnerType?: string;
@@ -27,7 +27,7 @@ export class Conversation implements ConversationInterface {
 interface ConversationInterface {
   name: string;
   title: string;
-  statementName: string;
+  statementName?: string;
   narrationName?: string;
   partnerKind?: string;
   partnerType?: string;
@@ -92,8 +92,12 @@ interface ConversationResponseInterface {
 export class ConversationNarration {
   name: string = '';
   text: string = '';
-  statementName: string = '';
-  responseName: string = '';
+  statementName?: string = '';
+  responseName?: string = '';
+
+  constructor(narration: ConversationNarration) {
+    Object.assign(this, narration);
+  }
 }
 
 export function dailyConversationUsed(gState: GameState, conversation: Conversation) {

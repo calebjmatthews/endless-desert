@@ -46,12 +46,12 @@ export default function MemoComponent() {
         {renderLeaderJoined()}
       </ScrollView>
       <View style={styles.break} />
-      <TouchableOpacity style={styles.buttonLarge}
+      {!memo.convoName && <TouchableOpacity style={styles.buttonLarge}
         onPress={() => {dismissPress()}} >
         <IconComponent provider="FontAwesome" name="arrow-right" color="#fff" size={16}
           style={styles.headingIcon} />
         <Text style={styles.buttonTextLarge}>{' Next'}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>}
       <View style={styles.break} />
     </View>
   );

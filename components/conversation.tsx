@@ -40,7 +40,7 @@ const DEFAULT_PARTNER: Partner = {
   icon: new Icon({ provider: 'svg', name: SVGS.YOU })
 };
 
-export default function ConversationComponent(props: { convoName: string }) {
+export default function ConversationComponent(props: ConversationProps) {
   const dispatch = useDispatch();
   const leaders = useTypedSelector(state => state.leaders);
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
@@ -79,8 +79,6 @@ export default function ConversationComponent(props: { convoName: string }) {
     let newSegments: Segment[] = [];
     setState('animating');
     setSegmentsToAdd(null);
-    console.log('segmentsToAdd');
-    console.log(segmentsToAdd);
     segmentsToAdd.forEach((segmentToAdd) => {
       let newSegment: Segment = { ...segmentToAdd };
       switch(segmentToAdd.kind) {
@@ -118,20 +116,18 @@ export default function ConversationComponent(props: { convoName: string }) {
         case 'narration':
         const narration = convoNarrations[segmentToAdd.name];
         if (narration.statementName) {
-          newSegment.nextSegments = [{ name: (narration.statementName),
-            kind: 'statement' }];
+          newSegment.nextSegments = [{ name: '', kind: 'nextButton',
+            nextSegments: [{ name: (narration.statementName), kind: 'statement' }]}];
         }
         else if (narration.responseName) {
-          newSegment.nextSegments = [{ name: (narration.responseName),
-            kind: 'narration' }];
+          newSegment.nextSegments = [{ name: '', kind: 'nextButton',
+            nextSegments: [{ name: (narration.responseName), kind: 'response' }]}];
         }
         break;
       }
       newSegments.push(newSegment);
-    })
+    });
 
-    console.log('newSegments');
-    console.log(newSegments);
     setSegments([...segments, ...newSegments]);
   }, [segmentsToAdd, segments]);
 
@@ -150,23 +146,27 @@ export default function ConversationComponent(props: { convoName: string }) {
   function renderSegment(name: string, kind: string, nextSegments?: Segment[]) {
     switch(kind) {
       case 'statement':
-      return renderStatement(convoStatements[name], nextSegments);
+      return <Statement statement={convoStatements[name]}
+        nextSegments={nextSegments} />;
 
       case 'responseOption':
       return <ResponseOption key={name} response={convoResponses[name]} />;
 
       case 'response':
-      return renderResponse(convoResponses[name], nextSegments);
+      return <Response response={convoResponses[name]} nextSegments={nextSegments} />;
 
       case 'nextButton':
       return renderNextButton();
 
       case 'narration':
-      return renderNarration(convoNarrations[name], nextSegments);
+      return <Narration  key={name} narration={convoNarrations[name]}
+        nextSegments={nextSegments} />;
     }
   }
 
-  function renderStatement(statement: ConversationStatement, nextSegments?: Segment[]) {
+  function Statement(props: {statement: ConversationStatement,
+    nextSegments?: Segment[]}) {
+    const statement = props.statement;
     let partner: Partner = DEFAULT_PARTNER;
     if (statement.partnerKind == 'leader') {
       const leader = getLeaderByName(statement.partnerType);
@@ -184,7 +184,7 @@ export default function ConversationComponent(props: { convoName: string }) {
       <View key={statement.name} style={styles.columns}>
         {<ConvoPieceComponent convoStatement={statement} partner={partner}
           speechBubbleWidth={positioner.speechBubbleWidth}
-          finishedAnimating={() => addAllSegments(nextSegments)} />}
+          finishedAnimating={() => addAllSegments(props.nextSegments)} />}
         <View style={styles.break} />
         {leaderJoining && (
           <View style={styles.containerStretchRow}>
@@ -234,15 +234,9 @@ export default function ConversationComponent(props: { convoName: string }) {
   function ResponseOption(props: {response: ConversationResponse}) {
     const response = props.response;
     const opacityAnim = { [response.name] : useRef(new Animated.Value(0)).current};
-
-    React.useEffect(() => {
-      Animated.timing(
-        opacityAnim[response.name], {
-          toValue: 1,
-          duration: FADE_IN_DELAY,
-          useNativeDriver: true }
-      ).start();
-    }, [])
+    React.useEffect(() => { Animated.timing(opacityAnim[response.name],
+      { toValue: 1, duration: FADE_IN_DELAY, useNativeDriver: true }
+    ).start(); }, []);
 
     let buttonStyle: any = styles.button;
     let buttonDisabled: boolean = false;
@@ -402,13 +396,13 @@ export default function ConversationComponent(props: { convoName: string }) {
     }
   }
 
-  function renderResponse(response: ConversationResponse, nextSegments?: Segment[]) {
+  function Response(props: {response: ConversationResponse, nextSegments?: Segment[]}) {
     return (
-      <View key={response.name}
+      <View key={props.response.name}
         style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
-        {<ConvoPieceComponent convoResponse={response} partner={DEFAULT_PARTNER}
+        {<ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
           speechBubbleWidth={positioner.speechBubbleWidth}
-          finishedAnimating={() => setResponseSegmentsToAdd(nextSegments)} />}
+          finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />}
       </View>
     )
   }
@@ -434,15 +428,28 @@ export default function ConversationComponent(props: { convoName: string }) {
     );
   }
 
-  function renderNarration(narration: ConversationNarration, nextSegments?: Segment[]) {
+  function Narration(props: { narration: ConversationNarration,
+    nextSegments?: Segment[] }) {
+    const narration = props.narration;
+    const narrationOpacity = useRef(new Animated.Value(0)).current;
+    React.useEffect(() => { Animated.timing(narrationOpacity,
+      { toValue: 0.95, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+    ).start(() => {
+      if (props.nextSegments) { setSegmentsToAdd(props.nextSegments); }
+    }); }, []);
+
     return (
-      <View key={narration.name} style={StyleSheet.flatten([styles.panelFlex,
-        { minWidth: positioner.modalMajor,
-          maxWidth: positioner.modalMajor }])}>
+      <Animated.View style={StyleSheet.flatten([styles.panelFlex,
+        { minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
+          textAlign: 'center', padding: 10, opacity: narrationOpacity }])}>
         <Text>{narration.text}</Text>
-      </View>
+      </Animated.View>
     );
   }
+}
+
+interface ConversationProps {
+  convoName: string;
 }
 
 interface Partner {

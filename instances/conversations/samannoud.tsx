@@ -43,11 +43,16 @@ sndConversations[FTU.FAMILIAR_FIGURE] = new Conversation({
   name: FTU.FAMILIAR_FIGURE,
   title: 'A Familiar Figure',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  statementName: FTU.FAMILIAR_FIGURE + ' - s0',
+  narrationName: FTU.FAMILIAR_FIGURE + ' - n0',
   repeatable: false,
   daily: false,
   weight: 0,
   available: () => ( false )
+});
+sndConvoNarrations[FTU.FAMILIAR_FIGURE + ' - n0'] = new ConversationNarration({
+  name: FTU.FAMILIAR_FIGURE + ' - n0',
+  text: `You don't see how anyone could have followed your winding path, but there's a silhouette in the distance, and it's coming closer. And there's something about the swaggering walk that feels very familiar.`,
+  statementName: FTU.FAMILIAR_FIGURE + ' - s0'
 });
 sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s0'] = new ConversationStatement({
   name: FTU.FAMILIAR_FIGURE + ' - s0',
