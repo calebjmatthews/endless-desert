@@ -14,6 +14,7 @@ import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { unlockTab } from '../actions/account';
 import { addQuest } from '../actions/quest_status';
+import { dismissMemo, displayModal } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Resource from '../models/resource';
@@ -88,7 +89,7 @@ function ConversationStatic(props: ConversationProps) {
       }
     }
   }, [state]);
-  
+
   useEffect(() => {
     if (segmentsToAdd == null) { return; }
 
@@ -127,6 +128,11 @@ function ConversationStatic(props: ConversationProps) {
         break;
 
         case 'nextButton':
+        let nextButtonAlreadyPresent: boolean = false;
+        segments.forEach((segment) => {
+          if (segment.kind == 'nextButton') { nextButtonAlreadyPresent = true; }
+        });
+        if (!nextButtonAlreadyPresent) { newSegments.push(newSegment); }
         break;
 
         case 'narration':
@@ -141,7 +147,7 @@ function ConversationStatic(props: ConversationProps) {
         }
         break;
       }
-      newSegments.push(newSegment);
+      if (segmentToAdd.kind != 'nextButton') { newSegments.push(newSegment); }
     });
 
     setSegments([...segments, ...newSegments]);
@@ -161,7 +167,7 @@ function ConversationStatic(props: ConversationProps) {
   function renderSegment(name: string, kind: string, nextSegments?: Segment[]) {
     switch(kind) {
       case 'statement':
-      return <Statement statement={convoStatements[name]}
+      return <Statement key={name} statement={convoStatements[name]}
         speechBubbleWidth={positioner.speechBubbleWidth}
         sResourcesGained={sResourcesGained}
         addAllSegments={addAllSegments} leaders={leaders}
@@ -177,6 +183,13 @@ function ConversationStatic(props: ConversationProps) {
         speechBubbleWidth={positioner.speechBubbleWidth}
         setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments} />;
 
+      case 'reward':
+      return <Reward key={`rgained-${name}`}
+        modalMajor={positioner.modalMajor}
+        setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments}
+        resources={sResourcesGained[name]}
+        leaderJoins={convoStatements[name].leaderJoins} />;
+
       case 'nextButton':
       return <NextButton key={name} speechButtonWidth={positioner.speechButtonWidth}
         nextButtonPress={nextButtonPress} nextSegments={nextSegments} />;
@@ -188,11 +201,16 @@ function ConversationStatic(props: ConversationProps) {
     }
   }
 
-  function addAllSegments(nextSegments?: Segment[]) {
-    if (nextSegments) {
-      setSegmentsToAdd(nextSegments);
-      setTimeout(() => { setState('waiting'); }, FADE_IN_DELAY);
+  function addAllSegments(statement: ConversationStatement, nextSegments?: Segment[]) {
+    const segmentsToAdd = nextSegments || [{ name: '', kind: 'nextButton' }];
+    if (sResourcesGained[statement.name] || statement.leaderJoins) {
+      setSegmentsToAdd([{ name: statement.name, kind: 'reward',
+        nextSegments: segmentsToAdd }]);
     }
+    else {
+      setSegmentsToAdd(segmentsToAdd);
+    }
+    setTimeout(() => { setState('waiting'); }, FADE_IN_DELAY);
   }
 
   function responseOptionPress(response: ConversationResponse) {
@@ -250,6 +268,10 @@ function ConversationStatic(props: ConversationProps) {
     if (nextSegments) {
       setSegmentsToAdd(nextSegments);
     }
+    else {
+      dispatch(dismissMemo());
+      dispatch(displayModal(null));
+    }
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
@@ -297,7 +319,7 @@ function ConversationStatic(props: ConversationProps) {
 
 function Statement(props: { statement: ConversationStatement, speechBubbleWidth: number,
   sResourcesGained: {[ sName: string ] : Resource[]},
-  addAllSegments: (nextSegments?: Segment[]) => void,
+  addAllSegments: (statement: ConversationStatement,  nextSegments?: Segment[]) => void,
   leaders: { [id: string] : Leader }, nextSegments?: Segment[] }) {
   const statement = props.statement;
   let partner: Partner = DEFAULT_PARTNER;
@@ -311,38 +333,14 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
       icon: new Icon({ provider: 'svg', name: statement.partnerType})
     };
   }
-  const leaderJoining = (statement.leaderJoins)
-    ? leaderTypes[statement.leaderJoins] : null;
+
   return (
     <View key={statement.name} style={styles.columns}>
-      {<ConvoPieceComponent convoStatement={statement} partner={partner}
+      <ConvoPieceComponent convoStatement={statement} partner={partner}
         speechBubbleWidth={props.speechBubbleWidth}
-        finishedAnimating={() => props.addAllSegments(props.nextSegments)} />}
+        finishedAnimating={() => props.addAllSegments(statement, props.nextSegments)}
+        />
       <View style={styles.break} />
-      {leaderJoining && (
-        <View style={styles.containerStretchRow}>
-          <BadgeComponent icon={leaderJoining.icon} size={37} />
-          <Text style={styles.bareText}>{' ' + leaderJoining.name + ' joined you!'}</Text>
-        </View>
-      )}
-      {props.sResourcesGained[statement.name]
-      && (
-        <View style={styles.panelFlexColumn}>
-          <Text>{"You gained:"}</Text>
-          {props.sResourcesGained[statement.name].map((resource, index) => {
-            const resourceType = utils.getResourceType(resource);
-            return (
-              <View key={index} style={styles.containerStretchRow}>
-                <BadgeComponent icon={resourceType.icon} size={21} />
-                <Text style={styles.bodyText}>
-                  {' +' + utils.formatNumberShort(resource.quantity) + ' '
-                    + utils.getResourceName(resource)}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
-      )}
     </View>
   );
 
@@ -433,9 +431,62 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
           {requirement}
         </View>
       </TouchableOpacity>
-      <View style={styles.break} />
+      <View style={styles.breakSmall} />
     </Animated.View>
   );
+}
+
+function Reward(props: { modalMajor: number,
+  setSegmentsToAdd: (segments: Segment[]) => void,
+  resources?: Resource[], leaderJoins?: string, nextSegments?: Segment[] } ) {
+  const [finished, setFinished] = useState(false);
+  const rewardOpacity = useRef(new Animated.Value(finished ? 1 : 0)).current;
+  React.useEffect(() => { Animated.timing(rewardOpacity,
+    { toValue: 1, duration: (FADE_IN_DELAY*2), useNativeDriver: true }
+  ).start(() => {
+    if (!finished && props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
+    setFinished(true);
+  })});
+
+  const leaderJoining = props.leaderJoins ? leaderTypes[props.leaderJoins] : null;
+  if (leaderJoining) {
+    return (
+      <>
+        <Animated.View style={StyleSheet.flatten([styles.containerStretchRow,
+          {opacity: rewardOpacity}])}>
+          <BadgeComponent icon={leaderJoining.icon} size={37} />
+          <Text style={styles.bareText}>
+            {` ${leaderJoining.name} joined you!`}
+          </Text>
+        </Animated.View>
+        <View style={styles.break} />
+      </>
+    )
+  }
+  else if (props.resources) {
+    return (
+      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {opacity: rewardOpacity}])}>
+        <View style={styles.panelFlexColumn}>
+          <Text>{"You gained:"}</Text>
+          {props.resources.map((resource, index) => {
+            const resourceType = utils.getResourceType(resource);
+            return (
+              <View key={index} style={styles.containerStretchRow}>
+                <BadgeComponent icon={resourceType.icon} size={21} />
+                <Text style={styles.bodyText}>
+                  {' +' + utils.formatNumberShort(resource.quantity) + ' '
+                    + utils.getResourceName(resource)}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+        <View style={styles.break} />
+      </Animated.View>
+    );
+  }
+  return null;
 }
 
 function Response(props: {response: ConversationResponse, speechBubbleWidth: number,
@@ -443,9 +494,10 @@ setSegmentsToAdd: (segments: Segment[]) => void, nextSegments?: Segment[]}) {
   return (
     <View key={props.response.name}
       style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
-      {<ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
+      <ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
         speechBubbleWidth={props.speechBubbleWidth}
-        finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />}
+        finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />
+      <View style={styles.break} />
     </View>
   );
 
@@ -476,6 +528,7 @@ function NextButton(props: {speechButtonWidth: number, nextSegments?: Segment[],
           </Text>
         </View>
       </TouchableOpacity>
+      <View style={styles.break} />
     </Animated.View>
   );
 }
@@ -486,17 +539,20 @@ function Narration(props: { narration: ConversationNarration,
   const narration = props.narration;
   const narrationOpacity = useRef(new Animated.Value(0)).current;
   React.useEffect(() => { Animated.timing(narrationOpacity,
-    { toValue: 0.95, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+    { toValue: 0.9, duration: FADE_IN_DELAY*4, useNativeDriver: true }
   ).start(() => {
     if (props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
   }); }, []);
 
   return (
-    <Animated.View style={StyleSheet.flatten([styles.panelFlex,
-      { minWidth: props.modalMajor, maxWidth: props.modalMajor,
-        textAlign: 'center', padding: 10, opacity: narrationOpacity }])}>
-      <Text>{narration.text}</Text>
-    </Animated.View>
+    <>
+      <Animated.View style={StyleSheet.flatten([styles.panelFlex,
+        { minWidth: props.modalMajor, maxWidth: props.modalMajor,
+          textAlign: 'center', padding: 10, opacity: narrationOpacity }])}>
+        <Text>{narration.text}</Text>
+      </Animated.View>
+      <View style={styles.break} />
+    </>
   );
 }
 

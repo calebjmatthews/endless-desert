@@ -89,7 +89,6 @@ function ConvoText(props: { text: string, finishedAnimating: () => void }) {
           utils.getCharDelay(newRevealingText.text, FADE_CHAR_DELAY));
       }
       else {
-        console.log('Finished!');
         setState('done');
         props.finishedAnimating();
       }

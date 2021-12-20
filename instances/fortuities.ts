@@ -26,7 +26,7 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Familiar Figure',
       title: 'A Familiar Figure',
-      convoName: FORTUITIES.FAMILIAR_FIGURE + ' - 0'
+      convoName: FORTUITIES.FAMILIAR_FIGURE
     })
   ],
   type: 'Conversation',
@@ -50,7 +50,7 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Shuddering Figure',
       title: 'A Shuddering Figure',
-      convoName: FORTUITIES.SHUDDERING_FIGURE + ' - 0'
+      convoName: FORTUITIES.SHUDDERING_FIGURE
     })
   ],
   type: 'Conversation',
@@ -71,7 +71,7 @@ fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Slight Figure',
       title: 'A Slight Figure',
-      convoName: FORTUITIES.SLIGHT_FIGURE + ' - 0'
+      convoName: FORTUITIES.SLIGHT_FIGURE
     })
   ],
   type: 'Conversation',
@@ -94,7 +94,7 @@ fortuities[FORTUITIES.UNREPENTANT_FIGURE] = new Fortuity({
     new Memo({
       name: 'An Unrepentant Figure',
       title: 'An Unrepentant Figure',
-      convoName: FORTUITIES.UNREPENTANT_FIGURE + ' - 0'
+      convoName: FORTUITIES.UNREPENTANT_FIGURE
     })
   ],
   type: 'Conversation',
@@ -118,7 +118,7 @@ fortuities[FORTUITIES.CHEERY_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Cheery Figure',
       title: 'A Cheery Figure',
-      convoName: FORTUITIES.CHEERY_FIGURE + ' - 0'
+      convoName: FORTUITIES.CHEERY_FIGURE
     })
   ],
   type: 'Conversation',
@@ -142,7 +142,7 @@ fortuities[FORTUITIES.LIMPING_FIGURE] = new Fortuity({
     new Memo({
       name: 'A Limping Figure',
       title: 'A Limping Figure',
-      convoName: FORTUITIES.LIMPING_FIGURE + ' - 0'
+      convoName: FORTUITIES.LIMPING_FIGURE
     })
   ],
   type: 'Conversation',
