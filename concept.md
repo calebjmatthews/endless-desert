@@ -588,16 +588,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Field note research costs to use large quantities of other resources
   [X] Dish-specific subcategory
   [X] Conversation doesn't correctly check for dishes
-  [ ] Swap Lentil Farming and Reed Cultivation difficulties
-  [ ] Increase difficulty of Field Notes-locked upgrades
+  [X] Add animation to conversations
+  [X] Swap Lentil Farming and Reed Cultivation difficulties
+  [ ] Water at top of resource list
   [ ] Mussels in Fishing Pond
   [ ] Brine trade good
-  [ ] Increase # of traders research
-  [ ] Conjecture research
-  [ ] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Tag and subcategory specificities have a worse rate of return
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
+  [ ] Increase # of traders research
+  [ ] Traders to use a mix of exact, tag, subcategory specificities
+  [ ] Tag and subcategory specificities have a worse rate of return
+  [ ] Conjecture research
+  [ ] Increase difficulty of Field Notes-locked upgrades
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Mysticism research

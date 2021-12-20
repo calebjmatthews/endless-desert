@@ -154,38 +154,6 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   knowledgeReq: 0
 });
 
-researches[RESEARCHES.LENTIL_FARMING] = new Research({
-  name: RESEARCHES.LENTIL_FARMING,
-  unlocks: ('Unlocks lentil fields.'),
-  description: ('Lentils are the perfect crop for your early settlement. '
-    + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
-  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 1,
-  stepsNeeded: 3,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 0,
-  unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
-});
-
-researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
-  name: RESEARCHES.LENTIL_FARMING_HEARTY,
-  unlocks: ('Allows an upgrade to Lentil Fields.'),
-  description: ('Some minor adaptations to your fields allow lentils to grow '
-    + 'faster, and with even less water. The taste is unchanged.'),
-  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 1,
-  stepsNeeded: 3,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.LENTIL_FARMING],
-  knowledgeReq: 400,
-  unlocksUpgrade: [BUILDING_TYPES.LENTIL_FIELD_HEARTY]
-});
-
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
   unlocks: ('Unlocks Reed Deltas.'),
@@ -199,7 +167,7 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 35,
+  knowledgeReq: 0,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 
@@ -219,6 +187,38 @@ researches[RESEARCHES.REED_CULTIVATION_BOUNTIFUL] = new Research({
   prereq: [RESEARCHES.REED_CULTIVATION],
   knowledgeReq: 350,
   unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_BOUNTIFUL]
+});
+
+researches[RESEARCHES.LENTIL_FARMING] = new Research({
+  name: RESEARCHES.LENTIL_FARMING,
+  unlocks: ('Unlocks lentil fields.'),
+  description: ('Lentils are the perfect crop for your early settlement. '
+    + 'Easy to grow, easy to prepare. The taste is admittedly uninspiring.'),
+  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY],
+  knowledgeReq: 25,
+  unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
+});
+
+researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
+  name: RESEARCHES.LENTIL_FARMING_HEARTY,
+  unlocks: ('Allows an upgrade to Lentil Fields.'),
+  description: ('Some minor adaptations to your fields allow lentils to grow '
+    + 'faster, and with even less water. The taste is unchanged.'),
+  icon: new Icon({provider: 'svg', name: SVGS.LENTIL}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.LENTIL_FARMING],
+  knowledgeReq: 400,
+  unlocksUpgrade: [BUILDING_TYPES.LENTIL_FIELD_HEARTY]
 });
 
 researches[RESEARCHES.OLIVE_FARMING] = new Research({
