@@ -12,8 +12,6 @@ import { utils } from '../utils';
 import { FADE_IN_DELAY, FADE_CHAR_DELAY, FADE_CHAR_MULT } from '../constants';
 
 export default function ConvoPieceComponent(props: ConvoPieceProps) {
-  console.log('ConvoPieceProps:');
-  console.log(props);
   const opacityAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(
@@ -34,7 +32,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           </Text>
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth,  maxWidth: props.speechBubbleWidth,
-              minHeight: 30, marginLeft: 5, borderTopLeftRadius: 0 }])}>
+              minHeight: 30, marginRight: 5, borderTopLeftRadius: 0 }])}>
             <ConvoText text={props.convoStatement.text}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
@@ -52,7 +50,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           </Text>
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth, maxWidth: props.speechBubbleWidth,
-              minHeight: 30, marginRight: 5, borderTopRightRadius: 0 }])}>
+              minHeight: 30, marginLeft: 5, borderTopRightRadius: 0 }])}>
             <ConvoText text={props.convoResponse.text}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>

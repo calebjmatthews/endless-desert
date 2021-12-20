@@ -20,6 +20,9 @@ import Resource from '../models/resource';
 import Equipment from '../models/equipment';
 import Vault from '../models/vault';
 import Icon from '../models/icon';
+import Account from '../models/account';
+import Positioner from '../models/positioner';
+import ConversationStatus from '../models/conversation_status';
 import { Conversation, ConversationStatement, ConversationResponse,
   ConversationNarration } from '../models/conversation';
 import { conversations, convoStatements, convoResponses, convoNarrations }
@@ -40,16 +43,29 @@ const DEFAULT_PARTNER: Partner = {
   icon: new Icon({ provider: 'svg', name: SVGS.YOU })
 };
 
-export default function ConversationComponent(props: ConversationProps) {
-  const dispatch = useDispatch();
+export default function ConversationComponent(props: { convoName: string }) {
   const leaders = useTypedSelector(state => state.leaders);
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
-  const dynamicVault = useTypedSelector(state => state.vault);
+  const vault = useTypedSelector(state => state.vault);
   const account = useTypedSelector(state => state.account);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
+  return useMemo(() => {
+    return <ConversationStatic convoName={props.convoName} leaders={leaders}
+      conversationStatus={conversationStatus} vault={vault} account={account}
+      positioner={positioner} />;
+  }, [positioner])
+}
+
+function ConversationStatic(props: ConversationProps) {
+  const dispatch = useDispatch();
+  const leaders = props.leaders;
+  const conversationStatus = props.conversationStatus;
+  const vault = props.vault;
+  const account = props.account;
+  const positioner = props.positioner;
+
   const [state, setState] = useState('initializing');
-  const [vault, setVault] = useState(new Vault(null));
   const [conversation, setConversation] = useState<Conversation>(new Conversation(null));
   const [segments, setSegments] = useState<Segment[]>([]);
   // statementResourcesGained, for multiple possible sets of resources between
@@ -57,11 +73,11 @@ export default function ConversationComponent(props: ConversationProps) {
   const [segmentsToAdd, setSegmentsToAdd] = useState<Segment[]|null>(null);
   const [sResourcesGained, setSResourcesGained] =
     useState<{[ sName: string ] : Resource[]}>({});
+  let scrollView : React.RefObject<ScrollView> = useRef(null);
 
   useEffect(() => {
     if (state == 'initializing') {
       setState('initialized');
-      setVault(new Vault(dynamicVault));
       const convo = conversations[props.convoName];
       setConversation(convo);
       if (convo.statementName) {
@@ -72,7 +88,7 @@ export default function ConversationComponent(props: ConversationProps) {
       }
     }
   }, [state]);
-
+  
   useEffect(() => {
     if (segmentsToAdd == null) { return; }
 
@@ -131,15 +147,14 @@ export default function ConversationComponent(props: ConversationProps) {
     setSegments([...segments, ...newSegments]);
   }, [segmentsToAdd, segments]);
 
-  const segmentsMemo = useMemo(() => {
-    return segments.map((segment) => {
-      return renderSegment(segment.name, segment.kind, segment.nextSegments);
-    });
-  }, [segments]);
-
   return (
-    <ScrollView style={styles.columns}>
-      {segmentsMemo}
+    <ScrollView style={styles.columns}
+      ref={scrollView}
+      onContentSizeChange={() => {
+        if (scrollView.current) { scrollView.current.scrollToEnd({animated: true}); }
+      }}>
+      {segments.map((segment) => ( renderSegment(segment.name, segment.kind,
+        segment.nextSegments)))}
     </ScrollView>
   )
 
@@ -147,164 +162,37 @@ export default function ConversationComponent(props: ConversationProps) {
     switch(kind) {
       case 'statement':
       return <Statement statement={convoStatements[name]}
+        speechBubbleWidth={positioner.speechBubbleWidth}
+        sResourcesGained={sResourcesGained}
+        addAllSegments={addAllSegments} leaders={leaders}
         nextSegments={nextSegments} />;
 
       case 'responseOption':
-      return <ResponseOption key={name} response={convoResponses[name]} />;
+      return <ResponseOption key={name} response={convoResponses[name]} vault={vault}
+        responseOptionPress={responseOptionPress}
+        speechButtonWidth={positioner.speechButtonWidth} />;
 
       case 'response':
-      return <Response response={convoResponses[name]} nextSegments={nextSegments} />;
+      return <Response key={name} response={convoResponses[name]}
+        speechBubbleWidth={positioner.speechBubbleWidth}
+        setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments} />;
 
       case 'nextButton':
-      return renderNextButton();
+      return <NextButton key={name} speechButtonWidth={positioner.speechButtonWidth}
+        nextButtonPress={nextButtonPress} nextSegments={nextSegments} />;
 
       case 'narration':
-      return <Narration  key={name} narration={convoNarrations[name]}
-        nextSegments={nextSegments} />;
+      return <Narration key={name} narration={convoNarrations[name]}
+        modalMajor={positioner.modalMajor}
+        setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments} />;
     }
   }
 
-  function Statement(props: {statement: ConversationStatement,
-    nextSegments?: Segment[]}) {
-    const statement = props.statement;
-    let partner: Partner = DEFAULT_PARTNER;
-    if (statement.partnerKind == 'leader') {
-      const leader = getLeaderByName(statement.partnerType);
-      if (leader) { partner = leader; }
-    }
-    else if (statement.partnerKind == 'special') {
-      partner = {
-        name: statement.partnerType,
-        icon: new Icon({ provider: 'svg', name: statement.partnerType})
-      };
-    }
-    const leaderJoining = (statement.leaderJoins)
-      ? leaderTypes[statement.leaderJoins] : null;
-    return (
-      <View key={statement.name} style={styles.columns}>
-        {<ConvoPieceComponent convoStatement={statement} partner={partner}
-          speechBubbleWidth={positioner.speechBubbleWidth}
-          finishedAnimating={() => addAllSegments(props.nextSegments)} />}
-        <View style={styles.break} />
-        {leaderJoining && (
-          <View style={styles.containerStretchRow}>
-            <BadgeComponent icon={leaderJoining.icon} size={37} />
-            <Text style={styles.bareText}>{' ' + leaderJoining.name + ' joined you!'}</Text>
-          </View>
-        )}
-        {sResourcesGained[statement.name]
-        && (
-          <View style={styles.panelFlexColumn}>
-            <Text>{"You gained:"}</Text>
-            {sResourcesGained[statement.name].map((resource, index) => {
-              const resourceType = utils.getResourceType(resource);
-              return (
-                <View key={index} style={styles.containerStretchRow}>
-                  <BadgeComponent icon={resourceType.icon} size={21} />
-                  <Text style={styles.bodyText}>
-                    {' +' + utils.formatNumberShort(resource.quantity) + ' '
-                      + utils.getResourceName(resource)}
-                  </Text>
-                </View>
-              );
-            })}
-          </View>
-        )}
-      </View>
-    )
-  }
-  function getLeaderByName(partnerType: string): Partner|null {
-    let leader: Partner|null = null;
-    Object.keys(leaders).map((id) => {
-      const cLeader = leaders[id];
-      if (cLeader.name == partnerType) { leader = cLeader; }
-    });
-    if (!leader) {
-      leader = leaderTypes[partnerType];
-    }
-    return leader;
-  }
   function addAllSegments(nextSegments?: Segment[]) {
     if (nextSegments) {
       setSegmentsToAdd(nextSegments);
       setTimeout(() => { setState('waiting'); }, FADE_IN_DELAY);
     }
-  }
-
-  function ResponseOption(props: {response: ConversationResponse}) {
-    const response = props.response;
-    const opacityAnim = { [response.name] : useRef(new Animated.Value(0)).current};
-    React.useEffect(() => { Animated.timing(opacityAnim[response.name],
-      { toValue: 1, duration: FADE_IN_DELAY, useNativeDriver: true }
-    ).start(); }, []);
-
-    let buttonStyle: any = styles.button;
-    let buttonDisabled: boolean = false;
-    let requirement = null;
-    let requirementIcon = null;
-    let requirementLabel = null;
-    if (response.cost) {
-      const resourceKind = utils.getMatchingResourceKind(response.cost.specificity,
-        response.cost.type);
-      const resourceQuantity = Math.floor(vault
-        .getQuantity(response.cost.specificity, response.cost.type));
-      requirementIcon = resourceKind.icon;
-      requirementLabel = `${utils.formatNumberShort(response.cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${response.cost.type}`;
-      if (resourceQuantity < response.cost.quantity) {
-        buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
-        buttonDisabled = true;
-      }
-    }
-    else if (response.requirementLabel) {
-      requirementIcon = response.requirementIcon;
-      requirementLabel = response.requirementLabel;
-      if (!response.available({ vault })) {
-        buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
-        buttonDisabled = true;
-      }
-    }
-    if (response.cost || response.requirementLabel) {
-      requirement = (
-        <View style={styles.columns}>
-          <Text style={StyleSheet.flatten([styles.buttonText,
-            { alignSelf: 'flex-start', opacity: 0.75 }])}>
-            {'Requires:'}
-          </Text>
-          <View style={styles.rows}>
-            {requirementIcon && (
-              <BadgeComponent icon={requirementIcon} size={19} />
-            )}
-            <Text style={styles.buttonText}>
-              {requirementLabel}
-            </Text>
-          </View>
-        </View>
-      )
-    }
-
-    return (
-      <Animated.View style={{ opacity: opacityAnim[response.name] }}>
-        <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
-          onPress={() => responseOptionPress(response)} >
-          <View style={StyleSheet.flatten([styles.columns,
-            { minWidth: positioner.speechButtonWidth,
-              maxWidth: positioner.speechButtonWidth,
-              paddingVertical: 5, alignItems: 'flex-start' }])}>
-            <Text style={styles.buttonText}>
-              {response.textIntro}
-            </Text>
-            {response.speechType && (
-              <Text style={StyleSheet.flatten([styles.buttonText,
-                { opacity: 0.75 }])}>
-                {`(${response.speechType})`}
-              </Text>
-            )}
-            {requirement}
-          </View>
-        </TouchableOpacity>
-        <View style={styles.break} />
-      </Animated.View>
-    );
   }
 
   function responseOptionPress(response: ConversationResponse) {
@@ -354,6 +242,16 @@ export default function ConversationComponent(props: ConversationProps) {
     }
   }
 
+  function nextButtonPress(nextSegments?: Segment[]) {
+    let filteredSegments = [...segments].filter((segment) => {
+      if (segment.kind != 'nextButton') { return segment; }
+    });
+    setSegments(filteredSegments);
+    if (nextSegments) {
+      setSegmentsToAdd(nextSegments);
+    }
+  }
+
   function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
     let resourceMap:{ [typeQuality: string] : Resource } = {};
     switch(aCost.specificity) {
@@ -395,61 +293,220 @@ export default function ConversationComponent(props: ConversationProps) {
       console.log('Time to implement this!');
     }
   }
+}
 
-  function Response(props: {response: ConversationResponse, nextSegments?: Segment[]}) {
-    return (
-      <View key={props.response.name}
-        style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
-        {<ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
-          speechBubbleWidth={positioner.speechBubbleWidth}
-          finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />}
+function Statement(props: { statement: ConversationStatement, speechBubbleWidth: number,
+  sResourcesGained: {[ sName: string ] : Resource[]},
+  addAllSegments: (nextSegments?: Segment[]) => void,
+  leaders: { [id: string] : Leader }, nextSegments?: Segment[] }) {
+  const statement = props.statement;
+  let partner: Partner = DEFAULT_PARTNER;
+  if (statement.partnerKind == 'leader') {
+    const leader = getLeaderByName(statement.partnerType);
+    if (leader) { partner = leader; }
+  }
+  else if (statement.partnerKind == 'special') {
+    partner = {
+      name: statement.partnerType,
+      icon: new Icon({ provider: 'svg', name: statement.partnerType})
+    };
+  }
+  const leaderJoining = (statement.leaderJoins)
+    ? leaderTypes[statement.leaderJoins] : null;
+  return (
+    <View key={statement.name} style={styles.columns}>
+      {<ConvoPieceComponent convoStatement={statement} partner={partner}
+        speechBubbleWidth={props.speechBubbleWidth}
+        finishedAnimating={() => props.addAllSegments(props.nextSegments)} />}
+      <View style={styles.break} />
+      {leaderJoining && (
+        <View style={styles.containerStretchRow}>
+          <BadgeComponent icon={leaderJoining.icon} size={37} />
+          <Text style={styles.bareText}>{' ' + leaderJoining.name + ' joined you!'}</Text>
+        </View>
+      )}
+      {props.sResourcesGained[statement.name]
+      && (
+        <View style={styles.panelFlexColumn}>
+          <Text>{"You gained:"}</Text>
+          {props.sResourcesGained[statement.name].map((resource, index) => {
+            const resourceType = utils.getResourceType(resource);
+            return (
+              <View key={index} style={styles.containerStretchRow}>
+                <BadgeComponent icon={resourceType.icon} size={21} />
+                <Text style={styles.bodyText}>
+                  {' +' + utils.formatNumberShort(resource.quantity) + ' '
+                    + utils.getResourceName(resource)}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
+      )}
+    </View>
+  );
+
+  function getLeaderByName(partnerType: string): Partner|null {
+    let leader: Partner|null = null;
+    Object.keys(props.leaders).map((id) => {
+      const cLeader = props.leaders[id];
+      if (cLeader.name == partnerType) { leader = cLeader; }
+    });
+    if (!leader) {
+      leader = leaderTypes[partnerType];
+    }
+    return leader;
+  }
+}
+
+
+function ResponseOption(props: {response: ConversationResponse, vault: Vault,
+  responseOptionPress: (response: ConversationResponse) => void,
+  speechButtonWidth: number }) {
+  const response = props.response;
+  const opacityAnim = { [response.name] : useRef(new Animated.Value(0)).current};
+  React.useEffect(() => { Animated.timing(opacityAnim[response.name],
+    { toValue: 1, duration: FADE_IN_DELAY, useNativeDriver: true }
+  ).start(); }, []);
+
+  let buttonStyle: any = styles.button;
+  let buttonDisabled: boolean = false;
+  let requirement = null;
+  let requirementIcon = null;
+  let requirementLabel = null;
+  if (response.cost) {
+    const resourceKind = utils.getMatchingResourceKind(response.cost.specificity,
+      response.cost.type);
+    const resourceQuantity = Math.floor(props.vault
+      .getQuantity(response.cost.specificity, response.cost.type));
+    requirementIcon = resourceKind.icon;
+    requirementLabel = `${utils.formatNumberShort(response.cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${response.cost.type}`;
+    if (resourceQuantity < response.cost.quantity) {
+      buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
+      buttonDisabled = true;
+    }
+  }
+  else if (response.requirementLabel) {
+    requirementIcon = response.requirementIcon;
+    requirementLabel = response.requirementLabel;
+    if (!response.available({ vault: props.vault })) {
+      buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
+      buttonDisabled = true;
+    }
+  }
+  if (response.cost || response.requirementLabel) {
+    requirement = (
+      <View style={styles.columns}>
+        <Text style={StyleSheet.flatten([styles.buttonText,
+          { alignSelf: 'flex-start', opacity: 0.75 }])}>
+          {'Requires:'}
+        </Text>
+        <View style={styles.rows}>
+          {requirementIcon && (
+            <BadgeComponent icon={requirementIcon} size={19} />
+          )}
+          <Text style={styles.buttonText}>
+            {requirementLabel}
+          </Text>
+        </View>
       </View>
     )
   }
+
+  return (
+    <Animated.View style={{ opacity: opacityAnim[response.name] }}>
+      <TouchableOpacity style={buttonStyle} disabled={buttonDisabled}
+        onPress={() => props.responseOptionPress(response)} >
+        <View style={StyleSheet.flatten([styles.columns,
+          { minWidth: props.speechButtonWidth,
+            maxWidth: props.speechButtonWidth,
+            paddingVertical: 5, alignItems: 'flex-start' }])}>
+          <Text style={styles.buttonText}>
+            {response.textIntro}
+          </Text>
+          {response.speechType && (
+            <Text style={StyleSheet.flatten([styles.buttonText,
+              { opacity: 0.75 }])}>
+              {`(${response.speechType})`}
+            </Text>
+          )}
+          {requirement}
+        </View>
+      </TouchableOpacity>
+      <View style={styles.break} />
+    </Animated.View>
+  );
+}
+
+function Response(props: {response: ConversationResponse, speechBubbleWidth: number,
+setSegmentsToAdd: (segments: Segment[]) => void, nextSegments?: Segment[]}) {
+  return (
+    <View key={props.response.name}
+      style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
+      {<ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
+        speechBubbleWidth={props.speechBubbleWidth}
+        finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />}
+    </View>
+  );
+
   function setResponseSegmentsToAdd(nextSegments?: Segment[]) {
     if (nextSegments) {
-      setTimeout(() => setSegmentsToAdd(nextSegments), FADE_IN_DELAY*2);
+      setTimeout(() => props.setSegmentsToAdd(nextSegments), FADE_IN_DELAY*2);
     }
   }
+}
 
-  function renderNextButton() {
-    return (
+function NextButton(props: {speechButtonWidth: number, nextSegments?: Segment[],
+  nextButtonPress: (segments?: Segment[]) => void}) {
+  const nextBtnOpacity = useRef(new Animated.Value(0)).current;
+  React.useEffect(() => { Animated.timing(nextBtnOpacity,
+    { toValue: 0.95, duration: FADE_IN_DELAY, useNativeDriver: true }
+  ).start()});
+
+  return (
+    <Animated.View style={{ opacity: nextBtnOpacity }}>
       <TouchableOpacity key='nextButton' style={styles.button}
-        onPress={() => {}} >
+        onPress={() => props.nextButtonPress(props.nextSegments)} >
         <View style={StyleSheet.flatten([styles.columns,
-          { minWidth: positioner.speechButtonWidth,
-            maxWidth: positioner.speechButtonWidth,
+          { minWidth: props.speechButtonWidth,
+            maxWidth: props.speechButtonWidth,
             paddingVertical: 5 }])}>
           <Text style={styles.buttonText}>
             {"Next"}
           </Text>
         </View>
       </TouchableOpacity>
-    );
-  }
+    </Animated.View>
+  );
+}
 
-  function Narration(props: { narration: ConversationNarration,
-    nextSegments?: Segment[] }) {
-    const narration = props.narration;
-    const narrationOpacity = useRef(new Animated.Value(0)).current;
-    React.useEffect(() => { Animated.timing(narrationOpacity,
-      { toValue: 0.95, duration: FADE_IN_DELAY*4, useNativeDriver: true }
-    ).start(() => {
-      if (props.nextSegments) { setSegmentsToAdd(props.nextSegments); }
-    }); }, []);
+function Narration(props: { narration: ConversationNarration,
+  nextSegments?: Segment[], modalMajor: number,
+  setSegmentsToAdd: (segments: Segment[]) => void }) {
+  const narration = props.narration;
+  const narrationOpacity = useRef(new Animated.Value(0)).current;
+  React.useEffect(() => { Animated.timing(narrationOpacity,
+    { toValue: 0.95, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+  ).start(() => {
+    if (props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
+  }); }, []);
 
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.panelFlex,
-        { minWidth: positioner.modalMajor, maxWidth: positioner.modalMajor,
-          textAlign: 'center', padding: 10, opacity: narrationOpacity }])}>
-        <Text>{narration.text}</Text>
-      </Animated.View>
-    );
-  }
+  return (
+    <Animated.View style={StyleSheet.flatten([styles.panelFlex,
+      { minWidth: props.modalMajor, maxWidth: props.modalMajor,
+        textAlign: 'center', padding: 10, opacity: narrationOpacity }])}>
+      <Text>{narration.text}</Text>
+    </Animated.View>
+  );
 }
 
 interface ConversationProps {
   convoName: string;
+  leaders: { [id: string] : Leader };
+  conversationStatus: ConversationStatus;
+  vault: Vault;
+  account: Account;
+  positioner: Positioner;
 }
 
 interface Partner {
