@@ -1,4 +1,5 @@
 export enum RESOURCE_SUBCATEGORIES {
+  WATER = "Water",
   CROP = "Crop",
   SPICE = "Spice",
   SEEDS = "Seeds",

@@ -7,6 +7,7 @@ export enum RESOURCE_TYPES {
   NOTES_HEAT = "Notes on Scintillating Heat",
   NOTES_CULTIVATION = "Notes on Gentle Cultivation",
   WATER = "Water",
+  BRINE = "Brine",
   LENTIL = "Lentil",
   BLUEBERRY = "Blueberry",
   GRAPE = "Grape",

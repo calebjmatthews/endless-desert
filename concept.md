@@ -590,9 +590,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Conversation doesn't correctly check for dishes
   [X] Add animation to conversations
   [X] Swap Lentil Farming and Reed Cultivation difficulties
-  [ ] Water at top of resource list
+  [X] Brine trade good
   [ ] Mussels in Fishing Pond
-  [ ] Brine trade good
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Increase # of traders research

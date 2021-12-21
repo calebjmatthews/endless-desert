@@ -5,6 +5,15 @@ import { SVGS } from '../enums/svgs';
 
 let resourceSubcategories: { [name: string] : ResourceSubcategory } = {};
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.WATER] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.WATER,
+  plural: 'Water',
+  value: 5,
+  order: -1,
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
+    shadow: '#2887c3', secondaryColor: '#aaebf0'})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.CROP] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.CROP,
   plural: 'Crops',
@@ -61,7 +70,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.FISH] = new ResourceSubcategory({
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.SAND] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.SAND,
-  plural: 'Sands',
+  plural: 'Sand',
   value: 3,
   order: 6,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
@@ -242,7 +251,7 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SALTED_MEAT] = new ResourceSubcateg
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.MISTAKE] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.MISTAKE,
-  plural: 'Mistake',
+  plural: 'Mistakes',
   value: 1,
   order: 199,
   icon: new Icon({provider: 'svg', name: SVGS.MISTAKE})

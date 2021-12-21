@@ -83,9 +83,20 @@ resourceTypes[RTY.WATER] = new ResourceType({
   subcategory: RSC.WATER,
   tags: [RTA.DRINK, RTA.INGREDIENT],
   value: 5,
-  description: `The tether between life and death`,
+  description: `The thin liquid tether connecting you to life`,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
     shadow: '#2887c3', secondaryColor: '#aaebf0'})
+});
+
+resourceTypes[RTY.BRINE] = new ResourceType({
+  name: RTY.BRINE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.WATER,
+  tags: [],
+  value: 10,
+  description: `A concentrated form of salty water, pulled from the sea`,
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#23b39b',
+    shadow: '#1b8f7c', secondaryColor: '#68ddc9'})
 });
 
 resourceTypes[RTY.LENTIL] = new ResourceType({
