@@ -782,9 +782,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 50}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 4, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.REEDCLOTH, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 20}]}),
     new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.FLAX, quantity: 20}]}),
+    new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.SILK, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, quantity: 20},
         {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],

@@ -92,7 +92,7 @@ resourceTypes[RTY.BRINE] = new ResourceType({
   name: RTY.BRINE,
   category: RCA.MATERIAL,
   subcategory: RSC.WATER,
-  tags: [],
+  tags: [RTA.TRADE_GOOD],
   value: 10,
   description: `A concentrated form of salty water, pulled from the sea`,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#23b39b',
@@ -346,7 +346,7 @@ resourceTypes[RTY.MUSSEL] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 32, ///
+  value: 32,
   icon: new Icon({provider: 'svg', name: SVGS.MUSSEL})
 });
 
@@ -1069,12 +1069,30 @@ resourceTypes[RTY.INK_FERROUS] = new ResourceType({
     shadow: '#000', secondaryColor: '#a2a2a2'})
 });
 
+resourceTypes[RTY.REEDCLOTH] = new ResourceType({
+  name: RTY.REEDCLOTH,
+  category: RCA.ARTISAN_GOOD,
+  subcategory: RSC.TEXTILE,
+  tags: [RTA.TEXTILE],
+  value: 60,
+  icon: new Icon({provider: 'svg', name: SVGS.REEDCLOTH})
+});
+
+resourceTypes[RTY.FLAX] = new ResourceType({
+  name: RTY.FLAX,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CROP,
+  tags: [RTA.CROP, RTA.TRADE_GOOD],
+  value: 10,
+  icon: new Icon({provider: 'svg', name: SVGS.FLAX})
+});
+
 resourceTypes[RTY.LINEN] = new ResourceType({
   name: RTY.LINEN,
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.TEXTILE,
   tags: [RTA.TEXTILE],
-  value: 200,
+  value: 160,
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 

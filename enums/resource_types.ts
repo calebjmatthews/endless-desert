@@ -107,6 +107,8 @@ export enum RESOURCE_TYPES {
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
   INK_FERROUS = "Ferrous Ink",
+  REEDCLOTH = "Reedcloth",
+  FLAX = "Flax",
   LINEN = "Linen",
   SILKWORM_COCOON = "Silkworm Cocoon",
   SILK = "Silk",

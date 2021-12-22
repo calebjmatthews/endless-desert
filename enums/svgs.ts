@@ -70,6 +70,8 @@ export enum SVGS {
   OLIVE_OIL = "Olive Oil",
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
+  REEDCLOTH = "Reedcloth",
+  FLAX = "Flax",
   LINEN = "Linen",
   SILK = "Silk",
   ABRASIVE = "Abrasive",

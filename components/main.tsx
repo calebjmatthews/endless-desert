@@ -107,12 +107,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -268,11 +268,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'A Familiar Figure',
-        convoName: 'A Familiar Figure'
-      })]));
+
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

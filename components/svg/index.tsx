@@ -72,6 +72,8 @@ import GlassSvgComponent from './resources/glass';
 import OliveOilSvgComponent from './resources/olive_oil';
 import PulpSvgComponent from './resources/pulp';
 import PapyrusSvgComponent from './resources/papyrus';
+import ReedclothSvgComponent from './resources/reedcloth';
+import FlaxSvgComponent from './resources/flax';
 import LinenSvgComponent from './resources/linen';
 import SilkSvgComponent from './resources/silk';
 import AbrasiveSvgComponent from './resources/abrasive';
@@ -313,6 +315,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PulpSvgComponent icon={props.icon} />;
     case SVGS.PAPYRUS:
     return <PapyrusSvgComponent icon={props.icon} />;
+    case SVGS.REEDCLOTH:
+    return <ReedclothSvgComponent icon={props.icon} />;
+    case SVGS.FLAX:
+    return <FlaxSvgComponent icon={props.icon} />;
     case SVGS.LINEN:
     return <LinenSvgComponent icon={props.icon} />;
     case SVGS.SILK:
