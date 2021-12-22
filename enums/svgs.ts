@@ -27,6 +27,7 @@ export enum SVGS {
   GRAIN = "Grain",
   FLOUR = "Flour",
   OLIVE = "Olive",
+  MUSSEL = "Mussel",
   MINNOW = "Minnow",
   CARP = "Carp",
   BARRAMUNDI = "Barramundi",

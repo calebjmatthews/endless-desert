@@ -316,7 +316,7 @@ fortuities[FORTUITIES.THRICE_LOCKED_BOOK] = new Fortuity({
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_BOOK + '0'),
       title: 'An Unexpected Find',
-      text: (`While walking through the exceptionally useful storage caverns underneath the town, you come across something strange. Behind a cluster of rocks is what looks like a study, its crumbling walls exposing to the underground air.`)
+      text: (`While walking through the exceptionally useful storage caverns underneath the town, you come across something strange. Behind a cluster of rocks is what looks like a study, its crumbling walls exposed to the underground air.`)
     }),
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_BOOK + '1'),

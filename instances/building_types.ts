@@ -504,15 +504,62 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
     cost: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 2000},
+      {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 200}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4000},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 40}],
+    upgradesInto: BTY.FISHING_POND_DREDGED,
     recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      consumes: null}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
+  }),
+
+  [BTY.FISHING_POND_DREDGED]: new BuildingType({
+    name: BTY.FISHING_POND_DREDGED,
+    description: '- Gone fishing -',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4000},
+      {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 180},
+      {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, quantity: 40}],
+    upgradesInto: BTY.FISHING_POND_OLIVE_SHADED,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      consumes: null}),
+    new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.CARP, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.TAG, type: RTA.FOOD, quantity: 800}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
+  }),
+
+  [BTY.FISHING_POND_OLIVE_SHADED]: new BuildingType({
+    name: BTY.FISHING_POND_OLIVE_SHADED,
+    description: '- Gone fishing -',
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
+    cost: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      consumes: null}),
     new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
+    new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.CARP, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.TAG, type: RTA.FOOD, quantity: 800}]}),
-    new BuildingRecipe({index: 2, produces:
+    new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.BARRAMUNDI, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 6}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,

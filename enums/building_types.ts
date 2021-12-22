@@ -26,6 +26,8 @@ export enum BUILDING_TYPES {
   OLIVE_GROVE = "Olive Grove",
   OLIVE_GROVE_SIMPLIFIED = "Simplified Olive Grove",
   FISHING_POND = "Fishing Pond",
+  FISHING_POND_DREDGED = "Dredged Fishing Pond",
+  FISHING_POND_OLIVE_SHADED = "Olive-Shaded Fishing Pond",
   QUAIL_PASTURE = "Quail Pasture",
   QUAIL_PASTURE_SIMPLIFIED = "Simplified Quail Pasture",
   OX_PASTURE = "Ox Pasture",

@@ -591,9 +591,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add animation to conversations
   [X] Swap Lentil Farming and Reed Cultivation difficulties
   [X] Brine trade good
-  [ ] Mussels in Fishing Pond
+  [X] Mussels in Fishing Pond
   [ ] Reedcloth resource type
   [ ] Glassware to use cloth subcategory as an ingredient
+  [ ] Mysticism research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
@@ -601,7 +602,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Increase difficulty of Field Notes-locked upgrades
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
-  [ ] Mysticism research
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Show resource descriptive name, not id name in selection components

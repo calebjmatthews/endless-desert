@@ -31,6 +31,7 @@ export enum RESOURCE_TYPES {
   GRAIN = "Grain",
   FLOUR = "Flour",
   OLIVE = "Olive",
+  MUSSEL = "Mussel",
   MINNOW = "Minnow",
   BARRAMUNDI = "Barramundi",
   CARP = "Carp",

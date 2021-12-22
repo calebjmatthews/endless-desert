@@ -341,6 +341,15 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
+resourceTypes[RTY.MUSSEL] = new ResourceType({
+  name: RTY.MUSSEL,
+  category: RCA.MATERIAL,
+  subcategory: RSC.FISH,
+  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  value: 32, ///
+  icon: new Icon({provider: 'svg', name: SVGS.MUSSEL})
+});
+
 resourceTypes[RTY.MINNOW] = new ResourceType({
   name: RTY.MINNOW,
   category: RCA.MATERIAL,

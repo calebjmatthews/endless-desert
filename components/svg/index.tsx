@@ -29,6 +29,7 @@ import ReedsSvgComponent from './resources/reeds';
 import GrainSvgComponent from './resources/grain';
 import FlourSvgComponent from './resources/flour';
 import OliveSvgComponent from './resources/olive';
+import MussellSvgComponent from './resources/mussel';
 import CarpSvgComponent from './resources/carp';
 import MinnowSvgComponent from './resources/minnow';
 import BarramundiSvgComponent from './resources/barramundi';
@@ -226,6 +227,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FlourSvgComponent icon={props.icon} />;
     case SVGS.OLIVE:
     return <OliveSvgComponent icon={props.icon} />;
+    case SVGS.MUSSEL:
+    return <MussellSvgComponent icon={props.icon} />;
     case SVGS.MINNOW:
     return <MinnowSvgComponent icon={props.icon} />;
     case SVGS.CARP:

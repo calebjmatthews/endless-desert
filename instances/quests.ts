@@ -177,7 +177,8 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Mark one piece of equipment.`,
         equipmentToMark: { quantity: 1 } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.PALE_ORE, value: 5250 }]
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.PALE_ORE, value: 5250 }],
+    conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
