@@ -78,7 +78,7 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
         memos[MEMOS.LOOK_AROUND_REPAIR]]));
       dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
       dispatch(unlockTab(TABS.QUESTS));
-      dispatch(addQuest(quests[QUESTS.SURVIVE]));
+      dispatch(addQuest(quests[QUESTS.EARLY_DAYS_SURVIVE]));
     }, 3000);
 
     return () => { clearTimeout(timeout); }

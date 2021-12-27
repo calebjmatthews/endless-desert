@@ -226,7 +226,7 @@ function ConversationStatic(props: ConversationProps) {
       if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
         dispatch(unlockTab(TABS.LEADERS));
         dispatch(unlockTab(TABS.EQUIPMENT));
-        dispatch(addQuest(quests[QUESTS.LEADER_SETUP]));
+        dispatch(addQuest(quests[QUESTS.EARLY_DAYS_LEADER_SETUP]));
       }
       const leaderCreateRes =
         leaderTypes[statement.leaderJoins].createLeader(vault, resourceTypes);

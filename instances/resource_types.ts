@@ -1409,4 +1409,13 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.KEY})
 });
 
+resourceTypes[RESOURCE_TYPES.RED_KEY] =
+new ResourceType({
+  name: (RESOURCE_TYPES.RED_KEY),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 13000,
+  icon: new Icon({provider: 'svg', name: SVGS.KEY})
+});
+
 export { resourceTypes }

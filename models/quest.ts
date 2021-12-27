@@ -5,6 +5,7 @@ import { Conversation } from './conversation';
 
 export default class Quest implements QuestInterface {
   id: string = '';
+  subtitle?: string;
   name: string = '';
   givenBy: string = '';
   icon?: Icon;
@@ -41,6 +42,7 @@ function createNewProgress(count: number, parentId: string) {
 
 interface QuestInterface {
   id: string;
+  subtitle?: string;
   name: string;
   givenBy: string;
   icon?: Icon;

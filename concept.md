@@ -282,7 +282,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Research:
   - Study action, inspect an item that has not been studied before to gain knowledge
-  - Analyse action, Gain knowledge by destroying a resource and studying its parts
+  - Analyze action, Gain knowledge by destroying a resource and studying its parts
   - Field notes are brought back by explorers, even when an exploration fails. There are also ways of gathering field notes about the town itself. Example field notes are "Notes on the Western Stars", "Notes on the Waning Moon", "Notes on Flowing Water", "Notes on Caves Beneath the Sand", etc.
   - Research difficulty works as follows:
     - Easiest difficulty uses very small amounts of knowledge, water, and lentils
@@ -385,7 +385,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Thrice locked book
   - Daily quests:
     - Produce some # of a resource
-    - Analyse some # of a resource
+    - Analyze some # of a resource
     - Cook a dish with X traits
     - Complete some # of trades
     - Mark some # of equipment
@@ -404,7 +404,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Research, with current research (if active) and research options (if not active)
     - Current activity button/display, when clicked gives options:
       - Study: Inspect an item that has not been studied before to gain knowledge
-      - Analyse: Gain knowledge by destroying a resource and studying its parts
+      - Analyze: Gain knowledge by destroying a resource and studying its parts
     - Research map
   - Exploration, with current expedition (if active) and expedition options (if not active)
   - The Dreaming, with a map for each of the temporary settlements made in The Dreaming

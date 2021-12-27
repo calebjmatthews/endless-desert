@@ -150,7 +150,7 @@ export default function QuestsComponent() {
       }));
     }
 
-    if (quest.name == QUESTS.MARK_EQUIPMENT) {
+    if (quest.name == QUESTS.EARLY_DAYS_MARK_EQUIPMENT) {
       dispatch(addTimer(new Timer({
         name: 'Daily quest',
         endsAt: (new Date(Date.now()).valueOf() + 100),
@@ -257,7 +257,7 @@ function QuestDescription(props: { quest: Quest,
       <View style={styles.buttonRow}>
         <TouchableOpacity style={StyleSheet.flatten([buttonStyle,
           {minWidth: (props.positioner.bodyMedWidth - 10),
-            maxWidth: (props.positioner.bodyMedWidth - 10)}])} 
+            maxWidth: (props.positioner.bodyMedWidth - 10)}])}
           disabled={!quest.readyToComplete}
           onPress={() => { rewardPress(quest) }} >
           <Text style={styles.buttonText}>{actionLabel}</Text>
