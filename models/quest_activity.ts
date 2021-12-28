@@ -1,6 +1,7 @@
 export default class QuestActivity {
   id: string = '';
   timestamp: number = new Date(Date.now()).valueOf();
+  resourceGained?: {type: string, quantity: number};
   resourcesProduced?: {specType: string, quantity: number}[];
   resourceAnalyzed?: {type: string, quantity: number};
   dishesCooked?: {type: string, tags: string[], quantity: number}[];
@@ -21,6 +22,7 @@ export default class QuestActivity {
 interface QuestActivityInterface {
   id: string;
   timestamp?: number;
+  resourceGained?: {type: string, quantity: number};
   resourcesProduced?: {specType: string, quantity: number}[];
   resourceAnalyzed?: {type: string, quantity: number};
   dishesCooked?: {type: string, tags: string[], quantity: number}[];

@@ -1,6 +1,7 @@
 export default class QuestProgress implements QuestProgressInterface {
   index: number = 0;
   parentId: string = '';
+  resourceGained?: number;
   resourceProduced?: number;
   resourceAnalyzed?: number;
   dishCooked?: number;
@@ -12,9 +13,12 @@ export default class QuestProgress implements QuestProgressInterface {
     Object.assign(this, questProgress);
   }
 
-  addProgress(propName: 'resourceProduced'|'resourceAnalyzed'|'dishCooked'
-    |'tradedWith'|'equipmentMarked'|'actionPerformed', quantity: number) {
+  addProgress(propName: 'resourceGained'|'resourceProduced'|'resourceAnalyzed'
+    |'dishCooked'|'tradedWith'|'equipmentMarked'|'actionPerformed', quantity: number) {
     switch (propName) {
+      case 'resourceGained':
+      if (!this.resourceGained) { this.resourceGained = 0; }
+      this.resourceGained += quantity; break;
       case 'resourceProduced':
       if (!this.resourceProduced) { this.resourceProduced = 0; }
       this.resourceProduced += quantity; break;
@@ -41,6 +45,7 @@ export default class QuestProgress implements QuestProgressInterface {
 interface QuestProgressInterface {
   index: number;
   parentId: string;
+  resourceGained?: number;
   resourceProduced?: number;
   resourceAnalyzed?: number;
   dishCooked?: number;

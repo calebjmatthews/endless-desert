@@ -53,5 +53,6 @@ export enum RESEARCHES {
   GLASS_SHAPING = "Glass Shaping",
   SOLVENTS = "Solvents",
   POTTERY = "Pottery",
-  FERMENTATION = "Fermentation"
+  FERMENTATION = "Fermentation",
+  MYSTICISM = "Mysticism"
 }

@@ -8,7 +8,8 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { addQuest, removeQuest, addQuestCompleted } from '../actions/quest_status';
+import { addQuest, removeQuest, addQuestCompleted, addToActivityQueue }
+  from '../actions/quest_status';
 import { increaseResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
@@ -20,6 +21,7 @@ import Quest from '../models/quest';
 import QuestCompleted from '../models/quest_completed';
 import QuestTask from '../models/quest_task';
 import QuestProgress from '../models/quest_progress';
+import QuestActivity from '../models/quest_activity';
 import Resource from '../models/resource';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
@@ -116,6 +118,8 @@ export default function QuestsComponent() {
         const rToGain = utils.getMatchingResourceQuantity(gain, resourceNames);
         resourcesGained.push(new Resource(rToGain));
         resourceNames.push(rToGain.type);
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          resourceGained: { type: rToGain.type, quantity: rToGain.quantity }})));
       });
       dispatch(increaseResources(vault, resourcesGained));
       memos[0].resourcesGained = resourcesGained;
@@ -140,6 +144,10 @@ export default function QuestsComponent() {
     if (quest.questsBegin) {
       quest.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
+        const rtgExisting = quests[questName].resourceToGainCheckExisting(vault);
+        rtgExisting.forEach((questActivity) => {
+          dispatch(addToActivityQueue(questActivity));
+        });
       });
     }
     if (quest.conversationBegins) {
@@ -252,6 +260,9 @@ function QuestDescription(props: { quest: Quest,
     }
     if (!quest.readyToComplete) {
       actionLabel = 'Reward: ';
+    }
+    if (!quest.gainResources && !quest.leaderJoins) {
+      actionLabel = 'Reward Unknown';
     }
     return (
       <View style={styles.buttonRow}>

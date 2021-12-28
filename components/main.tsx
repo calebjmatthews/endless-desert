@@ -60,6 +60,8 @@ import { LEADER_TYPES } from '../enums/leader_types';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+import { QUESTS } from '../enums/quests';
+import { CONVERSATIONS } from '../enums/conversations';
 
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
@@ -107,12 +109,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -268,7 +270,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'This is only a test',
+        convoName: CONVERSATIONS.TESTING
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

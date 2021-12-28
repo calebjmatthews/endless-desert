@@ -243,6 +243,35 @@ export default class Vault {
     return resources;
   }
 
+  getSpecificityQuantity(specificity: string, kind: string) {
+    let quantity = 0;
+    Object.keys(this.resources).forEach((typeName) => {
+      const resource = this.resources[typeName];
+      const resourceType = !resource.id ? resourceTypes[resource.type]
+        : resource.toResourceType(resourceTypes);
+      switch(specificity) {
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        if (resourceType.category == kind) { quantity += resource.quantity; }
+        break;
+
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        if (resourceType.subcategory == kind) { quantity += resource.quantity; }
+        break;
+
+        case RESOURCE_SPECIFICITY.TAG:
+        resourceType.tags.forEach((tag) => {
+          if (tag == kind) { quantity += resource.quantity; }
+        })
+        break;
+
+        case RESOURCE_SPECIFICITY.EXACT:
+        if (resource.type == kind) { quantity += resource.quantity; }
+        break;
+      }
+    });
+    return quantity;
+  }
+
   getStudyableResources() {
     let resources: Resource[] = [];
     Object.keys(this.resources).map((typeQuality) => {

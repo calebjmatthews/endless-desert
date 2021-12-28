@@ -729,7 +729,7 @@ Object.keys(buildingTypes).map((typeName) => {
 dispatch(addMemos([new Memo({
   name: 'test',
   title: 'A Familiar Figure',
-  convoName: 'A Thrice Locked Book - 0'
+  convoName: 'A Thrice Locked Tome'
 })]));
 ```
 

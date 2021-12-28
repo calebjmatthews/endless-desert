@@ -21,6 +21,26 @@ export default function QuestHandlerComponent() {
   useEffect(() => {
     const questActivity = questStatus.activityQueue[0];
     if (questActivity) {
+      if (questActivity.resourceGained) {
+        Object.keys(questStatus.quests).forEach((id) => {
+          const quest = questStatus.quests[id];
+          if (!quest.readyToComplete) {
+            let questProgress: QuestProgress|null = null;
+            quest.tasks.forEach((task, index) => {
+              if (task.resourceToGain) {
+                const quantityAdd = taskMatchResourceToGain(task.resourceToGain,
+                  questActivity.resourceGained);
+                if (quantityAdd) {
+                  questProgress = new QuestProgress(quest.progress[index]);
+                  questProgress = questProgress.addProgress('resourceGained',
+                    quantityAdd);
+                }
+              }
+              if (questProgress) { handleQuestProgress(quest, questProgress); }
+            });
+          }
+        });
+      }
       if (questActivity.resourcesProduced) {
         Object.keys(questStatus.quests).forEach((id) => {
           const quest = questStatus.quests[id];
@@ -156,6 +176,39 @@ export default function QuestHandlerComponent() {
   }
 
   return <></>;
+}
+
+function taskMatchResourceToGain(resourceToGain:
+  {specificity: string, type: string, quantity: number}, resourceGained:
+  {type: string, quantity: number}|undefined) {
+  if (!resourceGained) { return 0; }
+  let quantity = 0;
+  const resourceType = resourceTypes[resourceGained.type];
+  switch(resourceToGain.specificity) {
+    case RSP.CATEGORY:
+    if (resourceType.category === resourceToGain.type) {
+      quantity = resourceGained.quantity;
+    }
+    break;
+    case RSP.SUBCATEGORY:
+    if (resourceType.subcategory === resourceToGain.type) {
+      quantity = resourceGained.quantity;
+    }
+    break;
+    case RSP.TAG:
+    resourceType.tags.forEach((tag) => {
+      if (tag === resourceToGain.type) {
+        quantity = resourceGained.quantity;
+      }
+    });
+    break;
+    case RSP.EXACT:
+    if (resourceGained.type === resourceToGain.type) {
+      quantity = resourceGained.quantity;
+    }
+    break;
+  }
+  return quantity;
 }
 
 function taskMatchResourceToProduce(resourceToProduce:

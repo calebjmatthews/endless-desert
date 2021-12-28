@@ -13,7 +13,7 @@ import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { unlockTab } from '../actions/account';
-import { addQuest } from '../actions/quest_status';
+import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { dismissMemo, displayModal } from '../actions/ui';
 
 import Leader from '../models/leader';
@@ -24,6 +24,7 @@ import Icon from '../models/icon';
 import Account from '../models/account';
 import Positioner from '../models/positioner';
 import ConversationStatus from '../models/conversation_status';
+import QuestActivity from '../models/quest_activity';
 import { Conversation, ConversationStatement, ConversationResponse,
   ConversationNarration } from '../models/conversation';
 import { conversations, convoStatements, convoResponses, convoNarrations }
@@ -188,7 +189,8 @@ function ConversationStatic(props: ConversationProps) {
         modalMajor={positioner.modalMajor}
         setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments}
         resources={sResourcesGained[name]}
-        leaderJoins={convoStatements[name].leaderJoins} />;
+        leaderJoins={convoStatements[name].leaderJoins}
+        questsBegin={convoStatements[name].questsBegin} />;
 
       case 'nextButton':
       return <NextButton key={name} speechButtonWidth={positioner.speechButtonWidth}
@@ -245,6 +247,8 @@ function ConversationStatic(props: ConversationProps) {
     }
 
     if (statement.gainResources) {
+      console.log('statement');
+      console.log(statement);
       const fgr = statement.gainResources;
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -253,10 +257,22 @@ function ConversationStatic(props: ConversationProps) {
         const rToGain = utils.getMatchingResourceQuantity(resReq, resourceNames);
         resourcesGained.push(new Resource(rToGain));
         resourceNames.push(rToGain.type);
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          resourceGained: { type: rToGain.type, quantity: rToGain.quantity }})));
       }
       dispatch(increaseResources(vault, resourcesGained));
+
       setSResourcesGained(Object.assign(sResourcesGained,
         { [statement.name] : resourcesGained }));
+    }
+    if (statement.questsBegin) {
+      statement.questsBegin.forEach((questName) => {
+        dispatch(addQuest(quests[questName]));
+        const rtgExisting = quests[questName].resourceToGainCheckExisting(vault);
+        rtgExisting.forEach((questActivity) => {
+          dispatch(addToActivityQueue(questActivity));
+        });
+      });
     }
   }
 
@@ -438,11 +454,12 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
 
 function Reward(props: { modalMajor: number,
   setSegmentsToAdd: (segments: Segment[]) => void,
-  resources?: Resource[], leaderJoins?: string, nextSegments?: Segment[] } ) {
+  resources?: Resource[], leaderJoins?: string, questsBegin?: string[],
+  nextSegments?: Segment[] } ) {
   const [finished, setFinished] = useState(false);
-  const rewardOpacity = useRef(new Animated.Value(finished ? 1 : 0)).current;
+  const rewardOpacity = useRef(new Animated.Value(finished ? 0.9 : 0)).current;
   React.useEffect(() => { Animated.timing(rewardOpacity,
-    { toValue: 1, duration: (FADE_IN_DELAY*2), useNativeDriver: true }
+    { toValue: 0.9, duration: (FADE_IN_DELAY*2), useNativeDriver: true }
   ).start(() => {
     if (!finished && props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
     setFinished(true);
@@ -463,25 +480,45 @@ function Reward(props: { modalMajor: number,
       </>
     )
   }
+  else if (props.questsBegin) {
+    return (
+      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {opacity: rewardOpacity}])}>
+        <Text>
+          {(props.questsBegin.length == 1) ? "You began the quest:"
+            : "You began the quests:"}
+        </Text>
+        {props.questsBegin.map((questName) => {
+          const quest = quests[questName];
+          return (
+            <View style={styles.rows}>
+              <BadgeComponent icon={quest.icon} size={37} />
+              <Text style={styles.bareText}>
+                {`${quest.subtitle}: ${quest.name}`}
+              </Text>
+            </View>
+          )
+        })}
+      </Animated.View>
+    );
+  }
   else if (props.resources) {
     return (
       <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
         {opacity: rewardOpacity}])}>
-        <View style={styles.panelFlexColumn}>
-          <Text>{"You gained:"}</Text>
-          {props.resources.map((resource, index) => {
-            const resourceType = utils.getResourceType(resource);
-            return (
-              <View key={index} style={styles.containerStretchRow}>
-                <BadgeComponent icon={resourceType.icon} size={21} />
-                <Text style={styles.bodyText}>
-                  {' +' + utils.formatNumberShort(resource.quantity) + ' '
-                    + utils.getResourceName(resource)}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
+        <Text>{"You gained:"}</Text>
+        {props.resources.map((resource, index) => {
+          const resourceType = utils.getResourceType(resource);
+          return (
+            <View key={index} style={styles.containerStretchRow}>
+              <BadgeComponent icon={resourceType.icon} size={21} />
+              <Text style={styles.bodyText}>
+                {' +' + utils.formatNumberShort(resource.quantity) + ' '
+                  + utils.getResourceName(resource)}
+              </Text>
+            </View>
+          );
+        })}
         <View style={styles.break} />
       </Animated.View>
     );

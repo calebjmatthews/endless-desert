@@ -155,4 +155,37 @@ fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s4'] = new ConversationStatement({
 offerings for you`
 });
 
+fifConversations[CVS.TESTING] = new Conversation({
+  name: CVS.TESTING,
+  title: `Testing`,
+  partnerKind: 'special', partnerType: SPECIAL.FIREFLY,
+  statementName: CVS.TESTING + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 0,
+  available: () => ( false )
+});
+fifConvoStatements[CVS.TESTING + ' - s0'] = new ConversationStatement({
+  name: CVS.TESTING + ' - s0',
+  partnerKind: 'special', partnerType: SPECIAL.FIREFLY,
+  text:
+`      some
+      testing`,
+  responseNames: [CVS.TESTING + ' - r0']
+});
+fifConvoResponses[CVS.TESTING + ' - r0'] = new ConversationResponse({
+  name: CVS.TESTING + ' - r0',
+  textIntro: `Testing, is it?`,
+  text: `Testing, is it?`,
+  statementName: CVS.TESTING + ' - s1',
+  cost: {specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, quantity: 1}
+});
+fifConvoStatements[CVS.TESTING + ' - s1'] = new ConversationStatement({
+  name: CVS.TESTING + ' - s1',
+  partnerKind: 'special', partnerType: SPECIAL.FIREFLY,
+  text:
+`    yes testing`,
+  gainResources: [{specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000}]
+});
+
 export { fifConversations, fifConvoStatements, fifConvoResponses, fifConvoNarrations };

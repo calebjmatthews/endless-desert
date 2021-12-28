@@ -47,6 +47,7 @@ export class ConversationStatement {
   narrationName?: string;
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
+  questsBegin?: string[];
 
   constructor(statement: ConversationStatement|null) {
     if (statement) {

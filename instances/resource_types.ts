@@ -1391,9 +1391,9 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 
-resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_BOOK] =
+resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] =
 new ResourceType({
-  name: (RESOURCE_TYPES.THRICE_LOCKED_BOOK),
+  name: (RESOURCE_TYPES.THRICE_LOCKED_TOME),
   category: RCA.SPECIAL,
   tags: [RESOURCE_TAGS.MIND],
   value: 33000,
@@ -1406,7 +1406,7 @@ new ResourceType({
   category: RCA.SPECIAL,
   tags: [RESOURCE_TAGS.MIND],
   value: 10000,
-  icon: new Icon({provider: 'svg', name: SVGS.KEY})
+  icon: new Icon({provider: 'svg', name: SVGS.BROKEN_KEY})
 });
 
 resourceTypes[RESOURCE_TYPES.RED_KEY] =

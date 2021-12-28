@@ -196,14 +196,19 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     name: 'A Thrice Locked Tome',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
-    description: ``,
-    finishText: ``,
+    description: `Guangzhou claims to know something about the strange red metal used in the tome from the storage caverns. Both the book and its locks are ancient; you'll need to find the matching keys (and likely repair them) before you can open the tome.`,
+    finishText: `Each key fits into its lock with a resonant clank much louder than seems possible. Guangzhou stands behind your shoulder as you open the book.`,
     tasks: [
-      new QuestTask({ index: 0, parentId: QUESTS.EARLY_DAYS_MARK_EQUIPMENT,
-        label: `Mark one piece of equipment.`,
-        equipmentToMark: { quantity: 1 } })
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME,
+        label: `Find the three Broken Red Keys.`,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY,
+          quantity: 3, includeExisting: true } }),
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME,
+        label: `Repair them into three working Red Keys.`,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.RED_KEY,
+          quantity: 3, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.PALE_ORE, value: 5250 }],
+    researchUnlocked: RESEARCHES.MYSTICISM,
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   }),
   [QUESTS.TESTING]: new Quest({
@@ -215,10 +220,10 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.TESTING,
         label: `Produce 100 Water.`,
-        resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.WATER}`), quantity: 100 }}),
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WATER}`, quantity: 100 }}),
       new QuestTask({ index: 1, parentId: QUESTS.TESTING,
         label: `Produce 10 Lentil.`,
-        resourceToProduce: { specType: (`${RSP.EXACT}|${RTY.LENTIL}`), quantity: 10 }})
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LENTIL}`, quantity: 10 }})
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]

@@ -115,79 +115,79 @@ sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s1z'] = new ConversationStatement({
   leaderJoins: LEADER_TYPES.SAMANNOUD
 });
 
-sndConversations[CVS.SND_THRICE_LOCKED_BOOK] = new Conversation({
-  name: CVS.SND_THRICE_LOCKED_BOOK,
-  title: 'A Thrice Locked Book',
+sndConversations[CVS.SND_THRICE_LOCKED_TOME] = new Conversation({
+  name: CVS.SND_THRICE_LOCKED_TOME,
+  title: 'A Thrice Locked Tome',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s0',
+  statementName: CVS.SND_THRICE_LOCKED_TOME + ' - s0',
   repeatable: false,
   daily: false,
   weight: 100,
   available: (gState: GameState) => {
-    if (gState.vault?.resources[`${RTY.THRICE_LOCKED_BOOK}|0`]) {
-      if (gState.vault?.resources[`${RTY.THRICE_LOCKED_BOOK}|0`].quantity >= 1) {
+    if (gState.vault?.resources[`${RTY.THRICE_LOCKED_TOME}|0`]) {
+      if (gState.vault?.resources[`${RTY.THRICE_LOCKED_TOME}|0`].quantity >= 1) {
         return true;
       }
     }
     return false;
   }
 });
-sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s0'] = new ConversationStatement({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - s0',
+sndConvoStatements[CVS.SND_THRICE_LOCKED_TOME + ' - s0'] = new ConversationStatement({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - s0',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `What's that you've got?`,
-  responseNames: [CVS.SND_THRICE_LOCKED_BOOK + ' - r0']
+  responseNames: [CVS.SND_THRICE_LOCKED_TOME + ' - r0']
 });
-sndConvoResponses[CVS.SND_THRICE_LOCKED_BOOK + ' - r0'] = new ConversationResponse({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - r0',
+sndConvoResponses[CVS.SND_THRICE_LOCKED_TOME + ' - r0'] = new ConversationResponse({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - r0',
   textIntro: `It's a locked book.`,
   text: `It's a locked book. A thoroughly locked book. Can you make anything of it?`,
-  statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s1',
+  statementName: CVS.SND_THRICE_LOCKED_TOME + ' - s1',
   requirementIcon: new Icon({ provider: 'svg', name: SVGS.TOME }),
-  requirementLabel: RTY.THRICE_LOCKED_BOOK,
+  requirementLabel: RTY.THRICE_LOCKED_TOME,
   available: () => ( true )
 });
-sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s1'] = new ConversationStatement({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - s1',
+sndConvoStatements[CVS.SND_THRICE_LOCKED_TOME + ' - s1'] = new ConversationStatement({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - s1',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `I'm not one for books. But the clasps look familiar... Yes, here we are. This key's broken to pieces, but the metal looks to be the same. I found it in the caverns beneath the town, is that where you found the book?`,
-  responseNames: [CVS.SND_THRICE_LOCKED_BOOK + ' - r1c', CVS.SND_THRICE_LOCKED_BOOK + ' - r1a', CVS.SND_THRICE_LOCKED_BOOK + ' - r1h']
+  responseNames: [CVS.SND_THRICE_LOCKED_TOME + ' - r1c', CVS.SND_THRICE_LOCKED_TOME + ' - r1a', CVS.SND_THRICE_LOCKED_TOME + ' - r1h']
 });
-sndConvoResponses[CVS.SND_THRICE_LOCKED_BOOK + ' - r1c'] = new ConversationResponse({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - r1c',
+sndConvoResponses[CVS.SND_THRICE_LOCKED_TOME + ' - r1c'] = new ConversationResponse({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - r1c',
   textIntro: `Sure did.`,
   text: `Sure did.`,
-  statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s2c',
+  statementName: CVS.SND_THRICE_LOCKED_TOME + ' - s2c',
   speechType: 'Calm'
 });
-sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s2c'] = new ConversationStatement({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - s2c',
+sndConvoStatements[CVS.SND_THRICE_LOCKED_TOME + ' - s2c'] = new ConversationStatement({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - s2c',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `Don't give me that look. We're equals in all this, right? I didn't tell you about the key right away, but I'm telling you about it now. No one's being secretive, not on purpose.`,
   gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
 });
-sndConvoResponses[CVS.SND_THRICE_LOCKED_BOOK + ' - r1a'] = new ConversationResponse({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - r1a',
+sndConvoResponses[CVS.SND_THRICE_LOCKED_TOME + ' - r1a'] = new ConversationResponse({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - r1a',
   textIntro: `You didn't tell me anything about this!`,
   text: `You didn't tell me anything about this!`,
-  statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s2a',
+  statementName: CVS.SND_THRICE_LOCKED_TOME + ' - s2a',
   speechType: 'Aggressive'
 });
-sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s2a'] = new ConversationStatement({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - s2a',
+sndConvoStatements[CVS.SND_THRICE_LOCKED_TOME + ' - s2a'] = new ConversationStatement({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - s2a',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `Ok, ok, I didn't, that's true. I've got reasons for digging into this town, things that I'm not going to talk about. You do too, don't you? Here, take the key, and let's not worry about it.`,
   gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
 });
-sndConvoResponses[CVS.SND_THRICE_LOCKED_BOOK + ' - r1h'] = new ConversationResponse({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - r1h',
+sndConvoResponses[CVS.SND_THRICE_LOCKED_TOME + ' - r1h'] = new ConversationResponse({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - r1h',
   textIntro: `Yeah, underground caves have the best reading material.`,
   text: `Yeah, underground caves have the best reading material.`,
-  statementName: CVS.SND_THRICE_LOCKED_BOOK + ' - s2h',
+  statementName: CVS.SND_THRICE_LOCKED_TOME + ' - s2h',
   speechType: 'Humorous'
 });
-sndConvoStatements[CVS.SND_THRICE_LOCKED_BOOK + ' - s2h'] = new ConversationStatement({
-  name: CVS.SND_THRICE_LOCKED_BOOK + ' - s2h',
+sndConvoStatements[CVS.SND_THRICE_LOCKED_TOME + ' - s2h'] = new ConversationStatement({
+  name: CVS.SND_THRICE_LOCKED_TOME + ' - s2h',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `They seem a little too convenient, don't they? Cool, dry, incredibly spacious? Makes sense that we'd both be doing some investigating. Anyway, the key's yours. Let me know what you learn.`,
   gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]

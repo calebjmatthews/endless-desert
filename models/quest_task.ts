@@ -7,13 +7,16 @@ export default class QuestTask {
   parentId: string = '';
   label: string = '';
   icon?: Icon;
+  resourceToGain?: {specificity: string, type: string, quantity: number,
+    includeExisting?: boolean};
   resourceToProduce?: {specType: string, quantity: number};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};
   equipmentToMark?: {specificity?: string, type?: string, tier?: number,
     quantity: number};
-  actionToPerform?: {kind: string, value?: string, quantity?: number};
+  actionToPerform?: {kind: string, value?: string, quantity?: number,
+    includeExisting?: boolean};
 
   constructor(questTask: QuestTaskInterface) {
     Object.assign(this, questTask);
@@ -21,6 +24,11 @@ export default class QuestTask {
 
   isCompleted(progress: QuestProgress) {
     let completed = true;
+    if (this.resourceToGain) {
+      if ((progress.resourceGained || 0) < this.resourceToGain.quantity) {
+        completed = false;
+      }
+    }
     if (this.resourceToProduce) {
       if ((progress.resourceProduced || 0) < this.resourceToProduce.quantity) {
         completed = false;
@@ -55,6 +63,14 @@ export default class QuestTask {
   }
 
   getProgressLabel(progress: QuestProgress): string {
+    if (this.resourceToGain) {
+      const resourceGained = progress.resourceGained || 0;
+      if (this.resourceToGain.quantity >= 1) {
+        const numerator = resourceGained < this.resourceToGain.quantity ?
+          resourceGained : this.resourceToGain.quantity;
+        return `(${utils.formatNumberShort(numerator)}/${utils.formatNumberShort(this.resourceToGain.quantity)})`;
+      }
+    }
     if (this.resourceToProduce) {
       const resourceProduced = progress.resourceProduced || 0;
       if (this.resourceToProduce.quantity >= 1) {
@@ -112,11 +128,14 @@ interface QuestTaskInterface {
   parentId: string;
   label: string;
   icon?: Icon;
+  resourceToGain?: {specificity: string, type: string, quantity: number,
+    includeExisting?: boolean};
   resourceToProduce?: {specType: string, quantity: number};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};
   equipmentToMark?: {specificity?: string, type?: string, tier?: number,
     quantity: number};
-  actionToPerform?: {kind: string, value?: string, quantity?: number};
+  actionToPerform?: {kind: string, value?: string, quantity?: number,
+    includeExisting?: boolean};
 }

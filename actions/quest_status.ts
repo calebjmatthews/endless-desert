@@ -3,6 +3,7 @@ import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import QuestProgress from '../models/quest_progress';
 import QuestCompleted from '../models/quest_completed';
+import Vault from '../models/vault';
 
 export const SET_QUEST_STATUS = 'SET_QUEST_STATUS';
 export function setQuestStatus(questStatus: QuestStatus) {
@@ -13,7 +14,7 @@ export function setQuestStatus(questStatus: QuestStatus) {
 }
 
 export const ADD_QUEST = 'ADD_QUEST';
-export function addQuest(quest: Quest) {
+export function addQuest(quest: Quest, vault?: Vault) {
   return {
     type: ADD_QUEST,
     quest: quest

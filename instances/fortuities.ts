@@ -57,7 +57,7 @@ fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
   repeatable: false,
   weight: 20,
   available: (fState: GameState) => {
-    if (fState.account?.fortuitiesSeen[FORTUITIES.THRICE_LOCKED_BOOK]) {
+    if (fState.account?.fortuitiesSeen[FORTUITIES.THRICE_LOCKED_TOME]) {
       return true;
     }
     return false;
@@ -309,22 +309,22 @@ fortuities[FORTUITIES.UNUSUAL_SOIL] = new Fortuity({
   }
 });
 
-fortuities[FORTUITIES.THRICE_LOCKED_BOOK] = new Fortuity({
-  name: FORTUITIES.THRICE_LOCKED_BOOK,
+fortuities[FORTUITIES.THRICE_LOCKED_TOME] = new Fortuity({
+  name: FORTUITIES.THRICE_LOCKED_TOME,
   openLine: 'Wait, what\'s this?',
   memos: [
     new Memo({
-      name: (FORTUITIES.THRICE_LOCKED_BOOK + '0'),
+      name: (FORTUITIES.THRICE_LOCKED_TOME + '0'),
       title: 'An Unexpected Find',
       text: (`While walking through the exceptionally useful storage caverns underneath the town, you come across something strange. Behind a cluster of rocks is what looks like a study, its crumbling walls exposed to the underground air.`)
     }),
     new Memo({
-      name: (FORTUITIES.THRICE_LOCKED_BOOK + '1'),
+      name: (FORTUITIES.THRICE_LOCKED_TOME + '1'),
       title: 'An Unexpected Find',
       text: (`There's a desk, an empty inkwell, and some loose sheets of partment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard red metal.`)
     }),
     new Memo({
-      name: (FORTUITIES.THRICE_LOCKED_BOOK + '2'),
+      name: (FORTUITIES.THRICE_LOCKED_TOME + '2'),
       title: 'An Unexpected Find',
       text: (`The book has three separate sturdy locks; forcing them open isn't an option. On its cover is a pattern of white specks and the word "Unfound". You don't know what to make of it, but you take the book with you. Any information about the people who originally lived here could be paramount.`)
     })
@@ -333,7 +333,7 @@ fortuities[FORTUITIES.THRICE_LOCKED_BOOK] = new Fortuity({
   repeatable: false,
   weight: 100,
   gainResources: [
-    {specificity: RSP.EXACT, type: RTY.THRICE_LOCKED_BOOK, value: 33000}
+    {specificity: RSP.EXACT, type: RTY.THRICE_LOCKED_TOME, value: 33000}
   ],
   available: (fState: GameState) => {
     if (fState.leaders) {
