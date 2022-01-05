@@ -189,6 +189,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
+  heading3: {
+    fontSize: 15
+  },
   headingIcon: {
     textShadowColor: '#00000080',
     textShadowRadius: 2,

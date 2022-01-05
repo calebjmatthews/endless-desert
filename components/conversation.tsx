@@ -184,13 +184,14 @@ function ConversationStatic(props: ConversationProps) {
         speechBubbleWidth={positioner.speechBubbleWidth}
         setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments} />;
 
-      case 'reward':
-      return <Reward key={`rgained-${name}`}
+      case 'consequence':
+      return <Consequence key={`rgained-${name}`}
         modalMajor={positioner.modalMajor}
         setSegmentsToAdd={setSegmentsToAdd} nextSegments={nextSegments}
-        resources={sResourcesGained[name]}
-        leaderJoins={convoStatements[name].leaderJoins}
-        questsBegin={convoStatements[name].questsBegin} />;
+        resourcesGained={sResourcesGained[name]}
+        resourcesSpent={convoResponses[name]?.cost}
+        leaderJoins={convoStatements[name]?.leaderJoins}
+        questsBegin={convoStatements[name]?.questsBegin} />;
 
       case 'nextButton':
       return <NextButton key={name} speechButtonWidth={positioner.speechButtonWidth}
@@ -207,7 +208,7 @@ function ConversationStatic(props: ConversationProps) {
     const segmentsToAdd = nextSegments || [{ name: '', kind: 'nextButton' }];
     if (sResourcesGained[statement.name] || statement.leaderJoins
       || statement.questsBegin) {
-      setSegmentsToAdd([{ name: statement.name, kind: 'reward',
+      setSegmentsToAdd([{ name: statement.name, kind: 'consequence',
         nextSegments: segmentsToAdd }]);
     }
     else {
@@ -217,14 +218,16 @@ function ConversationStatic(props: ConversationProps) {
   }
 
   function responseOptionPress(response: ConversationResponse) {
+    let newSegmentsToAdd: Segment[] = [{ name: response.name, kind: 'response' }];
     if (response.cost) {
       applyCost(response.cost);
+      newSegmentsToAdd.unshift({ name: response.name, kind: 'consequence' })
     }
     let filteredSegments = [...segments].filter((segment) => {
       if (segment.kind != 'responseOption') { return segment; }
     });
     setSegments(filteredSegments);
-    setSegmentsToAdd([{ name: response.name, kind: 'response' }]);
+    setSegmentsToAdd(newSegmentsToAdd);
 
     const statement = convoStatements[response.statementName];
     if (statement.leaderJoins) {
@@ -250,8 +253,6 @@ function ConversationStatic(props: ConversationProps) {
     }
 
     if (statement.gainResources) {
-      console.log('statement');
-      console.log(statement);
       const fgr = statement.gainResources;
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -482,13 +483,14 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
   );
 }
 
-function Reward(props: { modalMajor: number,
+function Consequence(props: { modalMajor: number,
   setSegmentsToAdd: (segments: Segment[]) => void,
-  resources?: Resource[], leaderJoins?: string, questsBegin?: string[],
-  nextSegments?: Segment[] } ) {
+  resourcesGained?: Resource[],
+  resourcesSpent?: {specificity: string, type: string, quantity: number}[],
+  leaderJoins?: string, questsBegin?: string[], nextSegments?: Segment[] } ) {
   const [finished, setFinished] = useState(false);
-  const rewardOpacity = useRef(new Animated.Value(finished ? 0.9 : 0)).current;
-  React.useEffect(() => { Animated.timing(rewardOpacity,
+  const consequenceOpacity = useRef(new Animated.Value(finished ? 0.9 : 0)).current;
+  React.useEffect(() => { Animated.timing(consequenceOpacity,
     { toValue: 0.9, duration: (FADE_IN_DELAY*2), useNativeDriver: true }
   ).start(() => {
     if (!finished && props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
@@ -500,7 +502,7 @@ function Reward(props: { modalMajor: number,
     return (
       <>
         <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-          {opacity: rewardOpacity}])}>
+          {opacity: consequenceOpacity}])}>
           <BadgeComponent icon={leaderJoining.icon} size={37} />
           <Text>
             {` ${leaderJoining.name} joined you!`}
@@ -513,7 +515,7 @@ function Reward(props: { modalMajor: number,
   else if (props.questsBegin) {
     return (
       <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {opacity: rewardOpacity}])}>
+        {opacity: consequenceOpacity}])}>
         <Text>
           {(props.questsBegin.length == 1) ? "You began the quest:"
             : "You began the quests:"}
@@ -532,24 +534,44 @@ function Reward(props: { modalMajor: number,
       </Animated.View>
     );
   }
-  else if (props.resources) {
+  else if (props.resourcesGained) {
     return (
       <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {opacity: rewardOpacity}])}>
-        <Text>{"You gained:"}</Text>
-        {props.resources.map((resource, index) => {
+        {opacity: consequenceOpacity}])}>
+        <Text style={styles.heading3}>{"You gained:"}</Text>
+        {props.resourcesGained.map((resource) => {
           const resourceType = utils.getResourceType(resource);
           return (
-            <View key={index} style={styles.containerStretchRow}>
+            <View key={`${resource.type}|${resource.quality}`}
+              style={styles.containerStretchRow}>
               <BadgeComponent icon={resourceType.icon} size={21} />
-              <Text style={styles.bodyText}>
-                {' +' + utils.formatNumberShort(resource.quantity) + ' '
-                  + utils.getResourceName(resource)}
+              <Text>
+                {` +${utils.formatNumberShort(resource.quantity)}  ${utils.getResourceName(resource)}`}
               </Text>
             </View>
           );
         })}
         <View style={styles.break} />
+      </Animated.View>
+    );
+  }
+  else if (props.resourcesSpent) {
+    return (
+      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
+        {opacity: consequenceOpacity}])}>
+        {props.resourcesSpent.map((cost, index) => {
+          const resourceKind = utils.getMatchingResourceKind(cost.specificity,
+            cost.type);
+          return (
+            <View key={`${cost.specificity}|${cost.type}`}
+              style={styles.containerStretchRow}>
+              <BadgeComponent icon={resourceKind.icon} size={17} />
+              <Text style={styles.bodyText}>
+                {` -${utils.formatNumberShort(cost.quantity)} ${resourceKind.name}`}
+              </Text>
+            </View>
+          );
+        })}
       </Animated.View>
     );
   }
