@@ -178,7 +178,8 @@ fifConvoResponses[CVS.TESTING + ' - r0'] = new ConversationResponse({
   textIntro: `Testing, is it?`,
   text: `Testing, is it?`,
   statementName: CVS.TESTING + ' - s1',
-  cost: {specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, quantity: 1}
+  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 100},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 100}]
 });
 fifConvoStatements[CVS.TESTING + ' - s1'] = new ConversationStatement({
   name: CVS.TESTING + ' - s1',

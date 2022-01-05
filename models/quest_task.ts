@@ -130,7 +130,7 @@ interface QuestTaskInterface {
   icon?: Icon;
   resourceToGain?: {specificity: string, type: string, quantity: number,
     includeExisting?: boolean};
-  resourceToProduce?: {specType: string, quantity: number};
+  resourceToProduce?: {specType: string, quantity: number, includeExisting?: boolean};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};

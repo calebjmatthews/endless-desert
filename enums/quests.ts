@@ -9,5 +9,9 @@ export enum QUESTS {
   EARLY_DAYS_LEADER_SETUP = "Early Days: Leader Setup",
   EARLY_DAYS_MARK_EQUIPMENT = "Early Days: Mark Equipment",
   MYSTICISM_A_THRICE_LOCKED_TOME = "Mysticism: A Thrice Locked Tome",
+  MYSTICISM_A_RUINED_RED_METAL = "Mysticism: A Ruined Red Metal",
+  MYSTICISM_REPAIRING_THE_FIRST_KEY = "Mysticism: Repairing the First Key",
+  MYSTICISM_REPAIRING_THE_SECOND_KEY = "Mysticism: Repairing the Second Key",
+  MYSTICISM_REPAIRING_THE_THIRD_KEY = "Mysticism: Repairing the Third Key",
   TESTING = "Testing"
 }

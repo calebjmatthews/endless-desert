@@ -23,6 +23,15 @@ resourceTypes[RTY.KNOWLEDGE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.KNOWLEDGE})
 });
 
+resourceTypes[RTY.GLOAMING_LIGHT] = new ResourceType({
+  name: RTY.KNOWLEDGE,
+  category: RCA.ETHERIAL,
+  tags: [],
+  value: 1000,
+  description: `An entrancing light somehow trapped in a thin glass sphere`,
+  icon: new Icon({provider: 'svg', name: SVGS.GLOAMING_LIGHT})
+});
+
 resourceTypes[RTY.NOTES_SKY] = new ResourceType({
   name: RTY.NOTES_SKY,
   category: RCA.FIELD_NOTES,

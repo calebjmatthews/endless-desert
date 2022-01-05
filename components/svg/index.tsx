@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import KnowledgeSvgComponent from './resources/knowledge';
+import GloamingLightSvgComponent from './resources/gloaming_light';
 import NotesSkySvgComponent from './resources/notes_sky';
 import NotesStarSvgComponent from './resources/notes_star';
 import NotesWaterSvgComponent from './resources/notes_water';
@@ -176,6 +177,8 @@ export default function SvgComponent(props: { icon: Icon }) {
   switch (props.icon.name) {
     case SVGS.KNOWLEDGE:
     return <KnowledgeSvgComponent icon={props.icon} />;
+    case SVGS.GLOAMING_LIGHT:
+    return <GloamingLightSvgComponent icon={props.icon} />;
     case SVGS.NOTES_SKY:
     return <NotesSkySvgComponent icon={props.icon} />;
     case SVGS.NOTES_STAR:

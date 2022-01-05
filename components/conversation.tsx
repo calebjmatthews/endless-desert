@@ -205,7 +205,8 @@ function ConversationStatic(props: ConversationProps) {
 
   function addAllSegments(statement: ConversationStatement, nextSegments?: Segment[]) {
     const segmentsToAdd = nextSegments || [{ name: '', kind: 'nextButton' }];
-    if (sResourcesGained[statement.name] || statement.leaderJoins) {
+    if (sResourcesGained[statement.name] || statement.leaderJoins
+      || statement.questsBegin) {
       setSegmentsToAdd([{ name: statement.name, kind: 'reward',
         nextSegments: segmentsToAdd }]);
     }
@@ -216,7 +217,9 @@ function ConversationStatic(props: ConversationProps) {
   }
 
   function responseOptionPress(response: ConversationResponse) {
-    if (response.cost) { applyCost(response.cost); }
+    if (response.cost) {
+      applyCost(response.cost);
+    }
     let filteredSegments = [...segments].filter((segment) => {
       if (segment.kind != 'responseOption') { return segment; }
     });
@@ -290,46 +293,49 @@ function ConversationStatic(props: ConversationProps) {
     }
   }
 
-  function applyCost(aCost: {specificity: string, type: string, quantity: number}) {
-    let resourceMap:{ [typeQuality: string] : Resource } = {};
-    switch(aCost.specificity) {
-      case RESOURCE_SPECIFICITY.EXACT:
-      let exPool = vault.getExactResources(aCost.type);
-      exPool.forEach((resource) => {
-        resourceMap[resource.type + '|' + resource.quality] = resource;
-      });
-      break;
+  function applyCost(costs: {specificity: string, type: string, quantity: number}[]) {
+    let resources: Resource[] = [];
+    costs.forEach((cost) => {
+      let resourceMap:{ [typeQuality: string] : Resource } = {};
+      switch(cost.specificity) {
+        case RESOURCE_SPECIFICITY.EXACT:
+        let exPool = vault.getExactResources(cost.type);
+        exPool.forEach((resource) => {
+          resourceMap[resource.type + '|' + resource.quality] = resource;
+        });
+        break;
 
-      case RESOURCE_SPECIFICITY.TAG:
-      let tagPool = vault.getTagResources(aCost.type);
-      tagPool.forEach((resource) => {
-        resourceMap[resource.type + '|' + resource.quality] = resource;
-      });
-      break;
+        case RESOURCE_SPECIFICITY.TAG:
+        let tagPool = vault.getTagResources(cost.type);
+        tagPool.forEach((resource) => {
+          resourceMap[resource.type + '|' + resource.quality] = resource;
+        });
+        break;
 
-      case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      let scPool = vault.getSubcategoryResources(aCost.type);
-      scPool.forEach((resource) => {
-        resourceMap[resource.type + '|' + resource.quality] = resource;
-      });
-      break;
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        let scPool = vault.getSubcategoryResources(cost.type);
+        scPool.forEach((resource) => {
+          resourceMap[resource.type + '|' + resource.quality] = resource;
+        });
+        break;
 
-      case RESOURCE_SPECIFICITY.CATEGORY:
-      let catPool = vault.getCategoryResources(aCost.type);
-      catPool.forEach((resource) => {
-        resourceMap[resource.type + '|' + resource.quality] = resource;
-      });
-      break;
-    }
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        let catPool = vault.getCategoryResources(cost.type);
+        catPool.forEach((resource) => {
+          resourceMap[resource.type + '|' + resource.quality] = resource;
+        });
+        break;
+      }
+      if (Object.keys(resourceMap).length == 1) {
+        const resource = resourceMap[Object.keys(resourceMap)[0]];
+        resources.push(new Resource({...resource, quantity: cost.quantity}));
+      }
+      else {
+        console.log('Time to implement this!');
+      }
+    });
 
-    if (Object.keys(resourceMap).length == 1) {
-      const resource = resourceMap[Object.keys(resourceMap)[0]];
-      dispatch(consumeResources(vault, [new Resource({...resource,
-        quantity: aCost.quantity})]));
-    }
-    else {
-      console.log('Time to implement this!');
-    }
+    dispatch(consumeResources(vault, resources));
   }
 }
 
@@ -386,29 +392,37 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
   let buttonStyle: any = styles.button;
   let buttonDisabled: boolean = false;
   let requirement = null;
-  let requirementIcon = null;
-  let requirementLabel = null;
+  let costLabels: { icon: Icon, text: string }[] = [];
   if (response.cost) {
-    const resourceKind = utils.getMatchingResourceKind(response.cost.specificity,
-      response.cost.type);
-    const resourceQuantity = Math.floor(props.vault
-      .getQuantity(response.cost.specificity, response.cost.type));
-    requirementIcon = resourceKind.icon;
-    requirementLabel = `${utils.formatNumberShort(response.cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${response.cost.type}`;
-    if (resourceQuantity < response.cost.quantity) {
+    let missingCost: boolean = false;
+    response.cost.forEach((cost) => {
+      const resourceKind = utils.getMatchingResourceKind(cost.specificity,
+        cost.type);
+      const resourceQuantity = Math.floor(props.vault
+        .getQuantity(cost.specificity, cost.type));
+
+      costLabels.push({ icon: resourceKind.icon, text:
+        `${utils.formatNumberShort(cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${cost.type}` });
+      console.log('costLabels');
+      console.log(costLabels);
+
+      if (resourceQuantity < cost.quantity) {
+        missingCost = true;
+      }
+    });
+
+    if (missingCost) {
       buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
       buttonDisabled = true;
     }
   }
   else if (response.requirementLabel) {
-    requirementIcon = response.requirementIcon;
-    requirementLabel = response.requirementLabel;
     if (!response.available({ vault: props.vault })) {
       buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
       buttonDisabled = true;
     }
   }
-  if (response.cost || response.requirementLabel) {
+  if (response.requirementLabel) {
     requirement = (
       <View style={styles.columns}>
         <Text style={StyleSheet.flatten([styles.buttonText,
@@ -416,15 +430,31 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
           {'Requires:'}
         </Text>
         <View style={styles.rows}>
-          {requirementIcon && (
-            <BadgeComponent icon={requirementIcon} size={19} />
+          {response.requirementIcon && (
+            <BadgeComponent icon={response.requirementIcon} size={19} />
           )}
           <Text style={styles.buttonText}>
-            {requirementLabel}
+            {response.requirementLabel}
           </Text>
         </View>
       </View>
-    )
+    );
+  }
+  else if (response.cost) {
+    requirement = (
+      <View style={styles.columns}>
+        <Text style={StyleSheet.flatten([styles.buttonText,
+          { alignSelf: 'flex-start', opacity: 0.75 }])}>
+          {'Cost:'}
+        </Text>
+        {costLabels.map((costLabel) => (
+          <View key={costLabel.text} style={styles.rows}>
+            <BadgeComponent icon={costLabel.icon} size={19} />
+            <Text style={styles.buttonText}>{costLabel.text}</Text>
+          </View>
+        ))}
+      </View>
+    );
   }
 
   return (
@@ -469,10 +499,10 @@ function Reward(props: { modalMajor: number,
   if (leaderJoining) {
     return (
       <>
-        <Animated.View style={StyleSheet.flatten([styles.containerStretchRow,
+        <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
           {opacity: rewardOpacity}])}>
           <BadgeComponent icon={leaderJoining.icon} size={37} />
-          <Text style={styles.bareText}>
+          <Text>
             {` ${leaderJoining.name} joined you!`}
           </Text>
         </Animated.View>
@@ -493,7 +523,7 @@ function Reward(props: { modalMajor: number,
           return (
             <View style={styles.rows}>
               <BadgeComponent icon={quest.icon} size={37} />
-              <Text style={styles.bareText}>
+              <Text>
                 {`${quest.subtitle}: ${quest.name}`}
               </Text>
             </View>

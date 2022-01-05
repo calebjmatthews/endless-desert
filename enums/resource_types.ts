@@ -1,5 +1,6 @@
 export enum RESOURCE_TYPES {
   KNOWLEDGE = "Knowledge",
+  GLOAMING_LIGHT = "Gloaming Light",
   NOTES_SKY = "Notes on the Boundless Sky",
   NOTES_STAR = "Notes on Stars Beyond Counting",
   NOTES_WATER = "Notes on Flowing Water",

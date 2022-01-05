@@ -61,7 +61,7 @@ tfsConvoResponses[FTU.CHEERY_FIGURE + ' - r0l'] = new ConversationResponse({
   textIntro: `How about this?`,
   text: `How about this?`,
   statementName: FTU.CHEERY_FIGURE + ' - s1l',
-  cost: {specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 10}
+  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 10}]
 });
 tfsConvoStatements[FTU.CHEERY_FIGURE + ' - s1l'] = new ConversationStatement({
   name: FTU.CHEERY_FIGURE + ' - s1l',
@@ -73,7 +73,7 @@ tfsConvoResponses[FTU.CHEERY_FIGURE + ' - r0s'] = new ConversationResponse({
   textIntro: `How about this?`,
   text: `How about this`,
   statementName: FTU.CHEERY_FIGURE + ' - s1s',
-  cost: {specificity: RSP.SUBCATEGORY, type: RSC.SOUP, quantity: 10}
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.SOUP, quantity: 10}]
 });
 tfsConvoStatements[FTU.CHEERY_FIGURE + ' - s1s'] = new ConversationStatement({
   name: FTU.CHEERY_FIGURE + ' - s1s',
@@ -85,7 +85,7 @@ tfsConvoResponses[FTU.CHEERY_FIGURE + ' - r0p'] = new ConversationResponse({
   textIntro: `How about this?`,
   text: `How about this?`,
   statementName: FTU.CHEERY_FIGURE + ' - s1p',
-  cost: {specificity: RSP.SUBCATEGORY, type: RSC.PIE, quantity: 10}
+  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.PIE, quantity: 10}]
 });
 tfsConvoStatements[FTU.CHEERY_FIGURE + ' - s1p'] = new ConversationStatement({
   name: FTU.CHEERY_FIGURE + ' - s1p',

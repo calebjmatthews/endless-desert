@@ -7,6 +7,10 @@ export enum CONVERSATIONS {
 
   FFH_SAYING_HELLO = "Foxfire Heretic: Saying Hello",
   FFH_THRICE_LOCKED_TOME = "Foxfire Heretic: A Thrice Locked Tome",
+  FFH_A_RUINED_RED_METAL = "Foxfire Heretic: A Ruined Red Metal",
+  FFH_REPAIRING_THE_FIRST_KEY = "Foxfire Heretic: Repairing the First Key",
+  FFH_REPAIRING_THE_SECOND_KEY = "Foxfire Heretic: Repairing the Second Key",
+  FFH_REPAIRING_THE_THIRD_KEY = "Foxfire Heretic: Repairing the Third Key",
 
   AUW_SAYING_HELLO = "Auspicious Waif: Saying Hello",
 

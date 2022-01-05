@@ -100,20 +100,6 @@ sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s1h'] = new ConversationStatement({
   text: `Oh, that's how you'd like to play it? Your ripped clothes and sweat are giving you away, you know. From now on it'll be me doing the exploring, and you doing the reading and counting and such. Less likely you'll get yourself killed that way.`,
   leaderJoins: LEADER_TYPES.SAMANNOUD
 });
-sndConvoResponses[FTU.FAMILIAR_FIGURE + ' - r0z'] = new ConversationResponse({
-  name: FTU.FAMILIAR_FIGURE + ' - r0z',
-  textIntro: `Want a bushel of blueberries?`,
-  text: `Want a bushel of blueberries?`,
-  statementName: FTU.FAMILIAR_FIGURE + ' - s1z',
-  cost: {specificity: RSP.EXACT, type: RTY.BLUEBERRY,
-    quantity: 100}
-});
-sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s1z'] = new ConversationStatement({
-  name: FTU.FAMILIAR_FIGURE + ' - s1z',
-  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `Yea.`,
-  leaderJoins: LEADER_TYPES.SAMANNOUD
-});
 
 sndConversations[CVS.SND_THRICE_LOCKED_TOME] = new Conversation({
   name: CVS.SND_THRICE_LOCKED_TOME,

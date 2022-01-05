@@ -65,7 +65,7 @@ export class ConversationResponse implements ConversationResponseInterface {
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
-  cost?: {specificity: string, type: string, quantity: number};
+  cost?: {specificity: string, type: string, quantity: number}[];
 
   constructor(conversation: ConversationResponseInterface) {
     Object.assign(this, conversation);
@@ -85,7 +85,7 @@ interface ConversationResponseInterface {
   speechType?: string;
   requirementIcon?: Icon;
   requirementLabel?: string;
-  cost?: {specificity: string, type: string, quantity: number};
+  cost?: {specificity: string, type: string, quantity: number}[];
 
   available?: (gState: GameState) => boolean;
 }

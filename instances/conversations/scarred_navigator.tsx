@@ -76,14 +76,14 @@ scnConvoResponses[FTU.LIMPING_FIGURE + ' - r0a'] = new ConversationResponse({
   text: `I'll back you up. I have a mattock and know how to swing it.`,
   statementName: FTU.LIMPING_FIGURE + ' - s1a',
   speechType: 'Aggressive',
-  cost: {specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK + ' (Unmarked)', quantity: 1}
+  cost: [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK + ' (Unmarked)', quantity: 1}]
 });
 scnConvoStatements[FTU.LIMPING_FIGURE + ' - s1a'] = new ConversationStatement({
   name: FTU.LIMPING_FIGURE + ' - s1a',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SCARRED_NAVIGATOR,
   text: `You would, would you? You'd get yourself beat half to death, of course, but I can see if your eyes that you mean it. Great skies, what am I doing with the Crows these days? They're just waiting until I'm too old to guard my own.
 
-  Better to stay here, no question. If you would have us, my crew and I are yours. Although I'm keeping that mattock.`,
+Better to stay here, no question. If you would have us, my crew and I are yours. Although I'm keeping that mattock.`,
   leaderJoins: LEADER_TYPES.SCARRED_NAVIGATOR
 
 });
@@ -92,7 +92,6 @@ scnConvoResponses[FTU.LIMPING_FIGURE + ' - r0h'] = new ConversationResponse({
   textIntro: `Bring a cane, next time.`,
   text: `Bring a cane, next time.`,
   statementName: FTU.LIMPING_FIGURE + ' - s1h',
-  cost: {specificity: RSP.EXACT, type: RTY.PIE, quantity: 10}
 });
 scnConvoStatements[FTU.LIMPING_FIGURE + ' - s1h'] = new ConversationStatement({
   name: FTU.LIMPING_FIGURE + ' - s1h',
