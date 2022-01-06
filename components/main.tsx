@@ -273,8 +273,13 @@ export default function MainComponent() {
       dispatch(addMemos([new Memo({
         name: 'test',
         title: 'This is only a test',
-        convoName: CONVERSATIONS.TESTING
+        convoName: CONVERSATIONS.FFH_REPAIRING_THE_FIRST_KEY
       })]));
+      // let allResources: Resource[] = [];
+      // Object.keys(resourceTypes).map((typeName) => {
+      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100 }));
+      // });
+      // dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

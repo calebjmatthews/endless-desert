@@ -24,7 +24,7 @@ resourceTypes[RTY.KNOWLEDGE] = new ResourceType({
 });
 
 resourceTypes[RTY.GLOAMING_LIGHT] = new ResourceType({
-  name: RTY.KNOWLEDGE,
+  name: RTY.GLOAMING_LIGHT,
   category: RCA.ETHERIAL,
   tags: [],
   value: 1000,

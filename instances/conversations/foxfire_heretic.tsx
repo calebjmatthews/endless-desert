@@ -274,7 +274,8 @@ ffhConvoStatements[CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - s0'] =
   name: CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - s0',
   partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
   text: `You have come with what I need to repair the key?`,
-  responseNames: [CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - r0y']
+  responseNames: [CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - r0y',
+    CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - r0n']
 });
 ffhConvoResponses[CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - r0y'] =
   new ConversationResponse({

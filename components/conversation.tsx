@@ -404,8 +404,6 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
 
       costLabels.push({ icon: resourceKind.icon, text:
         `${utils.formatNumberShort(cost.quantity)} (of ${utils.formatNumberShort(resourceQuantity)}) ${cost.type}` });
-      console.log('costLabels');
-      console.log(costLabels);
 
       if (resourceQuantity < cost.quantity) {
         missingCost = true;
@@ -497,25 +495,22 @@ function Consequence(props: { modalMajor: number,
     setFinished(true);
   })});
 
+  let consequences: React.ReactFragment[] = [];
+
   const leaderJoining = props.leaderJoins ? leaderTypes[props.leaderJoins] : null;
   if (leaderJoining) {
-    return (
-      <>
-        <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-          {opacity: consequenceOpacity}])}>
-          <BadgeComponent icon={leaderJoining.icon} size={37} />
-          <Text>
-            {` ${leaderJoining.name} joined you!`}
-          </Text>
-        </Animated.View>
-        <View style={styles.break} />
-      </>
-    )
+    consequences.push(
+      <View style={styles.panelFlexColumn}>
+        <BadgeComponent icon={leaderJoining.icon} size={37} />
+        <Text>
+          {` ${leaderJoining.name} joined you!`}
+        </Text>
+      </View>
+    );
   }
-  else if (props.questsBegin) {
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {opacity: consequenceOpacity}])}>
+  if (props.questsBegin) {
+    consequences.push(
+      <View style={styles.panelFlexColumn}>
         <Text>
           {(props.questsBegin.length == 1) ? "You began the quest:"
             : "You began the quests:"}
@@ -523,7 +518,7 @@ function Consequence(props: { modalMajor: number,
         {props.questsBegin.map((questName) => {
           const quest = quests[questName];
           return (
-            <View style={styles.rows}>
+            <View key={quest.id} style={styles.rows}>
               <BadgeComponent icon={quest.icon} size={37} />
               <Text>
                 {`${quest.subtitle}: ${quest.name}`}
@@ -531,13 +526,12 @@ function Consequence(props: { modalMajor: number,
             </View>
           )
         })}
-      </Animated.View>
+      </View>
     );
   }
-  else if (props.resourcesGained) {
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {opacity: consequenceOpacity}])}>
+  if (props.resourcesGained) {
+    consequences.push(
+      <View style={styles.panelFlexColumn}>
         <Text style={styles.heading3}>{"You gained:"}</Text>
         {props.resourcesGained.map((resource) => {
           const resourceType = utils.getResourceType(resource);
@@ -551,14 +545,12 @@ function Consequence(props: { modalMajor: number,
             </View>
           );
         })}
-        <View style={styles.break} />
-      </Animated.View>
+      </View>
     );
   }
-  else if (props.resourcesSpent) {
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {opacity: consequenceOpacity}])}>
+  if (props.resourcesSpent) {
+    consequences.push(
+      <View style={styles.panelFlexColumn}>
         {props.resourcesSpent.map((cost, index) => {
           const resourceKind = utils.getMatchingResourceKind(cost.specificity,
             cost.type);
@@ -572,8 +564,22 @@ function Consequence(props: { modalMajor: number,
             </View>
           );
         })}
-      </Animated.View>
+      </View>
     );
+  }
+  if (consequences.length > 0) {
+    return (
+      <>
+        <Animated.View style={{opacity: consequenceOpacity}}>
+          {consequences.map((consequence, index) => (
+            <View key={index}>
+              {consequence}
+            </View>
+          ))}
+        </Animated.View>
+        <View style={styles.break} />
+      </>
+    )
   }
   return null;
 }
