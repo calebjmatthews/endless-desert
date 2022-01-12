@@ -169,6 +169,7 @@ import SpringAutumnKingdomSvgComponent from './symbols/spring_autumn_kingdom';
 
 import HappinessSvgComponent from './symbols/happiness';
 import RoadSignSvgComponent from './symbols/road_sign';
+import MysticismSvgComponent from './symbols/mysticism';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -507,6 +508,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <HappinessSvgComponent icon={props.icon} />;
     case SVGS.ROAD_SIGN:
     return <RoadSignSvgComponent icon={props.icon} />;
+    case SVGS.MYSTICISM:
+    return <MysticismSvgComponent icon={props.icon} />;
   }
   return null;
 }

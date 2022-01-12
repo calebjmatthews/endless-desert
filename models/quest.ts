@@ -23,7 +23,6 @@ export default class Quest implements QuestInterface {
   leaderJoins?: string;
   questsBegin?: string[];
   conversationBegins?: Conversation;
-  researchUnlocked?: string;
 
   constructor(quest: QuestInterface|null) {
     if (quest != null) {
@@ -78,5 +77,4 @@ interface QuestInterface {
   leaderJoins?: string;
   questsBegin?: string[];
   conversationBegins?: Conversation;
-  researchUnlocked?: string;
 }

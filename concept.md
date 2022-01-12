@@ -444,6 +444,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/woman-clothes/
     https://www.svgrepo.com/collection/animals-26/
     https://www.svgrepo.com/collection/food-set-2/1
+    https://www.svgrepo.com/collection/halloween-19/
+    https://www.svgrepo.com/collection/feathers-set-2/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -729,7 +731,7 @@ Object.keys(buildingTypes).map((typeName) => {
 dispatch(addMemos([new Memo({
   name: 'test',
   title: 'A Familiar Figure',
-  convoName: 'A Thrice Locked Tome'
+  convoName: CONVERSATIONS.AUW_A_BROKEN_KEY
 })]));
 ```
 

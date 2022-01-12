@@ -28,7 +28,7 @@ resourceTypes[RTY.GLOAMING_LIGHT] = new ResourceType({
   category: RCA.ETHERIAL,
   tags: [],
   value: 1000,
-  description: `An entrancing light somehow trapped in a thin glass sphere`,
+  description: `An entrancing light somehow trapped in a thin papyrus sphere`,
   icon: new Icon({provider: 'svg', name: SVGS.GLOAMING_LIGHT})
 });
 
@@ -101,7 +101,7 @@ resourceTypes[RTY.BRINE] = new ResourceType({
   name: RTY.BRINE,
   category: RCA.MATERIAL,
   subcategory: RSC.WATER,
-  tags: [RTA.TRADE_GOOD],
+  tags: [RTA.TRADE_GOOD, RTA.BRACKISH],
   value: 10,
   description: `A concentrated form of salty water, pulled from the sea`,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#23b39b',
@@ -299,6 +299,7 @@ resourceTypes[RTY.OLIVE] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP],
   value: 60,
+  description: `Can be pressed into a lovely rich oil`,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE})
 });
 
@@ -308,6 +309,7 @@ resourceTypes[RTY.SEEDS_LENTIL] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 40,
+  description: `Lentils grow quickly and easily`,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#a0ddb0',
     shadow: '#5bc980'})
 });
@@ -318,6 +320,7 @@ resourceTypes[RTY.SEEDS_REED] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 30,
+  description: `Plant them in muddy river-soil`,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#9d4639',
     shadow: '#78281e'})
 });
@@ -328,6 +331,7 @@ resourceTypes[RTY.SEEDS_OLIVE] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 80,
+  description: `Olive trees need constant water and gentle care`,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#d2d02c',
     shadow: '#b5b424'})
 });
@@ -338,6 +342,7 @@ resourceTypes[RTY.SEEDS_GRAIN] = new ResourceType({
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 80,
+  description: `Grain requires significant water, but produces abundantly`,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#fbd856',
     shadow: '#ef8246'})
 });

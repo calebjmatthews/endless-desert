@@ -13,5 +13,6 @@ export enum QUESTS {
   MYSTICISM_REPAIRING_THE_FIRST_KEY = "Mysticism: Repairing the First Key",
   MYSTICISM_REPAIRING_THE_SECOND_KEY = "Mysticism: Repairing the Second Key",
   MYSTICISM_REPAIRING_THE_THIRD_KEY = "Mysticism: Repairing the Third Key",
+  MYSTICISM_A_TERRACED_PLATFORM = "Mysticism: A Terraced Platform",
   TESTING = "Testing"
 }

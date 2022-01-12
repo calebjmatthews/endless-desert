@@ -18,6 +18,7 @@ import { RESOURCE_SUBCATEGORIES } from '../../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
 import { SVGS } from '../../enums/svgs';
 import { QUESTS } from '../../enums/quests';
+import { RESEARCHES } from '../../enums/researches';
 
 let ffhConversations: { [name: string] : Conversation } = {};
 let ffhConvoStatements: { [name: string] : ConversationStatement } = {};
@@ -325,6 +326,165 @@ ffhConvoStatements[CVS.FFH_REPAIRING_THE_FIRST_KEY + ' - s2'] =
 I will repair this key, now. Come back when you've found another broken key and again communed with "The Firefly", as you call them.`,
   gainResources: [{ specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000 }],
   questsBegin: [QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY]
+});
+
+ffhConversations[CVS.FFH_REPAIRING_THE_SECOND_KEY] = new Conversation({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY,
+  title: 'Repairing the Second Key',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  statementName: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 0,
+  available: () => (false)
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s0'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `You have the materials I need to repair the second key?`,
+  responseNames: [CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0y',
+    CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0n']
+});
+ffhConvoResponses[CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0y'] =
+  new ConversationResponse({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0y',
+  textIntro: `Yes, everything.`,
+  text: `Yes, everything.`,
+  statementName: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1y',
+  cost: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, quantity: 1 },
+    { specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20 },
+    { specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 30 },
+    { specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 70 },
+    { specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT, quantity: 1 }]
+});
+ffhConvoResponses[CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0n'] =
+  new ConversationResponse({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - r0n',
+  textIntro: `No, not quite.`,
+  text: `No, not quite.`,
+  statementName: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1n'
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1n'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1n',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `No reason to be troubled. Take the time you need.`
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1y'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_SECOND_KEY + ' - s1y',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `Very good, I will repair the second key. We are so close now, can you feel it?`,
+  gainResources: [{ specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000 }],
+  questsBegin: [QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY]
+});
+
+ffhConversations[CVS.FFH_REPAIRING_THE_THIRD_KEY] = new Conversation({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY,
+  title: 'Repairing the Third Key',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  statementName: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 0,
+  available: () => (false)
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s0'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `You have what we need to repair the final key?`,
+  responseNames: [CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0y',
+    CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0n']
+});
+ffhConvoResponses[CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0y'] =
+  new ConversationResponse({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0y',
+  textIntro: `Everthing, finally.`,
+  text: `Everthing, finally.`,
+  statementName: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1y',
+  cost: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, quantity: 1 },
+    { specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20 },
+    { specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 30 },
+    { specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 70 },
+    { specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT, quantity: 1 }]
+});
+ffhConvoResponses[CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0n'] =
+  new ConversationResponse({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - r0n',
+  textIntro: `No, not quite.`,
+  text: `No, not quite.`,
+  statementName: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1n'
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1n'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1n',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `No reason to be troubled. Take the time you need.`
+});
+ffhConvoStatements[CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1y'] =
+  new ConversationStatement({
+  name: CVS.FFH_REPAIRING_THE_THIRD_KEY + ' - s1y',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `This is it, repairing the final key. It is time to open the tome. Be ready for anything.`,
+  gainResources: [{ specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000 }]
+});
+
+ffhConversations[CVS.FFH_OPENING_THE_TOME] = new Conversation({
+  name: CVS.FFH_OPENING_THE_TOME,
+  title: 'Opening the Tome',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  statementName: CVS.FFH_OPENING_THE_TOME + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 0,
+  available: () => (false)
+});
+ffhConvoStatements[CVS.FFH_OPENING_THE_TOME + ' - s0'] =
+  new ConversationStatement({
+  name: CVS.FFH_OPENING_THE_TOME + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `Here are all three keys before us thanks to you, me, and The Firefly. Are you prepared?`,
+  responseNames: [CVS.FFH_OPENING_THE_TOME + ' - r0y',
+    CVS.FFH_OPENING_THE_TOME + ' - r0n']
+});
+ffhConvoResponses[CVS.FFH_OPENING_THE_TOME + ' - r0y'] =
+  new ConversationResponse({
+  name: CVS.FFH_OPENING_THE_TOME + ' - r0y',
+  textIntro: `I'm ready.`,
+  text: `I'm ready.`,
+  narrationName: CVS.FFH_OPENING_THE_TOME + ' - n1y',
+  cost: [{ specificity: RSP.EXACT, type: RTY.THRICE_LOCKED_TOME, quantity: 1 },
+    { specificity: RSP.EXACT, type: RTY.RED_KEY, quantity: 3 }]
+});
+ffhConvoNarrations[CVS.FFH_OPENING_THE_TOME + ' - n1y'] =
+  new ConversationNarration({
+  name: CVS.FFH_OPENING_THE_TOME + ' - n1y',
+  text: `Each key fits into its lock with a resonant clank much louder than seems possible. Guangzhou looks your shoulder as you hold the book, eyes wide as moons.
+
+The tome's spine gives a creak and a crack as it opens, like an old traveler stretching. Its smell is one you recognize - the perfumed box from the front of your Study - but deeper and more rich.`,
+  statementName: CVS.FFH_OPENING_THE_TOME + ' - s1y'
+})
+ffhConvoResponses[CVS.FFH_OPENING_THE_TOME + ' - r0n'] =
+  new ConversationResponse({
+  name: CVS.FFH_OPENING_THE_TOME + ' - r0n',
+  textIntro: `No, not quite.`,
+  text: `No, not quite.`,
+  statementName: CVS.FFH_OPENING_THE_TOME + ' - s1n'
+});
+ffhConvoStatements[CVS.FFH_OPENING_THE_TOME + ' - s1n'] =
+  new ConversationStatement({
+  name: CVS.FFH_OPENING_THE_TOME + ' - s1n',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `No reason to be troubled. Take the time you need.`
+});
+ffhConvoStatements[CVS.FFH_OPENING_THE_TOME + ' - s1y'] =
+  new ConversationStatement({
+  name: CVS.FFH_OPENING_THE_TOME + ' - s1y',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.FOXFIRE_HERETIC,
+  text: `|name|, look! The mix of ancient text and new, overlapping, with gaps in between. It is as if it were written with the intention of being added to by future writers. I've never seen anything like it... Although I was never allowed to directly look upon the tome the ascetics owned. We have much work to do.`,
+  completeResearch: [RESEARCHES.THRICE_LOCKED_TOME]
 });
 
 export { ffhConversations, ffhConvoStatements, ffhConvoResponses, ffhConvoNarrations }

@@ -11,8 +11,10 @@ export enum CONVERSATIONS {
   FFH_REPAIRING_THE_FIRST_KEY = "Foxfire Heretic: Repairing the First Key",
   FFH_REPAIRING_THE_SECOND_KEY = "Foxfire Heretic: Repairing the Second Key",
   FFH_REPAIRING_THE_THIRD_KEY = "Foxfire Heretic: Repairing the Third Key",
+  FFH_OPENING_THE_TOME = "Foxfire Heretic: Opening the Tome",
 
   AUW_SAYING_HELLO = "Auspicious Waif: Saying Hello",
+  AUW_A_BROKEN_KEY = "Auspicious Waif: A Broken Key",
 
   TFS_SAYING_HELLO = "Trefoil Sower: Saying Hello",
 

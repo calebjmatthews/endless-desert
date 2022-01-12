@@ -54,5 +54,6 @@ export enum RESEARCHES {
   SOLVENTS = "Solvents",
   POTTERY = "Pottery",
   FERMENTATION = "Fermentation",
+  THRICE_LOCKED_TOME = "Thrice Locked Tome",
   MYSTICISM = "Mysticism"
 }

@@ -9,6 +9,8 @@ import { ACTIVITIES } from '../enums/activities';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
@@ -199,7 +201,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
     icon: new Icon({ provider: 'svg', name: SVGS.TOME }),
     description: `To unlock the tome you'll need to find the matching keys and repair them with guidance from Guangzhou.`,
-    finishText: `Each key fits into its lock with a resonant clank much louder than seems possible. Guangzhou stands behind your shoulder as you open the book.`,
+    finishText: `The keys gleam with a red light, and the tome sits in front of you.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME,
         label: `Find the three Broken Red Keys.`,
@@ -210,15 +212,15 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToGain: { specificity: RSP.EXACT, type: RTY.RED_KEY,
           quantity: 3, includeExisting: true } })
     ],
-    researchUnlocked: RESEARCHES.MYSTICISM,
-    conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
+    conversationBegins: conversations[CONVERSATIONS.FFH_OPENING_THE_TOME]
   }),
   [QUESTS.MYSTICISM_A_RUINED_RED_METAL]: new Quest({
     id: QUESTS.MYSTICISM_A_RUINED_RED_METAL,
     subtitle: 'Mysticism',
     name: 'A Ruined Red Metal',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
-    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ff7f22',
+      shadow: '#d66224', secondaryColor: '#ffa575'}),
     description: `Both the tome and its red clasps are ancient; you'll need to analyze newly forged metals to determine what they're made of.`,
     finishText: `You've analyzed all the metals you could find, time to combine your findings.`,
     tasks: [
@@ -250,7 +252,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'Repairing the First Key',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
-    icon: new Icon({ provider: 'svg', name: SVGS.KEY }),
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and somehow find a source of "otherworldly light"`,
     finishText: `You have the metals, fuel, and a strange gleaming sphere left to you by The Firefly, and looking at it too long makes you feel like you're falling into the sky. Could this disconcerting sensation be what Guangzhou meant by "otherworldly"?`,
     tasks: [
@@ -282,32 +284,64 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'Repairing the Second Key',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
-    icon: new Icon({ provider: 'svg', name: SVGS.KEY }),
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and another light from The Firefly.`,
     finishText: `The second of three keys, and the materials to repair it. You're getting close.`,
     tasks: [
-      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY,
         label: `Find a Broken Red Key.`,
         resourceToGain: { specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY,
           quantity: 1, includeExisting: true } }),
-      new QuestTask({ index: 1, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
+      new QuestTask({ index: 1, parentId: QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY,
         label: `Produce 20 Iron Powder.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.IRON_POWDER}`, quantity: 20,
           includeExisting: true } }),
-      new QuestTask({ index: 2, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
+      new QuestTask({ index: 2, parentId: QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY,
         label: `Produce 30 Copper Powder.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.COPPER_POWDER}`,
           quantity: 30, includeExisting: true } }),
-      new QuestTask({ index: 3, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
+      new QuestTask({ index: 3, parentId: QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY,
         label: `Produce 70 Charcoal.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.CHARCOAL}`,
           quantity: 70, includeExisting: true } }),
-      new QuestTask({ index: 4, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
+      new QuestTask({ index: 4, parentId: QUESTS.MYSTICISM_REPAIRING_THE_SECOND_KEY,
         label: `Discover a source of "otherworldly light".`,
         resourceToGain: { specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT,
           quantity: 1, includeExisting: true } })
     ],
-    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_FIRST_KEY]
+    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_SECOND_KEY]
+  }),
+  [QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY]: new Quest({
+    id: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+    subtitle: 'Mysticism',
+    name: 'Repairing the Third Key',
+    givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    description: `You'll need to gather iron, copper, and another light from The Firefly.`,
+    finishText: `The final key, and the materials to repair it. Opening the tome is at hand!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+        label: `Find a Broken Red Key.`,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY,
+          quantity: 1, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+        label: `Produce 20 Iron Powder.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.IRON_POWDER}`, quantity: 20,
+          includeExisting: true } }),
+      new QuestTask({ index: 2, parentId: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+        label: `Produce 30 Copper Powder.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.COPPER_POWDER}`,
+          quantity: 30, includeExisting: true } }),
+      new QuestTask({ index: 3, parentId: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+        label: `Produce 70 Charcoal.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.CHARCOAL}`,
+          quantity: 70, includeExisting: true } }),
+      new QuestTask({ index: 4, parentId: QUESTS.MYSTICISM_REPAIRING_THE_THIRD_KEY,
+        label: `Discover a source of "otherworldly light".`,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT,
+          quantity: 1, includeExisting: true } })
+    ],
+    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_THIRD_KEY]
   }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
@@ -325,7 +359,23 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
-  })
+  }),
+  [QUESTS.MYSTICISM_A_TERRACED_PLATFORM]: new Quest({
+    id: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
+    subtitle: 'Mysticism',
+    name: 'A Terraced Platform',
+    givenBy: '',
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    description: `There's a strange structure clinging to the wall of the cavern beneath your town. If you collected enough bricks to build a staircase, you could examine it properly.`,
+    finishText: `That should be enough bricks. Now to take a look.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
+        label: `Gather 240 Bricks.`,
+        resourceToGain: { specificity: RSP.SUBCATEGORY, type: RSC.BRICK,
+          quantity: 240, includeExisting: true } })
+    ],
+    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_FIRST_KEY]
+  }),
 }
 
 export { quests };

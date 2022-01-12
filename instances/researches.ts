@@ -908,4 +908,34 @@ researches[RESEARCHES.FERMENTATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.BREWERY]
 });
 
+researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({
+  name: RESEARCHES.THRICE_LOCKED_TOME,
+  unlocks: 'The Thrice Locked Tome has finally been opened. New avenues of research are available.',
+  description: '',
+  icon: new Icon({ provider: 'svg', name: SVGS.TOME }),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 0,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: null,
+  knowledgeReq: 0,
+  hidden: true
+});
+
+researches[RESEARCHES.MYSTICISM] = new Research({
+  name: RESEARCHES.MYSTICISM,
+  unlocks: 'Researching this opens up otherworldly areas of study.',
+  description: `The tome is a labyrinth of written word, layers of text written in different inks, by different people. Untangling it will be a massive task.`,
+  icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'crystal-ball',
+    color: '#fff', backgroundColor: '#071f56' }),
+  category: RESEARCHES.MYSTICISM,
+  isCategory: true,
+  difficulty: 0,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.THRICE_LOCKED_TOME],
+  knowledgeReq: 555
+});
+
 export { researches }

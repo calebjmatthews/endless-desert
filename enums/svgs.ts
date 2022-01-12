@@ -166,5 +166,6 @@ export enum SVGS {
   SPRING_AUTUMN_KINGDOM = "Spring-Autumn Kingdom",
 
   HAPPINESS = "Happiness",
-  ROAD_SIGN = "Road Sign"
+  ROAD_SIGN = "Road Sign",
+  MYSTICISM = "Mysticism"
 }

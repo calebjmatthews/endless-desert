@@ -16,6 +16,7 @@ import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
+import { QUESTS } from '../enums/quests';
 
 let fortuities: { [name: string] : Fortuity } = {};
 
@@ -338,6 +339,35 @@ fortuities[FORTUITIES.THRICE_LOCKED_TOME] = new Fortuity({
   available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.A_TERRACED_PLATFORM] = new Fortuity({
+  name: FORTUITIES.A_TERRACED_PLATFORM,
+  openLine: 'Something strange underground',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.A_TERRACED_PLATFORM + '0'),
+      title: 'A Terraced Platform',
+      text: (`Beneath your town, next to where the clay is stored, there's a ruined structure partway up the cavern wall. You can almost make out a set wooden platforms, but between the distance and their disrepair you can't be sure what they are.`)
+    }),
+    new Memo({
+      name: (FORTUITIES.A_TERRACED_PLATFORM + '1'),
+      title: 'A Terraced Platform',
+      text: (`There's more to these caves under the town than one might expect. If you had enough bricks you could build a staircase and search these platforms properly.`)
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 1000,
+  questsBegin: [QUESTS.MYSTICISM_A_TERRACED_PLATFORM],
+  available: (fState: GameState) => {
+    if (fState.vault?.resources[RTY.RED_KEY]) {
+      if (fState.vault?.resources[RTY.RED_KEY].quality >= 1) {
         return true;
       }
     }

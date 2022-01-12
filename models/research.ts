@@ -16,6 +16,7 @@ export default class Research {
   unlocksUpgrade?: string[];
   unlocksTab?: string;
   actionCategory?: string;
+  hidden?: boolean;
 
   constructor(research: Research) {
     Object.assign(this, research);

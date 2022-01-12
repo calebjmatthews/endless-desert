@@ -15,6 +15,7 @@ import { addLeader } from '../actions/leaders';
 import { unlockTab } from '../actions/account';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { dismissMemo, displayModal } from '../actions/ui';
+import { completeResearch } from '../actions/research_status';
 
 import Leader from '../models/leader';
 import Resource from '../models/resource';
@@ -32,6 +33,7 @@ import { conversations, convoStatements, convoResponses, convoNarrations }
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { quests } from '../instances/quests';
+import { researches } from '../instances/researches';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { TABS } from '../enums/tabs';
@@ -191,7 +193,8 @@ function ConversationStatic(props: ConversationProps) {
         resourcesGained={sResourcesGained[name]}
         resourcesSpent={convoResponses[name]?.cost}
         leaderJoins={convoStatements[name]?.leaderJoins}
-        questsBegin={convoStatements[name]?.questsBegin} />;
+        questsBegin={convoStatements[name]?.questsBegin}
+        completeResearch={convoStatements[name]?.completeResearch} />;
 
       case 'nextButton':
       return <NextButton key={name} speechButtonWidth={positioner.speechButtonWidth}
@@ -207,7 +210,7 @@ function ConversationStatic(props: ConversationProps) {
   function addAllSegments(statement: ConversationStatement, nextSegments?: Segment[]) {
     const segmentsToAdd = nextSegments || [{ name: '', kind: 'nextButton' }];
     if (sResourcesGained[statement.name] || statement.leaderJoins
-      || statement.questsBegin) {
+      || statement.questsBegin || statement.completeResearch) {
       setSegmentsToAdd([{ name: statement.name, kind: 'consequence',
         nextSegments: segmentsToAdd }]);
     }
@@ -229,8 +232,13 @@ function ConversationStatic(props: ConversationProps) {
     setSegments(filteredSegments);
     setSegmentsToAdd(newSegmentsToAdd);
 
-    const statement = convoStatements[response.statementName];
-    if (statement.leaderJoins) {
+    let statement = convoStatements[response.statementName || ''];
+    if (response.narrationName) {
+      statement = convoStatements[
+        convoNarrations[response.narrationName].statementName || ''
+      ];
+    }
+    if (statement?.leaderJoins) {
       if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
         dispatch(unlockTab(TABS.LEADERS));
         dispatch(unlockTab(TABS.EQUIPMENT));
@@ -252,7 +260,7 @@ function ConversationStatic(props: ConversationProps) {
       dispatch(addLeader(leader));
     }
 
-    if (statement.gainResources) {
+    if (statement?.gainResources) {
       const fgr = statement.gainResources;
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -269,13 +277,18 @@ function ConversationStatic(props: ConversationProps) {
       setSResourcesGained(Object.assign(sResourcesGained,
         { [statement.name] : resourcesGained }));
     }
-    if (statement.questsBegin) {
+    if (statement?.questsBegin) {
       statement.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
         const rtgExisting = quests[questName].resourceToGainCheckExisting(vault);
         rtgExisting.forEach((questActivity) => {
           dispatch(addToActivityQueue(questActivity));
         });
+      });
+    }
+    if (statement?.completeResearch) {
+      statement.completeResearch.forEach((researchName) => {
+        dispatch(completeResearch(researchName));
       });
     }
   }
@@ -485,7 +498,8 @@ function Consequence(props: { modalMajor: number,
   setSegmentsToAdd: (segments: Segment[]) => void,
   resourcesGained?: Resource[],
   resourcesSpent?: {specificity: string, type: string, quantity: number}[],
-  leaderJoins?: string, questsBegin?: string[], nextSegments?: Segment[] } ) {
+  leaderJoins?: string, questsBegin?: string[], nextSegments?: Segment[],
+  completeResearch?: string[] }) {
   const [finished, setFinished] = useState(false);
   const consequenceOpacity = useRef(new Animated.Value(finished ? 0.9 : 0)).current;
   React.useEffect(() => { Animated.timing(consequenceOpacity,
@@ -567,6 +581,22 @@ function Consequence(props: { modalMajor: number,
       </View>
     );
   }
+  if (props.completeResearch) {
+    consequences.push(
+      <View style={styles.panelFlexColumn}>
+        {props.completeResearch.map((researchName) => {
+          const research = researches[researchName];
+          return (
+            <View key={researchName} style={styles.rows}>
+              <BadgeComponent icon={research.icon} size={37} />
+              <Text>{research.unlocks}</Text>
+            </View>
+          )
+        })}
+      </View>
+    );
+  }
+
   if (consequences.length > 0) {
     return (
       <>

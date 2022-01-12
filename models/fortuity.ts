@@ -10,6 +10,7 @@ export default class Fortuity implements FortuityInterface {
   weight: number = 100;
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
+  questsBegin?: string[];
 
   constructor(fortuity: FortuityInterface) {
     Object.assign(this, fortuity);
@@ -30,6 +31,7 @@ interface FortuityInterface {
   weight: number;
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
+  questsBegin?: string[];
 
   available(fState: GameState): boolean;
 }

@@ -48,6 +48,7 @@ export class ConversationStatement {
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
   questsBegin?: string[];
+  completeResearch?: string[];
 
   constructor(statement: ConversationStatement|null) {
     if (statement) {
@@ -60,7 +61,7 @@ export class ConversationResponse implements ConversationResponseInterface {
   name: string = '';
   textIntro?: string;
   text: string = '';
-  statementName: string = '';
+  statementName?: string = '';
   narrationName?: string;
   speechType?: string;
   requirementIcon?: Icon;
@@ -80,7 +81,7 @@ interface ConversationResponseInterface {
   name: string;
   textIntro?: string;
   text: string;
-  statementName: string;
+  statementName?: string;
   narrationName?: string;
   speechType?: string;
   requirementIcon?: Icon;
