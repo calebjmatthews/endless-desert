@@ -595,7 +595,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Brine trade good
   [X] Mussels in Fishing Pond
   [X] Reedcloth resource type
-  [ ] Mysticism research
+  [X] Mysticism research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
