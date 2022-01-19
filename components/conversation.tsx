@@ -25,6 +25,7 @@ import Icon from '../models/icon';
 import Account from '../models/account';
 import Positioner from '../models/positioner';
 import ConversationStatus from '../models/conversation_status';
+import ResearchStatus from '../models/research_status';
 import QuestActivity from '../models/quest_activity';
 import { Conversation, ConversationStatement, ConversationResponse,
   ConversationNarration } from '../models/conversation';
@@ -53,11 +54,12 @@ export default function ConversationComponent(props: { convoName: string }) {
   const vault = useTypedSelector(state => state.vault);
   const account = useTypedSelector(state => state.account);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
 
   return useMemo(() => {
     return <ConversationStatic convoName={props.convoName} leaders={leaders}
       conversationStatus={conversationStatus} vault={vault} account={account}
-      positioner={positioner} />;
+      researchStatus={researchStatus} positioner={positioner} />;
   }, [positioner])
 }
 
@@ -68,6 +70,7 @@ function ConversationStatic(props: ConversationProps) {
   const vault = props.vault;
   const account = props.account;
   const positioner = props.positioner;
+  const researchStatus = props.researchStatus;
 
   const [state, setState] = useState('initializing');
   const [conversation, setConversation] = useState<Conversation>(new Conversation(null));
@@ -280,7 +283,7 @@ function ConversationStatic(props: ConversationProps) {
     if (statement?.questsBegin) {
       statement.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
-        const rtgExisting = quests[questName].resourceToGainCheckExisting(vault);
+        const rtgExisting = quests[questName].taskCheckExisting(vault, researchStatus);
         rtgExisting.forEach((questActivity) => {
           dispatch(addToActivityQueue(questActivity));
         });
@@ -687,6 +690,7 @@ interface ConversationProps {
   conversationStatus: ConversationStatus;
   vault: Vault;
   account: Account;
+  researchStatus: ResearchStatus;
   positioner: Positioner;
 }
 

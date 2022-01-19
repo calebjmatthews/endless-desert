@@ -333,7 +333,7 @@ export default function HourglassComponent() {
     });
 
     dispatch(addMemos([new Memo({ name: 'While Away', title: 'You\'ve returned.',
-      text, messages, resourcesGained: wa.rti, resourcesLost: wa.rtc })]));
+      text, messages, resourcesGained: wa.rti, resourcesConsumed: wa.rtc })]));
   }
 
   return <></>;

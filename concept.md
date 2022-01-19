@@ -766,3 +766,6 @@ console.log('quest');
 console.log(quest);
 if (quest) { dispatch(addQuest(quest)); }
 ```
+
+length: 96' x 48' (to screened in porch)
+sip: 12' x 15'

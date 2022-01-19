@@ -8,15 +8,16 @@ export default class QuestTask {
   label: string = '';
   icon?: Icon;
   resourceToGain?: {specificity: string, type: string, quantity: number,
+    consumed?: boolean, includeExisting?: boolean};
+  resourceToProduce?: {specType: string, quantity: number, consumed?: boolean,
     includeExisting?: boolean};
-  resourceToProduce?: {specType: string, quantity: number};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};
   equipmentToMark?: {specificity?: string, type?: string, tier?: number,
     quantity: number};
   actionToPerform?: {kind: string, value?: string, quantity?: number,
-    includeExisting?: boolean};
+    includeExisting?: boolean };
 
   constructor(questTask: QuestTaskInterface) {
     Object.assign(this, questTask);
@@ -129,8 +130,9 @@ interface QuestTaskInterface {
   label: string;
   icon?: Icon;
   resourceToGain?: {specificity: string, type: string, quantity: number,
+    consumed?: boolean, includeExisting?: boolean};
+  resourceToProduce?: {specType: string, quantity: number, consumed?: boolean,
     includeExisting?: boolean};
-  resourceToProduce?: {specType: string, quantity: number, includeExisting?: boolean};
   resourceToAnalyze?: {specificity: string, type: string, quantity: number};
   dishToCook?: {specTypes: {specificity: string, type: string}[], quantity: number};
   tradeWith?: {typeName: string, quantity: number};

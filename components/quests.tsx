@@ -10,7 +10,7 @@ import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { addQuest, removeQuest, addQuestCompleted, addToActivityQueue }
   from '../actions/quest_status';
-import { increaseResources } from '../actions/vault';
+import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { addTimer } from '../actions/timers';
@@ -42,6 +42,7 @@ export default function QuestsComponent() {
   const dispatch = useDispatch();
   const questStatus = useTypedSelector(state => state.questStatus);
   const vault = useTypedSelector(state => state.vault);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   const uiArray: UiItem[] = getUiArray(questStatus);
@@ -111,6 +112,12 @@ export default function QuestsComponent() {
   function completeQuest(quest: Quest) {
     let memos = [new Memo({ name: quest.id, title: quest.name,
       text: quest.finishText })];
+    const resourcesConsumed = quest.getResourcesConsumed();
+
+    if (resourcesConsumed) {
+      dispatch(consumeResources(vault, resourcesConsumed));
+      memos[0].resourcesConsumed = resourcesConsumed;
+    }
     if (quest.gainResources) {
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -144,7 +151,7 @@ export default function QuestsComponent() {
     if (quest.questsBegin) {
       quest.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
-        const rtgExisting = quests[questName].resourceToGainCheckExisting(vault);
+        const rtgExisting = quests[questName].taskCheckExisting(vault, researchStatus);
         rtgExisting.forEach((questActivity) => {
           dispatch(addToActivityQueue(questActivity));
         });

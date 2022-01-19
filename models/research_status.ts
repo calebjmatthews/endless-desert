@@ -10,13 +10,13 @@ import { RESEARCHES } from '../enums/researches';
 export default class ResearchStatus implements ResearchStatusInterface {
   // Each research and whether it is "completed", "visible" or "hidden"
   status: { [name: string] : string } = {};
-    actions: { [category: string] : string[] } = {};
+  actions: { [category: string] : string[] } = {};
   resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
   upgradesAvailable: { [buildingName: string] : boolean } = {};
 
-  constructor(researchStatus: ResearchStatusInterface) {
-    Object.assign(this, researchStatus);
+  constructor(researchStatus: ResearchStatusInterface|null) {
+    if (researchStatus) { Object.assign(this, researchStatus); }
   }
 
   // Set the research status map on new file creation, based on the research

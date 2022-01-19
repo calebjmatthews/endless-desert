@@ -15,7 +15,7 @@ import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
 import { increaseResources, consumeResources } from '../actions/vault';
-import { addQuest } from '../actions/quest_status';
+import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -47,6 +47,7 @@ import Resource from '../models/resource';
 import Building from '../models/building';
 import Vault from '../models/vault';
 import Icon from '../models/icon';
+import ResearchStatus from '../models/research_status';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -270,11 +271,20 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'A Familiar Figure',
-        convoName: CONVERSATIONS.AUW_A_BROKEN_KEY
-      })]));
+      dispatch(addQuest(quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM]));
+      const rtgExisting =
+        quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM].taskCheckExisting(vault,
+          new ResearchStatus(null));
+      console.log('rtgExisting');
+      console.log(rtgExisting);
+      rtgExisting.forEach((questActivity) => {
+        dispatch(addToActivityQueue(questActivity));
+      });
+      // let allResources: Resource[] = [];
+      // Object.keys(resourceTypes).map((typeName) => {
+      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
+      // });
+      // dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

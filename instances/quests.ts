@@ -343,6 +343,22 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     ],
     conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_THIRD_KEY]
   }),
+  [QUESTS.MYSTICISM_A_TERRACED_PLATFORM]: new Quest({
+    id: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
+    subtitle: 'Mysticism',
+    name: 'A Terraced Platform',
+    givenBy: '',
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    description: `There's a strange structure clinging to the wall of the cavern beneath your town. If you collected enough bricks to build a staircase, you could examine it properly.`,
+    finishText: `That should be enough bricks. Now to take a look.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
+        label: `Gather 240 Mud Bricks.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BRICKS_MUD}`,
+          quantity: 240, consumed: true, includeExisting: true } })
+    ],
+    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_FIRST_KEY]
+  }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
     name: QUESTS.TESTING,
@@ -359,22 +375,6 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
-  }),
-  [QUESTS.MYSTICISM_A_TERRACED_PLATFORM]: new Quest({
-    id: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
-    subtitle: 'Mysticism',
-    name: 'A Terraced Platform',
-    givenBy: '',
-    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
-    description: `There's a strange structure clinging to the wall of the cavern beneath your town. If you collected enough bricks to build a staircase, you could examine it properly.`,
-    finishText: `That should be enough bricks. Now to take a look.`,
-    tasks: [
-      new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
-        label: `Gather 240 Bricks.`,
-        resourceToGain: { specificity: RSP.SUBCATEGORY, type: RSC.BRICK,
-          quantity: 240, includeExisting: true } })
-    ],
-    conversationBegins: conversations[CONVERSATIONS.FFH_REPAIRING_THE_FIRST_KEY]
   }),
 }
 

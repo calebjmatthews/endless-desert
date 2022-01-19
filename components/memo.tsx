@@ -42,7 +42,7 @@ export default function MemoComponent() {
         {renderMessages(memo.messages)}
         {memo.convoName && <ConversationComponent convoName={memo.convoName} />}
         {renderResources(memo.resourcesGained, true)}
-        {renderResources(memo.resourcesLost, false)}
+        {renderResources(memo.resourcesConsumed, false)}
         {renderLeaderJoined()}
       </ScrollView>
       <View style={styles.break} />

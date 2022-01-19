@@ -7,7 +7,7 @@ export default class Memo {
   text?: string;
   convoName?: string;
   resourcesGained?: Resource[]|null = null;
-  resourcesLost?: Resource[]|null = null;
+  resourcesConsumed?: Resource[]|null = null;
   messages?: Message[]|null = null;
   leaderJoined?: string|null = null;
   timestamp?: Date = new Date(Date.now());
