@@ -271,15 +271,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addQuest(quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM]));
-      const rtgExisting =
-        quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM].taskCheckExisting(vault,
-          new ResearchStatus(null));
-      console.log('rtgExisting');
-      console.log(rtgExisting);
-      rtgExisting.forEach((questActivity) => {
-        dispatch(addToActivityQueue(questActivity));
-      });
+      dispatch(addTimer(new Timer({
+        name: 'Daily quest',
+        endsAt: (new Date(Date.now()).valueOf() + 100),
+        dailyQuestCheck: true
+      })));
       // let allResources: Resource[] = [];
       // Object.keys(resourceTypes).map((typeName) => {
       //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));

@@ -753,10 +753,15 @@ dispatch(addTimer(new Timer({
 })));
 ```
 
-### Add the "Testing" quest
+### Begin a quest
 ```
-dispatch(unlockTab(TABS.QUESTS));
-dispatch(addQuest(quests['Testing']));
+dispatch(addQuest(quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM]));
+const rtgExisting =
+  quests[QUESTS.MYSTICISM_A_TERRACED_PLATFORM].taskCheckExisting(vault,
+    new ResearchStatus(null));
+rtgExisting.forEach((questActivity) => {
+  dispatch(addToActivityQueue(questActivity));
+});
 ```
 
 ### Generate a quest

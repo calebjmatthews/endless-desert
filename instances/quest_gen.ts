@@ -113,7 +113,7 @@ export function questGen(gState: GameState) : Quest|null {
     let tasks: QuestTask[] = [];
     if (gen.name.includes('produce')) {
       description = `The Firefly wants to watch while your town makes "${kindName}-sorts-of-things".`;
-      finishText = `The Firefly watched closely while your town produced ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Its body language isn't easy to read, but from the way it bobs from side to side you think it's satisfied.`;
+      finishText = `The Firefly watched closely while your town produced ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Its body language isn't easy to read, but from the way it bobs from side to side you think it's satisfied. Afterwards you find a small reward in the wistful-smelling box in front of your Study, including a light that defies explanation.`;
       tasks = resources.map((resource, index) => {
         const resourceType = resourceTypes[resource.type];
         return new QuestTask({ index, parentId: questId, icon: resourceType.icon,
@@ -126,7 +126,7 @@ export function questGen(gState: GameState) : Quest|null {
     }
     if (gen.name.includes('analyze')) {
       description = `The Firefly has asked to learn from you as you analyze "${kindName}-like stuff".`;
-      finishText = `The Firefly wiggled with excitement while you broke down and inspected ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}.`;
+      finishText = `The Firefly wiggled with excitement while you broke down and inspected ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Afterwards you find a small reward in the wistful-smelling box in front of your Study, including a light that defies explanation.`;
       tasks = resources.map((resource, index) => {
         const resourceType = resourceTypes[resource.type];
         return new QuestTask({ index, parentId: questId, icon: resourceType.icon,
@@ -147,14 +147,14 @@ export function questGen(gState: GameState) : Quest|null {
       finishText: finishText,
       tasks: tasks,
       isDaily: true,
-      gainResources: [genReward(gState, totalValue)]
+      gainResources: genReward(gState, totalValue)
     });
   }
   return null;
 }
 
 function genReward(gState: GameState, value: number):
-  {specificity: string, type: string, value: number} {
+  {specificity: string, type: string, value: number}[] {
   let options: { type: string, weight: number }[] = [];
   if (gState.vault) {
     let resources = gState.vault.getTagResources(RESOURCE_TAGS.TRADE_GOOD);
@@ -172,5 +172,7 @@ function genReward(gState: GameState, value: number):
   }
   const rewardTypeName = utils.randomWeightedSelect(options).type;
   const resourceType = resourceTypes[rewardTypeName];
-  return { specificity: RESOURCE_SPECIFICITY.EXACT, type: rewardTypeName, value };
+  return [{ specificity: RESOURCE_SPECIFICITY.EXACT, type: rewardTypeName, value },
+    { specificity: RESOURCE_SPECIFICITY.EXACT, type: RESOURCE_TYPES.GLOAMING_LIGHT,
+      value: 1000 }];
 }
