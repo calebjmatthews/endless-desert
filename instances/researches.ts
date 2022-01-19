@@ -918,7 +918,7 @@ researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({
   difficulty: 0,
   stepsNeeded: 1,
   beginsCompleted: false,
-  prereq: null,
+  prereq: ['No prerequisite'],
   knowledgeReq: 0,
   hidden: true
 });

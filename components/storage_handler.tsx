@@ -210,6 +210,8 @@ export default function StorageHandlerComponent() {
         dispatch(setLeaders(leaders));
         const newRates = hourglass.calcRates(buildings, leaders, vault);
         dispatch(setRates(newRates));
+        console.log('researchStatus');
+        console.log(researchStatus);
         return true;
       }
       catch(error) {
