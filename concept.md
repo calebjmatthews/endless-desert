@@ -595,11 +595,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Brine trade good
   [X] Mussels in Fishing Pond
   [X] Reedcloth resource type
-  [X] Mysticism research
+  [X] Mysticism quest
+  [X] Fortuities aren't marked as "seen" until viewed, not just set as current
+  [ ] Mysticism research
+  [ ] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
-  [ ] Conjecture research
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Increase difficulty of Field Notes-locked upgrades
   [ ] Storing an occupied house kicks out the leader

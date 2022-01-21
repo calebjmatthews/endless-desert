@@ -436,7 +436,7 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   unlocks: ('Unlocks Clay Pits.'),
   description: ('The soil in desert is a dry, cracking clay. But careful application '
     + 'of water produces a building material for everything from bricks to '
-    + 'ornamental figurines.'),
+    + 'pottery.'),
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'}),
   category: RESEARCHES.PHYSICS,
@@ -932,7 +932,7 @@ researches[RESEARCHES.MYSTICISM] = new Research({
   category: RESEARCHES.MYSTICISM,
   isCategory: true,
   difficulty: 0,
-  stepsNeeded: 1,
+  stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.THRICE_LOCKED_TOME],
   knowledgeReq: 555

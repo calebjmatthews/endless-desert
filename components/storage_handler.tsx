@@ -196,6 +196,8 @@ export default function StorageHandlerComponent() {
             }
             else if (tableName == 'accounts' && jsonValue) {
               let account = jsonValue;
+              console.log('account');
+              console.log(account);
               account.sessionId = sessionId;
               dispatch(TABLE_SETTERS[tableName](account));
             }
@@ -210,8 +212,6 @@ export default function StorageHandlerComponent() {
         dispatch(setLeaders(leaders));
         const newRates = hourglass.calcRates(buildings, leaders, vault);
         dispatch(setRates(newRates));
-        console.log('researchStatus');
-        console.log(researchStatus);
         return true;
       }
       catch(error) {

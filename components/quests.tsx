@@ -165,7 +165,7 @@ export default function QuestsComponent() {
       }));
     }
 
-    if (quest.name == QUESTS.EARLY_DAYS_MARK_EQUIPMENT) {
+    if (quest.id == QUESTS.EARLY_DAYS_MARK_EQUIPMENT) {
       dispatch(addTimer(new Timer({
         name: 'Daily quest',
         endsAt: (new Date(Date.now()).valueOf() + 100),

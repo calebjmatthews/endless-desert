@@ -337,6 +337,7 @@ fortuities[FORTUITIES.THRICE_LOCKED_TOME] = new Fortuity({
     {specificity: RSP.EXACT, type: RTY.THRICE_LOCKED_TOME, value: 33000}
   ],
   available: (fState: GameState) => {
+    console.log('inside FORTUITIES.THRICE_LOCKED_TOME available');
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 1) {
         return true;

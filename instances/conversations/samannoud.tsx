@@ -231,7 +231,7 @@ sndConvoResponses[CVS.SND_A_WOUND + ' - r1'] = new ConversationResponse({
 sndConvoStatements[CVS.SND_A_WOUND + ' - s2'] = new ConversationStatement({
   name: CVS.SND_A_WOUND + ' - s2',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, eternal beasts... Don't give me that look. I can handle anything.`
+  text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, Eternal Beasts... Don't give me that look. I can handle anything.`
 });
 
 export { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }

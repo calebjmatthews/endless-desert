@@ -55,5 +55,22 @@ export enum RESEARCH_OPTIONS {
   ZYMOLOGY = "Zymology",
   VENTILATION_OF_FLAME = "Ventilation of Flame",
   BITTER_FUMES = "Bitter Fumes",
-  CHEMICAL_FIXATION = "Chemical Fixation"
+  CHEMICAL_FIXATION = "Chemical Fixation",
+
+  // Mysticism Lv 0
+  WRITERS_UPON_WRITERS = "Writers Upon Writers",
+  OBLIQUE_REFERENCES = "Oblique References",
+  NEWBORN_LANGUAGE = "Newborn Language",
+
+  // Mysticism Lv 1
+  THE_REDOLENCE_OF_VINES = "The Redolence of Vines",
+  THE_SAVOR_OF_THE_VERDANT = "The Savor of the Verdant",
+  THE_GERMINATION_OF_PROMISE = "The Germination of Promise",
+  THE_SCINTILLATION_OF_RINGS = "The Scintillation of Rings",
+  THE_EMINENCE_OF_SMOKE = "The Eminence of Smoke",
+  THE_LEAPING_OF_SILVER_CORDS = "The Leaping of Silver Cords",
+  THE_MURMURATION_OF_SHIFTING_DUNES = "The Murmuration of Shifting Dunes",
+  THE_WEIGHT_OF_PONDEROUS_EARTH = "The Weight of Ponderous Earth",
+  THE_ABSTRACTION_OF_INWARD_SPACE = "The Abstraction of Inward Space",
+  THE_DIAPHONY_OF_THE_GOLDEN_SHEET = "The Diaphony of the Golden Sheet"
 }

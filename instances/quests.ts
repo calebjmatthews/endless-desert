@@ -136,7 +136,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Put a building into storage.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_INTO_STORAGE } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, value: 1400 }]
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.RUST_ORE, value: 1400 }]
   }),
   [QUESTS.EARLY_DAYS_BUILDING_UPGRADE]: new Quest({
     id: QUESTS.EARLY_DAYS_BUILDING_UPGRADE,

@@ -46,7 +46,7 @@ researchOptions[RESEARCH_OPTIONS.VARIETY_IN_APPROACH] = new ResearchOption({
   name: RESEARCH_OPTIONS.VARIETY_IN_APPROACH,
   appliesTo: RESEARCHES.SCHOLARSHIP,
   difficulty: 0,
-  description: ('A sigle substance can be changed and studied '
+  description: ('A single substance can be changed and studied '
     + 'in a vast number of different ways. Water, for example: it can be frozen, '
     + 'evaporated, mixed into a suspension, purified, etc, etc.'),
   cost: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 60}]
@@ -433,6 +433,30 @@ researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
     {specificity: RSP.SUBCATEGORY, type: RSC.METAL_INGOT, quantity: 20},
     {specificity: RSP.EXACT, type: RSC.GLASS, quantity: 200}]
+});
+
+researchOptions[RESEARCH_OPTIONS.WRITERS_UPON_WRITERS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.WRITERS_UPON_WRITERS,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 0,
+  description: `The Tome has been written in layers, with deliberate space left between each writers. Is this a way to coordinate research over time? Regardless, it will take time and skill to decifer any kind of meaning.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3333}]
+});
+
+researchOptions[RESEARCH_OPTIONS.OBLIQUE_REFERENCES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.OBLIQUE_REFERENCES,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 0,
+  description: `The Tome is part poetry, part history, and part instruction manual. You also suspect a significant amount might be outright lies, design to mislead outsiders who managed to get ahold of the book. You, in other words.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4444}]
+});
+
+researchOptions[RESEARCH_OPTIONS.NEWBORN_LANGUAGE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.NEWBORN_LANGUAGE,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 0,
+  description: `Large portions of the Tome are outright painful reading. You eventually deduce the reason: the first five authors lived hundred of years ago, when the language you speak was new. You have to work backwards, extrapolating the meaning of long dead words.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 5555}]
 });
 
 export { researchOptions };

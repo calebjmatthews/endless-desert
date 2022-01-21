@@ -100,6 +100,8 @@ export default function HourglassComponent() {
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
+        console.log('timer');
+        console.log(timer);
         if (timer.resourcesToIncrease) {
           if (timer.resourcesToIncrease.length > 0) {
             rti = combineResources(rti, timer.resourcesToIncrease);
@@ -198,11 +200,6 @@ export default function HourglassComponent() {
           const fortuity = fortuityCheck();
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
-            dispatch(fortuitySeen(fortuity.name));
-            if (fortuity.repeatable) {
-              const currentTimestamp = new Date(Date.now()).valueOf();
-              dispatch(setFortuityDailyLast(currentTimestamp));
-            }
           }
           dispatch(addTimer(new Timer({
             name: `Fortuity-${utils.randHex(8)}`,

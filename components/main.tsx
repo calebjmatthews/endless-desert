@@ -10,7 +10,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { selectTab, setPositioner, addMemos } from '../actions/ui';
 import { addBuilding, setBuildingSpecificRecipe } from '../actions/buildings';
-import { changeSetting, setCurrentFortuity, unlockTab } from '../actions/account';
+import { changeSetting, setCurrentFortuity, unlockTab, setAccount, fortuitySeen,
+  setFortuityDailyLast } from '../actions/account';
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
@@ -271,16 +272,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addTimer(new Timer({
-        name: 'Daily quest',
-        endsAt: (new Date(Date.now()).valueOf() + 100),
-        dailyQuestCheck: true
-      })));
-      // let allResources: Resource[] = [];
-      // Object.keys(resourceTypes).map((typeName) => {
-      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
-      // });
-      // dispatch(increaseResources(vault, allResources));
+      dispatch(setAccount({...account, fortuitiesSeen: {}}));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
@@ -321,6 +313,11 @@ export default function MainComponent() {
         }
         dispatch(addMemos(account.fortuityCurrent.memos));
         dispatch(setCurrentFortuity(null));
+        dispatch(fortuitySeen(account.fortuityCurrent.name));
+        if (account.fortuityCurrent.repeatable) {
+          const currentTimestamp = new Date(Date.now()).valueOf();
+          dispatch(setFortuityDailyLast(currentTimestamp));
+        }
         dispatch(addTimer(new Timer({
           name: 'Fortuity',
           endsAt: (new Date(Date.now()).valueOf()
