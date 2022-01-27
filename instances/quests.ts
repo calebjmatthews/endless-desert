@@ -5,6 +5,7 @@ import Icon from '../models/icon';
 import { conversations } from '../instances/conversations';
 import { utils } from '../utils';
 import { QUESTS } from '../enums/quests';
+import { QUEST_TYPES } from '../enums/quest_types';
 import { ACTIVITIES } from '../enums/activities';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -28,6 +29,7 @@ const quests: { [id: string] : Quest } = {
     subtitle: 'Early Days',
     name: 'Survive',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
       shadow: '#2887c3', secondaryColor: '#aaebf0'}),
     description: `A quiet voice inside you begs you to survive.`,
@@ -54,6 +56,7 @@ const quests: { [id: string] : Quest } = {
     subtitle: 'Early Days',
     name: 'Study',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.STUDY }),
     description: `You feel like someone wants you to examine the world. Check the "Research" tab.`,
     finishText: `Studying each new resource you find keeps the Knowledge flowing, and something tells you there may be even more benefits you haven't yet discovered.
@@ -78,6 +81,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Analyze',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.KNOWLEDGE }),
     description: `You feel like someone wants you to examine the world even further.`,
     finishText: `Analyzing gives less Knowledge than studying, but its the only source if you have nothing new to study.`,
@@ -97,6 +101,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Build',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.HUTS }),
     description: `You feel like someone wants you to try your hand at construction. After researching a bit of Biology or Physics, look for the "Build" button in the "Buildings" tab.`,
     finishText: `You can build anytime you're not already building or upgrading something. And getting your hands dirty is surprisingly satisfying.`,
@@ -113,6 +118,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Trade',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.MARKET }),
     description: `Some force wants you to do business with a trading partner from across the desert. First you'll need to research Anthropology, research Trading, repair the Market, and look inside the "Trading" tab.`,
     finishText: `There's only so much you can get from your town itself. For everything else, you'll have to trade.`,
@@ -128,6 +134,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Building Storage',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({provider: 'svg', name: SVGS.FURNACE}),
     description: `A voice in your mind tells you to put buildings away. We are all descendants of desert nomads, and our buildings can be easily packed away and brought back out. Put one into storage after inspecting it within the "Buildings" tab.`,
     finishText: `The caverns beneath the town are colossal, there's almost no end to the buildings you can store there.`,
@@ -143,6 +150,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Building Upgrade',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.COTTAGES }),
     description: `Something seems to whisper that buildings you've made can be improved. You'll need to finish the proper research first, then inspect the building within the "Buildings" tab.`,
     finishText: `Research and learning are key to improvement of all.`,
@@ -158,6 +166,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Leader Setup',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BREAD }),
     description: `A subtle feeling advises you that you need to take care of your leaders. After inspecting them in the "Leaders" tab, you can give them what they need to get by.`,
     finishText: `Leaders can take care of themselves. But if you want them to contribute to the town, they'll need food, drink, and shelter.`,
@@ -183,6 +192,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Early Days',
     name: 'Mark Equipment',
     givenBy: 'Firefly',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.SIMPLE_ROBE }),
     description: `A whisper tells you that the generic equipment you make or find needs to be inspected and marked with your town's seal before it can be used.`,
     finishText: `Marked equipment belongs to your town forever; it can be deconstructed back into some of its original materials, but you can't trade it away.`,
@@ -199,6 +209,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'A Thrice Locked Tome',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    type: QUEST_TYPES.PARAMOUNT,
     icon: new Icon({ provider: 'svg', name: SVGS.TOME }),
     description: `To unlock the tome you'll need to find the matching keys and repair them with guidance from Guangzhou.`,
     finishText: `The keys gleam with a red light, and the tome sits in front of you.`,
@@ -219,6 +230,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'A Ruined Red Metal',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({provider: 'svg', name: SVGS.POWDER, color: '#ff7f22',
       shadow: '#d66224', secondaryColor: '#ffa575'}),
     description: `Both the tome and its red clasps are ancient; you'll need to analyze newly forged metals to determine what they're made of.`,
@@ -252,6 +264,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'Repairing the First Key',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and somehow find a source of "otherworldly light"`,
     finishText: `You have the metals, fuel, and a strange gleaming sphere left to you by The Firefly, and looking at it too long makes you feel like you're falling into the sky. Could this disconcerting sensation be what Guangzhou meant by "otherworldly"?`,
@@ -284,6 +297,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'Repairing the Second Key',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and another light from The Firefly.`,
     finishText: `The second of three keys, and the materials to repair it. You're getting close.`,
@@ -316,6 +330,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'Repairing the Third Key',
     givenBy: LEADER_TYPES.FOXFIRE_HERETIC,
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and another light from The Firefly.`,
     finishText: `The final key, and the materials to repair it. Opening the tome is at hand!`,
@@ -348,6 +363,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     subtitle: 'Mysticism',
     name: 'A Terraced Platform',
     givenBy: '',
+    type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `There's a strange structure clinging to the wall of the cavern beneath your town. If you collected enough bricks to build a staircase, you could examine it properly.`,
     finishText: `Your cartload of Mud Bricks is enough to build a perfectly serviceable, if  not especially attractive. At the top is the ruins of a desk, in even worse shape than than the one that contained the tome. Inside are a mismash of red metal pieces, and after some work you confirm that they were once a key. What happened to all the scholars in this town?`,
@@ -357,12 +373,13 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BRICKS_MUD}`,
           quantity: 240, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000 }]
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 13000 }]
   }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
     name: QUESTS.TESTING,
     givenBy: 'Firefly',
+    type: QUEST_TYPES.CONVENTIONAL,
     description: `Is Water an inside job??? Or Lentils!?!?`,
     finishText: `Turns out, neither Water nor Lentils are an inside job.`,
     tasks: [

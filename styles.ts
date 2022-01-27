@@ -257,6 +257,9 @@ export const styles = StyleSheet.create({
   buttonTextDark: {
     color: '#071f56'
   },
+  buttonTextAway: {
+    color: '#5a201e'
+  },
   buttonRow: {
     display: 'flex',
     flexGrow: 1,
@@ -337,6 +340,13 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 6,
     marginBottom: 6,
     backgroundColor: '#5a201e',
+    borderColor: '#5a201e'
+  },
+  buttonOutlineAway: {
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    marginBottom: 6,
+    backgroundColor: '#fff',
     borderColor: '#5a201e'
   },
   sideButtonContainer: {

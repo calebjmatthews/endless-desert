@@ -461,7 +461,7 @@ ffhConvoResponses[CVS.FFH_OPENING_THE_TOME + ' - r0y'] =
 ffhConvoNarrations[CVS.FFH_OPENING_THE_TOME + ' - n1y'] =
   new ConversationNarration({
   name: CVS.FFH_OPENING_THE_TOME + ' - n1y',
-  text: `Each key fits into its lock with a resonant clank much louder than seems possible. Guangzhou looks your shoulder as you hold the book, eyes wide as moons.
+  text: `Each key fits into its lock with a resonant clank much louder than seems possible. Guangzhou looks over your shoulder as you hold the book, eyes wide as moons.
 
 The tome's spine gives a creak and a crack as it opens, like an old traveler stretching. Its smell is one you recognize - the perfumed box from the front of your Study - but deeper and more rich.`,
   statementName: CVS.FFH_OPENING_THE_TOME + ' - s1y'

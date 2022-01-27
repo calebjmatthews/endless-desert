@@ -15,6 +15,7 @@ import Message from '../models/message';
 import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { leaderTypes } from '../instances/leader_types';
+import { quests } from '../instances/quests';
 import { utils } from '../utils';
 
 export default function MemoComponent() {
@@ -43,7 +44,8 @@ export default function MemoComponent() {
         {memo.convoName && <ConversationComponent convoName={memo.convoName} />}
         {renderResources(memo.resourcesGained, true)}
         {renderResources(memo.resourcesConsumed, false)}
-        {renderLeaderJoined()}
+        {memo.leaderJoined && renderLeaderJoined()}
+        {memo.questsBegin && renderQuestsBegin(memo.questsBegin)}
       </ScrollView>
       <View style={styles.break} />
       {!memo.convoName && <TouchableOpacity style={styles.buttonLarge}
@@ -119,18 +121,37 @@ export default function MemoComponent() {
   }
 
   function renderLeaderJoined() {
-    if (memo.leaderJoined) {
-      const leaderType = leaderTypes[memo.leaderJoined];
-      return (
-        <View style={styles.containerStretchRow}>
-          <BadgeComponent icon={leaderType.icon} size={16} />
-          <Text style={styles.bodyText}>{' ' + leaderType.name + ' joined you!'}</Text>
-        </View>
-      );
-    }
-    else {
-      return null;
-    }
+    if (!memo.leaderJoined) { return null; }
+    const leaderType = leaderTypes[memo.leaderJoined];
+    return (
+      <View style={styles.containerStretchRow}>
+        <BadgeComponent icon={leaderType.icon} size={16} />
+        <Text style={styles.bodyText}>{' ' + leaderType.name + ' joined you!'}</Text>
+      </View>
+    );
+  }
+
+  function renderQuestsBegin(questsBegin: string[]) {
+    return (
+      <View style={styles.containerStretchColumn}>
+        <View style={styles.break} />
+        <Text>
+          {(questsBegin.length == 1) ? "You began the quest:"
+            : "You began the quests:"}
+        </Text>
+        {questsBegin.map((questName) => {
+          const quest = quests[questName];
+          return (
+            <View key={quest.id} style={styles.rows}>
+              <BadgeComponent icon={quest.icon} size={37} />
+              <Text>
+                {`${quest.subtitle}: ${quest.name}`}
+              </Text>
+            </View>
+          )
+        })}
+      </View>
+    );
   }
 
   function dismissPress() {

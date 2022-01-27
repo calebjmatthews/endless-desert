@@ -100,8 +100,6 @@ export default function HourglassComponent() {
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
-        console.log('timer');
-        console.log(timer);
         if (timer.resourcesToIncrease) {
           if (timer.resourcesToIncrease.length > 0) {
             rti = combineResources(rti, timer.resourcesToIncrease);

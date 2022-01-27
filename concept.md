@@ -446,6 +446,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
+    https://www.svgrepo.com/collection/saint-patrick-day-5/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -597,7 +598,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Reedcloth resource type
   [X] Mysticism quest
   [X] Fortuities aren't marked as "seen" until viewed, not just set as current
+  [ ] Quest deletion
+  [ ] Auto generated quests use available buildings for production tasks
+  [ ] Cooking experimentation checks for a match with an existing recipe
   [ ] Mysticism research
+  [ ] Drinks
   [ ] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
@@ -776,3 +781,16 @@ if (quest) { dispatch(addQuest(quest)); }
 
 length: 96' x 48' (to screened in porch)
 sip: 12' x 15'
+
+### Correct uncontrolled resources
+```
+const rtc =  [`${RTY.WATER}|0`, `${RTY.REEDS}|0`, `${RTY.LENTIL}|0`, `${RTY.SAND_YELLOW}|0`, `${RTY.CLAY_MUDDY}|0`].map((typeQuality) => {
+  const [type, quality] = typeQuality.split('|');
+  return new Resource({ type, quality: parseInt(quality), quantity: 2000000000000000 })
+});
+consumeResources(vault, rtc);
+const rtg = rtc.map((resource) => {
+  return new Resource({...resource, quantity: 20000});
+});
+increaseResources(vault, rtg);
+```

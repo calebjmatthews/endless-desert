@@ -15,6 +15,7 @@ export default class Quest implements QuestInterface {
   subtitle?: string;
   name: string = '';
   givenBy: string = '';
+  type: string = '';
   icon?: Icon;
   description: string = '';
   finishText: string = '';
@@ -112,6 +113,7 @@ interface QuestInterface {
   subtitle?: string;
   name: string;
   givenBy: string;
+  type: string;
   icon?: Icon;
   description: string;
   finishText: string;

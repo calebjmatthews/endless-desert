@@ -21,12 +21,14 @@ import BuildingDetailComponent from './building_detail';
 import LeaderDetailComponent from './leader_detail';
 import LoginComponent from './login';
 import SignupComponent from './signup';
+import QuestQuitConfirmComponent from './quest_quit_confirm';
 import { MODALS } from '../enums/modals';
 
 const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
   [MODALS.RESOURCE_DETAIL]: '50%',
   [MODALS.LOGIN]: '60%',
-  [MODALS.SIGNUP]: '70%'
+  [MODALS.SIGNUP]: '70%',
+  [MODALS.QUEST_QUIT_CONFIRM]: '50%'
 }
 
 export default function ModalHandlerComponent() {
@@ -117,6 +119,9 @@ function renderModal(modalType: string) {
 
     case MODALS.SIGNUP:
     return <SignupComponent />;
+
+    case MODALS.QUEST_QUIT_CONFIRM:
+    return <QuestQuitConfirmComponent />;
 
     default:
     return null;

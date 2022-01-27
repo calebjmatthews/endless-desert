@@ -439,7 +439,7 @@ researchOptions[RESEARCH_OPTIONS.WRITERS_UPON_WRITERS] = new ResearchOption({
   name: RESEARCH_OPTIONS.WRITERS_UPON_WRITERS,
   appliesTo: RESEARCHES.MYSTICISM,
   difficulty: 0,
-  description: `The Tome has been written in layers, with deliberate space left between each writers. Is this a way to coordinate research over time? Regardless, it will take time and skill to decifer any kind of meaning.`,
+  description: `The Tome has been written in layers, with deliberate space left between each writer's contribution. Is this a way to coordinate research over time? Regardless, it will take effort and skill to decifer any kind of meaning.`,
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3333}]
 });
 
@@ -447,7 +447,7 @@ researchOptions[RESEARCH_OPTIONS.OBLIQUE_REFERENCES] = new ResearchOption({
   name: RESEARCH_OPTIONS.OBLIQUE_REFERENCES,
   appliesTo: RESEARCHES.MYSTICISM,
   difficulty: 0,
-  description: `The Tome is part poetry, part history, and part instruction manual. You also suspect a significant amount might be outright lies, design to mislead outsiders who managed to get ahold of the book. You, in other words.`,
+  description: `The Tome is part poetry, part history, and part instruction manual. You also suspect a significant amount might be outright lies, designed to mislead outsiders who managed to get ahold of the book. You, in other words.`,
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4444}]
 });
 

@@ -8,6 +8,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceSubcategories } from '../instances/resource_subcategories';
 import { utils } from '../utils';
+import { QUEST_TYPES } from '../enums/quest_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
@@ -105,10 +106,6 @@ export function questGen(gState: GameState) : Quest|null {
       if (a.quantity > b.quantity) { return -1; }
       return 1;
     });
-    console.log('kindName');
-    console.log(kindName);
-    console.log('resources');
-    console.log(resources);
     const questId = utils.randHex(8);
     let tasks: QuestTask[] = [];
     if (gen.name.includes('produce')) {
@@ -141,7 +138,9 @@ export function questGen(gState: GameState) : Quest|null {
     return new Quest({
       id: questId,
       name: name,
+      subtitle: `Firefly's Curiosity`,
       givenBy: 'Firefly',
+      type: QUEST_TYPES.CURIOSITY,
       icon: resourceTypes[resources[0].type].icon,
       description: description,
       finishText: finishText,

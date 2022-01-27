@@ -10,6 +10,7 @@ export default class Memo {
   resourcesConsumed?: Resource[]|null = null;
   messages?: Message[]|null = null;
   leaderJoined?: string|null = null;
+  questsBegin?: string[] = null;
   timestamp?: Date = new Date(Date.now());
 
   constructor(memo: Memo) {

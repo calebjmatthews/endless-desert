@@ -248,7 +248,7 @@ export default class Vault {
     Object.keys(this.resources).forEach((typeName) => {
       const resource = this.resources[typeName];
       const resourceType = !resource.id ? resourceTypes[resource.type]
-        : resource.toResourceType(resourceTypes);
+        : new Resource(resource).toResourceType(resourceTypes);
       switch(specificity) {
         case RESOURCE_SPECIFICITY.CATEGORY:
         if (resourceType.category == kind) { quantity += resource.quantity; }

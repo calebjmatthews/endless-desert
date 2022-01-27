@@ -50,7 +50,8 @@ export default class ResearchStatus implements ResearchStatusInterface {
       else {
         let allCompleted = true;
         research.prereq.map((prereqName) => {
-          if (this.status[prereqName] != 'completed') {
+          if (this.status[prereqName] != 'completed'
+            && prereqName != 'No prerequisite') {
             allCompleted = false;
           }
         });
@@ -69,6 +70,8 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setCompleted(researchName: string) {
     this.status[researchName] = 'completed';
     this.checkAndSetVisible();
+    console.log('this');
+    console.log(this);
     this.setResearchedActions();
     this.setBuildingsAvailable();
     this.setUpgradesAvailable();

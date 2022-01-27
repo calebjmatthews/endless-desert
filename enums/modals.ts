@@ -13,5 +13,6 @@ export enum MODALS {
   EQUIPMENT_SELECT = "Equipment Select",
   MEMO = "Memo",
   LOGIN = "Login",
-  SIGNUP = "Signup"
+  SIGNUP = "Signup",
+  QUEST_QUIT_CONFIRM = "Quest Quit Confirm"
 }

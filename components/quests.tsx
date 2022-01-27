@@ -14,7 +14,7 @@ import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { addTimer } from '../actions/timers';
-import { addMemos } from '../actions/ui';
+import { addMemos, displayModalValue } from '../actions/ui';
 
 import QuestStatus from '../models/quest_status';
 import Quest from '../models/quest';
@@ -34,9 +34,11 @@ import { quests } from '../instances/quests';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
+import { QUEST_TYPES } from '../enums/quest_types';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUESTS } from '../enums/quests';
 import { SVGS } from '../enums/svgs';
+import { MODALS } from '../enums/modals';
 
 export default function QuestsComponent() {
   const dispatch = useDispatch();
@@ -70,7 +72,7 @@ export default function QuestsComponent() {
       case 'quest':
       if (data.item.quest) {
         return <QuestDescription quest={data.item.quest} completeQuest={completeQuest}
-          positioner={positioner} />;
+          quitQuest={quitQuest} positioner={positioner} />;
       } break;
 
       case 'quest_completed':
@@ -107,6 +109,10 @@ export default function QuestsComponent() {
     uiArray = [...uiArray, ...questsCompleted];
 
     return uiArray;
+  }
+
+  function quitQuest(quest: Quest) {
+    dispatch(displayModalValue(MODALS.QUEST_QUIT_CONFIRM, 'open', quest));
   }
 
   function completeQuest(quest: Quest) {
@@ -182,17 +188,21 @@ export default function QuestsComponent() {
 
 const defaultIcon = new Icon({ provider: 'svg', name: SVGS.ROAD_SIGN });
 function QuestDescription(props: { quest: Quest,
+  quitQuest: (quest: Quest) => void,
   completeQuest: (quest: Quest) => void, positioner: Positioner }) {
   const icon = props.quest.icon || defaultIcon;
+  const mandatoryQuest = (props.quest.type == QUEST_TYPES.PARAMOUNT
+    || props.quest.type == QUEST_TYPES.OBLIGATORY);
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])} >
       <BadgeComponent icon={icon} size={29} />
       <View style={styles.containerSpacedColumn}>
-        <Text>
-          {props.quest.name}
-        </Text>
+        <View style={styles.buttonTextRow}>
+          <Text>{props.quest.name}</Text>
+          {!mandatoryQuest && renderQuitButton()}
+        </View>
         <Text style={{fontSize: 12, fontStyle: 'italic',
           maxWidth: props.positioner.bodyMedWidth}}>
           {props.quest.description}
@@ -202,6 +212,21 @@ function QuestDescription(props: { quest: Quest,
       </View>
     </View>
   );
+
+  function renderQuitButton() {
+    return (
+      <TouchableOpacity style={StyleSheet.flatten([styles.button,
+        styles.buttonOutlineAway])}
+        onPress={() => { props.quitQuest(props.quest) }}>
+        <IconComponent provider="FontAwesome" name="trash"
+          color="#5a201e" size={14} />
+        <Text style={StyleSheet.flatten([styles.buttonTextSmall,
+          styles.buttonTextAway])}>
+          {' Quit'}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
 
   function renderTasks(quest: Quest) {
     return (

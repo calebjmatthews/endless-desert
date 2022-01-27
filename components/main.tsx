@@ -15,7 +15,7 @@ import { changeSetting, setCurrentFortuity, unlockTab, setAccount, fortuitySeen,
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
-import { increaseResources, consumeResources } from '../actions/vault';
+import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
@@ -62,6 +62,7 @@ import { LEADER_TYPES } from '../enums/leader_types';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+const RTY = RESOURCE_TYPES;
 import { QUESTS } from '../enums/quests';
 import { CONVERSATIONS } from '../enums/conversations';
 
@@ -272,7 +273,12 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(setAccount({...account, fortuitiesSeen: {}}));
+      increaseResources(vault, [new Resource({type: RTY.THRICE_LOCKED_TOME, quality: 0, quantity: 1}), new Resource({type: RTY.RED_KEY, quality: 0, quantity: 3})]);
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'A Familiar Figure',
+        convoName: CONVERSATIONS.FFH_OPENING_THE_TOME
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
@@ -310,6 +316,12 @@ export default function MainComponent() {
           }
           memos[memos.length-1].resourcesGained = resourcesGained;
           dispatch(increaseResources(vault, resourcesGained));
+        }
+        if (account.fortuityCurrent.questsBegin) {
+          account.fortuityCurrent.questsBegin.forEach((questName) => {
+            dispatch(addQuest(quests[questName]));
+          });
+          memos[memos.length-1].questsBegin = account.fortuityCurrent.questsBegin;
         }
         dispatch(addMemos(account.fortuityCurrent.memos));
         dispatch(setCurrentFortuity(null));
