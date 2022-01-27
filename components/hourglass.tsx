@@ -272,7 +272,7 @@ export default function HourglassComponent() {
       if (quest.isDaily) { currentDaily = true; }
     });
     if (!currentDaily && !withinLastDay(questStatus.lastDailyCompleted)) {
-      return questGen({ vault });
+      return questGen({ vault, buildings });
     }
     return null;
   }

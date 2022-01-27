@@ -273,12 +273,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      increaseResources(vault, [new Resource({type: RTY.THRICE_LOCKED_TOME, quality: 0, quantity: 1}), new Resource({type: RTY.RED_KEY, quality: 0, quantity: 3})]);
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'A Familiar Figure',
-        convoName: CONVERSATIONS.FFH_OPENING_THE_TOME
-      })]));
+      console.log(questGen({vault, buildings}));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

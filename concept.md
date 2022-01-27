@@ -598,8 +598,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Reedcloth resource type
   [X] Mysticism quest
   [X] Fortuities aren't marked as "seen" until viewed, not just set as current
-  [ ] Quest deletion
-  [ ] Auto generated quests use available buildings for production tasks
+  [X] Quest deletionQuest deletion
+  [X] Auto generated quests use available buildings for production tasks
   [ ] Cooking experimentation checks for a match with an existing recipe
   [ ] Mysticism research
   [ ] Drinks
@@ -773,7 +773,7 @@ rtgExisting.forEach((questActivity) => {
 
 ### Generate a quest
 ```
-const quest = questGen({ vault });
+const quest = questGen({ vault, buildings });
 console.log('quest');
 console.log(quest);
 if (quest) { dispatch(addQuest(quest)); }
