@@ -151,6 +151,7 @@ import GlassworksSvgComponent from './buildings/glassworks';
 import LaboratorySvgComponent from './buildings/laboratory';
 import PotteryKilnSvgComponent from './buildings/pottery_kiln';
 import BrewerySvgComponent from './buildings/brewery';
+import PyreSvgComponent from './buildings/pyre';
 
 import SamannoudSvgComponent from './people/samannoud';
 import ShudderingRefugeSvgComponent from './people/shuddering_refuge';
@@ -475,6 +476,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PotteryKilnSvgComponent icon={props.icon} />;
     case SVGS.BREWERY:
     return <BrewerySvgComponent icon={props.icon} />;
+    case SVGS.PYRE:
+    return <PyreSvgComponent icon={props.icon} />;
 
     case SVGS.SAMANNOUD:
     return <SamannoudSvgComponent icon={props.icon} />;

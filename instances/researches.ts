@@ -938,4 +938,19 @@ researches[RESEARCHES.MYSTICISM] = new Research({
   knowledgeReq: 555
 });
 
+researches[RESEARCHES.EXPLORATION_OF_RITUALS] = new Research({
+  name: RESEARCHES.EXPLORATION_OF_RITUALS,
+  unlocks: 'Researching this continues otherworldly areas of study.',
+  description: `You've begun delving into the substance of The Thrice-Locked Tome, and the contents are perplexing. Any given passage could be flowery instructions, poetry, allusions, or insane ramblings. Time to try some practical applications.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.MYSTICISM }),
+  category: RESEARCHES.MYSTICISM,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 10,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.MYSTICISM],
+  knowledgeReq: 5555,
+  unlocksBuilding: [BUILDING_TYPES.PYRE]
+});
+
 export { researches }

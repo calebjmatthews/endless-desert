@@ -459,4 +459,138 @@ researchOptions[RESEARCH_OPTIONS.NEWBORN_LANGUAGE] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 5555}]
 });
 
+researchOptions[RESEARCH_OPTIONS.THE_REDOLENCE_OF_VINES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_REDOLENCE_OF_VINES,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Redolance of Vines
+constricts the earth, and bodies from air
+are drawn beneath an immutable beat"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.REEDS , quantity: 700},
+    {specificity: RSP.EXACT, type: RTY.LENTIL , quantity: 555},
+    {specificity: RSP.EXACT, type: RTY.GRAIN , quantity: 450},
+    {specificity: RSP.EXACT, type: RTY.OLIVE , quantity: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 20}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_SAVOR_OF_THE_VERDANT] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_SAVOR_OF_THE_VERDANT,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Savor of the Verdant
+pulls from time and tide the sun
+through lands where moon is low"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.POTATO , quantity: 150},
+    {specificity: RSP.EXACT, type: RTY.ONION , quantity: 150},
+    {specificity: RSP.EXACT, type: RTY.BLUEBERRY , quantity: 30},
+    {specificity: RSP.EXACT, type: RTY.TOMATO , quantity: 30}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_GERMINATION_OF_PROMISE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_GERMINATION_OF_PROMISE,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Germination of Promise
+rises from the secret heart
+of the buried unborn"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED , quantity: 180},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL , quantity: 140},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN , quantity: 90},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE , quantity: 70}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_SCINTILLATION_OF_RINGS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_SCINTILLATION_OF_RINGS,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Scintillation of Rings
+glitters downcast as flavor and ash
+paper and acrid decay"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.SALT , quantity: 280},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 90},
+    {specificity: RSP.EXACT, type: RTY.PAPYRUS , quantity: 55},
+    {specificity: RSP.EXACT, type: RTY.SULFUR , quantity: 25}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_EMINENCE_OF_SMOKE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_EMINENCE_OF_SMOKE,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Eminence of Smoke
+demands your thought
+blinded eye but opened foot"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.WOOD_ALDER , quantity: 110},
+    {specificity: RSP.EXACT, type: RTY.WOOD_OAK , quantity: 110},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN , quantity: 110},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 90}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_LEAPING_OF_THE_SILVER_CORDS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_LEAPING_OF_THE_SILVER_CORDS,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Leaping of the Silver Cords
+through furrowed wave and seaward course
+ply the way and trace the door"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.MINNOW , quantity: 230},
+    {specificity: RSP.EXACT, type: RTY.MUSSEL , quantity: 170},
+    {specificity: RSP.EXACT, type: RTY.CARP , quantity: 70},
+    {specificity: RSP.EXACT, type: RTY.WATER , quantity: 555}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_MURMURATION_OF_SHIFTING_DUNES] =
+  new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_MURMURATION_OF_SHIFTING_DUNES,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Murmuration of Shifting Dunes
+purrs and sighs, highs and waves
+stained with dust below our moons"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW , quantity: 1800},
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE , quantity: 1400},
+    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC , quantity: 1400},
+    {specificity: RSP.EXACT, type: RTY.SAND_DUNE , quantity: 1100},
+    {specificity: RSP.EXACT, type: RTY.SAND_BLACK , quantity: 55}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_CONSEQUENCE_OF_PONDEROUS_EARTH] =
+  new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_CONSEQUENCE_OF_PONDEROUS_EARTH,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Consequence of Ponderous Earth
+demands the flex of bended knee
+for rounded spine and stifled breath"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY , quantity: 250},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED , quantity: 160},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE , quantity: 120},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 90}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_ABSTRACTION_OF_THE_INWARD_SPACE] =
+  new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_ABSTRACTION_OF_THE_INWARD_SPACE,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Abstraction of the Inward Space
+removes the walls between the walls
+and floors beneath its downward swirls"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 50},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 111},
+    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 140}]
+});
+
+researchOptions[RESEARCH_OPTIONS.THE_DIAPHONY_OF_THE_GOLDEN_SHEET] =
+  new ResearchOption({
+  name: RESEARCH_OPTIONS.THE_DIAPHONY_OF_THE_GOLDEN_SHEET,
+  appliesTo: RESEARCHES.MYSTICISM,
+  difficulty: 1,
+  description: (`"The Diaphony of the Golden Sheet
+is smooth within its floured curls
+and lithely lissome opens stairs"`),
+  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 50},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 111},
+    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 140}]
+});
+
 export { researchOptions };

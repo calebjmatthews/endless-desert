@@ -58,5 +58,6 @@ export enum BUILDING_TYPES {
   GLASSWORKS = "Glassworks",
   LABORATORY = "Laboratory",
   POTTERY_KILN = "Pottery Kiln",
-  BREWERY = "Brewery"
+  BREWERY = "Brewery",
+  PYRE = "Pyre"
 }

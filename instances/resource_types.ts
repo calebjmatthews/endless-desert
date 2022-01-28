@@ -341,7 +341,7 @@ resourceTypes[RTY.SEEDS_GRAIN] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SEEDS,
   tags: [RTA.INGREDIENT, RTA.TRADE_GOOD],
-  value: 80,
+  value: 60,
   description: `Grain requires significant water, but produces abundantly`,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#fbd856',
     shadow: '#ef8246'})

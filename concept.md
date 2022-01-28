@@ -425,10 +425,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/outdoor-landscape-2
     https://www.flaticon.com/packs/mandalas-5
     https://www.flaticon.com/packs/japan-52
-    https://www.flaticon.com/packs/landmark-21
     https://www.flaticon.com/packs/prehistoric-age
     https://www.flaticon.com/packs/morocco-16\
-    https://www.svgrepo.com/collection/landscapes-collection/
+      https://www.svgrepo.com/collection/landscapes-collection/
     https://www.svgrepo.com/collection/tools-flat-vectors/
     https://www.svgrepo.com/collection/italy-4/
     https://www.svgrepo.com/collection/japan-13/
@@ -447,6 +446,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
     https://www.svgrepo.com/collection/saint-patrick-day-5/
+    https://www.svgrepo.com/collection/prehistoric-age/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -601,7 +601,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Quest deletionQuest deletion
   [X] Auto generated quests use available buildings for production tasks
   [X] Cooking experimentation checks for a match with an existing recipe
-  [ ] Mysticism research
+  [X] Mysticism research
   [ ] Drinks
   [ ] Conjecture research
   [ ] Increase # of traders research

@@ -55,5 +55,7 @@ export enum RESEARCHES {
   POTTERY = "Pottery",
   FERMENTATION = "Fermentation",
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
-  MYSTICISM = "Mysticism"
+  MYSTICISM = "Mysticism",
+  EXPLORATION_OF_RITUALS = "Exploration of Rituals",
+  A_PYRE_WREATHED_IN_SMOKE = "A Pyre Wreathed In Smoke"
 }

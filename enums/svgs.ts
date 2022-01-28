@@ -149,6 +149,7 @@ export enum SVGS {
   LABORATORY = "Laboratory",
   POTTERY_KILN = "Pottery Kiln",
   BREWERY = "Brewery",
+  PYRE = "Pyre",
 
   SAMANNOUD = "Samannoud",
   SHUDDERING_REFUGE = "Da Nang",

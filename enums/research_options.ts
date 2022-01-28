@@ -68,9 +68,9 @@ export enum RESEARCH_OPTIONS {
   THE_GERMINATION_OF_PROMISE = "The Germination of Promise",
   THE_SCINTILLATION_OF_RINGS = "The Scintillation of Rings",
   THE_EMINENCE_OF_SMOKE = "The Eminence of Smoke",
-  THE_LEAPING_OF_SILVER_CORDS = "The Leaping of Silver Cords",
+  THE_LEAPING_OF_THE_SILVER_CORDS = "The Leaping of the Silver Cords",
   THE_MURMURATION_OF_SHIFTING_DUNES = "The Murmuration of Shifting Dunes",
-  THE_WEIGHT_OF_PONDEROUS_EARTH = "The Weight of Ponderous Earth",
-  THE_ABSTRACTION_OF_INWARD_SPACE = "The Abstraction of Inward Space",
+  THE_CONSEQUENCE_OF_PONDEROUS_EARTH = "The Consequence of Ponderous Earth",
+  THE_ABSTRACTION_OF_THE_INWARD_SPACE = "The Abstraction of the Inward Space",
   THE_DIAPHONY_OF_THE_GOLDEN_SHEET = "The Diaphony of the Golden Sheet"
 }

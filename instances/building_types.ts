@@ -1271,6 +1271,20 @@ const buildingTypes: { [name: string] : BuildingType } = {
     noteCost: defaultNoteCost,
     requiresLeader: true
   }),
+
+  [BTY.PYRE]: new BuildingType({
+    name: BTY.PYRE,
+    description: 'A white brick basin made for immolation',
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.PYRE}),
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1000},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_SHINING, quantity: 300},
+      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 100}],
+    recipes: null,
+    givesNote: RTY.NOTES_HEAT,
+    noteCost: defaultNoteCost,
+    cannotStore: true
+  }),
 };
 
 export { buildingTypes }
