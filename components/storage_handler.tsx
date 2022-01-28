@@ -155,7 +155,7 @@ export default function StorageHandlerComponent() {
         if (dataRes.data.accounts.length == 0) {
           return false;
         }
-        let buildings = {};
+        let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
         let vault: Vault = new Vault({ lastTimestamp: Date.now(), resources: {} });
@@ -196,8 +196,6 @@ export default function StorageHandlerComponent() {
             }
             else if (tableName == 'accounts' && jsonValue) {
               let account = jsonValue;
-              console.log('account');
-              console.log(account);
               account.sessionId = sessionId;
               dispatch(TABLE_SETTERS[tableName](account));
             }

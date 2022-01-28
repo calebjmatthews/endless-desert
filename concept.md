@@ -600,7 +600,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fortuities aren't marked as "seen" until viewed, not just set as current
   [X] Quest deletionQuest deletion
   [X] Auto generated quests use available buildings for production tasks
-  [ ] Cooking experimentation checks for a match with an existing recipe
+  [X] Cooking experimentation checks for a match with an existing recipe
   [ ] Mysticism research
   [ ] Drinks
   [ ] Conjecture research

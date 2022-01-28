@@ -35,7 +35,7 @@ export default function ResourceSelectDishComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
-  const [resourcesSelected, resourcesSelect] = useState<Resource[]>([]);
+  const [resourcesSelected, setResourcesSelected] = useState<Resource[]>([]);
   const [experimenting, setExperimenting] = useState<boolean>(false);
   const [dish, setDish] = useState<{resource: Resource, recipe: BuildingRecipe}
     | null>(null);
@@ -51,7 +51,7 @@ export default function ResourceSelectDishComponent() {
       </View>
       <ScrollView>
         <View style={styles.tileContainer}>
-          {renderResources(resourcesArray, resourcesSelect)}
+          {renderResources(resourcesArray, setResourcesSelected)}
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -96,8 +96,7 @@ export default function ResourceSelectDishComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={resource.type} resource={resource}
         resourcesSelected={resourcesSelected}
-        setResourcesSelected={setResourcesSelected} setDish={setDish}
-        positioner={positioner} />;
+        pressResource={pressResource} positioner={positioner} />;
     });
   }
 
@@ -199,8 +198,6 @@ export default function ResourceSelectDishComponent() {
     });
     const dishRes = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
-    console.log('dishRes');
-    console.log(dishRes);
     setExperimenting(true);
     setTimeout(() => {
       setDish(dishRes);
@@ -218,13 +215,49 @@ export default function ResourceSelectDishComponent() {
   }
 
   function cancelPress() {
-    resourcesSelect([]);
+    setResourcesSelected([]);
     setDish(null);
+  }
+
+  function pressResource(resource: Resource) {
+    let selected = false;
+    resourcesSelected.forEach((resourceSelected) => {
+      if (resource.type == resourceSelected.type
+        && resource.quality == resourceSelected.quality) {
+        selected = true;
+      }
+    });
+
+    let newResourcesSelected = [...resourcesSelected];
+    if (selected) {
+      newResourcesSelected = resourcesSelected.filter((sResource) => {
+        if (sResource.type != resource.type || sResource.quality != resource.quality) {
+          return resource;
+        }
+      });
+    }
+    else {
+      newResourcesSelected.push(resource);
+    }
+
+    const ingredientTypes = newResourcesSelected.map((resource) => {
+      return utils.getResourceType(resource);
+    });
+    const dishRes = modalValue.building.getDishFromIngredients(ingredientTypes,
+      resourceTypes);
+    const vaultMatch = vault.getCustomResourceMatch(dishRes.resource);
+    const result = (vaultMatch ? {
+      recipe: { ...dishRes.recipe,
+        produces: [{ ...dishRes.recipe.produces[0], type: vaultMatch.type }] },
+      resource: vaultMatch } : null);
+
+    setDish(result);
+    setResourcesSelected(newResourcesSelected);
   }
 }
 
 function ResourceSelector(props: {resource: Resource, resourcesSelected: Resource[],
-  setResourcesSelected: Function, setDish: Function, positioner: Positioner}) {
+  pressResource: (resource: Resource) => void, positioner: Positioner}) {
   const resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
@@ -244,21 +277,19 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
-          {renderButton(props.resource, props.resourcesSelected,
-            props.setResourcesSelected, props.setDish)}
+          {renderButton(props.resource, props.resourcesSelected, props.pressResource)}
         </View>
       </View>
     </View>
   );
 
   function renderButton(resource: Resource, resourcesSelected: Resource[],
-    setResourcesSelected: Function, setDish: Function) {
+    pressResource: (resource: Resource) => void) {
     if (ingredientsInclude(resourcesSelected, resource)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
-          onPress={() => {typeQualityUnSelect(resource, resourcesSelected,
-            setResourcesSelected, setDish)}} >
+          onPress={() => { pressResource(resource)} } >
           <Text style={styles.buttonText}>{'Use ' + getExperimentCost(resource)}</Text>
         </TouchableOpacity>
       );
@@ -276,8 +307,7 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
       { width: 74 }]);
     return (
       <TouchableOpacity style={buttonStyle}
-        onPress={() => {typeQualitySelect(resource, resourcesSelected,
-          setResourcesSelected, setDish)}} >
+        onPress={() => { pressResource(resource)} } >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
       </TouchableOpacity>
@@ -293,24 +323,6 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
       }
     }
     return false;
-  }
-
-  function typeQualityUnSelect(resource: Resource,
-    resourcesSelected: Resource[], setResourcesSelected: Function, setDish: Function) {
-    resourcesSelected = resourcesSelected.filter((sResource) => {
-      if (sResource.type != resource.type || sResource.quality != resource.quality) {
-        return resource;
-      }
-    });
-    setDish(null);
-    setResourcesSelected(resourcesSelected);
-  }
-
-  function typeQualitySelect(resource: Resource,
-    resourcesSelected: Resource[], setResourcesSelected: Function, setDish: Function) {
-    resourcesSelected.push(resource);
-    setDish(null);
-    setResourcesSelected(resourcesSelected);
   }
 }
 

@@ -13,11 +13,18 @@ export default class Vault {
 
   constructor(vault: VaultInterface|null) {
     if (vault) {
-      Object.assign(this, vault);
       let newResources: { [typeQuality: string] : Resource } = {};
       Object.keys(vault.resources).map((key) => {
-        this.resources[key] = vault.resources[key];
-      })
+        const resource = vault.resources[key];
+        if (resourceTypes[resource.type] || resource.id) {
+          newResources[key] = new Resource(resource);
+        }
+        else { console.log('Broken resource:'); console.log(resource); }
+      });
+      Object.assign(this, {
+        lastTimestamp: vault.lastTimestamp,
+        resources: newResources
+      });
     }
   }
 
@@ -320,6 +327,24 @@ export default class Vault {
       }
     });
     return catTree;
+  }
+
+  getCustomResourceMatch(custom: Resource) {
+    const resourcesArray = Object.keys(this.resources);
+    for (let index = 0; index < resourcesArray.length; index++) {
+      const resource = this.resources[resourcesArray[index]];
+      if (resource.id && (resource.name == custom.name)
+        && (resource.value == custom.value)) {
+        let tagMatch  = true;
+        resource.tags?.forEach((tag, tagIndex) => {
+          if (tag != custom.tags?.[tagIndex]) {
+            tagMatch = false;
+          }
+        });
+        if (tagMatch) { return resource; }
+      }
+    }
+    return null;
   }
 }
 
