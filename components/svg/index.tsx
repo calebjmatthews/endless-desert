@@ -24,6 +24,7 @@ import PotatoSvgComponent from './resources/potato';
 import LotusRootSvgComponent from './resources/lotus_root';
 import DateSvgComponent from './resources/date';
 import FigSvgComponent from './resources/fig';
+import TeaLeavesSvgComponent from './resources/tea_leaves';
 import DropSvgComponent from './resources/drop';
 import SeedsSvgComponent from './resources/seeds';
 import ReedsSvgComponent from './resources/reeds';
@@ -86,6 +87,9 @@ import TerracottaSvgComponent from './resources/terracotta';
 import FaienceSvgComponent from './resources/faience';
 import AshwareSvgComponent from './resources/ashware';
 import PorcelainSvgComponent from './resources/porcelain';
+import TeaSvgComponent from './resources/tea';
+import JuiceBlueberrySvgComponent from './resources/juice_blueberry';
+import JuiceTomatoSvgComponent from './resources/juice_tomato';
 import SoupSvgComponent from './resources/soup';
 import BreadSvgComponent from './resources/bread';
 import StewSvgComponent from './resources/stew';
@@ -223,6 +227,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <DateSvgComponent icon={props.icon} />;
     case SVGS.FIG:
     return <FigSvgComponent icon={props.icon} />;
+    case SVGS.TEA_LEAVES:
+    return <TeaLeavesSvgComponent icon={props.icon} />;
     case SVGS.DROP:
     return <DropSvgComponent icon={props.icon} />;
     case SVGS.SEEDS:
@@ -348,6 +354,12 @@ export default function SvgComponent(props: { icon: Icon }) {
     case SVGS.PORCELAIN:
     return <PorcelainSvgComponent icon={props.icon} />;
 
+    case SVGS.TEA:
+    return <TeaSvgComponent icon={props.icon} />;
+    case SVGS.JUICE_BLUEBERRY:
+    return <JuiceBlueberrySvgComponent icon={props.icon} />;
+    case SVGS.JUICE_TOMATO:
+    return <JuiceTomatoSvgComponent icon={props.icon} />;
     case SVGS.SOUP:
     return <SoupSvgComponent icon={props.icon} />;
     case SVGS.BREAD:

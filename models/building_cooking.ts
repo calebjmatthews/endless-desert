@@ -17,11 +17,22 @@ import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 export default function getDishFromIngredients(ingredients: ResourceType[],
   resourceTypes: { [typeName: string] : ResourceType }) {
   const dishTypes: DishType[] = [
-    new DishType({name: 'Mistake', valueChange: -90, contains: [
-
-    ]}),
+    new DishType({name: RTY.MISTAKE, valueChange: -90, contains: [ ]}),
     new DishType({name: RTY.SOUP, valueChange: 10, contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.TEA_DARJEELING, valueChange: 15, contains: [
+      { specificity: RSP.EXACT, type: RTY.TEA_LEAVES_DARJEELING,
+        quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.JUICE_BLUEBERRY, valueChange: 20, contains: [
+      { specificity: RSP.EXACT, type: RTY.BLUEBERRY, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.JUICE_TOMATO, valueChange: 20, contains: [
+      { specificity: RSP.EXACT, type: RTY.TOMATO, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.BREAD, valueChange: 30, contains: [

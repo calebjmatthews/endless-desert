@@ -273,6 +273,15 @@ resourceTypes[RTY.FIG] = new ResourceType({
     shadow: "#8066ff"})
 });
 
+resourceTypes[RTY.TEA_LEAVES_DARJEELING] = new ResourceType({
+  name: RTY.TEA_LEAVES_DARJEELING,
+  category: RCA.MATERIAL,
+  subcategory: RSC.CROP,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 20,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES})
+});
+
 resourceTypes[RTY.REEDS] = new ResourceType({
   name: RTY.REEDS,
   category: RCA.MATERIAL,
@@ -1227,6 +1236,38 @@ resourceTypes[RTY.PORCELAIN] = new ResourceType({
   tags: [RTA.CERAMIC],
   value: 7800,
   icon: new Icon({provider: 'svg', name: SVGS.PORCELAIN})
+});
+
+resourceTypes[RTY.TEA_DARJEELING] = new ResourceType({
+  name: RTY.TEA_DARJEELING,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 30,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA})
+});
+
+resourceTypes[RTY.JUICE_TOMATO] = new ResourceType({
+  name: RTY.JUICE_TOMATO,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 275,
+  icon: new Icon({provider: 'svg', name: SVGS.JUICE_TOMATO})
+});
+
+resourceTypes[RTY.JUICE_BLUEBERRY] = new ResourceType({
+  name: RTY.JUICE_BLUEBERRY,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 275,
+  icon: new Icon({provider: 'svg', name: SVGS.JUICE_BLUEBERRY})
+});
+
+resourceTypes[RTY.JUICE_TOMATO] = new ResourceType({
+  name: RTY.JUICE_TOMATO,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 275,
+  icon: new Icon({provider: 'svg', name: SVGS.JUICE_TOMATO})
 });
 
 resourceTypes[RTY.SOUP] = new ResourceType({

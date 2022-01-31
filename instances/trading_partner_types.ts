@@ -33,6 +33,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 20}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.TEA_LEAVES_DARJEELING, weight: 100},
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
@@ -48,7 +49,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100}
   ], [
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100}
+    {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SOUP, weight: 50}
   ]],
   initialTrust: 0,
   maxTrust: 1000,

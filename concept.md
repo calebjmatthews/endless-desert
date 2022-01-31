@@ -602,7 +602,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Auto generated quests use available buildings for production tasks
   [X] Cooking experimentation checks for a match with an existing recipe
   [X] Mysticism research
-  [ ] Drinks
+  [X] Drinks
+  [ ] Level 2 category researches
   [ ] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
