@@ -603,7 +603,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Cooking experimentation checks for a match with an existing recipe
   [X] Mysticism research
   [X] Drinks
-  [ ] Level 2 category researches
+  [X] Level 2 category researches
   [ ] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities

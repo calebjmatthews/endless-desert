@@ -154,6 +154,37 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   knowledgeReq: 0
 });
 
+researches[RESEARCHES.BIOLOGY] = new Research({
+  name: RESEARCHES.BIOLOGY,
+  unlocks: ('Opens up new areas of study about life and cultivation.'),
+  description: ('If your settlement is going to support a serious number of people '
+    + 'you\'ll have to learn about crops. Better get started.'),
+  icon: new Icon({provider: 'FontAwesome5', name: 'seedling',
+    color: '#fff', backgroundColor: '#071f56'}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: true,
+  difficulty: 1,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.SCHOLARSHIP],
+  knowledgeReq: 0
+});
+
+researches[RESEARCHES.BIOLOGY_ADVANCED] = new Research({
+  name: RESEARCHES.BIOLOGY_ADVANCED,
+  unlocks: ('Opens up further areas of study about life and cultivation.'),
+  description: (`Lentils, reeds, and grain grow easily on riverbanks; improving their cultivation or adding new options will take a more concerted effort.`),
+  icon: new Icon({provider: 'FontAwesome5', name: 'seedling',
+    color: '#fff', backgroundColor: '#071f56'}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 4000
+});
+
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
   name: RESEARCHES.REED_CULTIVATION,
   unlocks: ('Unlocks Reed Deltas.'),
@@ -250,8 +281,8 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.OLIVE_FARMING, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 4000,
+  prereq: [RESEARCHES.OLIVE_FARMING, RESEARCHES.BIOLOGY_ADVANCED],
+  knowledgeReq: 8000,
   unlocksUpgrade: [BUILDING_TYPES.OLIVE_GROVE_SIMPLIFIED]
 });
 
@@ -330,8 +361,8 @@ researches[RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.QUAIL_HUSBANDRY, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 4000,
+  prereq: [RESEARCHES.QUAIL_HUSBANDRY, RESEARCHES.BIOLOGY_ADVANCED],
+  knowledgeReq: 8000,
   unlocksUpgrade: [BUILDING_TYPES.QUAIL_PASTURE_SIMPLIFIED]
 });
 
@@ -346,26 +377,26 @@ researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   difficulty: 2,
   stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 2000,
+  prereq: [RESEARCHES.BIOLOGY_ADVANCED],
+  knowledgeReq: 6000,
   unlocksBuilding: [BUILDING_TYPES.OX_PASTURE]
 });
 
-researches[RESEARCHES.HERB_FARMING] = new Research({
-  name: RESEARCHES.HERB_FARMING,
-  unlocks: ('Unlocks Herb Gardens.'),
-  description: ('Herbs grow slowly relative to other plants. However, they are '
-    + 'valuable for trade, and a small amount can spice up an entire dish.'),
-  icon: new Icon({provider: 'svg', name: SVGS.ANISE}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 2,
-  stepsNeeded: 2,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 10000,
-  unlocksBuilding: [BUILDING_TYPES.SPICE_FIELD]
-});
+// researches[RESEARCHES.HERB_FARMING] = new Research({
+//   name: RESEARCHES.HERB_FARMING,
+//   unlocks: ('Unlocks Herb Gardens.'),
+//   description: ('Herbs grow slowly relative to other plants. However, they are '
+//     + 'valuable for trade, and a small amount can spice up an entire dish.'),
+//   icon: new Icon({provider: 'svg', name: SVGS.ANISE}),
+//   category: RESEARCHES.BIOLOGY,
+//   isCategory: false,
+//   difficulty: 2,
+//   stepsNeeded: 2,
+//   beginsCompleted: false,
+//   prereq: [RESEARCHES.BIOLOGY_ADVANCED],
+//   knowledgeReq: 10000,
+//   unlocksBuilding: [BUILDING_TYPES.SPICE_FIELD]
+// });
 
 researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   name: RESEARCHES.ANTHROPOLOGY,
@@ -431,6 +462,21 @@ researches[RESEARCHES.PHYSICS] = new Research({
   knowledgeReq: 50,
 });
 
+researches[RESEARCHES.PHYSICS_ADVANCED] = new Research({
+  name: RESEARCHES.PHYSICS_ADVANCED,
+  unlocks: ('Opens up further areas of study about mechanical processes.'),
+  description: (`You've begun a cycle of improved materials and methods, which allow you to invent new materials and better methods. Where will it end?`),
+  icon: new Icon({provider: 'FontAwesome', name: 'balance-scale',
+    color: '#fff', backgroundColor: '#071f56'}),
+  category: RESEARCHES.PHYSICS,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 7000,
+});
+
 researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   name: RESEARCHES.CLAY_EXCAVATION,
   unlocks: ('Unlocks Clay Pits.'),
@@ -462,8 +508,8 @@ researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 1000,
+  prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 10000,
   unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_QUALITY]
 });
 
@@ -498,8 +544,8 @@ researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.SAND_EXCAVATION, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 1800,
+  prereq: [RESEARCHES.SAND_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 13000,
   unlocksUpgrade: [BUILDING_TYPES.SAND_PIT_RAPID]
 });
 
@@ -545,8 +591,8 @@ researches[RESEARCHES.HOUSE_CONSTRUCTION] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.HUT_CONSTRUCTION, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 6000,
+  prereq: [RESEARCHES.HUT_CONSTRUCTION, RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 16000,
   unlocksUpgrade: [BUILDING_TYPES.HOUSES]
 });
 
@@ -579,8 +625,8 @@ researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.COMPACTION, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 2500,
+  prereq: [RESEARCHES.COMPACTION, RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 12500,
   unlocksUpgrade: [BUILDING_TYPES.PRESS_SIMPLIFIED]
 });
 
@@ -613,8 +659,8 @@ researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.GRINDING, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 4500,
+  prereq: [RESEARCHES.GRINDING, RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 14500,
   unlocksUpgrade: [BUILDING_TYPES.GRINDING_MILL_SIMPLIFIED]
 });
 
@@ -630,8 +676,8 @@ researches[RESEARCHES.WEAVING] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 2500,
+  prereq: [RESEARCHES.PHYSICS_ADVANCED],
+  knowledgeReq: 8500,
   unlocksBuilding: [BUILDING_TYPES.WEAVERY]
 });
 
@@ -649,7 +695,7 @@ researches[RESEARCHES.SAND_PURIFICATION] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 4200,
+  knowledgeReq: 18000,
   unlocksBuilding: [BUILDING_TYPES.SAND_CASCADE]
 });
 
@@ -666,7 +712,7 @@ researches[RESEARCHES.TAILORING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 6500,
+  knowledgeReq: 16000,
   unlocksBuilding: [BUILDING_TYPES.TAILORS]
 });
 
@@ -682,25 +728,8 @@ researches[RESEARCHES.OUTFITTING] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 6500,
+  knowledgeReq: 18000,
   unlocksBuilding: [BUILDING_TYPES.OUTFITTERS]
-});
-
-researches[RESEARCHES.TOOL_FABRICATION] = new Research({
-  name: RESEARCHES.TOOL_FABRICATION,
-  unlocks: ('Unlocks Fabricatory.'),
-  description: ('Your study of metals has brought you tantalizingly close to '
-    + 'a variety of tools that would transform every part of the life that you\'ve '
-    + 'carved out of this harsh land.'),
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS}),
-  category: RESEARCHES.PHYSICS,
-  isCategory: false,
-  difficulty: 2,
-  stepsNeeded: 4,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 8000,
-  unlocksBuilding: [BUILDING_TYPES.FABRICATORY]
 });
 
 researches[RESEARCHES.CHEMISTRY] = new Research({
@@ -719,6 +748,21 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY, RESEARCHES.PHYSICS],
   knowledgeReq: 80,
+});
+
+researches[RESEARCHES.CHEMISTRY_ADVANCED] = new Research({
+  name: RESEARCHES.CHEMISTRY_ADVANCED,
+  unlocks: ('Opens up further areas of study about non-physical changes.'),
+  description: (`You've begun exploring aspects of Chemistry that feel suspiciously close to its hoax-prone cousin, Alchemy. Some substances truly can be converted into others. The options are limited, the rules are obscure, but the potential is enormous.`),
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'flask',
+    color: '#fff', backgroundColor: '#071f56'}),
+  category: RESEARCHES.CHEMISTRY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 9000,
 });
 
 researches[RESEARCHES.DEHYDRATION] = new Research({
@@ -750,7 +794,7 @@ researches[RESEARCHES.DEHYDRATION_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 2,
   beginsCompleted: false,
-  prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.FIELD_NOTES],
+  prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.CHEMISTRY_ADVANCED],
   knowledgeReq: 1800,
   unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_SIMPLIFIED]
 });
@@ -784,14 +828,14 @@ researches[RESEARCHES.COMBUSTION_SIMPLIFIED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.FIELD_NOTES],
+  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.CHEMISTRY_ADVANCED],
   knowledgeReq: 3200,
   unlocksUpgrade: [BUILDING_TYPES.FURNACE_SIMPLIFIED]
 });
 
 researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   name: RESEARCHES.COMBUSTION_VENTILATED,
-  unlocks: ('Allows Furnaces to be run without a leader.'),
+  unlocks: ('Allows Furnaces to produce new materials.'),
   description: ('There are some metals that require greater heat to form than your '
     + 'furnace can manage: much, much greater. You\'ll need more powerful fuel, '
     + 'more of it, and continuous fresh air spiraling in.'),
@@ -803,8 +847,25 @@ researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMBUSTION_SIMPLIFIED],
-  knowledgeReq: 6400,
+  knowledgeReq: 18000,
   unlocksUpgrade: [BUILDING_TYPES.FURNACE_BLAST]
+});
+
+researches[RESEARCHES.TOOL_FABRICATION] = new Research({
+  name: RESEARCHES.TOOL_FABRICATION,
+  unlocks: ('Unlocks Fabricatory.'),
+  description: ('Your study of metals has brought you tantalizingly close to '
+    + 'a variety of tools that would transform every part of the life that you\'ve '
+    + 'carved out of this harsh land.'),
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS}),
+  category: RESEARCHES.CHEMISTRY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION_VENTILATED],
+  knowledgeReq: 22000,
+  unlocksBuilding: [BUILDING_TYPES.FABRICATORY]
 });
 
 researches[RESEARCHES.COOKING] = new Research({
@@ -836,8 +897,8 @@ researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
   difficulty: 2,
   stepsNeeded: 4,
   beginsCompleted: false,
-  prereq: [RESEARCHES.COOKING, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 3200,
+  prereq: [RESEARCHES.COOKING, RESEARCHES.CHEMISTRY_ADVANCED],
+  knowledgeReq: 13000,
   unlocksUpgrade: [BUILDING_TYPES.KITCHEN_BOUNTIFUL]
 });
 
@@ -852,8 +913,8 @@ researches[RESEARCHES.GLASS_SHAPING] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 5000,
+  prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
+  knowledgeReq: 24000,
   unlocksBuilding: [BUILDING_TYPES.GLASSWORKS]
 });
 
@@ -869,8 +930,8 @@ researches[RESEARCHES.SOLVENTS] = new Research({
   difficulty: 2,
   stepsNeeded: 4,
   beginsCompleted: false,
-  prereq: [RESEARCHES.GLASS_SHAPING],
-  knowledgeReq: 9000,
+  prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
+  knowledgeReq: 33000,
   unlocksBuilding: [BUILDING_TYPES.LABORATORY]
 });
 
@@ -886,8 +947,8 @@ researches[RESEARCHES.POTTERY] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 7000,
+  prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
+  knowledgeReq: 16000,
   unlocksBuilding: [BUILDING_TYPES.POTTERY_KILN]
 });
 
@@ -903,8 +964,8 @@ researches[RESEARCHES.FERMENTATION] = new Research({
   difficulty: 2,
   stepsNeeded: 4,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 8000,
+  prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
+  knowledgeReq: 17000,
   unlocksBuilding: [BUILDING_TYPES.BREWERY]
 });
 
