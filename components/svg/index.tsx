@@ -9,6 +9,7 @@ import NotesWaterSvgComponent from './resources/notes_water';
 import NotesEarthSvgComponent from './resources/notes_earth';
 import NotesHeatSvgComponent from './resources/notes_heat';
 import NotesCultivationSvgComponent from './resources/notes_cultivation';
+import NotesDialecticSvgComponent from './resources/notes_dialectic';
 import LentilSvgComponent from './resources/lentil';
 import BlueberrySvgComponent from './resources/blueberry';
 import GrapeSvgComponent from './resources/grape';
@@ -197,6 +198,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <NotesHeatSvgComponent icon={props.icon} />;
     case SVGS.NOTES_CULTIVATION:
     return <NotesCultivationSvgComponent icon={props.icon} />;
+    case SVGS.NOTES_DIALECTIC:
+    return <NotesDialecticSvgComponent icon={props.icon} />;
     case SVGS.LENTIL:
     return <LentilSvgComponent icon={props.icon} />;
     case SVGS.BLUEBERRY:

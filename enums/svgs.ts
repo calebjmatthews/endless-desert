@@ -7,6 +7,7 @@ export enum SVGS {
   NOTES_EARTH = "Notes on the Reluctant Earth",
   NOTES_HEAT = "Notes on Scintillating Heat",
   NOTES_CULTIVATION = "Notes on Gentle Cultivation",
+  NOTES_DIALECTIC = "Notes on Dialectic Semiosis",
   LENTIL = "Lentil",
   BLUEBERRY = "Blueberry",
   GRAPE = "Grape",

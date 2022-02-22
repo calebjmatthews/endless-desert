@@ -11,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { selectTab, setPositioner, addMemos } from '../actions/ui';
 import { addBuilding, setBuildingSpecificRecipe } from '../actions/buildings';
 import { changeSetting, setCurrentFortuity, unlockTab, setAccount, fortuitySeen,
-  setFortuityDailyLast } from '../actions/account';
+  setFortuityDailyLast, achieveMilestone } from '../actions/account';
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
@@ -65,6 +65,7 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { QUESTS } from '../enums/quests';
 import { CONVERSATIONS } from '../enums/conversations';
+import { MILESTONES } from '../enums/milestones';
 
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
@@ -273,11 +274,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
+      dispatch(achieveMilestone(MILESTONES.RESEARCH_OPTION_SLOTS_2));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

@@ -40,6 +40,7 @@ export default function ResearchesComponent() {
   const notesTimer = useTypedSelector(state => state.timers[RESEARCHES.FIELD_NOTES]);
   const showCompletedResearches =
     useTypedSelector(state => state.account.showCompletedResearches);
+  const milestones = useTypedSelector(state => state.account.milestones);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let uiArray: ResearchBranch[] = [];
   researchStatus.actions[TABS.RESEARCH]?.map((action) => {
@@ -89,11 +90,12 @@ export default function ResearchesComponent() {
   function renderUiItem(data: any) {
     switch(data.item.type) {
       case 'action':
-      return <>{renderActionItem(data.item.name)}</>
+      return renderActionItem(data.item.name);
 
       case 'research':
       return <ResearchDescription branch={data.item} vault={vault}
-        startClick={startClick} rods={researchOptionDecks} positioner={positioner}
+        startClick={startClick} rods={researchOptionDecks}
+        milestones={milestones} positioner={positioner}
         showCompletedResearches={showCompletedResearches} />
 
       case 'category':
@@ -172,7 +174,7 @@ export default function ResearchesComponent() {
   }
 
   function startClick(researchStatus: {name: string, status: string}, vault: Vault,
-    resume: boolean = false) {
+    milestones: { [name: string] : boolean }, resume: boolean = false) {
     let research = researches[researchStatus.name];
     let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0'].quantity;
     if (resume) {
@@ -184,7 +186,8 @@ export default function ResearchesComponent() {
         quality: 0,
         quantity: research.knowledgeReq
       })]));
-      dispatch(startResearch(researchStatus.name));
+      dispatch(startResearch(researchStatus.name,
+        utils.getResearchOptionSlots(milestones)));
       dispatch(selectTab("Researching", researchStatus.name));
     }
     else {
@@ -208,7 +211,8 @@ export default function ResearchesComponent() {
 
 function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
   startClick: Function, showCompletedResearches: boolean,
-  rods: { [researchName: string] : ResearchOptionDeck}, positioner: Positioner}) {
+  rods: { [researchName: string] : ResearchOptionDeck},
+  milestones: { [name: string] : boolean }, positioner: Positioner}) {
   const research = researches[props.branch.name];
 
   if (!props.showCompletedResearches && props.branch.status != 'visible') {
@@ -254,7 +258,8 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
       if (rod.stepsCompleted < rod.stepsNeeded) {
         return (
           <TouchableOpacity style={styles.buttonRowItem}
-            onPress={() => {props.startClick(props.branch, props.vault, true)}} >
+            onPress={() => {props.startClick(props.branch, props.vault,
+              props.milestones, true)}} >
             <IconComponent provider="MaterialCommunityIcons" name="feather"
               color="#fff" size={16} />
             <Text style={styles.buttonText}>{' Resume'}</Text>
@@ -265,7 +270,8 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
     if (props.branch.status == 'visible') {
       return (
         <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => {props.startClick(props.branch, props.vault)}} >
+          onPress={() => {props.startClick(props.branch, props.vault,
+            props.milestones)}} >
           <IconComponent provider="MaterialCommunityIcons" name="feather"
             color="#fff" size={16} />
           <Text style={styles.buttonText}>{' Start'}</Text>

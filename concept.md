@@ -15,7 +15,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Groups lead by a named character with various traits that can be persuaded to stay in your settlement by using up influence or gifts.
   - Group leaders have a favorite food, favorite activity, and a secret wish. Fulfilling the secret wish gives a permanent boost to happiness.
   - Group leaders can equip clothing, a pack (that goes on the back), and a tool. These can affect their quantity of products created, quality of products created, amount of resources consumed when creating a product, bonus when entertaining the town, speed when traveling to an exploration site, ability to disarm traps when exploring, and resilience to damage when exploring.
-  - Group-specific happiness influenced by quality of house; kind and quality of food, drink, clothing, presence of cats, and treasure; desirability of job. Happiness has a large effect on work performance, is displayed prominently, and can lead to special events.
+  - Leader-specific happiness influenced by quality of house; kind and quality of food, drink, clothing, presence of cats, and treasure; desirability of job. Happiness has a large effect on work performance, is displayed prominently, and can lead to special events.
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
   - Day gradient?: linear-gradient(#009aaa, #a1ded0, #f5cb7d);
@@ -26,8 +26,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Product quality:
     - Products can have something akin to a critical success that produces a "fine" version of the resource.
     - A double-critical is also possible: 110% change of quality product would = 90% chance of "fine" and 10% change of "exquisite".
-    - A "fine" product is worth 10x the value of a normal product, and has the sentence "It's of fine quality." added to the end of the description.
-    - An "exquisite" product is worth 100x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description.
+    - A "fine" product is worth 4x the value of a normal product, and has the sentence "It's of fine quality." added to the end of the description.
+    - An "exquisite" product is worth 16x the vault of a normal product, and has "The quality is exquisite; this is fit for royalty!" added to the end of the description.
   - Exploring requires a specific set of provisions: initially this just includes food and drink, but later can include things like rope, medicine, shovels, camels, and special clothing.
   - Rendering extracts from various materials for perfumery/other uses
     - Rendering occurs at a crucible. The user can create a repeating pattern of ingredients, and each has set duration to render.
@@ -37,12 +37,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Deep (shining yellow), Strange (shining purple), Rich (shining green), Airy (shining blue)
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
   - Temporary settlements can be made in the Dreaming (the River of Pearls?), last 24 hours (?) before evaporating and allowing the player to claim one single resource.
-    - These can have unusual resources, such as iron or wood.
+    - These can have produce unusual resources, such as iron or wood.
     - They can also be unusually small or large.
     - Some way to apply extreme benefits, often with drawbacks. These could include:
-      - Dream build time x 1000 in large island that is continuously shrinking
+      - Build time x 1000 in large island that is continuously shrinking
       - One resource production x 100 (but can't claim that resource)
-      - Randomizing the output of resource with a subcategory
+      - Randomizing the output of resources with a subcategory
       - Broad availability of raw resources, but no leaders can be found
       - Buildings produce much more, but can only be built once and only work for an hour before vanishing
       - Highly beneficial trades arrive each hour, but must be completed within five minutes or the island vanishes
@@ -74,6 +74,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - The Firefly
     - "Who are you?" "flame     flying   fires      soaring     heat air     fiery wind"
     - Giver of most quests
+  - Late game long term craft: create a moon
+    - Gives an array of bonuses that apply to your town (during night? always?)
+    - Can create a moon with specific attributes to appeal to certain buyers
 
 ## Resource Subcategories:
   - Sand
@@ -239,10 +242,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Research option flow:
   - Pull the options specific to the research, then the options for its category and difficulty
+  - If there are unused manditory options => remaining rounds, use one of those as only option
   - Remove the options that have already been used as part of this research
   - Look at the number of remaining steps: if there are <= steps as research-specific options, only choose from those
-  - If there are >, choose from any in the pool
-  - If there are no options remaining in the pool, restore all previously used options
+  - If the card slot is > 1, include secondary options in pool
+  - If there are >, make weighted choice from any in the pool
+  - If there are no non-secondary options remaining in the pool, restore all previously used options
 
 ## Option cost application:
   - If specificity is exact, deduct material at once
@@ -513,11 +518,24 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Buy as many things from the Hawk Bazaar as you wish
   - When sending out a hawk, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
 
-# Building Limits
+## Building Limits
   - Initial stage, 6 to start: 3 special, 1 housing, 2 material
   - At Field Notes stage, 22 is comfortable: 3 special, 4 housing, 10 material, 5 refinement
   - Stages could go: 12, 15, 20, 25, 31, 36, 40
   - Starting, Sand+Clay, Wood+Brick, Iron+Bronze, Steel+Ceramic, Artifact, Pearl-thing
+
+## Secondary Research Options
+  - Knowledge cost to discard current options and redraw
+  - Reduce progress by one to gain scholarship-type field notes
+  - Large resource cost to gain scholarship-type field notes
+  - Large dish and drink cost
+  - Leader specific assistance
+
+## How to handle surplus of leaders?
+  - Don't have an option of too many leaders
+    - This isn't ideal, could be fun to have tons of seasonal or premium leaders
+  - Different housing types that can hold more than one leader (and crew)
+  - Moving fortress that runs on waterwheels turned by golden oil, surplus leaders can work there for ocational non-scaling benefits
 
 ## Tips
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
@@ -604,12 +622,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Mysticism research
   [X] Drinks
   [X] Level 2 category researches
+  [X] Increase difficulty of Field Notes-locked upgrades
   [ ] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
   [ ] Glassware to use cloth subcategory as an ingredient
-  [ ] Increase difficulty of Field Notes-locked upgrades
   [ ] Storing an occupied house kicks out the leader
   [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Fortuity should grant ore, equipment, food

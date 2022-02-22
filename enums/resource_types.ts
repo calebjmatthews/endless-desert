@@ -7,6 +7,7 @@ export enum RESOURCE_TYPES {
   NOTES_EARTH = "Notes on the Reluctant Earth",
   NOTES_HEAT = "Notes on Scintillating Heat",
   NOTES_CULTIVATION = "Notes on Gentle Cultivation",
+  NOTES_DIALECTIC = "Notes on Dialectic Semiosis",
   WATER = "Water",
   BRINE = "Brine",
   LENTIL = "Lentil",

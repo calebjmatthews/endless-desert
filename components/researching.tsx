@@ -25,6 +25,7 @@ import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
 import QuestActivity from '../models/quest_activity';
 import Message from '../models/message';
+import Positioner from '../models/positioner';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
 import { resourceTypes } from '../instances/resource_types';
@@ -36,6 +37,8 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 import { TABS } from '../enums/tabs';
 import { ACTIVITIES } from '../enums/activities';
+import { RESEARCH_OPTION_ACTIONS } from '../enums/research_option_actions';
+const ROA = RESEARCH_OPTION_ACTIONS;
 
 export default function ResearchingComponent() {
   const dispatch = useDispatch();
@@ -47,9 +50,6 @@ export default function ResearchingComponent() {
   const research = researches[valueSelected];
   const rod = researchOptionDecks[valueSelected];
   const positioner = useTypedSelector(state => state.ui.positioner);
-  let optionsArray: ResearchOption[] = Object.keys(rod.currentOptions).map((name) => {
-    return researchOptions[name];
-  });
 
   useEffect(() => {
     if (modalStage == 'resolving') {
@@ -106,9 +106,9 @@ export default function ResearchingComponent() {
         <>
           <Text style={styles.bareText}>{'- Options -'}</Text>
           <FlatList
-            data={optionsArray}
+            data={rod.currentOptions}
             renderItem={renderOption}
-            keyExtractor={option => option.name}>
+            keyExtractor={option => option}>
           </FlatList>
         </>
       );
@@ -131,8 +131,7 @@ export default function ResearchingComponent() {
   }
 
   function renderOption(option: any) {
-    return <OptionDescription option={option} vault={vault} applyCost={applyCost}
-      rod={rod} positioner={positioner} />
+    return <OptionDescription optionName={option.item} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
@@ -185,20 +184,36 @@ export default function ResearchingComponent() {
 
   function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
-    let rod = researchOptionDecks[valueSelected];
-    let research = researches[rod.researchName];
+    const option = researchOptions[optionName];
     const oResult = rod.costPaid(aCost.type, optionName);
     if (oResult == 'option completed') {
-      const sResult = rod.completeStep();
-      if (sResult == 'step completed') {
-        if (rod.stepsNeeded <= rod.stepsCompleted) {
-          callCompleteResearch();
+      option.actions.forEach((actionName) => {
+        switch(actionName) {
+          case ROA.INCREASE_OPTION_SLOTS:
+          rod.increaseOptionSlots();
+          break;
+
+          case ROA.DECREASE_OPTION_SLOTS:
+          rod.decreaseOptionSlots();
+          break;
+
+          case ROA.DISCARD_OPTIONS:
+          rod.discardOptions();
+          break;
+
+          case ROA.COMPLETE_STEP:
+          const sResult = rod.completeStep();
+          if (sResult == 'step completed') { callCompleteResearch(); }
+          else { rod.replaceOption(optionName); }
+          break;
+
+          case ROA.RETRACT_STEP:
+          rod.retractStep();
+          break;
         }
-      }
-      else {
-        rod.beginStep(1);
-      }
+      });
     }
+    rod.finishOption(optionName);
     dispatch(updateResearchOptionDeck(rod));
   }
 
@@ -223,16 +238,17 @@ export default function ResearchingComponent() {
   }
 }
 
-function OptionDescription(props: any) {
-  let option: ResearchOption = props.option.item;
+function OptionDescription(props: { optionName: string, vault: Vault,
+  rod: ResearchOptionDeck, applyCost: Function, positioner: Positioner }) {
+  let option: ResearchOption = researchOptions[props.optionName];
   return (
     <View style={StyleSheet.flatten([styles.panelFlexColumn,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <Text style={styles.heading2}>
-        {'#' + (props.option.index+1) + ': ' + option.name}
-      </Text>
       <View>
+        <Text style={styles.heading2}>
+          {option.name}
+        </Text>
         <Text style={styles.bodyText}>{option.description}</Text>
         <Text>{'Cost:'}</Text>
         <View>

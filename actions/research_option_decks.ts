@@ -16,19 +16,20 @@ export function setResearchOptionDecks(researchOptionDecks:
 }
 
 export const UPSERT_RESEARCH_OPTION_DECK = 'UPSERT_RESEARCH_OPTION_DECK';
-export function startResearch(researchName: string) {
+export function startResearch(researchName: string, optionSlots: number) {
   let research = researches[researchName];
   let newROD = new ResearchOptionDeck({
-    researchName: researchName,
+    researchName,
     stepsCompleted: 0,
     stepsNeeded: research.stepsNeeded,
+    optionSlots,
     preferredOptions: {},
     generalOptions: {},
     viewedOptions: {},
-    currentOptions: {},
+    currentOptions: [],
     paidCosts: {}
   });
-  newROD.beginStep(1);
+  newROD.drawAllOptions(optionSlots);
 
   return {
     type: UPSERT_RESEARCH_OPTION_DECK,

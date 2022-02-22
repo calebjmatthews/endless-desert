@@ -86,6 +86,15 @@ resourceTypes[RTY.NOTES_CULTIVATION] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_CULTIVATION})
 });
 
+resourceTypes[RTY.NOTES_DIALECTIC] = new ResourceType({
+  name: RTY.NOTES_DIALECTIC,
+  category: RCA.FIELD_NOTES,
+  tags: [RTA.MIND],
+  value: 15000,
+  description: `Reading it makes your head spin, and you're the one who wrote it`,
+  icon: new Icon({provider: 'svg', name: SVGS.NOTES_DIALECTIC})
+});
+
 resourceTypes[RTY.WATER] = new ResourceType({
   name: RTY.WATER,
   category: RCA.MATERIAL,

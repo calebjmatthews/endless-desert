@@ -9,6 +9,7 @@ import { resourceTags } from './instances/resource_tags';
 import { resourceSubcategories } from './instances/resource_subcategories';
 import { resourceCategories } from './instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from './enums/resource_specificity';
+import { MILESTONES } from './enums/milestones';
 
 class Utils {
   constructor() {
@@ -631,6 +632,13 @@ class Utils {
     if (char.includes(',')) { return fadeCharDelay * 2 * 3; }
     if (char.includes('.') || char.includes('!')) { return fadeCharDelay * 2 * 6; }
     return fadeCharDelay;
+  }
+
+  getResearchOptionSlots(milestones: { [name: string] : boolean }) {
+    if (milestones[MILESTONES.RESEARCH_OPTION_SLOTS_2]) {
+      return 2;
+    }
+    return 1;
   }
 }
 

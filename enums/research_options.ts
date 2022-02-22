@@ -1,4 +1,15 @@
 export enum RESEARCH_OPTIONS {
+  SECONDARY = "Secondary",
+
+  // Secondary Options Lv 0
+  FRUSTRUATION = "Frustration",
+  EXPLORING_POSSIBILITIES = "Exploring Possibilities",
+  RECKLESS_CONCENTRATION = "Reckless Concentration",
+
+  // Secondary Options Lv 1
+  AGGRIVATION = "Aggrivation",
+  A_WORTHWHILE_DISTRACTION = "A Worthwhile Distraction",
+
   // Scholarship Lv 0
   AN_INKLING = "An Inkling",
   A_GUESS = "A Guess",

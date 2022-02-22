@@ -11,8 +11,67 @@ import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
+import { RESEARCH_OPTION_ACTIONS } from '../enums/research_option_actions';
+const ROA = RESEARCH_OPTION_ACTIONS;
 
 let researchOptions: { [name: string] : ResearchOption } = {};
+
+researchOptions[RESEARCH_OPTIONS.FRUSTRUATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FRUSTRUATION,
+  appliesTo: RESEARCH_OPTIONS.SECONDARY,
+  difficulty: 0,
+  description: (`Everything is difficult today; your notes are a mess, the lighting is terrible, and you feel like pulling out your hair. Sometimes its better to throw away potential avenues and start over. *This will remove all current research options and replace them with new ones*`),
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 200}],
+  actions: [ ROA.DISCARD_OPTIONS ],
+  weight: 25
+});
+
+researchOptions[RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES,
+  appliesTo: RESEARCH_OPTIONS.SECONDARY,
+  difficulty: 0,
+  description: (`Time to slow down, ennumerate a list of strategies, and write out a set of approaches. *This will add an extra option slot for the rest of this research*`),
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 100},
+    {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 1}],
+  actions: [ ROA.INCREASE_OPTION_SLOTS ],
+  weight: 25
+});
+
+researchOptions[RESEARCH_OPTIONS.RECKLESS_CONCENTRATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.RECKLESS_CONCENTRATION,
+  appliesTo: RESEARCH_OPTIONS.SECONDARY,
+  difficulty: 0,
+  description: (`Select a possible solution and burn away all other options. Is this incautious? Don't stop to think about that. *This will give research progress, but will both remove all current options and give one fewer slot for the rest of this research*`),
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 50}],
+  actions: [ ROA.COMPLETE_STEP, ROA.DISCARD_OPTIONS, ROA.DECREASE_OPTION_SLOTS ],
+  weight: 25
+});
+
+researchOptions[RESEARCH_OPTIONS.AGGRIVATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.AGGRIVATION,
+  appliesTo: RESEARCH_OPTIONS.SECONDARY,
+  difficulty: 1,
+  description: (`Prototype after prototype fails, theory after theory goes nowhere. But you'll pull this research back together, even if it means writing and cursing all night long. *This will remove all current research options and replace them with new ones*`),
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 500},
+    { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 80 },
+    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 4 }],
+  actions: [ ROA.DISCARD_OPTIONS ],
+  weight: 25
+});
+
+researchOptions[RESEARCH_OPTIONS.A_WORTHWHILE_DISTRACTION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.A_WORTHWHILE_DISTRACTION,
+  appliesTo: RESEARCH_OPTIONS.SECONDARY,
+  difficulty: 1,
+  description: (`You've found a compelling idea that isn't connected at all to the topic at hand. Exploring it would set you back significantly, but the temptation... *This will give a rare item, but will both remove all current options and give one fewer slot for the rest of this research*`),
+  cost: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
+    { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
+    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20 }],
+  gain: [{ specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1 }],
+  actions: [ ROA.DISCARD_OPTIONS, ROA.DECREASE_OPTION_SLOTS ],
+  weight: 25
+});
 
 researchOptions[RESEARCH_OPTIONS.AN_INKLING] = new ResearchOption({
   name: RESEARCH_OPTIONS.AN_INKLING,
@@ -69,7 +128,8 @@ researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
   description: ('At least it starts as a casual inspection. '
     + 'The closer you look at these lentils, this single bushel of dried beans, '
     + 'the more you discover. Who knew?'),
-  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.SAND_VARIETY] = new ResearchOption({
@@ -79,7 +139,8 @@ researchOptions[RESEARCH_OPTIONS.SAND_VARIETY] = new ResearchOption({
   description: (`Varieties of sand come in an array colors, caused by impurities from their source: you find bits of clay, flecks of rust, and tiny clumps of a greenish metal.`),
   cost: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 200},
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, quantity: 50}]
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, quantity: 50}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.CLAY_VARIETY] = new ResearchOption({
@@ -89,7 +150,8 @@ researchOptions[RESEARCH_OPTIONS.CLAY_VARIETY] = new ResearchOption({
   description: (`Clay from different lands behaves in entiely distict ways. A shame that the clay from your town is mostly mud.`),
   cost: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, quantity: 10},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10}]
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
@@ -100,7 +162,8 @@ researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 20},
     {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 50},
     {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 50}]
+    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 50}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
@@ -111,7 +174,8 @@ researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
     + 'know you letters, although it\'s been a long time since you\'ve written. '
     + 'Better practice, and practice a lot.'),
   cost: [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}]
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.METAL_VARIETY] = new ResearchOption({
@@ -122,7 +186,8 @@ researchOptions[RESEARCH_OPTIONS.METAL_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 100},
     {specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 20},
-    {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20}]
+    {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
@@ -133,7 +198,8 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 120},
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 120},
-    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, quantity: 120}]
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, quantity: 120}],
+  manditory: true
 });
 
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({

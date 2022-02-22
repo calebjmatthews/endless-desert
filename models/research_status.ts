@@ -70,8 +70,6 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setCompleted(researchName: string) {
     this.status[researchName] = 'completed';
     this.checkAndSetVisible();
-    console.log('this');
-    console.log(this);
     this.setResearchedActions();
     this.setBuildingsAvailable();
     this.setUpgradesAvailable();
@@ -109,9 +107,9 @@ export default class ResearchStatus implements ResearchStatusInterface {
   }
 
   setBuildingsAvailable() {
-    Object.keys(this.status).map((researchName) => {
+    Object.keys(this.status).forEach((researchName) => {
       let research = researches[researchName];
-      if (!research) { console.log(researchName); }
+      if (!research) { console.log(researchName); return; }
       if (research.unlocksBuilding && this.status[researchName] == 'completed') {
         research.unlocksBuilding.map((buildingName) => {
           this.buildingsAvailable[buildingName] = true;
@@ -123,7 +121,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setUpgradesAvailable() {
     Object.keys(this.status).map((researchName) => {
       let research = researches[researchName];
-      if (!research) { console.log(researchName); }
+      if (!research) { console.log(researchName); return; }
       if (research.unlocksUpgrade && this.status[researchName] == 'completed') {
         research.unlocksUpgrade.map((buildingName) => {
           this.upgradesAvailable[buildingName] = true;
