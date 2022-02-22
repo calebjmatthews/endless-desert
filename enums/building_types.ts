@@ -17,6 +17,7 @@ export enum BUILDING_TYPES {
   MARKET = "Market",
   CISTERN = "Cistern",
   STUDY = "Study",
+  STUDY_PORTENTOUS = "Portentous Study",
   LENTIL_FIELD = "Lentil Field",
   LENTIL_FIELD_HEARTY = "Hearty Lentil Field",
   REED_DELTA = "Reed Delta",

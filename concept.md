@@ -75,7 +75,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - "Who are you?" "flame     flying   fires      soaring     heat air     fiery wind"
     - Giver of most quests
   - Late game long term craft: create a moon
-    - Gives an array of bonuses that apply to your town (during night? always?)
+    - Gives an array of bonuses that apply to your town during a specific time or times of day
     - Can create a moon with specific attributes to appeal to certain buyers
 
 ## Resource Subcategories:

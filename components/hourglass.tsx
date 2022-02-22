@@ -10,7 +10,7 @@ import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMessage, addMemos } from '../actions/ui';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
-  setFortuityDailyLast } from '../actions/account';
+  setFortuityDailyLast, achieveMilestone } from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Timer from '../models/timer';
@@ -37,6 +37,7 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
 import { ACTIVITIES } from '../enums/activities';
+import { MILESTONES } from '../enums/milestones';
 import { CHECK_INTERVAL } from '../constants';
 
 export default function HourglassComponent() {
@@ -168,6 +169,9 @@ export default function HourglassComponent() {
               value: buildingType.name } })));
             tempBuildings[building.id] = upgBuilding;
             recalcRates = true;
+            if (buildingType.upgradesInto == BUILDING_TYPES.STUDY_PORTENTOUS) {
+              dispatch(achieveMilestone(MILESTONES.RESEARCH_OPTION_SLOTS_2));
+            }
           }
           if (buildingType.name == BUILDING_TYPES.BROKEN_CISTERN) {
             cisternRepaired();

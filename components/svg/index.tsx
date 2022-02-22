@@ -121,6 +121,7 @@ import BrokenCisternSvgComponent from './buildings/broken_cistern';
 import CisternSvgComponent from './buildings/cistern';
 import DecayingStudySvgComponent from './buildings/decaying_study';
 import StudySvgComponent from './buildings/study';
+import PortentousStudyComponent from './buildings/portentous_study';
 import AbandonedMarketSvgComponent from './buildings/abandoned_market';
 import MarketSvgComponent from './buildings/market';
 import ShatteredDomeSvgComponent from './buildings/shattered_dome';
@@ -421,6 +422,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <StudySvgComponent icon={props.icon} />;
     case SVGS.DECAYING_STUDY:
     return <DecayingStudySvgComponent icon={props.icon} />;
+    case SVGS.PORTENTOUS_STUDY:
+    return <PortentousStudyComponent icon={props.icon} />;
     case SVGS.ABANDONED_MARKET:
     return <AbandonedMarketSvgComponent icon={props.icon} />;
     case SVGS.MARKET:

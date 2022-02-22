@@ -46,7 +46,7 @@ resourceTypes[RTY.NOTES_STAR] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
-  description: `In the deep sands, stars are the only way to navigate`,
+  description: `In the deep sands, stars are your only navigation`,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_STAR})
 });
 

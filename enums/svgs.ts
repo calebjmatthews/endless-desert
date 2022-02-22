@@ -119,6 +119,7 @@ export enum SVGS {
   CISTERN = "Cistern",
   DECAYING_STUDY = "Decaying Study",
   STUDY = "Study",
+  PORTENTOUS_STUDY = "Portentous Study",
   ABANDONED_MARKET = "Abandoned Market",
   MARKET = "Market",
   WATCHTOWER = "Watchtower",

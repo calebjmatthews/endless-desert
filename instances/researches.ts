@@ -105,20 +105,19 @@ researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
   unlocksUpgrade: [BUILDING_TYPES.GATE_METAL_CLAD]
 });
 
-researches[RESEARCHES.CONJECTURE] = new Research({
-  name: RESEARCHES.CONJECTURE,
-  unlocks: ('See one more option when researching.'),
-  description: ('As you\'ve grown more experienced you increasingly see '
-    + 'more than one answer to the questions you\'re asking.'),
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'cloud-question',
-    color: '#2b2b2d'}),
+researches[RESEARCHES.STUDY_PORTENTOUS] = new Research({
+  name: RESEARCHES.STUDY_PORTENTOUS,
+  unlocks: `Upgrade the Study for an additional research option.`,
+  description: `It's difficult to get anything done in your current tiny Study, with its single writing table already overflowing with books. An upgrade's in order.`,
+  icon: new Icon({provider: 'svg', name: SVGS.PORTENTOUS_STUDY}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 0,
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
-  knowledgeReq: 4000
+  knowledgeReq: 2000,
+  unlocksUpgrade: [BUILDING_TYPES.STUDY_PORTENTOUS]
 });
 
 researches[RESEARCHES.FIELD_NOTES] = new Research({

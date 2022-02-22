@@ -24,6 +24,11 @@ const defaultNoteCost = [
   { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
   { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20 }
 ];
+const dialecticNoteCost = [
+  { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
+  { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800 },
+  { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40 }
+];
 
 const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.SKY]:  new BuildingType({
@@ -229,9 +234,25 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.STUDY}),
     cost: null,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800},
+      {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40},
+      {specificity: RSP.EXACT, type: RTY.GLASS, quantity: 1600}],
     recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
+    givesNote: RTY.NOTES_DIALECTIC,
+    noteCost: dialecticNoteCost,
+    cannotStore: true
+  }),
+
+  [BTY.STUDY_PORTENTOUS]: new BuildingType({
+    name: BTY.STUDY_PORTENTOUS,
+    description: `A handsome house with an array of desks, shelves, and materials for your experiments`,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.PORTENTOUS_STUDY}),
+    cost: null,
+    recipes: null,
+    givesNote: RTY.NOTES_DIALECTIC,
+    noteCost: dialecticNoteCost,
     cannotStore: true
   }),
 
