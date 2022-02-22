@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
@@ -76,27 +76,29 @@ export default function ResearchingComponent() {
           color="#fff" size={20} style={styles.headingIcon} />
         <Text style={styles.heading1}>{title}</Text>
       </View>
-      <View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {minWidth: positioner.majorWidth,
-          maxWidth: positioner.majorWidth}])}>
-        <View style={styles.rows}>
-          <BadgeComponent icon={research.icon} size={29} />
-          <Text style={styles.heading2}>{rod.researchName}</Text>
-        </View>
-        <View>
-          <View>
-            <Text style={styles.emphasis}>{research.unlocks}</Text>
-            <View style={styles.break} />
-            <Text style={styles.bodyText}>{research.description}</Text>
+      <ScrollView>
+        <View style={StyleSheet.flatten([styles.panelFlexColumn,
+          {minWidth: positioner.majorWidth,
+            maxWidth: positioner.majorWidth}])}>
+          <View style={styles.rows}>
+            <BadgeComponent icon={research.icon} size={29} />
+            <Text style={styles.heading2}>{rod.researchName}</Text>
           </View>
+          <View>
+            <View>
+              <Text style={styles.emphasis}>{research.unlocks}</Text>
+              <View style={styles.break} />
+              <Text style={styles.bodyText}>{research.description}</Text>
+            </View>
+          </View>
+          <ProgressBarComponent startingProgress={lastProgress}
+            width={positioner.majorWidth - positioner.majorPadding}
+            endingProgress={progress} duration={1000}
+            label={pBarLabel} />
         </View>
-        <ProgressBarComponent startingProgress={lastProgress}
-          width={positioner.majorWidth - positioner.majorPadding}
-          endingProgress={progress} duration={1000}
-          label={pBarLabel} />
-      </View>
-      <View style={styles.break}></View>
-      {renderOptions()}
+        <View style={styles.break} />
+        {renderOptions()}
+      </ScrollView>
     </View>
   );
 
@@ -104,12 +106,10 @@ export default function ResearchingComponent() {
     if (rod.stepsCompleted < rod.stepsNeeded) {
       return (
         <>
-          <Text style={styles.bareText}>{'- Options -'}</Text>
-          <FlatList
-            data={rod.currentOptions}
-            renderItem={renderOption}
-            keyExtractor={option => option}>
-          </FlatList>
+          <Text style={StyleSheet.flatten([styles.heading2, styles.bareText, styles.centeredRows])}>
+            {'- Options -'}
+          </Text>
+          {rod.currentOptions.map((option) => renderOption(option))}
         </>
       );
     }
@@ -130,8 +130,8 @@ export default function ResearchingComponent() {
     )
   }
 
-  function renderOption(option: any) {
-    return <OptionDescription optionName={option.item} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
+  function renderOption(option: string) {
+    return <OptionDescription optionName={option} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
