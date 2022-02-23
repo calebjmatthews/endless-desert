@@ -131,7 +131,7 @@ export default function ResearchingComponent() {
   }
 
   function renderOption(option: string) {
-    return <OptionDescription optionName={option} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
+    return <OptionDescription key={option} optionName={option} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
   }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
@@ -212,8 +212,8 @@ export default function ResearchingComponent() {
           break;
         }
       });
+      rod.finishOption(optionName);
     }
-    rod.finishOption(optionName);
     dispatch(updateResearchOptionDeck(rod));
   }
 
