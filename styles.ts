@@ -29,8 +29,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    alignSelf: 'stretch',
-    rowGap: 5
+    alignSelf: 'stretch'
   },
   scrollWrapper: {
     flex: 1,

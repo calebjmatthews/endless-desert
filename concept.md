@@ -623,7 +623,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Drinks
   [X] Level 2 category researches
   [X] Increase difficulty of Field Notes-locked upgrades
-  [ ] Conjecture research
+  [X] Conjecture research
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
