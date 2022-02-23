@@ -624,6 +624,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Level 2 category researches
   [X] Increase difficulty of Field Notes-locked upgrades
   [X] Conjecture research
+  [ ] Quests to introduce new traders
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
@@ -813,3 +814,9 @@ const rtg = rtc.map((resource) => {
 });
 increaseResources(vault, rtg);
 ```
+
+## Infrastructure
+### 2022-02-23 Updates
+`expo upgrade`
+`The following packages were not updated. You should check the READMEs for those repositories to determine what version is compatible with your new set of packages:
+@types/react-redux, react-native-vector-icons, react-redux, redux, @types/random, @types/react-native-vector-icons, @types/redux`

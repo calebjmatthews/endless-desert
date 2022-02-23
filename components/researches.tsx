@@ -215,7 +215,8 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
   milestones: { [name: string] : boolean }, positioner: Positioner}) {
   const research = researches[props.branch.name];
 
-  if (!props.showCompletedResearches && props.branch.status != 'visible') {
+  if ((!props.showCompletedResearches && props.branch.status != 'visible')
+    || research.hidden) {
     return null;
   }
 
