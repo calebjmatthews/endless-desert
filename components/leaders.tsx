@@ -136,7 +136,7 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
       <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItemSmall,
         styles.buttonLight])} onPress={() => props.morePress(leader)}>
         <IconComponent provider="FontAwesome5" name="angle-down"
-          color="17265d" size={14} />
+          color="#17265d" size={14} />
         <Text style={StyleSheet.flatten([styles.buttonTextSmall,
           styles.buttonTextDark])}>
           {' More'}

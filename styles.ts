@@ -208,7 +208,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#071f56',
     color: '#fff',
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 2,
     borderColor: '#071f56'
   },
@@ -278,7 +278,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#071f56',
     color: '#fff',
     borderStyle: 'solid',
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#071f56',
     borderRadius: 2
   },
@@ -293,7 +293,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#071f56',
     color: '#fff',
     borderStyle: 'solid',
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#071f56',
     borderRadius: 2
   },
@@ -430,19 +430,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
-  },
-  headingBadge: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 30,
-    width: 30,
-    margin: 5,
-    backgroundColor: '#fff',
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderColor: '#071f56',
-    borderRadius: 2
   },
 
   progressBarContainer: {

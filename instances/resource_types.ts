@@ -377,7 +377,7 @@ resourceTypes[RTY.MUSSEL] = new ResourceType({
   name: RTY.MUSSEL,
   category: RCA.MATERIAL,
   subcategory: RSC.FISH,
-  tags: [RTA.ANIMAL, RTA.INGREDIENT],
+  tags: [RTA.ANIMAL, RTA.FOOD, RTA.INGREDIENT],
   value: 32,
   icon: new Icon({provider: 'svg', name: SVGS.MUSSEL})
 });

@@ -625,6 +625,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Increase difficulty of Field Notes-locked upgrades
   [X] Conjecture research
   [ ] Quests to introduce new traders
+  [ ] Add fish to trading partner options
+  [ ] Simplify trading partner options
+  [ ] Add animations to memos
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
