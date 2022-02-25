@@ -173,6 +173,33 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.TEXTILE] = new ResourceSubcategory(
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_DARJEELING] =
+new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.TEA_DARJEELING,
+  plural: 'Pots of Darjeeling Tea',
+  value: 30,
+  order: 80,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.JUICE_TOMATO] =
+new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.JUICE_TOMATO,
+  plural: 'Jorums of Tomato Juice',
+  value: 275,
+  order: 81,
+  icon: new Icon({provider: 'svg', name: SVGS.JUICE_TOMATO})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.JUICE_BLUEBERRY] =
+new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.JUICE_BLUEBERRY,
+  plural: 'Jorums of Blueberry Juice',
+  value: 275,
+  order: 82,
+  icon: new Icon({provider: 'svg', name: SVGS.JUICE_BLUEBERRY})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.SOUP] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.SOUP,
   plural: 'Bowls of Soup',

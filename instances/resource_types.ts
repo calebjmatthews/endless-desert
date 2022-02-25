@@ -1271,14 +1271,6 @@ resourceTypes[RTY.JUICE_BLUEBERRY] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.JUICE_BLUEBERRY})
 });
 
-resourceTypes[RTY.JUICE_TOMATO] = new ResourceType({
-  name: RTY.JUICE_TOMATO,
-  category: RCA.DISH,
-  tags: [RTA.DRINK],
-  value: 275,
-  icon: new Icon({provider: 'svg', name: SVGS.JUICE_TOMATO})
-});
-
 resourceTypes[RTY.SOUP] = new ResourceType({
   name: RTY.SOUP,
   category: RCA.DISH,

@@ -17,43 +17,47 @@ import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 export default function getDishFromIngredients(ingredients: ResourceType[],
   resourceTypes: { [typeName: string] : ResourceType }) {
   const dishTypes: DishType[] = [
-    new DishType({name: RTY.MISTAKE, valueChange: -90, contains: [ ]}),
-    new DishType({name: RTY.SOUP, valueChange: 10, contains: [
+    new DishType({name: RTY.MISTAKE, valueChange: -90, tags: [ RTA.FOOD ],
+      contains: [ ]}),
+    new DishType({name: RTY.SOUP, valueChange: 10, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.TEA_DARJEELING, valueChange: 15, contains: [
+    new DishType({name: RTY.TEA_DARJEELING, valueChange: 15, tags: [ RTA.DRINK ],
+      contains: [
       { specificity: RSP.EXACT, type: RTY.TEA_LEAVES_DARJEELING,
         quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.JUICE_BLUEBERRY, valueChange: 20, contains: [
+    new DishType({name: RTY.JUICE_BLUEBERRY, valueChange: 20, tags: [ RTA.DRINK ],
+      contains: [
       { specificity: RSP.EXACT, type: RTY.BLUEBERRY, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.JUICE_TOMATO, valueChange: 20, contains: [
+    new DishType({name: RTY.JUICE_TOMATO, valueChange: 20, tags: [ RTA.DRINK ],
+      contains: [
       { specificity: RSP.EXACT, type: RTY.TOMATO, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.BREAD, valueChange: 30, contains: [
+    new DishType({name: RTY.BREAD, valueChange: 30, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.PIE, valueChange: 60, contains: [
+    new DishType({name: RTY.PIE, valueChange: 60, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.OMELET, valueChange: 60, contains: [
+    new DishType({name: RTY.OMELET, valueChange: 60, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.STEW, valueChange: 80, contains: [
+    new DishType({name: RTY.STEW, valueChange: 80, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.CAKE, valueChange: 120, contains: [
+    new DishType({name: RTY.CAKE, valueChange: 120, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
@@ -85,7 +89,6 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   let mainColors: { color: string, shadow: string }|null = null;
   const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD,
     RTA.POWDER];
-  let tags: string[] = [RTA.FOOD];
 
   let dishTypeIndex = 0;
   dishTypes.map((dishType, index) => {
@@ -94,6 +97,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     }
   });
   const dishType = dishTypes[dishTypeIndex];
+
+  let tags = dishType.tags.slice();
 
   let dishValue = dishType.valueChange;
   let consumes: { specificity: string, type: string, quantity: number }[] = [];
@@ -234,6 +239,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 class DishType implements DishTypeInterface {
   name: string = '';
   valueChange: number = 0;
+  tags: string[] = [];
   contains: { specificity: string, type: string, quantity: number }[] = [];
 
   constructor(dishType: DishTypeInterface) {
@@ -278,5 +284,6 @@ class DishType implements DishTypeInterface {
 interface DishTypeInterface {
   name: string;
   valueChange: number;
+  tags: string[];
   contains: { specificity: string, type: string, quantity: number }[];
 }

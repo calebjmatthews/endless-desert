@@ -113,12 +113,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -274,7 +274,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(achieveMilestone(MILESTONES.RESEARCH_OPTION_SLOTS_2));
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

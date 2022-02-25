@@ -624,6 +624,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Level 2 category researches
   [X] Increase difficulty of Field Notes-locked upgrades
   [X] Conjecture research
+  [ ] Fix exponential production bug
+  [ ] Stop building upon resource lack within hourglass calc
   [ ] Quests to introduce new traders
   [ ] Add fish to trading partner options
   [ ] Simplify trading partner options

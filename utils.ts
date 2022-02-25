@@ -569,6 +569,7 @@ class Utils {
       if (!rta) { console.log('a'); console.log(a);  }
       const rcoa = resourceCategories[rta.category].order;
       const rtb = utils.getResourceType(b);
+      if (!rtb) { console.log('b'); console.log(b);  }
       const rcob = resourceCategories[rtb.category].order;
       if (rcoa != rcob) {
         return rcoa - rcob;
