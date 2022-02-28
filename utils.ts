@@ -629,10 +629,18 @@ class Utils {
     return delay;
   }
 
-  getCharDelay(char: string, fadeCharDelay: number) {
-    if (char.includes(',')) { return fadeCharDelay * 2 * 3; }
-    if (char.includes('.') || char.includes('!')) { return fadeCharDelay * 2 * 6; }
-    return fadeCharDelay;
+  getCharDelay(char: string, fadeCharDelay: number, platform: string = 'default') {
+    const getPlatformMultiplier = () => {
+      switch(platform) {
+        case 'android': return 0.3;
+        default: return 1;
+      }
+    }
+    const pMult = getPlatformMultiplier();
+
+    if (char.includes(',')) { return fadeCharDelay * 6 * pMult; }
+    if (char.includes('.') || char.includes('!')) { return fadeCharDelay * 12 * pMult; }
+    return (fadeCharDelay * pMult);
   }
 
   getResearchOptionSlots(milestones: { [name: string] : boolean }) {

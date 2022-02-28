@@ -761,7 +761,7 @@ resourceTypes[RTY.SAND_PURE] = new ResourceType({
 
 resourceTypes[RTY.CHARCOAL] = new ResourceType({
   name: RTY.CHARCOAL,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   tags: [RTA.SMELTED, RTA.FUEL],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.CHARCOAL})
@@ -984,13 +984,13 @@ resourceTypes[RTY.DIAMOND] = new ResourceType({
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
   value: 55000,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
-});
+}); 
 
 resourceTypes[RTY.SALT] = new ResourceType({
   name: RTY.SALT,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   subcategory: RSC.SPICE,
-  tags: [RTA.TRADE_GOOD, RTA.BRACKISH, RTA.SPICE],
+  tags: [RTA.BRACKISH, RTA.SPICE],
   value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.SALT}),
 });

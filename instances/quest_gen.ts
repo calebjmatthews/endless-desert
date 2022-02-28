@@ -124,7 +124,7 @@ export function questGen(gState: GameState) : Quest|null {
     let tasks: QuestTask[] = [];
     if (gen.name.includes('produce')) {
       description = `The Firefly wants to watch while your town makes "${kindName}-sorts-of-things".`;
-      finishText = `The Firefly watched closely while your town produced ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Its body language isn't easy to read, but from the way it bobs from side to side you think it's satisfied. Afterwards you find a small reward in the wistful-smelling box in front of your Study, including a light that defies explanation.`;
+      finishText = `The Firefly watched closely while your town produced ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Its body language isn't easy to read, but from the way it bobs from side to side you think it's satisfied. Afterwards you find a small reward in the lovely smelling box in front of your Study, including a light that defies explanation.`;
       tasks = resources.map((resource, index) => {
         const resourceType = resourceTypes[resource.type];
         return new QuestTask({ index, parentId: questId, icon: resourceType.icon,
@@ -137,7 +137,7 @@ export function questGen(gState: GameState) : Quest|null {
     }
     if (gen.name.includes('analyze')) {
       description = `The Firefly has asked to learn from you as you analyze "${kindName}-like stuff".`;
-      finishText = `The Firefly wiggled with excitement while you broke down and inspected ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Afterwards you find a small reward in the wistful-smelling box in front of your Study, including a light that defies explanation.`;
+      finishText = `The Firefly wiggled with excitement while you broke down and inspected ${utils.addCommaAnd(resources.map((resource) => (utils.getResourceName(resource))))}. Afterwards you find a small reward in the lovely smelling box in front of your Study, including a light that defies explanation.`;
       tasks = resources.map((resource, index) => {
         const resourceType = resourceTypes[resource.type];
         return new QuestTask({ index, parentId: questId, icon: resourceType.icon,

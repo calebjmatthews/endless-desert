@@ -322,12 +322,12 @@ fortuities[FORTUITIES.THRICE_LOCKED_TOME] = new Fortuity({
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_TOME + '1'),
       title: 'An Unexpected Find',
-      text: (`There's a desk, an empty inkwell, and some loose sheets of partment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard red metal.`)
+      text: (`There's a desk, an empty inkwell, and some loose sheets of parchment that have mostly turned to dust. But in one of the drawers is something altogether different: a black book, alarmingly heavy, with clasps made of a hard red metal.`)
     }),
     new Memo({
       name: (FORTUITIES.THRICE_LOCKED_TOME + '2'),
       title: 'An Unexpected Find',
-      text: (`The book has three separate sturdy locks; forcing them open isn't an option. On its cover is a pattern of white specks and the word "Unfound". You don't know what to make of it, but you take the book with you. Any information about the people who originally lived here could be paramount.`)
+      text: (`The book has three separate sturdy locks; forcing them open isn't an option. On its cover is a pattern of oddly arranged white circles. You don't know what to make of it, but you take the book with you. Any information about the people who originally lived here could be paramount.`)
     })
   ],
   type: 'Observation',

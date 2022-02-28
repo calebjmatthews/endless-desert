@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, Animated } from 'react-native';
+import { Text, View, StyleSheet, Animated, Platform } from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
@@ -82,8 +82,8 @@ function InstantText(props: { text: string , finishedAnimating: () => void }) {
       setRevealedText(`${revealedText}${newChar}`);
       setUnrevealedText(unrevealedText.slice(1));
       if (unrevealedText.length > 1) {
-        setTimeout(() => { setState('canReveal'); },
-          utils.getCharDelay(newChar, FADE_CHAR_DELAY));
+        setTimeout( () => { setState('canReveal'); },
+          utils.getCharDelay(newChar, FADE_CHAR_DELAY, Platform.OS) );
       }
       else {
         setState('done');
