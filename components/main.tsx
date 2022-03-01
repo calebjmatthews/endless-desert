@@ -113,12 +113,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -274,11 +274,13 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
+      dispatch(addQuest(quests[QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY]));
+      const rtgExisting =
+        quests[QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY].taskCheckExisting(vault,
+          new ResearchStatus(null));
+      rtgExisting.forEach((questActivity) => {
+        dispatch(addToActivityQueue(questActivity));
       });
-      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

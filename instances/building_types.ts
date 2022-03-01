@@ -241,6 +241,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_DIALECTIC,
     noteCost: dialecticNoteCost,
+    upgradesInto: BTY.STUDY_PORTENTOUS,
     cannotStore: true
   }),
 

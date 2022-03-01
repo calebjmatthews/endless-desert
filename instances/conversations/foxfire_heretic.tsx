@@ -227,7 +227,7 @@ ffhConvoStatements[CVS.FFH_A_RUINED_RED_METAL + ' - s1c'] = new ConversationStat
   text: `You misunderstand my situation. If I were to speak to any member of the ascetics, they would act as if I were not there. Such is the nature of my exile.
 
 No, I will have to seek out a new source of otherworldly light on my own. Speak to me when you've gathered the metal powders and fuel.`,
-questsBegin: [QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME]
+questsBegin: [QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY]
 });
 ffhConvoResponses[CVS.FFH_A_RUINED_RED_METAL + ' - r0a'] = new ConversationResponse({
   name: CVS.FFH_A_RUINED_RED_METAL + ' - r0a',
@@ -242,7 +242,7 @@ ffhConvoStatements[CVS.FFH_A_RUINED_RED_METAL + ' - s1a'] = new ConversationStat
   text: `Will you, truly? I do not know how you could possibly find a new source of otherworldly light. But then again, I do not know how I could either.
 
 I will have to trust that you can do what you say. Speak to me when you've gathered what we need.`,
-questsBegin: [QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME]
+questsBegin: [QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY]
 });
 ffhConvoResponses[CVS.FFH_A_RUINED_RED_METAL + ' - r0h'] = new ConversationResponse({
   name: CVS.FFH_A_RUINED_RED_METAL + ' - r0h',

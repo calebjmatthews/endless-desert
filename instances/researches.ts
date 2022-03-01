@@ -77,7 +77,7 @@ researches[RESEARCHES.GATE_EXPANSION] = new Research({
 researches[RESEARCHES.GATE_EXPANSION_BRICKWORK] = new Research({
   name: RESEARCHES.GATE_EXPANSION_BRICKWORK,
   unlocks: ('Increase the maximum number of buildings by five.'),
-  description: (`The desert around your town becomes less and less solid the farther you travel. In order to expand you'll need a more solid material than simple clay.`),
+  description: (`The desert around your town becomes less and less stable the farther away you travel. In order to expand you'll need a more solid material than simple clay.`),
   icon: new Icon({provider: 'svg', name: SVGS.GATE}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,

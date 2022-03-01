@@ -159,7 +159,7 @@ researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
   appliesTo: RESEARCHES.GATE_EXPANSION_BRICKWORK,
   difficulty: 0,
   description: (`Mud bricks come easy but crumble quickly, brownstone bricks are strong but dense. You'll need a variety to expand your town's walls into the increasingly unstable sands.`),
-  cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 20},
+  cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 200},
     {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 50},
     {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 50},
     {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 50}],
@@ -248,9 +248,9 @@ researchOptions[RESEARCH_OPTIONS.CROP_COMPARISON] = new ResearchOption({
   difficulty: 2,
   description: ('Different crops have different needs, and require different '
     + 'approaches. But you\'re continually increasing your material for comparison.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 400},
+  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 800},
     {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 400}]
+    {specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 100}]
 });
 
 researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
