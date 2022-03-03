@@ -5,6 +5,8 @@ import ResourceType from './resource_type';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
+import { CHANGE_MULTIPLIERS } from '../constants';
 
 export default class EquipmentEffectGenerator
   implements EquipmentEffectGeneratorInterface {
@@ -33,7 +35,7 @@ export default class EquipmentEffectGenerator
     console.log('arguments');
     console.log(arguments);
     const go: GeneratorOption = utils.randomWeightedSelect(gos);
-    const quality = go.qualities[
+    const quality: LEADER_QUALITIES = go.qualities[
       Math.floor(go.qualities.length * utils.random())
     ];
     let specificity = go.finalSpecificity;
@@ -78,7 +80,7 @@ export default class EquipmentEffectGenerator
     }
 
     return new EquipmentEffect({ quality, specificity,
-      type, change: go.change });
+      type, change: getChange(quality, go.baseChange) });
 
     function filterOutTradeGoods(resources: Resource[]) {
       return resources.filter((resource) => {
@@ -91,12 +93,16 @@ export default class EquipmentEffectGenerator
   }
 }
 
+function getChange(quality: LEADER_QUALITIES, baseChange: number) {
+  return baseChange * CHANGE_MULTIPLIERS[quality];
+}
+
 interface GeneratorOption {
-  qualities: string[];
+  qualities: LEADER_QUALITIES[];
   givenSpecificity?: string;
   finalSpecificity?: string;
   type?: string;
-  change: number;
+  baseChange: number;
   weight: number;
 }
 

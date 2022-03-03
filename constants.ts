@@ -1,5 +1,6 @@
 import { RESOURCE_CATEGORIES } from './enums/resource_categories';
 import { RESOURCE_TAGS } from './enums/resource_tags';
+import { LEADER_QUALITIES } from './enums/leader_qualities';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
@@ -16,6 +17,15 @@ export const SIGNUP_URL = `${BASE_URL}api/signup/`;
 export const LOGIN_URL = `${BASE_URL}api/login/`;
 
 export const QUALITY_VALUES = [1, 4, 16];
+export const CHANGE_MULTIPLIERS = {
+  [LEADER_QUALITIES.SPEED] : 1,
+  [LEADER_QUALITIES.HAPPINESS_TO_SPEED] : 1,
+  [LEADER_QUALITIES.EFFICIENCY] : 0.5,
+  [LEADER_QUALITIES.HAPPINESS_TO_EFFICIENCY] : 0.5,
+  [LEADER_QUALITIES.QUALITY] : 0.25,
+  [LEADER_QUALITIES.HAPPINESS_TO_QUALITY] : 0.25,
+  [LEADER_QUALITIES.HAPPINESS] : 1
+}
 export const DEFAULT_DISH_COST = 20;
 export const DEFAULT_SPICE_COST = 4;
 export const STUDY_CATEGORY_BLACKLIST = [RESOURCE_CATEGORIES.SPECIAL];

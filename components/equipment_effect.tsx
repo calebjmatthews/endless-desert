@@ -35,20 +35,25 @@ export default function EquipmentEffectComponent(props:
   );
 
   function renderChange(anEffect: EquipmentEffect) {
+    let text = null;
     if ((anEffect.quality == LQ.HAPPINESS_TO_SPEED
       || anEffect.quality == LQ.HAPPINESS_TO_QUALITY
-      || anEffect.quality == LQ.HAPPINESS_TO_EFFICIENCY) && anEffect.change == 100) {
-      return null;
+      || anEffect.quality == LQ.HAPPINESS_TO_EFFICIENCY)) {
+      if (anEffect.change == 100) { return null; }
+      else if (anEffect.change == 50) { text = '½ '; }
+      else if (anEffect.change == 25) { text = '¼ '; }
+      else { text = `${utils.formatNumberShort(props.anEffect.change)}% `; }
     }
     else {
       let sign = '+'
       if (props.anEffect.change < 0) { sign = ''; }
-      return (
-        <Text style={{fontSize}}>
-          {sign + utils.formatNumberShort(props.anEffect.change) + '% '}
-        </Text>
-      );
+      text = `${sign}${utils.formatNumberShort(props.anEffect.change)}% `;
     }
+    return (
+      <Text style={{fontSize}}>
+        {text}
+      </Text>
+    );
   }
 
   function renderEffectSpecificity(anEffect: EquipmentEffect) {
