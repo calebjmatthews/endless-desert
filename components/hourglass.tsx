@@ -74,12 +74,9 @@ export default function HourglassComponent() {
       let rti: Resource[] = [];
       // Resources to consume
       let rtc: Resource[] = [];
-      let whileAway: { show: boolean, rti: Resource[], rtc: Resource[],
-        timers: Timer[] } = { show: false, rti: [], rtc: [],
-        timers: [] };
-      if (new Date(Date.now()).valueOf() - vault.lastTimestamp > 60000) {
-        whileAway.show = true;
-      }
+      let whileAway: { diff: number, rti: Resource[], rtc: Resource[],
+        timers: Timer[] } = { diff: (new Date(Date.now()).valueOf()
+        - vault.lastTimestamp), rti: [], rtc: [],timers: [] };
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
       if (rates) {
@@ -190,7 +187,7 @@ export default function HourglassComponent() {
           }
         }
         if (timer.messageToDisplay) {
-          if (whileAway.show) { whileAway.timers.push(timer); }
+          if (whileAway.diff > 60000) { whileAway.timers.push(timer); }
           dispatch(addMessage(new Message({
             text: timer.messageToDisplay,
             type: '',
@@ -242,7 +239,7 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
       }
-      if (whileAway.show) { showWhileAway(whileAway); }
+      if (whileAway.diff > 60000) { showWhileAway(whileAway); }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
     }
   }, [callTick]);
@@ -317,12 +314,13 @@ export default function HourglassComponent() {
     })));
   }
 
-  function showWhileAway(wa: { show: boolean, rti: Resource[], rtc: Resource[],
+  function showWhileAway(wa: { diff: number, rti: Resource[], rtc: Resource[],
     timers: Timer[] }) {
     if (wa.rti.length == 0 && wa.rtc.length == 0 && wa.timers.length == 0) {
       return null;
     }
-    let text = 'While you were away...';
+    const duration = utils.formatDuration(wa.diff, 0, true).slice(0, -2);
+    let text = `You were away for ${duration}.`;
     let messages: Message[] = [];
     wa.timers.map((timer) => {
       if (timer.messageToDisplay) {

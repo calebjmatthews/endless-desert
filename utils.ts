@@ -210,29 +210,29 @@ class Utils {
       if (milliseconds >= (1000 * 60 * 60 * 24)) {
         let days: number = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
         units++;
-        return ((days + (long ? ' days ' : 'd ') +
+        return ((days + (long ? ' days, ' : 'd ') +
           this.formatDuration(milliseconds % (1000 * 60 * 60 * 24), units, long)));
       }
       if (milliseconds >= (1000 * 60 * 60)) {
         let days: number  = Math.floor(milliseconds / (1000 * 60 * 60));
         units++;
-        return ((days + (long ? ' hours ' : 'h ') +
+        return ((days + (long ? ' hours, ' : 'h ') +
           this.formatDuration(milliseconds % (1000 * 60 * 60), units, long)));
       }
       if (milliseconds >= (1000 * 60)) {
         let days: number  = Math.floor(milliseconds / (1000 * 60));
         units++;
-        return ((days + (long ? ' minutes ' : 'm ') +
+        return ((days + (long ? ' minutes, ' : 'm ') +
           this.formatDuration(milliseconds % (1000 * 60), units, long)));
       }
       else if (milliseconds >= (1000)) {
         let days: number  = Math.floor(milliseconds / (1000));
         units++;
-        return ((days + (long ? ' seconds ' : 's ') +
+        return ((days + (long ? ' seconds, ' : 's ') +
           this.formatDuration(milliseconds % (1000), units, long)));
       }
       if (units == 0) {
-        return (long ? '0 seconds ' : '0s ');
+        return (long ? '0 seconds, ' : '0s ');
       }
     }
     return '';

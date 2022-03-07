@@ -362,10 +362,24 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil, "Tasty" is used if there is oil but no spice, and "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Tasty Lentil Soup", Fish + Grain + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
 ## Expeditions:
-- Colossal underground "House of Form" produced honey that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
+- Colossal underground "House of Forms" produced sap (?) that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
   - Gardens with reward of rare seeds and plant-related equipment
   - Library with knowledge-related rewards
   - Kitchens with recipes, rare ingredients, and cooking-related equipment
+  - Storehouse with high quality base resources
+  - Armory with combat-themed equipment
+  - Bedrooms with luxury clothing
+  - Servant's quarters with working tools and clothes
+- Expedition method:
+  - Pick a cardinal direction, a previously visited region (if map making has been learned), or previously visited destination (also if map making has been leared),
+  - For every area that is traversed through, various random events can occur. This could:
+    - Change the direction the expedition is heading (the party gets lost)
+    - Delay the party unless food, drink, or a specific implement is used up, or unless the leader is a certain personality type
+    - Give an opportunity to plant special seeds (e.g. date) for later retrieval
+    - Capture an animal with rope
+    - Meet with a special trading partner
+    - Start a special repeatable quest
+    - Unexpected expedition destination (mirage castle?)
 
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
@@ -624,8 +638,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Level 2 category researches
   [X] Increase difficulty of Field Notes-locked upgrades
   [X] Conjecture research
+  [ ] Add time elapsed to "While you were gone" memo
+  [ ] Save after calculating "While you were gone" tick
+  [ ] When consumptions expire, change recipe selected to -1
+  [ ] Add consumptions expired (with time) to "While you were gone" memo
   [ ] Fix exponential production bug
   [ ] Stop building upon resource lack within hourglass calc
+  [ ] Upgrading house and changing leader vars recalc rates
   [ ] Quests to introduce new traders
   [ ] Add fish to trading partner options
   [ ] Simplify trading partner options
@@ -635,12 +654,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Tag and subcategory specificities have a worse rate of return
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Storing an occupied house kicks out the leader
-  [ ] Upgrading house and changing leader equipment recalc rates
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Show resource descriptive name, not id name in selection components
   [ ] Hide recipes missing ingredients
-  [ ] Add time elapsed to "While you were gone" memo
 
 ## Commands
 ### Delete all records from all tables:
