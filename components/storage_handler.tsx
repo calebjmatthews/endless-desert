@@ -12,7 +12,8 @@ import { setBuildingsStorage } from '../actions/buildings_storage';
 import { setResearchOptionDecks } from '../actions/research_option_decks';
 import { setTimers } from '../actions/timers';
 import { setTradingStatus } from '../actions/trading_status';
-import { setAccount, setUserId, setSessionId } from '../actions/account';
+import { setAccount, setUserId, setSessionId, setStorageCallSave }
+  from '../actions/account';
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
 import { setEquipment } from '../actions/equipment';
@@ -86,6 +87,29 @@ export default function StorageHandlerComponent() {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (!callSave) {
+      setCallSave(true);
+      dispatch(setStorageCallSave(false));
+    }
+  }, [account.storageCallSave]);
+
+  useEffect(() => {
+    if (callSave) {
+      saveIntoStorage();
+      setCallSave(false);
+    }
+  }), [callSave];
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCallSave(true);
+      setLastTimestamp(new Date(Date.now()).valueOf());
+    }, SAVE_INTERVAL);
+
+    return () => { clearTimeout(timeout); }
+  }, [lastTimestamp]);
 
   function sessionCheck(): Promise<any> {
     let sessionId = '';
@@ -235,22 +259,6 @@ export default function StorageHandlerComponent() {
       return false;
     });
   }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCallSave(true);
-      setLastTimestamp(new Date(Date.now()).valueOf());
-    }, SAVE_INTERVAL);
-
-    return () => { clearTimeout(timeout); }
-  }, [lastTimestamp]);
-
-  useEffect(() => {
-    if (callSave) {
-      saveIntoStorage();
-      setCallSave(false);
-    }
-  }), [callSave];
 
   function saveIntoStorage() {
     if (account.sessionId && account.userId) {

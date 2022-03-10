@@ -82,3 +82,11 @@ export function achieveMilestone(milestone: string) {
     milestone
   }
 }
+
+export const SET_STORAGE_CALL_SAVE = 'SET_STORAGE_CALL_SAVE';
+export function setStorageCallSave(storageCallSave: boolean) {
+  return {
+    type: SET_STORAGE_CALL_SAVE,
+    storageCallSave
+  }
+}

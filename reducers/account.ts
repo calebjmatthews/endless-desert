@@ -1,6 +1,6 @@
 import { SET_ACCOUNT, SET_USER_ID, SET_SESSION_ID, CHANGE_SETTING, SET_INTRO_STATE,
   UNLOCK_TAB, SET_CURRENT_FORTUITY, FORTUITY_SEEN, SET_FORTUITY_DAILY_LAST,
-  ACHIEVE_MILESTONE } from '../actions/account';
+  ACHIEVE_MILESTONE, SET_STORAGE_CALL_SAVE } from '../actions/account';
 
 import Account from '../models/account';
 import { buildingsStarting } from '../instances/buildings';
@@ -10,6 +10,7 @@ import { TABS } from '../enums/tabs';
 let accountStarting = new Account({
   userId: '0',
   sessionId: '',
+  setStorageCallSave: false,
   introState: INTRO_STATES.LOOK_AROUND,
   tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
   fortuityCurrent: null,
@@ -70,6 +71,11 @@ export default function (account: Account = accountStarting,
     let newAMAccount = new Account(account);
     newAMAccount.milestones[action.milestone] = true;
     return newAMAccount;
+
+    case SET_STORAGE_CALL_SAVE:
+    let newSSCSAccount = new Account(account);
+    newSSCSAccount.storageCallSave = action.storageCallSave;
+    return newSSCSAccount;
 
 		default:
 		return account;

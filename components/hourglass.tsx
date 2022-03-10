@@ -10,7 +10,8 @@ import { addBuilding, replaceBuilding } from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMessage, addMemos } from '../actions/ui';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
-  setFortuityDailyLast, achieveMilestone } from '../actions/account';
+  setFortuityDailyLast, achieveMilestone, setStorageCallSave }
+  from '../actions/account';
 
 import Hourglass from '../models/hourglass';
 import Timer from '../models/timer';
@@ -239,7 +240,10 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
       }
-      if (whileAway.diff > 60000) { showWhileAway(whileAway); }
+      if (whileAway.diff > 60000) {
+        showWhileAway(whileAway);
+        dispatch(setStorageCallSave(true));
+      }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
     }
   }, [callTick]);
