@@ -180,7 +180,6 @@ export default function MainComponent() {
       colors={["#0034aa", "#6a41b4", "#f58f7d"]}
       style={styles.mainContainer}>
       <HourglassComponent />
-      <StorageHandlerComponent />
       <QuestHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
@@ -190,7 +189,8 @@ export default function MainComponent() {
         </View>
       </View>
       <MessageBarComponent />
-      <View style={styles.buttonTabWrapper}>
+      <StorageHandlerComponent />
+      <View style={styles.menuButtonWrapper}>
         <TouchableOpacity style={styles.button}
           onPress={() => { dropdownSet(!dropdownExpanded) }} >
           <IconComponent provider="Entypo" name="menu" color="#fff" size={30} />

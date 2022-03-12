@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import IconComponent from '../components/icon';
+import { styles } from '../styles';
 import { setVault } from '../actions/vault';
 import { setResearchStatus } from '../actions/research_status';
 import { setBuildings } from '../actions/buildings';
@@ -31,8 +34,8 @@ import Vault from '../models/vault';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
-import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL }
-  from '../constants';
+import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
+  FADE_IN_DELAY } from '../constants';
 
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
@@ -70,6 +73,13 @@ export default function StorageHandlerComponent() {
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
 
+  const opacityAnim = useRef(new Animated.Value(0.25)).current;
+  useEffect(() => {
+    Animated.timing(
+      opacityAnim, { toValue: 0, duration: FADE_IN_DELAY, useNativeDriver: true }
+    ).start();
+  }, []);
+
   useEffect(() => {
     if (globalState == 'loading') {
       sessionCheck()
@@ -97,6 +107,13 @@ export default function StorageHandlerComponent() {
 
   useEffect(() => {
     if (callSave) {
+      Animated.timing(
+        opacityAnim, { toValue: 0.25, duration: 0, useNativeDriver: true }
+      ).start(() => {
+        Animated.timing(
+          opacityAnim, { toValue: 0, duration: FADE_IN_DELAY, useNativeDriver: true }
+        ).start();
+      });
       saveIntoStorage();
       setCallSave(false);
     }
@@ -298,5 +315,12 @@ export default function StorageHandlerComponent() {
     }
   }
 
-  return <></>;
+  return (
+    <Animated.View style={StyleSheet.flatten([styles.saveButtonWrapper,
+      {opacity: opacityAnim}])}>
+      <TouchableOpacity onPress={() => { setCallSave(true) }} >
+        <IconComponent provider="FontAwesome" name="save" color="#fff" size={30} />
+      </TouchableOpacity>
+    </Animated.View>
+  );
 }

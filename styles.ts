@@ -415,7 +415,13 @@ export const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 20
   },
-  buttonTabWrapper: {
+  saveButtonWrapper: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    opacity: 0
+  },
+  menuButtonWrapper: {
     position: 'absolute',
     top: 50,
     right: 20
