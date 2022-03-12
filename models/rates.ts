@@ -11,6 +11,7 @@ export default class Rates {
   exhaustions: { [typeQuality: string] : number } = {};
   soonestExhaustion: number|null = null;
   problems: { [buildingId: string] : string[] }  = {};
+  buildingsToRest: string[] = [];
 
   constructor(rates: Rates|null) {
     if (rates) {

@@ -6,7 +6,8 @@ import { increaseResources, consumeResources, setLastTimestamp }
   from '../actions/vault';
 import { setRates } from '../actions/rates';
 import { removeTimer, updateTimers, addTimer } from '../actions/timers';
-import { addBuilding, replaceBuilding } from '../actions/buildings';
+import { addBuilding, replaceBuilding, selectBuildingRecipe }
+  from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMessage, addMemos } from '../actions/ui';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
@@ -239,6 +240,9 @@ export default function HourglassComponent() {
       if (recalcRates) {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
+        newRates.buildingsToRest?.forEach((id) => {
+          dispatch(selectBuildingRecipe(buildings[id], -1));
+        });
       }
       if (whileAway.diff > 60000) {
         showWhileAway(whileAway);

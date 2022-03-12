@@ -615,7 +615,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
 
   [BTY.OX_PASTURE]: new BuildingType({
     name: BTY.OX_PASTURE,
-    description: 'Ox cover themselves in mud at the river\'s edge',
+    description: 'Oxen cover themselves in mud at the river\'s edge',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.OX_PASTURE}),
     cost: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 10},

@@ -274,13 +274,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addQuest(quests[QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY]));
-      const rtgExisting =
-        quests[QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY].taskCheckExisting(vault,
-          new ResearchStatus(null));
-      rtgExisting.forEach((questActivity) => {
-        dispatch(addToActivityQueue(questActivity));
+      let resources: Resource[] = [];
+      Object.keys(vault.resources).map((typeQuality) => {
+        resources.push(vault.resources[typeQuality]);
       });
+      dispatch(consumeResources(vault, resources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

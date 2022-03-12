@@ -83,7 +83,8 @@ export default class Hourglass {
     questResourceChecks: { [specType: string] : number } = {}) :
     { productionSum: { [typeQuality: string] : number },
     consumptionSum: { [typeQuality: string] : number },
-    questResourceChecks: { [specType: string] : number } } {
+    questResourceChecks: { [specType: string] : number }
+  } {
 
     if (rates.soonestExhaustion) {
       if (rates.soonestExhaustion < (new Date(Date.now()).valueOf() + 1000)) {
@@ -98,7 +99,11 @@ export default class Hourglass {
         const newVault = new Vault(vault);
         pResources.map((resource) => newVault.increaseResource(resource));
         cResources.map((resource) => newVault.consumeResource(resource));
-        const newRates = this.calcRates(buildings, leaders, newVault);
+        const newBuildings = {...buildings};
+        rates.buildingsToRest?.forEach((id) => {
+          newBuildings[id].recipeSelected = -1;
+        });
+        const newRates = this.calcRates(newBuildings, leaders, newVault);
         return this.callCalcs(newRates, vault, buildings, leaders,
           rates.soonestExhaustion, resourcesToCheck, newPSum, newCSum, newQRChecks);
       }
@@ -332,6 +337,9 @@ export default class Hourglass {
               (consQuantity * -1));
             utils.mapAdd(r.netRates, (consumption.type + '|0'), (consQuantity * -1));
           });
+        }
+        if (missingConsumption) {
+          r.buildingsToRest.push(id);
         }
       }
     });

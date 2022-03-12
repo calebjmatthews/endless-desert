@@ -640,7 +640,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Conjecture research
   [X] Add time elapsed to "While you were gone" memo
   [X] Save after calculating "While you were gone" tick
-  [ ] When consumptions expire, change recipe selected to -1
+  [X] When consumptions expire, change recipe selected to -1
   [ ] Add consumptions expired (with time) to "While you were gone" memo
   [ ] Fix exponential production bug
   [ ] Stop building upon resource lack within hourglass calc
@@ -717,6 +717,15 @@ dispatch(increaseResources(vault,
     quality: 0, quantity: 1 })] ));
 ```
 
+### Add one of every resource:
+```
+let allResources: Resource[] = [];
+Object.keys(resourceTypes).map((typeName) => {
+  allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+});
+dispatch(increaseResources(vault, allResources));
+```
+
 ### Remove all current resources:
 ```
 let resources: Resource[] = [];
@@ -742,15 +751,6 @@ console.log('dish');
 console.log(dish);
 dispatch(increaseResources(vault, [dish.resource]));
 dispatch(setBuildingSpecificRecipe(buildings['12341234'], dish.recipe, 0));
-```
-
-### Add one of every resource:
-```
-let allResources: Resource[] = [];
-Object.keys(resourceTypes).map((typeName) => {
-  allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-});
-dispatch(increaseResources(vault, allResources));
 ```
 
 ### Build one of every building:
