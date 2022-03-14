@@ -643,7 +643,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] When consumptions expire, change recipe selected to -1
   [X] Save icon/button
   [X] Revamp messages
-  [ ] When consumptions expire, show a message
+  [X] When consumptions expire, show a message
   [ ] Add consumptions expired (with time) to "While you were gone" memo
   [ ] Fix exponential production bug
   [ ] Stop building upon resource lack within hourglass calc

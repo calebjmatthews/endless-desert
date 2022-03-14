@@ -41,6 +41,7 @@ import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
 import { ACTIVITIES } from '../enums/activities';
 import { MILESTONES } from '../enums/milestones';
+import { MESSAGE_TYPES } from '../enums/message_types';
 import { CHECK_INTERVAL } from '../constants';
 
 export default function HourglassComponent() {
@@ -242,7 +243,15 @@ export default function HourglassComponent() {
         let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
         newRates.buildingsToRest?.forEach((id) => {
-          dispatch(selectBuildingRecipe(buildings[id], -1));
+          const building = buildings[id];
+          const buildingType = buildingTypes[building.buildingType];
+          dispatch(selectBuildingRecipe(building, -1));
+          dispatch(addMessage(new Message({
+            text: `${(building.name || buildingType.name)} stopped because of a missing resource.`,
+            type: MESSAGE_TYPES.RESOURCE_MISSING,
+            icon: buildingType.icon,
+            timestamp: new Date(Date.now())
+          })));
         });
       }
       if (whileAway.diff > 60000) {
