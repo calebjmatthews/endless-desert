@@ -29,7 +29,8 @@ export interface RootState {
   equipment: { [id: string] : Equipment };
   conversationStatus: ConversationStatus;
   questStatus: QuestStatus;
-  ui: { globalState: string, tabSelected: string,
-    valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
-    messages: Message[], memos: Memo[], positioner: Positioner };
+  ui: { globalState: string, tabSelected: string, valueSelected: any,
+    modalDisplayed: string|null, modalStage: string, modalValue: any,
+    memos: Memo[], positioner: Positioner };
+  messages: Message[];
 }

@@ -642,6 +642,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Save after calculating "While you were gone" tick
   [X] When consumptions expire, change recipe selected to -1
   [X] Save icon/button
+  [ ] Revamp messages
   [ ] When consumptions expire, show a message
   [ ] Add consumptions expired (with time) to "While you were gone" memo
   [ ] Fix exponential production bug
@@ -691,7 +692,7 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-CREATE TABLE `quest_status` (
+CREATE TABLE `messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(16) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

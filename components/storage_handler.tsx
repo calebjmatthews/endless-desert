@@ -23,6 +23,7 @@ import { setEquipment } from '../actions/equipment';
 import { setConversationStatus } from '../actions/conversation_status';
 import { setQuestStatus } from '../actions/quest_status';
 import { setGlobalState } from '../actions/ui';
+import { setMessages } from '../actions/messages';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
@@ -50,7 +51,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'leaders': setLeaders,
   'equipment': setEquipment,
   'conversation_status': setConversationStatus,
-  'quest_status': setQuestStatus
+  'quest_status': setQuestStatus,
+  'messages': setMessages
 }
 
 export default function StorageHandlerComponent() {
@@ -70,6 +72,7 @@ export default function StorageHandlerComponent() {
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const questStatus = useTypedSelector(state => state.questStatus);
   const globalState = useTypedSelector(state => state.ui.globalState);
+  const messages = useTypedSelector(state => state.messages);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
 
@@ -300,6 +303,7 @@ export default function StorageHandlerComponent() {
           equipment: equipment,
           conversation_status: conversationStatus,
           quest_status: questStatus,
+          messages: messages,
           sessionId: account.sessionId,
           userId: account.userId
         })

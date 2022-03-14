@@ -109,7 +109,9 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setBuildingsAvailable() {
     Object.keys(this.status).forEach((researchName) => {
       let research = researches[researchName];
-      if (!research) { console.log(researchName); return; }
+      if (!research) {
+        console.log(`Missing research instance: ${researchName}`); return;
+      }
       if (research.unlocksBuilding && this.status[researchName] == 'completed') {
         research.unlocksBuilding.map((buildingName) => {
           this.buildingsAvailable[buildingName] = true;
@@ -121,7 +123,9 @@ export default class ResearchStatus implements ResearchStatusInterface {
   setUpgradesAvailable() {
     Object.keys(this.status).map((researchName) => {
       let research = researches[researchName];
-      if (!research) { console.log(researchName); return; }
+      if (!research) {
+        console.log(`Missing research instance: ${researchName}`); return;
+      }
       if (research.unlocksUpgrade && this.status[researchName] == 'completed') {
         research.unlocksUpgrade.map((buildingName) => {
           this.upgradesAvailable[buildingName] = true;

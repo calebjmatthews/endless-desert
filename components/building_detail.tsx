@@ -14,7 +14,8 @@ import { payBuildingCost, removeBuildingConstruction }
 import { addBuildingToStorage } from '../actions/buildings_storage';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
-import { displayModal, displayModalValue, addMessage } from '../actions/ui';
+import { displayModal, displayModalValue } from '../actions/ui';
+import { addMessage } from '../actions/messages';
 import { consumeResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
 

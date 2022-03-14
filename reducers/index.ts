@@ -14,6 +14,7 @@ import EquipmentReducer from './equipment';
 import ConversationStatusReducer from './conversation_status';
 import QuestStatusReducer from './quest_status';
 import UIReducer from './ui';
+import MessageReducer from './messages';
 
 const rootReducer = combineReducers({
   vault: VaultReducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   equipment: EquipmentReducer,
   conversationStatus: ConversationStatusReducer,
   questStatus: QuestStatusReducer,
-  ui: UIReducer
+  ui: UIReducer,
+  messages: MessageReducer
 });
 
 export default rootReducer;

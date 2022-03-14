@@ -3,8 +3,8 @@ import { TRADING_PARTNERS } from '../enums/trading_partners';
 
 let timersStarting: { [name: string] : Timer } = {};
 
-timersStarting[('Trading' + 0)] = new Timer({
-  name: ('Trading' + 0),
+timersStarting['Trading|0'] = new Timer({
+  name: 'Trading|0',
   endsAt: (new Date(Date.now()).valueOf() + 300000),
   remainingLabel: '1m',
   tradingPartnerToArrive: TRADING_PARTNERS.TREFOIL_ISLANDS,

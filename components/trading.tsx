@@ -99,7 +99,7 @@ export default function TradingComponent() {
   function welcomePress() {
     let newTradingPartnerVisit = tradingStatus.createPendingTradingPartnerVisit();
     let newTimer = new Timer({
-      name: ('Trading' + 0),
+      name: 'Trading|0',
       endsAt: (new Date(Date.now()).valueOf() + 300000),
       tradingPartnerToArrive: newTradingPartnerVisit.name,
       messageToDisplay: 'A trader is waiting outside the gate.',

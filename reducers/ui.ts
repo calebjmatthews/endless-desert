@@ -1,4 +1,4 @@
-import { SET_GLOBAL_STATE, SELECT_TAB, DISPLAY_MODAL, DISPLAY_MODAL_VALUE, ADD_MESSAGE,
+import { SET_GLOBAL_STATE, SELECT_TAB, DISPLAY_MODAL, DISPLAY_MODAL_VALUE,
   ADD_MEMOS, DISMISS_MEMO, SET_POSITIONER } from '../actions/ui';
 
 import Message from '../models/message';
@@ -7,9 +7,9 @@ import Positioner from '../models/positioner';
 
 export default function (ui: { globalState: string, tabSelected: string,
   valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
-  messages: Message[], memos: Memo[], positioner: Positioner } =
+  memos: Memo[], positioner: Positioner } =
   { globalState: 'loading', tabSelected: "Resources", valueSelected: null,
-  modalDisplayed: null, modalStage: 'closed', modalValue: null, messages: [],
+  modalDisplayed: null, modalStage: 'closed', modalValue: null,
   memos: [], positioner: new Positioner() },
   action: any = null) {
 	switch(action.type) {
@@ -26,9 +26,6 @@ export default function (ui: { globalState: string, tabSelected: string,
     case DISPLAY_MODAL_VALUE:
     return Object.assign({}, ui, {modalDisplayed: action.modalType,
       modalStage: action.modalStage, modalValue: action.modalValue});
-
-    case ADD_MESSAGE:
-    return Object.assign({}, ui, {messages: [...ui.messages, action.message]});
 
     case ADD_MEMOS:
     return Object.assign({}, ui, {memos: [...ui.memos, ...action.memos]});

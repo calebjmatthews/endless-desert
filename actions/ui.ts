@@ -38,14 +38,6 @@ export function displayModalValue(modalType: string|null, modalStage: string,
   };
 }
 
-export const ADD_MESSAGE = 'ADD_MESSAGE';
-export function addMessage(message: Message) {
-  return {
-    type: ADD_MESSAGE,
-    message: message
-  }
-}
-
 export const ADD_MEMOS = 'ADD_MEMOS';
 export function addMemos(memos: Memo[]) {
   return {

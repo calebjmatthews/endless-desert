@@ -12,7 +12,7 @@ import Icon from '../models/icon';
 
 export default function MessageBarComponent() {
   const dispatch = useDispatch();
-  const messages = useTypedSelector(state => state.ui.messages);
+  const messages = useTypedSelector(state => state.messages);
   let message = messages[messages.length-1];
   if (!message) {
     message = new Message({

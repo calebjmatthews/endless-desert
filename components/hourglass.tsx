@@ -9,7 +9,8 @@ import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding, selectBuildingRecipe }
   from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
-import { addMessage, addMemos } from '../actions/ui';
+import { addMemos } from '../actions/ui';
+import { addMessage } from '../actions/messages';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
   setFortuityDailyLast, achieveMilestone, setStorageCallSave }
   from '../actions/account';
@@ -192,7 +193,7 @@ export default function HourglassComponent() {
           if (whileAway.diff > 60000) { whileAway.timers.push(timer); }
           dispatch(addMessage(new Message({
             text: timer.messageToDisplay,
-            type: '',
+            type: timer.name.split('|')[0],
             timestamp: new Date(Date.now()),
             icon: timer.iconToDisplay
           })));
@@ -332,8 +333,12 @@ export default function HourglassComponent() {
     let messages: Message[] = [];
     wa.timers.map((timer) => {
       if (timer.messageToDisplay) {
-        messages.push(new Message({ text: timer.messageToDisplay, type: '',
-          icon: timer.iconToDisplay, timestamp: new Date(timer.endsAt) }));
+        messages.push(new Message({
+          text: timer.messageToDisplay,
+          type: timer.name.split('|')[0],
+          icon: timer.iconToDisplay,
+          timestamp: new Date(timer.endsAt)
+        }));
       }
     });
 
