@@ -473,7 +473,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     width: '100%',
-    height: 20,
+    height: 30,
     opacity: 0.95
   },
   messageBar: {
@@ -481,22 +481,21 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: 20,
+    height: 30,
     width: '100%',
     paddingHorizontal: 10,
     overflow: 'hidden'
   },
   messageBarText: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#fff'
   },
   messageBarBackground: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    height: 20,
-    backgroundColor: '#000',
-    opacity: 0.35
+    height: 30,
+    backgroundColor: '#071f56'
   },
   descriptionBand: {
     width: 280,
@@ -507,7 +506,8 @@ export const styles = StyleSheet.create({
   },
   descriptionBandText: {
     textAlign: 'center',
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    marginLeft: 5
   },
 
   leaderCircle: {

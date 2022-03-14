@@ -642,7 +642,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Save after calculating "While you were gone" tick
   [X] When consumptions expire, change recipe selected to -1
   [X] Save icon/button
-  [ ] Revamp messages
+  [X] Revamp messages
   [ ] When consumptions expire, show a message
   [ ] Add consumptions expired (with time) to "While you were gone" memo
   [ ] Fix exponential production bug

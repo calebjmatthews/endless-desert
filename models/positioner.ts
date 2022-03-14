@@ -5,8 +5,8 @@ export default class Positioner {
   majorPadding: number = 20;
   minorPadding: number = 10;
   iconSpacer: number = 55;
-  headerSpacer: number = 70;
-  headerSpacerAndroid: number = 29;
+  headerSpacer: number = 80;
+  headerSpacerAndroid: number = 39;
   titleSpacer: number = 25;
   buildingButtonSpacer: number = 47;
 
