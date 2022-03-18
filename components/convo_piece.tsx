@@ -33,7 +33,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth,  maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginRight: 5, borderTopLeftRadius: 0 }])}>
-            <InstantText text={props.convoStatement.text}
+            <ConvoTextSection text={props.convoStatement.text}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
@@ -51,7 +51,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth, maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginLeft: 5, borderTopRightRadius: 0 }])}>
-            <InstantText text={props.convoResponse.text}
+            <ConvoTextSection text={props.convoResponse.text}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
@@ -64,42 +64,29 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
   return null;
 }
 
-function InstantText(props: { text: string , finishedAnimating: () => void }) {
-  const [state, setState] = useState('initializing');
-  const [revealedText, setRevealedText] = useState('');
-  const [unrevealedText, setUnrevealedText] = useState(['']);
+function ConvoTextSection(props: { text: string, finishedAnimating: () => void }) {
+  return (Platform.OS === 'web') ?
+    <GradualTextSection text={props.text}
+      finishedAnimating={props.finishedAnimating} /> :
+    <AtOnceTextSection text={props.text} finishedAnimating={props.finishedAnimating} />
+}
 
-  useEffect(() => {
-    if (state == 'initializing') {
-      setState('initialized');
-      setUnrevealedText(splitText(props.text));
-      setTimeout(() => { setState('canReveal') }, (FADE_IN_DELAY/4));
-    }
-
-    if (state == 'canReveal') {
-      setState('revealing');
-      const newChar = unrevealedText[0];
-      setRevealedText(`${revealedText}${newChar}`);
-      setUnrevealedText(unrevealedText.slice(1));
-      if (unrevealedText.length > 1) {
-        setTimeout( () => { setState('canReveal'); },
-          utils.getCharDelay(newChar, FADE_CHAR_DELAY, Platform.OS) );
-      }
-      else {
-        setState('done');
-        props.finishedAnimating();
-      }
-    }
-  }, [state]);
+function AtOnceTextSection(props: { text: string, finishedAnimating: () => void }) {
+  const textOpacity = useRef(new Animated.Value(0)).current;
+  React.useEffect(() => { Animated.timing(textOpacity,
+    { toValue: 1, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+  ).start(() => {
+    props.finishedAnimating();
+  }); }, []);
 
   return (
-    <Text>
-      <Text>{revealedText}</Text>
-    </Text>
+    <Animated.Text style={{opacity: textOpacity }}>
+      {props.text}
+    </Animated.Text>
   );
 }
 
-function ConvoText(props: { text: string, finishedAnimating: () => void }) {
+function GradualTextSection(props: { text: string, finishedAnimating: () => void }) {
   const [state, setState] = useState('initializing');
   const [revealedText, setRevealedText] = useState('');
   const [revealingText, setRevealingText] =
