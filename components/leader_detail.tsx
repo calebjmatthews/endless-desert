@@ -380,21 +380,28 @@ export default function LeaderDetailComponent() {
     }
     else {
       return (
-        <View style={StyleSheet.flatten([styles.rows, {minWidth: positioner.modalMajor,
-          maxWidth: positioner.modalMajor}])} key={slot}>
-          <Text style={{minWidth: 90, maxWidth: 90, textAlign: 'right'}}>
-            {slot + ':'}
-          </Text>
+        <View style={StyleSheet.flatten([styles.columns,
+          {minWidth: positioner.modalMajor - positioner.minorPadding,
+          maxWidth: positioner.modalMajor - positioner.minorPadding}])} key={slot}>
+          <View style={styles.break} />
+          <View style={StyleSheet.flatten([styles.rows, {paddingLeft: 5}])}>
+            <IconComponent provider='FontAwesome5' name={iconName}
+              color={'#686874'} size={14} />
+            <Text style={{fontSize: 12}}> {slot + ':'}</Text>
+          </View>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-            {alignSelf: 'stretch', justifyContent: 'flex-start'}])}
+            {alignSelf: 'stretch', flexDirection: 'column',
+            alignItems: 'flex-start'}])}
             onPress={() => { equipmentPress(slot) }} >
-            <BadgeComponent
-              provider='FontAwesome5'
-              name='minus-circle'
-              foregroundColor='#b1b1b1'
-              backgroundColor='#fff'
-              size={21} />
-            <Text style={styles.buttonText}>{'Nothing'}</Text>
+            <View style={styles.rows}>
+              <BadgeComponent
+                provider='FontAwesome5'
+                name='minus-circle'
+                foregroundColor='#b1b1b1'
+                backgroundColor='#fff'
+                size={21} />
+              <Text style={styles.buttonText}>{'Nothing'}</Text>
+            </View>
           </TouchableOpacity>
         </View>
       );
