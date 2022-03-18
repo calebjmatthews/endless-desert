@@ -27,10 +27,7 @@ export default class Hourglass {
     if (timeMult > 1 || timeMult < 0) {
       console.log('timeMult > 1 || timeMult < 0');
       console.log(timeMult);
-      console.log('startingTimestamp');
-      console.log(startingTimestamp);
-      console.log('endingTimestamp');
-      console.log(endingTimestamp);
+      console.log(`timeMult: ${timeMult}, calculate called with duration: ${utils.formatDuration(endingTimestamp - startingTimestamp)}`);
     }
     if (timeMult > 0) {
       Object.keys(rates.netRates).map((typeQuality) => {
@@ -80,14 +77,16 @@ export default class Hourglass {
     resourcesToCheck: { [specType: string] : boolean } = {},
     productionSum: { [typeQuality: string] : number } = {},
     consumptionSum: { [typeQuality: string] : number } = {},
-    questResourceChecks: { [specType: string] : number } = {}) :
+    questResourceChecks: { [specType: string] : number } = {},
+    buildingsToRest: string[] = []) :
     { productionSum: { [typeQuality: string] : number },
     consumptionSum: { [typeQuality: string] : number },
-    questResourceChecks: { [specType: string] : number }
+    questResourceChecks: { [specType: string] : number },
+    buildingsToRest: string[]
   } {
-
     if (rates.soonestExhaustion) {
-      if (rates.soonestExhaustion < (new Date(Date.now()).valueOf() + 1000)) {
+      const soonestExhaustionDiff = new Date(Date.now()).valueOf() - rates.soonestExhaustion;
+      if (soonestExhaustionDiff > 1000) {
         const results = this.calculate(rates, vault, startingTimestamp,
           rates.soonestExhaustion);
         const newPSum = utils.mapsCombine(productionSum, results.productionSum);
@@ -104,8 +103,12 @@ export default class Hourglass {
           newBuildings[id].recipeSelected = -1;
         });
         const newRates = this.calcRates(newBuildings, leaders, newVault);
+        const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
+          utils.arraysCombine(rates.buildingsToRest,
+            newRates.buildingsToRest))
         return this.callCalcs(newRates, vault, buildings, leaders,
-          rates.soonestExhaustion, resourcesToCheck, newPSum, newCSum, newQRChecks);
+          rates.soonestExhaustion, resourcesToCheck, newPSum, newCSum, newQRChecks,
+          newBuildingsToRest);
       }
     }
     const results = this.calculate(rates, vault, startingTimestamp);
@@ -113,8 +116,11 @@ export default class Hourglass {
     const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
     const newQRChecks = utils.mapsCombine(questResourceChecks,
       this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
+    const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
+      rates.buildingsToRest);
+
     return { productionSum: newPSum, consumptionSum: newCSum,
-      questResourceChecks: newQRChecks };
+      questResourceChecks: newQRChecks, buildingsToRest: newBuildingsToRest };
   }
 
   formQuestResourceChecks(resourcesToCheck: { [specType: string] : boolean },
@@ -366,12 +372,10 @@ export default class Hourglass {
       if (rate < 0 && vault) {
         if (vault.resources[typeQuality]) {
           const quantity = vault.resources[typeQuality].quantity;
-          if (quantity > Math.abs(rate)) {
-            const exhaustion = Date.now() + ((quantity / (-1 * rate)) * 60000);
-            r.exhaustions[typeQuality] = exhaustion;
-            if (r.soonestExhaustion == null || r.soonestExhaustion > exhaustion) {
-              r.soonestExhaustion = exhaustion;
-            }
+          const exhaustion = vault.lastTimestamp + ((quantity / (-1 * rate)) * 60000);
+          r.exhaustions[typeQuality] = exhaustion;
+          if (r.soonestExhaustion == null || r.soonestExhaustion > exhaustion) {
+            r.soonestExhaustion = exhaustion;
           }
         }
       }
@@ -417,21 +421,6 @@ export default class Hourglass {
         }
       });
       return leaderMod;
-    }
-
-    function recipeFromSelected(recipe: BuildingRecipe, building: Building) {
-      let newConsumes: { specificity: string, type: string, quantity: number }[] = [];
-      recipe.consumes?.map((consume) => {
-        if (consume.specificity == RESOURCE_SPECIFICITY.EXACT) {
-          newConsumes.push(consume);
-        }
-        else {
-          const rsKey = consume.specificity + '|' + consume.type;
-          if (building.resourcesSelected[rsKey]) {
-
-          }
-        }
-      });
     }
 
     function doesResourceMatch(prodResource: string, effect: EquipmentEffect) {

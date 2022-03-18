@@ -79,26 +79,34 @@ export default function HourglassComponent() {
       // Resources to consume
       let rtc: Resource[] = [];
       let whileAway: { diff: number, rti: Resource[], rtc: Resource[],
-        timers: Timer[] } = { diff: (new Date(Date.now()).valueOf()
-        - vault.lastTimestamp), rti: [], rtc: [],timers: [] };
+        buildingsToRest: string[], timers: Timer[] } =
+        { diff: (new Date(Date.now()).valueOf()
+        - vault.lastTimestamp), rti: [], rtc: [], buildingsToRest: [], timers: [] };
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
-      if (rates) {
-        const results = hourglass.callCalcs(rates, vault, tempBuildings, {},
-          vault.lastTimestamp, questStatus.resourcesToCheck);
-        rti = utils.sumToResources(vault, results.productionSum);
-        rtc = utils.sumToResources(vault, results.consumptionSum);
-        if (Object.keys(results.questResourceChecks).length > 0) {
-          let resourcesProduced: {specType: string, quantity: number}[] = [];
-          Object.keys(results.questResourceChecks).forEach((specType) => {
-            resourcesProduced.push({ specType,
-              quantity: results.questResourceChecks[specType]})
-          });
-          dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-            resourcesProduced })));
-        }
-        whileAway = Object.assign(whileAway, { rti, rtc });
+
+      const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders, vault) : rates;
+      const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {},
+        vault.lastTimestamp, questStatus.resourcesToCheck);
+      if (whileAway.diff > 60000) {
+        console.log('hourglass.callCalcs results');
+        console.log(results);
       }
+
+      rti = utils.sumToResources(vault, results.productionSum);
+      rtc = utils.sumToResources(vault, results.consumptionSum);
+      if (Object.keys(results.questResourceChecks).length > 0) {
+        let resourcesProduced: {specType: string, quantity: number}[] = [];
+        Object.keys(results.questResourceChecks).forEach((specType) => {
+          resourcesProduced.push({ specType,
+            quantity: results.questResourceChecks[specType]})
+        });
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          resourcesProduced })));
+      }
+      whileAway = Object.assign(whileAway, { rti, rtc,
+        buildingsToRest: results.buildingsToRest });
+
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
@@ -240,7 +248,7 @@ export default function HourglassComponent() {
         if (emptiedTQs.length > 0) { recalcRates = true; }
       }
       if (recalcRates) {
-        let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+        let newRates = hourglass.calcRates(tempBuildings, leaders, vault);
         dispatch(setRates(newRates));
         newRates.buildingsToRest?.forEach((id) => {
           const building = buildings[id];
@@ -332,15 +340,25 @@ export default function HourglassComponent() {
     })));
   }
 
-  function showWhileAway(wa: { diff: number, rti: Resource[], rtc: Resource[],
-    timers: Timer[] }) {
+  function showWhileAway(wa: {diff: number, rti: Resource[], rtc: Resource[],
+    buildingsToRest: string[], timers: Timer[]}) {
     if (wa.rti.length == 0 && wa.rtc.length == 0 && wa.timers.length == 0) {
       return null;
     }
     const duration = utils.formatDuration(wa.diff, 0, true).slice(0, -2);
     let text = `You were away for ${duration}.`;
     let messages: Message[] = [];
-    wa.timers.map((timer) => {
+    wa.buildingsToRest.forEach((id) => {
+      const building = buildings[id];
+      const buildingType = buildingTypes[building.buildingType];
+      messages.push(new Message({
+        text: `${(building.name || buildingType.name)} stopped because of a missing resource.`,
+        type: MESSAGE_TYPES.RESOURCE_MISSING,
+        icon: buildingType.icon,
+        timestamp: new Date(Date.now())
+      }));
+    });
+    wa.timers.forEach((timer) => {
       if (timer.messageToDisplay) {
         messages.push(new Message({
           text: timer.messageToDisplay,

@@ -332,8 +332,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), dowsing rod (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), needle (tailor), scissors (outfitter), hammer (fabricator)
-    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in efficiency)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), aquaduct rig (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
+    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Thongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in quality)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
     * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
@@ -341,6 +341,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Journeyman's Haversack: + speed but - quality/efficiency
     * Journeyman's Gearbag: + efficiency but - quality/speed
     * Journeyman's Toolpack: + quality but - speed/efficiency
+    * Unique tools: Shoulder parasol (increased Water efficiency), Fan-shaped Cloak (increased Fuel efficiency)
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production, decreased food consumption, increased Knowledge from studying/analysis, decreased build time, special fortuities, increased basic status but decreased happiness
   - Tiers of equipment are from 1 - 5, with probs as follows:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
