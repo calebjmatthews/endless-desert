@@ -16,6 +16,7 @@ import { displayModalValue } from '../actions/ui';
 import Leader from '../models/leader';
 import Equipment from '../models/equipment';
 import EquipmentType from '../models/equipment_type';
+import EquipmentEffect from '../models/equipment_effect';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { equipmentTypes } from '../instances/equipment_types';
@@ -31,13 +32,28 @@ export default function EquipmentSelectComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
-  let equipmentArray = Object.keys(equipment).map((equipmentId) => {
+  const matchedEquipment: { [id: string] : EquipmentMatched } = { ...equipment };
+  Object.keys(leaders).forEach((id) => {
+    const leader = leaders[id];
+    if (modalValue.subType == EQUIPMENT_SLOTS.TOOL && leader.toolEquipped) {
+      matchedEquipment[leader.toolEquipped].leader = leader;
+    }
+    else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING
+      && leader.clothingEquipped) {
+      matchedEquipment[leader.clothingEquipped].leader = leader;
+    }
+    else if (modalValue.subType == EQUIPMENT_SLOTS.BACK && leader.backEquipped) {
+      matchedEquipment[leader.backEquipped].leader = leader;
+    }
+  });
+  let equipmentArray = Object.keys(matchedEquipment).map((equipmentId) => {
     return equipment[equipmentId];
   });
   equipmentArray = equipmentArray.filter((equipment) => {
     const equipmentType = equipmentTypes[equipment.typeName];
     if (equipmentType.slot == modalValue.subType) { return equipment; }
   });
+
 
   function setStartingSelected(): string|null {
     if (equipmentArray.length == 1) { return equipmentArray[0].id; }
@@ -126,7 +142,7 @@ export default function EquipmentSelectComponent() {
   }
 }
 
-function EquipmentSelector(props: {anEquipment: Equipment,
+function EquipmentSelector(props: {anEquipment: EquipmentMatched,
   equipmentSelected: string|null, setEquipmentSelected: Function,
   positioner: Positioner}) {
   let equipmentType = equipmentTypes[props.anEquipment.typeName];
@@ -138,6 +154,7 @@ function EquipmentSelector(props: {anEquipment: Equipment,
       <BadgeComponent icon={equipmentType.icon} size={19} />
       <View>
         <Text style={optionTextStyle}>{equipmentType.name}</Text>
+        {renderEquipedBy(props.anEquipment)}
         {renderEquipmentEffects(props.anEquipment)}
         {renderButton(props.anEquipment, props.equipmentSelected,
           props.setEquipmentSelected)}
@@ -168,6 +185,20 @@ function EquipmentSelector(props: {anEquipment: Equipment,
     );
   }
 
+  function renderEquipedBy(anEquipment: EquipmentMatched) {
+    if (anEquipment.leader) {
+      return (
+        <View style={styles.rows}>
+          <BadgeComponent icon={anEquipment.leader.icon} size={19} />
+          <Text style={{color: '#000', fontSize: 12}}>
+            {` ${anEquipment.leader.name} using`}
+          </Text>
+        </View>
+      )
+    }
+    return null;
+  }
+
   function renderEquipmentEffects(anEquipment: Equipment) {
     let effectTextStyle = {paddingLeft: 12, paddingRight: 4, fontSize: 12};
     const equipmentType = equipmentTypes[anEquipment.typeName];
@@ -193,4 +224,11 @@ function EquipmentSelector(props: {anEquipment: Equipment,
   function equipmentIdSelect(anEquipment: Equipment, setEquipmentSelected: Function) {
     setEquipmentSelected(anEquipment.id);
   }
+}
+
+interface EquipmentMatched {
+  id: string;
+  typeName: string;
+  effects: EquipmentEffect[];
+  leader?: Leader;
 }

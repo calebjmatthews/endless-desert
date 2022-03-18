@@ -667,6 +667,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add consumptions expired "While you were gone" memo
   [X] Fix exponential production bug
   [X] Stop building upon resource lack within hourglass calc
+  [X] Correctly show empty leader equipment slots
   [ ] Upgrading house and changing leader vars recalc rates
   [ ] Quests to introduce new traders
   [ ] Add fish to trading partner options
