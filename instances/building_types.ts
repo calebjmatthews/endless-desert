@@ -367,7 +367,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       + 'remove it'),
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.SAND_PIT}),
-    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 50}],
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400}],
     upgradesInto: BTY.SAND_PIT_RAPID,
     recipes: [ new BuildingRecipe({index: 0, produces:

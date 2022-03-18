@@ -28,7 +28,7 @@ export default function MessageBarComponent() {
         opacityAnim, { toValue: 1, duration: 0, useNativeDriver: true }
       ).start(() => {
         Animated.timing(
-          opacityAnim, { toValue: 0.35, duration: ENSURED_DURATION/2,
+          opacityAnim, { toValue: 0.35, duration: ENSURED_DURATION,
             useNativeDriver: true }
         ).start();
       });
@@ -45,10 +45,10 @@ export default function MessageBarComponent() {
         setEnsuredDisplay(ensuredDisplay.slice(1, ensuredDisplay.length));
         const timeout = setTimeout(() => setMoveEnsured(true), ENSURED_DURATION);
         Animated.timing(
-          opacityAnim, { toValue: 0, duration: 0, useNativeDriver: true }
+          opacityAnim, { toValue: 1, duration: 0, useNativeDriver: true }
         ).start(() => {
           Animated.timing(
-            opacityAnim, { toValue: 0.35, duration: ENSURED_DURATION/2,
+            opacityAnim, { toValue: 0.35, duration: ENSURED_DURATION,
               useNativeDriver: true }
           ).start();
         });

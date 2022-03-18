@@ -681,6 +681,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Show resource descriptive name, not id name in selection components
   [ ] Hide recipes missing ingredients
+  [ ] Add implements
 
 ## Commands
 ### Delete all records from all tables:

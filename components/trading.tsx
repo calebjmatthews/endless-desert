@@ -40,7 +40,7 @@ export default function TradingComponent() {
   const tradingPartnerVisitArray = Object.keys(tradingStatus.tradingPartnerVisits)
     .map((name) => { return tradingStatus.tradingPartnerVisits[name]; });
   const vault = useTypedSelector(state => state.vault);
-  const timer = useTypedSelector(state => state.timers[('Trading' + 0)]);
+  const timer = useTypedSelector(state => state.timers['Trading|0']);
   const introState = useTypedSelector(state => state.account.introState);
 
   return (
