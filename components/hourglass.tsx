@@ -60,11 +60,11 @@ export default function HourglassComponent() {
   const questStatus = useTypedSelector(state => state.questStatus);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
-  const [callTick, setCallTick] = useState(false);
+  const [state, setState] = useState('waiting');
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setCallTick(true);
+      setState('callTick');
       setLocalTimestamp(new Date(Date.now()).valueOf());
     }, 100);
 
@@ -72,26 +72,23 @@ export default function HourglassComponent() {
   }, [localTimestamp]);
 
   useEffect(() => {
-    if (callTick) {
-      setCallTick(false);
+    if (state === 'callTick') {
+      setState('processing');
       // Resources to increase
       let rti: Resource[] = [];
       // Resources to consume
       let rtc: Resource[] = [];
       let whileAway: { diff: number, rti: Resource[], rtc: Resource[],
         buildingsToRest: string[], timers: Timer[] } =
-        { diff: (new Date(Date.now()).valueOf()
-        - vault.lastTimestamp), rti: [], rtc: [], buildingsToRest: [], timers: [] };
+        { diff: (new Date(Date.now()).valueOf() - vault.lastTimestamp), rti: [],
+          rtc: [], buildingsToRest: [], timers: [] };
       let recalcRates: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
 
       const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders, vault) : rates;
+      if (whileAway.diff > 60000) { recalcRates = true; }
       const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {},
         vault.lastTimestamp, questStatus.resourcesToCheck);
-      if (whileAway.diff > 60000) {
-        console.log('hourglass.callCalcs results');
-        console.log(results);
-      }
 
       rti = utils.sumToResources(vault, results.productionSum);
       rtc = utils.sumToResources(vault, results.consumptionSum);
@@ -106,6 +103,9 @@ export default function HourglassComponent() {
       }
       whileAway = Object.assign(whileAway, { rti, rtc,
         buildingsToRest: results.buildingsToRest });
+      results.buildingsToRest.forEach((id) => {
+        dispatch(selectBuildingRecipe(buildings[id], -1));
+      });
 
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
@@ -248,7 +248,13 @@ export default function HourglassComponent() {
         if (emptiedTQs.length > 0) { recalcRates = true; }
       }
       if (recalcRates) {
-        let newRates = hourglass.calcRates(tempBuildings, leaders, vault);
+        const tempVault = new Vault({
+          resources: vault.resources,
+          lastTimestamp: new Date(Date.now()).valueOf()
+        });
+        rti.forEach((r) => { tempVault.increaseResource(r); });
+        rtc.forEach((r) => { tempVault.consumeResource(r); });
+        let newRates = hourglass.calcRates(tempBuildings, leaders, tempVault);
         dispatch(setRates(newRates));
         newRates.buildingsToRest?.forEach((id) => {
           const building = buildings[id];
@@ -267,8 +273,9 @@ export default function HourglassComponent() {
         dispatch(setStorageCallSave(true));
       }
       dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
+      setState('waiting');
     }
-  }, [callTick]);
+  }, [state]);
 
   function fortuityCheck(): Fortuity|null {
     let fortuityPool: Fortuity[] = [];

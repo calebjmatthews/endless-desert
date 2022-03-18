@@ -19,7 +19,7 @@ const MS_IN_MIN = 60000;
 export default class Hourglass {
   // Take a set of resource gain/loss rates, a starting timestamp, and an ending
   // timestamp, and calculate the resulting resource production and consumption
-  calculate(rates: Rates, vault: Vault, startingTimestamp: number,
+  calculate(rates: Rates, startingTimestamp: number,
     endingTimestamp: number = new Date(Date.now()).valueOf()) {
     let timeMult = (endingTimestamp - startingTimestamp) / MS_IN_MIN;
     let productionSum: { [typeQuality: string] : number } = {};
@@ -84,34 +84,36 @@ export default class Hourglass {
     questResourceChecks: { [specType: string] : number },
     buildingsToRest: string[]
   } {
-    if (rates.soonestExhaustion) {
-      const soonestExhaustionDiff = new Date(Date.now()).valueOf() - rates.soonestExhaustion;
-      if (soonestExhaustionDiff > 1000) {
-        const results = this.calculate(rates, vault, startingTimestamp,
-          rates.soonestExhaustion);
-        const newPSum = utils.mapsCombine(productionSum, results.productionSum);
-        const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
-        const newQRChecks = utils.mapsCombine(questResourceChecks,
-          this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
-        const pResources = utils.sumToResources(vault, newPSum);
-        const cResources = utils.sumToResources(vault, newCSum);
-        const newVault = new Vault(vault);
-        pResources.map((resource) => newVault.increaseResource(resource));
-        cResources.map((resource) => newVault.consumeResource(resource));
-        const newBuildings = {...buildings};
-        rates.buildingsToRest?.forEach((id) => {
-          newBuildings[id].recipeSelected = -1;
-        });
-        const newRates = this.calcRates(newBuildings, leaders, newVault);
-        const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
-          utils.arraysCombine(rates.buildingsToRest,
-            newRates.buildingsToRest))
-        return this.callCalcs(newRates, vault, buildings, leaders,
-          rates.soonestExhaustion, resourcesToCheck, newPSum, newCSum, newQRChecks,
-          newBuildingsToRest);
-      }
+    const timestamp = new Date(Date.now()).valueOf();
+    const soonestExhaustionDiff = rates.soonestExhaustion ?
+      timestamp - rates.soonestExhaustion : null;
+    if (soonestExhaustionDiff !== null && soonestExhaustionDiff > 1000) {
+      const results = this.calculate(rates, startingTimestamp,
+        (rates?.soonestExhaustion || undefined));
+      const newPSum = utils.mapsCombine(productionSum, results.productionSum);
+      const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
+      const newQRChecks = utils.mapsCombine(questResourceChecks,
+        this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
+      const pResources = utils.sumToResources(vault, newPSum);
+      const cResources = utils.sumToResources(vault, newCSum);
+      const newVault = new Vault({
+        lastTimestamp: rates.soonestExhaustion || timestamp,
+        resources: vault.resources });
+      pResources.map((resource) => newVault.increaseResource(resource));
+      cResources.map((resource) => newVault.consumeResource(resource));
+      const newBuildings = {...buildings};
+      rates.buildingsToRest?.forEach((id) => {
+        newBuildings[id].recipeSelected = -1;
+      });
+      const newRates = this.calcRates(newBuildings, leaders, newVault);
+      const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
+        utils.arraysCombine(rates.buildingsToRest,
+          newRates.buildingsToRest));
+      return this.callCalcs(newRates, vault, buildings, leaders,
+        (rates?.soonestExhaustion || timestamp), resourcesToCheck, newPSum, newCSum,
+        newQRChecks, newBuildingsToRest);
     }
-    const results = this.calculate(rates, vault, startingTimestamp);
+    const results = this.calculate(rates, startingTimestamp);
     const newPSum = utils.mapsCombine(productionSum, results.productionSum);
     const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
     const newQRChecks = utils.mapsCombine(questResourceChecks,

@@ -341,13 +341,32 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Journeyman's Haversack: + speed but - quality/efficiency
     * Journeyman's Gearbag: + efficiency but - quality/speed
     * Journeyman's Toolpack: + quality but - speed/efficiency
-    * Unique tools: Shoulder parasol (increased Water efficiency), Fan-shaped Cloak (increased Fuel efficiency)
+    * Unique tools: Shoulder parasol (increased Water efficiency, decreased general speed), Fan-shaped Cloak (increased Fuel efficiency, decreased general speed)
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production, decreased food consumption, increased Knowledge from studying/analysis, decreased build time, special fortuities, increased basic status but decreased happiness
   - Tiers of equipment are from 1 - 5, with probs as follows:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
     * Fine unmarked equipment is 80% 2, 18% 3, 2% 4
     * Exquisite unmarked equipment is 80% 3, 18% 4, 2% 5
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
+  - Implements:
+    - Iron Edge: Iron x10
+    - Steel Edge: Steel x10
+    - Hardened Plate: Iron x5, Bronze x5
+    - Crude Needle: Iron x4, Bronze x1
+    - Delicate Needle: Steel x1, Brass x4
+    - Gearwork: Bronze x2, Brass x4
+    - Rope: Thatch x20
+    - Torch: Wood x5, Charcoal x10, Sulfur x1
+  - Recipes:
+    * Rough Mattock: Wood x40, Iron Edge x2
+    * Wooden Pole: Wood x60, Iron Edge x1
+    * Coarse Instruments: Iron Edge x4
+    * Rags: Reedcloth x10
+    * Simple Robe: Reedcloth x15, Crude Needle x2
+    * Shoulder Pouch: Reedcloth x5
+    * Journeyman's Haversack: Reedcloth x20, Crude Needle x1
+    * Journeyman's Gearbag: Reedcloth x10, Crude Needle x2
+    * Journeyman's Toolpack: Reedcloth x10, Crude Needle x1, Iron Edge x1
 
 ## Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish
@@ -645,9 +664,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Save icon/button
   [X] Revamp messages
   [X] When consumptions expire, show a message
-  [ ] Add consumptions expired (with time) to "While you were gone" memo
-  [ ] Fix exponential production bug
-  [ ] Stop building upon resource lack within hourglass calc
+  [X] Add consumptions expired "While you were gone" memo
+  [X] Fix exponential production bug
+  [X] Stop building upon resource lack within hourglass calc
   [ ] Upgrading house and changing leader vars recalc rates
   [ ] Quests to introduce new traders
   [ ] Add fish to trading partner options
