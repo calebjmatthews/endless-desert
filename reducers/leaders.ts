@@ -1,5 +1,5 @@
-import { SET_LEADERS, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING, LIVE_AT_BUILDING,
-  SET_EATING, SET_DRINKING, DON_EQUIPMENT }
+import { SET_LEADERS, SET_LEADER, ADD_LEADER, REMOVE_LEADER, ASSIGN_TO_BUILDING,
+  LIVE_AT_BUILDING, DON_EQUIPMENT }
   from '../actions/leaders';
 
 import Leader from '../models/leader';
@@ -12,6 +12,9 @@ export default function (leaders: { [id: string] : Leader } = {},
     case SET_LEADERS:
     return Object.assign({}, action.leaders);
 
+    case SET_LEADER:
+    return { ...leaders, [action.leader.id] : action.leader };
+
     case ADD_LEADER:
     let newALeaders = Object.assign({}, leaders);
     newALeaders[action.leader.id] = action.leader;
@@ -21,16 +24,6 @@ export default function (leaders: { [id: string] : Leader } = {},
     let newRLeaders = Object.assign({}, leaders);
     delete newRLeaders[action.leader.id];
     return newRLeaders;
-
-    case SET_EATING:
-    let newSELeaders = Object.assign({}, leaders);
-    newSELeaders[action.leader.id].eating = action.typeQuality;
-    return newSELeaders;
-
-    case SET_DRINKING:
-    let newSDLeaders = Object.assign({}, leaders);
-    newSDLeaders[action.leader.id].drinking = action.typeQuality;
-    return newSDLeaders;
 
     case ASSIGN_TO_BUILDING:
     let newATBLeaders = Object.assign({}, leaders);

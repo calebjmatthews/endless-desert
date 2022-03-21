@@ -11,6 +11,7 @@ import { addBuilding, replaceBuilding, selectBuildingRecipe }
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMemos } from '../actions/ui';
 import { addMessage } from '../actions/messages';
+import { setLeaders } from '../actions/leaders';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
   setFortuityDailyLast, achieveMilestone, setStorageCallSave }
   from '../actions/account';
@@ -38,6 +39,7 @@ import { MEMOS } from '../enums/memos';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { TABS } from '../enums/tabs';
 import { ACTIVITIES } from '../enums/activities';
 import { MILESTONES } from '../enums/milestones';
@@ -58,6 +60,7 @@ export default function HourglassComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
   const questStatus = useTypedSelector(state => state.questStatus);
+  const ui = useTypedSelector(state => state.ui);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
   const [state, setState] = useState('waiting');
@@ -83,6 +86,7 @@ export default function HourglassComponent() {
         { diff: (new Date(Date.now()).valueOf() - vault.lastTimestamp), rti: [],
           rtc: [], buildingsToRest: [], timers: [] };
       let recalcRates: boolean = false;
+      let recalcLeaderEffects: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
 
       const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders, vault) : rates;
@@ -104,7 +108,10 @@ export default function HourglassComponent() {
       whileAway = Object.assign(whileAway, { rti, rtc,
         buildingsToRest: results.buildingsToRest });
       results.buildingsToRest.forEach((id) => {
-        dispatch(selectBuildingRecipe(buildings[id], -1));
+        const building = buildings[id];
+        if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.BUILDINGS) {
+          dispatch(selectBuildingRecipe(building, -1));
+        }
       });
 
       let nTimers = Object.assign({}, timers);
@@ -173,6 +180,9 @@ export default function HourglassComponent() {
               recipe: null
             });
             dispatch(replaceBuilding(upgBuilding));
+            if (upgBuildingType.category === BUILDING_CATEGORIES.HOUSING) {
+              recalcLeaderEffects = true;
+            }
             dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
               actionPerformed: { kind: ACTIVITIES.BUILDING_UPGRADE,
               value: buildingType.name } })));
@@ -246,6 +256,14 @@ export default function HourglassComponent() {
         dispatch(consumeResources(vault, rtc));
         emptiedTQs = vault.checkForEmptying(rtc);
         if (emptiedTQs.length > 0) { recalcRates = true; }
+      }
+      let tempLeaders = { ...leaders };
+      if (recalcLeaderEffects) {
+        Object.keys(tempLeaders).forEach((id) => {
+          const leader = tempLeaders[id];
+          leader.calcEffects(equipment, buildings, vault);
+        });
+        dispatch(setLeaders(tempLeaders));
       }
       if (recalcRates) {
         const tempVault = new Vault({

@@ -13,8 +13,9 @@ import { consumeResources, increaseResources } from '../actions/vault';
 import { studyResource } from '../actions/research_status';
 import { completeTrade } from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
-import { SET_EATING, setEating, SET_DRINKING, setDrinking } from '../actions/leaders';
+import { SET_EATING, SET_DRINKING, setLeader } from '../actions/leaders';
 import { addToActivityQueue } from '../actions/quest_status';
+import { setRates } from '../actions/rates';
 
 import Resource from '../models/resource';
 import ResourceType from '../models/resource_type';
@@ -24,6 +25,7 @@ import TradingPartnerVisit from '../models/trading_partner_visit';
 import Trade from '../models/trade';
 import Icon from '../models/icon';
 import QuestActivity from '../models/quest_activity';
+import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -40,6 +42,9 @@ const QV = QUALITY_VALUES;
 export default function ResourceSelectOneComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
+  const leaders = useTypedSelector(state => state.leaders);
+  const equipment = useTypedSelector(state => state.equipment);
+  const buildings = useTypedSelector(state => state.buildings);
   const modalValue: any = useTypedSelector(state => state.ui.modalValue);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
@@ -310,10 +315,10 @@ export default function ResourceSelectOneComponent() {
 
       case MODALS.LEADER_DETAIL:
       if (modalValue.subType == SET_EATING) {
-        actionSetEating();
+        actionSetLeaderConsuming('eating');
       }
       else if (modalValue.subType == SET_DRINKING) {
-        actionSetDrinking();
+        actionSetLeaderConsuming('drinking');
       }
       break;
     }
@@ -429,25 +434,25 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
-  function actionSetEating() {
+  function actionSetLeaderConsuming(kind: 'eating'|'drinking') {
     if (resourceSelected != null) {
       const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-      dispatch(setEating(modalValue.leader, typeQuality));
+      let newLeaders = { ...leaders };
+      if (kind === 'eating') {
+        newLeaders[modalValue.leader.id].eating = typeQuality;
+      }
+      else if (kind === 'drinking') {
+        newLeaders[modalValue.leader.id].drinking = typeQuality;
+      }
+      newLeaders[modalValue.leader.id].calcEffects(equipment, buildings, vault);
+      dispatch(setLeader(newLeaders[modalValue.leader.id]));
+      const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+      dispatch(setRates(newRates));
       dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
         actionPerformed: { kind: ACTIVITIES.LEADER_SET_EATING,
           value: resourceSelected.type } })));
-      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
-    }
-  }
-
-  function actionSetDrinking() {
-    if (resourceSelected != null) {
-      const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
-      dispatch(setDrinking(modalValue.leader, typeQuality));
-      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-        actionPerformed: { kind: ACTIVITIES.LEADER_SET_DRINKING,
-          value: resourceSelected.type } })));
-      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open', modalValue.leader));
+      dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
+        newLeaders[modalValue.leader.id]));
     }
   }
 

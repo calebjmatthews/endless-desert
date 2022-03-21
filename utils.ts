@@ -643,7 +643,7 @@ class Utils {
     const pMult = getPlatformMultiplier();
 
     if (char.includes(',')) { return fadeCharDelay * 6 * pMult; }
-    if (char.includes('.') || char.includes('!')) { return fadeCharDelay * 12 * pMult; }
+    if (char.includes('.') || char.includes('!') || char.includes('?')) { return fadeCharDelay * 12 * pMult; }
     return (fadeCharDelay * pMult);
   }
 

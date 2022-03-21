@@ -668,8 +668,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix exponential production bug
   [X] Stop building upon resource lack within hourglass calc
   [X] Correctly show empty leader equipment slots
-  [ ] Upgrading house and changing leader vars recalc rates
+  [X] Upgrading house and changing leader vars recalc rates
+  [X] Show resource descriptive name, not id name in selection components
   [ ] Quests to introduce new traders
+  [ ] Add implements
   [ ] Add fish to trading partner options
   [ ] Simplify trading partner options
   [ ] Add animations to memos
@@ -680,9 +682,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Storing an occupied house kicks out the leader
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
-  [ ] Show resource descriptive name, not id name in selection components
   [ ] Hide recipes missing ingredients
-  [ ] Add implements
 
 ## Commands
 ### Delete all records from all tables:

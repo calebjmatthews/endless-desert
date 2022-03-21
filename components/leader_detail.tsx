@@ -231,7 +231,7 @@ export default function LeaderDetailComponent() {
           <BadgeComponent icon={resourceType.icon} quality={resource.quality}
             size={21} />
           <Text style={styles.buttonText}>
-            {resourceType.name}
+            {utils.getResourceName(resource)}
           </Text>
         </TouchableOpacity>
       );
@@ -259,7 +259,7 @@ export default function LeaderDetailComponent() {
           <BadgeComponent icon={resourceType.icon} quality={resource.quality}
             size={21} />
           <Text style={styles.buttonText}>
-            {resourceType.name}
+            {utils.getResourceName(resource)}
           </Text>
         </TouchableOpacity>
       );
@@ -294,7 +294,7 @@ export default function LeaderDetailComponent() {
       const buildingType = buildingTypes[building.buildingType];
       assignedToState = {
         icon: buildingType.icon,
-        text: buildingType.name,
+        text: (building.name || buildingType.name),
         style: styles.buttonRowItem,
         disabled: false
       };
@@ -320,7 +320,7 @@ export default function LeaderDetailComponent() {
           onPress={() => { livingAtPress() }} >
           <BadgeComponent icon={buildingType.icon} size={21} />
           <Text style={styles.buttonText}>
-            {buildingType.name}
+            {(building.name || buildingType.name)}
           </Text>
         </TouchableOpacity>
       );

@@ -198,13 +198,14 @@ export default function BuildingSelectComponent() {
     if (buildingSelected) {
       if (modalValue.subType == ASSIGN_TO_BUILDING) {
         dispatch(assignToBuilding(modalValue.leader, buildingSelected));
-        let tempLeaders = Object.assign({}, leaders);
-        tempLeaders[modalValue.leader.id].assignedTo = buildingSelected;
+        let newLeaders = Object.assign({}, leaders);
+        newLeaders[modalValue.leader.id].assignedTo = buildingSelected;
         if (buildingsLeader[buildingSelected]) {
           dispatch(assignToBuilding(buildingsLeader[buildingSelected], null));
-          tempLeaders[buildingsLeader[buildingSelected].id].assignedTo = null;
+          newLeaders[buildingsLeader[buildingSelected].id].assignedTo = null;
         }
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
+        dispatch(setLeaders(newLeaders));
+        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
         dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
           actionPerformed: { kind: ACTIVITIES.LEADER_WORKING_AT,
@@ -321,7 +322,9 @@ function BuildingSelector(props: {building: Building, buildingSelected: string|n
     <View style={panelStyle}>
       <BadgeComponent icon={buildingType.icon} size={21} />
       <View>
-        <Text style={optionTextStyle}>{buildingType.name}</Text>
+        <Text style={optionTextStyle}>
+          {(props.building.name || buildingType.name)}
+        </Text>
         {renderBuildingLeader(props.buildingLeader, props.subType)}
         {renderButton(props.building, props.buildingSelected,
           props.setBuildingSelected)}
