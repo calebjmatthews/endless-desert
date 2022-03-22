@@ -17,6 +17,7 @@ const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
 import { QUESTS } from '../enums/quests';
+import { BUILDING_TYPES } from '../enums/building_types';
 
 let fortuities: { [name: string] : Fortuity } = {};
 
@@ -368,6 +369,48 @@ fortuities[FORTUITIES.A_TERRACED_PLATFORM] = new Fortuity({
   available: (fState: GameState) => {
     if (fState.vault?.resources[`${RTY.RED_KEY}|0`]) {
       if (fState.vault?.resources[`${RTY.RED_KEY}|0`].quantity >= 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.SPRING_AUTUMN_PROOFS] = new Fortuity({
+  name: FORTUITIES.SPRING_AUTUMN_PROOFS,
+  openLine: 'A letter falls onto you',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.SPRING_AUTUMN_PROOFS + '0'),
+      title: 'Spring-Autumn Proofs',
+      text: (`A messenger hawk drops a letter onto your head, which is lightly perfumed bears a wax seal. It reads:
+
+"We have received word of the rapid growth of your settlement, which lies near to routes often used by our trading parties. We, with authority vested by our august Emperor, seek a trading partnership for our mutual benefit."`)
+    }),
+    new Memo({
+      name: (FORTUITIES.SPRING_AUTUMN_PROOFS + '1'),
+      title: 'Spring-Autumn Proofs',
+      text: (`"Please see the attached list of requisite goods to prove your settlement's sufficient advancement. Note that these are yours to keep, their production alone is adequate proof. With all deserved regard,
+
+Ibadan, his Spring-Autumn Majesty's Seventh Seneschal of Trade"`)
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 1000,
+  questsBegin: [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS],
+  available: (fState: GameState) => {
+    const buildingsArray = Object.keys(fState.buildings || {}).map((id) => {
+      return fState.buildings?.[id];
+    });
+    for (let index = 0; index < buildingsArray.length; index++) {
+      const building = buildingsArray[index];
+      if (building?.buildingType === BUILDING_TYPES.GATE_BAKED_CLAY
+        || building?.buildingType === BUILDING_TYPES.GATE_BRICKWORK
+        || building?.buildingType === BUILDING_TYPES.GATE_METAL_CLAD
+        || building?.buildingType === BUILDING_TYPES.GATE_SHINING
+        || building?.buildingType === BUILDING_TYPES.GATE_RUNIC
+        || building?.buildingType === BUILDING_TYPES.GATE_PEARLESCENT) {
         return true;
       }
     }

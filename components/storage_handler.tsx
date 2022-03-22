@@ -282,31 +282,34 @@ export default function StorageHandlerComponent() {
 
   function saveIntoStorage() {
     if (account.sessionId && account.userId) {
-      let accountToSave = new Account(account);
+      const accountToSave = new Account(account);
       delete accountToSave.sessionId;
+      const body = JSON.stringify({
+        vault: vault,
+        research_status: researchStatus,
+        buildings: buildings,
+        buildings_construction: buildingsConstruction,
+        buildings_storage: buildingsStorage,
+        research_option_decks: researchOptionDecks,
+        timers: timers,
+        trading_status: tradingStatus,
+        accounts: accountToSave,
+        leaders: leaders,
+        equipment: equipment,
+        conversation_status: conversationStatus,
+        quest_status: questStatus,
+        messages: messages,
+        sessionId: account.sessionId,
+        userId: account.userId
+      });
+      console.log('body to save:');
+      console.log(body);
       fetch((STORAGE_UPSERT_URL), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          vault: vault,
-          research_status: researchStatus,
-          buildings: buildings,
-          buildings_construction: buildingsConstruction,
-          buildings_storage: buildingsStorage,
-          research_option_decks: researchOptionDecks,
-          timers: timers,
-          trading_status: tradingStatus,
-          accounts: accountToSave,
-          leaders: leaders,
-          equipment: equipment,
-          conversation_status: conversationStatus,
-          quest_status: questStatus,
-          messages: messages,
-          sessionId: account.sessionId,
-          userId: account.userId
-        })
+        body
       })
       .then((res) => {
         let tDate = new Date(Date.now());

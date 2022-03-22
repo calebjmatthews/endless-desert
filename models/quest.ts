@@ -27,6 +27,7 @@ export default class Quest implements QuestInterface {
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
   questsBegin?: string[];
+  tradingPartnerJoins?: string;
   conversationBegins?: Conversation;
 
   constructor(quest: QuestInterface|null) {
@@ -125,5 +126,6 @@ interface QuestInterface {
   gainResources?: {specificity: string, type: string, value: number}[];
   leaderJoins?: string;
   questsBegin?: string[];
+  tradingPartnerJoins?: string;
   conversationBegins?: Conversation;
 }

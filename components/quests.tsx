@@ -14,6 +14,7 @@ import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { addTimer } from '../actions/timers';
+import { tradingPartnerJoins } from '../actions/trading_status';
 import { addMemos, displayModalValue } from '../actions/ui';
 
 import QuestStatus from '../models/quest_status';
@@ -169,6 +170,9 @@ export default function QuestsComponent() {
         title: quest.conversationBegins.title,
         convoName: quest.conversationBegins.name
       }));
+    }
+    if (quest.tradingPartnerJoins) {
+      dispatch(tradingPartnerJoins(quest.tradingPartnerJoins));
     }
 
     if (quest.id == QUESTS.EARLY_DAYS_MARK_EQUIPMENT) {

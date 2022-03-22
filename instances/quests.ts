@@ -366,7 +366,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `There's a strange structure clinging to the wall of the cavern beneath your town. If you collected enough bricks to build a staircase, you could examine it properly.`,
-    finishText: `Your cartload of Mud Bricks is enough to build a perfectly serviceable, if  not especially attractive. At the top is the ruins of a desk, in even worse shape than than the one that contained the tome. Inside are a mismash of red metal pieces, and after some work you confirm that they were once a key. What happened to all the scholars in this town?`,
+    finishText: `Your cartload of Mud Bricks is enough to build a perfectly serviceable (if not especially attractive) set of stairs. At the top is the ruins of a desk, in even worse shape than than the one that contained the tome. A drawer contains a mismash of red metal pieces; after some work you confirm that they were once a key. What happened to all the scholars in this town?`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_A_TERRACED_PLATFORM,
         label: `Gather 240 Mud Bricks.`,
@@ -374,6 +374,35 @@ You're not sure if it's related to your actions, but someone has put a set of ru
           quantity: 240, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 13000 }]
+  }),
+  [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS]: new Quest({
+    id: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
+    subtitle: 'Nations',
+    name: 'Spring-Autumn Proofs',
+    givenBy: '',
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    description: `A Seneschal of the Spring-Autumn Kingdom has requested proof that your town would be a worthwhile trading partner.`,
+    finishText: `Another intimidatingly handsome letter dropped off by messager hawk describes your town in glowing terms. You can expect to see a trading party from the Spring-Autumn Kingdom soon!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
+        label: `Produce 1000 Thatch.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.THATCH}`,
+          quantity: 1000, consumed: false, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
+        label: `Produce 800 Glass.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GLASS}`,
+          quantity: 800, consumed: false, includeExisting: true } }),
+      new QuestTask({ index: 2, parentId: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
+        label: `Catch 600 Minnows.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.MINNOW}`,
+          quantity: 600, consumed: false, includeExisting: true } }),
+      new QuestTask({ index: 3, parentId: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
+        label: `Produce 100 Olive Oil.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.OLIVE_OIL}`,
+          quantity: 100, consumed: false, includeExisting: true } }),
+    ],
+    tradingPartnerJoins: TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM
   }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,

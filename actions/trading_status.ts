@@ -12,6 +12,14 @@ export function setTradingStatus(tradingStatus: TradingStatus) {
   }
 }
 
+export const TRADING_PARTNER_JOINS = 'TRADING_PARTNER_JOINS';
+export function tradingPartnerJoins(name: string) {
+  return {
+    type: TRADING_PARTNER_JOINS,
+    name
+  }
+}
+
 export const ADD_PENDING_TRADING_PARTNER = 'ADD_PENDING_TRADING_PARTNER';
 export function addPendingTradingPartnerVisit(tradingPartnerVisit: TradingPartnerVisit) {
   return {

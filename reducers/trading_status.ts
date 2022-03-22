@@ -1,6 +1,7 @@
 import TradingStatus from '../models/trading_status';
+import TradingPartner from '../models/trading_partner';
 import { tradingStatusStarting } from '../instances/trading_status';
-import { SET_TRADING_STATUS, ADD_PENDING_TRADING_PARTNER,
+import { SET_TRADING_STATUS, TRADING_PARTNER_JOINS, ADD_PENDING_TRADING_PARTNER,
   WELCOME_PENDING_TRADING_PARTNER, DISMISS_TRADING_PARTNER, COMPLETE_TRADE,
   TALK_TO } from '../actions/trading_status';
 
@@ -9,6 +10,19 @@ export default function (tradingStatus: TradingStatus = tradingStatusStarting,
 	switch(action.type) {
     case SET_TRADING_STATUS:
     return new TradingStatus(action.tradingStatus);
+
+    case TRADING_PARTNER_JOINS:
+    let newTPJTradingStatus = new TradingStatus(tradingStatus);
+    if (!tradingStatus.tradingPartners[action.name]) {
+      newTPJTradingStatus.tradingPartners = { ...tradingStatus.tradingPartners,
+        [action.name] : new TradingPartner({
+          name: action.name,
+          unlocked: true,
+          trust: 0
+        })
+      }
+    }
+    return newTPJTradingStatus;
 
     case ADD_PENDING_TRADING_PARTNER:
     let newAPTPTradingStatus = new TradingStatus(tradingStatus);
