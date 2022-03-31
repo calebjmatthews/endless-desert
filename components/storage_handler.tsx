@@ -32,6 +32,7 @@ import Account from '../models/account';
 import Leader from '../models/leader';
 import Building from '../models/building';
 import Vault from '../models/vault';
+import DBObject from '../models/db_object';
 import { buildingsStarting } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
@@ -177,7 +178,7 @@ export default function StorageHandlerComponent() {
     });
   }
 
-  function fetchFromStorage(sessionId: string|null = null, userId: string|null = null):
+  function fetchFromStorage(sessionId?: string, userId?: string):
     Promise<boolean> {
     if (!sessionId || !userId) {
       sessionId = account.sessionId;
@@ -194,52 +195,54 @@ export default function StorageHandlerComponent() {
       }
       return false;
     })
-    .then((dataRes) => {
+    .then((rawDataRes) => {
       try {
-        if (dataRes.data.accounts.length == 0) {
+        if (rawDataRes.data.accounts.length == 0) {
           return false;
         }
+        const importedState = new DBObject().import(rawDataRes.data);
         let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
         let vault: Vault = new Vault({ lastTimestamp: Date.now(), resources: {} });
+
         Object.keys(TABLE_SETTERS).map((tableName) => {
-          if (dataRes.data[tableName]) {
-            let jsonValue: any = {};
-            if (dataRes.data[tableName][0]) {
-              jsonValue = JSON.parse(dataRes.data[tableName][0].value);
+          if (importedState[tableName]) {
+            let tableValue: any = {};
+            if (importedState[tableName]) {
+              tableValue = importedState[tableName];
             }
             if (tableName != 'research_status'
               && tableName != 'buildings' && tableName != 'leaders'
               && tableName != 'accounts' && tableName != 'equipment'
-              && tableName != 'vault' && jsonValue) {
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
+              && tableName != 'vault' && tableValue) {
+              dispatch(TABLE_SETTERS[tableName](tableValue));
             }
-            else if (tableName == 'research_status' && jsonValue) {
-              let researchStatus = new ResearchStatus(jsonValue);
+            else if (tableName == 'research_status' && tableValue) {
+              let researchStatus = new ResearchStatus(tableValue);
               researchStatus.checkAndSetVisible();
               researchStatus.setResearchedActions();
               researchStatus.setBuildingsAvailable();
               researchStatus.setUpgradesAvailable();
               dispatch(setResearchStatus(researchStatus));
             }
-            else if (tableName == 'buildings' && jsonValue) {
-              buildings = jsonValue;
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            else if (tableName == 'buildings' && tableValue) {
+              buildings = tableValue;
+              dispatch(TABLE_SETTERS[tableName](tableValue));
             }
-            else if (tableName == 'leaders' && jsonValue) {
-              rawLeaders = jsonValue;
+            else if (tableName == 'leaders' && tableValue) {
+              rawLeaders = tableValue;
             }
-            else if (tableName == 'equipment' && jsonValue) {
-              equipment = jsonValue;
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            else if (tableName == 'equipment' && tableValue) {
+              equipment = tableValue;
+              dispatch(TABLE_SETTERS[tableName](tableValue));
             }
-            else if (tableName == 'vault' && jsonValue) {
-              vault = jsonValue;
-              dispatch(TABLE_SETTERS[tableName](jsonValue));
+            else if (tableName == 'vault' && tableValue) {
+              vault = tableValue;
+              dispatch(TABLE_SETTERS[tableName](tableValue));
             }
-            else if (tableName == 'accounts' && jsonValue) {
-              let account = jsonValue;
+            else if (tableName == 'accounts' && tableValue) {
+              let account = tableValue;
               account.sessionId = sessionId;
               dispatch(TABLE_SETTERS[tableName](account));
             }
@@ -284,24 +287,23 @@ export default function StorageHandlerComponent() {
     if (account.sessionId && account.userId) {
       const accountToSave = new Account(account);
       delete accountToSave.sessionId;
-      const body = JSON.stringify({
+      const dbObject = new DBObject({
         vault: vault,
-        research_status: researchStatus,
+        researchStatus: researchStatus,
         buildings: buildings,
-        buildings_construction: buildingsConstruction,
-        buildings_storage: buildingsStorage,
-        research_option_decks: researchOptionDecks,
+        buildingsConstruction: buildingsConstruction,
+        buildingsStorage: buildingsStorage,
+        researchOptionDecks: researchOptionDecks,
         timers: timers,
-        trading_status: tradingStatus,
-        accounts: accountToSave,
+        tradingStatus: tradingStatus,
+        account: accountToSave,
         leaders: leaders,
         equipment: equipment,
-        conversation_status: conversationStatus,
-        quest_status: questStatus,
+        conversationStatus: conversationStatus,
+        questStatus: questStatus,
         messages: messages,
-        sessionId: account.sessionId,
-        userId: account.userId
-      });
+      }, account.sessionId, account.userId);
+      const body = JSON.stringify(dbObject);
       console.log('body to save:');
       console.log(body);
       fetch((STORAGE_UPSERT_URL), {

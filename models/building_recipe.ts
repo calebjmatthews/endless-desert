@@ -6,17 +6,13 @@ export default class BuildingRecipe {
 
   constructor(recipe: BuildingRecipe) {
     let produces: { specificity: string, type: string, quantity: number,
-      probability: number }[]|null = null;
+      probability: number }[] = [];
     if (recipe.produces) {
-      produces = [];
-      // @ts-ignore
       recipe.produces.map((produce) => produces.push(produce));
       recipe.produces = produces;
     }
-    let consumes: { specificity: string, type: string, quantity: number }[]|null = null;
+    let consumes: { specificity: string, type: string, quantity: number }[] = [];
     if (recipe.consumes) {
-      consumes = [];
-      // @ts-ignore
       recipe.consumes.map((consume) => consumes.push(consume));
       recipe.consumes = consumes;
     }

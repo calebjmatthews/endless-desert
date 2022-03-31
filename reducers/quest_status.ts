@@ -6,8 +6,9 @@ import { SET_QUEST_STATUS, ADD_QUEST, REMOVE_QUEST, ADD_TO_ACTIVITY_QUEUE,
   REMOVE_FROM_ACTIVITY_QUEUE, SET_QUEST_PROGRESS, SET_QUEST_READY_TO_COMPLETE,
   ADD_QUEST_COMPLETED } from '../actions/quest_status';
 
-export default function (questStatus: QuestStatus = { quests: {}, questsCompleted: {},
-  lastDailyCompleted: 0, activityQueue: [], resourcesToCheck: {} }, action: any = null) {
+export default function (questStatus: QuestStatus = new QuestStatus({
+    quests: {},  questsCompleted: {}, lastDailyCompleted: 0, activityQueue: [], resourcesToCheck: {}
+  }), action: any = null) {
 	switch(action.type) {
     case SET_QUEST_STATUS:
     return new QuestStatus(action.questStatus);

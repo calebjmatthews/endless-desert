@@ -8,8 +8,8 @@ export const FADE_IN_DELAY = 400;
 export const FADE_CHAR_DELAY = 30;
 export const FADE_CHAR_MULT = 8;
 
-// export const STORAGE_BASE_URL = 'http://localhost:8080/';
-export const BASE_URL = 'https://endlessdesert.app/';
+export const BASE_URL = 'http://localhost:8080/';
+// export const BASE_URL = 'https://endlessdesert.app/';
 export const STORAGE_GET_URL = `${BASE_URL}api/storage_get/`;
 export const STORAGE_UPSERT_URL = `${BASE_URL}api/storage_upsert/`;
 export const SESSION_URL = `${BASE_URL}api/session_check/`;

@@ -1,0 +1,5845 @@
+{
+  "vault": {
+    "lastTimestamp": 1648139652667,
+    "resources": {
+      "Knowledge|0": {
+        "type": "Knowledge",
+        "quality": 0,
+        "quantity": 4915.5,
+        "tags": []
+      },
+      "Lentil Seeds|0": {
+        "type": "Lentil Seeds",
+        "quality": 0,
+        "quantity": 403,
+        "tags": []
+      },
+      "Reed Seeds|0": {
+        "type": "Reed Seeds",
+        "quality": 0,
+        "quantity": 215,
+        "tags": []
+      },
+      "Water|0": {
+        "type": "Water",
+        "quality": 0,
+        "quantity": 2363772.1347469296,
+        "tags": []
+      },
+      "Lentil|0": {
+        "type": "Lentil",
+        "quality": 0,
+        "quantity": 952589.2267728325,
+        "tags": []
+      },
+      "Oak Wood|0": {
+        "type": "Oak Wood",
+        "quality": 0,
+        "quantity": 601,
+        "tags": []
+      },
+      "Yellow Sand|0": {
+        "type": "Yellow Sand",
+        "quality": 0,
+        "quantity": 323483.9527198289,
+        "tags": []
+      },
+      "Muddy Clay|0": {
+        "type": "Muddy Clay",
+        "quality": 0,
+        "quantity": 198711.42917994794,
+        "tags": []
+      },
+      "Jade|0": {
+        "type": "Jade",
+        "quality": 0,
+        "quantity": 8,
+        "tags": []
+      },
+      "Reeds|0": {
+        "type": "Reeds",
+        "quality": 0,
+        "quantity": 345025.3233736677,
+        "tags": []
+      },
+      "Blue Clay|0": {
+        "type": "Blue Clay",
+        "quality": 0,
+        "quantity": 67,
+        "tags": []
+      },
+      "Alder Wood|0": {
+        "type": "Alder Wood",
+        "quality": 0,
+        "quantity": 100,
+        "tags": []
+      },
+      "Rowan Wood|0": {
+        "type": "Rowan Wood",
+        "quality": 0,
+        "quantity": 237.62860800000016,
+        "tags": []
+      },
+      "Olive Seeds|0": {
+        "type": "Olive Seeds",
+        "quality": 0,
+        "quantity": 26,
+        "tags": []
+      },
+      "Dune Sand|0": {
+        "type": "Dune Sand",
+        "quality": 0,
+        "quantity": 499,
+        "tags": []
+      },
+      "Grain Seeds|0": {
+        "type": "Grain Seeds",
+        "quality": 0,
+        "quantity": 94,
+        "tags": []
+      },
+      "Rust Ore|0": {
+        "type": "Rust Ore",
+        "quality": 0,
+        "quantity": 166,
+        "tags": []
+      },
+      "Simple Robe (Unmarked)|0": {
+        "type": "Simple Robe (Unmarked)",
+        "quality": 0,
+        "quantity": 0,
+        "tags": []
+      },
+      "Rich Clay|0": {
+        "type": "Rich Clay",
+        "quality": 0,
+        "quantity": 274,
+        "tags": []
+      },
+      "Olivine Sand|0": {
+        "type": "Olivine Sand",
+        "quality": 0,
+        "quantity": 2443,
+        "tags": []
+      },
+      "Thrice Locked Tome|0": {
+        "type": "Thrice Locked Tome",
+        "quality": 0,
+        "quantity": 1,
+        "tags": []
+      },
+      "Potato|0": {
+        "type": "Potato",
+        "quality": 0,
+        "quantity": 291,
+        "tags": []
+      },
+      "Volcanic Sand|0": {
+        "type": "Volcanic Sand",
+        "quality": 0,
+        "quantity": 2446,
+        "tags": []
+      },
+      "Red Clay|0": {
+        "type": "Red Clay",
+        "quality": 0,
+        "quantity": 253,
+        "tags": []
+      },
+      "Onion|0": {
+        "type": "Onion",
+        "quality": 0,
+        "quantity": 393,
+        "tags": []
+      },
+      "Thatch|0": {
+        "type": "Thatch",
+        "quality": 0,
+        "quantity": 11592.82082511877,
+        "tags": []
+      },
+      "Ferrous Ink|0": {
+        "type": "Ferrous Ink",
+        "quality": 0,
+        "quantity": 64,
+        "tags": []
+      },
+      "Rough Mattock (Unmarked)|0": {
+        "type": "Rough Mattock (Unmarked)",
+        "quality": 0,
+        "quantity": 0,
+        "tags": []
+      },
+      "Pale Ore|0": {
+        "type": "Pale Ore",
+        "quality": 0,
+        "quantity": 19,
+        "tags": []
+      },
+      "Broken Red Key|0": {
+        "type": "Broken Red Key",
+        "quality": 0,
+        "quantity": 1,
+        "tags": []
+      },
+      "Mud Bricks|0": {
+        "type": "Mud Bricks",
+        "quality": 0,
+        "quantity": 41.19271800001142,
+        "tags": []
+      },
+      "Brine|0": {
+        "type": "Brine",
+        "quality": 0,
+        "quantity": 3101,
+        "tags": []
+      },
+      "Greenish Ore|0": {
+        "type": "Greenish Ore",
+        "quality": 0,
+        "quantity": 43,
+        "tags": []
+      },
+      "Dusty Ore|0": {
+        "type": "Dusty Ore",
+        "quality": 0,
+        "quantity": 23,
+        "tags": []
+      },
+      "Darjeeling Tea Leaves|0": {
+        "type": "Darjeeling Tea Leaves",
+        "quality": 0,
+        "quantity": 268,
+        "tags": []
+      },
+      "Quail|0": {
+        "type": "Quail",
+        "quality": 0,
+        "quantity": 58,
+        "tags": []
+      },
+      "Glass|0": {
+        "type": "Glass",
+        "quality": 0,
+        "quantity": 1940.6009959999462,
+        "tags": []
+      },
+      "Charcoal|0": {
+        "type": "Charcoal",
+        "quality": 0,
+        "quantity": 312.37139200000007,
+        "tags": []
+      },
+      "Tomato|0": {
+        "type": "Tomato",
+        "quality": 0,
+        "quantity": 2,
+        "tags": []
+      },
+      "Soup-6439d2f9|0": {
+        "type": "Soup-6439d2f9",
+        "quality": 0,
+        "quantity": 0,
+        "id": "6439d2f9",
+        "name": "Plain Lentil Soup",
+        "category": "Dish",
+        "subcategory": "Soup",
+        "tags": [
+          "Food",
+          "Crop"
+        ],
+        "value": 27.500000000000004,
+        "icon": {
+          "provider": "svg",
+          "name": "Soup",
+          "size": 29,
+          "width": "29px",
+          "height": "29px",
+          "color": "#a0ddb0",
+          "shadow": "#5bc980",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    }
+  },
+  "research_status": {
+    "status": {
+      "Scholarship": "completed",
+      "Study": "completed",
+      "Analysis": "completed",
+      "Gate Expansion": "completed",
+      "Brickwork Gate Expansion": "visible",
+      "Metal-Clad Gate Expansion": "hidden",
+      "Portentous Study": "completed",
+      "Field Notes": "visible",
+      "Biology": "completed",
+      "Advanced Biology": "hidden",
+      "Reed Cultivation": "completed",
+      "Bountiful Reed Cultivation": "visible",
+      "Lentil Farming": "completed",
+      "Hearty Lentil Farming": "completed",
+      "Olive Farming": "visible",
+      "Simplified Olive Farming": "hidden",
+      "Grain Farming": "hidden",
+      "Simplified Grain Farming": "hidden",
+      "Fishing": "visible",
+      "Quail Husbandry": "hidden",
+      "Simplified Quail Husbandry": "hidden",
+      "Ox Husbandry": "hidden",
+      "Anthropology": "completed",
+      "Trading": "completed",
+      "Basic Education": "visible",
+      "Physics": "completed",
+      "Advanced Physics": "hidden",
+      "Clay Excavation": "completed",
+      "Quality Clay Excavation": "hidden",
+      "Sand Excavation": "completed",
+      "Rapid Sand Excavation": "hidden",
+      "Hut Construction": "completed",
+      "Cottage Construction": "completed",
+      "House Construction": "hidden",
+      "Compaction": "visible",
+      "Simplified Compaction": "hidden",
+      "Grinding": "visible",
+      "Simplified Grinding": "hidden",
+      "Weaving": "hidden",
+      "Sand Purification": "hidden",
+      "Tailoring": "hidden",
+      "Outfitting": "hidden",
+      "Chemistry": "completed",
+      "Advanced Chemistry": "hidden",
+      "Dehydration": "completed",
+      "Simplified Dehydration": "hidden",
+      "Combustion": "completed",
+      "Simplified Combustion": "hidden",
+      "Ventilated Combustion": "hidden",
+      "Tool Fabrication": "hidden",
+      "Cooking": "completed",
+      "Bountiful Cooking": "hidden",
+      "Glass Shaping": "hidden",
+      "Solvents": "hidden",
+      "Pottery": "hidden",
+      "Fermentation": "hidden",
+      "Thrice Locked Tome": "visible",
+      "Mysticism": "hidden",
+      "Exploration of Rituals": "hidden"
+    },
+    "actions": {
+      "Research": [
+        "Study",
+        "Analysis"
+      ]
+    },
+    "resourcesStudied": {
+      "Water|0": true,
+      "Lentil|0": true,
+      "Yellow Sand|0": true,
+      "Oak Wood|0": true,
+      "Lentil Seeds|0": true,
+      "Reeds|0": true,
+      "Muddy Clay|0": true,
+      "Dune Sand|0": true,
+      "Reed Seeds|0": true,
+      "Alder Wood|0": true,
+      "Blue Clay|0": true,
+      "Rowan Wood|0": true,
+      "Rich Clay|0": true,
+      "Olive Seeds|0": true,
+      "Rust Ore|0": true,
+      "Olivine Sand|0": true,
+      "Grain Seeds|0": true,
+      "Jade|0": true,
+      "Potato|0": true,
+      "Thatch|0": true,
+      "Volcanic Sand|0": true,
+      "Red Clay|0": true,
+      "Onion|0": true,
+      "Ferrous Ink|0": true,
+      "Pale Ore|0": true,
+      "Mud Bricks|0": true,
+      "Brine|0": true,
+      "Darjeeling Tea Leaves|0": true,
+      "Dusty Ore|0": true,
+      "Greenish Ore|0": true,
+      "Glass|0": true,
+      "Charcoal|0": true,
+      "Quail|0": true,
+      "Tomato|0": true,
+      "Soup|0": true
+    },
+    "buildingsAvailable": {
+      "Lentil Field": true,
+      "Reed Delta": true,
+      "Clay Pit": true,
+      "Sand Pit": true,
+      "Huts": true,
+      "Drying Yard": true,
+      "Furnace": true,
+      "Kitchen": true
+    },
+    "upgradesAvailable": {
+      "Cottages": true,
+      "Hearty Lentil Field": true,
+      "Portentous Study": true,
+      "Baked-Clay Gate": true
+    }
+  },
+  "buildings": {
+    "1d198ebcda604722": {
+      "id": "1d198ebcda604722",
+      "buildingType": "Cistern",
+      "suffix": 1,
+      "name": "Cistern",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "b08a20f06866ced2": {
+      "id": "b08a20f06866ced2",
+      "buildingType": "Hearty Lentil Field",
+      "suffix": 1,
+      "name": "Hearty Lentil Field",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "ab7a1ea638c6ab80": {
+      "id": "ab7a1ea638c6ab80",
+      "buildingType": "Study",
+      "suffix": 1,
+      "name": "Study",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "af3987efa1cdd687": {
+      "id": "af3987efa1cdd687",
+      "buildingType": "Cottages",
+      "suffix": 1,
+      "name": "Cottages",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "8388d142d67430b8": {
+      "id": "8388d142d67430b8",
+      "buildingType": "Shattered Dome",
+      "suffix": 1,
+      "name": "Shattered Dome",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "5d3e4d2fb5610b7d": {
+      "id": "5d3e4d2fb5610b7d",
+      "buildingType": "Market",
+      "suffix": 1,
+      "name": "Market",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "5e5b8d54ed31d5de": {
+      "id": "5e5b8d54ed31d5de",
+      "buildingType": "Baked-Clay Gate",
+      "suffix": 1,
+      "name": "Baked-Clay Gate",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "6438efd860a09bdd": {
+      "id": "6438efd860a09bdd",
+      "buildingType": "Reed Delta",
+      "suffix": 1,
+      "name": "Reed Delta",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "2c765db5351ed823": {
+      "id": "2c765db5351ed823",
+      "buildingType": "Clay Pit",
+      "suffix": 1,
+      "name": "Clay Pit",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "e340870498ef8366": {
+      "id": "e340870498ef8366",
+      "buildingType": "Sand Pit",
+      "suffix": 1,
+      "name": "Sand Pit",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "c760bd945dd3ce33": {
+      "id": "c760bd945dd3ce33",
+      "buildingType": "Huts",
+      "suffix": 2,
+      "name": "Huts II",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "dceb9f5b86f82ae7": {
+      "id": "dceb9f5b86f82ae7",
+      "buildingType": "Hearty Lentil Field",
+      "suffix": 2,
+      "name": "Hearty Lentil Field II",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "b5c37bf6bfcd4f1e": {
+      "id": "b5c37bf6bfcd4f1e",
+      "buildingType": "Drying Yard",
+      "suffix": 1,
+      "name": "Drying Yard",
+      "recipeSelected": 1,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "7bc8add2fbe59d69": {
+      "id": "7bc8add2fbe59d69",
+      "buildingType": "Furnace",
+      "suffix": 1,
+      "name": "Furnace",
+      "recipeSelected": 1,
+      "resourcesSelected": {
+        "Subcategory|Sand": {
+          "type": "Yellow Sand",
+          "quality": 0,
+          "quantity": 39683.94866666606,
+          "tags": []
+        },
+        "Tag|Fuel": {
+          "type": "Reeds",
+          "quality": 0,
+          "quantity": 62913.4261437088,
+          "tags": []
+        },
+        "Subcategory|Wood": {
+          "type": "Rowan Wood",
+          "quality": 0,
+          "quantity": 318,
+          "tags": []
+        }
+      },
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "ea74c959361a9a94": {
+      "id": "ea74c959361a9a94",
+      "buildingType": "Kitchen",
+      "suffix": 1,
+      "name": "Kitchen",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": {
+        "index": 0,
+        "produces": [
+          {
+            "specificity": "Exact",
+            "type": "Soup-6439d2f9",
+            "quantity": 20,
+            "probability": 1
+          }
+        ],
+        "consumes": [
+          {
+            "specificity": "Exact",
+            "type": "Lentil",
+            "quantity": 20
+          },
+          {
+            "specificity": "Exact",
+            "type": "Water",
+            "quantity": 4
+          }
+        ]
+      },
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    }
+  },
+  "buildings_construction": {
+    "Clay Pit": {
+      "id": "2738f9b6d3e27dc7",
+      "buildingType": "Clay Pit",
+      "suffix": 2,
+      "name": "Clay Pit II",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    }
+  },
+  "buildings_storage": {
+    "fee642332287c1d1": {
+      "id": "fee642332287c1d1",
+      "buildingType": "Reed Delta",
+      "suffix": 2,
+      "name": "Reed Delta II",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "d4ce91d42b51de00": {
+      "id": "d4ce91d42b51de00",
+      "buildingType": "Drying Yard",
+      "suffix": 2,
+      "name": "Drying Yard II",
+      "recipeSelected": 1,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    },
+    "f826e8f9ac941ce8": {
+      "id": "f826e8f9ac941ce8",
+      "buildingType": "Lentil Field",
+      "suffix": 3,
+      "name": "Lentil Field III",
+      "recipeSelected": 0,
+      "resourcesSelected": {},
+      "recipe": null,
+      "paidCosts": {},
+      "paidResources": [],
+      "paidUpgradeCosts": {},
+      "paidUpgradeResources": []
+    }
+  },
+  "research_option_decks": {
+    "Scholarship": {
+      "researchName": "Scholarship",
+      "stepsCompleted": 1,
+      "stepsNeeded": 1,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "generalOptions": {},
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "An Inkling": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Study": {
+      "researchName": "Study",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Casual Inspection": true
+      },
+      "generalOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "An Inkling": true,
+        "Casual Inspection": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Analysis": {
+      "researchName": "Analysis",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "A Snack": true,
+        "A Guess": true,
+        "An Inkling": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Anthropology": {
+      "researchName": "Anthropology",
+      "stepsCompleted": 1,
+      "stepsNeeded": 1,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Remembered Meetings": true,
+        "Linguistic Guesswork": true,
+        "Familiar Cuisine": true,
+        "Sandy Limericks": true
+      },
+      "generalOptions": {},
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Sandy Limericks": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Biology": {
+      "researchName": "Biology",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Legume Dissection": true,
+        "Water Under the Sun": true,
+        "Botanical Hearsay": true,
+        "Germination": true
+      },
+      "generalOptions": {},
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Botanical Hearsay": true,
+        "Germination": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Trading": {
+      "researchName": "Trading",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Remembered Meetings": true,
+        "Linguistic Guesswork": true,
+        "Familiar Cuisine": true,
+        "Sandy Limericks": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Sandy Limericks": true,
+        "Familiar Cuisine": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Lentil Farming": {
+      "researchName": "Lentil Farming",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Legume Dissection": true,
+        "Water Under the Sun": true,
+        "Botanical Hearsay": true,
+        "Germination": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Water Under the Sun": true,
+        "Germination": true,
+        "Legume Dissection": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Physics": {
+      "researchName": "Physics",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Early Principles": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "generalOptions": {},
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Sand and Soil": true,
+        "Borrow Clues": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Clay Excavation": {
+      "researchName": "Clay Excavation",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Early Principles": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Reed Cultivation": {
+      "researchName": "Reed Cultivation",
+      "stepsCompleted": 1,
+      "stepsNeeded": 1,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Legume Dissection": true,
+        "Water Under the Sun": true,
+        "Botanical Hearsay": true,
+        "Germination": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Water Under the Sun": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Sand Excavation": {
+      "researchName": "Sand Excavation",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Early Principles": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Hut Construction": {
+      "researchName": "Hut Construction",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Early Principles": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Sand and Soil": true,
+        "To Build a Home": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Cottage Construction": {
+      "researchName": "Cottage Construction",
+      "stepsCompleted": 4,
+      "stepsNeeded": 4,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Early Principles": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "To Build a Home": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "To Build a Home": true,
+        "Sand and Soil": true,
+        "Borrow Clues": true,
+        "Early Principles": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Chemistry": {
+      "researchName": "Chemistry",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Hints from Alchemy": true,
+        "Distillation": true,
+        "Fire Starting": true,
+        "Hidden in the Sand": true
+      },
+      "generalOptions": {},
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Fire Starting": true,
+        "Distillation": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Dehydration": {
+      "researchName": "Dehydration",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Hints from Alchemy": true,
+        "Distillation": true,
+        "Fire Starting": true,
+        "Hidden in the Sand": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Hidden in the Sand": true,
+        "Hints from Alchemy": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Hearty Lentil Farming": {
+      "researchName": "Hearty Lentil Farming",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Legume Dissection": true,
+        "Water Under the Sun": true,
+        "Botanical Hearsay": true,
+        "Germination": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Botanical Hearsay": true,
+        "Legume Dissection": true,
+        "Water Under the Sun": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Gate Expansion": {
+      "researchName": "Gate Expansion",
+      "stepsCompleted": 2,
+      "stepsNeeded": 2,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Sand Variety": true,
+        "Clay Variety": true
+      },
+      "generalOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "Clay Variety": true,
+        "Sand Variety": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Combustion": {
+      "researchName": "Combustion",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Hints from Alchemy": true,
+        "Distillation": true,
+        "Fire Starting": true,
+        "Hidden in the Sand": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Fire Starting": true,
+        "Hidden in the Sand": true,
+        "Hints from Alchemy": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Cooking": {
+      "researchName": "Cooking",
+      "stepsCompleted": 4,
+      "stepsNeeded": 4,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "Hints from Alchemy": true,
+        "Distillation": true,
+        "Fire Starting": true,
+        "Hidden in the Sand": true
+      },
+      "secondaryOptions": {
+        "Aggrivation": true,
+        "A Worthwhile Distraction": true
+      },
+      "viewedOptions": {
+        "Hidden in the Sand": true,
+        "Fire Starting": true,
+        "Distillation": true,
+        "Hints from Alchemy": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Portentous Study": {
+      "researchName": "Portentous Study",
+      "stepsCompleted": 3,
+      "stepsNeeded": 3,
+      "optionSlots": 1,
+      "preferredOptions": {},
+      "generalOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "Productive Destruction": true,
+        "A Guess": true,
+        "A Snack": true
+      },
+      "currentOptions": [],
+      "paidCosts": {}
+    },
+    "Brickwork Gate Expansion": {
+      "researchName": "Brickwork Gate Expansion",
+      "stepsCompleted": 0,
+      "stepsNeeded": 1,
+      "optionSlots": 1,
+      "preferredOptions": {
+        "Brick Variety": true
+      },
+      "generalOptions": {
+        "An Inkling": true,
+        "A Guess": true,
+        "Productive Destruction": true,
+        "Variety in Approach": true,
+        "A Snack": true
+      },
+      "secondaryOptions": {
+        "Frustration": true,
+        "Exploring Possibilities": true,
+        "Reckless Concentration": true
+      },
+      "viewedOptions": {
+        "Brick Variety": true
+      },
+      "currentOptions": [
+        "Brick Variety"
+      ],
+      "paidCosts": {}
+    }
+  },
+  "timers": {
+    "Fortuity-2fcdc695": {
+      "name": "Fortuity-2fcdc695",
+      "startedAt": 1648139652665,
+      "endsAt": 1648139719066,
+      "progress": 0.0015060014156409451,
+      "remainingLabel": "1m 6s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-11372fc1": {
+      "name": "Fortuity-11372fc1",
+      "startedAt": 1648139652665,
+      "endsAt": 1648139736692,
+      "progress": 0.0011900936603748136,
+      "remainingLabel": "1m 24s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-69b0cb01": {
+      "name": "Fortuity-69b0cb01",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139712115,
+      "progress": 0,
+      "remainingLabel": "59s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-b218c8a8": {
+      "name": "Fortuity-b218c8a8",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139725948,
+      "progress": 0,
+      "remainingLabel": "1m 13s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-e5452f59": {
+      "name": "Fortuity-e5452f59",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139724274,
+      "progress": 0,
+      "remainingLabel": "1m 11s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Daily Quest-6299ea9c": {
+      "name": "Daily Quest-6299ea9c",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139704191,
+      "progress": 0,
+      "remainingLabel": "51s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": false,
+      "dailyQuestCheck": true,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-1e6a26e6": {
+      "name": "Fortuity-1e6a26e6",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139696080,
+      "progress": 0,
+      "remainingLabel": "43s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    },
+    "Fortuity-90fbc369": {
+      "name": "Fortuity-90fbc369",
+      "startedAt": 1648139652666,
+      "endsAt": 1648139688367,
+      "progress": 0,
+      "remainingLabel": "35s ",
+      "resourcesToIncrease": [],
+      "resourcesToConsume": [],
+      "buildingToBuild": null,
+      "buildingToUpgrade": null,
+      "tradingPartnerToArrive": null,
+      "fortuityCheck": true,
+      "dailyQuestCheck": false,
+      "questActivity": null,
+      "messageToDisplay": null,
+      "iconToDisplay": null
+    }
+  },
+  "trading_status": {
+    "tradingPartners": {
+      "Foxfire Ascetics": {
+        "name": "Foxfire Ascetics",
+        "unlocked": true,
+        "trust": 115
+      },
+      "Trefoil Islands": {
+        "name": "Trefoil Islands",
+        "unlocked": true,
+        "trust": 182
+      },
+      "Red Crow Traders": {
+        "name": "Red Crow Traders",
+        "unlocked": true,
+        "trust": 171
+      }
+    },
+    "tradingPartnerVisits": {},
+    "tpPending": [
+      {
+        "name": "Trefoil Islands",
+        "trades": {
+          "7e4b27fd": {
+            "id": "7e4b27fd",
+            "tradingPartnerType": "Trefoil Islands",
+            "give": {
+              "type": "Ferrous Ink",
+              "quality": 0
+            },
+            "receive": {
+              "specificity": "Tag",
+              "type": "Food"
+            }
+          },
+          "6ceec1b8": {
+            "id": "6ceec1b8",
+            "tradingPartnerType": "Trefoil Islands",
+            "give": {
+              "type": "Potato",
+              "quality": 0
+            },
+            "receive": {
+              "specificity": "Tag",
+              "type": "Drink"
+            }
+          },
+          "b0336bab": {
+            "id": "b0336bab",
+            "tradingPartnerType": "Trefoil Islands",
+            "give": {
+              "type": "Rowan Wood",
+              "quality": 0
+            },
+            "receive": {
+              "specificity": "Tag",
+              "type": "Food"
+            }
+          },
+          "9e67e9da": {
+            "id": "9e67e9da",
+            "tradingPartnerType": "Trefoil Islands",
+            "give": {
+              "type": "Rust Ore",
+              "quality": 0
+            },
+            "receive": {
+              "specificity": "Tag",
+              "type": "Food"
+            }
+          }
+        },
+        "acceptQuantity": 264,
+        "traded": {},
+        "arrived": "2022-03-21T21:15:50.941Z",
+        "talkedTo": false
+      }
+    ]
+  },
+  "accounts": {
+    "userId": "e07b4578",
+    "storageCallSave": false,
+    "introState": "Done",
+    "tabsUnloked": [
+      "Resources",
+      "Buildings",
+      "Quests",
+      "Research",
+      "Trading",
+      "Leaders",
+      "Equipment"
+    ],
+    "fortuityCurrent": {
+      "name": "Proofs for the Spring-Autumn Kingdom",
+      "openLine": "A letter falls onto you",
+      "memos": [
+        {
+          "name": "Proofs for the Spring-Autumn Kingdom0",
+          "resourcesGained": null,
+          "resourcesConsumed": null,
+          "messages": null,
+          "leaderJoined": null,
+          "questsBegin": null,
+          "timestamp": "2022-03-24T16:34:11.229Z",
+          "title": "Spring-Autumn Proofs",
+          "text": "A messenger hawk drops a letter onto your head, which is lightly perfumed bears a wax seal. It reads:\n\n\"We have received word of the rapid growth of your settlement, which lies near to routes often used by our trading parties. We, with authority vested by our august Emperor, seek a trading partnership for our mutual benefit.\""
+        },
+        {
+          "name": "Proofs for the Spring-Autumn Kingdom1",
+          "resourcesGained": null,
+          "resourcesConsumed": null,
+          "messages": null,
+          "leaderJoined": null,
+          "questsBegin": null,
+          "timestamp": "2022-03-24T16:34:11.229Z",
+          "title": "Spring-Autumn Proofs",
+          "text": "\"Please see the attached list of requisite goods to prove your settlement's sufficient advancement. Note that these are yours to keep, their production alone is adequate proof. With all deserved regard,\n\nIbadan, his Spring-Autumn Majesty's Seventh Seneschal of Trade\""
+        }
+      ],
+      "type": "Observation",
+      "repeatable": false,
+      "weight": 1000,
+      "questsBegin": [
+        "Nations: Spring-Autumn Proofs"
+      ]
+    },
+    "fortuitiesSeen": {
+      "A Familiar Figure": 1647633893627,
+      "An Unrepentant Figure": 1647639253679,
+      "Thrice Locked Tome": 1647645271998,
+      "Rain": 1647646656001,
+      "A Shuddering Figure": 1647647731381,
+      "Unspeaking": 1647647753686,
+      "Fierce Wind": 1647811611658
+    },
+    "fortuityDailyLast": 1647811611658,
+    "showCompletedResearches": false,
+    "milestones": {},
+    "setStorageCallSave": false
+  },
+  "leaders": {
+    "c1c1b3d1cc3d0b13": {
+      "id": "c1c1b3d1cc3d0b13",
+      "name": "Samannoud",
+      "title": "of ten thousand paths",
+      "description": "A bevy of scars, sun-bleached hair, and a fondness for cats. You've known |name| as long as you can remember.",
+      "speechType": "Aggressive",
+      "assignedTo": "b5c37bf6bfcd4f1e",
+      "livingAt": "af3987efa1cdd687",
+      "toolEquipped": "658e9b4c63e4e136",
+      "clothingEquipped": "c6266c7c29ca6e73",
+      "backEquipped": null,
+      "effects": [
+        {
+          "quality": "Speed",
+          "change": 79.55000000000003
+        }
+      ],
+      "happiness": 33,
+      "explanations": {
+        "Happiness": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "0%"
+          },
+          {
+            "source": "Cottages",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Cottages",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+15%",
+            "total": "15%"
+          },
+          {
+            "source": "Plain Lentil Soup",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Soup",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#a0ddb0",
+              "shadow": "#5bc980",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+7%",
+            "total": "22%"
+          },
+          {
+            "source": "Water",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Drop",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#28aae1",
+              "shadow": "#2887c3",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#aaebf0",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+1%",
+            "total": "23%"
+          },
+          {
+            "source": "Simple Robe",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Simple Robe",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+10%",
+            "total": "33%"
+          }
+        ],
+        "Happiness applies to speed": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "0%"
+          },
+          {
+            "source": "Four Point Bangle",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Coarse Implements",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+100%",
+            "total": "100%"
+          }
+        ],
+        "Speed|null|null": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "100%"
+          },
+          {
+            "source": "Four Point Bangle",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Coarse Implements",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x135%",
+            "total": "135%"
+          },
+          {
+            "source": "Happiness",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Happiness",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x133%",
+            "total": "179%"
+          }
+        ]
+      },
+      "eating": "Soup-6439d2f9|0",
+      "drinking": "Water|0",
+      "icon": {
+        "provider": "svg",
+        "name": "Samannoud",
+        "size": 19,
+        "width": "19px",
+        "height": "19px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    },
+    "8547d914f5d4255f": {
+      "id": "8547d914f5d4255f",
+      "name": "Guangzhou",
+      "title": "the Foxfire Heretic",
+      "description": "|name| has been ejected from the Foxfire Ascetics, although there's no explanation as to why. But there are clues: a fierce glint in the eyes, and decidedly non-traditional views on alcohol consumption.",
+      "speechType": "Calm",
+      "assignedTo": "7bc8add2fbe59d69",
+      "livingAt": "c760bd945dd3ce33",
+      "toolEquipped": "2713d6cf910c3b12",
+      "clothingEquipped": "c8bdd1c6de7d2717",
+      "backEquipped": null,
+      "effects": [
+        {
+          "quality": "Efficiency",
+          "change": 6.499999999999995
+        },
+        {
+          "quality": "Efficiency",
+          "change": 11.824999999999996,
+          "specificity": "Exact",
+          "type": "Reeds",
+          "source": "Wooden Pole"
+        }
+      ],
+      "happiness": 13,
+      "explanations": {
+        "Happiness": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "0%"
+          },
+          {
+            "source": "Lentil",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Lentil",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#a0ddb0",
+              "shadow": "#5bc980",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+2%",
+            "total": "2%"
+          },
+          {
+            "source": "Water",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Drop",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#28aae1",
+              "shadow": "#2887c3",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#aaebf0",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+1%",
+            "total": "3%"
+          },
+          {
+            "source": "Simple Robe",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Simple Robe",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+10%",
+            "total": "13%"
+          }
+        ],
+        "Efficiency|null|null": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "100%"
+          },
+          {
+            "source": "Happiness",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Happiness",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x106%",
+            "total": "106%"
+          }
+        ],
+        "Efficiency|Exact|Reeds": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "100%"
+          },
+          {
+            "source": "Wooden Pole",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Wooden Pole",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x105%",
+            "total": "105%"
+          },
+          {
+            "source": "Happiness",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Happiness",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x106%",
+            "total": "111%"
+          }
+        ]
+      },
+      "eating": "Lentil|0",
+      "drinking": "Water|0",
+      "icon": {
+        "provider": "svg",
+        "name": "Guangzhou",
+        "size": 19,
+        "width": "19px",
+        "height": "19px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    },
+    "467650e2c639cf3b": {
+      "id": "467650e2c639cf3b",
+      "name": "Da Nang",
+      "title": "the Shuddering Refuge",
+      "description": "You don't see many physical scars, but |name| and company are a downcast and solumn group. Their nightly singing as the sun goes down is one of the most sorrowful things you've ever heard.",
+      "speechType": "Calm",
+      "assignedTo": null,
+      "livingAt": null,
+      "toolEquipped": null,
+      "clothingEquipped": "cfaafb5e100adab2",
+      "backEquipped": "743e419f7a3171d6",
+      "effects": [
+        {
+          "quality": "Speed",
+          "change": 10.000000000000009,
+          "source": "Journeyman's Haversack"
+        },
+        {
+          "quality": "Efficiency",
+          "change": -2.500000000000002,
+          "source": "Journeyman's Haversack"
+        }
+      ],
+      "happiness": 10,
+      "explanations": {
+        "Happiness": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "0%"
+          },
+          {
+            "source": "Simple Robe",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Simple Robe",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "+10%",
+            "total": "10%"
+          }
+        ],
+        "Speed|null|null": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "100%"
+          },
+          {
+            "source": "Journeyman's Haversack",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Journeyman's Haversack",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x110%",
+            "total": "110%"
+          }
+        ],
+        "Efficiency|null|null": [
+          {
+            "source": "Base",
+            "change": " ",
+            "total": "100%"
+          },
+          {
+            "source": "Journeyman's Haversack",
+            "sourceIcon": {
+              "provider": "svg",
+              "name": "Journeyman's Haversack",
+              "size": 29,
+              "width": "29px",
+              "height": "29px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "change": "x97%",
+            "total": "97%"
+          }
+        ]
+      },
+      "eating": null,
+      "drinking": null,
+      "icon": {
+        "provider": "svg",
+        "name": "Da Nang",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    }
+  },
+  "equipment": {
+    "658e9b4c63e4e136": {
+      "id": "658e9b4c63e4e136",
+      "typeName": "Four Point Bangle",
+      "effects": [
+        {
+          "quality": "Happiness applies to speed",
+          "change": 100
+        },
+        {
+          "quality": "Speed",
+          "change": 35
+        }
+      ],
+      "leader": {
+        "id": "c1c1b3d1cc3d0b13",
+        "name": "Samannoud",
+        "title": "of ten thousand paths",
+        "description": "A bevy of scars, sun-bleached hair, and a fondness for cats. You've known |name| as long as you can remember.",
+        "speechType": "Aggressive",
+        "assignedTo": "2c765db5351ed823",
+        "livingAt": "af3987efa1cdd687",
+        "toolEquipped": "658e9b4c63e4e136",
+        "clothingEquipped": "c6266c7c29ca6e73",
+        "backEquipped": null,
+        "effects": [
+          {
+            "quality": "Speed",
+            "change": 52.54999999999998
+          }
+        ],
+        "happiness": 13,
+        "explanations": {
+          "Happiness": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Lentil",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Lentil",
+                "size": 21,
+                "width": "21px",
+                "height": "21px",
+                "color": "#a0ddb0",
+                "shadow": "#5bc980",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+2%",
+              "total": "2%"
+            },
+            {
+              "source": "Water",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Drop",
+                "size": 21,
+                "width": "21px",
+                "height": "21px",
+                "color": "#28aae1",
+                "shadow": "#2887c3",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#aaebf0",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+1%",
+              "total": "3%"
+            },
+            {
+              "source": "Simple Robe",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Simple Robe",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+10%",
+              "total": "13%"
+            }
+          ],
+          "Happiness applies to speed": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Four Point Bangle",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Coarse Implements",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+100%",
+              "total": "100%"
+            }
+          ],
+          "Speed|null|null": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Four Point Bangle",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Coarse Implements",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x135%",
+              "total": "135%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x113%",
+              "total": "152%"
+            }
+          ]
+        },
+        "eating": "Lentil|0",
+        "drinking": "Water|0",
+        "icon": {
+          "provider": "svg",
+          "name": "Samannoud",
+          "size": 43,
+          "width": "43px",
+          "height": "43px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    },
+    "c6266c7c29ca6e73": {
+      "id": "c6266c7c29ca6e73",
+      "typeName": "Simple Robe",
+      "effects": [
+        {
+          "quality": "Happiness",
+          "change": 10
+        }
+      ],
+      "leader": {
+        "id": "c1c1b3d1cc3d0b13",
+        "name": "Samannoud",
+        "title": "of ten thousand paths",
+        "description": "A bevy of scars, sun-bleached hair, and a fondness for cats. You've known |name| as long as you can remember.",
+        "speechType": "Aggressive",
+        "assignedTo": "2c765db5351ed823",
+        "livingAt": "af3987efa1cdd687",
+        "toolEquipped": "658e9b4c63e4e136",
+        "clothingEquipped": "c6266c7c29ca6e73",
+        "backEquipped": null,
+        "effects": [
+          {
+            "quality": "Speed",
+            "change": 52.54999999999998
+          }
+        ],
+        "happiness": 13,
+        "explanations": {
+          "Happiness": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Lentil",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Lentil",
+                "size": 21,
+                "width": "21px",
+                "height": "21px",
+                "color": "#a0ddb0",
+                "shadow": "#5bc980",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+2%",
+              "total": "2%"
+            },
+            {
+              "source": "Water",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Drop",
+                "size": 21,
+                "width": "21px",
+                "height": "21px",
+                "color": "#28aae1",
+                "shadow": "#2887c3",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#aaebf0",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+1%",
+              "total": "3%"
+            },
+            {
+              "source": "Simple Robe",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Simple Robe",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+10%",
+              "total": "13%"
+            }
+          ],
+          "Happiness applies to speed": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Four Point Bangle",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Coarse Implements",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+100%",
+              "total": "100%"
+            }
+          ],
+          "Speed|null|null": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Four Point Bangle",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Coarse Implements",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x135%",
+              "total": "135%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x113%",
+              "total": "152%"
+            }
+          ]
+        },
+        "eating": "Lentil|0",
+        "drinking": "Water|0",
+        "icon": {
+          "provider": "svg",
+          "name": "Samannoud",
+          "size": 43,
+          "width": "43px",
+          "height": "43px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    },
+    "2713d6cf910c3b12": {
+      "id": "2713d6cf910c3b12",
+      "typeName": "Wooden Pole",
+      "effects": [
+        {
+          "quality": "Happiness applies to efficiency",
+          "change": 50
+        },
+        {
+          "quality": "Efficiency",
+          "change": 5,
+          "specificity": "Exact",
+          "type": "Reeds"
+        }
+      ],
+      "leader": {
+        "id": "8547d914f5d4255f",
+        "name": "Guangzhou",
+        "title": "the Foxfire Heretic",
+        "description": "|name| has been ejected from the Foxfire Ascetics, although there's no explanation as to why. But there are clues: a fierce glint in the eyes, and decidedly non-traditional views on alcohol consumption.",
+        "speechType": "Calm",
+        "assignedTo": null,
+        "livingAt": null,
+        "toolEquipped": "2713d6cf910c3b12",
+        "clothingEquipped": "c8bdd1c6de7d2717",
+        "backEquipped": null,
+        "effects": [
+          {
+            "quality": "Efficiency",
+            "change": 5.000000000000004
+          },
+          {
+            "quality": "Efficiency",
+            "change": 10.250000000000004,
+            "specificity": "Exact",
+            "type": "Reeds",
+            "source": "Wooden Pole"
+          }
+        ],
+        "happiness": 10,
+        "explanations": {
+          "Happiness": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Simple Robe",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Simple Robe",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+10%",
+              "total": "10%"
+            }
+          ],
+          "Efficiency|null|null": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "105%"
+            }
+          ],
+          "Efficiency|Exact|Reeds": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Wooden Pole",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Wooden Pole",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "105%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "110%"
+            }
+          ]
+        },
+        "eating": null,
+        "drinking": null,
+        "icon": {
+          "provider": "svg",
+          "name": "Guangzhou",
+          "size": 43,
+          "width": "43px",
+          "height": "43px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    },
+    "c8bdd1c6de7d2717": {
+      "id": "c8bdd1c6de7d2717",
+      "typeName": "Simple Robe",
+      "effects": [
+        {
+          "quality": "Happiness",
+          "change": 10
+        }
+      ],
+      "leader": {
+        "id": "8547d914f5d4255f",
+        "name": "Guangzhou",
+        "title": "the Foxfire Heretic",
+        "description": "|name| has been ejected from the Foxfire Ascetics, although there's no explanation as to why. But there are clues: a fierce glint in the eyes, and decidedly non-traditional views on alcohol consumption.",
+        "speechType": "Calm",
+        "assignedTo": null,
+        "livingAt": null,
+        "toolEquipped": "2713d6cf910c3b12",
+        "clothingEquipped": "c8bdd1c6de7d2717",
+        "backEquipped": null,
+        "effects": [
+          {
+            "quality": "Efficiency",
+            "change": 5.000000000000004
+          },
+          {
+            "quality": "Efficiency",
+            "change": 10.250000000000004,
+            "specificity": "Exact",
+            "type": "Reeds",
+            "source": "Wooden Pole"
+          }
+        ],
+        "happiness": 10,
+        "explanations": {
+          "Happiness": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "0%"
+            },
+            {
+              "source": "Simple Robe",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Simple Robe",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "+10%",
+              "total": "10%"
+            }
+          ],
+          "Efficiency|null|null": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "105%"
+            }
+          ],
+          "Efficiency|Exact|Reeds": [
+            {
+              "source": "Base",
+              "change": " ",
+              "total": "100%"
+            },
+            {
+              "source": "Wooden Pole",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Wooden Pole",
+                "size": 19,
+                "width": "19px",
+                "height": "19px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "105%"
+            },
+            {
+              "source": "Happiness",
+              "sourceIcon": {
+                "provider": "svg",
+                "name": "Happiness",
+                "size": 29,
+                "width": "29px",
+                "height": "29px",
+                "color": "#000",
+                "shadow": "#fff",
+                "backgroundColor": "#fff",
+                "secondaryColor": "#000",
+                "secondaryShadow": "#000",
+                "tertiaryColor": "#000",
+                "tertiaryShadow": "#000",
+                "borderless": false,
+                "quality": 0
+              },
+              "change": "x105%",
+              "total": "110%"
+            }
+          ]
+        },
+        "eating": null,
+        "drinking": null,
+        "icon": {
+          "provider": "svg",
+          "name": "Guangzhou",
+          "size": 43,
+          "width": "43px",
+          "height": "43px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    },
+    "cfaafb5e100adab2": {
+      "id": "cfaafb5e100adab2",
+      "typeName": "Simple Robe",
+      "effects": [
+        {
+          "quality": "Happiness",
+          "change": 10
+        }
+      ]
+    },
+    "743e419f7a3171d6": {
+      "id": "743e419f7a3171d6",
+      "typeName": "Journeyman's Haversack",
+      "effects": [
+        {
+          "quality": "Speed",
+          "change": 10
+        },
+        {
+          "quality": "Efficiency",
+          "change": -2.5
+        }
+      ]
+    },
+    "eadde68c394ad34b": {
+      "id": "eadde68c394ad34b",
+      "typeName": "Rough Mattock",
+      "effects": [
+        {
+          "quality": "Happiness applies to speed",
+          "change": 100
+        },
+        {
+          "quality": "Speed",
+          "change": 10,
+          "specificity": "Exact",
+          "type": "Yellow Sand"
+        },
+        {
+          "quality": "Speed",
+          "change": 10,
+          "specificity": "Exact",
+          "type": "Reeds"
+        }
+      ]
+    }
+  },
+  "conversation_status": {
+    "seen": {
+      "Samannoud: A Wound": 2,
+      "Samannoud: Saying Hello": 3,
+      "Foxfire Heretic: Saying Hello": 2,
+      "Samannoud: A Thrice Locked Tome": 1,
+      "Foxfire Heretic: A Thrice Locked Tome": 1
+    },
+    "responsesChosen": {},
+    "lastDailyConvo": {
+      "c1c1b3d1cc3d0b13": 1647894985163
+    }
+  },
+  "quest_status": {
+    "quests": {
+      "67eeb7bc": {
+        "id": "67eeb7bc",
+        "name": "Creating Dried Material",
+        "givenBy": "Firefly",
+        "type": "Curiosity",
+        "description": "The Firefly wants to watch while your town makes \"Dried-sorts-of-things\".",
+        "finishText": "The Firefly watched closely while your town produced Thatch, Mud Bricks, Brownstone Bricks, and Red Bricks. Its body language isn't easy to read, but from the way it bobs from side to side you think it's satisfied. Afterwards you find a small reward in the lovely smelling box in front of your Study, including a light that defies explanation.",
+        "tasks": [
+          {
+            "index": 0,
+            "parentId": "67eeb7bc",
+            "label": "Produce 45 Thatch",
+            "icon": {
+              "provider": "svg",
+              "name": "Thatch",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#000",
+              "shadow": "#fff",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#000",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "resourceToProduce": {
+              "specType": "Exact|Thatch",
+              "quantity": 45
+            }
+          },
+          {
+            "index": 1,
+            "parentId": "67eeb7bc",
+            "label": "Produce 36 Mud Bricks",
+            "icon": {
+              "provider": "svg",
+              "name": "Brick",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#674648",
+              "shadow": "#50392d",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#845d59",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "resourceToProduce": {
+              "specType": "Exact|Mud Bricks",
+              "quantity": 36
+            }
+          },
+          {
+            "index": 2,
+            "parentId": "67eeb7bc",
+            "label": "Produce 23 Brownstone Bricks",
+            "icon": {
+              "provider": "svg",
+              "name": "Brick",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#5d2d00",
+              "shadow": "#2d1600",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#9a5d24",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "resourceToProduce": {
+              "specType": "Exact|Brownstone Bricks",
+              "quantity": 23
+            }
+          },
+          {
+            "index": 3,
+            "parentId": "67eeb7bc",
+            "label": "Produce 18 Red Bricks",
+            "icon": {
+              "provider": "svg",
+              "name": "Brick",
+              "size": 21,
+              "width": "21px",
+              "height": "21px",
+              "color": "#a91f1f",
+              "shadow": "#6f1b1b",
+              "backgroundColor": "#fff",
+              "secondaryColor": "#de6363",
+              "secondaryShadow": "#000",
+              "tertiaryColor": "#000",
+              "tertiaryShadow": "#000",
+              "borderless": false,
+              "quality": 0
+            },
+            "resourceToProduce": {
+              "specType": "Exact|Red Bricks",
+              "quantity": 18
+            }
+          }
+        ],
+        "progress": [
+          {
+            "index": 0,
+            "parentId": "67eeb7bc",
+            "resourceProduced": 14051.497915585436
+          },
+          {
+            "index": 1,
+            "parentId": "67eeb7bc",
+            "resourceProduced": 1195.1927179999877
+          },
+          {
+            "index": 2,
+            "parentId": "67eeb7bc"
+          },
+          {
+            "index": 3,
+            "parentId": "67eeb7bc"
+          }
+        ],
+        "readyToComplete": false,
+        "beganAt": 1647719608733,
+        "subtitle": "Firefly's Curiosity",
+        "icon": {
+          "provider": "svg",
+          "name": "Thatch",
+          "size": 29,
+          "width": "29px",
+          "height": "29px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        },
+        "isDaily": true,
+        "gainResources": [
+          {
+            "specificity": "Exact",
+            "type": "Knowledge",
+            "value": 7240
+          },
+          {
+            "specificity": "Exact",
+            "type": "Gloaming Light",
+            "value": 1000
+          }
+        ]
+      },
+      "Mysticism: A Thrice Locked Tome": {
+        "id": "Mysticism: A Thrice Locked Tome",
+        "name": "A Thrice Locked Tome",
+        "givenBy": "Guangzhou",
+        "type": "Paramount",
+        "description": "To unlock the tome you'll need to find the matching keys and repair them with guidance from Guangzhou.",
+        "finishText": "The keys gleam with a red light, and the tome sits in front of you.",
+        "tasks": [
+          {
+            "index": 0,
+            "parentId": "Mysticism: A Thrice Locked Tome",
+            "label": "Find the three Broken Red Keys.",
+            "resourceToGain": {
+              "specificity": "Exact",
+              "type": "Broken Red Key",
+              "quantity": 3,
+              "includeExisting": true
+            }
+          },
+          {
+            "index": 1,
+            "parentId": "Mysticism: A Thrice Locked Tome",
+            "label": "Repair them into three working Red Keys.",
+            "resourceToGain": {
+              "specificity": "Exact",
+              "type": "Red Key",
+              "quantity": 3,
+              "includeExisting": true
+            }
+          }
+        ],
+        "progress": [
+          {
+            "index": 0,
+            "parentId": "Mysticism: A Thrice Locked Tome",
+            "resourceGained": 1
+          },
+          {
+            "index": 1,
+            "parentId": "Mysticism: A Thrice Locked Tome"
+          }
+        ],
+        "readyToComplete": false,
+        "beganAt": 1647720672458,
+        "subtitle": "Mysticism",
+        "icon": {
+          "provider": "svg",
+          "name": "Tome",
+          "size": 29,
+          "width": "29px",
+          "height": "29px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        },
+        "conversationBegins": {
+          "name": "Foxfire Heretic: Opening the Tome",
+          "title": "Opening the Tome",
+          "repeatable": false,
+          "daily": false,
+          "weight": 0,
+          "partnerKind": "leader",
+          "partnerType": "Guangzhou",
+          "statementName": "Foxfire Heretic: Opening the Tome - s0"
+        }
+      },
+      "Mysticism: A Ruined Red Metal": {
+        "id": "Mysticism: A Ruined Red Metal",
+        "name": "A Ruined Red Metal",
+        "givenBy": "Guangzhou",
+        "type": "Obligatory",
+        "description": "Both the tome and its red clasps are ancient; you'll need to analyze newly forged metals to determine what they're made of.",
+        "finishText": "You've analyzed all the metals you could find, time to combine your findings.",
+        "tasks": [
+          {
+            "index": 0,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "label": "Complete the \"Chemistry\" research.",
+            "actionToPerform": {
+              "kind": "Research",
+              "value": "Chemistry",
+              "includeExisting": true
+            }
+          },
+          {
+            "index": 1,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "label": "Complete the \"Combustion\" research.",
+            "actionToPerform": {
+              "kind": "Research",
+              "value": "Combustion",
+              "includeExisting": true
+            }
+          },
+          {
+            "index": 2,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "label": "Analyze a sample of Crude Iron.",
+            "resourceToAnalyze": {
+              "specificity": "Exact",
+              "type": "Crude Iron",
+              "quantity": 1
+            }
+          },
+          {
+            "index": 3,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "label": "Analyze a sample of Brass.",
+            "resourceToAnalyze": {
+              "specificity": "Exact",
+              "type": "Brass",
+              "quantity": 1
+            }
+          },
+          {
+            "index": 4,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "label": "Analyze a sample of Bronze.",
+            "resourceToAnalyze": {
+              "specificity": "Exact",
+              "type": "Bronze",
+              "quantity": 1
+            }
+          }
+        ],
+        "progress": [
+          {
+            "index": 0,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "actionPerformed": 1
+          },
+          {
+            "index": 1,
+            "parentId": "Mysticism: A Ruined Red Metal",
+            "actionPerformed": 1
+          },
+          {
+            "index": 2,
+            "parentId": "Mysticism: A Ruined Red Metal"
+          },
+          {
+            "index": 3,
+            "parentId": "Mysticism: A Ruined Red Metal"
+          },
+          {
+            "index": 4,
+            "parentId": "Mysticism: A Ruined Red Metal"
+          }
+        ],
+        "readyToComplete": false,
+        "beganAt": 1647720672458,
+        "subtitle": "Mysticism",
+        "icon": {
+          "provider": "svg",
+          "name": "Powder",
+          "size": 29,
+          "width": "29px",
+          "height": "29px",
+          "color": "#ff7f22",
+          "shadow": "#d66224",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#ffa575",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        },
+        "conversationBegins": {
+          "name": "Foxfire Heretic: A Ruined Red Metal",
+          "title": "A Ruined Red Metal",
+          "repeatable": false,
+          "daily": false,
+          "weight": 0,
+          "partnerKind": "leader",
+          "partnerType": "Guangzhou",
+          "statementName": "Foxfire Heretic: A Ruined Red Metal - s0"
+        }
+      }
+    },
+    "questsCompleted": {
+      "Early Days: Survive": {
+        "id": "Early Days: Survive",
+        "name": "Survive",
+        "completedAt": 1647631516596,
+        "icon": {
+          "provider": "svg",
+          "name": "Drop",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#28aae1",
+          "shadow": "#2887c3",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#aaebf0",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Study": {
+        "id": "Early Days: Study",
+        "name": "Study",
+        "completedAt": 1647631693108,
+        "icon": {
+          "provider": "svg",
+          "name": "Study",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Trade": {
+        "id": "Early Days: Trade",
+        "name": "Trade",
+        "completedAt": 1647631937907,
+        "icon": {
+          "provider": "svg",
+          "name": "Market",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Analyze": {
+        "id": "Early Days: Analyze",
+        "name": "Analyze",
+        "completedAt": 1647632495693,
+        "icon": {
+          "provider": "svg",
+          "name": "Knowledge",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Build": {
+        "id": "Early Days: Build",
+        "name": "Build",
+        "completedAt": 1647632498102,
+        "icon": {
+          "provider": "svg",
+          "name": "Huts",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Building Storage": {
+        "id": "Early Days: Building Storage",
+        "name": "Building Storage",
+        "completedAt": 1647632512730,
+        "icon": {
+          "provider": "svg",
+          "name": "Furnace",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Leader Setup": {
+        "id": "Early Days: Leader Setup",
+        "name": "Leader Setup",
+        "completedAt": 1647719465700,
+        "icon": {
+          "provider": "svg",
+          "name": "Bread",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      },
+      "Early Days: Mark Equipment": {
+        "id": "Early Days: Mark Equipment",
+        "name": "Mark Equipment",
+        "completedAt": 1647719475462,
+        "icon": {
+          "provider": "svg",
+          "name": "Simple Robe",
+          "size": 23,
+          "width": "23px",
+          "height": "23px",
+          "color": "#000",
+          "shadow": "#fff",
+          "backgroundColor": "#fff",
+          "secondaryColor": "#000",
+          "secondaryShadow": "#000",
+          "tertiaryColor": "#000",
+          "tertiaryShadow": "#000",
+          "borderless": false,
+          "quality": 0
+        }
+      }
+    },
+    "lastDailyCompleted": 0,
+    "activityQueue": [],
+    "resourcesToCheck": {
+      "Exact|Thatch": true,
+      "Exact|Mud Bricks": true,
+      "Exact|Brownstone Bricks": true,
+      "Exact|Red Bricks": true
+    }
+  },
+  "messages": [
+    {
+      "text": "You upgraded Broken Cistern into Cistern.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:23:26.134Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Broken Cistern",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Fallow Field into Lentil Field.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:23:56.681Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Fallow Field",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Decaying Study into Study.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:24:26.162Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Decaying Study",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Scholarship.",
+      "type": "",
+      "timestamp": "2022-03-18T19:25:12.125Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "graduation-cap",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#fff",
+        "shadow": "#fff",
+        "backgroundColor": "#071f56",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Study.",
+      "type": "",
+      "timestamp": "2022-03-18T19:25:51.657Z",
+      "icon": {
+        "provider": "MaterialCommunityIcons",
+        "name": "magnify",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#2b2b2d",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Abandoned Market into Market.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:25:53.992Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Abandoned Market",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Water for 5 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:26:15.201Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Lentil for 10 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:26:30.143Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#a0ddb0",
+        "shadow": "#5bc980",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Yellow Sand for 3 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:26:34.714Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#f3d98f",
+        "shadow": "#e6a960",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T19:27:25.546Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "borderless": true,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Oak Wood for 50 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:27:44.642Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Wood",
+        "size": 19,
+        "width": "19px",
+        "height": "19px",
+        "color": "#9b6e42",
+        "shadow": "#825a3a",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#f3d488",
+        "secondaryShadow": "#daae90",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Analysis.",
+      "type": "",
+      "timestamp": "2022-03-18T19:28:00.911Z",
+      "icon": {
+        "provider": "MaterialCommunityIcons",
+        "name": "magnify-close",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#2b2b2d",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Lentil Seeds for 40 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:28:01.526Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Seeds",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#a0ddb0",
+        "shadow": "#5bc980",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Reeds for 8 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:29:22.221Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Reeds",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Anthropology.",
+      "type": "",
+      "timestamp": "2022-03-18T19:29:32.255Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "users",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#fff",
+        "shadow": "#fff",
+        "backgroundColor": "#071f56",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Biology.",
+      "type": "",
+      "timestamp": "2022-03-18T19:30:40.506Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "seedling",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#fff",
+        "shadow": "#fff",
+        "backgroundColor": "#071f56",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Trading.",
+      "type": "",
+      "timestamp": "2022-03-18T19:30:49.492Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "exchange-alt",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#2b2b2d",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Muddy Clay for 25 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:31:03.049Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#a06363",
+        "shadow": "#754646",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-18T19:33:44.546Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Dune Sand for 5 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:35:31.071Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#f9c29e",
+        "shadow": "#c79573",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Lentil Farming.",
+      "type": "",
+      "timestamp": "2022-03-18T19:36:34.408Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Physics.",
+      "type": "",
+      "timestamp": "2022-03-18T19:36:51.326Z",
+      "icon": {
+        "provider": "FontAwesome",
+        "name": "balance-scale",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#fff",
+        "shadow": "#fff",
+        "backgroundColor": "#071f56",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Reed Seeds for 30 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:37:09.568Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Seeds",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#9d4639",
+        "shadow": "#78281e",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Alder Wood for 50 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:37:31.602Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Wood",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#a5104e",
+        "shadow": "#800437",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#d85454",
+        "secondaryShadow": "#c13636",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Blue Clay for 45 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:37:59.035Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#9cb0d2",
+        "shadow": "#818ea2",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Reed Cultivation.",
+      "type": "",
+      "timestamp": "2022-03-18T19:38:07.122Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Reeds",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Rowan Wood for 50 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:38:26.543Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Wood",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#95a53c",
+        "shadow": "#7c822b",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#a0775b",
+        "secondaryShadow": "#5f4c42",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Reed Delta.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:38:40.095Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Reed Delta",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T19:39:42.362Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Clay Excavation.",
+      "type": "",
+      "timestamp": "2022-03-18T19:41:28.447Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#a91f1f",
+        "shadow": "#6f1b1b",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Reed Delta.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:43:00.369Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Reed Delta",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T19:46:07.983Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Sand Excavation.",
+      "type": "",
+      "timestamp": "2022-03-18T19:49:02.359Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#f3d98f",
+        "shadow": "#e6a960",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Clay Pit.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:49:22.520Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay Pit",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Rich Clay for 60 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:49:24.902Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#5d2d00",
+        "shadow": "#2d1600",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T19:51:52.239Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Olive Seeds for 80 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:53:05.769Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Seeds",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#d2d02c",
+        "shadow": "#b5b424",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T19:57:11.900Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Rust Ore for 200 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:58:08.801Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Ore",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#880000",
+        "shadow": "#b33c3c",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#2b1010",
+        "secondaryShadow": "#564446",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Olivine Sand for 4 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:58:31.710Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#579e0f",
+        "shadow": "#507926",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Grain Seeds for 60 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T19:58:51.499Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Seeds",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#fbd856",
+        "shadow": "#ef8246",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Sand Pit.",
+      "type": "Build",
+      "timestamp": "2022-03-18T19:58:56.056Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand Pit",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Ruined Huts into Huts.",
+      "type": "Build",
+      "timestamp": "2022-03-18T20:01:11.403Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Ruined Huts",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Jade for 1K knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T20:02:46.031Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Jade",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-18T20:03:04.479Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Hut Construction.",
+      "type": "",
+      "timestamp": "2022-03-18T23:14:25.421Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Huts",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Huts.",
+      "type": "Build",
+      "timestamp": "2022-03-18T23:37:27.826Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Huts",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Lentil Field.",
+      "type": "Build",
+      "timestamp": "2022-03-18T23:55:09.960Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil Field",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Potato for 40 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-18T23:56:15.026Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Potato",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#d19a75",
+        "shadow": "#b2705b",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Cottage Construction.",
+      "type": "",
+      "timestamp": "2022-03-18T23:56:27.808Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Cottages",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T00:00:20.529Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Chemistry.",
+      "type": "",
+      "timestamp": "2022-03-19T19:23:35.252Z",
+      "icon": {
+        "provider": "MaterialCommunityIcons",
+        "name": "flask",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#fff",
+        "shadow": "#fff",
+        "backgroundColor": "#071f56",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Dehydration.",
+      "type": "",
+      "timestamp": "2022-03-19T19:23:46.345Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Thatch",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T19:24:25.254Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Drying Yard.",
+      "type": "Build",
+      "timestamp": "2022-03-19T19:25:17.721Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drying Yard",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T19:28:52.474Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Drying Yard.",
+      "type": "Build",
+      "timestamp": "2022-03-19T19:29:20.817Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drying Yard",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Hearty Lentil Farming.",
+      "type": "",
+      "timestamp": "2022-03-19T19:33:14.491Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Thatch for 40 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:34:03.337Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Thatch",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Volcanic Sand for 4 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:34:11.547Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Sand",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#866262",
+        "shadow": "#6f3a3a",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T19:34:20.251Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Red Clay for 35 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:34:25.506Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Clay",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#a91f1f",
+        "shadow": "#6f1b1b",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Lentil Field.",
+      "type": "Build",
+      "timestamp": "2022-03-19T19:34:37.957Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil Field",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Onion for 40 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:34:40.767Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Onion",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#feb9a1",
+        "shadow": "#f99380",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Ferrous Ink for 300 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:35:37.354Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#333",
+        "shadow": "#000",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#a2a2a2",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T19:40:12.103Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Lentil Field into Hearty Lentil Field.",
+      "type": "Build",
+      "timestamp": "2022-03-19T19:41:14.256Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil Field",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T19:44:45.515Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Pale Ore for 350 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-19T19:53:26.166Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Ore",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#9f9ab5",
+        "shadow": "#797388",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#cfcfe2",
+        "secondaryShadow": "#f3f3f3",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T19:54:57.068Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Huts into Cottages.",
+      "type": "Build",
+      "timestamp": "2022-03-19T19:56:24.086Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Huts",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T19:58:08.475Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T20:01:57.744Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T20:05:42.748Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Combustion.",
+      "type": "",
+      "timestamp": "2022-03-19T20:12:02.514Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Glass",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T20:12:19.505Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T20:16:20.945Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Cooking.",
+      "type": "",
+      "timestamp": "2022-03-19T20:17:14.298Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Omelet",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#18c08b",
+        "shadow": "#0caf7b",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-19T20:18:07.801Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-19T20:21:54.052Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "Drying Yard stopped because of a missing resource.",
+      "type": "Resource Missing",
+      "timestamp": "2022-03-19T21:30:42.589Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drying Yard",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Mud Bricks for 50 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-20T21:27:27.708Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Brick",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#674648",
+        "shadow": "#50392d",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#845d59",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-20T23:27:56.279Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-20T23:27:56.279Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Brine for 10 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T14:11:53.526Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#23b39b",
+        "shadow": "#1b8f7c",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#68ddc9",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Furnace.",
+      "type": "Build",
+      "timestamp": "2022-03-21T14:12:44.393Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Furnace",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T14:15:51.685Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T15:36:56.234Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T15:50:41.612Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Darjeeling Tea Leaves for 20 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T15:51:41.494Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Tea Leaves",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Dusty Ore for 400 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T15:54:43.734Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Ore",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#61676d",
+        "shadow": "#4b4b65",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#758da2",
+        "secondaryShadow": "#94a2bd",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T15:56:17.592Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Greenish Ore for 600 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T15:59:26.418Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Ore",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#227b67",
+        "shadow": "#3f948a",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#ad5f27",
+        "secondaryShadow": "#b5795b",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T16:03:02.436Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Glass for 120 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T16:05:40.054Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Glass",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Lentil Field into Hearty Lentil Field.",
+      "type": "Build",
+      "timestamp": "2022-03-21T16:06:15.012Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Lentil Field",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T16:09:43.149Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "Furnace stopped because of a missing resource.",
+      "type": "Resource Missing",
+      "timestamp": "2022-03-21T16:24:58.017Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Furnace",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Charcoal for 60 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T18:13:40.507Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Charcoal",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T18:18:12.447Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Quail for 200 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T19:07:00.695Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Quail",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T19:11:03.547Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-21T19:38:11.604Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Water for 125 knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-21T19:40:14.262Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Drop",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#28aae1",
+        "shadow": "#2887c3",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#aaebf0",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T19:42:11.633Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Tomato for 200 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T19:48:25.364Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Tomato",
+        "size": 29,
+        "width": "29px",
+        "height": "29px",
+        "color": "#FF4800",
+        "shadow": "#C92B00",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T19:52:30.373Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Portentous Study.",
+      "type": "",
+      "timestamp": "2022-03-21T20:33:40.388Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Portentous Study",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You built a new Kitchen.",
+      "type": "Build",
+      "timestamp": "2022-03-21T20:37:49.495Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Kitchen",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T20:37:55.525Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Glass for 3K knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-21T20:40:08.767Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Glass",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T20:43:00.312Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You studied Plain Lentil Soup for 27 knowledge.",
+      "type": "Study",
+      "timestamp": "2022-03-21T20:47:36.333Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Soup",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#a0ddb0",
+        "shadow": "#5bc980",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T20:51:08.092Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T20:58:32.210Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T21:12:50.156Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You finished researching Gate Expansion.",
+      "type": "",
+      "timestamp": "2022-03-21T21:16:39.857Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Gate",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You analyzed 100 Glass for 3K knowledge.",
+      "type": "Analysis",
+      "timestamp": "2022-03-21T21:26:22.021Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Glass",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    },
+    {
+      "text": "A trader is waiting outside the gate.",
+      "type": "Trading",
+      "timestamp": "2022-03-21T21:26:22.021Z",
+      "icon": {
+        "provider": "FontAwesome5",
+        "name": "question",
+        "size": 21,
+        "width": "21px",
+        "height": "21px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": false,
+        "quality": 0
+      }
+    },
+    {
+      "text": "You upgraded Gate into Baked-Clay Gate.",
+      "type": "Build",
+      "timestamp": "2022-03-21T21:26:22.022Z",
+      "icon": {
+        "provider": "svg",
+        "name": "Gate",
+        "size": 24,
+        "width": "24px",
+        "height": "24px",
+        "color": "#000",
+        "shadow": "#fff",
+        "backgroundColor": "#fff",
+        "secondaryColor": "#000",
+        "secondaryShadow": "#000",
+        "tertiaryColor": "#000",
+        "tertiaryShadow": "#000",
+        "borderless": true,
+        "quality": 0
+      }
+    }
+  ],
+  "sessionId": "984beac37e800489",
+  "userId": "e07b4578"
+}

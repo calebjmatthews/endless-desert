@@ -29,9 +29,36 @@ export default class Icon {
       Object.assign(this, icon);
     }
   }
+
+  export() {
+    const expIcon: IconInterface = {
+      provider: this.provider,
+      name: this.name
+    };
+    if (this.size !== 29) { expIcon.size = this.size; }
+    if (!this.size && this.width !== '29px') { expIcon.width = this.width; }
+    if (!this.size && this.height !== '29px') { expIcon.height = this.height; }
+    if (this.color !== '#000') { expIcon.color = this.color; }
+    if (this.shadow !== '#fff') { expIcon.shadow = this.shadow; }
+    if (this.secondaryColor !== '#000') {
+      expIcon.secondaryColor = this.secondaryColor;
+    }
+    if (this.secondaryShadow !== '#fff') {
+      expIcon.secondaryShadow = this.secondaryShadow;
+    }
+    if (this.tertiaryColor !== '#000') {
+      expIcon.tertiaryColor = this.tertiaryColor;
+    }
+    if (this.tertiaryShadow !== '#fff') {
+      expIcon.tertiaryShadow = this.tertiaryShadow;
+    }
+    if (this.borderless) { expIcon.borderless = this.borderless; }
+    if (this.quality) { expIcon.quality = this.quality; }
+    return expIcon;
+  }
 }
 
-interface IconInterface {
+export interface IconInterface {
   provider: string;
   name: string;
   size?: number;

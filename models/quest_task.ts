@@ -1,4 +1,4 @@
-import Icon from './icon';
+import Icon, { IconInterface } from './icon';
 import QuestProgress from './quest_progress';
 import { utils } from '../utils';
 
@@ -19,7 +19,7 @@ export default class QuestTask {
   actionToPerform?: {kind: string, value?: string, quantity?: number,
     includeExisting?: boolean };
 
-  constructor(questTask: QuestTaskInterface) {
+  constructor(questTask: DBQuestTask) {
     Object.assign(this, questTask);
   }
 
@@ -122,13 +122,23 @@ export default class QuestTask {
     }
     return '';
   }
+
+  export() {
+    const expQuestTask: DBQuestTask = Object.assign({}, this);
+    if (this.icon) { expQuestTask.icon = new Icon(this.icon).export(); }
+    return expQuestTask;
+  }
 };
 
-interface QuestTaskInterface {
+interface QuestTaskInterface extends DBQuestTask {
+  icon?: Icon;
+}
+
+export interface DBQuestTask {
   index: number;
   parentId: string;
   label: string;
-  icon?: Icon;
+  icon?: IconInterface;
   resourceToGain?: {specificity: string, type: string, quantity: number,
     consumed?: boolean, includeExisting?: boolean};
   resourceToProduce?: {specType: string, quantity: number, consumed?: boolean,

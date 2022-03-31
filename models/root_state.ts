@@ -14,14 +14,20 @@ import Rates from './rates';
 import ConversationStatus from './conversation_status';
 import QuestStatus from './quest_status';
 
-export interface RootState {
+export interface RootState extends DBRootState {
+  rates: Rates;
+  ui: { globalState: string, tabSelected: string, valueSelected: any,
+    modalDisplayed: string|null, modalStage: string, modalValue: any,
+    memos: Memo[], positioner: Positioner };
+}
+
+export interface DBRootState {
   vault: Vault;
   researchStatus: ResearchStatus;
-  rates: Rates;
   buildings: { [id: string] : Building };
   buildingsConstruction: { [typeName: string] : Building };
   buildingsStorage: { [id: string] : Building };
-  researchOptionDecks: { [researchName: string] : ResearchOptionDeck};
+  researchOptionDecks: { [researchName: string] : ResearchOptionDeck };
   timers: { [name: string] : Timer };
   tradingStatus: TradingStatus;
   account: Account;
@@ -29,8 +35,5 @@ export interface RootState {
   equipment: { [id: string] : Equipment };
   conversationStatus: ConversationStatus;
   questStatus: QuestStatus;
-  ui: { globalState: string, tabSelected: string, valueSelected: any,
-    modalDisplayed: string|null, modalStage: string, modalValue: any,
-    memos: Memo[], positioner: Positioner };
   messages: Message[];
 }

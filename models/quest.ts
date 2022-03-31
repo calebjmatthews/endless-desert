@@ -1,7 +1,7 @@
-import QuestTask from './quest_task';
+import QuestTask, { DBQuestTask } from './quest_task';
 import QuestProgress from './quest_progress';
 import QuestActivity from './quest_activity';
-import Icon from './icon';
+import Icon, { IconInterface } from './icon';
 import Vault from './vault';
 import Resource from './resource';
 import ResearchStatus from './research_status';
@@ -30,7 +30,7 @@ export default class Quest implements QuestInterface {
   tradingPartnerJoins?: string;
   conversationBegins?: Conversation;
 
-  constructor(quest: QuestInterface|null) {
+  constructor(quest: DBQuest|null) {
     if (quest != null) {
       Object.assign(this, quest);
       this.tasks = quest.tasks.map((task) => ( new QuestTask(task) ));
@@ -99,6 +99,15 @@ export default class Quest implements QuestInterface {
     if (resourcesConsumed.length === 0) { return null; }
     return resourcesConsumed;
   }
+
+  export() {
+    const expQuest: DBQuest = Object.assign({}, this);
+    if (this.icon) { expQuest.icon = new Icon(this.icon).export(); }
+    expQuest.tasks = this.tasks.map((task) => {
+      return new QuestTask(task).export();
+    });
+    return expQuest;
+  }
 }
 
 function createNewProgress(count: number, parentId: string) {
@@ -109,16 +118,21 @@ function createNewProgress(count: number, parentId: string) {
   return progress;
 }
 
-interface QuestInterface {
+interface QuestInterface extends DBQuest {
+  icon?: Icon;
+  tasks: QuestTask[];
+}
+
+export interface DBQuest {
   id: string;
   subtitle?: string;
   name: string;
   givenBy: string;
   type: string;
-  icon?: Icon;
+  icon?: IconInterface;
   description: string;
   finishText: string;
-  tasks: QuestTask[];
+  tasks: DBQuestTask[];
   beganAt?: number;
   progress?: QuestProgress[];
   readyToComplete?: boolean;

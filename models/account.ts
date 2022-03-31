@@ -2,7 +2,7 @@ import Fortuity from './fortuity';
 
 export default class Account {
   userId: string = '0';
-  sessionId: string = '';
+  sessionId?: string;
   storageCallSave: boolean = false;
   introState: string = '';
   tabsUnloked: string[] = [];

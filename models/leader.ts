@@ -3,7 +3,7 @@ import EquipmentEffect from './equipment_effect';
 import Building from './building';
 import Vault from './vault';
 import ResourceType from './resource_type';
-import Icon from './icon';
+import Icon, { IconInterface } from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
@@ -20,7 +20,7 @@ const HAT_MAP = {
   [LQ.HAPPINESS_TO_EFFICIENCY] : LQ.EFFICIENCY
 };
 
-export default class Leader implements LeaderInterface {
+export default class Leader {
   id: string = '';
   name: string = '';
   title: string = '';
@@ -39,8 +39,9 @@ export default class Leader implements LeaderInterface {
   drinking: string|null = null;
   icon: Icon = new Icon({provider: '', name: ''});
 
-  constructor(leader: LeaderInterface) {
+  constructor(leader: DBLeader) {
     Object.assign(this, leader);
+    if (leader.icon) { this.icon = new Icon(leader.icon); }
   }
 
   calcEffects(equipment: { [id: string] : Equipment },
@@ -328,9 +329,21 @@ export default class Leader implements LeaderInterface {
       return false;
     }
   }
+
+  export() {
+    const expLeader: DBLeader = Object.assign({}, this);
+    expLeader.effects = [];
+    expLeader.explanations = {};
+    expLeader.icon = new Icon(this.icon).export();
+    return expLeader;
+  }
 }
 
-interface LeaderInterface {
+interface LeaderInterface extends DBLeader {
+  icon: Icon;
+}
+
+export interface DBLeader {
   id: string;
   name: string;
   title: string;
@@ -347,5 +360,5 @@ interface LeaderInterface {
     { source: string, sourceIcon?: Icon, change: string, total: string }[] };
   eating: string|null;
   drinking: string|null;
-  icon: Icon;
+  icon: IconInterface;
 }

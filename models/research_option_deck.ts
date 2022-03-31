@@ -5,7 +5,7 @@ import { researchOptions } from '../instances/research_options';
 import { utils } from '../utils';
 import { RESEARCH_OPTIONS } from '../enums/research_options';
 
-export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
+export default class ResearchOptionDeck {
   researchName: string = '';
   stepsCompleted: number = 0;
   stepsNeeded: number = 0;
@@ -17,7 +17,7 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
   currentOptions: string[] = [];
   paidCosts: { [optionName: string] : string[] } = {};
 
-  constructor(researchOptionDeck: ResearchOptionDeckInterface) {
+  constructor(researchOptionDeck: DBResearchOptionDeck) {
     Object.assign(this, researchOptionDeck);
     this.setOptions();
   }
@@ -149,20 +149,42 @@ export default class ResearchOptionDeck implements ResearchOptionDeckInterface {
     delete this.currentOptions[optionName];
     this.optionSlots--;
   }
+
+  export() {
+    const exportROD: DBResearchOptionDeck = {
+      researchName: this.researchName,
+      stepsCompleted: this.stepsCompleted,
+      stepsNeeded: this.stepsNeeded,
+      optionSlots: this.optionSlots
+    };
+    if (Object.keys(this.preferredOptions).length > 0) {
+      exportROD.preferredOptions = this.preferredOptions;
+    }
+    if (Object.keys(this.generalOptions).length > 0) {
+      exportROD.generalOptions = this.generalOptions;
+    }
+    if (Object.keys(this.viewedOptions).length > 0) {
+      exportROD.viewedOptions = this.viewedOptions;
+    }
+    if (Object.keys(this.paidCosts).length > 0) {
+      exportROD.paidCosts = this.paidCosts;
+    }
+    return exportROD;
+  }
 }
 
 function chooseFromArray(anArray: any[]) {
   return anArray[Math.floor(utils.random() * anArray.length)];
 }
 
-interface ResearchOptionDeckInterface {
+export interface DBResearchOptionDeck {
   researchName: string;
   stepsCompleted: number;
   stepsNeeded: number;
   optionSlots: number;
-  preferredOptions: { [name: string] : boolean };
-  generalOptions: { [name: string] : boolean };
-  viewedOptions: { [name: string] : boolean };
-  currentOptions: string[];
-  paidCosts: { [optionName: string] : string[] };
+  preferredOptions?: { [name: string] : boolean };
+  generalOptions?: { [name: string] : boolean };
+  viewedOptions?: { [name: string] : boolean };
+  currentOptions?: string[];
+  paidCosts?: { [optionName: string] : string[] };
 }

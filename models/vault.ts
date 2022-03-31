@@ -11,15 +11,20 @@ export default class Vault {
   lastTimestamp: number = new Date(Date.now()).valueOf();
   resources: { [typeQuality: string] : Resource } = {};
 
-  constructor(vault: VaultInterface|null) {
+  constructor(vault: VaultInterface|DBVault|null) {
     if (vault) {
       let newResources: { [typeQuality: string] : Resource } = {};
       Object.keys(vault.resources).map((key) => {
         const resource = vault.resources[key];
-        if (resourceTypes[resource.type] || resource.id) {
-          newResources[key] = new Resource(resource);
+        if (typeof resource !== 'number') {
+          if (resourceTypes[resource.type] || resource.id) {
+            newResources[key] = new Resource(resource);
+          }
+          else { console.log('Broken resource:'); console.log(resource); }
         }
-        else { console.log('Broken resource:'); console.log(resource); }
+        else {
+          newResources[key] = new Resource(resource, key);
+        }
       });
       Object.assign(this, {
         lastTimestamp: vault.lastTimestamp,
@@ -346,9 +351,26 @@ export default class Vault {
     }
     return null;
   }
+
+  export(): DBVault {
+    const expResources: { [name: string] : Resource|number } = {};
+    Object.keys(this.resources).forEach((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      expResources[typeQuality] = resource.export();
+    });
+    return {
+      lastTimestamp: this.lastTimestamp,
+      resources: expResources
+    }
+  }
 }
 
 interface VaultInterface {
   lastTimestamp: number;
   resources: { [typeQuality: string] : Resource };
+}
+
+export interface DBVault {
+  lastTimestamp: number,
+  resources: { [typeQuality: string] : Resource|number }
 }

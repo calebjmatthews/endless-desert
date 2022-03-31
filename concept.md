@@ -351,12 +351,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Implements:
     - Iron Edge: Iron x10
     - Steel Edge: Steel x10
-    - Hardened Plate: Iron x5, Bronze x5
+    - Hardened Slab: Iron x5, Bronze x5
     - Crude Needle: Iron x4, Bronze x1
     - Delicate Needle: Steel x1, Brass x4
     - Gearwork: Bronze x2, Brass x4
     - Rope: Thatch x20
     - Torch: Wood x5, Charcoal x10, Sulfur x1
+    - Binding: Reedcloth x5
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
     * Wooden Pole: Wood x60, Iron Edge x1
@@ -400,6 +401,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Meet with a special trading partner
     - Start a special repeatable quest
     - Unexpected expedition destination (mirage castle?)
+
+## Exploration:
+- Implements give points in the following categories:
+  - Seek (Torch): Spotting treasure, traps, and enemies
+  - Break (Slab): Breaking through containers and walls
+  - Trap (Gearwork): Immobilizing foes
+  - Evade (Edge): Escaping immobilization
+  - Heal (Binding): Undoing damage
+- Leaders learn techniques from codexes, each technique uses a combination of points from implements
+- Attitudes determine how a leader moves through the site
+  - Cautious: Avoids enemies
+  - Swift: Leave after finding grand treasure
+  - Curious: Seek out all treasures
 
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
@@ -670,6 +684,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Correctly show empty leader equipment slots
   [X] Upgrading house and changing leader vars recalc rates
   [X] Show resource descriptive name, not id name in selection components
+  [ ] JSON export/import methods
+  [ ] Equipment to reference leaders, not store as children
   [ ] Quests to introduce new traders
   [ ] Add implements
   [ ] Add fish to trading partner options

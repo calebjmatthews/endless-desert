@@ -1,5 +1,5 @@
-import Quest from './quest';
-import QuestCompleted from './quest_completed';
+import Quest, { DBQuest } from './quest';
+import QuestCompleted, { DBQuestCompleted } from './quest_completed';
 import QuestActivity from './quest_activity';
 
 export default class QuestStatus {
@@ -9,7 +9,7 @@ export default class QuestStatus {
   activityQueue: QuestActivity[] = [];
   resourcesToCheck: { [specType: string] : boolean } = {};
 
-  constructor(questStatus: QuestStatus) {
+  constructor(questStatus: DBQuestStatus) {
     let questStatusValid: boolean = false;
     if (questStatus) {
       if (questStatus.quests && questStatus.questsCompleted && questStatus.activityQueue
@@ -38,4 +38,27 @@ export default class QuestStatus {
       Object.assign(this, { quests, questsCompleted, activityQueue, resourcesToCheck });
     }
   }
+
+  export() {
+    const expQuestStatus: DBQuestStatus = { ...this };
+    const expQuests: { [id: string] : DBQuest } = {};
+    Object.keys(this.quests).forEach((id) => {
+      expQuests[id] = new Quest(this.quests[id]).export();
+    });
+    expQuestStatus.quests = expQuests;
+    const expQuestsCompleted: { [id: string] : DBQuestCompleted } = {};
+    Object.keys(this.questsCompleted).forEach((id) => {
+      expQuestsCompleted[id] = this.questsCompleted[id].export();
+    });
+    expQuestStatus.questsCompleted = expQuestsCompleted;
+    return expQuestStatus;
+  }
+}
+
+export interface DBQuestStatus {
+  quests: { [id: string] : DBQuest };
+  questsCompleted: { [id: string] : DBQuestCompleted };
+  lastDailyCompleted: number;
+  activityQueue: QuestActivity[];
+  resourcesToCheck: { [specType: string] : boolean };
 }

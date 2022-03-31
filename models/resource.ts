@@ -13,10 +13,17 @@ export default class Resource implements ResourceInterface {
   value?: number;
   icon?: Icon;
 
-  constructor(resource: ResourceInterface|null) {
-    if (resource != null) {
+  constructor(resource: ResourceInterface|number|null, key?: string) {
+    if (resource !== null && typeof resource !== 'number') {
       if (resource.quality == undefined) { resource.quality = 0; }
       Object.assign(this, resource);
+    }
+    else if (typeof resource === 'number' && key) {
+      Object.assign(this, {
+        type: key.split('|')[0],
+        quality: parseInt(key.split('|')[1]),
+        quantity: resource
+      });
     }
   }
 
@@ -48,6 +55,11 @@ export default class Resource implements ResourceInterface {
       });
     }
     return new ResourceType(resourceTypes[this.type]);
+  }
+
+  export() {
+    if (this.id) { return this; }
+    return this.quantity;
   }
 }
 
