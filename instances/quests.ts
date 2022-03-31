@@ -381,7 +381,8 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     name: 'Spring-Autumn Proofs',
     givenBy: '',
     type: QUEST_TYPES.CONVENTIONAL,
-    icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
+    icon: new Icon({provider: 'svg', name: SVGS.SPRING_AUTUMN_KINGDOM, color: '#fff',
+      backgroundColor: '#bf0000'}),
     description: `A Seneschal of the Spring-Autumn Kingdom has requested proof that your town would be a worthwhile trading partner.`,
     finishText: `Another intimidatingly handsome letter dropped off by messager hawk describes your town in glowing terms. You can expect to see a trading party from the Spring-Autumn Kingdom soon!`,
     tasks: [

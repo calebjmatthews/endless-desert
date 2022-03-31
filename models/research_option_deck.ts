@@ -166,6 +166,9 @@ export default class ResearchOptionDeck {
     if (Object.keys(this.viewedOptions).length > 0) {
       exportROD.viewedOptions = this.viewedOptions;
     }
+    if (Object.keys(this.currentOptions).length > 0) {
+      exportROD.currentOptions = this.currentOptions;
+    }
     if (Object.keys(this.paidCosts).length > 0) {
       exportROD.paidCosts = this.paidCosts;
     }

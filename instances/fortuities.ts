@@ -383,7 +383,7 @@ fortuities[FORTUITIES.SPRING_AUTUMN_PROOFS] = new Fortuity({
     new Memo({
       name: (FORTUITIES.SPRING_AUTUMN_PROOFS + '0'),
       title: 'Spring-Autumn Proofs',
-      text: (`A messenger hawk drops a letter onto your head, which is lightly perfumed bears a wax seal. It reads:
+      text: (`A messenger hawk drops a letter onto your head, which is lightly perfumed and bears a wax seal. It reads:
 
 "We have received word of the rapid growth of your settlement, which lies near to routes often used by our trading parties. We, with authority vested by our august Emperor, seek a trading partnership for our mutual benefit."`)
     }),
