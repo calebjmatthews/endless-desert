@@ -684,7 +684,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Correctly show empty leader equipment slots
   [X] Upgrading house and changing leader vars recalc rates
   [X] Show resource descriptive name, not id name in selection components
-  [ ] JSON export/import methods
+  [X] JSON export/import methods
   [ ] Equipment to reference leaders, not store as children
   [ ] Quests to introduce new traders
   [ ] Add implements

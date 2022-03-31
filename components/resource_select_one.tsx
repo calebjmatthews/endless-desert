@@ -449,8 +449,8 @@ export default function ResourceSelectOneComponent() {
       const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
       dispatch(setRates(newRates));
       dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-        actionPerformed: { kind: ACTIVITIES.LEADER_SET_EATING,
-          value: resourceSelected.type } })));
+        actionPerformed: { kind: (kind === 'eating' ? ACTIVITIES.LEADER_SET_EATING
+          : ACTIVITIES.LEADER_SET_DRINKING), value: resourceSelected.type } })));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
         newLeaders[modalValue.leader.id]));
     }

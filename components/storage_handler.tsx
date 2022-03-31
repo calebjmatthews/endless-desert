@@ -304,8 +304,6 @@ export default function StorageHandlerComponent() {
         messages: messages,
       }, account.sessionId, account.userId);
       const body = JSON.stringify(dbObject);
-      console.log('body to save:');
-      console.log(body);
       fetch((STORAGE_UPSERT_URL), {
         method: 'POST',
         headers: {
