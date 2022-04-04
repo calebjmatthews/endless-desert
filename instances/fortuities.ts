@@ -392,7 +392,7 @@ fortuities[FORTUITIES.SPRING_AUTUMN_PROOFS] = new Fortuity({
       title: 'Spring-Autumn Proofs',
       text: (`"Please see the attached list of requisite goods to prove your settlement's sufficient advancement. Note that these are yours to keep, their production alone is adequate proof. With all deserved regard,
 
-Ibadan, his Spring-Autumn Majesty's Seventh Seneschal of Trade"`)
+Weifang, his Spring-Autumn Majesty's Seventh Seneschal of Trade"`)
     })
   ],
   type: 'Observation',

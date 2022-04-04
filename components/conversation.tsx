@@ -40,7 +40,7 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
 import { QUESTS } from '../enums/quests';
-import { SPECIAL } from '../enums/special';
+import { PEOPLE } from '../enums/people';
 import { FADE_IN_DELAY, FADE_CHAR_DELAY } from '../constants';
 
 const DEFAULT_PARTNER: Partner = {
@@ -366,7 +366,7 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
     const leader = getLeaderByName(statement.partnerType);
     if (leader) { partner = leader; }
   }
-  else if (statement.partnerKind == 'special') {
+  else if (statement.partnerKind == 'people') {
     partner = {
       name: statement.partnerType,
       icon: new Icon({ provider: 'svg', name: statement.partnerType})

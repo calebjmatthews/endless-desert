@@ -25,9 +25,6 @@ export default class Hourglass {
     let productionSum: { [typeQuality: string] : number } = {};
     let consumptionSum: { [typeQuality: string] : number } = {};
     if (timeMult > 1 || timeMult < 0) {
-      console.log('timeMult > 1 || timeMult < 0');
-      console.log(timeMult);
-      console.log(`timeMult: ${timeMult}, calculate called with duration: ${utils.formatDuration(endingTimestamp - startingTimestamp)}`);
       timeMult = 100 / MS_IN_MIN;
     }
     if (timeMult > 0) {

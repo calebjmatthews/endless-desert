@@ -274,11 +274,15 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      let resources: Resource[] = [];
-      Object.keys(vault.resources).map((typeQuality) => {
-        resources.push(vault.resources[typeQuality]);
+      const rtc =  [`${RTY.WATER}|0`, `${RTY.REEDS}|0`, `${RTY.LENTIL}|0`, `${RTY.SAND_YELLOW}|0`, `${RTY.CLAY_MUDDY}|0`, `${RTY.GRAIN}|0`].map((typeQuality) => {
+        const [type, quality] = typeQuality.split('|');
+        return new Resource({ type, quality: parseInt(quality), quantity: 2000000000000000 })
       });
-      dispatch(consumeResources(vault, resources));
+      consumeResources(vault, rtc);
+      const rtg = rtc.map((resource) => {
+        return new Resource({...resource, quantity: 20000});
+      });
+      increaseResources(vault, rtg);
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

@@ -267,7 +267,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BROKEN_KEY }),
     description: `You'll need to gather iron, copper, and somehow find a source of "otherworldly light"`,
-    finishText: `You have the metals, fuel, and a strange gleaming sphere left to you by The Firefly, and looking at it too long makes you feel like you're falling into the sky. Could this disconcerting sensation be what Guangzhou meant by "otherworldly"?`,
+    finishText: `You have the metals, fuel, and a strange gleaming sphere left to you by The Firefly. Looking at it too long makes you feel like you're falling into the sky. Could this disconcerting sensation be what Guangzhou meant by "otherworldly"?`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.MYSTICISM_REPAIRING_THE_FIRST_KEY,
         label: `Find a Broken Red Key.`,
@@ -373,7 +373,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BRICKS_MUD}`,
           quantity: 240, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 13000 }]
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
   }),
   [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS]: new Quest({
     id: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
