@@ -1,5 +1,6 @@
 import ResourceType from './resource_type';
 import Resource from './resource';
+import Icon from './icon';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
@@ -43,11 +44,6 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.PIE, valueChange: 60, tags: [ RTA.FOOD ], contains: [
-      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
-      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
-    ]}),
     new DishType({name: RTY.OMELET, valueChange: 60, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
@@ -56,6 +52,12 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     new DishType({name: RTY.STEW, valueChange: 80, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.PIE, valueChange: 100, tags: [ RTA.FOOD ], contains: [
+      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.CAKE, valueChange: 120, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
@@ -196,9 +198,9 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     subcategory: dishType.name,
     tags: tags,
     value: dishValue,
-    icon: { ...drt.icon,
+    icon: new Icon({ ...drt.icon,
       color: (mainColors ? mainColors.color : drt.icon.color),
-      shadow: (mainColors ? mainColors.shadow : drt.icon.shadow) }
+      shadow: (mainColors ? mainColors.shadow : drt.icon.shadow) })
   });
 
   const dishRecipe = { index: 0,

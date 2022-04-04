@@ -532,7 +532,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Time cycle:
   - The desert transitions from day to night over the course of an hour.
   - Morning is from :00 - :15, day from :15 - :30, evening from :30 - :45, and night from :45 - :00
-  - Night is from :50 - :05, morning from :05 - :20, day from :20 - :35, evening from :35 - :50.
   - Twenty four days consitute a month, and twenty eight to thirty one days consistute a year.
 
 ## Example game state:
@@ -703,10 +702,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Upgrading house and changing leader vars recalc rates
   [X] Show resource descriptive name, not id name in selection components
   [X] JSON export/import methods
-  [ ] All level 2 research options to use Field Notes
+  [X] All level 2 research options to use Field Notes
+  [X] Fix Kitchen missing resource repeated notice bug
+  [X] Fix exponential production bug
   [ ] Click on message bar to view
   [ ] Only deliver most recent messages
-  [ ] Fix exponential production bug
   [ ] Quests to introduce new traders
   [ ] Add implements
   [ ] Add fish to trading partner options

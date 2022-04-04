@@ -43,13 +43,13 @@ export default class Icon {
     if (this.secondaryColor !== '#000') {
       expIcon.secondaryColor = this.secondaryColor;
     }
-    if (this.secondaryShadow !== '#fff') {
+    if (this.secondaryShadow !== '#000') {
       expIcon.secondaryShadow = this.secondaryShadow;
     }
     if (this.tertiaryColor !== '#000') {
       expIcon.tertiaryColor = this.tertiaryColor;
     }
-    if (this.tertiaryShadow !== '#fff') {
+    if (this.tertiaryShadow !== '#000') {
       expIcon.tertiaryShadow = this.tertiaryShadow;
     }
     if (this.borderless) { expIcon.borderless = this.borderless; }

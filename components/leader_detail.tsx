@@ -57,7 +57,8 @@ const rest = {
 export default function LeaderDetailComponent() {
   const dispatch = useDispatch();
   const modalValue: Leader = useTypedSelector(state => state.ui.modalValue);
-  const leader = modalValue;
+  const leaders = useTypedSelector(state => state.leaders);
+  const leader = leaders[modalValue.id];
   const buildings = useTypedSelector(state => state.buildings);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);

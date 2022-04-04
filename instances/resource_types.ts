@@ -984,7 +984,7 @@ resourceTypes[RTY.DIAMOND] = new ResourceType({
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
   value: 55000,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
-}); 
+});
 
 resourceTypes[RTY.SALT] = new ResourceType({
   name: RTY.SALT,
@@ -1063,7 +1063,7 @@ resourceTypes[RTY.GLASS] = new ResourceType({
   subcategory: RSC.GLASS,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.SMELTED, RTA.CONSTRUCTION],
-  value: 120,
+  value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
 });
 

@@ -29,6 +29,7 @@ import Leader from '../models/leader';
 import Account from '../models/account';
 import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
+import Icon from '../models/icon';
 import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
@@ -110,11 +111,8 @@ export default function HourglassComponent() {
         buildingsToRest: results.buildingsToRest });
       results.buildingsToRest.forEach((id) => {
         const building = buildings[id];
-        console.log('ui.modalDisplayed');
-        console.log(ui.modalDisplayed);
         if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.BUILDINGS
           && ui.modalDisplayed !== MODALS.BUILDING_DETAIL) {
-          console.log('Before selectBuildingRecipe')
           dispatch(selectBuildingRecipe(building, -1));
         }
       });
@@ -219,7 +217,7 @@ export default function HourglassComponent() {
             text: timer.messageToDisplay,
             type: timer.name.split('|')[0],
             timestamp: new Date(Date.now()),
-            icon: timer.iconToDisplay
+            icon: new Icon(timer.iconToDisplay)
           })));
         }
         if (timer.fortuityCheck) {
@@ -284,7 +282,6 @@ export default function HourglassComponent() {
           const buildingType = buildingTypes[building.buildingType];
           if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.BUILDINGS
             && ui.modalDisplayed !== MODALS.BUILDING_DETAIL) {
-            console.log('Before selectBuildingRecipe 2')
             dispatch(selectBuildingRecipe(building, -1));
             dispatch(addMessage(new Message({
               text: `${(building.name || buildingType.name)} stopped because of a missing resource.`,
@@ -397,7 +394,7 @@ export default function HourglassComponent() {
         messages.push(new Message({
           text: timer.messageToDisplay,
           type: timer.name.split('|')[0],
-          icon: timer.iconToDisplay,
+          icon: new Icon(timer.iconToDisplay),
           timestamp: new Date(timer.endsAt)
         }));
       }

@@ -171,7 +171,7 @@ researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
   appliesTo: RESEARCHES.FIELD_NOTES,
   difficulty: 1,
   description: ('Your notes will need to be thorough, yet readable. You do '
-    + 'know you letters, although it\'s been a long time since you\'ve written. '
+    + 'know your letters, although it\'s been a long time since you\'ve written. '
     + 'Better practice, and practice a lot.'),
   cost: [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}],
@@ -248,9 +248,10 @@ researchOptions[RESEARCH_OPTIONS.CROP_COMPARISON] = new ResearchOption({
   difficulty: 2,
   description: ('Different crops have different needs, and require different '
     + 'approaches. But you\'re continually increasing your material for comparison.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 800},
-    {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 100}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_CULTIVATION, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 200},
+    {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 100},
+    {specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 50}]
 });
 
 researchOptions[RESEARCH_OPTIONS.SOIL_QUALITY] = new ResearchOption({
@@ -281,7 +282,8 @@ researchOptions[RESEARCH_OPTIONS.FINAL_EDIBILITY] = new ResearchOption({
   difficulty: 2,
   description: ('Flavor in your town\'s food is important, but so is efficiency '
     + 'and effect. You\'ve begun to study and compare foods from different sources.'),
-  cost: [{specificity: RSP.CATEGORY, type: RCA.DISH, quantity: 1000}]
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
+    {specificity: RSP.CATEGORY, type: RCA.DISH, quantity: 400}]
 });
 
 researchOptions[RESEARCH_OPTIONS.REMEMBERED_MEETINGS] = new ResearchOption({
@@ -372,9 +374,7 @@ researchOptions[RESEARCH_OPTIONS.MIDDLE_PRICIPLES] = new ResearchOption({
   name: RESEARCH_OPTIONS.MIDDLE_PRICIPLES,
   appliesTo: RESEARCHES.PHYSICS,
   difficulty: 2,
-  description: ('The numbers that govern everything around you can be understood '
-    + 'from deep observation. Not necessarily observation of anything at all... '
-    + 'But close.'),
+  description: (`The numbers that govern everything around you can be understood from deep observation. Since you began collating notes you've been seeing them wherever you look.`),
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 2}]
 });
 
@@ -386,9 +386,10 @@ researchOptions[RESEARCH_OPTIONS.GRAVITY_UPON_STATE] = new ResearchOption({
     + 'you\'ll need a keen understanding of the force that pulls '
     + 'everything toward the greedy earth, and it\'s effects on materials '
     + 'of all kinds.'),
-  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 2000},
-    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 2000},
-    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 2000}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 400},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 400},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}]
 });
 
 researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
@@ -399,7 +400,7 @@ researchOptions[RESEARCH_OPTIONS.AIR_AND_FLOW] = new ResearchOption({
     + 'surprisingly similar in style, although different in speed. '
     + 'Understanding their differences may help you harness both more effectively.'),
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_WATER, quantity: 1},
-    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10000}]
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 4000}]
 });
 
 researchOptions[RESEARCH_OPTIONS.MATERIAL_CONJUNCTION] = new ResearchOption({
@@ -409,7 +410,8 @@ researchOptions[RESEARCH_OPTIONS.MATERIAL_CONJUNCTION] = new ResearchOption({
   description: ('Your building materials are less strong when different types meet: '
     + 'brick against wood is never as stable and brick against brick. There may be '
     + 'a way around this, and you know where to start.'),
-  cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 1000},
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_HEAT, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 1000},
     {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200}]
 });
 
@@ -460,8 +462,9 @@ researchOptions[RESEARCH_OPTIONS.ZYMOLOGY] = new ResearchOption({
   description: ('There\'s a curious chemical change that happens to wet grain '
     + 'left alone. The water becomes beer, you know that much. But you\'d '
     + 'love to figure out exactly how that delightful switch happens.'),
-  cost: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}]
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_WATER, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 200},
+    {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}]
 });
 
 researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
@@ -472,8 +475,8 @@ researchOptions[RESEARCH_OPTIONS.VENTILATION_OF_FLAME] = new ResearchOption({
     + 'than expected. It\'s all about fuel and airflow, but the fire itself '
     + 'creates its own updraft that throws everything off.'),
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_HEAT, quantity: 1},
-    {specificity: RSP.EXACT, type: RTY.REEDS, quantity: 1200},
-    {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 320}]
+    {specificity: RSP.EXACT, type: RTY.REEDS, quantity: 800},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]
 });
 
 researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
@@ -484,7 +487,7 @@ researchOptions[RESEARCH_OPTIONS.BITTER_FUMES] = new ResearchOption({
     + 'called sulfur, and the ways it can change solid objects into liquids '
     + 'with completely different properties. But it sure isn\'t pleasant '
     + 'to work with.'),
-  cost: [{specificity: RSP.EXACT, type: RCA.FIELD_NOTES, quantity: 1},
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
     {specificity: RSP.EXACT, type: RTY.SULFUR, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}]
 });

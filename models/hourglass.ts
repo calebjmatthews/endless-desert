@@ -28,6 +28,7 @@ export default class Hourglass {
       console.log('timeMult > 1 || timeMult < 0');
       console.log(timeMult);
       console.log(`timeMult: ${timeMult}, calculate called with duration: ${utils.formatDuration(endingTimestamp - startingTimestamp)}`);
+      timeMult = 100 / MS_IN_MIN;
     }
     if (timeMult > 0) {
       Object.keys(rates.netRates).map((typeQuality) => {
@@ -198,7 +199,7 @@ export default class Hourglass {
         missingLeader = true;
         r.problems[id].push('Leader required');
       }
-      if (buildingType.recipes || building.recipe) {
+      if (buildingType.recipes || (building.recipe && building.recipeSelected !== -1)) {
         let recipes: BuildingRecipe[] = [];
         if (building.recipe) { recipes = [building.recipe]; }
         else if (buildingType.recipes) { recipes = buildingType.recipes; }
@@ -244,7 +245,8 @@ export default class Hourglass {
           }
         });
       }
-      if ((buildingType.recipes || building.recipe) && !missingLeader) {
+      if ((buildingType.recipes || (building.recipe && building.recipeSelected !== -1))
+        && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
         let recipe = new BuildingRecipe({index: -1, produces: [], consumes: []});
         if (buildingType.recipes) {
