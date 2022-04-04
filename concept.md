@@ -61,16 +61,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Building that refines sand into pure sand+subcategory resource
   - Cooking allows free-form selection of ingredients, produces Mistake if not valid recipe
   - Furnaces initially can use reeds as fuel, then require charcoal, then lenses (as a solar furnace)
-  - Nearby kingdoms:
-    - North: Relatively safe traveling before sea, where many travelers come from. Ruins of an Egypt-inspired kingdom obsessed with the afterlife, many of which disappeared in a single event.
-    - East: Salt flats? Large, extant China-inspired kingdom with heavy bureaucracy and centers of learning.
-    - South: River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
-    - West: Mirages? Constant fires? Oceans made from glass? Hanging gardens?
-  - Four gods:
-    - Branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living. East.
-    - Enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself. South.
-    - Merging creation: harmonious, one-from-many. Swarm of cicadas that create weather, visions, etc. West.
-    - Detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb. North.
   - The Firefly
     - "Who are you?" "flame     flying   fires      soaring     heat air     fiery wind"
     - Giver of most quests
@@ -445,6 +435,35 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Mark one equipment of X tier
     - Rewards are: Knowledge, unlocked Trade Goods
 
+## Kingdoms:
+  ### North
+    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, ?.
+    - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
+    - Trading partners: Tourmaline Jewelers
+    - People: You, Samannoud
+  ### East
+    - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
+    - God of branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living.
+    - Trading partners: Spring-Autumn Kingdom
+    - People: Guangzhou, Weifang
+  ### South
+    - River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
+    - God of enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself.
+    - Trading partners: ?
+    - People:
+  ### West
+    - Mirages? Constant fires? Oceans made from glass? Hanging gardens?
+    - God of merging creation: harmonious, one-from-many. Swarm of cicadas that create weather, visions, etc.
+    - Trading partners: ?
+    - People:
+  ### Nomads
+    - Trading partners: Foxfire Ascetics, Red Crow Traders
+    - People:
+  ### Far North
+    - Distant islands in the sea north of Alabaster
+    - Trading partners: Trefoil Islands
+    - People:
+
 ## Tabs:
   - Map, showing locations of each building and the river running through the middle
   - Buildings, with an expandable list of buildings with the resources consumed/produced by each
@@ -679,17 +698,20 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Revamp messages
   [X] When consumptions expire, show a message
   [X] Add consumptions expired "While you were gone" memo
-  [X] Fix exponential production bug
   [X] Stop building upon resource lack within hourglass calc
   [X] Correctly show empty leader equipment slots
   [X] Upgrading house and changing leader vars recalc rates
   [X] Show resource descriptive name, not id name in selection components
   [X] JSON export/import methods
-  [ ] Equipment to reference leaders, not store as children
+  [ ] All level 2 research options to use Field Notes
+  [ ] Click on message bar to view
+  [ ] Only deliver most recent messages
+  [ ] Fix exponential production bug
   [ ] Quests to introduce new traders
   [ ] Add implements
   [ ] Add fish to trading partner options
   [ ] Simplify trading partner options
+  [ ] Add one new trading partner
   [ ] Add animations to memos
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities
@@ -699,6 +721,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Hide recipes missing ingredients
+  [ ] Max analysis increases with items studied
+  [ ] Maximum trade quantity applies both ways
+  [ ] Make trading party type selection less random
+  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
 
 ## Commands
 ### Delete all records from all tables:

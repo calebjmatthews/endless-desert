@@ -489,6 +489,12 @@ function BuildingDescription(props: any) {
   function stepThroughRecipes(increment: number) {
     const buildingType = buildingTypes[building.buildingType];
     if (!buildingType) { return null; }
+
+    if (building.recipe) {
+      if (building.recipeSelected === -1) { props.recipeAssign(building, 0); }
+      else { props.recipeAssign(building, -1); }
+    }
+
     if (!buildingType.recipes) { return null; }
     if (building.recipeSelected == undefined) { return null; }
 
