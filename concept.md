@@ -437,9 +437,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Kingdoms:
   ### North
-    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, ?.
+    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens.
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
-    - Trading partners: Tourmaline Jewelers
+    - Trading partners: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
     - People: You, Samannoud
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
@@ -705,7 +705,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] All level 2 research options to use Field Notes
   [X] Fix Kitchen missing resource repeated notice bug
   [X] Fix exponential production bug
-  [ ] Click on message bar to view
+  [X] Click on message bar to view all messages
   [ ] Only deliver most recent messages
   [ ] Quests to introduce new traders
   [ ] Add implements

@@ -367,7 +367,7 @@ resourceTypes[RTY.SEEDS_GRAIN] = new ResourceType({
 
 resourceTypes[RTY.FLOUR] = new ResourceType({
   name: RTY.FLOUR,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   tags: [RTA.POWDER, RTA.INGREDIENT],
   value: 30,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
@@ -988,7 +988,7 @@ resourceTypes[RTY.DIAMOND] = new ResourceType({
 
 resourceTypes[RTY.SALT] = new ResourceType({
   name: RTY.SALT,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   subcategory: RSC.SPICE,
   tags: [RTA.BRACKISH, RTA.SPICE],
   value: 20,
@@ -1086,7 +1086,7 @@ resourceTypes[RTY.PULP] = new ResourceType({
 
 resourceTypes[RTY.PAPYRUS] = new ResourceType({
   name: RTY.PAPYRUS,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   tags: [RTA.PRESSED],
   value: 100,
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})

@@ -79,6 +79,10 @@ class Utils {
     return anArray[0];
   }
 
+  getDatetimeString(date: Date) {
+    return `${this.getDateString(date)} ${this.getTimeString(date)}`;
+  }
+
   getDateString(date: Date) {
     let dateString = '';
     dateString += date.getFullYear() + '-';

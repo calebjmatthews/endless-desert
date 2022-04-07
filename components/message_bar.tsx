@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import { View, Text, Animated, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import { displayModal } from '../actions/ui';
 
 import Message from '../models/message';
 import Icon from '../models/icon';
+import { MODALS } from '../enums/modals';
 
 const ENSURED_DURATION = 5000;
 
@@ -72,19 +74,17 @@ export default function MessageBarComponent() {
     })
   }
   if (message) {
-    let icon = null;
-    if (message.icon) {
-      icon = <BadgeComponent icon={message.icon} size={24} borderless={true} />
-    }
     return (
-      <View style={styles.messageBarContainer}>
+      <TouchableOpacity style={styles.messageBarContainer}
+        onPress={() => dispatch(displayModal(MODALS.MESSAGES))}>
         <Animated.View style={StyleSheet.flatten([styles.messageBarBackground,
           {opacity: opacityAnim}])} />
         <View style={styles.messageBar}>
-          {icon}
+          {message.icon &&
+            <BadgeComponent icon={message.icon} size={24} borderless={true} />}
           <Text style={styles.messageBarText}>{message.text}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
   else {

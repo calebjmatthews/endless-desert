@@ -14,5 +14,6 @@ export enum MODALS {
   MEMO = "Memo",
   LOGIN = "Login",
   SIGNUP = "Signup",
-  QUEST_QUIT_CONFIRM = "Quest Quit Confirm"
+  QUEST_QUIT_CONFIRM = "Quest Quit Confirm",
+  MESSAGES = "Messages"
 }

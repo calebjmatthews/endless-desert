@@ -274,7 +274,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const rtc =  [`${RTY.WATER}|0`, `${RTY.REEDS}|0`, `${RTY.LENTIL}|0`, `${RTY.SAND_YELLOW}|0`, `${RTY.CLAY_MUDDY}|0`, `${RTY.GRAIN}|0`].map((typeQuality) => {
+      const rtc =  [`${RTY.WATER}|0`, `${RTY.REEDS}|0`, `${RTY.LENTIL}|0`, `${RTY.SAND_YELLOW}|0`, `${RTY.CLAY_MUDDY}|0`, `${RTY.GRAIN}|0`, `${RTY.MUSSEL}|0`].map((typeQuality) => {
         const [type, quality] = typeQuality.split('|');
         return new Resource({ type, quality: parseInt(quality), quantity: 2000000000000000 })
       });
