@@ -15,3 +15,10 @@ export function addMessage(message: Message) {
     message
   }
 }
+
+export const SET_MESSAGES_NOT_NEW = "SET_MESSAGES_NOT_NEW";
+export function setMessagesNotNew() {
+  return {
+    type: SET_MESSAGES_NOT_NEW
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { RootState } from '../models/root_state';
@@ -15,8 +15,26 @@ import { MODALS } from '../enums/modals';
 const ENSURED_DURATION = 5000;
 
 export default function MessageBarComponent() {
-  const dispatch = useDispatch();
   const messages = useTypedSelector(state => state.messages);
+  const [currentMessage, setCurrentMessage] =
+    useState(new Message(messages?.[messages?.length-1] || null));
+  const [messagesToUse, setMessagesToUse] = useState([...messages]);
+
+  useEffect(() => {
+    if (messages?.[messages?.length-1]?.timestamp !== currentMessage?.timestamp) {
+      setMessagesToUse([...messages]);
+      setCurrentMessage(messages?.[messages?.length-1]);
+    }
+  }, [messages]);
+
+  return useMemo(() => (
+    <MessageBarStatic messages={messagesToUse} />
+  ), [messagesToUse]);
+}
+
+function MessageBarStatic(props: { messages: Message[] }) {
+  const dispatch = useDispatch();
+  const messages = props.messages;
   const [ensuredDisplay, setEnsuredDisplay] = useState<Message[]>([]);
   const [moveEnsured, setMoveEnsured] = useState<boolean>(false);
 

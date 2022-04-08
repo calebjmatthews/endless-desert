@@ -11,6 +11,7 @@ import Equipment from './equipment';
 import ConversationStatus from './conversation_status';
 import QuestStatus, { DBQuestStatus } from './quest_status';
 import Message, { DBMessage } from './message';
+import Icon from './icon';
 
 export default class DBObject {
   vault?: DBVault;
@@ -46,32 +47,64 @@ export default class DBObject {
         equipment: obj.equipment,
         conversation_status: obj.conversationStatus,
         quest_status: (obj.questStatus ? obj.questStatus.export() : null),
-        messages: exportMessages(obj.messages),
         sessionId,
         userId
       });
+      const messagesToSave: DBMessage[] = [];
+      obj.messages?.forEach((message) => {
+        if (message.isNew) { messagesToSave.push(message.export()); }
+      });
+      if (messagesToSave.length > 0) { this.messages = messagesToSave; }
     }
   }
 
   import(rawDbObj: RawDBObject) {
     const dbObj = new DBObject();
 
-    dbObj.vault = JSON.parse(rawDbObj.vault[0].value);
-    dbObj.research_status = JSON.parse(rawDbObj.research_status[0].value);
-    dbObj.buildings = JSON.parse(rawDbObj.buildings[0].value);
-    dbObj.buildings_construction = JSON.parse(rawDbObj.buildings_construction[0].value);
-    dbObj.buildings_storage = JSON.parse(rawDbObj.buildings_storage[0].value);
-    dbObj.research_option_decks = JSON.parse(rawDbObj.research_option_decks[0].value);
-    dbObj.timers = JSON.parse(rawDbObj.timers[0].value);
-    dbObj.trading_status = JSON.parse(rawDbObj.trading_status[0].value);
-    dbObj.accounts = JSON.parse(rawDbObj.accounts[0].value);
-    dbObj.leaders = JSON.parse(rawDbObj.leaders[0].value);
-    dbObj.equipment = JSON.parse(rawDbObj.equipment[0].value);
-    dbObj.conversation_status = JSON.parse(rawDbObj.conversation_status[0].value);
-    dbObj.quest_status = JSON.parse(rawDbObj.quest_status[0].value);
-    dbObj.messages = JSON.parse(rawDbObj.messages[0].value);
-    dbObj.vault = JSON.parse(rawDbObj.vault[0].value);
-    dbObj.vault = JSON.parse(rawDbObj.vault[0].value);
+    if (rawDbObj.vault?.[0]?.value) {
+      dbObj.vault = JSON.parse(rawDbObj.vault?.[0]?.value);
+    }
+    if (rawDbObj.research_status?.[0]?.value) {
+      dbObj.research_status = JSON.parse(rawDbObj.research_status?.[0]?.value);
+    }
+    if (rawDbObj.buildings?.[0]?.value) {
+      dbObj.buildings = JSON.parse(rawDbObj.buildings?.[0]?.value);
+    }
+    if (rawDbObj.buildings_construction?.[0]?.value) {
+      dbObj.buildings_construction =
+        JSON.parse(rawDbObj.buildings_construction?.[0]?.value);
+    }
+    if (rawDbObj.buildings_storage?.[0]?.value) {
+      dbObj.buildings_storage = JSON.parse(rawDbObj.buildings_storage?.[0]?.value);
+    }
+    if (rawDbObj.research_option_decks?.[0]?.value) {
+      dbObj.research_option_decks =
+        JSON.parse(rawDbObj.research_option_decks?.[0]?.value);
+    }
+    if (rawDbObj.timers?.[0]?.value) {
+      dbObj.timers = JSON.parse(rawDbObj.timers?.[0]?.value);
+    }
+    if (rawDbObj.trading_status?.[0]?.value) {
+      dbObj.trading_status = JSON.parse(rawDbObj.trading_status?.[0]?.value);
+    }
+    if (rawDbObj.accounts?.[0]?.value) {
+      dbObj.accounts = JSON.parse(rawDbObj.accounts?.[0]?.value);
+    }
+    if (rawDbObj.leaders?.[0]?.value) {
+      dbObj.leaders = JSON.parse(rawDbObj.leaders?.[0]?.value);
+    }
+    if (rawDbObj.equipment?.[0]?.value) {
+      dbObj.equipment = JSON.parse(rawDbObj.equipment?.[0]?.value);
+    }
+    if (rawDbObj.conversation_status?.[0]?.value) {
+      dbObj.conversation_status = JSON.parse(rawDbObj.conversation_status?.[0]?.value);
+    }
+    if (rawDbObj.quest_status?.[0]?.value) {
+      dbObj.quest_status = JSON.parse(rawDbObj.quest_status?.[0]?.value);
+    }
+    if (rawDbObj.messages) {
+      dbObj.messages = rawDbObj.messages.slice();
+    }
 
     const impObj: any = {};
     if (dbObj.vault) { impObj.vault = new Vault(dbObj.vault); }
@@ -150,7 +183,12 @@ export default class DBObject {
       impObj.quest_status = new QuestStatus(dbObj.quest_status);
     }
     if (dbObj.messages) {
-      impObj.messages = dbObj.messages.map((message) => (new Message(message)));
+      impObj.messages = dbObj.messages.map((message) => ( new Message({
+          ...message,
+          timestamp: new Date(message.timestamp),
+          icon: message.icon ? new Icon(JSON.parse(message.icon)) : undefined,
+          isNew: false
+      }) ));
     }
     return impObj;
   }
@@ -170,7 +208,7 @@ interface RawDBObject {
   equipment: [{ value: string }],
   conversation_status: [{ value: string }],
   quest_status: [{ value: string }],
-  messages: [{ value: string }]
+  messages: [{ timestamp: number, text: string, type: string, icon: string }]
 }
 
 const exportBuildings = (buildings: { [id: string] : Building }) => {
@@ -210,9 +248,3 @@ const exportLeaders = (leaders: { [id: string] : Leader }) => {
   });
   return expLeaders;
 }
-
-const exportMessages = (messages: Message[]) => (
-  messages.map((message) => (
-    new Message(message).export()
-  ))
-)

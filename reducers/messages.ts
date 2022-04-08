@@ -1,4 +1,4 @@
-import { SET_MESSAGES, ADD_MESSAGE } from '../actions/messages';
+import { SET_MESSAGES, ADD_MESSAGE, SET_MESSAGES_NOT_NEW } from '../actions/messages';
 import Message from '../models/message';
 
 export default function (messages: Message[] = [], action: any = null) {
@@ -9,6 +9,9 @@ export default function (messages: Message[] = [], action: any = null) {
     case ADD_MESSAGE:
     return [...messages, action.message];
     break;
+
+		case SET_MESSAGES_NOT_NEW:
+		return [...messages].map((message) => ({ ...message, isNew: false }));
 
 		default:
 		return messages;

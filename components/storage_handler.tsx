@@ -23,7 +23,7 @@ import { setEquipment } from '../actions/equipment';
 import { setConversationStatus } from '../actions/conversation_status';
 import { setQuestStatus } from '../actions/quest_status';
 import { setGlobalState } from '../actions/ui';
-import { setMessages } from '../actions/messages';
+import { setMessages, setMessagesNotNew } from '../actions/messages';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
@@ -201,6 +201,8 @@ export default function StorageHandlerComponent() {
           return false;
         }
         const importedState = new DBObject().import(rawDataRes.data);
+        console.log('importedState');
+        console.log(importedState);
         let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
@@ -314,6 +316,7 @@ export default function StorageHandlerComponent() {
       .then((res) => {
         let tDate = new Date(Date.now());
         console.log('Data saved at ' + tDate.toDateString() + ' ' + tDate.toTimeString());
+        dispatch(setMessagesNotNew());
       })
       .catch((error) => {
         dispatch(setGlobalState('landing'));

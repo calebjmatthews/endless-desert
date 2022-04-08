@@ -756,12 +756,24 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-CREATE TABLE `messages` (
+CREATE TABLE `leaders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(16) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `value` mediumtext,
   PRIMARY KEY (`id`));
+
+CREATE TABLE `messages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(16) NOT NULL,
+  `timestamp` BIGINT(32) NOT NULL,
+  `text` VARCHAR(1024),
+  `type` VARCHAR(32),
+  `icon` VARCHAR(512),
+  PRIMARY KEY (`id`)
+)
+CREATE INDEX `index_user_id` ON `messages`(`user_id`);
+CREATE INDEX `index_timestamp` ON `messages`(`timestamp`);
 
 
 ## Debug functions

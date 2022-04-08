@@ -4,28 +4,37 @@ export default class Message {
   text: string = '';
   type: string = '';
   timestamp: Date = new Date(Date.now());
+  isNew: boolean = true;
   icon?: Icon;
 
-  constructor(message: DBMessage) {
+  constructor(message: MessageInterface) {
     Object.assign(this, message);
   }
 
   export() {
-    const expMessage: DBMessage = { ...this };
+    const expMessage: DBMessage = {
+      text: this.text,
+      type: this.type,
+      timestamp: this.timestamp.valueOf()
+    };
     if (this.icon) {
-      expMessage.icon = new Icon(this.icon).export();
+      expMessage.icon = JSON.stringify(new Icon(this.icon).export());
     }
     return expMessage;
   }
 }
 
-interface MessageInterface extends DBMessage {
+interface MessageInterface {
+  text: string;
+  type: string;
+  timestamp: Date;
+  isNew?: boolean;
   icon?: Icon;
 }
 
 export interface DBMessage {
   text: string;
   type: string;
-  timestamp: Date;
-  icon?: IconInterface;
+  timestamp: number;
+  icon?: string;
 }
