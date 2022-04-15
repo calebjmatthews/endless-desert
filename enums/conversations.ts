@@ -22,7 +22,6 @@ export enum CONVERSATIONS {
 
   FIF_INTRODUCTION = "Firefly Introduction",
 
-  ETC_A_SOILED_YET_SHINING_GOWN = "A Soiled, yet Shining Gown",
   ETC_BEADS_AND_BOLTS_OF_CLOTH = "Beads and Bolts of Cloth",
 
   TESTING = "Testing"

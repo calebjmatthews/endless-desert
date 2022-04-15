@@ -113,15 +113,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Melange: Rich
     * Taro: Deep
   - Gems
-    * Jade: None
-    * Amethyst: Cooling
-    * Topaz: Savory
-    * Jasper: Sour
-    * Onyx: Bitter
-    * Ruby: Spicy
-    * Sapphire: Brackish
-    * Emerald: Herbal
-    * Diamond: Sweet
+    * Jade Token: None
+    * Dusky Amethyst: Cooling
+    * Topaz Slate: Savory
+    * Lapis Lazuli: Sour
+    * Onyx Shell: Bitter
+    * Cursed Ruby: Spicy
+    * Floating Sapphire: Brackish
+    * Emerald Bar: Herbal
+    * Irradient Diamond: Sweet
     * Moonstone: Airy
     * Opal: Strange
     * Alexandrite: Rich

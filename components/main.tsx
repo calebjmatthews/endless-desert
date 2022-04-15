@@ -66,6 +66,7 @@ const RTY = RESOURCE_TYPES;
 import { QUESTS } from '../enums/quests';
 import { CONVERSATIONS } from '../enums/conversations';
 import { MILESTONES } from '../enums/milestones';
+import { FORTUITIES } from '../enums/fortuities';
 
 const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
@@ -274,15 +275,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const rtc =  [`${RTY.WATER}|0`, `${RTY.REEDS}|0`, `${RTY.LENTIL}|0`, `${RTY.SAND_YELLOW}|0`, `${RTY.CLAY_MUDDY}|0`, `${RTY.GRAIN}|0`, `${RTY.MUSSEL}|0`].map((typeQuality) => {
-        const [type, quality] = typeQuality.split('|');
-        return new Resource({ type, quality: parseInt(quality), quantity: 2000000000000000 })
-      });
-      consumeResources(vault, rtc);
-      const rtg = rtc.map((resource) => {
-        return new Resource({...resource, quantity: 20000});
-      });
-      increaseResources(vault, rtg);
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'A Familiar Figure',
+        convoName: FORTUITIES.A_SOILED_YET_SHINING_GOWN
+      })]));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

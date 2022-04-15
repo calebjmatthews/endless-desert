@@ -12,5 +12,6 @@ export enum FORTUITIES {
   UNUSUAL_SOIL = "Unusual Soil",
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   A_TERRACED_PLATFORM = "A Terraced Platform",
-  SPRING_AUTUMN_PROOFS = "Proofs for the Spring-Autumn Kingdom"
+  SPRING_AUTUMN_PROOFS = "Proofs for the Spring-Autumn Kingdom",
+  A_SOILED_YET_SHINING_GOWN = "A Soiled Yet Shining Gown"
 }

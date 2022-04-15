@@ -418,4 +418,25 @@ Weifang, his Spring-Autumn Majesty's Seventh Seneschal of Trade"`)
   }
 });
 
+fortuities[FORTUITIES.A_SOILED_YET_SHINING_GOWN] = new Fortuity({
+  name: FORTUITIES.A_SOILED_YET_SHINING_GOWN,
+  openLine: 'A stranger is demanding your attention',
+  memos: [
+    new Memo({
+      name: 'A Soiled, Yet Shining Gown',
+      title: 'A Soiled, Yet Shining Gown',
+      convoName: FORTUITIES.A_SOILED_YET_SHINING_GOWN
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    if ((fState.vault?.resources?.[`${RTY.JADE}|0`]?.quantity || 0) >= 25) {
+      return true;
+    }
+    return false;
+  }
+});
+
 export { fortuities };

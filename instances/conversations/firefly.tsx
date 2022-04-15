@@ -23,7 +23,7 @@ let fifConvoNarrations: { [name: string] : ConversationNarration } = {};
 fifConversations[CVS.FIF_INTRODUCTION] = new Conversation({
   name: CVS.FIF_INTRODUCTION,
   title: `The Voice You've Been Hearing...`,
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   statementName: CVS.FIF_INTRODUCTION + ' - s0',
   repeatable: false,
   daily: false,
@@ -32,7 +32,7 @@ fifConversations[CVS.FIF_INTRODUCTION] = new Conversation({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s0'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s0',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `      talented hands
 mind
@@ -49,7 +49,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r0'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s1'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s1',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `
 
@@ -68,7 +68,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r1'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s2'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s2',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `flame
    flying
@@ -89,7 +89,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r2c'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s3c'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s3c',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `     yesno
 air yes  fire yes
@@ -106,7 +106,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r2a'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s3a'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s3a',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text: `am         calm`,
   responseNames: [CVS.FIF_INTRODUCTION + ' - r3a']
 });
@@ -119,7 +119,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r2h'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s3h'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s3h',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text: `yes yes
 
 fire
@@ -146,7 +146,7 @@ fifConvoResponses[CVS.FIF_INTRODUCTION + ' - r3h'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.FIF_INTRODUCTION + ' - s4'] = new ConversationStatement({
   name: CVS.FIF_INTRODUCTION + ' - s4',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `    offerings
    for     you
@@ -158,7 +158,7 @@ offerings for you`
 fifConversations[CVS.TESTING] = new Conversation({
   name: CVS.TESTING,
   title: `Testing`,
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   statementName: CVS.TESTING + ' - s0',
   repeatable: false,
   daily: false,
@@ -167,7 +167,7 @@ fifConversations[CVS.TESTING] = new Conversation({
 });
 fifConvoStatements[CVS.TESTING + ' - s0'] = new ConversationStatement({
   name: CVS.TESTING + ' - s0',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `      some
       testing`,
@@ -183,7 +183,7 @@ fifConvoResponses[CVS.TESTING + ' - r0'] = new ConversationResponse({
 });
 fifConvoStatements[CVS.TESTING + ' - s1'] = new ConversationStatement({
   name: CVS.TESTING + ' - s1',
-  partnerKind: 'people', partnerType: PEOPLE.FIREFLY,
+  partnerKind: 'person', partnerType: PEOPLE.FIREFLY,
   text:
 `    yes testing`,
   gainResources: [{specificity: RSP.EXACT, type: RTY.RED_KEY, value: 13000}]

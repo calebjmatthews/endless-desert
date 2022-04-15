@@ -366,10 +366,10 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
     const leader = getLeaderByName(statement.partnerType);
     if (leader) { partner = leader; }
   }
-  else if (statement.partnerKind == 'people') {
+  else if (statement.partnerKind == 'person') {
     partner = {
       name: statement.partnerType,
-      icon: new Icon({ provider: 'svg', name: statement.partnerType})
+      icon: new Icon({ provider: 'svg', name: statement.partnerType })
     };
   }
 
