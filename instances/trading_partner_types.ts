@@ -209,71 +209,6 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   }
 });
 
-tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerType({
-  name: TRADING_PARTNERS.TOURMALINE_JEWELERS,
-  description: ('A loosely organized group of caravanners who deal only in '
-    + 'gemstones.'),
-  icon: new Icon({provider: 'svg', name: SVGS.TOURMALINE_JEWELERS, color: '#c6baff',
-    backgroundColor: '#4416ce'}),
-  givesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
-      weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
-      weight: 25}
-  ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
-    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
-    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
-      weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
-      weight: 25}
-  ]],
-  receivesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169}
-  ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
-    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71}
-  ]],
-  initialTrust: 0,
-  maxTrust: 3000,
-  getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 200) {
-      value = 0;
-      toNext = (trust / 200) * 100;
-    }
-    else if (trust < (200 + 600)) {
-      value = 1;
-      toNext = ((trust - 200) / 600) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
-  },
-  getAcceptQuantity(trust) {
-    return Math.floor(10 + (trust * 0.1));
-  }
-});
-
 tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartnerType({
   name: TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM,
   description: ('A sprawling and powerful kingdom to the east, '
@@ -350,6 +285,71 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   },
   getAcceptQuantity(trust) {
     return Math.floor(200 + (trust * 0.6));
+  }
+});
+
+tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerType({
+  name: TRADING_PARTNERS.TOURMALINE_JEWELERS,
+  description: ('A loosely organized group of caravanners who deal only in '
+    + 'gemstones.'),
+  icon: new Icon({provider: 'svg', name: SVGS.TOURMALINE_JEWELERS, color: '#c6baff',
+    backgroundColor: '#4416ce'}),
+  givesPool: [[
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
+      weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
+      weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
+    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
+      weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
+      weight: 25}
+  ]],
+  receivesPool: [[
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
+    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71}
+  ]],
+  initialTrust: 0,
+  maxTrust: 3000,
+  getTier(trust) {
+    let value = 0, toNext = 0;
+    if (trust < 200) {
+      value = 0;
+      toNext = (trust / 200) * 100;
+    }
+    else if (trust < (200 + 600)) {
+      value = 1;
+      toNext = ((trust - 200) / 600) * 100;
+    }
+    else {
+      value = 1;
+      toNext = 100;
+    }
+    return { value, toNext };
+  },
+  getAcceptQuantity(trust) {
+    return Math.floor(10 + (trust * 0.1));
   }
 });
 

@@ -167,6 +167,7 @@ import ScarredScholarSvgComponent from './people/scarred_scholar';
 import AuspiciousWaifSvgComponent from './people/auspicious_waif';
 import YouSvgComponent from './people/you';
 import FireflySvgComponent from './people/firefly';
+import TourmalineJewelerSvgComponent from './people/tourmaline_jeweler';
 
 import RedCrowTradersSvgComponent from './symbols/red_crow_traders';
 import FoxfireAsceticsSvgComponent from './symbols/foxfire_ascetics';
@@ -513,6 +514,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <YouSvgComponent icon={props.icon} />;
     case SVGS.FIREFLY:
     return <FireflySvgComponent icon={props.icon} />;
+    case SVGS.TOURMALINE_JEWELER:
+    return <TourmalineJewelerSvgComponent icon={props.icon} />;
 
     case SVGS.RED_CROW_TRADERS:
     return <RedCrowTradersSvgComponent icon={props.icon} />;

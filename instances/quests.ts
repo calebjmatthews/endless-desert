@@ -405,6 +405,33 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     ],
     tradingPartnerJoins: TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM
   }),
+  [QUESTS.NATIONS_TOURMALINE_JEWELERS]: new Quest({
+    id: QUESTS.NATIONS_TOURMALINE_JEWELERS,
+    subtitle: 'Nations',
+    name: 'Tourmaline Jewelers',
+    givenBy: '',
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.TOURMALINE_JEWELERS, color: '#c6baff',
+      backgroundColor: '#4416ce'}),
+    description: `A rather entitled trader is demanding you furnish materials to repair her "fourth-finest riding dress."`,
+    finishText: `And here the materials are, in neat little stacks.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
+        label: `Produce 200 Beads.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BEADS}`,
+          quantity: 200, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
+        label: `Produce 100 Linen.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LINEN}`,
+          quantity: 100, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 2, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
+        label: `Trade for 50 Jade.`,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.JADE,
+          quantity: 50, consumed: true, includeExisting: true } }),
+    ],
+    tradingPartnerJoins: TRADING_PARTNERS.TOURMALINE_JEWELERS,
+    // conversationBegins: conversations[CONVERSATIONS.ETC_A_SOILED_YET_SHINING_GOWN]
+  }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
     name: QUESTS.TESTING,

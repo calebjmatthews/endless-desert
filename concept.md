@@ -67,6 +67,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Late game long term craft: create a moon
     - Gives an array of bonuses that apply to your town during a specific time or times of day
     - Can create a moon with specific attributes to appeal to certain buyers
+  - Expedition introductory quest
+    - Cries in the night: Samannoud wants to  investigate unexplained cries coming from nearby in the night
+    - Some connection with Alabaster; refugees? bandits?
 
 ## Resource Subcategories:
   - Sand
@@ -440,7 +443,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens.
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
     - Trading partners: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
-    - People: You, Samannoud
+    - People: You, Samannoud, Kubra
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
     - God of branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living.
@@ -706,12 +709,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix Kitchen missing resource repeated notice bug
   [X] Fix exponential production bug
   [X] Click on message bar to view all messages
-  [ ] Only deliver most recent messages
-  [ ] Quests to introduce new traders
+  [X] Only deliver most recent messages
+  [X] Quests to introduce new traders
+  [ ] Further long-term progression quests
   [ ] Add implements
   [ ] Add fish to trading partner options
+  [ ] Add implements to trading partner options
   [ ] Simplify trading partner options
-  [ ] Add one new trading partner
+  [ ] Add one new early trading partner
   [ ] Add animations to memos
   [ ] Increase # of traders research
   [ ] Traders to use a mix of exact, tag, subcategory specificities

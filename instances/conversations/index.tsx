@@ -12,18 +12,20 @@ import { tfsConversations, tfsConvoStatements, tfsConvoResponses, tfsConvoNarrat
   from './trefoil_sower';
 import { scnConversations, scnConvoStatements, scnConvoResponses, scnConvoNarrations }
   from './scarred_navigator';
+import { etcConversations, etcConvoStatements, etcConvoResponses, etcConvoNarrations }
+  from './etc';
 
 const conversations = { ...sndConversations, ...sreConversations,
   ...ffhConversations, ...auwConversations, ...tfsConversations,
-  ...scnConversations, ...fifConversations };
+  ...scnConversations, ...fifConversations, ...etcConversations };
 const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
   ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
-  ...scnConvoStatements, ...fifConvoStatements };
+  ...scnConvoStatements, ...fifConvoStatements, ...etcConvoStatements };
 const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
-  ...scnConvoResponses, ...fifConvoResponses };
+  ...scnConvoResponses, ...fifConvoResponses, ...etcConvoResponses };
 const convoNarrations = { ...sndConvoNarrations, ...sreConvoNarrations,
   ...ffhConvoNarrations, ...auwConvoNarrations, ...tfsConvoNarrations,
-  ...scnConvoNarrations, ...fifConvoNarrations };
+  ...scnConvoNarrations, ...fifConvoNarrations, ...etcConvoNarrations };
 
 export { conversations, convoStatements, convoResponses, convoNarrations };

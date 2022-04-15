@@ -201,8 +201,6 @@ export default function StorageHandlerComponent() {
           return false;
         }
         const importedState = new DBObject().import(rawDataRes.data);
-        console.log('importedState');
-        console.log(importedState);
         let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
