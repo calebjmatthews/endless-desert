@@ -20,31 +20,41 @@ export function tradingPartnerJoins(name: string) {
   }
 }
 
-export const ADD_PENDING_TRADING_PARTNER = 'ADD_PENDING_TRADING_PARTNER';
-export function addPendingTradingPartnerVisit(tradingPartnerVisit: TradingPartnerVisit) {
+export const ADD_PENDING_VISIT = 'ADD_PENDING_VISIT';
+export function addPendingVisit(visit: TradingPartnerVisit, slot: number) {
   return {
-    type: ADD_PENDING_TRADING_PARTNER,
-    tradingPartnerVisit: tradingPartnerVisit
+    type: ADD_PENDING_VISIT,
+    visit,
+    slot
   }
 }
 
-export const WELCOME_PENDING_TRADING_PARTNER = 'WELCOME_PENDING_TRADING_PARTNER';
-export function welcomePendingTradingPartnerVisit() {
+export const SET_UPCOMING_TRADING_PARTNER_NAMES = "SET_UPCOMING_TRADING_PARTNER_NAMES";
+export function setUpcomingTradingPartnerNames(namesUpcoming: string[]) {
   return {
-    type: WELCOME_PENDING_TRADING_PARTNER
+    type: SET_UPCOMING_TRADING_PARTNER_NAMES,
+    namesUpcoming
+  }
+}
+
+export const WELCOME_PENDING_VISIT = 'WELCOME_PENDING_VISIT';
+export function welcomePendingVisit(slot: number) {
+  return {
+    type: WELCOME_PENDING_VISIT,
+    slot
   }
 }
 
 export const DISMISS_TRADING_PARTNER = 'DISMISS_TRADING_PARTNER';
-export function dismissTradingPartnerVisit(tradingPartnerVisit: TradingPartnerVisit) {
+export function dismissTradingPartnerVisit(slot: number) {
   return {
     type: DISMISS_TRADING_PARTNER,
-    tradingPartnerVisit: tradingPartnerVisit
+    slot
   }
 }
 
 export const COMPLETE_TRADE = 'COMPLETE_TRADE';
-export function completeTrade(traded: {id: string, tradingPartnerType: string,
+export function completeTrade(traded: {id: string, slot: number,
   given: Resource, received: Resource}) {
   return {
     type: COMPLETE_TRADE,
@@ -53,9 +63,16 @@ export function completeTrade(traded: {id: string, tradingPartnerType: string,
 }
 
 export const TALK_TO = 'TALK_TO';
-export function talkTo(typeName: string) {
+export function talkTo(slot: number) {
   return {
     type: TALK_TO,
-    typeName: typeName
+    slot
+  }
+}
+
+export const HANDLE_INCREASE_SLOTS = 'HANDLE_INCREASE_SLOTS';
+export function handleIncreaseSlots() {
+  return {
+    type: HANDLE_INCREASE_SLOTS
   }
 }

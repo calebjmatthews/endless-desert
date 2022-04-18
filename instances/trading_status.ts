@@ -17,15 +17,15 @@ tradingPartnerTypeNames.forEach((typeName) => {
   });
 });
 
-let tradingPartnerVisits: { [name: string] : TradingPartnerVisit } = {};
-tradingPartnerVisits[TP.FOXFIRE_ASCETICS] = tradingPartnerTypes[TP.FOXFIRE_ASCETICS]
-  .createTradingPartnerVisit(tradingPartners[TP.FOXFIRE_ASCETICS]);
+const visitsPending = [tradingPartnerTypes[TP.FOXFIRE_ASCETICS]
+  .createTradingPartnerVisit(tradingPartners[TP.FOXFIRE_ASCETICS])];
 
-let tpPending: TradingPartnerVisit[] = [];
-tpPending.push(tradingPartnerTypes[TP.TREFOIL_ISLANDS]
-  .createTradingPartnerVisit(tradingPartners[TP.TREFOIL_ISLANDS]));
-
-let tradingStatusStarting = new TradingStatus({ tradingPartners, tradingPartnerVisits,
-  tpPending });
+let tradingStatusStarting = new TradingStatus({
+  tradingPartners,
+  visits: [],
+  visitsPending,
+  visitSlots: 1,
+  namesUpcoming: []
+});
 
 export { tradingStatusStarting };

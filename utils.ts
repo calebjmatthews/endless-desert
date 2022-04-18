@@ -79,6 +79,13 @@ class Utils {
     return anArray[0];
   }
 
+  shuffle(anArray: any[]) {
+    return anArray
+      .map((a: any) => ({ sort: Math.random(), value: a }))
+      .sort((a: any, b: any) => a.sort - b.sort)
+      .map((a: any) => a.value);
+  }
+
   getDatetimeString(date: Date) {
     return `${this.getDateString(date)} ${this.getTimeString(date)}`;
   }

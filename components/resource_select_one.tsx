@@ -58,9 +58,9 @@ export default function ResourceSelectOneComponent() {
   }
   function setStartingQuantityS(): string {
     if (modalValue.type == 'Trading') {
-      const tpVisit = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner];
-      if (resourcesArray.length == 1 && tpVisit) {
-        let tInt = tpVisit.acceptQuantity;
+      const visit = tradingStatus.visits[modalValue.slot];
+      if (resourcesArray.length == 1 && visit) {
+        let tInt = visit.acceptQuantity;
         const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
         if (tInt > vault.resources[key].quantity) {
           tInt = Math.floor(vault.resources[key].quantity);
@@ -73,8 +73,11 @@ export default function ResourceSelectOneComponent() {
   const [quantitySelected, setQuantitySelected] = useState(setStartingQuantityS());
   function setStartingQuantityG(): number {
     const selectedQuantity = setStartingQuantityS();
-    return calcQuantityGiven(selectedQuantity, modalValue, resourceSelected,
-      tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]);
+    const visit = tradingStatus.visits[modalValue.slot];
+    if (visit !== null) {
+      return calcQuantityGiven(selectedQuantity, modalValue, resourceSelected, visit);
+    }
+    return 0;
   }
   const [quantityGiven, setQuantityGiven] = useState(setStartingQuantityG());
 
@@ -106,14 +109,15 @@ export default function ResourceSelectOneComponent() {
     setResourceSelected:(resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void) {
-    const tpVisit = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner];
+    const visit = tradingStatus.visits[modalValue.slot];
+    if (visit === null) { return null; }
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
         resource={resource} resourceSelected={resourceSelected} vault={vault}
         setResourceSelected={setResourceSelected}
         setQuantitySelected={setQuantitySelected}
         setQuantityGiven={setQuantityGiven}
-        tpVisit={tpVisit} modalValue={modalValue}
+        visit={visit} modalValue={modalValue}
         positioner={positioner} />;
     });
   }
@@ -143,8 +147,9 @@ export default function ResourceSelectOneComponent() {
       );
     }
     else if (modalValue.type == 'Trading') {
-      const tpVisit = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner];
-      const trade = tpVisit.trades[modalValue.tradeId];
+      const visit = tradingStatus.visits[modalValue.slot];
+      if (visit === null) { return null; }
+      const trade = visit.trades[modalValue.tradeId];
       return (
         <View style={styles.columns}>
           <View style={styles.spacedRows}>
@@ -155,7 +160,7 @@ export default function ResourceSelectOneComponent() {
             <Text>{' '}</Text>
             <TouchableOpacity style={styles.buttonRowItemSmall}
               onPress={() => {
-                changeTradeQuantity(Math.floor(tpVisit.acceptQuantity/2).toString())
+                changeTradeQuantity(Math.floor(visit.acceptQuantity/2).toString())
               }}>
               <Text style={styles.buttonTextSmall}>{'1/2'}</Text>
             </TouchableOpacity>
@@ -258,25 +263,27 @@ export default function ResourceSelectOneComponent() {
   }
 
   function changeTradeQuantity(text: string) {
-    const tpVisit = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner];
-    const trade = tpVisit.trades[modalValue.tradeId];
-    let tInt = parseInt(text);
+    const visit = tradingStatus.visits[modalValue.slot];
+    if (visit !== null) {
+      const trade = visit.trades[modalValue.tradeId];
+      let tInt = parseInt(text);
 
-    if (resourceSelected != null) {
-      const key = (resourceSelected.type + '|' + resourceSelected.quality);
-      if (tInt > vault.resources[key].quantity) {
-        tInt = Math.floor(vault.resources[key].quantity);
+      if (resourceSelected != null) {
+        const key = (resourceSelected.type + '|' + resourceSelected.quality);
+        if (tInt > vault.resources[key].quantity) {
+          tInt = Math.floor(vault.resources[key].quantity);
+        }
+        if (tInt > visit.acceptQuantity) {
+          tInt = visit.acceptQuantity;
+        }
       }
-      if (tInt > tpVisit.acceptQuantity) {
-        tInt = tpVisit.acceptQuantity;
-      }
+
+      let pText = '0';
+      if (tInt ? true : false) { pText = tInt.toString(); }
+      setQuantitySelected(pText);
+      setQuantityGiven(calcQuantityGiven(pText, modalValue, resourceSelected,
+        visit));
     }
-
-    let pText = '0';
-    if (tInt ? true : false) { pText = tInt.toString(); }
-    setQuantitySelected(pText);
-    setQuantityGiven(calcQuantityGiven(pText, modalValue, resourceSelected,
-      tpVisit));
   }
 
   function renderSubmitButton() {
@@ -412,25 +419,27 @@ export default function ResourceSelectOneComponent() {
 
   function actionTrading() {
     if (resourceSelected != null) {
-      const trade = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]
-        .trades[modalValue.tradeId];
-      dispatch(increaseResources(vault, [new Resource({type: trade.give.type,
-        quality: trade.give.quality, quantity: quantityGiven})]));
-      let rc = new Resource(resourceSelected).getResourceWithoutQuantity();
-      rc.quantity = parseInt(quantitySelected);
-      dispatch(consumeResources(vault, [rc]));
-      dispatch(completeTrade({
-        id: trade.id,
-        tradingPartnerType: trade.tradingPartnerType,
-        given: new Resource({ type: trade.give.type, quality: trade.give.quality,
-          quantity: quantityGiven }),
-        received: new Resource({ type: resourceSelected.type,
-          quality: resourceSelected.quality,
-          quantity: parseInt(quantitySelected) })
-      }));
-      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-        tradedWith: { typeName: trade.tradingPartnerType, quantity: quantityGiven } })));
-      dispatch(displayModalValue(null, 'closed', null));
+      const visit = tradingStatus.visits[modalValue.slot];
+      if (visit !== null) {
+        const trade = visit.trades[modalValue.tradeId];
+        dispatch(increaseResources(vault, [new Resource({type: trade.give.type,
+          quality: trade.give.quality, quantity: quantityGiven})]));
+        let rc = new Resource(resourceSelected).getResourceWithoutQuantity();
+        rc.quantity = parseInt(quantitySelected);
+        dispatch(consumeResources(vault, [rc]));
+        dispatch(completeTrade({
+          id: trade.id,
+          slot: modalValue.slot,
+          given: new Resource({ type: trade.give.type, quality: trade.give.quality,
+            quantity: quantityGiven }),
+          received: new Resource({ type: resourceSelected.type,
+            quality: resourceSelected.quality,
+            quantity: parseInt(quantitySelected) })
+        }));
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          tradedWith: { typeName: trade.tradingPartnerType, quantity: quantityGiven } })));
+        dispatch(displayModalValue(null, 'closed', null));
+      }
     }
   }
 
@@ -465,21 +474,24 @@ export default function ResourceSelectOneComponent() {
       return rSort(filterOutZero(vault.getStudyableResources()));
 
       case 'Trading':
-      const trade = tradingStatus.tradingPartnerVisits[modalValue.tradingPartner]
-        .trades[modalValue.tradeId];
-      switch(trade.receive.specificity) {
-        case RESOURCE_SPECIFICITY.EXACT:
-        return rSort(filterOutZero(vault.getExactResources(trade.receive.type)));
+      const visit = tradingStatus.visits[modalValue.slot];
+      if (visit !== null) {
+        const trade = visit.trades[modalValue.tradeId];
+        switch(trade.receive.specificity) {
+          case RESOURCE_SPECIFICITY.EXACT:
+          return rSort(filterOutZero(vault.getExactResources(trade.receive.type)));
 
-        case RESOURCE_SPECIFICITY.TAG:
-        return rSort(filterOutZero(vault.getTagResources(trade.receive.type)));
+          case RESOURCE_SPECIFICITY.TAG:
+          return rSort(filterOutZero(vault.getTagResources(trade.receive.type)));
 
-        case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        return rSort(filterOutZero(vault.getSubcategoryResources(trade.receive.type)));
+          case RESOURCE_SPECIFICITY.SUBCATEGORY:
+          return rSort(filterOutZero(vault.getSubcategoryResources(trade.receive.type)));
 
-        case RESOURCE_SPECIFICITY.CATEGORY:
-        return rSort(filterOutZero(vault.getCategoryResources(trade.receive.type)));
+          case RESOURCE_SPECIFICITY.CATEGORY:
+          return rSort(filterOutZero(vault.getCategoryResources(trade.receive.type)));
+        }
       }
+      return [];
 
       case MODALS.LEADER_DETAIL:
       if (modalValue.subType == SET_EATING) {
@@ -513,10 +525,10 @@ export default function ResourceSelectOneComponent() {
 }
 
 function calcQuantityGiven(qSelected: string, modalValue: any,
-  resourceSelected: Resource|null, tpVisit: TradingPartnerVisit) {
+  resourceSelected: Resource|null, visit: TradingPartnerVisit) {
   if (!modalValue) { return 0; }
   if (modalValue.type == 'Trading' && resourceSelected) {
-    const trade = tpVisit.trades[modalValue.tradeId];
+    const trade = visit.trades[modalValue.tradeId];
     const rResourceType = utils.getResourceType(resourceSelected);
     const gResourceType = resourceTypes[trade.give.type];
 
@@ -531,7 +543,7 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
 }
 
 function ResourceSelector(props: {resource: Resource, resourceSelected: Resource|null,
-  vault: Vault, modalValue: any,  tpVisit: TradingPartnerVisit,
+  vault: Vault, modalValue: any,  visit: TradingPartnerVisit,
   setResourceSelected: (resourceSelected: Resource|null) => void,
   setQuantitySelected: (quantity: string) => void,
   setQuantityGiven: (quantity: number) => void,
@@ -557,7 +569,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
           {renderButton(props.resource, props.resourceSelected,
-            props.vault, props.tpVisit, props.modalValue,
+            props.vault, props.visit, props.modalValue,
             props.setResourceSelected, props.setQuantitySelected,
             props.setQuantityGiven)}
         </View>
@@ -566,7 +578,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
   );
 
   function renderButton(resource: Resource, resourceSelected: Resource|null,
-    vault: Vault, tpVisit: TradingPartnerVisit, modalValue: any,
+    vault: Vault, visit: TradingPartnerVisit, modalValue: any,
     setResourceSelected: (resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
     setQuantityGiven: (quantity: number) => void) {
@@ -588,7 +600,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
       { width: 74 }]);
     return (
       <TouchableOpacity style={buttonStyle}
-      onPress={() => {typeQualitySelect(resource, tpVisit, modalValue,
+      onPress={() => {typeQualitySelect(resource, visit, modalValue,
         setResourceSelected, setQuantitySelected, setQuantityGiven)}} >
         <Text style={StyleSheet.flatten([styles.buttonText,
           styles.buttonTextDark])}>{'Select'}</Text>
@@ -604,7 +616,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
     setQuantitySelected('0');
     setQuantityGiven(0);
   }
-  function typeQualitySelect(resource: Resource, tpVisit: TradingPartnerVisit,
+  function typeQualitySelect(resource: Resource, visit: TradingPartnerVisit,
     modalValue: any,
     setResourceSelected: (resourceSelected: Resource|null) => void,
     setQuantitySelected: (quantity: string) => void,
@@ -613,11 +625,11 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
     setResourceSelected(resource);
     const typeQuality = resource.type + '|' + resource.quality;
     let quantity = Math.floor(props.vault.resources[typeQuality].quantity);
-    if (tpVisit) {
-      if (quantity > tpVisit.acceptQuantity) { quantity = tpVisit.acceptQuantity; }
+    if (visit) {
+      if (quantity > visit.acceptQuantity) { quantity = visit.acceptQuantity; }
       setQuantitySelected(quantity.toString());
       setQuantityGiven(calcQuantityGiven(quantity.toString(), modalValue, resource,
-        tpVisit));
+        visit));
     }
     if (modalValue.type == RESEARCHES.ANALYSIS) {
       if (quantity > 100) { quantity = 100; }

@@ -17,6 +17,7 @@ import { addEquipment } from '../actions/equipment';
 import { addTimer } from '../actions/timers';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
+import { handleIncreaseSlots } from '../actions/trading_status';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -275,11 +276,12 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'A Familiar Figure',
-        convoName: FORTUITIES.A_SOILED_YET_SHINING_GOWN
-      })]));
+      dispatch(handleIncreaseSlots());
+      // const newVault = new Vault({
+      //   ...vault,
+      //   lastTimestamp: (new Date(Date.now()).valueOf() - 1000000)
+      // });
+      // dispatch(setVault(newVault));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

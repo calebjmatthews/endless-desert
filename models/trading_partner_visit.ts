@@ -9,8 +9,10 @@ export default class TradingPartnerVisit implements TradingPartnerVisitInterface
   arrived: Date = new Date(Date.now());
   talkedTo: boolean = false;
 
-  constructor(tradingPartnerVisit: TradingPartnerVisitInterface) {
-    Object.assign(this, tradingPartnerVisit);
+  constructor(tradingPartnerVisit: TradingPartnerVisitInterface|null) {
+    if (tradingPartnerVisit !== null) {
+      Object.assign(this, tradingPartnerVisit);
+    }
   }
 
   getTradesRemaining() {

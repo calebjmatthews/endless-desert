@@ -574,6 +574,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
 
+## Trading Partner Mechanics
+  - Create a tpPending array equal to the number of current trading partners (3, to begin)
+  -
+
 ## Music
   - Daily card-based minigame that creates a benefit that applies to your entire town for 36 hours.
   - Cards can be created from Inspiration; one is created from the daily performance.
@@ -711,6 +715,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Click on message bar to view all messages
   [X] Only deliver most recent messages
   [X] Quests to introduce new traders
+  [ ] Trading party type selection less random
+  [ ] Increase # of traders research
+  [ ] Traders to use a mix of exact, tag, subcategory specificities
+  [ ] Tag and subcategory specificities have a worse rate of return
+  [ ] Maximum trade quantity applies both ways
   [ ] Further long-term progression quests
   [ ] Add implements
   [ ] Add fish to trading partner options
@@ -718,18 +727,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Simplify trading partner options
   [ ] Add one new early trading partner
   [ ] Add animations to memos
-  [ ] Increase # of traders research
-  [ ] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Tag and subcategory specificities have a worse rate of return
+  [ ] Trader conversations
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Storing an occupied house kicks out the leader
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
-  [ ] Maximum trade quantity applies both ways
-  [ ] Make trading party type selection less random
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
+  [ ] Store memo and conversation state in reducer
 
 ## Commands
 ### Delete all records from all tables:
