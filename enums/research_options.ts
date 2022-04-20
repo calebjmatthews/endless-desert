@@ -44,6 +44,12 @@ export enum RESEARCH_OPTIONS {
   FAMILIAR_CUISINE = "Familiar Cuisine",
   SANDY_LIMERICKS = "Sandy Limericks",
 
+  // Anthropology Lv 2
+  CULINARY_INSIGHTS = "Culinary Insights",
+  CURRENCY_IS_A_CONCEPT = "Currency is a Concept",
+  WIDE_OPEN_SPACES = "Wide Open Spaces",
+  LINGUISTIC_PROGRESSION = "Linguistic Progression",
+
   // Physics Lv 1
   EARLY_PRINCIPLES = "Early Principles",
   SAND_AND_SOIL = "Sand and Soil",

@@ -26,6 +26,8 @@ export enum RESEARCHES {
   ANTHROPOLOGY = "Anthropology",
   TRADING = "Trading",
   BASIC_EDUCATION = "Basic Education",
+  ANTHROPOLOGY_ADVANCED = "Advanced Anthropology",
+  TRADING_IMPROVED = "Improved Trading",
   PHYSICS = "Physics",
   PHYSICS_ADVANCED = "Advanced Physics",
   CLAY_EXCAVATION = "Clay Excavation",

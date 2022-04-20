@@ -29,7 +29,7 @@ startingFactory(BUILDING_TYPES.FALLOW_FIELD);
 startingFactory(BUILDING_TYPES.DECAYING_STUDY);
 startingFactory(BUILDING_TYPES.RUINED_HUTS);
 startingFactory(BUILDING_TYPES.SHATTERED_DOME);
-startingFactory(BUILDING_TYPES.ABANDONED_MARKET);
+startingFactory(BUILDING_TYPES.MARKET_ABANDONED);
 startingFactory(BUILDING_TYPES.GATE);
 
 export { buildingsStarting }

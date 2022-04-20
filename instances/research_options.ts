@@ -326,6 +326,45 @@ researchOptions[RESEARCH_OPTIONS.SANDY_LIMERICKS] = new ResearchOption({
   cost: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 50}]
 });
 
+researchOptions[RESEARCH_OPTIONS.CULINARY_INSIGHTS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.CULINARY_INSIGHTS,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 2,
+  description: `It pays to have tiny bribes when interacting with other cultures, especially food and drink. And it must be shared correctly; it's far too easy to offer and accidental insult.`,
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SOUP, quantity: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BREAD, quantity: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, quantity: 100}]
+});
+
+researchOptions[RESEARCH_OPTIONS.CURRENCY_IS_A_CONCEPT] = new ResearchOption({
+  name: RESEARCH_OPTIONS.CURRENCY_IS_A_CONCEPT,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 2,
+  description: `You've heard the Spring-Autumn Kingdom has a concept called "currency", whereby any goods can be excanged for small Jade Tokens. The practice seems bizarrely restrictive, but is worth a closer look.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.JADE, quantity: 10}]
+});
+
+researchOptions[RESEARCH_OPTIONS.WIDE_OPEN_SPACES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.WIDE_OPEN_SPACES,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 2,
+  description: `The most difficult thing about bringing together travelers of various provenance is the ubiquitous preference for the open sky. There must be ways you can make your spaces feel more open and more relaxing to your visitors.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_SKY, quantity: 1},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 5000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.LINGUISTIC_PROGRESSION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.LINGUISTIC_PROGRESSION,
+  appliesTo: RESEARCHES.ANTHROPOLOGY,
+  difficulty: 2,
+  description: `You've made some progress in learning the myriad languages of the desert. But the sheer amount of regional dialects, colloquialisms, and differences in pronunciation is eye-watering. You've still got a lot of work to do.`,
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
+    { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200 },
+    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10 }]
+});
+
 researchOptions[RESEARCH_OPTIONS.EARLY_PRINCIPLES] = new ResearchOption({
   name: RESEARCH_OPTIONS.EARLY_PRINCIPLES,
   appliesTo: RESEARCHES.PHYSICS,

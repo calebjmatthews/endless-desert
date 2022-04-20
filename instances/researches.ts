@@ -445,6 +445,35 @@ researches[RESEARCHES.BASIC_EDUCATION] = new Research({
   knowledgeReq: 200
 });
 
+researches[RESEARCHES.ANTHROPOLOGY_ADVANCED] = new Research({
+  name: RESEARCHES.ANTHROPOLOGY_ADVANCED,
+  unlocks: ('Opens up new areas of study about mechanical processes.'),
+  description: `Your grasp of language and culture has been constantly improving. With a push, you could ascend to an entirely new level.`,
+  icon: new Icon({provider: 'FontAwesome5', name: 'users',
+    color: '#fff', backgroundColor: '#071f56'}),
+  category: RESEARCHES.ANTHROPOLOGY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANTHROPOLOGY, RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 5000
+});
+
+researches[RESEARCHES.TRADING_IMPROVED] = new Research({
+  name: RESEARCHES.TRADING_IMPROVED,
+  unlocks: 'Allows an upgrade to the Market',
+  description: `In order to expand the size of your market you'll need to do more than create a bigger space. You'll need a building designed so vastly different people can shout over one another without breaking into a fight.`,
+  icon: new Icon({provider: 'svg', name: SVGS.GRAND_MARKET}),
+  category: RESEARCHES.ANTHROPOLOGY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANTHROPOLOGY_ADVANCED],
+  knowledgeReq: 17000
+});
+
 researches[RESEARCHES.PHYSICS] = new Research({
   name: RESEARCHES.PHYSICS,
   unlocks: ('Opens up new areas of study about mechanical processes.'),

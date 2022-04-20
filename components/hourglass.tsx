@@ -201,7 +201,7 @@ export default function HourglassComponent() {
           else if (buildingType.name == BUILDING_TYPES.FALLOW_FIELD) {
             fieldRepaired();
           }
-          else if (buildingType.name == BUILDING_TYPES.ABANDONED_MARKET) {
+          else if (buildingType.name == BUILDING_TYPES.MARKET_ABANDONED) {
             marketRepaired();
           }
           else if (buildingType.name == BUILDING_TYPES.DECAYING_STUDY) {

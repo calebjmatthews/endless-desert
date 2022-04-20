@@ -356,7 +356,7 @@ function BuildingDescription(props: any) {
         return false;
 
         case INTRO_STATES.REVAMP_MARKET:
-        if (building.buildingType == BTY.ABANDONED_MARKET) { return true; }
+        if (building.buildingType == BTY.MARKET_ABANDONED) { return true; }
         return false;
 
         case INTRO_STATES.REFURBISH_HUTS:

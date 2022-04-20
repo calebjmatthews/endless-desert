@@ -127,7 +127,7 @@ export default function BuildDetailComponent() {
 
   function renderUpgradeCostContainer() {
     const brokenBuildings = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
-      BTY.DECAYING_STUDY, BTY.ABANDONED_MARKET, BTY.RUINED_HUTS, BTY.SHATTERED_DOME];
+      BTY.DECAYING_STUDY, BTY.MARKET_ABANDONED, BTY.RUINED_HUTS, BTY.SHATTERED_DOME];
 
     if (modalDisplayed == MODALS.BUILDING_DETAIL && (!buildingType.upgradesInto
       || !buildingType.upgradeCost)) { return null; }
@@ -160,7 +160,7 @@ export default function BuildDetailComponent() {
           + 'you need somewhere to sleep and plan.');
     }
     else if (introState == INTRO_STATES.REVAMP_MARKET
-      && buildingType.name != BTY.ABANDONED_MARKET) {
+      && buildingType.name != BTY.MARKET_ABANDONED) {
         disabledMessage = ('You shouldn\'t spend time on this, '
           + 'somewhere to meet with trading partners is more important.');
     }

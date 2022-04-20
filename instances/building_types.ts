@@ -116,13 +116,13 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cannotStore: true
   }),
 
-  [BTY.ABANDONED_MARKET]: new BuildingType({
-    name: BTY.ABANDONED_MARKET,
+  [BTY.MARKET_ABANDONED]: new BuildingType({
+    name: BTY.MARKET_ABANDONED,
     description: ('There\'s a smell of spices in the air, so faint you might '
       + 'be imagining it'),
     order: 5,
     category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.ABANDONED_MARKET}),
+    icon: new Icon({provider: 'svg', name: SVGS.MARKET_ABANDONED}),
     cost: null,
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30}],
     upgradesInto: BTY.MARKET,
@@ -263,6 +263,23 @@ const buildingTypes: { [name: string] : BuildingType } = {
       + 'in your settlement'),
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.MARKET}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 500},
+      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 40},
+      {specificity: RSP.EXACT, type: RTY.GLASS, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 100}],
+    upgradesInto: BTY.MARKET_GRAND,
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    cannotStore: true
+  }),
+
+  [BTY.MARKET_GRAND]: new BuildingType({
+    name: BTY.MARKET_GRAND,
+    description: `Large and handsome enough to comfortably hold two trading parties`,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GRAND_MARKET}),
     cost: null,
     recipes: null,
     givesNote: RTY.NOTES_EARTH,

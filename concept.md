@@ -66,10 +66,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Giver of most quests
   - Late game long term craft: create a moon
     - Gives an array of bonuses that apply to your town during a specific time or times of day
+    - Common for a moon to have one set of bonuses for half the day, and a different for the remainder; e.g. a moon with + Quality for Dishes in the dawn and dusk and + Speed for Crops in the noon and night
     - Can create a moon with specific attributes to appeal to certain buyers
   - Expedition introductory quest
     - Cries in the night: Samannoud wants to  investigate unexplained cries coming from nearby in the night
     - Some connection with Alabaster; refugees? bandits?
+  - Expedition relics:
+    - Shell from something mythical
+    - Resin from something mythical
+    - Maps to find other expeditions
+    - Petrtified wood
+    - Ancient seeds
+    - Stone tablets containing poetry
 
 ## Resource Subcategories:
   - Sand
@@ -715,8 +723,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Click on message bar to view all messages
   [X] Only deliver most recent messages
   [X] Quests to introduce new traders
-  [ ] Trading party type selection less random
-  [ ] Increase # of traders research
+  [X] Trading party type selection less random
+  [X] Increase # of traders research and market upgrade
   [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Tag and subcategory specificities have a worse rate of return
   [ ] Maximum trade quantity applies both ways
