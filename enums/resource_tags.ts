@@ -20,6 +20,11 @@ export enum RESOURCE_TAGS {
   INGREDIENT = "Cooking Ingredient",
   CERAMIC = "Ceramic",
   SPICE = "Cooking Spice",
+  ACTION_SEEK = "Action: Seek",
+  ACTION_BREAK = "Action: Break",
+  ACTION_TRAP = "Action: Trap",
+  ACTION_LOOSE = "Action: Loose",
+  ACTION_HEAL = "Action: Heal",
   SAVORY = "Savory", // orange
   SWEET = "Sweet", // pink
   BITTER = "Bitter", // purple

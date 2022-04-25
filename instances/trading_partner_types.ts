@@ -228,7 +228,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'),
       weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
+    {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'),
       weight: 25},
@@ -301,7 +301,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
+    {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25}
   ], [
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
@@ -313,7 +313,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
-    {specificity: RSP.EXACT, type: (ETY.COARSE_IMPLEMENTS + ' (Unmarked)'),
+    {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25}
   ]],
   receivesPool: [[

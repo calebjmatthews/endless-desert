@@ -5,6 +5,7 @@ export enum RESOURCE_CATEGORIES {
   MATERIAL_REFINED = "Refined Material",
   ARTISAN_GOOD = "Artisan Good",
   DISH = "Dish",
+  IMPLEMENT = "Implement",
   EQUIPMENT = "Equipment",
   SPECIAL = "Special"
 }

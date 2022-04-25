@@ -950,7 +950,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1.5},
         {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 0.5}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: EQT.COARSE_IMPLEMENTS + " (Unmarked)",
+      [{specificity: RSP.EXACT, type: EQT.COARSE_MEASURES + " (Unmarked)",
         quantity: 0.05, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2}]}) ],
     givesNote: RTY.NOTES_HEAT,

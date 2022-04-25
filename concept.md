@@ -351,14 +351,17 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
   - Implements:
     - Iron Edge: Iron x10
-    - Steel Edge: Steel x10
+    - Vitrius Edge: Vitrius Sheet x5, Steel x2
     - Hardened Slab: Iron x5, Bronze x5
+    - Unbreakable Slab: Steel x20, Ceramic Hull x1
     - Crude Needle: Iron x4, Bronze x1
-    - Delicate Needle: Steel x1, Brass x4
+    - Delicate Needle: Vitrius Sheet x1, Brass x4
     - Gearwork: Bronze x2, Brass x4
-    - Rope: Thatch x20
+    - Precise Gearwork: Ceramic Hull x12, Steel x4
+    - Rough Rope: Thatch x20, Reedcloth x2
+    - Ceramic Cable: Terracotta x100, Thatch x20
     - Torch: Wood x5, Charcoal x10, Sulfur x1
-    - Binding: Reedcloth x5
+    - Reed Binding: Reedcloth x5, Papyrus x20
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
     * Wooden Pole: Wood x60, Iron Edge x1
@@ -408,13 +411,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Seek (Torch): Spotting treasure, traps, and enemies
   - Break (Slab): Breaking through containers and walls
   - Trap (Gearwork): Immobilizing foes
-  - Evade (Edge): Escaping immobilization
+  - Loose (Edge): Escaping immobilization
   - Heal (Binding): Undoing damage
 - Leaders learn techniques from codexes, each technique uses a combination of points from implements
 - Attitudes determine how a leader moves through the site
-  - Cautious: Avoids enemies
+  - Cautious: Avoid enemies
   - Swift: Leave after finding grand treasure
   - Curious: Seek out all treasures
+  - Reckless: Seek out and trap enemies
 
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
@@ -582,10 +586,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Action after researching "Trading": "Revamp market" which opens the "Trading" tab
   - Action after researching "Exploration" "Recreate gate" which opens the "Exploration" tab
 
-## Trading Partner Mechanics
-  - Create a tpPending array equal to the number of current trading partners (3, to begin)
-  -
-
 ## Music
   - Daily card-based minigame that creates a benefit that applies to your entire town for 36 hours.
   - Cards can be created from Inspiration; one is created from the daily performance.
@@ -725,23 +725,24 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Quests to introduce new traders
   [X] Trading party type selection less random
   [X] Increase # of traders research and market upgrade
-  [ ] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Tag and subcategory specificities have a worse rate of return
-  [ ] Maximum trade quantity applies both ways
-  [ ] Further long-term progression quests
-  [ ] Add implements
+  [X] Add implements
   [ ] Add fish to trading partner options
   [ ] Add implements to trading partner options
   [ ] Simplify trading partner options
   [ ] Add one new early trading partner
-  [ ] Add animations to memos
+  [ ] Traders to use a mix of exact, tag, subcategory specificities
   [ ] Trader conversations
+  [ ] Tag and subcategory specificities have a worse rate of return
+  [ ] Maximum trade quantity applies both ways
+  [ ] Further long-term progression quests
+  [ ] Add animations to memos
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Storing an occupied house kicks out the leader
   [ ] Fortuity should grant ore, equipment, food
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
+  [ ] Researcher leveling system
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Store memo and conversation state in reducer
 
@@ -799,7 +800,7 @@ CREATE INDEX `index_timestamp` ON `messages`(`timestamp`);
 ### Get one of every basic equipment:
 ```
 dispatch(increaseResources(vault,
-  [new Resource({ type: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + " (Unmarked)"),
+  [new Resource({ type: (EQUIPMENT_TYPES.COARSE_MEASURES + " (Unmarked)"),
     quality: 0, quantity: 1 }),
   new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
     quality: 0, quantity: 1 }),

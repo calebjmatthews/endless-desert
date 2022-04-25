@@ -885,7 +885,7 @@ researches[RESEARCHES.TOOL_FABRICATION] = new Research({
   description: ('Your study of metals has brought you tantalizingly close to '
     + 'a variety of tools that would transform every part of the life that you\'ve '
     + 'carved out of this harsh land.'),
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS}),
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
   difficulty: 2,

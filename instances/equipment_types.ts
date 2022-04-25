@@ -40,7 +40,7 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
     count: 3
   })],
   recipeConsumes: null,
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
@@ -96,8 +96,8 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
-equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
-  name: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
+equipmentTypes[EQUIPMENT_TYPES.COARSE_MEASURES] = new EquipmentType({
+  name: EQUIPMENT_TYPES.COARSE_MEASURES,
   description: 'A set of small tools made out of crude metal',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
@@ -117,7 +117,7 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_IMPLEMENTS] = new EquipmentType({
     count: 4
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 40}],
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES})
 });
 
 equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({

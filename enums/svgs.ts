@@ -101,13 +101,22 @@ export enum SVGS {
   MISTAKE = "Mistake",
   BEER = "Beer",
   LIQUOR = "Liquor",
+
+  EDGE = "Edge",
+  SLAB = "Slab",
+  NEEDLE = "Needle",
+  GEARWORK = "Gearwork",
+  ROPE = "Rope",
+  TORCH = "Torch",
+  BINDING = "Binding",
+
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",
   KEY = "Key",
 
   ROUGH_MATTOCK = "Rough Mattock",
   WOODEN_POLE = "Wooden Pole",
-  COARSE_IMPLEMENTS = "Coarse Implements",
+  COARSE_MEASURES = "Coarse Implements",
   SIMPLE_ROBE = "Simple Robe",
   JOURNEYMANS_HAVERSACK = "Journeyman's Haversack",
   JOURNEYMANS_GEARBAG = "Journeyman's Gearbag",

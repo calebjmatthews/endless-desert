@@ -67,7 +67,7 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
     + 'distant lands for a reason you can\'t quite discern. '
     + '|name| told you the  "oats" aren\'t literal, so you know that much.'),
   speechType: 'Humorous',
-  toolStarting: EQUIPMENT_TYPES.COARSE_IMPLEMENTS,
+  toolStarting: EQUIPMENT_TYPES.COARSE_MEASURES,
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})

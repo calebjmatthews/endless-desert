@@ -288,6 +288,7 @@ resourceTypes[RTY.TEA_LEAVES_DARJEELING] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 20,
+  description: `A commonly available but balanced tea leaf`,
   icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES})
 });
 
@@ -370,6 +371,7 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.POWDER, RTA.INGREDIENT],
   value: 30,
+  description: `A wonderfully versatile starch made from grinding grain`,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
 });
 
@@ -379,6 +381,7 @@ resourceTypes[RTY.MUSSEL] = new ResourceType({
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.FOOD, RTA.INGREDIENT],
   value: 32,
+  description: `These mollusks should be eaten fresh, while they still taste like the distant sea`,
   icon: new Icon({provider: 'svg', name: SVGS.MUSSEL})
 });
 
@@ -388,6 +391,7 @@ resourceTypes[RTY.MINNOW] = new ResourceType({
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 24,
+  description: `Tiny, abundant fish that glint in the sunlight`,
   icon: new Icon({provider: 'svg', name: SVGS.MINNOW})
 });
 
@@ -397,6 +401,7 @@ resourceTypes[RTY.CARP] = new ResourceType({
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
+  description: `Tough, and willing to eat almost anything`,
   icon: new Icon({provider: 'svg', name: SVGS.CARP})
 });
 
@@ -406,6 +411,7 @@ resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 400,
+  description: `Enormous river fish that are a difficult catch`,
   icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI})
 });
 
@@ -415,6 +421,7 @@ resourceTypes[RTY.QUAIL] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 200,
+  description: `Small docile birds that frolic in the dawn and dusk`,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
 
@@ -424,6 +431,7 @@ resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 160,
+  description: `Sweet, mild meat from a quail`,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL_MEAT})
 });
 
@@ -433,6 +441,7 @@ resourceTypes[RTY.EGG] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
+  description: `Rich yolk in a crackling shell`,
   icon: new Icon({provider: 'svg', name: SVGS.EGG})
 });
 
@@ -1371,12 +1380,75 @@ resourceTypes[RTY.LIQUOR] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.LIQUOR})
 });
 
+resourceTypes[RTY.IRON_EDGE] = new ResourceType({
+  name: RTY.IRON_EDGE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_LOOSE],
+  value: 200,
+  description: `A sharp iron blade; useful for cutting through traps and snares`,
+  icon: new Icon({provider: 'svg', name: SVGS.EDGE})
+});
+
+resourceTypes[RTY.HARDENED_SLAB] = new ResourceType({
+  name: RTY.HARDENED_SLAB,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_BREAK],
+  value: 200,
+  description: `A studded metal plate; useful for smashing through obstacles`,
+  icon: new Icon({provider: 'svg', name: SVGS.SLAB})
+});
+
+resourceTypes[RTY.CRUDE_NEEDLE] = new ResourceType({
+  name: RTY.CRUDE_NEEDLE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP],
+  value: 200,
+  description: `A roughly-made needle; can be placed pointing upwards as a simple trap`,
+  icon: new Icon({provider: 'svg', name: SVGS.NEEDLE})
+});
+
+resourceTypes[RTY.GEARWORK] = new ResourceType({
+  name: RTY.GEARWORK,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
+  value: 200,
+  description: `A simple gear-driven component; used in everything from dart-traps to bomb-triggers`,
+  icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
+});
+
+resourceTypes[RTY.ROUGH_ROPE] = new ResourceType({
+  name: RTY.ROUGH_ROPE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP, RTA.ACTION_LOOSE],
+  value: 200,
+  description: `Made from corded reed fibers; can be used to make a spring trap or to pull yourself from a hole`,
+  icon: new Icon({provider: 'svg', name: SVGS.ROPE})
+});
+
+resourceTypes[RTY.TORCH] = new ResourceType({
+  name: RTY.TORCH,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_SEEK],
+  value: 200,
+  description: `A short-lived, smoky torch that can still light your way in dark places`,
+  icon: new Icon({provider: 'svg', name: SVGS.TORCH})
+});
+
+resourceTypes[RTY.BINDING] = new ResourceType({
+  name: RTY.BINDING,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_HEAL],
+  value: 200,
+  description: `A soft fibrous banding that can stop bleeding or hold things together`,
+  icon: new Icon({provider: 'svg', name: SVGS.BINDING})
+});
+
 resourceTypes[(EQUIPMENT_TYPES.FOUR_POINT_BANGLE + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.FOUR_POINT_BANGLE + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 800000,
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceType({
@@ -1395,12 +1467,12 @@ resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType(
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
-resourceTypes[(EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)')] = new ResourceType({
-  name: (EQUIPMENT_TYPES.COARSE_IMPLEMENTS + ' (Unmarked)'),
+resourceTypes[(EQUIPMENT_TYPES.COARSE_MEASURES + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.COARSE_MEASURES + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
   value: 4000,
-  icon: new Icon({provider: 'svg', name: SVGS.COARSE_IMPLEMENTS})
+  icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({

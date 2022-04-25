@@ -1,6 +1,7 @@
 export enum RESOURCE_TYPES {
   KNOWLEDGE = "Knowledge",
   GLOAMING_LIGHT = "Gloaming Light",
+
   NOTES_SKY = "Notes on the Boundless Sky",
   NOTES_STAR = "Notes on Stars Beyond Counting",
   NOTES_WATER = "Notes on Flowing Water",
@@ -8,6 +9,7 @@ export enum RESOURCE_TYPES {
   NOTES_HEAT = "Notes on Scintillating Heat",
   NOTES_CULTIVATION = "Notes on Gentle Cultivation",
   NOTES_DIALECTIC = "Notes on Dialectic Semiosis",
+
   WATER = "Water",
   BRINE = "Brine",
   LENTIL = "Lentil",
@@ -127,6 +129,7 @@ export enum RESOURCE_TYPES {
   ASHWARE = "Ashware",
   FAIENCE = "Faience",
   PORCELAIN = "Porcelain",
+
   TEA_DARJEELING = "Darjeeling Tea",
   JUICE_BLUEBERRY = "Blueberry Juice",
   JUICE_TOMATO = "Tomato Juice",
@@ -142,6 +145,20 @@ export enum RESOURCE_TYPES {
   MISTAKE = "Mistake",
   BEER = "Beer",
   LIQUOR = "Liquor",
+
+  IRON_EDGE = "Iron Edge",
+  VITRIUS_EDGE = "Vitrius Edge",
+  HARDENED_SLAB = "Hardened Slab",
+  UNBREAKABLE_SLAB = "Unbreakable Slab",
+  CRUDE_NEEDLE = "Crude Needle",
+  DELICATE_NEEDLE = "Delicate Needle",
+  GEARWORK = "Gearwork",
+  PRECISE_GEARWORK = "Precise Gearwork",
+  ROUGH_ROPE = "Rough Rope",
+  CERAMIC_CABLE = "Ceramic Cable",
+  TORCH = "Torch",
+  BINDING = "Binding",
+  
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",
   RED_KEY = "Red Key"

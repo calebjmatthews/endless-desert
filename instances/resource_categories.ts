@@ -52,17 +52,24 @@ resourceCategories[RESOURCE_CATEGORIES.DISH] = new ResourceCategory({
     color: '#2b2b2d'})
 });
 
+resourceCategories[RESOURCE_CATEGORIES.IMPLEMENT] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.IMPLEMENT,
+  value: 200,
+  order: 6,
+  icon: new Icon({provider: 'FontAwesome', name: 'gear', color: '#2b2b2d'})
+});
+
 resourceCategories[RESOURCE_CATEGORIES.EQUIPMENT] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.EQUIPMENT,
   value: 2000,
-  order: 6,
+  order: 7,
   icon: new Icon({provider: 'FontAwesome5', name: 'tools', color: '#2b2b2d'})
 });
 
 resourceCategories[RESOURCE_CATEGORIES.SPECIAL] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.SPECIAL,
   value: 10000,
-  order: 7,
+  order: 8,
   icon: new Icon({provider: 'FontAwesome5', name: 'star', color: '#2b2b2d'})
 });
 

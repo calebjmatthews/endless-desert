@@ -276,12 +276,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(handleIncreaseSlots());
-      // const newVault = new Vault({
-      //   ...vault,
-      //   lastTimestamp: (new Date(Date.now()).valueOf() - 1000000)
-      // });
-      // dispatch(setVault(newVault));
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

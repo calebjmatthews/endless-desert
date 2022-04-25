@@ -237,6 +237,46 @@ resourceTags[RESOURCE_TAGS.HERBAL] = new ResourceTag({
   icon: new Icon({provider: 'FontAwesome5', name: 'leaf',
     color:'#4caf50'})});
 
+resourceTags[RESOURCE_TAGS.ACTION_SEEK] = new ResourceTag({
+  name: RESOURCE_TAGS.ACTION_SEEK,
+  plural: 'Implements for Seeking',
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'sun',
+    color:'#efbd03'})});
+
+resourceTags[RESOURCE_TAGS.ACTION_BREAK] = new ResourceTag({
+  name: RESOURCE_TAGS.ACTION_BREAK,
+  plural: 'Implements for Breaking',
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'bomb',
+    color:'#b7241e'})});
+
+resourceTags[RESOURCE_TAGS.ACTION_TRAP] = new ResourceTag({
+  name: RESOURCE_TAGS.ACTION_TRAP,
+  plural: 'Implements for Trapping',
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome', name: 'gears',
+    color:'#9b6a03'})});
+
+resourceTags[RESOURCE_TAGS.ACTION_LOOSE] = new ResourceTag({
+  name: RESOURCE_TAGS.ACTION_LOOSE,
+  plural: 'Implements for Loosing',
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'sword',
+    color:'#1e66b7'})});
+
+resourceTags[RESOURCE_TAGS.ACTION_HEAL] = new ResourceTag({
+  name: RESOURCE_TAGS.ACTION_HEAL,
+  plural: 'Implements for Healing',
+  value: 200,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'heart',
+    color:'#69b71e'})});
+
 resourceTags[EQUIPMENT_SLOTS.TOOL] = new ResourceTag({
   name: EQUIPMENT_SLOTS.TOOL,
   plural: 'Tools',
