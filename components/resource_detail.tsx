@@ -40,21 +40,20 @@ export default function ResourceDetailComponent() {
         <Text style={styles.heading1}>{utils.getResourceName(resource)}</Text>
       </View>
       <View style={{flex: 1, display: 'flex', alignItems: 'center'}}>
+        <View style={styles.centeredRows}>
+          <IconComponent provider={resourceCategory.icon.provider}
+            name={resourceCategory.icon.name} color={resourceCategory.icon.color}
+            size={19} style={styles.bareText} />
+          <Text style={styles.bareText}>
+            {' ' + resourceCategory.name}
+          </Text>
+        </View>
         <View style={flat([styles.descriptionBand,
           {minWidth: positioner.modalWidth,
             maxWidth: positioner.modalWidth}])}>
-          <View style={styles.centeredRows}>
-            <Text style={styles.descriptionBandText}>
-              {'Category: '}
-            </Text>
-            <IconComponent provider={resourceCategory.icon.provider}
-              name={resourceCategory.icon.name} color={resourceCategory.icon.color}
-              size={19} />
-            <Text style={styles.descriptionBandText}>
-              {' ' + resourceCategory.name}
-            </Text>
-          </View>
-
+          <Text style={styles.descriptionBandText}>
+            {resourceType.description || `A mysterious ${resourceCategory.name}`}
+          </Text>
         </View>
         <View style={StyleSheet.flatten([styles.container, {paddingHorizontal: 5,
           justifyContent: 'space-between'}])}>

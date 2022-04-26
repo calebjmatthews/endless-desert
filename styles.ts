@@ -129,7 +129,8 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   columns: {
     display: 'flex',
@@ -506,8 +507,7 @@ export const styles = StyleSheet.create({
   },
   descriptionBandText: {
     textAlign: 'center',
-    fontStyle: 'italic',
-    marginLeft: 5
+    fontStyle: 'italic'
   },
 
   leaderCircle: {

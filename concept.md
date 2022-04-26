@@ -726,25 +726,28 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Trading party type selection less random
   [X] Increase # of traders research and market upgrade
   [X] Add implements
+  [X] Show resource descriptions
   [ ] Add fish to trading partner options
+  [ ] Add fishing building upgrade researches
   [ ] Add implements to trading partner options
   [ ] Simplify trading partner options
   [ ] Add one new early trading partner
   [ ] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Trader conversations
   [ ] Tag and subcategory specificities have a worse rate of return
+  [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways
   [ ] Further long-term progression quests
   [ ] Add animations to memos
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Storing an occupied house kicks out the leader
-  [ ] Fortuity should grant ore, equipment, food
+  [ ] More repeatable fortuities
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
-  [ ] Researcher leveling system
+  [ ] Research leveling system
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Store memo and conversation state in reducer
+  [ ] Compressed resource view
 
 ## Commands
 ### Delete all records from all tables:
