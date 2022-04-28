@@ -73,7 +73,7 @@ resourceTypes[RTY.NOTES_HEAT] = new ResourceType({
   category: RCA.FIELD_NOTES,
   tags: [RTA.MIND],
   value: 10000,
-  description: `Your most constant companion`,
+  description: `Detailed notes on your most constant companion`,
   icon: new Icon({provider: 'svg', name: SVGS.NOTES_HEAT})
 });
 
@@ -288,7 +288,7 @@ resourceTypes[RTY.TEA_LEAVES_DARJEELING] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 20,
-  description: `A commonly available but balanced tea leaf`,
+  description: `A commonly available tea leaf with a simple flavor`,
   icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES})
 });
 
@@ -451,6 +451,7 @@ resourceTypes[RTY.FERTILIZER] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 10,
+  description: `An unpleasant (but useful) consequence of tending animals`,
   icon: new Icon({provider: 'svg', name: SVGS.FERTILIZER})
 });
 
@@ -460,6 +461,7 @@ resourceTypes[RTY.OX] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 400,
+  description: `Oxen are slow growing, but their meat and milk are prized`,
   icon: new Icon({provider: 'svg', name: SVGS.OX})
 });
 
@@ -469,6 +471,7 @@ resourceTypes[RTY.OX_MEAT] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 240,
+  description: `Marbled red meat from an ox, excellent when roasted over a fire`,
   icon: new Icon({provider: 'svg', name: SVGS.OX_MEAT})
 });
 
@@ -478,6 +481,7 @@ resourceTypes[RTY.MILK] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 100,
+  description: `Rich, creamy milk used in a variety of dishes`,
   icon: new Icon({provider: 'svg', name: SVGS.MILK})
 });
 
@@ -487,6 +491,7 @@ resourceTypes[RTY.SILKWORM_COCOON] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 200,
+  description: `Can be boiled and weaved to produce a soft, smooth fabric beyond compare`,
   icon: new Icon({provider: 'svg', name: SVGS.SILKWORM_COCOON})
 });
 

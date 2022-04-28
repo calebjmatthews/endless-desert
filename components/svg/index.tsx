@@ -178,9 +178,10 @@ import YouSvgComponent from './people/you';
 import FireflySvgComponent from './people/firefly';
 import TourmalineJewelerSvgComponent from './people/tourmaline_jeweler';
 
-import RedCrowTradersSvgComponent from './symbols/red_crow_traders';
 import FoxfireAsceticsSvgComponent from './symbols/foxfire_ascetics';
 import TrefoilKingdomSvgComponent from './symbols/trefoil_kingdom';
+import RedCrowTradersSvgComponent from './symbols/red_crow_traders';
+import SandstoneEdifiersSvgComponent from './symbols/sandstone_edificers';
 import TourmalineJewelersSvgComponent from './symbols/tourmaline_jewelers';
 import SpringAutumnKingdomSvgComponent from './symbols/spring_autumn_kingdom';
 
@@ -543,12 +544,14 @@ export default function SvgComponent(props: { icon: Icon }) {
     case SVGS.TOURMALINE_JEWELER:
     return <TourmalineJewelerSvgComponent icon={props.icon} />;
 
-    case SVGS.RED_CROW_TRADERS:
-    return <RedCrowTradersSvgComponent icon={props.icon} />;
     case SVGS.FOXFIRE_ASCETICS:
     return <FoxfireAsceticsSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_KINGDOM:
     return <TrefoilKingdomSvgComponent icon={props.icon} />;
+    case SVGS.RED_CROW_TRADERS:
+    return <RedCrowTradersSvgComponent icon={props.icon} />;
+    case SVGS.SANDSTONE_EDIFICERS:
+    return <SandstoneEdifiersSvgComponent icon={props.icon} />;
     case SVGS.TOURMALINE_JEWELERS:
     return <TourmalineJewelersSvgComponent icon={props.icon} />;
     case SVGS.SPRING_AUTUMN_KINGDOM:

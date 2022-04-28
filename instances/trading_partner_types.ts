@@ -19,16 +19,14 @@ let tradingPartnerTypes: { [name: string] : TradingPartnerType } = {};
 
 tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType({
   name: TRADING_PARTNERS.FOXFIRE_ASCETICS,
-  description: ('Journeying ascetics on a pilgrimage to a sea of blue-green fire. '
-    + 'Will trade materials they\'ve picked up in their travels for simple food '
-    + 'and drink.'),
+  description: `Journeying ascetics on a pilgrimage to a sea of blue-green fire. Will trade materials they've picked up in their travels for simple food and drink.`,
   icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_ASCETICS, color: '#84f9e4',
     backgroundColor: '#008a71'}),
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 20}
   ], [
@@ -37,12 +35,10 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 25},
-    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 25},
-    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 50},
-    {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 20}
+    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 100},
+    {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
@@ -56,13 +52,13 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   maxTrust: 1000,
   getTier(trust) {
     let value = 0, toNext = 0;
-    if (trust < 25) {
+    if (trust < 50) {
       value = 0;
-      toNext = (trust / 25) * 100;
+      toNext = (trust / 50) * 100;
     }
-    else if (trust < (25 + 175)) {
+    else if (trust < (50 + 200)) {
       value = 1;
-      toNext = ((trust - 25) / 175) * 100;
+      toNext = ((trust - 50) / 200) * 100;
     }
     else {
       value = 1;
@@ -83,39 +79,48 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.POTATO, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
     {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 100},
-    {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 20},
-    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 10}
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 100}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
     {specificity: RSP.EXACT, type: RTY.POTATO, weight: 100},
     {specificity: RSP.EXACT, type: RTY.BLUEBERRY, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
     {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 25},
-    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
-    {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 20},
-    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 10}
+    {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
-    {specificity: RSP.EXACT, type: RTY.REEDS, weight: 50},
-    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.REEDS, weight: 100},
+    {specificity: RSP.TAG, type: RTA.CROP, weight: 16.7},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 16.7},
+    {specificity: RSP.TAG, type: RTA.FUEL, weight: 16.7},
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
+    {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
-    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 50},
+    {specificity: RSP.TAG, type: RTA.DRIED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 12.5},
     {specificity: RSP.EXACT, type: RTY.FLOUR, weight: 50},
+    {specificity: RSP.TAG, type: RTA.POWDER, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.INGREDIENT, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.MINNOW, weight: 50},
+    {specificity: RSP.TAG, type: RTA.ANIMAL, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.BINDING, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, weight: 25},
+    {specificity: RSP.CATEGORY, type: RCA.IMPLEMENT, weight: 25},
+    {specificity: RSP.SUBCATEGORY, type: RSC.OMELET, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ]],
@@ -144,8 +149,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
 
 tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType({
   name: TRADING_PARTNERS.RED_CROW_TRADERS,
-  description: ('They\'re loud, rowdy, and argumentative; based on the rumours '
-    + 'you\'ve heard, "Red Crow Raiders" would be a more accurate name.'),
+  description: `They're loud, rowdy, and argumentative; based on the rumours you've heard, "Red Crow Raiders" would be a more accurate name.`,
   icon: new Icon({provider: 'svg', name: SVGS.RED_CROW_TRADERS, color: '#ff2626',
     backgroundColor: '#4a0000'}),
   givesPool: [[
@@ -154,35 +158,40 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 100},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
-    {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 20},
-    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
-      weight: 10}
+    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
     {specificity: RSP.EXACT, type: RTY.ONION, weight: 100},
     {specificity: RSP.EXACT, type: RTY.TOMATO, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_CORAL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 20},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.BRINE, weight: 50},
-    {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 20},
-    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
-      weight: 10}
+    {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 50},
     {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.TAG, type: RTA.EARTH, weight: 100},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
-    {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL, weight: 50},
+    {specificity: RSP.TAG, type: RTA.SMELTED, weight: 50},
+    {specificity: RSP.TAG, type: RTA.FUEL, weight: 25},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
-    {specificity: RSP.CATEGORY, type: RCA.MATERIAL_REFINED, weight: 50},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.BARRAMUNDI, weight: 50},
+    {specificity: RSP.TAG, type: RTA.ANIMAL, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.IRON_EDGE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.TORCH, weight: 25},
+    {specificity: RSP.CATEGORY, type: RCA.IMPLEMENT, weight: 25},
+    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ]],
@@ -209,21 +218,90 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   }
 });
 
+tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerType({
+  name: TRADING_PARTNERS.SANDSTONE_EDIFICERS,
+  description: `A group of burly architect-builders who use enormous caravans to move huge quantities of raw material`,
+  icon: new Icon({provider: 'svg', name: SVGS.SANDSTONE_EDIFICERS, color: '#895723',
+    backgroundColor: '#ffc856'}),
+  givesPool: [[
+    {specificity: RSP.EXACT, type: RTY.WOOD_ASH, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SPINACH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WOOD_ASH, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SPINACH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.RADISH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.OX, weight: 50},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_TOOLPACK + ' (Unmarked)'),
+      weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
+      weight: 25}
+  ]],
+  receivesPool: [[
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100}
+  ], [
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CARP, weight: 50},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100},
+    {specificity: RSP.TAG, type: RTA.DRIED, weight: 50}
+  ]],
+  initialTrust: 0,
+  maxTrust: 1800,
+  getTier(trust) {
+    let value = 0, toNext = 0;
+    if (trust < 100) {
+      value = 0;
+      toNext = (trust / 100) * 100;
+    }
+    else if (trust < (400 + 100)) {
+      value = 1;
+      toNext = ((trust - 100) / 400) * 100;
+    }
+    else {
+      value = 1;
+      toNext = 100;
+    }
+    return { value, toNext };
+  },
+  getAcceptQuantity(trust) {
+    return Math.floor(1000 + (trust * 10));
+  }
+});
+
 tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartnerType({
   name: TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM,
-  description: ('A sprawling and powerful kingdom to the east, '
-    + 'with strict bureaucracy and many centers of learning.'),
+  description: `A sprawling and powerful kingdom to the east, with strict bureaucracy and many centers of learning.`,
   icon: new Icon({provider: 'svg', name: SVGS.SPRING_AUTUMN_KINGDOM, color: '#fff',
     backgroundColor: '#bf0000'}),
   givesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 25},
     {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'),
@@ -239,31 +317,44 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.SULFUR, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.OX, weight: 25}
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 100},
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
+    {specificity: RSP.TAG, type: RTA.SMELTED, weight: 25},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 25},
     {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 100},
+    {specificity: RSP.TAG, type: RTA.PRESSED, weight: 25},
+    {specificity: RSP.TAG, type: RTA.SPICE, weight: 25},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTA.CERAMIC, weight: 100},
-    {specificity: RSP.TAG, type: RTA.GLASS, weight: 100},
-    {specificity: RSP.TAG, type: RTA.TEXTILE, weight: 100},
-    {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
-    {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 50},
+    {specificity: RSP.TAG, type: RTA.SMELTED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 50},
+    {specificity: RSP.TAG, type: RTA.PRESSED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.SPICE, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.GEARWORK, weight: 25},
+    {specificity: RSP.CATEGORY, type: RCA.IMPLEMENT, weight: 25},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CAKE, weight: 50},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ]],
   initialTrust: 0,
   maxTrust: 3000,
@@ -320,11 +411,13 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169}
   ], [
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
