@@ -705,6 +705,21 @@ researches[RESEARCHES.GRINDING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.GRINDING_MILL]
 });
 
+researches[RESEARCHES.IMPLEMENT_ASSEMBLY] = new Research({
+  name: RESEARCHES.IMPLEMENT_ASSEMBLY,
+  unlocks: ('Unlocks Workshops.'),
+  description: `Now that you can produce metal and simple fibrous materials a new world of creation has opened to you.`,
+  icon: new Icon({provider: 'svg', name: SVGS.GEARWORK}),
+  category: RESEARCHES.PHYSICS,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMPACTION, RESEARCHES.GRINDING, RESEARCHES.COMBUSTION],
+  knowledgeReq: 1600,
+  unlocksBuilding: [BUILDING_TYPES.WORKSHOP]
+});
+
 researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
   name: RESEARCHES.GRINDING_SIMPLIFIED,
   unlocks: ('Allows Grinding Mills to be run without a leader.'),

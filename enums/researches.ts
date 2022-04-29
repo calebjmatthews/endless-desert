@@ -55,6 +55,7 @@ export enum RESEARCHES {
   COMBUSTION = "Combustion",
   COMBUSTION_SIMPLIFIED = "Simplified Combustion",
   COMBUSTION_VENTILATED = "Ventilated Combustion",
+  IMPLEMENT_ASSEMBLY = "Implement Assembly",
   COOKING = "Cooking",
   COOKING_BOUNTIFUL = "Bountiful Cooking",
   GLASS_SHAPING = "Glass Shaping",

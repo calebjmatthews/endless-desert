@@ -1171,6 +1171,43 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
+  [BTY.WORKSHOP]: new BuildingType({
+    name: BTY.WORKSHOP,
+    description: `Rows of benches, with myriad tools in easy reach`,
+    category: BCA.MATERIAL_REFINED,
+    icon: new Icon({provider: 'svg', name: SVGS.WORKSHOP}),
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 100},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 20}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 5},
+        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 5}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 4},
+        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 1}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2},
+        {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 4}]}),
+    new BuildingRecipe({index: 4, produces:
+      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 20},
+        {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 20}]}),
+    new BuildingRecipe({index: 5, produces:
+      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 40},
+        {specificity: RSP.EXACT, type: RTY.PULP, quantity: 40}]}) ],
+    givesNote: RTY.NOTES_HEAT,
+    noteCost: defaultNoteCost,
+    requiresLeader: true
+  }),
+
   [BTY.KITCHEN]: new BuildingType({
     name: BTY.KITCHEN,
     description: 'People are always hanging around outside, for some reason',

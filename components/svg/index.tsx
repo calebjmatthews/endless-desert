@@ -161,6 +161,7 @@ import OutfittersSvgComponent from './buildings/outfitters';
 import FabricatorySvgComponent from './buildings/fabricatory';
 import DryingYardSvgComponent from './buildings/drying_yard';
 import FurnaceSvgComponent from './buildings/furnace';
+import WorkshopSvgComponent from './buildings/workshop';
 import KitchenSvgComponent from './buildings/kitchen';
 import GlassworksSvgComponent from './buildings/glassworks';
 import LaboratorySvgComponent from './buildings/laboratory';
@@ -512,6 +513,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <DryingYardSvgComponent icon={props.icon} />;
     case SVGS.FURNACE:
     return <FurnaceSvgComponent icon={props.icon} />;
+    case SVGS.WORKSHOP:
+    return <WorkshopSvgComponent icon={props.icon} />;
     case SVGS.KITCHEN:
     return <KitchenSvgComponent icon={props.icon} />;
     case SVGS.GLASSWORKS:

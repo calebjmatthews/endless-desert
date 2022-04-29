@@ -360,19 +360,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Delicate Needle: Vitrius Sheet x1, Brass x4
     - Gearwork: Bronze x2, Brass x4
     - Precise Gearwork: Ceramic Hull x12, Steel x4
-    - Rough Rope: Thatch x20, Reedcloth x2
+    - Rough Rope: Thatch x20, Papyrus x20
     - Ceramic Cable: Terracotta x100, Thatch x20
     - Torch: Wood x5, Charcoal x10, Sulfur x1
-    - Reed Binding: Reedcloth x5, Papyrus x20
+    - Reed Binding: Reeds x40, Pulp x40
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
-    * Wooden Pole: Wood x60, Iron Edge x1
-    * Coarse Instruments: Iron Edge x4
+    * Wooden Pole: Wood x60, Hardened Slab x1
+    * Coarse Instruments: Gearwork x1, Crude Needle x1, Iron Edge x1, Lens x10
     * Rags: Reedcloth x10
     * Simple Robe: Reedcloth x15, Crude Needle x2
     * Shoulder Pouch: Reedcloth x5
-    * Journeyman's Haversack: Reedcloth x20, Crude Needle x1
-    * Journeyman's Gearbag: Reedcloth x10, Crude Needle x2
+    * Journeyman's Haversack: Reedcloth x20, Crude Needle x1, Rope x1
+    * Journeyman's Gearbag: Reedcloth x10, Crude Needle x1, Binding x1
     * Journeyman's Toolpack: Reedcloth x10, Crude Needle x1, Iron Edge x1
 
 ## Cooking:
@@ -734,21 +734,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add implements to trading partner options
   [X] Simplify trading partner options
   [X] Traders to use a mix of exact, tag, subcategory specificities
-  [ ] Workshop building and research
+  [X] Workshop building and research
   [ ] Add one new early trading partner
   [ ] Trade option multipliers
   [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways
-  [ ] Further long-term progression quests
+  [ ] Exploration long-term progression quests
   [ ] Add animations to memos
   [ ] Glassware to use cloth subcategory as an ingredient
+  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Storing an occupied house kicks out the leader
   [ ] More repeatable fortuities
   [ ] Fix for stuck without sand before trading unlocked
   [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
-  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Store memo and conversation state in reducer
   [ ] Compressed resource view
 
