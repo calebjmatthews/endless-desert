@@ -730,7 +730,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add implements
   [X] Show resource descriptions
   [X] Add fish to trading partner options
-  [ ] Add fishing building upgrade researches
+  [X] Add fishing building upgrade researches
   [X] Add implements to trading partner options
   [X] Simplify trading partner options
   [X] Traders to use a mix of exact, tag, subcategory specificities

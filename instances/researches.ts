@@ -317,11 +317,11 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
 });
 
-researches[RESEARCHES.FISHING] = new Research({
-  name: RESEARCHES.FISHING,
+researches[RESEARCHES.LIMNOLOGY] = new Research({
+  name: RESEARCHES.LIMNOLOGY,
   unlocks: ('Unlocks Fishing Ponds.'),
   description: (`It's common practice in desert towns to divert a river into still ponds that are perfect for fish. The kind of fish attracted will depend on what you use as bait.`),
-  icon: new Icon({provider: 'svg', name: SVGS.CARP}),
+  icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 1,
@@ -330,6 +330,36 @@ researches[RESEARCHES.FISHING] = new Research({
   prereq: [RESEARCHES.BIOLOGY],
   knowledgeReq: 100,
   unlocksBuilding: [BUILDING_TYPES.FISHING_POND]
+});
+
+researches[RESEARCHES.LIMNOLOGICAL_ENGINEERING] = new Research({
+  name: RESEARCHES.LIMNOLOGICAL_ENGINEERING,
+  unlocks: ('Unlocks an upgrade to Fishing Ponds.'),
+  description: (`Carp love deep, slow-moving pond beds. You could create an ideal habitat after thorough dredging of the pond bottom.`),
+  icon: new Icon({provider: 'svg', name: SVGS.CARP}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.LIMNOLOGY],
+  knowledgeReq: 400,
+  unlocksUpgrade: [BUILDING_TYPES.FISHING_POND_DREDGED]
+});
+
+researches[RESEARCHES.LIMNOLOGICAL_ARBOROLOGY] = new Research({
+  name: RESEARCHES.LIMNOLOGICAL_ARBOROLOGY,
+  unlocks: ('Unlocks an upgrade to Dredged Fishing Ponds.'),
+  description: (`Planting olive trees to shade parts of the pond could attract Barramundi and offer a perfect place for a midday nap.`),
+  icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.LIMNOLOGY],
+  knowledgeReq: 1200,
+  unlocksUpgrade: [BUILDING_TYPES.FISHING_POND_OLIVE_SHADED]
 });
 
 researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
@@ -344,7 +374,7 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FISHING],
+  prereq: [RESEARCHES.LIMNOLOGY],
   knowledgeReq: 200,
   unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
 });
