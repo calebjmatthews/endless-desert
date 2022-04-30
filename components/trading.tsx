@@ -114,7 +114,7 @@ export default function TradingComponent() {
 
   function renderVisit(slot: number) {
     const visit = tradingStatus.visits[slot];
-    if (visit !== null && visit !== undefined) {
+    if (visit !== null && visit !== undefined && visit?.name?.length > 0) {
       const tradingPartner = tradingStatus.tradingPartners[visit.name];
       return (
         <VisitDescription key={`visit|${slot}`} slot={slot}
@@ -128,7 +128,8 @@ export default function TradingComponent() {
 
   function renderVisitPending(slot: number) {
     const timer = timers[`Trading|${slot}`];
-    const visit = tradingStatus.visits[slot];
+    const visit = (tradingStatus.visits[slot]?.name?.length || 0) > 0 ?
+      tradingStatus.visits[slot] : null;
     const visitPending = tradingStatus.visitsPending[slot];
     const tpt = visitPending && tradingPartnerTypes[visitPending.name];
     if (timer || visitPending) {

@@ -376,6 +376,37 @@ fortuities[FORTUITIES.A_TERRACED_PLATFORM] = new Fortuity({
   }
 });
 
+fortuities[FORTUITIES.A_SANDSTONE_THROUGHWAY] = new Fortuity({
+  name: FORTUITIES.A_SANDSTONE_THROUGHWAY,
+  openLine: 'A letter falls onto you',
+  memos: [
+    new Memo({
+      name: (FORTUITIES.A_SANDSTONE_THROUGHWAY + '0'),
+      title: 'A Sandstone Throughway',
+      text: (`A messenger hawk drops a... rather stange letter onto your head. It reads:
+
+"SITUATION: The Sandstone Edificers wish to explore your town as a source for procurement of raw materials; however, the nearby terrain is unstable to a problematic degree."`)
+    }),
+    new Memo({
+      name: (FORTUITIES.A_SANDSTONE_THROUGHWAY + '1'),
+      title: 'A Sandstone Throughway',
+      text: (`PROPOSAL: If accepting, you shall erect a number of buildings to gather data regarding soil compaction and stress tolerance. You shall collect construction resources as specified below. Subsequently, the Edificers will assemble a throughway and begin periodic stops for raw material, for which you will be compensated accordingly.
+
+- Asyut, Sandstone Edificers, Archetect 1st Class"`)
+    })
+  ],
+  type: 'Observation',
+  repeatable: false,
+  weight: 1000,
+  questsBegin: [QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY],
+  available: (fState: GameState) => {
+    if ((fState.vault?.resources[`${RTY.CLAY_MUDDY}|0`]?.quantity || 0) > 1000) {
+      return true;
+    }
+    return false;
+  }
+});
+
 fortuities[FORTUITIES.SPRING_AUTUMN_PROOFS] = new Fortuity({
   name: FORTUITIES.SPRING_AUTUMN_PROOFS,
   openLine: 'A letter falls onto you',

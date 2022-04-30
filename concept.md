@@ -454,10 +454,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Kingdoms:
   ### North
-    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens.
+    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens.
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
-    - Trading partners: Tourmaline Jewelers, Sandstone Edificiers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
-    - People: You, Samannoud, Kubra
+    - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
+    - People: You, Samannoud, Kubra (Tourmaline), Asyut (Sandstone)
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
     - God of branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living.
@@ -735,7 +735,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Simplify trading partner options
   [X] Traders to use a mix of exact, tag, subcategory specificities
   [X] Workshop building and research
-  [ ] Add one new early trading partner
+  [X] Add one new early trading partner
   [ ] Trade option multipliers
   [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways

@@ -357,7 +357,7 @@ researches[RESEARCHES.LIMNOLOGICAL_ARBOROLOGY] = new Research({
   difficulty: 1,
   stepsNeeded: 4,
   beginsCompleted: false,
-  prereq: [RESEARCHES.LIMNOLOGY],
+  prereq: [RESEARCHES.LIMNOLOGICAL_ENGINEERING],
   knowledgeReq: 1200,
   unlocksUpgrade: [BUILDING_TYPES.FISHING_POND_OLIVE_SHADED]
 });

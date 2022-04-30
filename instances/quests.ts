@@ -375,6 +375,31 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
   }),
+  [QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY]: new Quest({
+    id: QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY,
+    subtitle: 'Nations',
+    name: 'A Sandstone Throughway',
+    givenBy: '',
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.SANDSTONE_EDIFICERS, color: '#895723',
+      backgroundColor: '#ffc856'}),
+    description: `An Archetect (1st Class) of the Sandstone Edificers has requested information and building supplies.`,
+    finishText: `Asyut of the Sandstone Edificers has heard word of your progress, and wants to talk to you.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY,
+        label: `Construct any building.`,
+        actionToPerform: { kind: ACTIVITIES.BUILDING_CONSTRUCTION } }),
+      new QuestTask({ index: 1, parentId: QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY,
+        label: `Collect 2000 Muddy Clay.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.CLAY_MUDDY}`,
+          quantity: 2000, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 2, parentId: QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY,
+        label: `Collect 2000 Yellow Sand.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.SAND_YELLOW}`,
+          quantity: 2000, consumed: true, includeExisting: true } })
+    ],
+    tradingPartnerJoins: TRADING_PARTNERS.SANDSTONE_EDIFICERS
+  }),
   [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS]: new Quest({
     id: QUESTS.NATIONS_SPRING_AUTUMN_PROOFS,
     subtitle: 'Nations',
