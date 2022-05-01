@@ -17,6 +17,8 @@ import { BUILDING_CATEGORIES } from '../enums/building_categories';
 const BCA = BUILDING_CATEGORIES;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
 const EQT = EQUIPMENT_TYPES;
+import { TERRAIN_TYPES } from '../enums/terrain_types';
+const TTY = TERRAIN_TYPES;
 import { SVGS } from '../enums/svgs';
 
 const defaultNoteCost = [
@@ -107,6 +109,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, quantity: 4},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}],
     upgradesInto: BTY.LENTIL_FIELD,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1, probability: 1}],
       consumes: null}) ],
@@ -355,6 +358,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 5000}],
     upgradesInto: BTY.CLAY_PIT_QUALITY,
+    terrainAllowed: [TTY.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 6, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
@@ -369,6 +373,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.CLAY_PIT}),
     cost: null,
+    terrainAllowed: [TTY.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 4, probability: 1},
         {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 2, probability: 1}],
@@ -387,6 +392,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 50}],
     upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400}],
     upgradesInto: BTY.SAND_PIT_RAPID,
+    terrainAllowed: [TTY.SAND],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 10, probability: 1}],
       consumes: null}) ],
@@ -401,6 +407,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.SAND_PIT}),
     cost: null,
+    terrainAllowed: [TTY.SAND],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 40, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1}]}) ],
@@ -419,6 +426,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, quantity: 40},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 400}],
     upgradesInto: BTY.LENTIL_FIELD_HEARTY,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}]}) ],
@@ -433,6 +441,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.LENTIL_FIELD}),
     cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 16, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}) ],
@@ -451,6 +460,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED, quantity: 40},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 40}],
     upgradesInto: BTY.REED_DELTA_BOUNTIFUL,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 5}]}) ],
@@ -465,6 +475,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.REED_DELTA}),
     cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 22, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 6}]}) ],
@@ -483,6 +494,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 80},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 800}],
     upgradesInto: BTY.GRAIN_FIELD_SIMPLIFIED,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
@@ -497,6 +509,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.GRAIN_FIELD}),
     cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 15}]}) ],
@@ -515,6 +528,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, quantity: 80},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 800}],
     upgradesInto: BTY.OLIVE_GROVE_SIMPLIFIED,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
@@ -529,6 +543,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GROVE}),
     cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 20}]}) ],
@@ -548,6 +563,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 30},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 40}],
     upgradesInto: BTY.FISHING_POND_DREDGED,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
       consumes: null}),
@@ -569,6 +585,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 180},
       {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, quantity: 40}],
     upgradesInto: BTY.FISHING_POND_OLIVE_SHADED,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
       consumes: null}),
@@ -589,6 +606,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.FISHING_POND}),
     cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
       consumes: null}),
@@ -614,6 +632,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 10},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
@@ -638,6 +657,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 10},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 500}],
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OX, quantity: 1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
@@ -662,6 +682,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, quantity: 200},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 1000}],
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CINNAMON, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4}]}),

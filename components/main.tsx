@@ -50,6 +50,7 @@ import Building from '../models/building';
 import Vault from '../models/vault';
 import Icon from '../models/icon';
 import ResearchStatus from '../models/research_status';
+import Terrain from '../models/terrain';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -115,12 +116,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -276,18 +277,9 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      // let allResources: Resource[] = [];
-      // Object.keys(resourceTypes).map((typeName) => {
-      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
-      // });
-      // dispatch(increaseResources(vault, allResources));
-      Object.keys(buildingTypes).map((typeName) => {
-        dispatch(addTimer(new Timer({
-          name: 'Fortuity',
-          endsAt: (new Date(Date.now()).valueOf() + 100),
-          fortuityCheck: true
-        })));
-      });
+      const terrain = new Terrain(null);
+      console.log("terrain.generateTerrain(terrain)");
+      console.log(terrain.generateTerrain(terrain));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

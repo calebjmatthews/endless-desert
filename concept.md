@@ -736,6 +736,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Traders to use a mix of exact, tag, subcategory specificities
   [X] Workshop building and research
   [X] Add one new early trading partner
+  [ ] Town map
   [ ] Trade option multipliers
   [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways

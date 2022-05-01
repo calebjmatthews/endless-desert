@@ -2,6 +2,7 @@ import BuildingRecipe from './building_recipe';
 import Icon from './icon';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
+import { TERRAIN_TYPES } from '../enums/terrain_types';
 
 export default class BuildingType implements BuildingTypeInterface {
   name: string = '';
@@ -11,6 +12,7 @@ export default class BuildingType implements BuildingTypeInterface {
   icon: Icon = new Icon({provider: '', name: ''});
   cost: {specificity: string, type: string, quantity: number}[]|null = null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
+  terrainAllowed: string[] = [];
   recipes: BuildingRecipe[]|null = null;
   givesNote: string = '';
   noteCost: {specificity: string, type: string, quantity: number}[] = [];
@@ -28,6 +30,9 @@ export default class BuildingType implements BuildingTypeInterface {
       buildingType.recipes.map((recipe) => newRecipes.push(new BuildingRecipe(recipe)));
     }
     buildingType.recipes = newRecipes;
+    if (!buildingType.terrainAllowed) {
+      buildingType.terrainAllowed = [TERRAIN_TYPES.SAND, TERRAIN_TYPES.RIVERBANK];
+    }
     Object.assign(this, buildingType);
     this.setDurations();
   }
@@ -79,6 +84,7 @@ interface BuildingTypeInterface {
   icon: Icon;
   cost: {specificity: string, type: string, quantity: number}[]|null;
   upgradeCost?: {specificity: string, type: string, quantity: number}[]|null;
+  terrainAllowed?: string[];
   recipes: BuildingRecipe[]|null;
   givesNote: string;
   noteCost: {specificity: string, type: string, quantity: number}[];
