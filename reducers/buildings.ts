@@ -3,9 +3,7 @@ import { SET_BUILDINGS, ADD_BUILDING, REPLACE_BUILDING, REMOVE_BUILDING,
   PAY_BUILDING_UPGRADE_COST } from '../actions/buildings';
 import Building from '../models/building';
 
-import { buildingsStarting } from '../instances/buildings';
-
-export default function (buildings: { [id: string] : Building } = buildingsStarting,
+export default function (buildings: { [id: string] : Building } = {},
   action: any = null) {
 	switch(action.type) {
     case SET_BUILDINGS:

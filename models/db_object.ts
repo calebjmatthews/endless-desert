@@ -11,6 +11,7 @@ import Equipment from './equipment';
 import ConversationStatus from './conversation_status';
 import QuestStatus, { DBQuestStatus } from './quest_status';
 import Message, { DBMessage } from './message';
+import Terrain from './terrain';
 import Icon from './icon';
 
 export default class DBObject {
@@ -28,6 +29,7 @@ export default class DBObject {
   conversation_status?: ConversationStatus;
   quest_status?: DBQuestStatus;
   messages?: DBMessage[];
+  terrain?: Terrain;
   sessionId?: string;
   userId?: string;
 
@@ -47,6 +49,7 @@ export default class DBObject {
         equipment: obj.equipment,
         conversation_status: obj.conversationStatus,
         quest_status: (obj.questStatus ? obj.questStatus.export() : null),
+        terrain: obj.terrain,
         sessionId,
         userId
       });
@@ -104,6 +107,9 @@ export default class DBObject {
     }
     if (rawDbObj.messages) {
       dbObj.messages = rawDbObj.messages.slice();
+    }
+    if (rawDbObj.terrain) {
+      dbObj.terrain = JSON.parse(rawDbObj.terrain?.[0]?.value);
     }
 
     const impObj: any = {};
@@ -190,6 +196,9 @@ export default class DBObject {
           isNew: false
       }) ));
     }
+    if (dbObj.terrain) {
+      impObj.terrain = new Terrain(dbObj.terrain);
+    }
     return impObj;
   }
 }
@@ -208,7 +217,8 @@ interface RawDBObject {
   equipment: [{ value: string }],
   conversation_status: [{ value: string }],
   quest_status: [{ value: string }],
-  messages: [{ timestamp: number, text: string, type: string, icon: string }]
+  messages: [{ timestamp: number, text: string, type: string, icon: string }],
+  terrain: [{ value: string }]
 }
 
 const exportBuildings = (buildings: { [id: string] : Building }) => {

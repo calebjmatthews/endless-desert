@@ -1,6 +1,5 @@
 import { SET_RATES } from '../actions/rates';
 import Rates from '../models/rates';
-import { buildingsStarting } from '../instances/buildings';
 
 export default function (rates: Rates = { productionRates: {}, consumptionRates: {},
   buildingRates: {}, bGroupRates: {}, netRates: {}}, action: any = null) {

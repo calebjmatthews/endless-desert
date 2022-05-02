@@ -13,6 +13,7 @@ export default class Building {
   buildingType: string = '';
   suffix: number = 1;
   name: string|null = null;
+  coords?: [number, number];
   recipeSelected?: number = 0;
   // Resource selected to satisfy a non-exact rate's specType
   resourcesSelected: { [ specType: string ] : Resource } = {};
@@ -72,6 +73,9 @@ export default class Building {
     if (this.paidUpgradeResources.length > 0) {
       exportObj.paidUpgradeResources = this.paidUpgradeResources;
     }
+    if (this.coords) {
+      exportObj.coords = this.coords;
+    }
     return exportObj;
   }
 }
@@ -81,6 +85,7 @@ export interface DBBuilding {
   buildingType: string;
   suffix?: number;
   name?: string|null;
+  coords?: [number, number];
   recipeSelected?: number;
   // Resource typeQuality selected to satisfy a non-exact rate's specType
   resourcesSelected?: { [ specType: string ] : { type: string, quality: number} };

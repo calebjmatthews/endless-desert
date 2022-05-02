@@ -24,6 +24,7 @@ import { setConversationStatus } from '../actions/conversation_status';
 import { setQuestStatus } from '../actions/quest_status';
 import { setGlobalState } from '../actions/ui';
 import { setMessages, setMessagesNotNew } from '../actions/messages';
+import { setTerrain } from '../actions/terrain';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
@@ -33,7 +34,8 @@ import Leader from '../models/leader';
 import Building from '../models/building';
 import Vault from '../models/vault';
 import DBObject from '../models/db_object';
-import { buildingsStarting } from '../instances/buildings';
+import Terrain from '../models/terrain';
+import { genStartingBuildings } from '../instances/buildings';
 import { memos } from '../instances/memos';
 import { MEMOS } from '../enums/memos';
 import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
@@ -53,7 +55,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'equipment': setEquipment,
   'conversation_status': setConversationStatus,
   'quest_status': setQuestStatus,
-  'messages': setMessages
+  'messages': setMessages,
+  'terrain': setTerrain
 }
 
 export default function StorageHandlerComponent() {
@@ -74,6 +77,7 @@ export default function StorageHandlerComponent() {
   const questStatus = useTypedSelector(state => state.questStatus);
   const globalState = useTypedSelector(state => state.ui.globalState);
   const messages = useTypedSelector(state => state.messages);
+  const terrain = useTypedSelector(state => state.terrain);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
 
@@ -94,9 +98,7 @@ export default function StorageHandlerComponent() {
           fetchFromStorage(checkRes.sessionId, checkRes.userId);
         }
         else {
-          const newRates = hourglass.calcRates(buildingsStarting, {});
-          dispatch(setRates(newRates));
-          dispatch(setGlobalState('landing'));
+          initNewFile();
         }
       });
     }
@@ -201,6 +203,8 @@ export default function StorageHandlerComponent() {
           return false;
         }
         const importedState = new DBObject().import(rawDataRes.data);
+        console.log('importedState');
+        console.log(importedState);
         let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
@@ -267,9 +271,7 @@ export default function StorageHandlerComponent() {
     })
     .then((booleanRes) => {
       if (booleanRes == false) {
-        const newRates = hourglass.calcRates(buildingsStarting, {});
-        dispatch(setRates(newRates));
-        dispatch(setGlobalState('landing'));
+        initNewFile();
       }
       else {
         dispatch(setGlobalState('loaded'));
@@ -302,6 +304,7 @@ export default function StorageHandlerComponent() {
         conversationStatus: conversationStatus,
         questStatus: questStatus,
         messages: messages,
+        terrain: terrain
       }, account.sessionId, account.userId);
       const body = JSON.stringify(dbObject);
       fetch((STORAGE_UPSERT_URL), {
@@ -321,6 +324,16 @@ export default function StorageHandlerComponent() {
         console.log(error);
       });;
     }
+  }
+
+  function initNewFile() {
+    const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
+    dispatch(setTerrain(terrain));
+    const buildingsStarting = genStartingBuildings(buildingMap);
+    dispatch(setBuildings(buildingsStarting));
+    const newRates = hourglass.calcRates(buildingsStarting, {});
+    dispatch(setRates(newRates));
+    dispatch(setGlobalState('landing'));
   }
 
   return (

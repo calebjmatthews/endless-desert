@@ -30,7 +30,6 @@ import Account from '../models/account';
 import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
-import { buildingsStarting } from '../instances/buildings';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
 import { fortuities } from '../instances/fortuities';

@@ -1,16 +1,16 @@
 import Building from '../models/building';
 import { buildingTypes } from './building_types';
 import { BUILDING_TYPES } from '../enums/building_types';
+const BTY = BUILDING_TYPES;
 import { utils } from '../utils';
 
-let buildingsStarting: { [id: string] : Building } = {};
-
-function startingFactory(buildingType: string) {
-  let startingBuilding = new Building({
+function startingFactory(buildingType: string, coords: [number, number]) {
+  let building = new Building({
     id: utils.randHex(16),
-    buildingType: buildingType,
+    buildingType,
     suffix: 1,
     name: buildingTypes[buildingType].name,
+    coords,
     paidCosts: {},
     paidResources: [],
     paidUpgradeCosts: {},
@@ -19,17 +19,23 @@ function startingFactory(buildingType: string) {
     recipe: null
   });
   if (buildingTypes[buildingType].recipes) {
-    startingBuilding.recipeSelected = 0;
+    building.recipeSelected = 0;
   }
-  buildingsStarting[startingBuilding.id] = startingBuilding;
+  return building;
 }
 
-startingFactory(BUILDING_TYPES.BROKEN_CISTERN);
-startingFactory(BUILDING_TYPES.FALLOW_FIELD);
-startingFactory(BUILDING_TYPES.DECAYING_STUDY);
-startingFactory(BUILDING_TYPES.RUINED_HUTS);
-startingFactory(BUILDING_TYPES.SHATTERED_DOME);
-startingFactory(BUILDING_TYPES.MARKET_ABANDONED);
-startingFactory(BUILDING_TYPES.GATE);
+const genStartingBuildings = (buildingMap:
+  { [typeName: string] : [number, number] }) => {
+  const buildingsStartingTypeNames = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
+    BTY.DECAYING_STUDY, BTY.RUINED_HUTS, BTY.SHATTERED_DOME, BTY.MARKET_ABANDONED,
+    BTY.GATE];
+  let buildingsStarting: { [id: string] : Building } = {};
+  buildingsStartingTypeNames.forEach((typeName) => {
+    const coords = buildingMap[typeName];
+    const building = startingFactory(typeName, coords);
+    buildingsStarting[building.id] = building;
+  });
+  return buildingsStarting;
+}
 
-export { buildingsStarting }
+export { genStartingBuildings }

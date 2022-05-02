@@ -13,6 +13,7 @@ import Equipment from './equipment';
 import Rates from './rates';
 import ConversationStatus from './conversation_status';
 import QuestStatus from './quest_status';
+import Terrain from './terrain';
 
 export interface RootState extends DBRootState {
   rates: Rates;
@@ -36,4 +37,5 @@ export interface DBRootState {
   conversationStatus: ConversationStatus;
   questStatus: QuestStatus;
   messages: Message[];
+  terrain: Terrain;
 }

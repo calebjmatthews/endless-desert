@@ -3,14 +3,13 @@ import { SET_ACCOUNT, SET_USER_ID, SET_SESSION_ID, CHANGE_SETTING, SET_INTRO_STA
   ACHIEVE_MILESTONE, SET_STORAGE_CALL_SAVE } from '../actions/account';
 
 import Account from '../models/account';
-import { buildingsStarting } from '../instances/buildings';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
 
 let accountStarting = new Account({
   userId: '0',
   sessionId: '',
-  setStorageCallSave: false,
+  storageCallSave: false,
   introState: INTRO_STATES.LOOK_AROUND,
   tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
   fortuityCurrent: null,

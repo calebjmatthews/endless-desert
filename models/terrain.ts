@@ -162,4 +162,7 @@ export default class Terrain {
 
 interface TerrainInterface {
   spots: { type: string }[][];
+  leftBound: number;
+  upperBound: number;
+  rightBound: number;
 }

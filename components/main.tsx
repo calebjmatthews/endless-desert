@@ -124,21 +124,21 @@ export default function MainComponent() {
   //   settings: []
   // }), ...tabsArray];
 
-  const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
-  return (
-    <LinearGradient
-      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
-      style={styles.mainContainer}>
-      <StorageHandlerComponent />
-      <StatusBar style="auto" />
-      <View style={styles.statusBarSpacer}></View>
-      <View style={styles.scrollWrapper}>
-        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
-          <MapComponent terrain={terrain} buildingMap={buildingMap} />
-        </View>
-      </View>
-    </LinearGradient>
-  )
+  // const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
+  // return (
+  //   <LinearGradient
+  //     colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+  //     style={styles.mainContainer}>
+  //     <StorageHandlerComponent />
+  //     <StatusBar style="auto" />
+  //     <View style={styles.statusBarSpacer}></View>
+  //     <View style={styles.scrollWrapper}>
+  //       <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+  //         <MapComponent terrain={terrain} buildingMap={buildingMap} />
+  //       </View>
+  //     </View>
+  //   </LinearGradient>
+  // )
 
   // return (
   //   <LinearGradient
@@ -374,7 +374,8 @@ export default function MainComponent() {
   function renderTab(tabName: string) {
     switch(tabName) {
       case TABS.BUILDINGS:
-      return <BuildingsComponent />;
+      return <MapComponent />;
+      // return <BuildingsComponent />;
       case TABS.RESOURCES:
       return <ResourcesComponent />;
       case TABS.RESEARCH:
