@@ -740,7 +740,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Map display
   [X] Initial building placement
   [X] Terrain actions and reducer
-  [ ] Click on building for building detail modal
+  [X] Click on map building for building detail modal
   [ ] Gate upgrade terrain effects
   [ ] Click on terrain to build/place from storage
   [ ] Trade option multipliers

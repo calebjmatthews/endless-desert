@@ -7,12 +7,14 @@ import { styles } from '../styles';
 
 import SVGComponent from './svg';
 import IconComponent from './icon';
+import { displayModalValue } from '../actions/ui';
 
 import Terrain from '../models/terrain';
 import Building from '../models/building';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { TERRAIN_TYPES } from '../enums/terrain_types';
+import { MODALS } from '../enums/modals';
 import { SVGS } from '../enums/svgs';
 
 export default function MapComponent() {
@@ -51,7 +53,8 @@ export default function MapComponent() {
 }
 
 function Spot(props: { spot: { type: string }, coords: [number, number],
-    building?: Building }) {
+  building?: Building }) {
+  const dispatch = useDispatch();
   const icons: { [type: string] : Icon } = {
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
       color: "#4b83c0", shadow: "#b9c4ed", size: 50 }),
@@ -63,7 +66,8 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
   const buildingType = props.building ? buildingTypes[props.building.buildingType]
     : null;
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}
+      onPress={() => { spotPress({ spot: props.spot, building: props.building }) }}>
       <View style={{ margin: 1, opacity: 0.9 }}>
         <SVGComponent icon={icons[props.spot.type]} />
       </View>
@@ -72,6 +76,13 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
           <SVGComponent icon={new Icon({...buildingType.icon, size: 40})}  />
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
+
+  function spotPress(props: { spot: { type: string},  building?: Building}) {
+    const { spot, building } = props;
+    if (building) {
+      dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
+    }
+  }
 }
