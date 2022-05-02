@@ -110,28 +110,18 @@ export default function BuildingsComponent() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome5" name="building" color="#fff" size={20}
-          style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Buildings'}</Text>
-      </View>
       {renderBuildHeader()}
-      <FlatList
-        data={buildingsArray}
-        renderItem={renderBuilding}
-        keyExtractor={building => building.id.toString()}>
-      </FlatList>
+      {buildingsArray.map((building) => (
+        <BuildingDescription key={building.id} building={building}
+          introState={introState}
+          vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
+          leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
+          livingAssign={livingAssign} workingAssign={workingAssign}
+          recipeAssign={recipeAssign} inexactRateOpen={inexactRateOpen}
+          positioner={positioner} />
+      ))}
     </View>
   );
-
-  function renderBuilding(building: any) {
-    return <BuildingDescription building={building} introState={introState}
-      vault={vault} buildTimer={buildTimer} rates={rates} morePress={morePress}
-      leaderLivingMap={leaderLivingMap} leaderAssignedMap={leaderAssignedMap}
-      livingAssign={livingAssign} workingAssign={workingAssign}
-      recipeAssign={recipeAssign} inexactRateOpen={inexactRateOpen}
-      positioner={positioner} />
-  }
 
   function renderBuildHeader() {
     return (
@@ -273,7 +263,7 @@ export default function BuildingsComponent() {
 }
 
 function BuildingDescription(props: any) {
-  const building: Building = props.building.item;
+  const building: Building = props.building;
   const buildingType: BuildingType = buildingTypes[building.buildingType];
   const problems = props.rates.problems[building.id];
 
@@ -289,7 +279,7 @@ function BuildingDescription(props: any) {
           {minWidth: props.positioner.bodyMedWidth,
             maxWidth: props.positioner.bodyMedWidth}])}>
           <View style={styles.buttonTextRow}>
-            <Text>{(props.building.item.name || buildingType.name)}</Text>
+            <Text>{(building.name || buildingType.name)}</Text>
             {renderMoreButton()}
           </View>
           {renderLivingAt(building, props.leaderLivingMap)}
@@ -582,7 +572,7 @@ function BuildingDescription(props: any) {
   }
 
   function inexactRatePress(specTypeQuality: string, rate: number) {
-    props.inexactRateOpen(props.building.item, specTypeQuality, rate);
+    props.inexactRateOpen(props.building, specTypeQuality, rate);
   }
 
   function renderProblems(problems: string[]) {

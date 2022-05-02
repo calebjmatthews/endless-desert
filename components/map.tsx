@@ -5,6 +5,7 @@ import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
+import BuildingsComponent from './buildings';
 import SVGComponent from './svg';
 import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
@@ -38,16 +39,19 @@ export default function MapComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Town'}</Text>
       </View>
-      <View style={[styles.rows, {height: positioner.mapHeight, alignItems: 'flex-start'}]}>
-        {terrain.spots.map((spotColumn, col) => (
-          <View key={`col#${col}`} style={styles.mapColumn}>
-            {spotColumn.map((spot, row) => (
-              <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
-                building={buildingsCoords[col][row]} />
-            ))}
-          </View>
-        ))}
-      </View>
+      <ScrollView contentContainerStyle={styles.columns}>
+        <View style={[styles.centeredRows, {marginBottom: 30}]}>
+          {terrain.spots.map((spotColumn, col) => (
+            <View key={`col#${col}`} style={styles.mapColumn}>
+              {spotColumn.map((spot, row) => (
+                <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
+                  building={buildingsCoords[col][row]} />
+              ))}
+            </View>
+          ))}
+        </View>
+        <BuildingsComponent />
+      </ScrollView>
     </View>
   )
 }

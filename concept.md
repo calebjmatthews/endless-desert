@@ -741,8 +741,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Initial building placement
   [X] Terrain actions and reducer
   [X] Click on map building for building detail modal
-  [ ] Gate upgrade terrain effects
+  [X] Combine map and buildings tabs
   [ ] Click on terrain to build/place from storage
+  [ ] Gate upgrade terrain effects
   [ ] Trade option multipliers
   [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways
