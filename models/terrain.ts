@@ -37,7 +37,7 @@ export default class Terrain {
     }
   }
 
-  generateTerrain(terrain: Terrain) {
+  generateTerrain(terrain: Terrain|null) {
     const ti = new Terrain(terrain);
     const buildingPlacement: { type: string }[][] = [];
     for (let col = this.leftBound; col <= this.rightBound; col++) {
@@ -127,7 +127,7 @@ export default class Terrain {
       else {
         const ls = previousWaters[0];
         const rs = previousWaters[1];
-        const leftSpotIsBend = (t.spots[ls[0]][ls[1]-2].type === TTY.WATER);
+        const leftSpotIsBend = (t.spots[ls[0]][ls[1]-2].type !== TTY.WATER);
         if (leftSpotIsBend) {
           t.spots[ls[0]][row] = { type: TTY.WATER };
           t.spots[ls[0]-1][row] = { type: TTY.RIVERBANK };

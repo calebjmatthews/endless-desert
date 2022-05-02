@@ -190,6 +190,10 @@ import HappinessSvgComponent from './symbols/happiness';
 import RoadSignSvgComponent from './symbols/road_sign';
 import MysticismSvgComponent from './symbols/mysticism';
 
+import TerrainSandSvgComponent from './backgrounds/terrain_sand';
+import TerrainRiverbankSvgComponent from './backgrounds/terrain_riverbank';
+import TerrainWaterSvgComponent from './backgrounds/terrain_water';
+
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
 
@@ -566,6 +570,13 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <RoadSignSvgComponent icon={props.icon} />;
     case SVGS.MYSTICISM:
     return <MysticismSvgComponent icon={props.icon} />;
+
+    case SVGS.TERRAIN_SAND:
+    return <TerrainSandSvgComponent icon={props.icon} />;
+    case SVGS.TERRAIN_RIVERBANK:
+    return <TerrainRiverbankSvgComponent icon={props.icon} />;
+    case SVGS.TERRAIN_WATER:
+    return <TerrainWaterSvgComponent icon={props.icon} />;
   }
   return null;
 }

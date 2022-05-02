@@ -570,5 +570,10 @@ export const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#727f9c',
     borderRadius: 10
+  },
+
+  mapColumn: {
+    display: 'flex',
+    flexDirection: 'column-reverse'
   }
 });

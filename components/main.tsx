@@ -36,6 +36,7 @@ import EquipmentComponent from '../components/equipment';
 import ValueCheckComponent from '../components/value_check';
 import QuestsComponent from '../components/quests';
 import BadgeComponent from '../components/badge';
+import MapComponent from '../components/map';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -116,12 +117,28 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
+
+  const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
+  return (
+    <LinearGradient
+      colors={["#0034aa", "#6a41b4", "#f58f7d"]}
+      style={styles.mainContainer}>
+      <StorageHandlerComponent />
+      <StatusBar style="auto" />
+      <View style={styles.statusBarSpacer}></View>
+      <View style={styles.scrollWrapper}>
+        <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
+          <MapComponent terrain={terrain} buildingMap={buildingMap} />
+        </View>
+      </View>
+    </LinearGradient>
+  )
 
   // return (
   //   <LinearGradient
@@ -277,9 +294,7 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const terrain = new Terrain(null);
-      console.log("terrain.generateTerrain(terrain)");
-      console.log(terrain.generateTerrain(terrain));
+
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));
