@@ -11,7 +11,7 @@ let accountStarting = new Account({
   sessionId: '',
   storageCallSave: false,
   introState: INTRO_STATES.LOOK_AROUND,
-  tabsUnloked: [TABS.RESOURCES, TABS.BUILDINGS],
+  tabsUnloked: [TABS.TOWN, TABS.RESOURCES, TABS.BUILDINGS],
   fortuityCurrent: null,
   fortuitiesSeen: {},
   fortuityDailyLast: 0,

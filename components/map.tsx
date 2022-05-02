@@ -6,6 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import SVGComponent from './svg';
+import IconComponent from './icon';
 
 import Terrain from '../models/terrain';
 import Building from '../models/building';
@@ -18,6 +19,7 @@ export default function MapComponent() {
   const dispatch = useDispatch();
   const terrain = useTypedSelector(state => state.terrain);
   const buildings = useTypedSelector(state => state.buildings);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsCoords: Building[][] = [];
   terrain.spots.forEach((spotColumn, col) => {
     buildingsCoords[col] = [];
@@ -28,15 +30,22 @@ export default function MapComponent() {
   });
 
   return (
-    <View style={styles.rows}>
-      {terrain.spots.map((spotColumn, col) => (
-        <View key={`col#${col}`} style={styles.mapColumn}>
-          {spotColumn.map((spot, row) => (
-            <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
-              building={buildingsCoords[col][row]} />
-          ))}
-        </View>
-      ))}
+    <View style={styles.container}>
+      <View style={styles.headingWrapper}>
+        <IconComponent provider="FontAwesome5" name="map" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Town'}</Text>
+      </View>
+      <View style={[styles.rows, {height: positioner.mapHeight, alignItems: 'flex-start'}]}>
+        {terrain.spots.map((spotColumn, col) => (
+          <View key={`col#${col}`} style={styles.mapColumn}>
+            {spotColumn.map((spot, row) => (
+              <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
+                building={buildingsCoords[col][row]} />
+            ))}
+          </View>
+        ))}
+      </View>
     </View>
   )
 }

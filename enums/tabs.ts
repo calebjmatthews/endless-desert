@@ -1,4 +1,5 @@
 export enum TABS {
+  TOWN = "Town",
   RESOURCES = "Resources",
   BUILDINGS = "Buildings",
   RESEARCH = "Research",

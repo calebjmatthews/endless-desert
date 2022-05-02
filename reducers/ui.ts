@@ -4,11 +4,12 @@ import { SET_GLOBAL_STATE, SELECT_TAB, DISPLAY_MODAL, DISPLAY_MODAL_VALUE,
 import Message from '../models/message';
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
+import { TABS } from '../enums/tabs';
 
 export default function (ui: { globalState: string, tabSelected: string,
   valueSelected: any, modalDisplayed: string|null, modalStage: string, modalValue: any,
   memos: Memo[], positioner: Positioner } =
-  { globalState: 'loading', tabSelected: "Resources", valueSelected: null,
+  { globalState: 'loading', tabSelected: TABS.TOWN, valueSelected: null,
   modalDisplayed: null, modalStage: 'closed', modalValue: null,
   memos: [], positioner: new Positioner() },
   action: any = null) {

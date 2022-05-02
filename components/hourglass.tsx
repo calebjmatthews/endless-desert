@@ -174,6 +174,7 @@ export default function HourglassComponent() {
               buildingType: buildingType.upgradesInto,
               suffix: suffix,
               name: name,
+              coords: building.coords,
               paidCosts: {},
               paidResources: [],
               paidUpgradeCosts: {},

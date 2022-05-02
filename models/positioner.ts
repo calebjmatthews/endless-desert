@@ -26,6 +26,7 @@ export default class Positioner {
   speechPartnerWidth: number = 55;
   speechBubbleWidth: number = 200;
   speechButtonWidth: number = 270;
+  mapHeight: number = 460;
   confirmationRowHeight: number = 108;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
@@ -55,6 +56,7 @@ export default class Positioner {
       this.speechBubbleWidth = this.modalWidth - this.speechPartnerWidth
         - (this.majorPadding * 2);
       this.speechButtonWidth = this.modalMajor - this.majorPadding;
+      this.mapHeight = this.bodyHeight - (this.majorPadding * 2.5);
     }
   }
 }

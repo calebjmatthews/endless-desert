@@ -373,9 +373,10 @@ export default function MainComponent() {
 
   function renderTab(tabName: string) {
     switch(tabName) {
-      case TABS.BUILDINGS:
+      case TABS.TOWN:
       return <MapComponent />;
-      // return <BuildingsComponent />;
+      case TABS.BUILDINGS:
+      return <BuildingsComponent />;
       case TABS.RESOURCES:
       return <ResourcesComponent />;
       case TABS.RESEARCH:
