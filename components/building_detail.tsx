@@ -355,7 +355,10 @@ export default function BuildDetailComponent() {
         dispatch(addTimer(new Timer({
           name: 'Build',
           endsAt: (new Date(Date.now()).valueOf() + buildingType.duration * 1000),
-          buildingToBuild: building.buildingType,
+          buildingToBuild: {
+            type: building.buildingType,
+            coords: (building.coords || [-1, -1])
+          },
           messageToDisplay: ('You built a new ' + buildingType.name + '.'),
           iconToDisplay: buildingType.icon
         })));

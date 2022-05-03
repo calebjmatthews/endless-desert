@@ -15,7 +15,7 @@ export default class Timer implements TimerInterface {
   remainingLabel: string = '';
   resourcesToIncrease?: Resource[] = [];
   resourcesToConsume?: Resource[] = [];
-  buildingToBuild?: string|null = null;
+  buildingToBuild?: { type: string, coords: [number, number] }|null = null;
   buildingToUpgrade?: string|null = null;
   tradingPartnerToArrive?: string|null = null;
   fortuityCheck?: boolean = false;
@@ -94,7 +94,7 @@ interface TimerInterface {
   remainingLabel?: string;
   resourcesToIncrease?: Resource[];
   resourcesToConsume?: Resource[];
-  buildingToBuild?: string|null;
+  buildingToBuild?: { type: string, coords: [number, number] }|null;
   buildingToUpgrade?: string|null;
   tradingPartnerToArrive?: string|null;
   fortuityCheck?: boolean;

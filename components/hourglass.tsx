@@ -110,7 +110,7 @@ export default function HourglassComponent() {
         buildingsToRest: results.buildingsToRest });
       results.buildingsToRest.forEach((id) => {
         const building = buildings[id];
-        if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.BUILDINGS
+        if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.TOWN
           && ui.modalDisplayed !== MODALS.BUILDING_DETAIL) {
           dispatch(selectBuildingRecipe(building, -1));
         }
@@ -130,7 +130,7 @@ export default function HourglassComponent() {
           }
         }
         if (timer.buildingToBuild) {
-          let buildingType = buildingTypes[timer.buildingToBuild];
+          let buildingType = buildingTypes[timer.buildingToBuild.type];
           let count = countBuildings(buildingType.name, buildings);
           let suffix = 1;
           let name = buildingType.name;
@@ -143,6 +143,7 @@ export default function HourglassComponent() {
             buildingType: buildingType.name,
             suffix: suffix,
             name: name,
+            coords: timer.buildingToBuild.coords,
             paidCosts: {},
             paidResources: [],
             paidUpgradeCosts: {},
@@ -280,7 +281,7 @@ export default function HourglassComponent() {
         newRates.buildingsToRest?.forEach((id) => {
           const building = buildings[id];
           const buildingType = buildingTypes[building.buildingType];
-          if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.BUILDINGS
+          if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.TOWN
             && ui.modalDisplayed !== MODALS.BUILDING_DETAIL) {
             dispatch(selectBuildingRecipe(building, -1));
             dispatch(addMessage(new Message({

@@ -63,7 +63,7 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
       color: "#4b83c0", shadow: "#b9c4ed", size: 50 }),
     [TERRAIN_TYPES.RIVERBANK]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_RIVERBANK,
-      color: "#ac9992", shadow: "#e3dacb", size: 50 }),
+      color: "#ac9992", shadow: "#f4ebdd", size: 50 }),
     [TERRAIN_TYPES.SAND]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_SAND,
       color: "#ffd7b3", shadow: "#fff5cc", size: 50 })
   };
@@ -71,7 +71,8 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
     : null;
   return (
     <TouchableOpacity style={styles.container}
-      onPress={() => { spotPress({ spot: props.spot, building: props.building }) }}>
+      onPress={() => { spotPress({ spot: props.spot, coords: props.coords,
+        building: props.building }) }}>
       <View style={{ margin: 1, opacity: 0.9 }}>
         <SVGComponent icon={icons[props.spot.type]} />
       </View>
@@ -83,10 +84,15 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
     </TouchableOpacity>
   );
 
-  function spotPress(props: { spot: { type: string},  building?: Building}) {
-    const { spot, building } = props;
+  // "You can't yet build anything on the water."
+  function spotPress(props: { spot: { type: string}, coords: [number, number],
+    building?: Building}) {
+    const { spot, coords, building } = props;
     if (building) {
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
+    }
+    else {
+      dispatch(displayModalValue(MODALS.BUILD, 'open', {spot, coords }));
     }
   }
 }

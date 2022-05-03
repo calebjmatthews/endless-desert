@@ -182,7 +182,7 @@ export default function BuildingsComponent() {
   function renderBuildTimer(timer: Timer) {
     if (timer) {
       if (timer.buildingToBuild || timer.buildingToUpgrade) {
-        let label = ('Building ' + timer.buildingToBuild);
+        let label = ('Building ' + timer.buildingToBuild?.type);
         if (timer.buildingToUpgrade) {
           const building = buildings[timer.buildingToUpgrade];
           const buildingType = buildingTypes[building.buildingType];
