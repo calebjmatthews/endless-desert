@@ -39,7 +39,10 @@ export default class Icon {
     if (!this.size && this.width !== '29px') { expIcon.width = this.width; }
     if (!this.size && this.height !== '29px') { expIcon.height = this.height; }
     if (this.color !== '#000') { expIcon.color = this.color; }
-    if (this.shadow !== '#fff') { expIcon.shadow = this.shadow; }
+    if (this.shadow !== '#000') { expIcon.shadow = this.shadow; }
+    if (this.backgroundColor !== '#fff') {
+      expIcon.backgroundColor = this.backgroundColor;
+    }
     if (this.secondaryColor !== '#000') {
       expIcon.secondaryColor = this.secondaryColor;
     }
