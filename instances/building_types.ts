@@ -47,6 +47,72 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cannotStore: true
   }),
 
+  [BTY.GATE]: new BuildingType({
+    name: BTY.GATE,
+    description: 'A wall encircling the town and its simple gate',
+    order: 0,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100},
+      {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 1000}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_BAKED_CLAY,
+    cannotStore: true
+  }),
+
+  [BTY.GATE_BAKED_CLAY]: new BuildingType({
+    name: BTY.GATE_BAKED_CLAY,
+    description: 'A baked clay wall encircling the town and its rough gate',
+    order: 0,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 400},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 100}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_BRICKWORK,
+    cannotStore: true
+  }),
+
+  [BTY.GATE_BRICKWORK]: new BuildingType({
+    name: BTY.GATE_BRICKWORK,
+    description: 'A many colored brick wall encircling the town and its sturdy gate',
+    order: 0,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 80}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    upgradesInto: BTY.GATE_METAL_CLAD,
+    cannotStore: true
+  }),
+
+  [BTY.GATE_METAL_CLAD]: new BuildingType({
+    name: BTY.GATE_METAL_CLAD,
+    description: 'A metal-plated wall encircling the town and its iron gate',
+    order: 0,
+    category: BCA.GENERAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
+    cost: null,
+    // upgradeCost: [{specificity: RSP.EXACT, type: RTY.STEEL, quantity: 600}],
+    recipes: null,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
+    // upgradesInto: BTY.GATE_SHINING,
+    cannotStore: true
+  }),
+
   [BTY.BROKEN_CISTERN]:  new BuildingType({
     name: BTY.BROKEN_CISTERN,
     description: ('Water trickles through cracks in the wall, above a reservoir '
@@ -161,72 +227,6 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost,
-    cannotStore: true
-  }),
-
-  [BTY.GATE]: new BuildingType({
-    name: BTY.GATE,
-    description: 'A wall encircling the town and its simple gate',
-    order: 7,
-    category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
-    cost: null,
-    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100},
-      {specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 1000}],
-    recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_BAKED_CLAY,
-    cannotStore: true
-  }),
-
-  [BTY.GATE_BAKED_CLAY]: new BuildingType({
-    name: BTY.GATE_BAKED_CLAY,
-    description: 'A baked clay wall encircling the town and its rough gate',
-    order: 7,
-    category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
-    cost: null,
-    upgradeCost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 400},
-      {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 100},
-      {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 100},
-      {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 100}],
-    recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_BRICKWORK,
-    cannotStore: true
-  }),
-
-  [BTY.GATE_BRICKWORK]: new BuildingType({
-    name: BTY.GATE_BRICKWORK,
-    description: 'A many colored brick wall encircling the town and its sturdy gate',
-    order: 7,
-    category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
-    cost: null,
-    upgradeCost: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 200},
-      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 80},
-      {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 80}],
-    recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
-    upgradesInto: BTY.GATE_METAL_CLAD,
-    cannotStore: true
-  }),
-
-  [BTY.GATE_METAL_CLAD]: new BuildingType({
-    name: BTY.GATE_METAL_CLAD,
-    description: 'A metal-plated wall encircling the town and its iron gate',
-    order: 7,
-    category: BCA.GENERAL,
-    icon: new Icon({provider: 'svg', name: SVGS.GATE}),
-    cost: null,
-    // upgradeCost: [{specificity: RSP.EXACT, type: RTY.STEEL, quantity: 600}],
-    recipes: null,
-    givesNote: RTY.NOTES_EARTH,
-    noteCost: defaultNoteCost,
-    // upgradesInto: BTY.GATE_SHINING,
     cannotStore: true
   }),
 

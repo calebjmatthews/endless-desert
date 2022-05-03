@@ -43,7 +43,7 @@ vaultStarting.increaseResource(new Resource({
 vaultStarting.increaseResource(new Resource({
   type: RESOURCE_TYPES.CLAY_MUDDY,
   quality: 0,
-  quantity: 37
+  quantity: 57
 }));
 
 export { vaultStarting };

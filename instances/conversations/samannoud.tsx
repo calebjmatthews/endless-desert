@@ -51,7 +51,7 @@ sndConversations[FTU.FAMILIAR_FIGURE] = new Conversation({
 });
 sndConvoNarrations[FTU.FAMILIAR_FIGURE + ' - n0'] = new ConversationNarration({
   name: FTU.FAMILIAR_FIGURE + ' - n0',
-  text: `You don't see how anyone could have followed your winding path, but there's a silhouette in the distance, and it's coming closer. And there's something about the swaggering walk that feels very familiar.`,
+  text: `You don't see how anyone you know could have followed your winding path, but there's a silhouette in the distance, and it's coming closer. And there's something about the swaggering walk that feels very familiar.`,
   statementName: FTU.FAMILIAR_FIGURE + ' - s0'
 });
 sndConvoStatements[FTU.FAMILIAR_FIGURE + ' - s0'] = new ConversationStatement({

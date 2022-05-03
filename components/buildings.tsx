@@ -127,14 +127,6 @@ export default function BuildingsComponent() {
     return (
       <View style={styles.rows}>
         {buildTimer && renderBuildTimer(buildTimer)}
-        {!buildTimer && (toBuildArray.length > 0) && (
-          <View style={StyleSheet.flatten([styles.rows,
-            { justifyContent: 'space-between', minWidth: positioner.majorWidth,
-              maxWidth: positioner.majorWidth}]) }>
-            {renderBuildButton()}
-            {renderStorageButton()}
-          </View>
-        )}
       </View>
     );
   }

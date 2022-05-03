@@ -754,7 +754,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Storing an occupied house kicks out the leader
   [ ] More repeatable fortuities
-  [ ] Fix for stuck without sand before trading unlocked
+  [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
@@ -956,3 +956,9 @@ increaseResources(vault, rtg);
 `expo upgrade`
 `The following packages were not updated. You should check the READMEs for those repositories to determine what version is compatible with your new set of packages:
 @types/react-redux, react-native-vector-icons, react-redux, redux, @types/random, @types/react-native-vector-icons, @types/redux`
+
+border: 2px solid #fff;
+border-bottom: none;
+border-radius: 10px 10px 0 0;
+padding: 0 10px;
+background: #0434a9;

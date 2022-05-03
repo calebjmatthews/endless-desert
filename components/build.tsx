@@ -31,6 +31,7 @@ export default function BuildComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const modalValue: { spot: { type: string }, coords: [number, number] } =
     useTypedSelector(state => state.ui.modalValue);
+  const buildTimer = useTypedSelector(state => state.timers['Build']);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const [buildingTypeArray, setBuildingTypeArray] = useState <BuildingType[]>([]);
   useEffect(() => {
@@ -54,16 +55,23 @@ export default function BuildComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Build'}</Text>
       </View>
-      {buildingTypeArray.length === 0 && (
+      {buildTimer && (
+        <Text style={styles.bareText}>
+          {`You are already working on the ${(buildTimer.buildingToBuild?.type || buildings[buildTimer.buildingToUpgrade || 0].buildingType)}.`}
+        </Text>
+      )}
+      {(!buildTimer && buildingTypeArray.length === 0) && (
         <Text style={styles.bareText}>
           {`You can't yet build anything on ${modalValue.spot.type.toLowerCase()}.`}
         </Text>
       )}
-      <FlatList
-        data={buildingTypeArray}
-        renderItem={renderBuilding}
-        keyExtractor={building => building.name}>
-      </FlatList>
+      {!buildTimer && (
+        <FlatList
+          data={buildingTypeArray}
+          renderItem={renderBuilding}
+          keyExtractor={building => building.name}>
+        </FlatList>
+      )}
     </View>
   );
 

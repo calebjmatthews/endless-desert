@@ -155,7 +155,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   givesPool: [[
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
     {specificity: RSP.EXACT, type: RTY.ONION, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SAND_CORAL, weight: 100},
     {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25}

@@ -13,6 +13,7 @@ import { displayModalValue } from '../actions/ui';
 import Terrain from '../models/terrain';
 import Building from '../models/building';
 import Icon from '../models/icon';
+import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
 import { TERRAIN_TYPES } from '../enums/terrain_types';
 import { MODALS } from '../enums/modals';
@@ -22,6 +23,9 @@ export default function MapComponent() {
   const dispatch = useDispatch();
   const terrain = useTypedSelector(state => state.terrain);
   const buildings = useTypedSelector(state => state.buildings);
+  const buildTimer = useTypedSelector(state => state.timers['Build']);
+  const timerCoords = (buildTimer?.buildingToBuild?.coords
+    || buildings[(buildTimer?.buildingToUpgrade || 0)]?.coords);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsCoords: Building[][] = [];
   terrain.spots.forEach((spotColumn, col) => {
@@ -45,7 +49,8 @@ export default function MapComponent() {
             <View key={`col#${col}`} style={styles.mapColumn}>
               {spotColumn.map((spot, row) => (
                 <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
-                  building={buildingsCoords[col][row]} />
+                  building={buildingsCoords[col][row]} buildTimer={buildTimer}
+                  timerCoords={timerCoords} />
               ))}
             </View>
           ))}
@@ -57,7 +62,7 @@ export default function MapComponent() {
 }
 
 function Spot(props: { spot: { type: string }, coords: [number, number],
-  building?: Building }) {
+  building?: Building, buildTimer: Timer, timerCoords?: [number, number] }) {
   const dispatch = useDispatch();
   const icons: { [type: string] : Icon } = {
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
@@ -69,6 +74,9 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
   };
   const buildingType = props.building ? buildingTypes[props.building.buildingType]
     : null;
+  const underConstruction = (props.coords[0] === props.timerCoords?.[0]
+    && props.coords[1] === props.timerCoords?.[1]);
+
   return (
     <TouchableOpacity style={styles.container}
       onPress={() => { spotPress({ spot: props.spot, coords: props.coords,
@@ -81,12 +89,17 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
           <SVGComponent icon={new Icon({...buildingType.icon, size: 40})}  />
         </View>
       )}
+      {underConstruction && (
+        <View style={{ position: 'absolute' }}>
+          <SVGComponent icon={new Icon({ provider: 'svg', name: SVGS.HAMMERS,
+            size: 30})}  />
+        </View>
+      )}
     </TouchableOpacity>
   );
 
-  // "You can't yet build anything on the water."
   function spotPress(props: { spot: { type: string}, coords: [number, number],
-    building?: Building}) {
+    building?: Building }) {
     const { spot, coords, building } = props;
     if (building) {
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));

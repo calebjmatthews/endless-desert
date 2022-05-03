@@ -188,6 +188,7 @@ export enum SVGS {
   HAPPINESS = "Happiness",
   ROAD_SIGN = "Road Sign",
   MYSTICISM = "Mysticism",
+  HAMMERS = "Hammers",
 
   TERRAIN_SAND = "Terrain: Sand",
   TERRAIN_RIVERBANK = "Terrain: Riverbank",
