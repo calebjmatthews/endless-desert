@@ -82,6 +82,7 @@ export default function MainComponent() {
   const account = useTypedSelector(state => state.account);
   const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   const [dropdownExpanded, dropdownSet] = useState(false);
   const [positionerInit, setPositionerInit] = useState(false)
 
@@ -336,6 +337,11 @@ export default function MainComponent() {
         if (account.fortuityCurrent.questsBegin) {
           account.fortuityCurrent.questsBegin.forEach((questName) => {
             dispatch(addQuest(quests[questName]));
+            const rtgExisting = quests[questName].taskCheckExisting(vault,
+              researchStatus);
+            rtgExisting.forEach((questActivity) => {
+              dispatch(addToActivityQueue(questActivity));
+            });
           });
           memos[memos.length-1].questsBegin = account.fortuityCurrent.questsBegin;
         }
@@ -375,8 +381,6 @@ export default function MainComponent() {
     switch(tabName) {
       case TABS.TOWN:
       return <MapComponent />;
-      case TABS.BUILDINGS:
-      return <BuildingsComponent />;
       case TABS.RESOURCES:
       return <ResourcesComponent />;
       case TABS.RESEARCH:

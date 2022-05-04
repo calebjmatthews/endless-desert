@@ -19,7 +19,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
   - Day gradient?: linear-gradient(#009aaa, #a1ded0, #f5cb7d);
-  - Night gradient?: linear-gradient(#2a196f, #2f1c94, #886eb1);
+  - Night gradient?: linear-gradient(#000d2d, #001869, #484396); //
   - Chemistry research for Perfumery, need original perfume to be able to duplicate.
   - Logistics research that increases building output if located next to the source of its consumption resources.
   - Logistics research that increases output if group leader lives next to where he/she is working.
