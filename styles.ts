@@ -575,5 +575,28 @@ export const styles = StyleSheet.create({
   mapColumn: {
     display: 'flex',
     flexDirection: 'column-reverse'
+  },
+
+  tabsWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    paddingTop: 10,
+    backgroundColor: '#8294cf'
+  },
+  tab: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 2,
+    marginHorizontal: -1,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#fff',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomStyle: 'none'
   }
 });

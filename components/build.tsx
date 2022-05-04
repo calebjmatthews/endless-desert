@@ -50,19 +50,14 @@ export default function BuildComponent() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={20}
-          style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Build'}</Text>
-      </View>
       {buildTimer && (
         <Text style={styles.bareText}>
-          {`You are already working on the ${(buildTimer.buildingToBuild?.type || buildings[buildTimer.buildingToUpgrade || 0].buildingType)}.`}
+          {`You're already working on the ${(buildTimer.buildingToBuild?.type || buildings[buildTimer.buildingToUpgrade || 0].buildingType)}.`}
         </Text>
       )}
       {(!buildTimer && buildingTypeArray.length === 0) && (
         <Text style={styles.bareText}>
-          {`You can't yet build anything on ${modalValue.spot.type.toLowerCase()}.`}
+          {`You can't currently build anything on ${modalValue.spot.type.toLowerCase()}.`}
         </Text>
       )}
       {!buildTimer && (

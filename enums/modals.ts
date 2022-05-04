@@ -1,5 +1,5 @@
 export enum MODALS {
-  BUILD = "Build",
+  SPOT = "Spot",
   BUILDING_DETAIL = "Building Detail",
   BUILD_DETAIL = "Build Detail",
   LEADER_DETAIL = "Leader Detail",

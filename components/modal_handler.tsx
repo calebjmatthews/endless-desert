@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';
 
 import { displayModal } from '../actions/ui';
-import BuildComponent from './build';
+import SpotComponent from './spot';
 import ResourceDetailComponent from './resource_detail';
 import ResourceSelectComponent from './resource_select';
 import ResourceSelectOneComponent from './resource_select_one';
@@ -78,8 +78,8 @@ export default function ModalHandlerComponent() {
 
 function renderModal(modalType: string) {
   switch (modalType) {
-    case MODALS.BUILD:
-    return <BuildComponent />;
+    case MODALS.SPOT:
+    return <SpotComponent />;
 
     case MODALS.RESOURCE_DETAIL:
     return <ResourceDetailComponent />;

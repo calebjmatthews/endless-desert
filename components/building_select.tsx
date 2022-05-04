@@ -24,6 +24,7 @@ import Resource from '../models/resource';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import Timer from '../models/timer';
+import Icon from '../models/icon';
 import QuestActivity from '../models/quest_activity';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -35,6 +36,19 @@ import { BUILDING_TYPES } from '../enums/building_types';
 import { ACTIVITIES } from '../enums/activities';
 
 export default function BuildingSelectComponent() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.headingWrapper}>
+        <IconComponent provider="FontAwesome5" name="building" color="#fff" size={20}
+          style={styles.headingIcon} />
+        <Text style={styles.heading1}>{' Select Building'}</Text>
+      </View>
+      <BuildingSelectContents />
+    </View>
+  );
+}
+
+export function BuildingSelectContents() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
   const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
@@ -42,8 +56,8 @@ export default function BuildingSelectComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: {type: string, subType: string, leader: Leader} =
-    useTypedSelector(state => state.ui.modalValue);
+  const modalValue: {type: string, subType: string, leader: Leader,
+    coords: [number, number]} = useTypedSelector(state => state.ui.modalValue);
   let buildingsLeader: {[buildingId: string] : Leader} = {};
   Object.keys(leaders).map((leaderId) => {
     const leader = leaders[leaderId];
@@ -64,11 +78,6 @@ export default function BuildingSelectComponent() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headingWrapper}>
-        <IconComponent provider="FontAwesome5" name="building" color="#fff" size={20}
-          style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Select Building'}</Text>
-      </View>
       <ScrollView>
         <View style={styles.tileContainer}>
           {renderBuildings(buildingsArray, buildingSelect)}
@@ -130,8 +139,8 @@ export default function BuildingSelectComponent() {
             return (
               <View key={cost.type} style={styles.rows}>
                 <Text>{utils.formatNumberShort(cost.quantity)}</Text>
-                <SvgComponent icon={{...resourceTypes[cost.type].icon,
-                  height: '21', width: '21'}} />
+                <SvgComponent icon={new Icon({...resourceTypes[cost.type].icon,
+                  size: 21})} />
                 <Text>{cost.type + ' (of ' + utils.formatNumberShort(quantity)
                   + ')' + comma}</Text>
               </View>
@@ -260,7 +269,7 @@ export default function BuildingSelectComponent() {
       else if (modalValue.subType == 'from_storage') {
         const building = buildingsStorage[buildingSelected];
         dispatch(removeBuildingFromStorage(building));
-        dispatch(addBuilding(building));
+        dispatch(addBuilding(new Building({...building, coords: modalValue.coords})));
         let tempBuildings: { [id: string] : Building } = {};
         Object.keys(buildings).map((id) => {
           tempBuildings[id] = new Building(buildings[id]);

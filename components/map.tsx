@@ -105,7 +105,8 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
     }
     else {
-      dispatch(displayModalValue(MODALS.BUILD, 'open', {spot, coords }));
+      dispatch(displayModalValue(MODALS.SPOT, 'open',
+        { spot, coords, subType: 'from_storage' }));
     }
   }
 }

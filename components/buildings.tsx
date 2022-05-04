@@ -197,10 +197,6 @@ export default function BuildingsComponent() {
     return null;
   }
 
-  function buildPress() {
-    dispatch(displayModal(MODALS.BUILD));
-  }
-
   function storagePress() {
     dispatch(displayModalValue(MODALS.BUILDING_SELECT, 'open',
       {subType: 'from_storage'}));
