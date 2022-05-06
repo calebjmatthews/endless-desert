@@ -8,12 +8,14 @@ import { styles } from '../styles';
 import BuildingsComponent from './buildings';
 import SVGComponent from './svg';
 import IconComponent from './icon';
+import BadgeComponent from './badge';
 import { displayModalValue } from '../actions/ui';
 
 import Terrain from '../models/terrain';
 import Building from '../models/building';
 import Icon from '../models/icon';
 import Timer from '../models/timer';
+import Leader from '../models/leader';
 import { buildingTypes } from '../instances/building_types';
 import { TERRAIN_TYPES } from '../enums/terrain_types';
 import { MODALS } from '../enums/modals';
@@ -26,6 +28,13 @@ export default function MapComponent() {
   const buildTimer = useTypedSelector(state => state.timers['Build']);
   const timerCoords = (buildTimer?.buildingToBuild?.coords
     || buildings[(buildTimer?.buildingToUpgrade || 0)]?.coords);
+  const leaders = useTypedSelector(state => state.leaders);
+  const leaderMap: { [buildingId: string] : Leader } = {};
+  Object.keys(leaders).forEach((id) => {
+    const leader = leaders[id];
+    if (leader.assignedTo ) { leaderMap[leader.assignedTo] = leader; }
+    if (leader.livingAt) { leaderMap[leader.livingAt] = leader; }
+  });
   const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsCoords: Building[][] = [];
   terrain.spots.forEach((spotColumn, col) => {
@@ -52,7 +61,8 @@ export default function MapComponent() {
                   {spotColumn.map((spot, row) => (
                     <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
                       building={buildingsCoords[col][row]} buildTimer={buildTimer}
-                      timerCoords={timerCoords} />
+                      timerCoords={timerCoords}
+                      leader={leaderMap[buildingsCoords[col][row]?.id]} />
                   ))}
                 </View>
               )}
@@ -66,7 +76,8 @@ export default function MapComponent() {
 }
 
 function Spot(props: { spot: { type: string }, coords: [number, number],
-  building?: Building, buildTimer: Timer, timerCoords?: [number, number] }) {
+  building?: Building, buildTimer: Timer, timerCoords?: [number, number],
+  leader: Leader}) {
   const dispatch = useDispatch();
   const icons: { [type: string] : Icon } = {
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
@@ -97,6 +108,11 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
         <View style={{ position: 'absolute' }}>
           <SVGComponent icon={new Icon({ provider: 'svg', name: SVGS.HAMMERS,
             size: 30})}  />
+        </View>
+      )}
+      {props.leader && (
+        <View style={styles.leaderMini}>
+          <BadgeComponent icon={new Icon({ ...props.leader.icon, size: 14})}  />
         </View>
       )}
     </TouchableOpacity>

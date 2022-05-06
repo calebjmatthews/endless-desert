@@ -576,6 +576,15 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column-reverse'
   },
+  leaderMini: {
+    position: 'absolute',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    opacity: 0.85
+  },
 
   tabsWrapper: {
     display: 'flex',
