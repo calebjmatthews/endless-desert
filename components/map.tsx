@@ -46,13 +46,17 @@ export default function MapComponent() {
       <ScrollView contentContainerStyle={styles.columns}>
         <View style={[styles.centeredRows, {marginBottom: 30}]}>
           {terrain.spots.map((spotColumn, col) => (
-            <View key={`col#${col}`} style={styles.mapColumn}>
-              {spotColumn.map((spot, row) => (
-                <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
-                  building={buildingsCoords[col][row]} buildTimer={buildTimer}
-                  timerCoords={timerCoords} />
-              ))}
-            </View>
+            <React.Fragment key={`col#${col}`}>
+              {spotColumn && (
+                <View style={styles.mapColumn}>
+                  {spotColumn.map((spot, row) => (
+                    <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
+                      building={buildingsCoords[col][row]} buildTimer={buildTimer}
+                      timerCoords={timerCoords} />
+                  ))}
+                </View>
+              )}
+            </React.Fragment>
           ))}
         </View>
         <BuildingsComponent />

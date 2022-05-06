@@ -22,9 +22,9 @@ Like so:
 
 export default class Terrain {
   spots: { type: string }[][] = [];
-  leftBound: number = 0;
+  leftBound: number = 10;
   upperBound: number = 3;
-  rightBound: number = 3;
+  rightBound: number =  13;
 
   constructor(terrain: TerrainInterface|null) {
     if (terrain) {
@@ -53,7 +53,7 @@ export default class Terrain {
     }
 
     // Place Broken Cistern at one of the bottom-middle spots
-    const bc: [number, number] = (utils.random() < 0.5) ? [1, 0] : [2, 0];
+    const bc: [number, number] = (utils.random() < 0.5) ? [11, 0] : [12, 0];
     ti.spots[bc[0]][bc[1]] = { type: TTY.WATER };
     ti.spots[bc[0]-1][bc[1]] = { type: TTY.RIVERBANK };
     ti.spots[bc[0]+1][bc[1]] = { type: TTY.RIVERBANK };
@@ -82,8 +82,10 @@ export default class Terrain {
 
   flowRiver(terrain: Terrain) {
     const t = new Terrain(terrain);
+    console.log('t');
+    console.log(t);
     // Find the highest row that contains water (row #2 is the lowest possible)
-    let highestWaterRow = 2;
+    let highestWaterRow = 1;
     for (let col = t.leftBound; col <= t.rightBound; col++) {
       for (let row = 2; row <= t.upperBound; row++) {
         if (t.spots[col][row].type === TTY.WATER) {
@@ -93,7 +95,7 @@ export default class Terrain {
     }
 
     // Add water until upperBound is reached
-    for (let row = highestWaterRow; row <= t.upperBound; row++) {
+    for (let row = highestWaterRow+1; row <= t.upperBound; row++) {
       // Check whether the river bent in the previous row
       let previousWaters: [number, number][] = [];
       for (let col = t.leftBound; col <= t.rightBound; col++) {
@@ -127,7 +129,7 @@ export default class Terrain {
       else {
         const ls = previousWaters[0];
         const rs = previousWaters[1];
-        const leftSpotIsBend = (t.spots[ls[0]][ls[1]-2].type !== TTY.WATER);
+        const leftSpotIsBend = (t.spots[ls[0]][ls[1]-1].type !== TTY.WATER);
         if (leftSpotIsBend) {
           t.spots[ls[0]][row] = { type: TTY.WATER };
           t.spots[ls[0]-1][row] = { type: TTY.RIVERBANK };
@@ -148,8 +150,11 @@ export default class Terrain {
     typeName: string): [number, number] {
     const buildingType = buildingTypes[typeName];
     for (let loop = 0; loop < 100; loop++) {
-      const col = Math.floor(utils.random() * (t.rightBound+1)) - t.leftBound;
-      const row = Math.floor(utils.random() * (t.upperBound+1)) - 0;
+      const col = Math.floor(utils.random() * (t.rightBound+1 - t.leftBound))
+        + t.leftBound;
+      const row = Math.floor(utils.random() * (t.upperBound+1 - 0)) + 0;
+      console.log(`col: ${col}, row: ${row}`);
+      console.log(t);
       if (utils.arrayIncludes(buildingType.terrainAllowed, t.spots[col][row].type)
         && !buildingPlacement[col][row]) {
         return [col, row];
@@ -157,6 +162,29 @@ export default class Terrain {
     }
     console.log('Error: valid building spot could not be found after 100 attempts');
     return [-1, -1];
+  }
+
+  addRow(terrain: Terrain) {
+    const t = new Terrain(terrain);
+    t.upperBound++;
+    const row = t.upperBound;
+    for (let col = t.leftBound; col <= t.rightBound; col++) {
+      t.spots[col][row] = { type: TERRAIN_TYPES.SAND };
+    }
+    return t;
+  }
+
+  addColumn(terrain: Terrain, side: 'left'|'right') {
+    const t = new Terrain(terrain);
+    if (side === 'left') { t.leftBound--; }
+    else if (side === 'right') { t.rightBound++; }
+
+    const col = (side === 'left') ? t.leftBound : t.rightBound;
+    for (let row = 0; row <= t.upperBound; row++) {
+      if (!t.spots[col]) { t.spots[col] = []; }
+      t.spots[col][row] = { type: TERRAIN_TYPES.SAND };
+    }
+    return t;
   }
 }
 

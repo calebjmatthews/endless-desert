@@ -15,6 +15,8 @@ import { setLeaders } from '../actions/leaders';
 import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
   setFortuityDailyLast, achieveMilestone, setStorageCallSave }
   from '../actions/account';
+import { setTerrain } from '../actions/terrain';
+import { handleIncreaseSlots } from '../actions/trading_status';
 
 import Hourglass from '../models/hourglass';
 import Timer from '../models/timer';
@@ -30,6 +32,7 @@ import Account from '../models/account';
 import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
+import Terrain from '../models/terrain';
 import { buildingTypes } from '../instances/building_types';
 import { memos } from '../instances/memos';
 import { fortuities } from '../instances/fortuities';
@@ -61,6 +64,7 @@ export default function HourglassComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
   const questStatus = useTypedSelector(state => state.questStatus);
+  const terrain = useTypedSelector(state => state.terrain);
   const ui = useTypedSelector(state => state.ui);
   const hourglass = new Hourglass();
   const [localTimestamp, setLocalTimestamp] = useState(new Date(Date.now()).valueOf());
@@ -196,20 +200,26 @@ export default function HourglassComponent() {
               dispatch(achieveMilestone(MILESTONES.RESEARCH_OPTION_SLOTS_2));
             }
           }
-          if (buildingType.name == BUILDING_TYPES.BROKEN_CISTERN) {
+          if (buildingType.name === BUILDING_TYPES.BROKEN_CISTERN) {
             cisternRepaired();
           }
-          else if (buildingType.name == BUILDING_TYPES.FALLOW_FIELD) {
+          else if (buildingType.name === BUILDING_TYPES.FALLOW_FIELD) {
             fieldRepaired();
           }
-          else if (buildingType.name == BUILDING_TYPES.MARKET_ABANDONED) {
+          else if (buildingType.name === BUILDING_TYPES.MARKET_ABANDONED) {
             marketRepaired();
           }
-          else if (buildingType.name == BUILDING_TYPES.DECAYING_STUDY) {
+          else if (buildingType.name === BUILDING_TYPES.DECAYING_STUDY) {
             studyRepaired();
           }
-          else if (buildingType.name == BUILDING_TYPES.RUINED_HUTS) {
+          else if (buildingType.name === BUILDING_TYPES.RUINED_HUTS) {
             hutsRepaired();
+          }
+          else if (buildingType.name.includes('Gate')) {
+            gateUpgraded(buildingType.name);
+          }
+          else if (buildingType.name === BUILDING_TYPES.MARKET) {
+            dispatch(handleIncreaseSlots());
           }
         }
         if (timer.messageToDisplay) {
@@ -370,6 +380,25 @@ export default function HourglassComponent() {
         + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
       fortuityCheck: true
     })));
+  }
+
+  function gateUpgraded(typeName: string) {
+    let addTerrain = new Terrain(terrain);
+    switch(typeName) {
+      case BUILDING_TYPES.GATE_BAKED_CLAY:
+      addTerrain = terrain.addColumn(terrain, 'left');
+      break;
+
+      case BUILDING_TYPES.GATE_BRICKWORK:
+      addTerrain = terrain.addColumn(terrain, 'right');
+      break;
+
+      default:
+      addTerrain = terrain.addRow(terrain);
+    }
+
+    const frTerrain = addTerrain.flowRiver(addTerrain);
+    dispatch(setTerrain(frTerrain));
   }
 
   function showWhileAway(wa: {diff: number, rti: Resource[], rtc: Resource[],

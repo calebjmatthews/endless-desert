@@ -38,10 +38,6 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { utils } from '../utils';
 
-const LIMIT_MAP: { [name: string] : number} = { [BTY.GATE] : 15,
-  [BTY.GATE_BAKED_CLAY] : 20, [BTY.GATE_BRICKWORK] : 25, [BTY.GATE_METAL_CLAD] : 31,
-  [BTY.GATE_SHINING] : 36, [BTY.GATE_RUNIC] : 40, [BTY.GATE_PEARLESCENT] : 46 };
-
 export default function BuildingsComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
@@ -131,46 +127,6 @@ export default function BuildingsComponent() {
     );
   }
 
-  function renderBuildButton() {
-    const buildingLimit = getBuildingLimit();
-    let isDisabled = false;
-    let buttonStyle: any = styles.buttonLarge;
-    if (buildingLimit.value >= 1) {
-      isDisabled = true;
-      buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
-    }
-    return (
-      <TouchableOpacity style={buttonStyle} disabled={isDisabled}
-        onPress={() => buildPress()} >
-        <IconComponent provider="FontAwesome5" name="hammer" color="#fff" size={16}
-          style={styles.headingIcon} />
-        <Text style={styles.buttonTextLarge}>
-          {` Build ${buildingLimit.label}`}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-
-  function renderStorageButton() {
-    const buildingLimit = getBuildingLimit();
-    let isDisabled = false;
-    let buttonStyle: any = styles.buttonLarge;
-    if (Object.keys(buildingsStorage).length < 1 || buildingLimit.value >= 1) {
-      isDisabled = true;
-      buttonStyle = StyleSheet.flatten([styles.buttonLarge, styles.buttonDisabled]);
-    }
-    return (
-      <TouchableOpacity style={buttonStyle} disabled={isDisabled}
-        onPress={() => storagePress()} >
-        <IconComponent provider="FontAwesome5" name="level-up-alt" color="#fff"
-          size={16} style={styles.headingIcon} />
-        <Text style={styles.buttonTextLarge}>
-          {` Storage(${Object.keys(buildingsStorage).length})`}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-
   function renderBuildTimer(timer: Timer) {
     if (timer) {
       if (timer.buildingToBuild || timer.buildingToUpgrade) {
@@ -231,22 +187,6 @@ export default function BuildingsComponent() {
   function inexactRateOpen(building: Building, specTypeQuality: string, rate: number) {
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_RATE, 'open',
       {type: MODALS.RESOURCE_SELECT_RATE, building, specTypeQuality, rate}));
-  }
-
-  function getBuildingLimit() {
-    const numerator = Object.keys(buildings).length;
-    let denominator = LIMIT_MAP[BTY.GATE];
-    Object.keys(buildings).forEach((id) => {
-      const building = buildings[id];
-      const buildingType = buildingTypes[building.buildingType];
-      if (buildingType.name.includes('Gate')) {
-        denominator = LIMIT_MAP[buildingType.name];
-      }
-    });
-    return {
-      value: (numerator / denominator),
-      label: `(${numerator}/${denominator})`
-    }
   }
 }
 

@@ -18,6 +18,7 @@ import { addTimer } from '../actions/timers';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { handleIncreaseSlots } from '../actions/trading_status';
+import { setTerrain } from '../actions/terrain';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -83,6 +84,7 @@ export default function MainComponent() {
   const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const terrain = useTypedSelector(state => state.terrain);
   const [dropdownExpanded, dropdownSet] = useState(false);
   const [positionerInit, setPositionerInit] = useState(false)
 
@@ -118,12 +120,12 @@ export default function MainComponent() {
       settings: []
     }), ...tabsArray];
   }
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
   // return (
@@ -295,7 +297,19 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-
+      console.log('terrain');
+      console.log(terrain);
+      const ar1Terrain = terrain.addRow(terrain);
+      const fr1Terrain = ar1Terrain.flowRiver(ar1Terrain);
+      const ac2Terrain = fr1Terrain.addColumn(fr1Terrain, 'left');
+      const fr2Terrain = ac2Terrain.flowRiver(ac2Terrain);
+      const ac3Terrain = fr2Terrain.addColumn(fr2Terrain, 'right');
+      const fr3Terrain = ac3Terrain.flowRiver(ac3Terrain);
+      const ar4Terrain = fr3Terrain.addRow(fr3Terrain);
+      const fr4Terrain = ar4Terrain.flowRiver(ar4Terrain);
+      console.log('fr4Terrain');
+      console.log(fr4Terrain);
+      dispatch(setTerrain(fr4Terrain));
     }
     else if (tabName != TABS.FORTUITY) {
       dispatch(selectTab(tabName));

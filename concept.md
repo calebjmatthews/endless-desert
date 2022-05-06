@@ -744,7 +744,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Combine map and buildings tabs
   [X] Click on terrain to build
   [X] Click on terrain to place from storage
-  [ ] Gate upgrade terrain effects
+  [X] Gate upgrades effect terrain
   [ ] Trade option multipliers
   [ ] Trader conversations
   [ ] Maximum trade quantity applies both ways
