@@ -585,6 +585,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     opacity: 0.85
   },
+  problemMini: {
+    position: 'absolute',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    opacity: 0.85
+  },
 
   tabsWrapper: {
     display: 'flex',

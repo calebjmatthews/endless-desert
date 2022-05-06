@@ -35,6 +35,7 @@ export default function MapComponent() {
     if (leader.assignedTo ) { leaderMap[leader.assignedTo] = leader; }
     if (leader.livingAt) { leaderMap[leader.livingAt] = leader; }
   });
+  const problems = useTypedSelector(state => state.rates.problems);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsCoords: Building[][] = [];
   terrain.spots.forEach((spotColumn, col) => {
@@ -62,6 +63,7 @@ export default function MapComponent() {
                     <Spot key={`${col}|${row}`} spot={spot} coords={[col, row]}
                       building={buildingsCoords[col][row]} buildTimer={buildTimer}
                       timerCoords={timerCoords}
+                      problems={problems?.[buildingsCoords[col][row]?.id]}
                       leader={leaderMap[buildingsCoords[col][row]?.id]} />
                   ))}
                 </View>
@@ -77,7 +79,7 @@ export default function MapComponent() {
 
 function Spot(props: { spot: { type: string }, coords: [number, number],
   building?: Building, buildTimer: Timer, timerCoords?: [number, number],
-  leader: Leader}) {
+  leader: Leader, problems: string[]}) {
   const dispatch = useDispatch();
   const icons: { [type: string] : Icon } = {
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
@@ -113,6 +115,12 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
       {props.leader && (
         <View style={styles.leaderMini}>
           <BadgeComponent icon={new Icon({ ...props.leader.icon, size: 14})}  />
+        </View>
+      )}
+      {props.problems?.length > 0 && (
+        <View style={styles.problemMini}>
+          <BadgeComponent icon={new Icon({ provider: 'FontAwesome5',
+            name: 'exclamation-triangle', color: '#b9313a', size: 14})}  />
         </View>
       )}
     </TouchableOpacity>
