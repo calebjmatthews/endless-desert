@@ -43,9 +43,9 @@ export default function ResourcesComponent() {
     const catBranch = catTree[catName];
     let category = Object.assign( {}, catBranch );
     delete category.resources;
-    if (catBranch.resources.length > 0) {
+    if ((catBranch.resources || []).length > 0) {
       uiArray.push({ type: 'category', id: category.name, category });
-      catBranch.resources.map((resource) => {
+      catBranch.resources?.map((resource) => {
         const id = (resource.type + '|' + resource.quality);
         uiArray.push({ type: 'resource', id, resource });
       });
@@ -96,10 +96,10 @@ function ResourceDescription(props: UiItemProps) {
   const rate = props.rates.netRates[typeQuality];
   let rateString = '';
   if (rate) {
-    rateString = rate.toString();
+    rateString = utils.formatNumberShort(rate);
     let sign = '+';
     if (rate < 0) { sign = ''; }
-    rateString = (sign + (Math.round(rate)) + '/m');
+    rateString = (sign + rateString + '/m');
   }
   let exhaustionString: string|null = null;
   const exhaustion = props.rates.exhaustions[typeQuality];
