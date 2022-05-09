@@ -185,37 +185,38 @@ export default function ResearchingComponent() {
 
   function afterApplyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
+    const newRod = new ResearchOptionDeck(rod);
     const option = researchOptions[optionName];
-    const oResult = rod.costPaid(aCost.type, optionName);
+    const oResult = newRod.costPaid(aCost.type, optionName);
     if (oResult == 'option completed') {
       option.actions.forEach((actionName) => {
         switch(actionName) {
           case ROA.INCREASE_OPTION_SLOTS:
-          rod.increaseOptionSlots();
+          newRod.increaseOptionSlots();
           break;
 
           case ROA.DECREASE_OPTION_SLOTS:
-          rod.decreaseOptionSlots();
+          newRod.decreaseOptionSlots();
           break;
 
           case ROA.DISCARD_OPTIONS:
-          rod.discardOptions();
+          newRod.discardOptions();
           break;
 
           case ROA.COMPLETE_STEP:
-          const sResult = rod.completeStep();
+          const sResult = newRod.completeStep();
           if (sResult == 'step completed') { callCompleteResearch(); }
-          else { rod.replaceOption(optionName); }
+          else { newRod.replaceOption(optionName); }
           break;
 
           case ROA.RETRACT_STEP:
-          rod.retractStep();
+          newRod.retractStep();
           break;
         }
       });
-      rod.finishOption(optionName);
+      newRod.finishOption(optionName);
     }
-    dispatch(updateResearchOptionDeck(rod));
+    dispatch(updateResearchOptionDeck(newRod));
   }
 
   function callCompleteResearch() {

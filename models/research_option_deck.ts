@@ -53,13 +53,14 @@ export default class ResearchOptionDeck {
   replaceOption(optionName: string) {
     let index = this.currentOptions.indexOf(optionName);
     const newOption = this.drawOption((index == 0) ?
-      { alreadyTried: false, firstOption: true } : undefined);
+      { alreadyTried: false, firstOption: true, replacedOption: optionName } :
+      { alreadyTried: false, firstOption: false, replacedOption: optionName });
     this.currentOptions[index] = newOption.name;
     this.viewedOptions[newOption.name] = true;
   }
 
-  drawOption({ alreadyTried, firstOption }:
-    { alreadyTried: boolean, firstOption: boolean } =
+  drawOption({ alreadyTried, firstOption, replacedOption }:
+    { alreadyTried: boolean, firstOption: boolean, replacedOption?: string } =
     { alreadyTried: false, firstOption: false }): ResearchOption {
     let research = researches[this.researchName];
     let preferredPool: ResearchOption[] = [];
@@ -82,9 +83,11 @@ export default class ResearchOptionDeck {
         generalPool.push(researchOptions[roName]);
       }
     });
-    // If both pools are empty, reset the viewed options and start over
+    // If both pools are empty, reset the viewed options (except for the current)
+    //  and start over
     if (preferredPool.length == 0 && generalPool.length == 0 && !alreadyTried) {
       this.viewedOptions = {};
+      if (replacedOption) { this.viewedOptions = { [replacedOption]: true }; }
       return this.drawOption({ alreadyTried: true, firstOption });
     }
 

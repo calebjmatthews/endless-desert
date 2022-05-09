@@ -53,7 +53,7 @@ export enum RESEARCH_OPTIONS {
   // Physics Lv 1
   EARLY_PRINCIPLES = "Early Principles",
   SAND_AND_SOIL = "Sand and Soil",
-  BORROWED_CLUES = "Borrow Clues",
+  BORROWED_CLUES = "Borrowed Clues",
   TO_BUILD_A_HOME = "To Build a Home",
 
   // Physics Lv 2
