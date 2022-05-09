@@ -27,7 +27,6 @@ export default class Timer implements TimerInterface {
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
     if (!timer.startedAt) { this.startedAt = new Date(Date.now()).valueOf(); }
-    if (!timer.progress) { this.setProgress(); }
     if (!timer.resourcesToIncrease) { this.resourcesToIncrease = []; }
     if (!timer.resourcesToConsume) { this.resourcesToConsume = []; }
     this.setProgress();

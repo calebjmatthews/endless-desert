@@ -28,9 +28,7 @@ export default function ProgressBarComponent(props: ProgressBarProps) {
 }
 
 function Bar(props: BarProps) {
-  const initBarProps: BarProps = { startingProgress: 0, endingProgress: 0,
-    duration: 0, starting: true };
-  const [barProps, setBarProps] = useState(initBarProps);
+  const [barProps, setBarProps] = useState(props);
   useEffect(() => {
     let staticDuration = false;
     if (props.staticDuration != undefined) { staticDuration = props.staticDuration; }
@@ -45,7 +43,7 @@ function Bar(props: BarProps) {
   }, [props]);
 
   const widthAnim = useRef(new Animated
-    .Value(barProps.startingProgress)).current;
+    .Value(barProps.startingProgress*2/100)).current;
 
   const maxWidth = props.width ? props.width - 4 : DEFAULT_WIDTH;
 
