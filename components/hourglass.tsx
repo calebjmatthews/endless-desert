@@ -236,12 +236,6 @@ export default function HourglassComponent() {
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
           }
-          dispatch(addTimer(new Timer({
-            name: `Fortuity-${utils.randHex(8)}`,
-            endsAt: (new Date(Date.now()).valueOf()
-              + Math.floor(utils.random() * CHECK_INTERVAL) + (CHECK_INTERVAL / 2)),
-            fortuityCheck: true
-          })));
         }
         if (timer.dailyQuestCheck) {
           const quest = dailyQuestCheck();

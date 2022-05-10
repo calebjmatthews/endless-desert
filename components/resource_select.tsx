@@ -62,8 +62,9 @@ export default function ResourceSelectComponent() {
   function renderResources(resourceArray: Resource[],
     setResourcesSelected: Function) {
     return resourceArray.map((resource) => {
-      return <ResourceSelector key={resource.type} resource={resource}
-        aCost={modalValue.aCost} resourcesSelected={resourcesSelected} vault={vault}
+      return <ResourceSelector key={`${resource.type}|${resource.quality}`}
+        resource={resource} aCost={modalValue.aCost}
+        resourcesSelected={resourcesSelected} vault={vault}
         setResourcesSelected={setResourcesSelected} positioner={positioner} />;
     });
   }

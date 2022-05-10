@@ -749,8 +749,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Show leader positioning on map
   [X] Show building problems on map
   [X] Rebalance implements
-  [ ] Fortuities appear above map
-  [ ] Fix fortuity frequency
+  [X] Fortuities appear above map
+  [X] Fix fortuity frequency
   [ ] Trade option multipliers
   [ ] Implements in separate trade good category
   [ ] Additional equipment as trade goods

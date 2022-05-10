@@ -15,7 +15,7 @@ import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { handleIncreaseSlots } from '../actions/trading_status';
-import { setTerrain } from '../actions/terrain';
+import { setTimers } from '../actions/timers';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -48,7 +48,7 @@ import Building from '../models/building';
 import Vault from '../models/vault';
 import Icon from '../models/icon';
 import ResearchStatus from '../models/research_status';
-import Terrain from '../models/terrain';
+import Timer from '../models/timer';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -78,7 +78,7 @@ export default function MainComponent() {
   const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
   const researchStatus = useTypedSelector(state => state.researchStatus);
-  const terrain = useTypedSelector(state => state.terrain);
+  const timers = useTypedSelector(state => state.timers);
   const [dropdownExpanded, dropdownSet] = useState(false);
   const [positionerInit, setPositionerInit] = useState(false)
 
@@ -267,15 +267,13 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const ar1Terrain = terrain.addRow(terrain);
-      const fr1Terrain = ar1Terrain.flowRiver(ar1Terrain);
-      const ac2Terrain = fr1Terrain.addColumn(fr1Terrain, 'left');
-      const fr2Terrain = ac2Terrain.flowRiver(ac2Terrain);
-      const ac3Terrain = fr2Terrain.addColumn(fr2Terrain, 'right');
-      const fr3Terrain = ac3Terrain.flowRiver(ac3Terrain);
-      const ar4Terrain = fr3Terrain.addRow(fr3Terrain);
-      const fr4Terrain = ar4Terrain.flowRiver(ar4Terrain);
-      dispatch(setTerrain(fr4Terrain));
+      const newTimers: { [name: string] : Timer } = {};
+      Object.keys(timers).forEach((name) => {
+        if (!name.includes('Fortuity-')) {
+          newTimers[name] = timers[name];
+        }
+      });
+      dispatch(setTimers(newTimers));
     }
     else {
       dispatch(selectTab(tabName));
