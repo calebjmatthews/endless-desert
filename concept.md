@@ -753,9 +753,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix fortuity frequency
   [ ] Trade option multipliers
   [ ] Implements in separate trade good category
-  [ ] Additional equipment as trade goods
+  [ ] Additional equipment and textile sources as trade goods
   [ ] Trader conversations
-  [ ] Maximum trade quantity applies both ways
   [ ] Exploration long-term progression quests
   [ ] Add animations to memos
   [ ] Glassware to use cloth subcategory as an ingredient

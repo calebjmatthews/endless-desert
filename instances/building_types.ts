@@ -22,12 +22,12 @@ const TTY = TERRAIN_TYPES;
 import { SVGS } from '../enums/svgs';
 
 const defaultNoteCost = [
-  { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 1000 },
+  { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
   { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
   { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20 }
 ];
 const dialecticNoteCost = [
-  { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
+  { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 12000 },
   { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800 },
   { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40 }
 ];
@@ -243,8 +243,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40},
       {specificity: RSP.EXACT, type: RTY.GLASS, quantity: 1600}],
     recipes: null,
-    givesNote: RTY.NOTES_DIALECTIC,
-    noteCost: dialecticNoteCost,
+    givesNote: RTY.NOTES_EARTH,
+    noteCost: defaultNoteCost,
     upgradesInto: BTY.STUDY_PORTENTOUS,
     cannotStore: true
   }),
@@ -636,18 +636,18 @@ const buildingTypes: { [name: string] : BuildingType } = {
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 16},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 8, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
-    new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 4, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: 8, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 8}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
-    requiresLeader: true
+    requiresLeader: false
   }),
 
   [BTY.OX_PASTURE]: new BuildingType({

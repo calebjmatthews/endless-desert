@@ -563,7 +563,7 @@ researchOptions[RESEARCH_OPTIONS.NEWBORN_LANGUAGE] = new ResearchOption({
   name: RESEARCH_OPTIONS.NEWBORN_LANGUAGE,
   appliesTo: RESEARCHES.MYSTICISM,
   difficulty: 0,
-  description: `Large portions of the Tome are outright painful reading. You eventually deduce the reason: the first five authors lived hundred of years ago, when the language you speak was new. You have to work backwards, extrapolating the meaning of long dead words.`,
+  description: `Large portions of the Tome are outright painful reading. You eventually deduce the reason: the first five authors lived hundreds of years ago, when the language you speak was new. You have to work backwards, extrapolating the meaning of long dead words.`,
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 5555}]
 });
 

@@ -427,7 +427,7 @@ resourceTypes[RTY.QUAIL] = new ResourceType({
 
 resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
   name: RTY.QUAIL_MEAT,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 160,
@@ -437,7 +437,7 @@ resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
 
 resourceTypes[RTY.EGG] = new ResourceType({
   name: RTY.EGG,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
@@ -467,7 +467,7 @@ resourceTypes[RTY.OX] = new ResourceType({
 
 resourceTypes[RTY.OX_MEAT] = new ResourceType({
   name: RTY.OX_MEAT,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 240,
@@ -477,7 +477,7 @@ resourceTypes[RTY.OX_MEAT] = new ResourceType({
 
 resourceTypes[RTY.MILK] = new ResourceType({
   name: RTY.MILK,
-  category: RCA.MATERIAL_REFINED,
+  category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 100,
@@ -1444,7 +1444,7 @@ resourceTypes[RTY.BINDING] = new ResourceType({
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_HEAL],
   value: 1360,
-  description: `A soft fibrous banding that can stop bleeding or hold things together`,
+  description: `A soft fibrous band that can stop bleeding or hold things together`,
   icon: new Icon({provider: 'svg', name: SVGS.BINDING})
 });
 
