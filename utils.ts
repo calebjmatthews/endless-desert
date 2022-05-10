@@ -291,7 +291,7 @@ class Utils {
       return number.toFixed(2);
     }
     if (number < 1000) {
-      return Math.floor(number).toString();
+      return Math.round(number).toString();
     }
     let powers = Object.keys(exponents);
     let strNumber = '';

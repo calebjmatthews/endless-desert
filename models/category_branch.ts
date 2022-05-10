@@ -6,5 +6,5 @@ export interface CategoryBranch {
   value: number|null;
   order: number;
   icon: Icon;
-  resources: Resource[];
+  resources?: Resource[];
 }

@@ -330,7 +330,7 @@ researchOptions[RESEARCH_OPTIONS.CULINARY_INSIGHTS] = new ResearchOption({
   name: RESEARCH_OPTIONS.CULINARY_INSIGHTS,
   appliesTo: RESEARCHES.ANTHROPOLOGY,
   difficulty: 2,
-  description: `It pays to have tiny bribes when interacting with other cultures, especially food and drink. And it must be shared correctly; it's far too easy to offer and accidental insult.`,
+  description: `It pays to have tiny bribes when interacting with other cultures, especially food and drink. And it must be shared correctly; it's far too easy to offer an accidental insult.`,
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
     {specificity: RSP.SUBCATEGORY, type: RSC.SOUP, quantity: 100},
     {specificity: RSP.SUBCATEGORY, type: RSC.BREAD, quantity: 100},

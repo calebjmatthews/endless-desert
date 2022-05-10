@@ -1389,7 +1389,7 @@ resourceTypes[RTY.IRON_EDGE] = new ResourceType({
   name: RTY.IRON_EDGE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_LOOSE],
-  value: 200,
+  value: 1800,
   description: `A sharp iron blade; useful for cutting through traps and snares`,
   icon: new Icon({provider: 'svg', name: SVGS.EDGE})
 });
@@ -1398,7 +1398,7 @@ resourceTypes[RTY.HARDENED_SLAB] = new ResourceType({
   name: RTY.HARDENED_SLAB,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_BREAK],
-  value: 200,
+  value: 2600,
   description: `A studded metal plate; useful for smashing through obstacles`,
   icon: new Icon({provider: 'svg', name: SVGS.SLAB})
 });
@@ -1407,7 +1407,7 @@ resourceTypes[RTY.CRUDE_NEEDLE] = new ResourceType({
   name: RTY.CRUDE_NEEDLE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP],
-  value: 200,
+  value: 1400,
   description: `A roughly-made needle; can be placed pointing upwards as a simple trap`,
   icon: new Icon({provider: 'svg', name: SVGS.NEEDLE})
 });
@@ -1416,7 +1416,7 @@ resourceTypes[RTY.GEARWORK] = new ResourceType({
   name: RTY.GEARWORK,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
-  value: 200,
+  value: 2480,
   description: `A simple gear-driven component; used in everything from dart-traps to bomb-triggers`,
   icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
 });
@@ -1425,7 +1425,7 @@ resourceTypes[RTY.ROUGH_ROPE] = new ResourceType({
   name: RTY.ROUGH_ROPE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP, RTA.ACTION_LOOSE],
-  value: 200,
+  value: 1600,
   description: `Made from corded reed fibers; can be used to make a spring trap or to pull yourself from a hole`,
   icon: new Icon({provider: 'svg', name: SVGS.ROPE})
 });
@@ -1434,7 +1434,7 @@ resourceTypes[RTY.TORCH] = new ResourceType({
   name: RTY.TORCH,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_SEEK],
-  value: 200,
+  value: 1600,
   description: `A short-lived, smoky torch that can still light your way in dark places`,
   icon: new Icon({provider: 'svg', name: SVGS.TORCH})
 });
@@ -1443,7 +1443,7 @@ resourceTypes[RTY.BINDING] = new ResourceType({
   name: RTY.BINDING,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_HEAL],
-  value: 200,
+  value: 1360,
   description: `A soft fibrous banding that can stop bleeding or hold things together`,
   icon: new Icon({provider: 'svg', name: SVGS.BINDING})
 });

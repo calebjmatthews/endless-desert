@@ -477,7 +477,7 @@ researches[RESEARCHES.BASIC_EDUCATION] = new Research({
 
 researches[RESEARCHES.ANTHROPOLOGY_ADVANCED] = new Research({
   name: RESEARCHES.ANTHROPOLOGY_ADVANCED,
-  unlocks: ('Opens up new areas of study about mechanical processes.'),
+  unlocks: ('Opens up new areas of study about culture and language.'),
   description: `Your grasp of language and culture has been constantly improving. With a push, you could ascend to an entirely new level.`,
   icon: new Icon({provider: 'FontAwesome5', name: 'users',
     color: '#fff', backgroundColor: '#071f56'}),
