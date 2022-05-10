@@ -9,6 +9,7 @@ import BuildingsComponent from './buildings';
 import SVGComponent from './svg';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import FortuityComponent from './fortuity';
 import { displayModalValue } from '../actions/ui';
 
 import Terrain from '../models/terrain';
@@ -53,6 +54,7 @@ export default function MapComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Town'}</Text>
       </View>
+      <FortuityComponent />
       <ScrollView contentContainerStyle={styles.columns}>
         <View style={[styles.centeredRows, {marginBottom: 30}]}>
           {terrain.spots.map((spotColumn, col) => (

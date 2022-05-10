@@ -349,7 +349,7 @@ fortuities[FORTUITIES.THRICE_LOCKED_TOME] = new Fortuity({
 
 fortuities[FORTUITIES.A_TERRACED_PLATFORM] = new Fortuity({
   name: FORTUITIES.A_TERRACED_PLATFORM,
-  openLine: 'Something strange underground',
+  openLine: `There's something strange underground`,
   memos: [
     new Memo({
       name: (FORTUITIES.A_TERRACED_PLATFORM + '0'),

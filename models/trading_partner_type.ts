@@ -82,7 +82,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
           type: newTradeResult.give.type,
           quality: (newTradeResult.give.quality || 0)
         };
-        const newTrade = new Trade ({
+
+        const newTrade = new Trade({
           id: utils.randHex(8),
           tradingPartnerType: this.name,
           give: give,
@@ -112,7 +113,18 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     const give = this.createGive(pGive);
     if (give) {
       const pReceive = this.choosePReceive(give, tier);
-      const receive = { specificity: pReceive.specificity, type: pReceive.type };
+
+      const multiplierMap: { [spec: string] : number } = {
+        [RESOURCE_SPECIFICITY.CATEGORY]: 0.8,
+        [RESOURCE_SPECIFICITY.TAG]: 0.9,
+        [RESOURCE_SPECIFICITY.SUBCATEGORY]: 1,
+        [RESOURCE_SPECIFICITY.EXACT]: 1.1
+      }
+      let multiplier = multiplierMap[pReceive.specificity];
+      multiplier = multiplier + (0.4 * utils.random() - 0.2);
+
+      const receive = { specificity: pReceive.specificity, type: pReceive.type,
+        multiplier };
       return { pGive, give, receive }
     }
     return null;

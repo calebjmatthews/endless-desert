@@ -8,15 +8,12 @@ import { Text, View, Button, FlatList, TouchableOpacity, ScrollView, Dimensions,
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { selectTab, setPositioner, addMemos } from '../actions/ui';
+import { selectTab, setPositioner } from '../actions/ui';
 import { addBuilding, setBuildingSpecificRecipe } from '../actions/buildings';
-import { changeSetting, setCurrentFortuity, unlockTab, setAccount, fortuitySeen,
-  setFortuityDailyLast, achieveMilestone } from '../actions/account';
+import { changeSetting } from '../actions/account';
 import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
-import { addTimer } from '../actions/timers';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
-import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { handleIncreaseSlots } from '../actions/trading_status';
 import { setTerrain } from '../actions/terrain';
 import HourglassComponent from '../components/hourglass';
@@ -44,7 +41,6 @@ import Tab from '../models/tab';
 import Positioner from '../models/positioner';
 import Memo from '../models/memo';
 import LeaderType from '../models/leader_type';
-import Timer from '../models/timer';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
 import Resource from '../models/resource';
@@ -57,7 +53,6 @@ import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
-import { quests } from '../instances/quests';
 import { questGen } from '../instances/quest_gen';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
@@ -72,7 +67,6 @@ import { CONVERSATIONS } from '../enums/conversations';
 import { MILESTONES } from '../enums/milestones';
 import { FORTUITIES } from '../enums/fortuities';
 
-const FORTUITY_BASE = 600000;
 const window = Dimensions.get('window');
 
 export default function MainComponent() {
@@ -112,36 +106,12 @@ export default function MainComponent() {
       return tab;
     }
   });
-  if (account.fortuityCurrent) {
-    tabsArray = [new Tab({
-      name: TABS.FORTUITY,
-      order: -1,
-      icon: {provider: 'FontAwesome5', name: 'exclamation-circle'},
-      settings: []
-    }), ...tabsArray];
-  }
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
-
-  // const { terrain, buildingMap } = new Terrain(null).generateTerrain(null);
-  // return (
-  //   <LinearGradient
-  //     colors={["#0034aa", "#6a41b4", "#f58f7d"]}
-  //     style={styles.mainContainer}>
-  //     <StorageHandlerComponent />
-  //     <StatusBar style="auto" />
-  //     <View style={styles.statusBarSpacer}></View>
-  //     <View style={styles.scrollWrapper}>
-  //       <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
-  //         <MapComponent terrain={terrain} buildingMap={buildingMap} />
-  //       </View>
-  //     </View>
-  //   </LinearGradient>
-  // )
+  // tabsArray = [new Tab({
+  //   name: 'debug',
+  //   order: -2,
+  //   icon: {provider: 'FontAwesome5', name: 'bug'},
+  //   settings: []
+  // }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -297,8 +267,6 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      console.log('terrain');
-      console.log(terrain);
       const ar1Terrain = terrain.addRow(terrain);
       const fr1Terrain = ar1Terrain.flowRiver(ar1Terrain);
       const ac2Terrain = fr1Terrain.addColumn(fr1Terrain, 'left');
@@ -307,72 +275,10 @@ export default function MainComponent() {
       const fr3Terrain = ac3Terrain.flowRiver(ac3Terrain);
       const ar4Terrain = fr3Terrain.addRow(fr3Terrain);
       const fr4Terrain = ar4Terrain.flowRiver(ar4Terrain);
-      console.log('fr4Terrain');
-      console.log(fr4Terrain);
       dispatch(setTerrain(fr4Terrain));
     }
-    else if (tabName != TABS.FORTUITY) {
-      dispatch(selectTab(tabName));
-    }
     else {
-      if (account.fortuityCurrent) {
-        let memos = account.fortuityCurrent.memos.slice();
-        // if (account.fortuityCurrent.leaderJoins) {
-        //   if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
-        //     dispatch(unlockTab(TABS.LEADERS));
-        //     dispatch(unlockTab(TABS.EQUIPMENT));
-        //   }
-        //   const leaderCreateRes =
-        //     leaderTypes[account.fortuityCurrent.leaderJoins].createLeader(vault);
-        //   let tempEquipment: { [id: string] : Equipment } = {};
-        //   leaderCreateRes.equipment.map((equip) => {
-        //     if (equip) {
-        //       tempEquipment[equip.id] = equip;
-        //       dispatch(addEquipment(equip));
-        //     }
-        //   });
-        //   let leader = new Leader(leaderCreateRes.leader);
-        //   leader.calcEffects(tempEquipment, {}, new Vault(null));
-        //   dispatch(addLeader(leader));
-        // }
-        if (account.fortuityCurrent.gainResources) {
-          const fgr = account.fortuityCurrent.gainResources;
-          let resourcesGained: Resource[] = [];
-          let resourceNames: string[] = [];
-          for (let index = 0; index < fgr.length; index++) {
-            const resReq = fgr[index];
-            const rToGain = utils.getMatchingResourceQuantity(resReq, resourceNames);
-            resourcesGained.push(new Resource(rToGain));
-            resourceNames.push(rToGain.type);
-          }
-          memos[memos.length-1].resourcesGained = resourcesGained;
-          dispatch(increaseResources(vault, resourcesGained));
-        }
-        if (account.fortuityCurrent.questsBegin) {
-          account.fortuityCurrent.questsBegin.forEach((questName) => {
-            dispatch(addQuest(quests[questName]));
-            const rtgExisting = quests[questName].taskCheckExisting(vault,
-              researchStatus);
-            rtgExisting.forEach((questActivity) => {
-              dispatch(addToActivityQueue(questActivity));
-            });
-          });
-          memos[memos.length-1].questsBegin = account.fortuityCurrent.questsBegin;
-        }
-        dispatch(addMemos(account.fortuityCurrent.memos));
-        dispatch(setCurrentFortuity(null));
-        dispatch(fortuitySeen(account.fortuityCurrent.name));
-        if (account.fortuityCurrent.repeatable) {
-          const currentTimestamp = new Date(Date.now()).valueOf();
-          dispatch(setFortuityDailyLast(currentTimestamp));
-        }
-        dispatch(addTimer(new Timer({
-          name: 'Fortuity',
-          endsAt: (new Date(Date.now()).valueOf()
-            + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
-          fortuityCheck: true
-        })));
-      }
+      dispatch(selectTab(tabName));
     }
     dropdownSet(false);
   }
