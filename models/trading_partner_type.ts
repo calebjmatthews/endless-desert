@@ -87,7 +87,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
           id: utils.randHex(8),
           tradingPartnerType: this.name,
           give: give,
-          receive: newTradeResult.receive
+          receive: newTradeResult.receive,
+          multiplier: newTradeResult.multiplier
         });
         trades[newTrade.id] = newTrade;
       }
@@ -125,7 +126,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
 
       const receive = { specificity: pReceive.specificity, type: pReceive.type,
         multiplier };
-      return { pGive, give, receive }
+      return { pGive, give, receive, multiplier }
     }
     return null;
   }

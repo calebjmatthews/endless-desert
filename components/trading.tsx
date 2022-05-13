@@ -96,10 +96,11 @@ export default function TradingComponent() {
     newTradingStatus.welcomePendingVisit(slot);
     dispatch(welcomePendingVisit(slot));
     const { visit, newNamesUpcoming } = newTradingStatus.handleNewPendingVisit();
-    dispatch(setUpcomingTradingPartnerNames(newNamesUpcoming))
+    dispatch(setUpcomingTradingPartnerNames(newNamesUpcoming));
+    const delays = [600000, 1200000];
     let newTimer = new Timer({
       name: `Trading|${slot}`,
-      endsAt: (new Date(Date.now()).valueOf() + 600000),
+      endsAt: (new Date(Date.now()).valueOf() + delays[slot]),
       tradingPartnerToArrive: visit.name,
       messageToDisplay: `${visit.name} are waiting outside the gate.`,
       iconToDisplay: new Icon(tradingPartnerTypes[visit.name].icon)

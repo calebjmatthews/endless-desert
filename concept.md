@@ -335,8 +335,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), aquaduct rig (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
-    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Thongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in quality)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), waterproofing rig (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
+    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Thongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in efficiency)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
     * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
@@ -344,7 +344,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Journeyman's Haversack: + speed but - quality/efficiency
     * Journeyman's Gearbag: + efficiency but - quality/speed
     * Journeyman's Toolpack: + quality but - speed/efficiency
-    * Unique tools: Shoulder parasol (increased Water efficiency, decreased general speed), Fan-shaped Cloak (increased Fuel efficiency, decreased general speed)
+    * Unique tools: Shoulder parasol (huge increase to Water efficiency, decreased general speed), Fan-shaped Cloak (increased Fuel efficiency, decreased general speed)
   - Effect ideas: + production but - efficiency, + quality but - production/efficiency, + efficiency but - production, decreased food consumption, increased Knowledge from studying/analysis, decreased build time, special fortuities, increased basic status but decreased happiness
   - Tiers of equipment are from 1 - 5, with probs as follows:
     * Basic unmarked equipment is 80% 1, 18% 2, 2% 3
@@ -362,7 +362,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Precise Gearwork: Ceramic Hull x12, Steel x4
     - Rough Rope: Thatch x20, Papyrus x20
     - Ceramic Cable: Terracotta x100, Thatch x20
-    - Torch: Wood x5, Charcoal x10, Sulfur x1
+    - Torch: Wood x5, Charcoal x10
     - Reed Binding: Reeds x40, Pulp x40
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
@@ -516,14 +516,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/japan-52
     https://www.flaticon.com/packs/prehistoric-age
     https://www.flaticon.com/packs/morocco-16\
-      https://www.svgrepo.com/collection/landscapes-collection/
+    https://www.svgrepo.com/collection/landscapes-collection/
     https://www.svgrepo.com/collection/tools-flat-vectors/
     https://www.svgrepo.com/collection/italy-4/
     https://www.svgrepo.com/collection/japan-13/
     https://www.svgrepo.com/collection/japan-10/
     https://www.svgrepo.com/collection/japan-9/
-    https://www.svgrepo.com/collection/bugs-insects-4/
-    https://www.svgrepo.com/collection/safari/
+    https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
     https://www.svgrepo.com/collection/knowledge-4/
     https://www.svgrepo.com/collection/labour-day/
@@ -537,6 +536,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/saint-patrick-day-5/
     https://www.svgrepo.com/collection/prehistoric-age/
     https://www.svgrepo.com/collection/camping-12/
+    https://www.svgrepo.com/collection/jewelry-3/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -750,16 +750,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Show building problems on map
   [X] Rebalance implements
   [X] Fortuities appear above map
-  [X] Fix fortuity frequency
+  [ ] Fix fortuity frequency
   [ ] Trade option multipliers
   [ ] Implements in separate trade good category
-  [ ] Additional equipment and textile sources as trade goods
+  [ ] Difficulty 2 buildings to use implements and specific bricks
+  [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Trader conversations
   [ ] Exploration long-term progression quests
   [ ] Add animations to memos
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Storing an occupied house kicks out the leader
+  [ ] Storing an assigned to building removes leader
+  [ ] Fortuity with options for new equipment quests
   [ ] More repeatable fortuities
   [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] Hide recipes missing ingredients
@@ -767,6 +770,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Research leveling system
   [ ] Store memo and conversation state in reducer
   [ ] Compressed resource view
+  [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
 
 ## Commands
 ### Delete all records from all tables:

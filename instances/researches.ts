@@ -642,8 +642,7 @@ researches[RESEARCHES.COTTAGE_CONSTRUCTION] = new Research({
 researches[RESEARCHES.HOUSE_CONSTRUCTION] = new Research({
   name: RESEARCHES.HOUSE_CONSTRUCTION,
   unlocks: ('Unlocks Houses.'),
-  description: ('Now that you have the capabity to produce some basic comforts, '
-    + 'you can do better than the huts you\'ve delt with until now. Much better.'),
+  description: `Now that you have the capabity to produce some basic comforts, you can do better than the huts and cottages you've delt with until now. Much better.`,
   icon: new Icon({provider: 'svg', name: SVGS.HOUSE}),
   category: RESEARCHES.PHYSICS,
   isCategory: false,

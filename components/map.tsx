@@ -85,11 +85,11 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
   const dispatch = useDispatch();
   const icons: { [type: string] : Icon } = {
     [TERRAIN_TYPES.WATER]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_WATER,
-      color: "#4b83c0", shadow: "#b9c4ed", size: 50 }),
+      color: "#b9c4ed", shadow: "#2aa6f2", size: 50 }),
     [TERRAIN_TYPES.RIVERBANK]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_RIVERBANK,
-      color: "#ac9992", shadow: "#f4ebdd", size: 50 }),
+      color: "#d7c09c", shadow: "#f3e1c5", size: 50 }),
     [TERRAIN_TYPES.SAND]: new Icon({ provider: 'svg', name: SVGS.TERRAIN_SAND,
-      color: "#ffd7b3", shadow: "#fff5cc", size: 50 })
+      color: "#ffd7b3", shadow: "#fffef4", size: 50 })
   };
   const buildingType = props.building ? buildingTypes[props.building.buildingType]
     : null;
