@@ -15,7 +15,7 @@ import { addLeader } from '../actions/leaders';
 import { addEquipment } from '../actions/equipment';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { handleIncreaseSlots } from '../actions/trading_status';
-import { setTimers } from '../actions/timers';
+import { setTimers, addTimer } from '../actions/timers';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -66,6 +66,7 @@ import { QUESTS } from '../enums/quests';
 import { CONVERSATIONS } from '../enums/conversations';
 import { MILESTONES } from '../enums/milestones';
 import { FORTUITIES } from '../enums/fortuities';
+import { FORTUITY_BASE } from '../constants';
 
 const window = Dimensions.get('window');
 
@@ -106,12 +107,12 @@ export default function MainComponent() {
       return tab;
     }
   });
-  // tabsArray = [new Tab({
-  //   name: 'debug',
-  //   order: -2,
-  //   icon: {provider: 'FontAwesome5', name: 'bug'},
-  //   settings: []
-  // }), ...tabsArray];
+  tabsArray = [new Tab({
+    name: 'debug',
+    order: -2,
+    icon: {provider: 'FontAwesome5', name: 'bug'},
+    settings: []
+  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -267,13 +268,12 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      const newTimers: { [name: string] : Timer } = {};
-      Object.keys(timers).forEach((name) => {
-        if (!name.includes('Fortuity-')) {
-          newTimers[name] = timers[name];
-        }
-      });
-      dispatch(setTimers(newTimers));
+      dispatch(addTimer(new Timer({
+        name: 'Fortuity',
+        endsAt: (new Date(Date.now()).valueOf()
+          + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
+        fortuityCheck: true
+      })))
     }
     else {
       dispatch(selectTab(tabName));

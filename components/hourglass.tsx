@@ -48,7 +48,7 @@ import { ACTIVITIES } from '../enums/activities';
 import { MILESTONES } from '../enums/milestones';
 import { MESSAGE_TYPES } from '../enums/message_types';
 import { MODALS } from '../enums/modals';
-import { CHECK_INTERVAL } from '../constants';
+import { CHECK_INTERVAL, FORTUITY_BASE } from '../constants';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -123,6 +123,7 @@ export default function HourglassComponent() {
       let nTimers = Object.assign({}, timers);
       let resolvedTimers = hourglass.timerTick(nTimers);
       resolvedTimers.map((timer) => {
+        let timerToAdd: Timer|null = null;
         if (timer.resourcesToIncrease) {
           if (timer.resourcesToIncrease.length > 0) {
             rti = combineResources(rti, timer.resourcesToIncrease);
@@ -236,6 +237,14 @@ export default function HourglassComponent() {
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
           }
+          else {
+            timerToAdd = new Timer({
+              name: 'Fortuity',
+              endsAt: (new Date(Date.now()).valueOf()
+                + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
+              fortuityCheck: true
+            });
+          }
         }
         if (timer.dailyQuestCheck) {
           const quest = dailyQuestCheck();
@@ -253,6 +262,9 @@ export default function HourglassComponent() {
           dispatch(addToActivityQueue(timer.questActivity));
         }
         dispatch(removeTimer(timer));
+        if (timerToAdd) {
+          dispatch(addTimer(timerToAdd));
+        }
       });
       dispatch(updateTimers(nTimers));
 
@@ -318,6 +330,12 @@ export default function HourglassComponent() {
       }
     });
 
+    console.log('account.fortuityDailyLast');
+    console.log(account.fortuityDailyLast);
+    console.log('withinLastDay(account.fortuityDailyLast)');
+    console.log(withinLastDay(account.fortuityDailyLast));
+    console.log('fortuityPool');
+    console.log(fortuityPool);
     if (fortuityPool.length > 0) {
       return utils.randomWeightedSelect(fortuityPool);
     }

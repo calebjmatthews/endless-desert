@@ -17,8 +17,7 @@ import Resource from '../models/resource';
 import Timer from '../models/timer';
 import { quests } from '../instances/quests';
 import { utils } from '../utils';
-
-const FORTUITY_BASE = 600000;
+import { FORTUITY_BASE } from '../constants';
 
 export default function FortuityComponent() {
   const dispatch = useDispatch();

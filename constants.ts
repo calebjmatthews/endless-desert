@@ -4,6 +4,7 @@ import { LEADER_QUALITIES } from './enums/leader_qualities';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
+export const FORTUITY_BASE = 600000;
 export const FADE_IN_DELAY = 400;
 export const FADE_CHAR_DELAY = 30;
 export const FADE_CHAR_MULT = 8;
