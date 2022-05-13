@@ -750,6 +750,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Show building problems on map
   [X] Rebalance implements
   [X] Fortuities appear above map
+  [X] Terrain should contain a river bend in row 1 or 2
   [ ] Fix fortuity frequency
   [ ] Trade option multipliers
   [ ] Implements in separate trade good category

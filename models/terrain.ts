@@ -60,12 +60,38 @@ export default class Terrain {
     buildingPlacement[bc[0]][bc[1]] = { type: BTY.BROKEN_CISTERN };
     buildingMap[BTY.BROKEN_CISTERN] = bc;
 
-    // Make the spot one upwards into river
-    ti.spots[bc[0]][bc[1]+1] = { type: TTY.WATER };
-    ti.spots[bc[0]-1][bc[1]+1] = { type: TTY.RIVERBANK };
-    ti.spots[bc[0]+1][bc[1]+1] = { type: TTY.RIVERBANK };
+    // Place a bend one or two rows upwards
+    const bendOne = (utils.random() < 0.5);
+    if (bendOne) {
+      ti.spots[10][1] = { type: TTY.RIVERBANK };
+      ti.spots[11][1] = { type: TTY.WATER };
+      ti.spots[12][1] = { type: TTY.WATER };
+      ti.spots[13][1] = { type: TTY.RIVERBANK };
 
-    // Follow the river's flow upwards for the next two rows
+      if (bc[0] === 11) {
+        ti.spots[11][2] = { type: TTY.RIVERBANK };
+        ti.spots[12][2] = { type: TTY.WATER };
+        ti.spots[13][2] = { type: TTY.RIVERBANK };
+      }
+      else if (bc[0] === 12) {
+        ti.spots[10][2] = { type: TTY.RIVERBANK };
+        ti.spots[11][2] = { type: TTY.WATER };
+        ti.spots[12][2] = { type: TTY.RIVERBANK };
+      }
+    }
+
+    else if (!bendOne) {
+      ti.spots[bc[0]-1][1] = { type: TTY.RIVERBANK };
+      ti.spots[bc[0]][1] = { type: TTY.WATER };
+      ti.spots[bc[0]+1][1] = { type: TTY.RIVERBANK };
+
+      ti.spots[10][2] = { type: TTY.RIVERBANK };
+      ti.spots[11][2] = { type: TTY.WATER };
+      ti.spots[12][2] = { type: TTY.WATER };
+      ti.spots[13][2] = { type: TTY.RIVERBANK };
+    }
+
+    // Follow the river's flow upwards for the final row
     const tr = new Terrain(this.flowRiver(ti));
 
     // Place starting buildings
@@ -82,8 +108,6 @@ export default class Terrain {
 
   flowRiver(terrain: Terrain) {
     const t = new Terrain(terrain);
-    console.log('t');
-    console.log(t);
     // Find the highest row that contains water (row #2 is the lowest possible)
     let highestWaterRow = 1;
     for (let col = t.leftBound; col <= t.rightBound; col++) {
@@ -96,16 +120,19 @@ export default class Terrain {
 
     // Add water until upperBound is reached
     for (let row = highestWaterRow+1; row <= t.upperBound; row++) {
-      // Check whether the river bent in the previous row
+      // Check whether the river bent in the previous two rows
       let previousWaters: [number, number][] = [];
       for (let col = t.leftBound; col <= t.rightBound; col++) {
         if (t.spots[col][row-1].type === TTY.WATER) {
           previousWaters.push([col, row-1]);
         }
+        if (t.spots[col][row-2].type === TTY.WATER) {
+          previousWaters.push([col, row-2]);
+        }
       }
       // If not, make the spot one upwards into river and roll for
       // whether the river bends
-      if (previousWaters.length < 2) {
+      if (previousWaters.length < 3) {
         const col = previousWaters[0][0];
         t.spots[col][row] = { type: TTY.WATER };
         t.spots[col-1][row] = { type: TTY.RIVERBANK };
