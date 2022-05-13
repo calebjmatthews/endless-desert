@@ -160,7 +160,7 @@ export enum SVGS {
   FABRICATORY = "Fabricatory",
   DRYING_YARD = "Drying Yard",
   FURNACE = "Furnace",
-  WORKSHOP = "Workshop",
+  ATELIER = "Atelier",
   KITCHEN = "Kitchen",
   GLASSWORKS = "Glassworks",
   LABORATORY = "Laboratory",

@@ -707,7 +707,7 @@ researches[RESEARCHES.GRINDING] = new Research({
 
 researches[RESEARCHES.IMPLEMENT_ASSEMBLY] = new Research({
   name: RESEARCHES.IMPLEMENT_ASSEMBLY,
-  unlocks: ('Unlocks Workshops.'),
+  unlocks: ('Unlocks Ateliers.'),
   description: `Now that you can produce metal and simple fibrous materials a new world of creation has opened to you.`,
   icon: new Icon({provider: 'svg', name: SVGS.GEARWORK}),
   category: RESEARCHES.PHYSICS,
@@ -717,7 +717,7 @@ researches[RESEARCHES.IMPLEMENT_ASSEMBLY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.GRINDING, RESEARCHES.COMBUSTION],
   knowledgeReq: 1600,
-  unlocksBuilding: [BUILDING_TYPES.WORKSHOP]
+  unlocksBuilding: [BUILDING_TYPES.ATELIER]
 });
 
 researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({

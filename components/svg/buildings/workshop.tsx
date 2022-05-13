@@ -2,7 +2,7 @@ import * as React from 'react';
 import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs } from 'react-native-svg';
 import Icon from '../../../models/icon';
 
-export default function WorkshopSvgComponent(props: { icon: Icon }) {
+export default function AtelierSvgComponent(props: { icon: Icon }) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 460 460">
       <G id="XMLID_1036_"><G fill="#606060">

@@ -735,7 +735,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add implements to trading partner options
   [X] Simplify trading partner options
   [X] Traders to use a mix of exact, tag, subcategory specificities
-  [X] Workshop building and research
+  [X] Atelier building and research
   [X] Add one new early trading partner
   [X] Terrain generation
   [X] Map display

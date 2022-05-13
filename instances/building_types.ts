@@ -1193,11 +1193,11 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.WORKSHOP]: new BuildingType({
-    name: BTY.WORKSHOP,
+  [BTY.ATELIER]: new BuildingType({
+    name: BTY.ATELIER,
     description: `Rows of benches, with myriad tools in easy reach`,
     category: BCA.MATERIAL_REFINED,
-    icon: new Icon({provider: 'svg', name: SVGS.WORKSHOP}),
+    icon: new Icon({provider: 'svg', name: SVGS.ATELIER}),
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 100},
       {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10},
