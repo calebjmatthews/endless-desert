@@ -616,5 +616,11 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomStyle: 'none'
+  },
+
+  epauletteText: {
+    zIndex: 1,
+    marginBottom: 8,
+    fontSize: 10
   }
 });

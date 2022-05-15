@@ -355,13 +355,13 @@ function BuildingDescription(props: any) {
     if (building.recipeSelected == undefined) { return null; }
     if (!props.rates.recipesRates[building.id]) { return null; }
     const rates = props.rates.recipesRates[building.id][building.recipeSelected];
-    if (building.recipeSelected != -1) {
+    if (building.recipeSelected !== -1) {
       if (!rates) { return null; }
       if (!Object.keys(rates).length) { return null; }
     }
 
     let content = null;
-    if (building.recipeSelected != -1) {
+    if (building.recipeSelected !== -1) {
       content = (
         <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
           justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
@@ -370,8 +370,8 @@ function BuildingDescription(props: any) {
       );
     }
     else {
-      const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4, maxHeight: 19,
-        marginVertical: 6 };
+      const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4,
+        maxHeight: 19, marginVertical: 6 };
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
         color: '#cec3e4', size: 21 });
       content = (

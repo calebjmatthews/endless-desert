@@ -529,6 +529,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/in-the-forest-6/
     https://www.svgrepo.com/collection/man-clothes/
     https://www.svgrepo.com/collection/woman-clothes/
+    https://www.svgrepo.com/collection/clothes-13/
+    https://www.svgrepo.com/collection/clothes-18/
+    https://www.svgrepo.com/collection/clothes-24/
     https://www.svgrepo.com/collection/animals-26/
     https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/halloween-19/
@@ -752,10 +755,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fortuities appear above map
   [X] Terrain should contain a river bend in row 1 or 2
   [X] Fix fortuity frequency
-  [ ] Trade option multipliers
+  [X] Trade option multipliers
   [ ] Implements in separate trade good category
   [ ] Difficulty 2 buildings to use implements and specific bricks
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
+  [ ] Remove De Nang, too boring
+  [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
   [ ] Exploration long-term progression quests
   [ ] Add animations to memos

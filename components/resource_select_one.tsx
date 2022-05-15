@@ -80,14 +80,42 @@ export default function ResourceSelectOneComponent() {
     return 0;
   }
   const [quantityGiven, setQuantityGiven] = useState(setStartingQuantityG());
+  const titleMap: { [type: string] : string } = {
+    'Trading': ' Select Resource to Trade'
+  }
+  let descriptionBand: JSX.Element|null = null;
+  if (modalValue.type === 'Trading') {
+    const visit = tradingStatus.visits[modalValue.slot];
+    const mult = visit?.trades[modalValue.tradeId].multiplier || 0;
+    let color = '#bbb';
+    if (mult < 1) { color = '#ff0024'; }
+    else if (mult > 1) { color = '#427bff'; }
+    descriptionBand = (
+      <Text style={[styles.descriptionBandText, {fontSize: 12}]}>
+        {'This trade is '}
+        <Text style={{color}}>
+          {`${Math.abs(Math.round((mult-1) * 100))}% ${(mult >= 1) ? 'more' : 'less'} favorable`}
+        </Text>
+        {' than average.'}
+      </Text>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
         <IconComponent provider="FontAwesome" name="cube" color="#fff" size={20}
           style={styles.headingIcon} />
-        <Text style={styles.heading1}>{' Select Resource'}</Text>
+        <Text style={styles.heading1}>
+          {titleMap[modalValue.type] || ' Select Resource'}
+        </Text>
       </View>
+      {descriptionBand && (
+        <View style={[styles.descriptionBand,
+          {minWidth: positioner.modalWidth, maxWidth: positioner.modalWidth}]}>
+          {descriptionBand}
+        </View>
+      )}
       <ScrollView>
         <View style={styles.tileContainer}>
           {renderResources(resourcesArray, setResourceSelected, setQuantitySelected,
@@ -535,7 +563,7 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
     if (rResourceType.value != null && gResourceType.value != null
       && (parseInt(qSelected) ? true : false)) {
       let qGiven = Math.floor((rResourceType.value * QV[resourceSelected.quality]
-        * parseInt(qSelected)) / (gResourceType.value * QV[trade.give.quality]));
+        * parseInt(qSelected) * trade.multiplier) / (gResourceType.value * QV[trade.give.quality]));
       return qGiven;
     }
   }

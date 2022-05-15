@@ -9,6 +9,7 @@ import IconComponent from './icon';
 import SvgComponent from './svg';
 import BadgeComponent from './badge';
 import RatingComponent from './rating';
+import EpauletteComponent from './epaulette';
 import { selectTab, displayModalValue } from '../actions/ui';
 import { dismissTradingPartnerVisit, welcomePendingVisit,
   setUpcomingTradingPartnerNames, addPendingVisit, talkTo }
@@ -271,6 +272,12 @@ function VisitDescription(props: any) {
     const give = resourceTypes[trade.give.type];
     const receive = utils.getMatchingResourceKind(trade.receive.specificity,
       trade.receive.type);
+    let epColor = '#bbb';
+    let epSign = '+';
+    if (trade.multiplier < 1) { epColor = '#ff5d74'; epSign = ''; }
+    else if (trade.multiplier > 1) { epColor = '#6e99ff'; }
+    const epText = `${epSign}${Math.round((trade.multiplier-1) * 100)}%`;
+    const bgOpacity = (Math.abs(1 - trade.multiplier) / 0.4) + 0.1;
 
     return (
       <TouchableOpacity key={trade.id} style={StyleSheet.flatten([styles.buttonRowItem,
@@ -284,6 +291,10 @@ function VisitDescription(props: any) {
         <Text style={styles.buttonTextDark}>
           {receive.name}
         </Text>
+        <View style={{width: 36}} />
+        <View style={{position: 'absolute', top: 4, right: 4}}>
+          <EpauletteComponent color={epColor} bgOpacity={bgOpacity} text={epText} />
+        </View>
       </TouchableOpacity>
     );
   }
