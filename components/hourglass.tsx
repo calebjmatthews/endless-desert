@@ -330,12 +330,6 @@ export default function HourglassComponent() {
       }
     });
 
-    console.log('account.fortuityDailyLast');
-    console.log(account.fortuityDailyLast);
-    console.log('withinLastDay(account.fortuityDailyLast)');
-    console.log(withinLastDay(account.fortuityDailyLast));
-    console.log('fortuityPool');
-    console.log(fortuityPool);
     if (fortuityPool.length > 0) {
       return utils.randomWeightedSelect(fortuityPool);
     }

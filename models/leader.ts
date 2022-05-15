@@ -200,8 +200,6 @@ export default class Leader {
         combineMap[key] = { effect: new EquipmentEffect(effect), order: index };
       }
     });
-    console.log('combineMap');
-    console.log(combineMap);
 
     let moddedArray: EquipmentEffect[] = [];
     Object.keys(combineMap).forEach((key) => {
@@ -246,9 +244,6 @@ export default class Leader {
 
     this.effects = moddedArray;
     this.happiness = happiness;
-
-    console.log('this');
-    console.log(this);
 
     function explanationsAdd(p: {explanations: { [subject: string] :
       { source: string, sourceIcon?: Icon, change: string, total: string }[] },

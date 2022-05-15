@@ -109,6 +109,7 @@ export enum RESOURCE_TYPES {
   SORREL = "Sorrel",
   OLIVE_OIL = "Olive Oil",
   GLASS = "Glass",
+  GLASS_FLOAT = "Float Glass",
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
   INK_FERROUS = "Ferrous Ink",
@@ -158,7 +159,7 @@ export enum RESOURCE_TYPES {
   CERAMIC_CABLE = "Ceramic Cable",
   TORCH = "Torch",
   BINDING = "Binding",
-  
+
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",
   RED_KEY = "Red Key"

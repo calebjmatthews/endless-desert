@@ -152,6 +152,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Lotus Root: Brackish
     * Date: Sweet
     * Fig: Sweet
+  - Tea
+    * Darjeeling: Indian
+    * Assam: Indian/Chinese, savory
+    * Nilgiri: Indian, subtle
+    * Kukicha (twigs): Japanese
+    * Ryokucha: Japanese, green tea
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -335,11 +341,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
-    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), waterproofing rig (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
-    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Thongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in efficiency)
+    * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), pot of sealant pitch (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
+    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Tongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in efficiency), Broad Clay-Spade (moderate increase to Clay speed)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
-    * Can be a broader category, rather than building specific: gatherer's tunic (water+pit), craftsman's apron (crafting)
+    * Can be a broader category, rather than building specific: gatherer's tunic (earth), craftsman's overalls (refined materials), artisan's apron (artisan goods)
   - Back: Effects are varied and have a negative element, but usually just a single effect per equipment
     * Journeyman's Haversack: + speed but - quality/efficiency
     * Journeyman's Gearbag: + efficiency but - quality/speed
@@ -756,30 +762,35 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Terrain should contain a river bend in row 1 or 2
   [X] Fix fortuity frequency
   [X] Trade option multipliers
-  [ ] Implements in separate trade good category
+  [X] Implements in separate trade good category
+  [X] Textile precursors in tier 3 trading
+  [ ] New equipment
   [ ] Combine simplified and blast furnaces
   [ ] Crystal glass in blast furnace
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Difficulty 2 buildings to use implements and specific bricks
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
+  [ ] Rename simplified buildings
+  [ ] Research to increase speed of field notes
+  [ ] Revamp fuel
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
   [ ] Exploration long-term progression quests
-  [ ] Add animations to memos
-
-  [ ] Storing an occupied house kicks out the leader
-  [ ] Storing an assigned to building removes leader
   [ ] Fortuity with options for new equipment quests
   [ ] More repeatable fortuities
-  [ ] Fix for stuck without sand/knowledge before trading unlocked
-  [ ] Hide recipes missing ingredients
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
+  [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
+
+  [ ] Hide recipes missing ingredients
+  [ ] Add animations to memos
+  [ ] Storing an occupied house kicks out the leader
+  [ ] Storing an assigned to building removes leader
   [ ] Store memo and conversation state in reducer
   [ ] Compressed resource view
-  [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
+  [ ] Fix for stuck without sand/knowledge before trading unlocked
 
 ## Commands
 ### Delete all records from all tables:

@@ -268,12 +268,11 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      dispatch(addTimer(new Timer({
-        name: 'Fortuity',
-        endsAt: (new Date(Date.now()).valueOf()
-          + Math.floor(utils.random() * FORTUITY_BASE) + (FORTUITY_BASE / 2)),
-        fortuityCheck: true
-      })))
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else {
       dispatch(selectTab(tabName));

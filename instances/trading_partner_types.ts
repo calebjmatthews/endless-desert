@@ -38,7 +38,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 75},
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
   ], [
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
@@ -48,7 +48,8 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 75},
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 100},
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
@@ -66,7 +67,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
   initialTrust: 0,
   maxTrust: 1000,
   getTier(trust) {
-    return defaultGetTier(trust, [50, 200]);
+    return defaultGetTier(trust, [50, 200, 300]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(108 + (trust * 1.5));
@@ -96,7 +97,22 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
     {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 50},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 75},
+    {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.POTATO, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.BLUEBERRY, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.QUAIL, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 75},
+    {specificity: RSP.EXACT, type: RTY.FLAX, weight: 75},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (Unmarked)'), weight: 25},
     {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
   ]],
@@ -107,6 +123,18 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
     {specificity: RSP.TAG, type: RTA.FUEL, weight: 16.7},
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
     {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 50},
+    {specificity: RSP.TAG, type: RTA.DRIED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.FLOUR, weight: 50},
+    {specificity: RSP.TAG, type: RTA.POWDER, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.INGREDIENT, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.MINNOW, weight: 50},
+    {specificity: RSP.TAG, type: RTA.ANIMAL, weight: 12.5},
+    {specificity: RSP.SUBCATEGORY, type: RSC.OMELET, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
@@ -129,7 +157,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
   initialTrust: 0,
   maxTrust: 1200,
   getTier(trust) {
-    return defaultGetTier(trust, [50, 250]);
+    return defaultGetTier(trust, [50, 250, 400]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(82 + trust);
@@ -158,7 +186,21 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 75},
+    {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WOOD_OAK, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.ONION, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.TOMATO, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_CORAL, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 75},
+    {specificity: RSP.EXACT, type: RTY.FLAX, weight: 75},
     {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (Unmarked)'), weight: 25},
     {specificity: RSP.EXACT, type: (ETY.SIMPLE_ROBE + ' (Unmarked)'), weight: 25}
   ]],
@@ -166,6 +208,17 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 50},
     {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
     {specificity: RSP.TAG, type: RTA.EARTH, weight: 100},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL, weight: 50},
+    {specificity: RSP.TAG, type: RTA.SMELTED, weight: 50},
+    {specificity: RSP.TAG, type: RTA.FUEL, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.BARRAMUNDI, weight: 50},
+    {specificity: RSP.TAG, type: RTA.ANIMAL, weight: 12.5},
+    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, weight: 50},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
@@ -187,7 +240,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   initialTrust: 0,
   maxTrust: 1500,
   getTier(trust) {
-    return defaultGetTier(trust, [80, 320]);
+    return defaultGetTier(trust, [80, 320, 580]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(77 + (trust * 0.7));
@@ -227,6 +280,25 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
       weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WOOD_ASH, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SPINACH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.RADISH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 75},
+    {specificity: RSP.EXACT, type: RTY.OX, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.FLAX, weight: 75},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_TOOLPACK + ' (Unmarked)'),
+      weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
+      weight: 25}
   ]],
   receivesPool: [[
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
@@ -243,11 +315,20 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
     {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRIED, weight: 50},
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100}
+  ], [
+    {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CARP, weight: 50},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100},
+    {specificity: RSP.TAG, type: RTA.DRIED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.WATER, weight: 100}
   ]],
   initialTrust: 0,
   maxTrust: 1800,
   getTier(trust) {
-    return defaultGetTier(trust, [100, 400]);
+    return defaultGetTier(trust, [100, 400, 800]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(500 + (trust * 2.5));
@@ -294,6 +375,18 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
@@ -315,6 +408,18 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 50},
     {specificity: RSP.TAG, type: RTA.PRESSED, weight: 12.5},
     {specificity: RSP.TAG, type: RTA.SPICE, weight: 12.5},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CAKE, weight: 50},
+    {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
+    {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GLASS, weight: 50},
+    {specificity: RSP.TAG, type: RTA.SMELTED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 12.5},
+    {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, weight: 50},
+    {specificity: RSP.TAG, type: RTA.PRESSED, weight: 12.5},
+    {specificity: RSP.TAG, type: RTA.SPICE, weight: 12.5},
     {specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, weight: 25},
     {specificity: RSP.EXACT, type: RTY.GEARWORK, weight: 25},
     {specificity: RSP.CATEGORY, type: RCA.IMPLEMENT, weight: 25},
@@ -325,7 +430,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    return defaultGetTier(trust, [500, 500]);
+    return defaultGetTier(trust, [500, 1000, 1500]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(200 + (trust * 0.6));
@@ -342,7 +447,17 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
+      weight: 25},
+    {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
+      weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
@@ -355,6 +470,8 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
     {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
+    {specificity: RSP.EXACT, type: RTY.EMERALD, weight: 53},
+    {specificity: RSP.EXACT, type: RTY.DIAMOND, weight: 40},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
@@ -373,13 +490,23 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
+    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
-    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71}
+    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
+    {specificity: RSP.EXACT, type: RTY.EMERALD, weight: 53},
+    {specificity: RSP.EXACT, type: RTY.DIAMOND, weight: 40}
   ]],
   initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    return defaultGetTier(trust, [200, 600]);
+    return defaultGetTier(trust, [200, 600, 1800]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(10 + (trust * 0.1));
@@ -390,9 +517,9 @@ const defaultGetTier = (trust: number, demarkers: number[]) => {
   let value = 0, toNext = 0;
   demarkers.forEach((demarker, index) => {
     const currentSum = utils.arraySum(demarkers.slice(index));
-    const previousSum = utils.arraySum(demarkers.slice(index-1));
-    if (trust < currentSum) {
-      value = index+1;
+    const previousSum = index > 0 ? utils.arraySum(demarkers.slice(index-1)) : 0;
+    if (trust < currentSum && trust >= previousSum) {
+      value = index;
       toNext = ((trust - previousSum) / demarker) * 100;
     }
   });

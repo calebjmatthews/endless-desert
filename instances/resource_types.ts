@@ -783,7 +783,7 @@ resourceTypes[RTY.CHARCOAL] = new ResourceType({
 
 resourceTypes[RTY.CARBON] = new ResourceType({
   name: RTY.CARBON,
-  category: RCA.MATERIAL,
+  category: RCA.MATERIAL_REFINED,
   tags: [RTA.POWDER],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.CARBON})
@@ -1078,6 +1078,16 @@ resourceTypes[RTY.GLASS] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.SMELTED, RTA.CONSTRUCTION],
   value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
+});
+
+resourceTypes[RTY.GLASS_FLOAT] = new ResourceType({
+  name: RTY.GLASS_FLOAT,
+  subcategory: RSC.GLASS,
+  category: RCA.MATERIAL_REFINED,
+  tags: [RTA.SMELTED, RTA.CONSTRUCTION],
+  value: 400,
+  description: `An incredibly clear and smooth material created by floating liquid glass on a pool of molten tin`,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
 });
 
