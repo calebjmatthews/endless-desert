@@ -173,6 +173,12 @@ class Utils {
     return anArray.slice(0, newLength);
   }
 
+  arraySum(anArray: number[]) {
+    let sum = 0;
+    anArray.forEach((member) => { sum += member; });
+    return sum;
+  }
+
   // Take in a string of various format and output an internationally formatted string
   phoneNumberIn(rawNum: string) {
     if (!rawNum) { return null; }

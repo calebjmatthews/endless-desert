@@ -1,5 +1,6 @@
 import TradingPartnerType from '../models/trading_partner_type';
 import Icon from '../models/icon';
+import { utils } from '../utils';
 import { TRADING_PARTNERS } from '../enums/trading_partners';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
@@ -39,6 +40,16 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.BRINE, weight: 100},
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.TEA_LEAVES_DARJEELING, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SAND_DUNE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.BRINE, weight: 100},
+    {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
@@ -47,24 +58,15 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SOUP, weight: 50}
+  ], [
+    {specificity: RSP.EXACT, type: RTY.WATER, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.LENTIL, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.SOUP, weight: 50}
   ]],
   initialTrust: 0,
   maxTrust: 1000,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 50) {
-      value = 0;
-      toNext = (trust / 50) * 100;
-    }
-    else if (trust < (50 + 200)) {
-      value = 1;
-      toNext = ((trust - 50) / 200) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [50, 200]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(108 + (trust * 1.5));
@@ -127,20 +129,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS] = new TradingPartnerType({
   initialTrust: 0,
   maxTrust: 1200,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 50) {
-      value = 0;
-      toNext = (trust / 50) * 100;
-    }
-    else if (trust < (50 + 250)) {
-      value = 1;
-      toNext = ((trust - 50) / 250) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [50, 250]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(82 + trust);
@@ -198,20 +187,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
   initialTrust: 0,
   maxTrust: 1500,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 80) {
-      value = 0;
-      toNext = (trust / 80) * 100;
-    }
-    else if (trust < (320 + 80)) {
-      value = 1;
-      toNext = ((trust - 80) / 320) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [80, 320]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(77 + (trust * 0.7));
@@ -271,20 +247,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
   initialTrust: 0,
   maxTrust: 1800,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 100) {
-      value = 0;
-      toNext = (trust / 100) * 100;
-    }
-    else if (trust < (400 + 100)) {
-      value = 1;
-      toNext = ((trust - 100) / 400) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [100, 400]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(500 + (trust * 2.5));
@@ -362,20 +325,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 500) {
-      value = 0;
-      toNext = (trust / 500) * 100;
-    }
-    else if (trust < (500 + 500)) {
-      value = 1;
-      toNext = ((trust - 500) / 500) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [500, 500]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(200 + (trust * 0.6));
@@ -429,24 +379,28 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
   initialTrust: 0,
   maxTrust: 3000,
   getTier(trust) {
-    let value = 0, toNext = 0;
-    if (trust < 200) {
-      value = 0;
-      toNext = (trust / 200) * 100;
-    }
-    else if (trust < (200 + 600)) {
-      value = 1;
-      toNext = ((trust - 200) / 600) * 100;
-    }
-    else {
-      value = 1;
-      toNext = 100;
-    }
-    return { value, toNext };
+    return defaultGetTier(trust, [200, 600]);
   },
   getAcceptQuantity(trust) {
     return Math.floor(10 + (trust * 0.1));
   }
 });
+
+const defaultGetTier = (trust: number, demarkers: number[]) => {
+  let value = 0, toNext = 0;
+  demarkers.forEach((demarker, index) => {
+    const currentSum = utils.arraySum(demarkers.slice(index));
+    const previousSum = utils.arraySum(demarkers.slice(index-1));
+    if (trust < currentSum) {
+      value = index+1;
+      toNext = ((trust - previousSum) / demarker) * 100;
+    }
+  });
+  if (trust >= utils.arraySum(demarkers)) {
+    value = demarkers.length-1;
+    toNext = 100;
+  }
+  return { value, toNext };
+};
 
 export { tradingPartnerTypes };

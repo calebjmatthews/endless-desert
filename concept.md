@@ -757,6 +757,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix fortuity frequency
   [X] Trade option multipliers
   [ ] Implements in separate trade good category
+  [ ] Combine simplified and blast furnaces
+  [ ] Crystal glass in blast furnace
+  [ ] Glassware to use cloth subcategory as an ingredient
+  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Difficulty 2 buildings to use implements and specific bricks
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Remove De Nang, too boring
@@ -764,8 +768,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Trader conversations
   [ ] Exploration long-term progression quests
   [ ] Add animations to memos
-  [ ] Glassware to use cloth subcategory as an ingredient
-  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
+
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
   [ ] Fortuity with options for new equipment quests
