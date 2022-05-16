@@ -343,7 +343,7 @@ researchOptions[RESEARCH_OPTIONS.CURRENCY_IS_A_CONCEPT] = new ResearchOption({
   difficulty: 2,
   description: `You've heard the Spring-Autumn Kingdom has a concept called "currency", whereby any goods can be excanged for small Jade Tokens. The practice seems bizarrely restrictive, but is worth a closer look.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
-    {specificity: RSP.EXACT, type: RTY.JADE, quantity: 10}]
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, quantity: 10}]
 });
 
 researchOptions[RESEARCH_OPTIONS.WIDE_OPEN_SPACES] = new ResearchOption({

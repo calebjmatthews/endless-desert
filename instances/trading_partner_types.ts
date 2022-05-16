@@ -49,7 +49,7 @@ tradingPartnerTypes[TRADING_PARTNERS.FOXFIRE_ASCETICS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.SEEDS_REED, weight: 25},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.BRINE, weight: 75},
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 100},
     {specificity: RSP.EXACT, type: (ETY.SHOULDER_POUCH + ' (Unmarked)'), weight: 25}
   ]],
   receivesPool: [[
@@ -341,7 +341,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
   icon: new Icon({provider: 'svg', name: SVGS.SPRING_AUTUMN_KINGDOM, color: '#fff',
     backgroundColor: '#bf0000'}),
   givesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
@@ -364,7 +364,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
@@ -376,7 +376,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
@@ -389,7 +389,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
   ]],
   receivesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 100},
     {specificity: RSP.TAG, type: RTA.SMELTED, weight: 25},
@@ -400,7 +400,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 50},
     {specificity: RSP.TAG, type: RTA.SMELTED, weight: 12.5},
@@ -412,7 +412,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 100},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 100}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.GLASS, weight: 50},
     {specificity: RSP.TAG, type: RTA.SMELTED, weight: 12.5},
@@ -444,64 +444,66 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
   icon: new Icon({provider: 'svg', name: SVGS.TOURMALINE_JEWELERS, color: '#c6baff',
     backgroundColor: '#4416ce'}),
   givesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
+    {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
-    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
-    {specificity: RSP.EXACT, type: RTY.EMERALD, weight: 53},
-    {specificity: RSP.EXACT, type: RTY.DIAMOND, weight: 40},
+    {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95},
+    {specificity: RSP.EXACT, type: RTY.SAPPHIRE_FLOATING, weight: 71},
+    {specificity: RSP.EXACT, type: RTY.EMERALD_REFRACTING, weight: 53},
+    {specificity: RSP.EXACT, type: RTY.DIAMOND_IRRADIENT, weight: 40},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
       weight: 25},
     {specificity: RSP.EXACT, type: (ETY.COARSE_MEASURES + ' (Unmarked)'),
       weight: 25}
   ]],
   receivesPool: [[
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
-    {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169}
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 200},
     {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95}
+    {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95}
   ], [
-    {specificity: RSP.EXACT, type: RTY.JADE, weight: 400},
-    {specificity: RSP.EXACT, type: RTY.AMETHYST, weight: 300},
-    {specificity: RSP.EXACT, type: RTY.TOPAZ, weight: 225},
+    {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
+    {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
+    {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 200},
     {specificity: RSP.EXACT, type: RTY.TEA_DARJEELING, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
-    {specificity: RSP.EXACT, type: RTY.ONYX, weight: 127},
-    {specificity: RSP.EXACT, type: RTY.RUBY, weight: 95},
-    {specificity: RSP.EXACT, type: RTY.SAPPHIRE, weight: 71},
-    {specificity: RSP.EXACT, type: RTY.EMERALD, weight: 53},
-    {specificity: RSP.EXACT, type: RTY.DIAMOND, weight: 40}
+    {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
+    {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95},
+    {specificity: RSP.EXACT, type: RTY.SAPPHIRE_FLOATING, weight: 71},
+    {specificity: RSP.EXACT, type: RTY.EMERALD_REFRACTING, weight: 53},
+    {specificity: RSP.EXACT, type: RTY.DIAMOND_IRRADIENT, weight: 40}
   ]],
   initialTrust: 0,
   maxTrust: 3000,

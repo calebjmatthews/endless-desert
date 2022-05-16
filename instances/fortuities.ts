@@ -203,7 +203,7 @@ fortuities[FORTUITIES.UNSPEAKING] = new Fortuity({
   type: 'Observation',
   repeatable: false,
   weight: 5,
-  gainResources: [{specificity: RSP.EXACT, type: RTY.JADE, value: 8000}],
+  gainResources: [{specificity: RSP.EXACT, type: RTY.JADE_TOKEN, value: 8000}],
   available: (fState: GameState) => {
     if (fState.leaders) {
       if (Object.keys(fState.leaders).length > 0) {
@@ -463,7 +463,7 @@ fortuities[FORTUITIES.A_SOILED_YET_SHINING_GOWN] = new Fortuity({
   repeatable: false,
   weight: 1000,
   available: (fState: GameState) => {
-    if ((fState.vault?.resources?.[`${RTY.JADE}|0`]?.quantity || 0) >= 25) {
+    if ((fState.vault?.resources?.[`${RTY.JADE_TOKEN}|0`]?.quantity || 0) >= 25) {
       return true;
     }
     return false;

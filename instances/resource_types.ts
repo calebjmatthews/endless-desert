@@ -934,7 +934,7 @@ resourceTypes[RTY.AMETHYST_DUSKY] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.COOLING],
-  value: 2000,
+  value: 4000,
   description: `A gem seared to a smokey purple by an ancient fire`,
   icon: new Icon({provider: 'svg', name: SVGS.AMETHYST})
 });
@@ -944,7 +944,7 @@ resourceTypes[RTY.TOPAZ_SLATE] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SAVORY],
-  value: 3000,
+  value: 16000,
   description: `A thick slab of topaz covered with mysterious letters and shapes that look like scorpions`,
   icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
 });
@@ -954,7 +954,7 @@ resourceTypes[RTY.LAPIS_LAZULI] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SOUR],
-  value: 5000,
+  value: 64000,
   description: `Can be crushed and used as a peerlessly beautify pigment`,
   icon: new Icon({provider: 'svg', name: SVGS.LAPIS_LAZULI})
 });
@@ -964,7 +964,7 @@ resourceTypes[RTY.ONYX_HUSK] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BITTER],
-  value: 8000,
+  value: 256000,
   description: `Incredibly hard but hollow, this gem is said to be the shell of an insect that lives deep within the earth`,
   icon: new Icon({provider: 'svg', name: SVGS.ONYX})
 });
@@ -974,8 +974,8 @@ resourceTypes[RTY.RUBY_CURSED] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SPICY],
-  value: 13000,
-  description: `Bad fortune is said to befall anyone who holds these beautiful red gems`,
+  value: 1024000,
+  description: `Dismal fortune is said to befall anyone who holds these beautiful red gems`,
   icon: new Icon({provider: 'svg', name: SVGS.RUBY})
 });
 
@@ -984,8 +984,8 @@ resourceTypes[RTY.SAPPHIRE_FLOATING] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BRACKISH],
-  value: 21000,
-  description: `They don't truly float, but these gems are so light that they can be carried away by a light breeze`,
+  value: 4096000,
+  description: `They don't exactly float, but these gems are so light that they can be carried away by a gentle breeze`,
   icon: new Icon({provider: 'svg', name: SVGS.SAPPHIRE})
 });
 
@@ -994,7 +994,7 @@ resourceTypes[RTY.EMERALD_REFRACTING] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.HERBAL],
-  value: 34000,
+  value: 16384000,
   description: `Looking head on, the light refracting through this gem seems to stretch it into an infinite depth`,
   icon: new Icon({provider: 'svg', name: SVGS.EMERALD})
 });
@@ -1004,8 +1004,8 @@ resourceTypes[RTY.DIAMOND_IRRADIENT] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
-  value: 55000,
-  description: `Could a gem shine so brightly that it gave off its own light, dazzling even in the dark?`,
+  value: 65536000,
+  description: `Could a gem shine so brightly that it gives off its own light, dazzling even in the dark?`,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
 });
 

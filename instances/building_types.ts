@@ -885,7 +885,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, quantity: 100}]}),
     new BuildingRecipe({index: 4, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.JADE, quantity: 0.1, probability: 1}],
+        {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, quantity: 0.1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_CORAL, quantity: 100}]}),
     new BuildingRecipe({index: 5, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100, probability: 1},

@@ -48,7 +48,7 @@ const quests: { [id: string] : Quest } = {
         actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
           value: BUILDING_TYPES.DECAYING_STUDY } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 1000 }],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE_TOKEN, value: 1000 }],
     questsBegin: [QUESTS.EARLY_DAYS_STUDY]
   }),
   [QUESTS.EARLY_DAYS_STUDY]: new Quest({
@@ -459,7 +459,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
           quantity: 100, consumed: true, includeExisting: true } }),
       new QuestTask({ index: 4, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
         label: `Trade for 50 Jade.`,
-        resourceToGain: { specificity: RSP.EXACT, type: RTY.JADE,
+        resourceToGain: { specificity: RSP.EXACT, type: RTY.JADE_TOKEN,
           quantity: 50, consumed: true, includeExisting: true } }),
     ],
     tradingPartnerJoins: TRADING_PARTNERS.TOURMALINE_JEWELERS,
@@ -480,7 +480,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Produce 10 Lentil.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LENTIL}`, quantity: 10 }})
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE, value: 2000 }],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE_TOKEN, value: 2000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   }),
 }
