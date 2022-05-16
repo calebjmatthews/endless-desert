@@ -4,8 +4,8 @@ import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs } from 'react-native
 export default function JadeSvgComponent(props: any) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 512 512">
-      <G>
-       <Path d="m131.02 256 124.98-208.32 124.98 208.32-124.98 208.32z" fill="#258c68"/>
+      <G transform="matrix(.81305 0 0 .81305 47.86 47.86)">
+       <Path d="M 131.02,256 256,47.68 380.98,256 256,464.32 Z" fill="#258c68"/>
        <Path d="m380.98 256-124.98-208.32 0.31925 208.24z" fill="#0c9263"/>
        <Path d="m380.98 255.83-124.98 208.32 0.31925-208.24z" fill="#11694b"/>
        <Path d="m131.66 256 124.98-208.32-0.31925 208.24z" fill="#1e805d"/>

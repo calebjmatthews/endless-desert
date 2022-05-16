@@ -122,12 +122,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Truffle: Strange
     * Melange: Rich
     * Taro: Deep
-  - Gems
+  - Gemsx
     * Jade Token: None
     * Dusky Amethyst: Cooling
     * Topaz Slate: Savory
     * Lapis Lazuli: Sour
-    * Onyx Shell: Bitter
+    * Onyx Husk: Bitter
     * Cursed Ruby: Spicy
     * Floating Sapphire: Brackish
     * Refracting Emerald: Herbal
@@ -764,6 +764,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Trade option multipliers
   [X] Implements in separate trade good category
   [X] Textile precursors in tier 3 trading
+  [X] Rename gems
   [ ] New equipment
   [ ] Combine simplified and blast furnaces
   [ ] Crystal glass in blast furnace

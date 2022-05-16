@@ -919,30 +919,33 @@ resourceTypes[RTY.STEEL] = new ResourceType({
     shadow: '#444b6b', secondaryColor: '#b1b9e4'})
 });
 
-resourceTypes[RTY.JADE] = new ResourceType({
-  name: RTY.JADE,
+resourceTypes[RTY.JADE_TOKEN] = new ResourceType({
+  name: RTY.JADE_TOKEN,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS],
   value: 1000,
+  description: `These small jade disks are exchanged for goods or services in the Spring-Autumn Kingdom`,
   icon: new Icon({provider: 'svg', name: SVGS.JADE})
 });
 
-resourceTypes[RTY.AMETHYST] = new ResourceType({
-  name: RTY.AMETHYST,
+resourceTypes[RTY.AMETHYST_DUSKY] = new ResourceType({
+  name: RTY.AMETHYST_DUSKY,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.COOLING],
   value: 2000,
+  description: `A gem seared to a smokey purple by an ancient fire`,
   icon: new Icon({provider: 'svg', name: SVGS.AMETHYST})
 });
 
-resourceTypes[RTY.TOPAZ] = new ResourceType({
-  name: RTY.TOPAZ,
+resourceTypes[RTY.TOPAZ_SLATE] = new ResourceType({
+  name: RTY.TOPAZ_SLATE,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SAVORY],
   value: 3000,
+  description: `A thick slab of topaz covered with mysterious letters and shapes that look like scorpions`,
   icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
 });
 
@@ -952,51 +955,57 @@ resourceTypes[RTY.LAPIS_LAZULI] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SOUR],
   value: 5000,
+  description: `Can be crushed and used as a peerlessly beautify pigment`,
   icon: new Icon({provider: 'svg', name: SVGS.LAPIS_LAZULI})
 });
 
-resourceTypes[RTY.ONYX] = new ResourceType({
-  name: RTY.ONYX,
+resourceTypes[RTY.ONYX_HUSK] = new ResourceType({
+  name: RTY.ONYX_HUSK,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BITTER],
   value: 8000,
+  description: `Incredibly hard but hollow, this gem is said to be the shell of an insect that lives deep within the earth`,
   icon: new Icon({provider: 'svg', name: SVGS.ONYX})
 });
 
-resourceTypes[RTY.RUBY] = new ResourceType({
-  name: RTY.RUBY,
+resourceTypes[RTY.RUBY_CURSED] = new ResourceType({
+  name: RTY.RUBY_CURSED,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SPICY],
   value: 13000,
+  description: `Bad fortune is said to befall anyone who holds these beautiful red gems`,
   icon: new Icon({provider: 'svg', name: SVGS.RUBY})
 });
 
-resourceTypes[RTY.SAPPHIRE] = new ResourceType({
-  name: RTY.SAPPHIRE,
+resourceTypes[RTY.SAPPHIRE_FLOATING] = new ResourceType({
+  name: RTY.SAPPHIRE_FLOATING,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BRACKISH],
   value: 21000,
+  description: `They don't truly float, but these gems are so light that they can be carried away by a light breeze`,
   icon: new Icon({provider: 'svg', name: SVGS.SAPPHIRE})
 });
 
-resourceTypes[RTY.EMERALD] = new ResourceType({
-  name: RTY.EMERALD,
+resourceTypes[RTY.EMERALD_REFRACTING] = new ResourceType({
+  name: RTY.EMERALD_REFRACTING,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.HERBAL],
   value: 34000,
+  description: `Looking head on, the light refracting through this gem seems to stretch it into an infinite depth`,
   icon: new Icon({provider: 'svg', name: SVGS.EMERALD})
 });
 
-resourceTypes[RTY.DIAMOND] = new ResourceType({
-  name: RTY.DIAMOND,
+resourceTypes[RTY.DIAMOND_IRRADIENT] = new ResourceType({
+  name: RTY.DIAMOND_IRRADIENT,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
   value: 55000,
+  description: `Could a gem shine so brightly that it gave off its own light, dazzling even in the dark?`,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
 });
 
