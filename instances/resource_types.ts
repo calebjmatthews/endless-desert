@@ -1097,7 +1097,7 @@ resourceTypes[RTY.GLASS_FLOAT] = new ResourceType({
   tags: [RTA.SMELTED, RTA.CONSTRUCTION],
   value: 400,
   description: `An incredibly clear and smooth material created by floating liquid glass on a pool of molten tin`,
-  icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
+  icon: new Icon({provider: 'svg', name: SVGS.GLASS_FLOAT}),
 });
 
 resourceTypes[RTY.OLIVE_OIL] = new ResourceType({

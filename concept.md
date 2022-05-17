@@ -772,8 +772,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] New equipment
   [X] Show equipment descriptions
   [X] Add new equipment to tier 3 trading
-  [ ] Combine simplified and blast furnaces
-  [ ] Crystal glass in blast furnace
+  [X] Crystal glass in blast furnace
+  [X] Combine simplified and blast furnaces
   [ ] Glassware to use cloth subcategory as an ingredient
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Difficulty 2 buildings to use implements and specific bricks

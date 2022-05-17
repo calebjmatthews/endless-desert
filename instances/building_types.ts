@@ -1075,9 +1075,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.FURNACE}),
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 100},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 20}],
-    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 400},
-      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 200}],
-    upgradesInto: BTY.FURNACE_SIMPLIFIED,
+    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 800},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 400},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 100}],
+    upgradesInto: BTY.FURNACE_BLAST,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 500},
@@ -1110,48 +1111,6 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.FURNACE_SIMPLIFIED]: new BuildingType({
-    name: BTY.FURNACE_SIMPLIFIED,
-    description: 'At night the furnace glows red, and the air shimmers around it',
-    category: BCA.MATERIAL_REFINED,
-    icon: new Icon({provider: 'svg', name: SVGS.FURNACE}),
-    cost: null,
-    upgradeCost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 800},
-      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 400},
-      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 100}],
-    upgradesInto: BTY.FURNACE_BLAST,
-    recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 10},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 10}]}),
-    new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 30},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
-    new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 8, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 10},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
-    new BuildingRecipe({index: 3, produces:
-      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 10},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
-    new BuildingRecipe({index: 4, produces:
-      [{specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 8},
-        {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 2},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
-    new BuildingRecipe({index: 5, produces:
-      [{specificity: RSP.EXACT, type: RTY.BRASS, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 7},
-        {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 3},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}) ],
-    givesNote: RTY.NOTES_HEAT,
-    noteCost: defaultNoteCost,
-    requiresLeader: false
-  }),
-
   [BTY.FURNACE_BLAST]: new BuildingType({
     name: BTY.FURNACE_BLAST,
     description: 'At night the furnace glows red, and the air shimmers around it',
@@ -1167,10 +1126,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.SAND, quantity: 30},
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 8, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 10},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
+      [{specificity: RSP.EXACT, type: RTY.GLASS_FLOAT, quantity: 10, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 30},
+        {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 5},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 600}]}),
     new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 10},

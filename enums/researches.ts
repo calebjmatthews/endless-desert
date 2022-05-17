@@ -53,7 +53,6 @@ export enum RESEARCHES {
   DEHYDRATION = "Dehydration",
   DEHYDRATION_SIMPLIFIED = "Simplified Dehydration",
   COMBUSTION = "Combustion",
-  COMBUSTION_SIMPLIFIED = "Simplified Combustion",
   COMBUSTION_VENTILATED = "Ventilated Combustion",
   IMPLEMENT_ASSEMBLY = "Implement Assembly",
   COOKING = "Cooking",

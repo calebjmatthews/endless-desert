@@ -889,28 +889,11 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.FURNACE]
 });
 
-researches[RESEARCHES.COMBUSTION_SIMPLIFIED] = new Research({
-  name: RESEARCHES.COMBUSTION_SIMPLIFIED,
-  unlocks: ('Allows Furnaces to be run without a leader.'),
-  description: ('Stoking the furnace to the proper temperature used to be an art. '
-    + 'But the furnace you\'ve made is now unrecognizable, covered in vents '
-    + 'and pulleys.'),
-  icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
-  category: RESEARCHES.CHEMISTRY,
-  isCategory: false,
-  difficulty: 2,
-  stepsNeeded: 2,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 3200,
-  unlocksUpgrade: [BUILDING_TYPES.FURNACE_SIMPLIFIED]
-});
-
 researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   name: RESEARCHES.COMBUSTION_VENTILATED,
-  unlocks: ('Allows Furnaces to produce new materials.'),
+  unlocks: ('Allows Furnaces to be run without a leader and produce new materials.'),
   description: ('There are some metals that require greater heat to form than your '
-    + 'furnace can manage: much, much greater. You\'ll need more powerful fuel, '
+    + 'furnace can manage: much, much greater. You\'ll need powerful fuel, '
     + 'more of it, and continuous fresh air spiraling in.'),
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#8ea2d8',
     shadow: '#444b6b', secondaryColor: '#b1b9e4'}),
@@ -919,7 +902,7 @@ researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.COMBUSTION_SIMPLIFIED],
+  prereq: [RESEARCHES.COMBUSTION, RESEARCHES.CHEMISTRY_ADVANCED],
   knowledgeReq: 18000,
   unlocksUpgrade: [BUILDING_TYPES.FURNACE_BLAST]
 });

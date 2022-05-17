@@ -72,6 +72,7 @@ import CorianderSvgComponent from './resources/coriander';
 import AniseSvgComponent from './resources/anise';
 import SorrelSvgComponent from './resources/sorrel';
 import GlassSvgComponent from './resources/glass';
+import GlassFloatSvgComponent from './resources/glass_float';
 import OliveOilSvgComponent from './resources/olive_oil';
 import PulpSvgComponent from './resources/pulp';
 import PapyrusSvgComponent from './resources/papyrus';
@@ -351,6 +352,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <SorrelSvgComponent icon={props.icon} />;
     case SVGS.GLASS:
     return <GlassSvgComponent icon={props.icon} />;
+    case SVGS.GLASS_FLOAT:
+    return <GlassFloatSvgComponent icon={props.icon} />;
     case SVGS.OLIVE_OIL:
     return <OliveOilSvgComponent icon={props.icon} />;
     case SVGS.PULP:

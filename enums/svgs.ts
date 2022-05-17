@@ -70,6 +70,7 @@ export enum SVGS {
   ANISE = "Anise",
   SORREL = "Sorrel",
   GLASS = "Glass",
+  GLASS_FLOAT = "Float Glass",
   OLIVE_OIL = "Olive Oil",
   PULP = "Pulp",
   PAPYRUS = "Papyrus",
