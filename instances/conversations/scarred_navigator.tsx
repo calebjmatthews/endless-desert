@@ -76,7 +76,7 @@ scnConvoResponses[FTU.LIMPING_FIGURE + ' - r0a'] = new ConversationResponse({
   text: `I'll back you up. I have a mattock and know how to swing it.`,
   statementName: FTU.LIMPING_FIGURE + ' - s1a',
   speechType: 'Aggressive',
-  cost: [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK + ' (Unmarked)', quantity: 1}]
+  cost: [{specificity: RSP.EXACT, type: EQT.ROUGH_MATTOCK + ' (U)', quantity: 1}]
 });
 scnConvoStatements[FTU.LIMPING_FIGURE + ' - s1a'] = new ConversationStatement({
   name: FTU.LIMPING_FIGURE + ' - s1a',

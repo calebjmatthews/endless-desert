@@ -306,7 +306,7 @@ function taskMatchEquipmentToMark(equipmentToMark:
   if (equipmentToMark.tier && equipmentToMark.tier > equipmentMarked.tier) {
     return 0;
   }
-  const resourceType = resourceTypes[equipmentMarked.typeName + ' (Unmarked)'];
+  const resourceType = resourceTypes[equipmentMarked.typeName + ' (U)'];
   if (!equipmentToMark.specificity) { quantity = equipmentMarked.quantity; }
   switch(equipmentToMark.specificity) {
     case RSP.CATEGORY:

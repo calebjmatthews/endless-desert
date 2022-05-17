@@ -143,8 +143,8 @@ export default function EquipmentComponent() {
         return slotSort[eTypeA.slot];
       }
 
-      const rTypeA = resourceTypes[a.anEquipment.typeName + ' (Unmarked)'];
-      const rTypeB = resourceTypes[b.anEquipment.typeName + ' (Unmarked)'];
+      const rTypeA = resourceTypes[a.anEquipment.typeName + ' (U)'];
+      const rTypeB = resourceTypes[b.anEquipment.typeName + ' (U)'];
       return rTypeA.value - rTypeB.value;
     });
 

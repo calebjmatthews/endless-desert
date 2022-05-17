@@ -854,19 +854,19 @@ CREATE INDEX `index_timestamp` ON `messages`(`timestamp`);
 ### Get one of every basic equipment:
 ```
 dispatch(increaseResources(vault,
-  [new Resource({ type: (EQUIPMENT_TYPES.COARSE_MEASURES + " (Unmarked)"),
+  [new Resource({ type: (EQUIPMENT_TYPES.COARSE_MEASURES + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.ROUGH_MATTOCK + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.SIMPLE_ROBE + " (U)"),
     quality: 0, quantity: 1 }),
-  new Resource({ type: (EQUIPMENT_TYPES.WOODEN_POLE + " (Unmarked)"),
+  new Resource({ type: (EQUIPMENT_TYPES.WOODEN_POLE + " (U)"),
     quality: 0, quantity: 1 })] ));
 ```
 
