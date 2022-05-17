@@ -770,7 +770,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Textile precursors in tier 3 trading
   [X] Rename gems
   [X] New equipment
-  [ ] Add new equipment to tier 3 trading
+  [X] Show equipment descriptions
+  [X] Add new equipment to tier 3 trading
   [ ] Combine simplified and blast furnaces
   [ ] Crystal glass in blast furnace
   [ ] Glassware to use cloth subcategory as an ingredient
