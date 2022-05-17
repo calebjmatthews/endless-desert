@@ -45,7 +45,7 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
 
 equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
   name: EQUIPMENT_TYPES.ROUGH_MATTOCK,
-  description: 'A rough stone tool made for digging soil and splitting rocks',
+  description: 'A rough iron tool made for digging soil and splitting rocks',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
     defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },

@@ -16,6 +16,7 @@ import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
+import { equipmentTypes } from '../instances/equipment_types';
 import { renderValue } from './utils_react';
 import { utils } from '../utils';
 
@@ -32,12 +33,22 @@ export default function ResourceDetailComponent() {
   const count = utils.formatNumberShort(resource.quantity);
   const total = utils.formatNumberShort(resourceType.value * resource.quantity);
 
+  const name = utils.getResourceName(resource).replace(' (U)', ', Unmarked');
+
+  let description = resourceType.description;
+  const equipmentDescription = equipmentTypes[resourceType.name
+    .replace(' (U)', '')]?.description;
+  if (equipmentDescription) {
+    description = `${equipmentDescription}; it'll need to be stamped with the town symbol to be used by leaders`;
+  }
+  if (!description) { description = `A mysterious ${resourceCategory.name}`; }
+
   return (
     <View style={styles.modalContent}>
       <View style={styles.headingWrapper}>
         <BadgeComponent icon={resourceType.icon} quality={resource.quality}
           size={55} />
-        <Text style={styles.heading1}>{utils.getResourceName(resource)}</Text>
+        <Text style={styles.heading1}>{name}</Text>
       </View>
       <View style={{flex: 1, display: 'flex', alignItems: 'center'}}>
         <View style={styles.centeredRows}>
@@ -52,7 +63,7 @@ export default function ResourceDetailComponent() {
           {minWidth: positioner.modalWidth,
             maxWidth: positioner.modalWidth}])}>
           <Text style={styles.descriptionBandText}>
-            {resourceType.description || `A mysterious ${resourceCategory.name}`}
+            {description}
           </Text>
         </View>
         <View style={StyleSheet.flatten([styles.container, {paddingHorizontal: 5,
