@@ -1193,6 +1193,7 @@ resourceTypes[RTY.GLASSWARE] = new ResourceType({
   subcategory: RSC.GLASS,
   tags: [RTA.GLASS],
   value: 800,
+  description: `Glass drinking vessels decorated with cloth`,
   icon: new Icon({provider: 'svg', name: SVGS.GLASSWARE})
 });
 

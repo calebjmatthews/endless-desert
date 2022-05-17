@@ -788,7 +788,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]}),
     new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 40}]})],
+      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 40},
+        {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 4}]})],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -1240,11 +1241,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.GLASSWARE, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 8}]}),
+      consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 8},
+        {specificity: RSP.TAG, type: RTA.TEXTILE, quantity: 2}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.LENS, quantity: 1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10},
-        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 10}]}) ],
+        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 2}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true

@@ -774,16 +774,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Add new equipment to tier 3 trading
   [X] Crystal glass in blast furnace
   [X] Combine simplified and blast furnaces
-  [ ] Glassware to use cloth subcategory as an ingredient
+  [X] Glassware to use textile tag as an ingredient
   [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Difficulty 2 buildings to use implements and specific bricks
-  [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Rename simplified buildings
   [ ] Research to increase speed of field notes
   [ ] Revamp fuel
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
+  [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Exploration long-term progression quests
   [ ] Fortuity with options for new equipment quests
   [ ] More repeatable fortuities
@@ -792,6 +792,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
   [ ] Flashy display for rare trades
   [ ] Icon bar to replace main dropdown menu
+  [ ] Expeditions! (without crawling)
 
   [ ] Hide recipes missing ingredients
   [ ] Add animations to memos
