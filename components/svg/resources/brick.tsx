@@ -4,7 +4,7 @@ import Icon from '../../../models/icon';
 
 export default function BrickSvgComponent(props: { icon: Icon }) {
   return (
-    <Svg viewBox="0 0 512 512">
+    <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 512 512">
     <G
        id="g1799"
        transform="matrix(0.8994939,0,0,0.8994939,26.424956,26.329041)">

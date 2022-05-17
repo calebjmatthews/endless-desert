@@ -354,7 +354,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'Small amounts of precious water mixing with the dry under-soil',
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.CLAY_PIT}),
-    cost: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 100},
+    cost: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 50},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 500}],
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 5000}],

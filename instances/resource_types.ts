@@ -1479,7 +1479,7 @@ resourceTypes[(EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)')] = new ResourceTyp
   name: (EQUIPMENT_TYPES.ROUGH_MATTOCK + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
-  value: 4000,
+  value: 6200,
   icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
 });
 
@@ -1487,7 +1487,7 @@ resourceTypes[(EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)')] = new ResourceType(
   name: (EQUIPMENT_TYPES.WOODEN_POLE + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
-  value: 4000,
+  value: 6200,
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
 
@@ -1495,16 +1495,107 @@ resourceTypes[(EQUIPMENT_TYPES.COARSE_MEASURES + ' (Unmarked)')] = new ResourceT
   name: (EQUIPMENT_TYPES.COARSE_MEASURES + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.TOOL],
-  value: 4000,
+  value: 6800,
   icon: new Icon({provider: 'svg', name: SVGS.COARSE_MEASURES})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 12800,
+  icon: new Icon({provider: 'svg', name: SVGS.POT_OF_SEALANT_PITCH})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.REED_MUCK_RAKE + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.REED_MUCK_RAKE + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 12800,
+  icon: new Icon({provider: 'svg', name: SVGS.REED_MUCK_RAKE})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 12600,
+  icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#712d20',
+    shadow: '#500d00', secondaryColor: '#efc59e', secondaryShadow: '#daa97b'})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 13000,
+  icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#d83e20',
+    shadow: '#c1321f', secondaryColor: '#f4e3c3', secondaryShadow: '#efc59e'})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.CLAY_SPADE_BROAD + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.CLAY_SPADE_BROAD + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 12000,
+  icon: new Icon({provider: 'svg', name: SVGS.CLAY_SPADE_BROAD})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 12000,
+  icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GRAFTING_SHEARS})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.RAGS_TATTERED + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.RAGS_TATTERED + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.TOOL],
+  value: 880,
+  icon: new Icon({provider: 'svg', name: SVGS.RAGS_TATTERED})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)')] = new ResourceType({
   name: (EQUIPMENT_TYPES.SIMPLE_ROBE + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.CLOTHING],
-  value: 2000,
+  value: 2860,
   icon: new Icon({provider: 'svg', name: SVGS.SIMPLE_ROBE})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.STURDY_OVERALLS + ' (Unmarked)')] = new ResourceType({
+  name: (EQUIPMENT_TYPES.STURDY_OVERALLS + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.CLOTHING],
+  value: 12000,
+  icon: new Icon({provider: 'svg', name: SVGS.STURDY_OVERALLS})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.APRON_OF_MANY_POCKETS + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.APRON_OF_MANY_POCKETS + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.CLOTHING],
+  value: 11600,
+  icon: new Icon({provider: 'svg', name: SVGS.APRON_OF_MANY_POCKETS})
+});
+
+resourceTypes[(EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)')] =
+new ResourceType({
+  name: (EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)'),
+  category: RCA.EQUIPMENT,
+  tags: [EQUIPMENT_SLOTS.BACK],
+  value: 660,
+  icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)')] =
@@ -1512,7 +1603,7 @@ new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
-  value: 3000,
+  value: 6000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_HAVERSACK})
 });
 
@@ -1521,7 +1612,7 @@ new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
-  value: 3000,
+  value: 5600,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_GEARBAG})
 });
 
@@ -1530,17 +1621,8 @@ new ResourceType({
   name: (EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK + ' (Unmarked)'),
   category: RCA.EQUIPMENT,
   tags: [EQUIPMENT_SLOTS.BACK],
-  value: 3000,
+  value: 7000,
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
-});
-
-resourceTypes[(EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)')] =
-new ResourceType({
-  name: (EQUIPMENT_TYPES.SHOULDER_POUCH + ' (Unmarked)'),
-  category: RCA.EQUIPMENT,
-  tags: [EQUIPMENT_SLOTS.BACK],
-  value: 400,
-  icon: new Icon({provider: 'svg', name: SVGS.SHOULDER_POUCH})
 });
 
 resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] =

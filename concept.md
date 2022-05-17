@@ -342,7 +342,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Equipment:
   - Tools: Apply happiness to production (heavy tools), quality (precise tools), or efficiency (long tools)
     * Building specific: mattock (generic - speed), implements (generic - quality), pole (generic - efficiency), pot of sealant pitch (water), hoe (field-crop), shovel (pit-earth), weight (press-pressed), bellows (furnace-smelted), rake (dried-drying yard), pan (dish-kitchen), loom (textile), tongs (glassblower), spanner (atelier), needle (tailor), scissors (outfitter), hammer (fabricator)
-    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal speed, wood efficiency), Fervent Char-bellows (Large increase in charcoal quality, decrease in wood efficiency), Olive Grafting Tongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in efficiency), Broad Clay-Spade (moderate increase to Clay speed)
+    * Unique tools: Prismatic Shovel (X% chance sand harvested becomes any type), Temperate Char-bellows (Large increase in charcoal quality, wood efficiency), Fervent Char-bellows (Large increase in charcoal speed, decrease in wood efficiency), Olive Grafting Tongs (increase in Olive quality, increase in Water efficiency), Reed Mud-hoe (large increase in Reed speed, decrease in efficiency), Broad Clay-Spade (moderate increase to Clay speed)
   - Clothing: Usually increases happiness or generic increases to production, quality, or efficiency
     * Ascetic's Robe: Decreases food and drink usage
     * Can be a broader category, rather than building specific: gatherer's tunic (earth), craftsman's overalls (refined materials), artisan's apron (artisan goods)
@@ -373,13 +373,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
     * Wooden Pole: Wood x60, Hardened Slab x1
-    * Coarse Instruments: Gearwork x1, Crude Needle x1, Iron Edge x1, Lens x10
+    * Coarse Instruments: Gearwork x1, Crude Needle x1, Lens x10
     * Rags: Reedcloth x10
     * Simple Robe: Reedcloth x15, Crude Needle x2
     * Shoulder Pouch: Reedcloth x5
     * Journeyman's Haversack: Reedcloth x20, Crude Needle x1, Rope x1
     * Journeyman's Gearbag: Reedcloth x10, Crude Needle x1, Binding x1
-    * Journeyman's Toolpack: Reedcloth x10, Crude Needle x1, Iron Edge x1
+    * Journeyman's Toolpack: Reedcloth x10, Crude Needle x1, Gearwork x1
 
 ## Cooking:
   - Any combination of five ingredients can be selected, quality is a sum of ingredient quality + a multiplier for the dish
@@ -547,6 +547,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/camping-12/
     https://www.svgrepo.com/collection/jewelry-3/
     https://www.svgrepo.com/collection/gardening-9/
+    https://www.svgrepo.com/collection/spring-4/
+    https://www.svgrepo.com/collection/symbol-set/
+    https://www.svgrepo.com/collection/symbol/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -766,7 +769,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Implements in separate trade good category
   [X] Textile precursors in tier 3 trading
   [X] Rename gems
-  [ ] New equipment
+  [X] New equipment
+  [ ] Add new equipment to tier 3 trading
   [ ] Combine simplified and blast furnaces
   [ ] Crystal glass in blast furnace
   [ ] Glassware to use cloth subcategory as an ingredient
@@ -785,6 +789,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
+  [ ] Flashy display for rare trades
+  [ ] Icon bar to replace main dropdown menu
 
   [ ] Hide recipes missing ingredients
   [ ] Add animations to memos

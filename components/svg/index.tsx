@@ -123,6 +123,14 @@ import JourneymansHaversackSvgComponent from './equipment/journeymans_haversack'
 import JourneymansGearbagSvgComponent from './equipment/journeymans_gearbag';
 import JourneymansToolpackSvgComponent from './equipment/journeymans_toolpack';
 import ShoulderPouchSvgComponent from './equipment/shoulder_pouch';
+import PotOfSealantPitchSvgComponent from './equipment/pot_of_sealant_pitch';
+import ReedMuckRakeSvgComponent from './equipment/reed_muck_rake';
+import CharBellowsSvgComponent from './equipment/char_bellows';
+import ClaySpadeBroadSvgComponent from './equipment/clay_spade_broad';
+import OliveGraftingShearsSvgComponent from './equipment/olive_grafting_shears';
+import RagsTatteredSvgComponent from './equipment/rags_tattered';
+import SturdyOverallsSvgComponent from './equipment/sturdy_overalls';
+import ApronOfManyPocketsSvgComponent from './equipment/apron_of_many_pockets';
 
 import SkySvgComponent from './buildings/sky';
 import BrokenCisternSvgComponent from './buildings/broken_cistern';
@@ -444,6 +452,22 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <JourneymansToolpackSvgComponent icon={props.icon} />;
     case SVGS.SHOULDER_POUCH:
     return <ShoulderPouchSvgComponent icon={props.icon} />;
+    case SVGS.POT_OF_SEALANT_PITCH:
+    return <PotOfSealantPitchSvgComponent icon={props.icon} />;
+    case SVGS.REED_MUCK_RAKE:
+    return <ReedMuckRakeSvgComponent icon={props.icon} />;
+    case SVGS.CHAR_BELLOWS:
+    return <CharBellowsSvgComponent icon={props.icon} />;
+    case SVGS.CLAY_SPADE_BROAD:
+    return <ClaySpadeBroadSvgComponent icon={props.icon} />;
+    case SVGS.OLIVE_GRAFTING_SHEARS:
+    return <OliveGraftingShearsSvgComponent icon={props.icon} />;
+    case SVGS.RAGS_TATTERED:
+    return <RagsTatteredSvgComponent icon={props.icon} />;
+    case SVGS.STURDY_OVERALLS:
+    return <SturdyOverallsSvgComponent icon={props.icon} />;
+    case SVGS.APRON_OF_MANY_POCKETS:
+    return <ApronOfManyPocketsSvgComponent icon={props.icon} />;
 
     case SVGS.SKY:
     return <SkySvgComponent icon={props.icon} />;
