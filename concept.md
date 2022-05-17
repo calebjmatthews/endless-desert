@@ -775,7 +775,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Crystal glass in blast furnace
   [X] Combine simplified and blast furnaces
   [X] Glassware to use textile tag as an ingredient
-  [ ] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
+  [X] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [ ] Difficulty 2 buildings to use implements and specific bricks
   [ ] Rename simplified buildings
   [ ] Research to increase speed of field notes

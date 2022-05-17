@@ -631,18 +631,20 @@ resourceTypes[RTY.BRICKS_MUD] = new ResourceType({
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 50,
+  description: `Simple mud bricks, neither especially strong nor beautiful`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#674648',
     shadow: '#50392d', secondaryColor: '#845d59'})
 });
 
-resourceTypes[RTY.BRICKS_BROWNSTONE] = new ResourceType({
-  name: RTY.BRICKS_BROWNSTONE,
+resourceTypes[RTY.BRICKS_SABLE] = new ResourceType({
+  name: RTY.BRICKS_SABLE,
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 80,
-  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#5d2d00',
-    shadow: '#2d1600', secondaryColor: '#9a5d24'})
+  description: `Dark bricks that gleam with a smooth sheen`,
+  icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#422c18',
+    shadow: '#16002d', secondaryColor: '#a99d8e'})
 });
 
 resourceTypes[RTY.BRICKS_RED] = new ResourceType({
@@ -651,6 +653,7 @@ resourceTypes[RTY.BRICKS_RED] = new ResourceType({
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 100,
+  description: `Handsome, classic crimson bricks`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#a91f1f',
     shadow: '#6f1b1b', secondaryColor: '#de6363'})
 });
@@ -661,6 +664,7 @@ resourceTypes[RTY.BRICKS_SANDLIME] = new ResourceType({
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 110,
+  description: `Blue-grey bricks that feel cool in the sun's heat, but tend to crumble`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#9cb0d2',
     shadow: '#818ea2', secondaryColor: '#ccd6ff'})
 });
@@ -671,6 +675,7 @@ resourceTypes[RTY.BRICKS_SHINING] = new ResourceType({
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
   value: 860,
+  description: `Beautiful glimmering bricks that can be seen from a horizon away`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#f7e0c5',
     shadow: '#d6bfa4', secondaryColor: '#fffaf7'})
 });

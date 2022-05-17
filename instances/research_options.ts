@@ -161,7 +161,7 @@ researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
   description: (`Mud bricks come easy but crumble quickly, brownstone bricks are strong but dense. You'll need a variety to expand your town's walls into the increasingly unstable sands.`),
   cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 200},
     {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_BROWNSTONE, quantity: 50},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_SABLE, quantity: 50},
     {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 50}],
   manditory: true
 });

@@ -61,7 +61,7 @@ export enum RESOURCE_TYPES {
   CLAY_BLUE = "Blue Clay",
   CLAY_KAOLIN = "Kaolin Clay",
   BRICKS_MUD = "Mud Bricks",
-  BRICKS_BROWNSTONE = "Brownstone Bricks",
+  BRICKS_SABLE = "Sable Bricks",
   BRICKS_RED = "Red Bricks",
   BRICKS_SANDLIME = "Sandlime Bricks",
   BRICKS_SHINING = "Shining Bricks",
