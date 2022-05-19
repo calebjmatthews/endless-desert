@@ -2,7 +2,7 @@ import * as React from 'react';
 import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs } from 'react-native-svg';
 import Icon from '../../../models/icon';
 
-export default function OxPastureSvgComponent(props: { icon: Icon }) {
+export default function AurochPastureSvgComponent(props: { icon: Icon }) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 128 128">
       <G strokeWidth=".39848">

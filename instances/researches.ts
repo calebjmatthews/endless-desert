@@ -268,8 +268,8 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
-researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
-  name: RESEARCHES.OLIVE_FARMING_SIMPLIFIED,
+researches[RESEARCHES.OLIVE_FARMING_FORMALIZED] = new Research({
+  name: RESEARCHES.OLIVE_FARMING_FORMALIZED,
   unlocks: ('Allows Olive Groves to be run without a leader.'),
   description: ('It was mostly a matter of figuring out grafting and training the '
     + 'saplings, but you\'ve put together an olive grove that requires almost no '
@@ -282,7 +282,7 @@ researches[RESEARCHES.OLIVE_FARMING_SIMPLIFIED] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.OLIVE_FARMING, RESEARCHES.BIOLOGY_ADVANCED],
   knowledgeReq: 8000,
-  unlocksUpgrade: [BUILDING_TYPES.OLIVE_GROVE_SIMPLIFIED]
+  unlocksUpgrade: [BUILDING_TYPES.OLIVE_ORCHARD]
 });
 
 researches[RESEARCHES.GRAIN_FARMING] = new Research({
@@ -301,8 +301,8 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
   unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
 });
 
-researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
-  name: RESEARCHES.GRAIN_FARMING_SIMPLIFIED,
+researches[RESEARCHES.GRAIN_FARMING_FURROWED] = new Research({
+  name: RESEARCHES.GRAIN_FARMING_FURROWED,
   unlocks: ('Allows Grain Fields to be run without a leader.'),
   description: ('You\'ve perfected the tools and learned the tricks, with some '
     + 'quick instructions a total novice can grow perfect grain.'),
@@ -314,7 +314,7 @@ researches[RESEARCHES.GRAIN_FARMING_SIMPLIFIED] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GRAIN_FARMING],
   knowledgeReq: 400,
-  unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_SIMPLIFIED]
+  unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_FURROWED]
 });
 
 researches[RESEARCHES.LIMNOLOGY] = new Research({
@@ -379,28 +379,12 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
 });
 
-researches[RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED] = new Research({
-  name: RESEARCHES.QUAIL_HUSBANDRY_SIMPLIFIED,
-  unlocks: ('Allows Quail Pastures to be run without a leader.'),
-  description: ('Quail take to pacifying quite well, and with some training '
-    + 'they can be almost left to themselves.'),
-  icon: new Icon({provider: 'svg', name: SVGS.QUAIL}),
-  category: RESEARCHES.BIOLOGY,
-  isCategory: false,
-  difficulty: 2,
-  stepsNeeded: 2,
-  beginsCompleted: false,
-  prereq: [RESEARCHES.QUAIL_HUSBANDRY, RESEARCHES.BIOLOGY_ADVANCED],
-  knowledgeReq: 8000,
-  unlocksUpgrade: [BUILDING_TYPES.QUAIL_PASTURE_SIMPLIFIED]
-});
-
-researches[RESEARCHES.OX_HUSBANDRY] = new Research({
-  name: RESEARCHES.OX_HUSBANDRY,
-  unlocks: ('Unlocks Ox Pastures.'),
+researches[RESEARCHES.AUROCH_HUSBANDRY] = new Research({
+  name: RESEARCHES.AUROCH_HUSBANDRY,
+  unlocks: ('Unlocks Auroch Pastures.'),
   description: ('River oxen are big, noisy beasts. Useful though: depending on '
     + 'method used they can give either milk or meat and hides.'),
-  icon: new Icon({provider: 'svg', name: SVGS.OX}),
+  icon: new Icon({provider: 'svg', name: SVGS.AUROCH}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
@@ -408,7 +392,7 @@ researches[RESEARCHES.OX_HUSBANDRY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY_ADVANCED],
   knowledgeReq: 6000,
-  unlocksBuilding: [BUILDING_TYPES.OX_PASTURE]
+  unlocksBuilding: [BUILDING_TYPES.AUROCH_PASTURE]
 });
 
 // researches[RESEARCHES.HERB_FARMING] = new Research({
@@ -569,7 +553,7 @@ researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
   knowledgeReq: 10000,
-  unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_QUALITY]
+  unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_RICH]
 });
 
 researches[RESEARCHES.SAND_EXCAVATION] = new Research({
@@ -672,8 +656,8 @@ researches[RESEARCHES.COMPACTION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.PRESS]
 });
 
-researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
-  name: RESEARCHES.COMPACTION_SIMPLIFIED,
+researches[RESEARCHES.COMPACTION_COORDINATED] = new Research({
+  name: RESEARCHES.COMPACTION_COORDINATED,
   unlocks: ('Allows Presses to be run without a leader.'),
   description: ('With a set of stabilizing safety structures, a '
     + 'Press can be run without any specialized skills.'),
@@ -685,7 +669,7 @@ researches[RESEARCHES.COMPACTION_SIMPLIFIED] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.PHYSICS_ADVANCED],
   knowledgeReq: 12500,
-  unlocksUpgrade: [BUILDING_TYPES.PRESS_SIMPLIFIED]
+  unlocksUpgrade: [BUILDING_TYPES.PRESS_COORDINATED]
 });
 
 researches[RESEARCHES.GRINDING] = new Research({
@@ -856,8 +840,8 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
 });
 
 ///
-researches[RESEARCHES.DEHYDRATION_SIMPLIFIED] = new Research({
-  name: RESEARCHES.DEHYDRATION_SIMPLIFIED,
+researches[RESEARCHES.DEHYDRATION_ORGANIZED] = new Research({
+  name: RESEARCHES.DEHYDRATION_ORGANIZED,
   unlocks: ('Allows Drying Yards to be run without a leader.'),
   description: ('You\'ve put together simple diagrams showing where each material '
     + 'needs to be placed, and which shouldn\'t touch.'),
@@ -869,7 +853,7 @@ researches[RESEARCHES.DEHYDRATION_SIMPLIFIED] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.CHEMISTRY_ADVANCED],
   knowledgeReq: 1800,
-  unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_SIMPLIFIED]
+  unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_ORGANIZED]
 });
 
 researches[RESEARCHES.COMBUSTION] = new Research({

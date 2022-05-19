@@ -40,8 +40,8 @@ import QuailSvgComponent from './resources/quail';
 import QuailMeatSvgComponent from './resources/quail_meat';
 import EggSvgComponent from './resources/egg';
 import FertilizerSvgComponent from './resources/fertilizer';
-import OxSvgComponent from './resources/ox';
-import OxMeatSvgComponent from './resources/ox_meat';
+import AurochSvgComponent from './resources/auroch';
+import AurochMeatSvgComponent from './resources/auroch_meat';
 import MilkSvgComponent from './resources/milk';
 import SilkwormCocoonSvgComponent from './resources/silkworm_cocoon';
 import WoodSvgComponent from './resources/wood';
@@ -158,7 +158,7 @@ import GrainFieldSvgComponent from './buildings/grain_field';
 import OliveGroveSvgComponent from './buildings/olive_grove';
 import FishingPondSvgComponent from './buildings/fishing_pond';
 import QuailPastureSvgComponent from './buildings/quail_pasture';
-import OxPastureSvgComponent from './buildings/ox_pasture';
+import AurochPastureSvgComponent from './buildings/auroch_pasture';
 import PressSvgComponent from './buildings/press';
 import GrindingMillSvgComponent from './buildings/grinding_mill';
 import SpiceFieldSvgComponent from './buildings/spice_field';
@@ -288,10 +288,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <EggSvgComponent icon={props.icon} />;
     case SVGS.FERTILIZER:
     return <FertilizerSvgComponent icon={props.icon} />;
-    case SVGS.OX:
-    return <OxSvgComponent icon={props.icon} />;
-    case SVGS.OX_MEAT:
-    return <OxMeatSvgComponent icon={props.icon} />;
+    case SVGS.AUROCH:
+    return <AurochSvgComponent icon={props.icon} />;
+    case SVGS.AUROCH_MEAT:
+    return <AurochMeatSvgComponent icon={props.icon} />;
     case SVGS.MILK:
     return <MilkSvgComponent icon={props.icon} />;
     case SVGS.SILKWORM_COCOON:
@@ -522,8 +522,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FishingPondSvgComponent icon={props.icon} />;
     case SVGS.QUAIL_PASTURE:
     return <QuailPastureSvgComponent icon={props.icon} />;
-    case SVGS.OX_PASTURE:
-    return <OxPastureSvgComponent icon={props.icon} />;
+    case SVGS.AUROCH_PASTURE:
+    return <AurochPastureSvgComponent icon={props.icon} />;
     case SVGS.PRESS:
     return <PressSvgComponent icon={props.icon} />;
     case SVGS.GRINDING_MILL:

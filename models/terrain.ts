@@ -180,8 +180,6 @@ export default class Terrain {
       const col = Math.floor(utils.random() * (t.rightBound+1 - t.leftBound))
         + t.leftBound;
       const row = Math.floor(utils.random() * (t.upperBound+1 - 0)) + 0;
-      console.log(`col: ${col}, row: ${row}`);
-      console.log(t);
       if (utils.arrayIncludes(buildingType.terrainAllowed, t.spots[col][row].type)
         && !buildingPlacement[col][row]) {
         return [col, row];

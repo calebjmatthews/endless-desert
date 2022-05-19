@@ -777,7 +777,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Glassware to use textile tag as an ingredient
   [X] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [X] Difficulty 2 buildings to use implements and specific bricks/wood
-  [ ] Rename simplified buildings
+  [X] Rename simplified buildings
   [ ] New building upgrades: Channeled Reed Delta, Ox Paddock, Adept Atelier
   [ ] Bountiful Kitchen gives Speed x 1.5
   [ ] Research to increase speed of field notes

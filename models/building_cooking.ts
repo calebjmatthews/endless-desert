@@ -233,7 +233,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       [RTY.RADISH] : 'Radish', [RTY.ONION] : 'Onion',
       [RTY.CHILLI_PEPPER] : 'Chilli Pepper', [RTY.POTATO] : 'Potato',
       [RTY.LOTUS_ROOT] : 'Lotus Root', [RTY.DATE] : 'Date', [RTY.FIG] : 'Fig',
-      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail', [RTY.OX] : 'Beef' };
+      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail', [RTY.AUROCH] : 'Beef' };
     return (mainNameMap[typeName] ? mainNameMap[typeName] : typeName);
   }
 }

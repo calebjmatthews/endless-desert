@@ -455,24 +455,24 @@ resourceTypes[RTY.FERTILIZER] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.FERTILIZER})
 });
 
-resourceTypes[RTY.OX] = new ResourceType({
-  name: RTY.OX,
+resourceTypes[RTY.AUROCH] = new ResourceType({
+  name: RTY.AUROCH,
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 400,
-  description: `Oxen are slow growing, but their meat and milk are prized`,
-  icon: new Icon({provider: 'svg', name: SVGS.OX})
+  description: `Auroch are slow growing, but their meat and milk are prized`,
+  icon: new Icon({provider: 'svg', name: SVGS.AUROCH})
 });
 
-resourceTypes[RTY.OX_MEAT] = new ResourceType({
-  name: RTY.OX_MEAT,
+resourceTypes[RTY.AUROCH_MEAT] = new ResourceType({
+  name: RTY.AUROCH_MEAT,
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 240,
-  description: `Marbled red meat from an ox, excellent when roasted over a fire`,
-  icon: new Icon({provider: 'svg', name: SVGS.OX_MEAT})
+  description: `Marbled red meat from an auroch, excellent when roasted over a fire`,
+  icon: new Icon({provider: 'svg', name: SVGS.AUROCH_MEAT})
 });
 
 resourceTypes[RTY.MILK] = new ResourceType({

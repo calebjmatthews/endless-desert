@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, Ellipse, Polygon, Rect, Circle, Defs } from 'react-native-svg';
 
-export default function OxSvgComponent(props: any) {
+export default function AurochSvgComponent(props: any) {
   return (
     <Svg width={props.icon.width} height={props.icon.height} viewBox="0 0 512 512">
       <G id="Flat" transform="matrix(1.0601 0 0 1.323 -22.723 -82.963)">

@@ -362,7 +362,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 10}],
-    upgradesInto: BTY.CLAY_PIT_QUALITY,
+    upgradesInto: BTY.CLAY_PIT_RICH,
     terrainAllowed: [TTY.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 6, probability: 1}],
@@ -372,8 +372,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.CLAY_PIT_QUALITY]: new BuildingType({
-    name: BTY.CLAY_PIT_QUALITY,
+  [BTY.CLAY_PIT_RICH]: new BuildingType({
+    name: BTY.CLAY_PIT_RICH,
     description: 'Extra water and care produce the best possible clay',
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.CLAY_PIT}),
@@ -501,7 +501,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 80},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 10}],
-    upgradesInto: BTY.GRAIN_FIELD_SIMPLIFIED,
+    upgradesInto: BTY.GRAIN_FIELD_FURROWED,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 20, probability: 1}],
@@ -511,8 +511,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.GRAIN_FIELD_SIMPLIFIED]: new BuildingType({
-    name: BTY.GRAIN_FIELD_SIMPLIFIED,
+  [BTY.GRAIN_FIELD_FURROWED]: new BuildingType({
+    name: BTY.GRAIN_FIELD_FURROWED,
     description: 'If it\'s knee-cover by mid summer you know it\'s growing well',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.GRAIN_FIELD}),
@@ -536,7 +536,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE, quantity: 80},
       {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 10}],
-    upgradesInto: BTY.OLIVE_GROVE_SIMPLIFIED,
+    upgradesInto: BTY.OLIVE_ORCHARD,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 4, probability: 1}],
@@ -546,8 +546,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.OLIVE_GROVE_SIMPLIFIED]: new BuildingType({
-    name: BTY.OLIVE_GROVE_SIMPLIFIED,
+  [BTY.OLIVE_ORCHARD]: new BuildingType({
+    name: BTY.OLIVE_ORCHARD,
     description: 'The lines of olive trees smell rich and sweet',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GROVE}),
@@ -658,20 +658,21 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.OX_PASTURE]: new BuildingType({
-    name: BTY.OX_PASTURE,
-    description: 'Oxen cover themselves in mud at the river\'s edge',
+  [BTY.AUROCH_PASTURE]: new BuildingType({
+    name: BTY.AUROCH_PASTURE,
+    description: `Auroch cover themselves in mud at the river's edge`,
     category: BCA.FARMING,
-    icon: new Icon({provider: 'svg', name: SVGS.OX_PASTURE}),
-    cost: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 10},
+    icon: new Icon({provider: 'svg', name: SVGS.AUROCH_PASTURE}),
+    cost: [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 10},
       {specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 200},
       {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 500}],
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 800},
       {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.OX, quantity: 1, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 1, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
     new BuildingRecipe({index: 1, produces:
@@ -679,8 +680,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.OX_MEAT, quantity: 16, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OX, quantity: 8}]}) ],
+      [{specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: 16, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 8}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -732,7 +733,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.BINDING, quantity: 10}],
-    upgradesInto: BTY.PRESS_SIMPLIFIED,
+    upgradesInto: BTY.PRESS_COORDINATED,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
@@ -744,8 +745,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.PRESS_SIMPLIFIED]: new BuildingType({
-    name: BTY.PRESS_SIMPLIFIED,
+  [BTY.PRESS_COORDINATED]: new BuildingType({
+    name: BTY.PRESS_COORDINATED,
     description: 'Great slabs of brick groan as they press together',
     category: BCA.MATERIAL_REFINED,
     icon: new Icon({provider: 'svg', name: SVGS.PRESS}),
@@ -1008,7 +1009,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 10}],
-    upgradesInto: BTY.DRYING_YARD_SIMPLIFIED,
+    upgradesInto: BTY.DRYING_YARD_ORGANIZED,
     recipes: [new BuildingRecipe({index: 0, produces:
         [{specificity: RSP.EXACT, type: RTY.SALT, quantity: 20, probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.BRINE, quantity: 20}]}),
@@ -1050,8 +1051,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: true
   }),
 
-  [BTY.DRYING_YARD_SIMPLIFIED]: new BuildingType({
-    name: BTY.DRYING_YARD_SIMPLIFIED,
+  [BTY.DRYING_YARD_ORGANIZED]: new BuildingType({
+    name: BTY.DRYING_YARD_ORGANIZED,
     description: 'The pitiless sun is an ally, for once',
     category: BCA.MATERIAL_REFINED,
     icon: new Icon({provider: 'svg', name: SVGS.DRYING_YARD}),
