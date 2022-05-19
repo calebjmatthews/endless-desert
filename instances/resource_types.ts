@@ -630,7 +630,7 @@ resourceTypes[RTY.BRICKS_MUD] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 50,
+  value: 40,
   description: `Simple mud bricks, neither especially strong nor beautiful`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#674648',
     shadow: '#50392d', secondaryColor: '#845d59'})
@@ -641,7 +641,7 @@ resourceTypes[RTY.BRICKS_SABLE] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 80,
+  value: 120,
   description: `Dark bricks that gleam with a smooth sheen`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#422c18',
     shadow: '#16002d', secondaryColor: '#a99d8e'})
@@ -663,7 +663,7 @@ resourceTypes[RTY.BRICKS_SANDLIME] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 110,
+  value: 80,
   description: `Blue-grey bricks that feel cool in the sun's heat, but tend to crumble`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#9cb0d2',
     shadow: '#818ea2', secondaryColor: '#ccd6ff'})
