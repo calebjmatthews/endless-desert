@@ -50,7 +50,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.GATE]: new BuildingType({
     name: BTY.GATE,
     description: 'A wall encircling the town and its simple gate',
-    order: 0,
+    order: 1,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.GATE}),
     cost: null,
@@ -66,7 +66,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.GATE_BAKED_CLAY]: new BuildingType({
     name: BTY.GATE_BAKED_CLAY,
     description: 'A baked clay wall encircling the town and its rough gate',
-    order: 0,
+    order: 1,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.GATE}),
     cost: null,
@@ -84,7 +84,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.GATE_BRICKWORK]: new BuildingType({
     name: BTY.GATE_BRICKWORK,
     description: 'A many colored brick wall encircling the town and its sturdy gate',
-    order: 0,
+    order: 1,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.GATE}),
     cost: null,
@@ -102,7 +102,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.GATE_METAL_CLAD]: new BuildingType({
     name: BTY.GATE_METAL_CLAD,
     description: 'A metal-plated wall encircling the town and its iron gate',
-    order: 0,
+    order: 1,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.GATE}),
     cost: null,
@@ -118,7 +118,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.BROKEN_CISTERN,
     description: ('Water trickles through cracks in the wall, above a reservoir '
       + 'you cannot reach'),
-    order: 1,
+    order: 2,
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.BROKEN_CISTERN}),
     cost: null,
@@ -137,7 +137,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.DECAYING_STUDY]: new BuildingType({
     name: BTY.DECAYING_STUDY,
     description: 'A dusty, crooked room with a small desk in the corner',
-    order: 2,
+    order: 3,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.DECAYING_STUDY}),
     cost: null,
@@ -153,7 +153,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.RUINED_HUTS]: new BuildingType({
     name: BTY.RUINED_HUTS,
     description: 'A handful of tiny, abandoned houses',
-    order: 3,
+    order: 4,
     category: BCA.HOUSING,
     icon: new Icon({provider: 'svg', name: SVGS.RUINED_HUTS}),
     cost: null,
@@ -169,7 +169,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.FALLOW_FIELD]: new BuildingType({
     name: BTY.FALLOW_FIELD,
     description: 'As it stands, it\'s primarily growing weeds and rocks',
-    order: 4,
+    order: 5,
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.FALLOW_FIELD}),
     cost: null,
@@ -190,7 +190,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.MARKET_ABANDONED,
     description: ('There\'s a smell of spices in the air, so faint you might '
       + 'be imagining it'),
-    order: 5,
+    order: 6,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.MARKET_ABANDONED}),
     cost: null,
@@ -205,7 +205,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.SHATTERED_DOME]: new BuildingType({
     name: BTY.SHATTERED_DOME,
     description: 'Its floors are covered in shattered glass; what was this?',
-    order: 6,
+    order: 7,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.SHATTERED_DOME}),
     cost: null,
@@ -221,7 +221,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
   [BTY.OBSERVATORY]: new BuildingType({
     name: BTY.OBSERVATORY,
     description: 'The deepest desert can only be navigated by star',
-    order: 6,
+    order: 7,
     category: BCA.GENERAL,
     icon: new Icon({provider: 'svg', name: SVGS.OBSERVATORY}),
     cost: null,
