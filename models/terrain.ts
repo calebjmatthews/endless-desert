@@ -121,19 +121,20 @@ export default class Terrain {
     // Add water until upperBound is reached
     for (let row = highestWaterRow+1; row <= t.upperBound; row++) {
       // Check whether the river bent in the previous two rows
-      let previousWaters: [number, number][] = [];
+      let lastWaters: [number, number][] = [];
+      let twoLastWaters: [number, number][] = [];
       for (let col = t.leftBound; col <= t.rightBound; col++) {
         if (t.spots[col][row-1].type === TTY.WATER) {
-          previousWaters.push([col, row-1]);
+          lastWaters.push([col, row-1]);
         }
         if (t.spots[col][row-2].type === TTY.WATER) {
-          previousWaters.push([col, row-2]);
+          twoLastWaters.push([col, row-2]);
         }
       }
       // If not, make the spot one upwards into river and roll for
       // whether the river bends
-      if (previousWaters.length < 3) {
-        const col = previousWaters[0][0];
+      if ((lastWaters.length + twoLastWaters.length) < 3) {
+        const col = lastWaters[0][0];
         t.spots[col][row] = { type: TTY.WATER };
         t.spots[col-1][row] = { type: TTY.RIVERBANK };
         t.spots[col+1][row] = { type: TTY.RIVERBANK };
@@ -153,9 +154,9 @@ export default class Terrain {
       }
       // If the river bent in the previous row, follow the bend of the river
       // rather than the original path
-      else {
-        const ls = previousWaters[0];
-        const rs = previousWaters[1];
+      else if (lastWaters.length > 1) {
+        const ls = lastWaters[0];
+        const rs = lastWaters[1];
         const leftSpotIsBend = (t.spots[ls[0]][ls[1]-1].type !== TTY.WATER);
         if (leftSpotIsBend) {
           t.spots[ls[0]][row] = { type: TTY.WATER };
@@ -167,6 +168,13 @@ export default class Terrain {
           t.spots[rs[0]-1][row] = { type: TTY.RIVERBANK };
           t.spots[rs[0]+1][row] = { type: TTY.RIVERBANK };
         }
+      }
+      // If the river bent two rows ago, make the spot one upwards into river
+      else if (twoLastWaters.length > 1) {
+        const col = lastWaters[0][0];
+        t.spots[col][row] = { type: TTY.WATER };
+        t.spots[col-1][row] = { type: TTY.RIVERBANK };
+        t.spots[col+1][row] = { type: TTY.RIVERBANK };
       }
     }
 
