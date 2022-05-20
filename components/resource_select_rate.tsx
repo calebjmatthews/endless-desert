@@ -21,6 +21,7 @@ import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 
 export default function ResourceSelectRateComponent() {
   const dispatch = useDispatch();
@@ -155,6 +156,9 @@ function ResourceSelector(props: {resource: Resource,
     optionTextStyle = { paddingLeft: 4, paddingRight: 4,
       color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
   }
+  // Potent fuels should be twice as effective as their value indicates
+  const resourceValue = (utils.arrayIncludes(resourceType.tags,
+    RESOURCE_TAGS.FUEL_POTENT)) ? (resourceType.value * 2) : resourceType.value;
   return (
     <View style={StyleSheet.flatten([styles.panelTile, styles.columns,
       {minWidth: props.positioner.minorWidth,
@@ -167,7 +171,7 @@ function ResourceSelector(props: {resource: Resource,
           size={21} />
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
-            {utils.formatNumberShort(props.rate / resourceType.value) + '/m'}
+            {`${utils.formatNumberShort(props.rate / resourceValue)}/m`}
           </Text>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {'(of ' + utils.formatNumberShort(props.resource.quantity) + ')'}

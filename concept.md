@@ -781,7 +781,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] New building upgrades: Channeled Reed Delta, Auroch Paddock, Adept Atelier
   [X] Bountiful Kitchen gives Speed x 1.5
   [X] Research to increase speed of field notes
-  [ ] Revamp fuel
+  [X] Charcoal is twice as effective as fuel
   [ ] Exploration long-term progression quests
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?

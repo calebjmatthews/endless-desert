@@ -13,6 +13,13 @@ resourceTags[RESOURCE_TAGS.FUEL] = new ResourceTag({
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'fireplace',
     color:'#ff0000'})});
 
+resourceTags[RESOURCE_TAGS.FUEL_POTENT] = new ResourceTag({
+  name: RESOURCE_TAGS.FUEL_POTENT,
+  plural: 'Potent Fuels',
+  value: 60,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'fire-alt', color:'#ff0000'})});
+
 resourceTags[RESOURCE_TAGS.CONSTRUCTION] = new ResourceTag({
   name: RESOURCE_TAGS.CONSTRUCTION,
   plural: 'Construction Goods',

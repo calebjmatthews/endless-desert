@@ -8,6 +8,7 @@ export enum RESOURCE_TAGS {
   PROVISION = "Provision",
   CONSTRUCTION = "Construction",
   FUEL = "Fuel",
+  FUEL_POTENT = "Potent Fuel",
   PRECIOUS = "Precious",
   TRADE_GOOD = "Trade Good",
   PRESSED = "Pressed",

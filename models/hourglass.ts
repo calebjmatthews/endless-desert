@@ -14,6 +14,7 @@ import { utils } from '../utils';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 const MS_IN_MIN = 60000;
 
 export default class Hourglass {
@@ -321,10 +322,14 @@ export default class Hourglass {
               const specType = rawConsumption.specificity + '|' + rawConsumption.type;
               const resource = building.resourcesSelected[specType];
               const resourceType = resourceTypes[resource.type];
+              // Potent fuels should be twice as effective as their value indicates
+              const resourceValue = (utils.arrayIncludes(resourceType.tags,
+                RESOURCE_TAGS.FUEL_POTENT)) ? (resourceType.value * 2)
+                : resourceType.value;
               consumption = {
                 specificity: RESOURCE_SPECIFICITY.EXACT,
                 type: resource.type,
-                quantity: (rawConsumption.quantity / resourceType.value) };
+                quantity: (rawConsumption.quantity / resourceValue) };
             }
             let consQuantity = consumption.quantity;
             if (buildingLeaders[building.id]) {
