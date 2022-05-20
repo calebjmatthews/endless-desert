@@ -77,7 +77,7 @@ function MessageBarStatic(props: { messages: Message[] }) {
         setEnsuredDisplay([]);
       }
       else {
-        console.log('ensuredDisplay is unexpectedly empty.');
+        // console.log('ensuredDisplay is unexpectedly empty.');
       }
     }
   }, [moveEnsured, ensuredDisplay]);

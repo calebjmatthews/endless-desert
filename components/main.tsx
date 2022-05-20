@@ -16,6 +16,7 @@ import { addEquipment } from '../actions/equipment';
 import { increaseResources, consumeResources, setVault } from '../actions/vault';
 import { handleIncreaseSlots } from '../actions/trading_status';
 import { setTimers, addTimer } from '../actions/timers';
+import { setTerrain } from '../actions/terrain';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -49,6 +50,7 @@ import Vault from '../models/vault';
 import Icon from '../models/icon';
 import ResearchStatus from '../models/research_status';
 import Timer from '../models/timer';
+import Terrain from '../models/terrain';
 import { tabs } from '../instances/tabs';
 import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -268,24 +270,10 @@ export default function MainComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName == 'debug') {
-      Object.keys(buildingTypes).map((typeName) => {
-        let buildingType = buildingTypes[typeName];
-        let suffix = 1;
-        let name = buildingType.name;
-        let building = new Building({
-          id: utils.randHex(16),
-          buildingType: buildingType.name,
-          suffix: suffix,
-          name: name,
-          paidCosts: {},
-          paidResources: [],
-          paidUpgradeCosts: {},
-          paidUpgradeResources: [],
-          resourcesSelected: {},
-          recipe: null
-        });
-        dispatch(addBuilding(building));
+      const timeskipVault = new Vault({...vault,
+        lastTimestamp: (new Date(Date.now()).valueOf() - 600000)
       });
+      dispatch(setVault(timeskipVault));
     }
     else {
       dispatch(selectTab(tabName));

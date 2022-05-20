@@ -2,6 +2,10 @@ export enum CONVERSATIONS {
   SND_SAYING_HELLO = "Samannoud: Saying Hello",
   SND_THRICE_LOCKED_TOME = "Samannoud: A Thrice Locked Tome",
   SND_A_WOUND = "Samannoud: A Wound",
+  SND_GETTING_SERIOUS = "Samannoud: Getting Serious",
+  SND_THE_GRINDING_MILL = "Samannoud: The Grinding Mill",
+  SND_IMPLEMENTS_FOR_EXPLORATION = "Samannoud: Implements for Exploration",
+  SND_REPAIRING_THE_DOME = "Samannoud: Repairing the Dome",
 
   SRE_SAYING_HELLO = "Shuddering Refuge: Saying Hello",
 

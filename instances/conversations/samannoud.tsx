@@ -16,6 +16,7 @@ import { RESOURCE_TAGS } from '../../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
+import { QUESTS } from '../../enums/quests';
 import { SVGS } from '../../enums/svgs';
 
 let sndConversations: { [name: string] : Conversation } = {};
@@ -232,6 +233,141 @@ sndConvoStatements[CVS.SND_A_WOUND + ' - s2'] = new ConversationStatement({
   name: CVS.SND_A_WOUND + ' - s2',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, Eternal Beasts... Don't give me that look. I can handle anything.`
+});
+
+sndConversations[CVS.SND_GETTING_SERIOUS] = new Conversation({
+  name: CVS.SND_GETTING_SERIOUS,
+  title: 'Getting Serious',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_GETTING_SERIOUS + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    return (gState.questStatus?.questsCompleted[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
+      !== undefined);
+  }
+});
+sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s0'] = new ConversationStatement({
+  name: CVS.SND_GETTING_SERIOUS + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Alright kid, it's time we had a heart-to-heart. I don't mean to question your resolve here. You dashed off into the desert like you had a death wish, after all. But if you're serious about finding your brother, we'll need supplies. Provisions, maps, cutting tools, rope...`,
+  responseNames: [CVS.SND_GETTING_SERIOUS + ' - r0c',
+    CVS.SND_GETTING_SERIOUS + ' - r0a', CVS.SND_GETTING_SERIOUS + ' - r0h']
+});
+sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0c'] = new ConversationResponse({
+  name: CVS.SND_GETTING_SERIOUS + ' - r0c',
+  textIntro: `How are we going to get all that?`,
+  text: `How are we going to get all that?`,
+  statementName: CVS.SND_GETTING_SERIOUS + ' - s1c',
+  speechType: 'Calm'
+});
+sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1c'] = new ConversationStatement({
+  name: CVS.SND_GETTING_SERIOUS + ' - s1c',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So it's up to you.
+
+  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+  questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
+});
+sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0a'] = new ConversationResponse({
+  name: CVS.SND_GETTING_SERIOUS + ' - r0a',
+  textIntro: `Leave it to me.`,
+  text: `Leave it to me. I'll make this town can produce everything we need.`,
+  statementName: CVS.SND_GETTING_SERIOUS + ' - s1a',
+  speechType: 'Aggressive'
+});
+sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1a'] = new ConversationStatement({
+  name: CVS.SND_GETTING_SERIOUS + ' - s1a',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So as you say, it's up to you.
+
+  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+  questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
+});
+sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0a'] = new ConversationResponse({
+  name: CVS.SND_GETTING_SERIOUS + ' - r0a',
+  textIntro: `I think I know where you're going with this...`,
+  text: `I think I know where you're going with this, and I suspect it involves a lot of work.`,
+  statementName: CVS.SND_GETTING_SERIOUS + ' - s1a',
+  speechType: 'Humorous'
+});
+sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1a'] = new ConversationStatement({
+  name: CVS.SND_GETTING_SERIOUS + ' - s1a',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So as you say, you've got a lot of work ahead of you.
+
+  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+  questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
+});
+
+sndConversations[CVS.SND_THE_GRINDING_MILL] = new Conversation({
+  name: CVS.SND_THE_GRINDING_MILL,
+  title: 'Getting Serious',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_THE_GRINDING_MILL + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    const qs = gState.questStatus;
+    return (qs?.questsCompleted[QUESTS.ASTRONOMY_POTENT_FUEL] !== undefined
+      && qs?.questsCompleted[QUESTS.ASTRONOMY_THE_GRINDING_MILL] === undefined
+      && qs?.quests[QUESTS.ASTRONOMY_THE_GRINDING_MILL] === undefined);
+  }
+});
+sndConvoStatements[CVS.SND_THE_GRINDING_MILL + ' - s0'] = new ConversationStatement({
+  name: CVS.SND_THE_GRINDING_MILL + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Charcoal, check. Melting metal ore with be shoddy work until we have a Grinding Mill, so let's do that next. You'll need ten Crude Iron to make the mill, and try not to smelt any more than that directly from the ore.`,
+  questsBegin: [QUESTS.ASTRONOMY_THE_GRINDING_MILL]
+});
+
+sndConversations[CVS.SND_IMPLEMENTS_FOR_EXPLORATION] = new Conversation({
+  name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION,
+  title: 'Getting Serious',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    const qs = gState.questStatus;
+    return (qs?.questsCompleted[QUESTS.ASTRONOMY_THE_GRINDING_MILL] !== undefined
+      && qs?.questsCompleted[QUESTS.ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION] === undefined
+      && qs?.quests[QUESTS.ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION] === undefined);
+  }
+});
+sndConvoStatements[CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0'] =
+new ConversationStatement({
+  name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Metal grinding, check. That one was a big step, now the town can make the tools we'll need to scour the desert.`,
+  questsBegin: [QUESTS.ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION]
+});
+
+sndConversations[CVS.SND_REPAIRING_THE_DOME] = new Conversation({
+  name: CVS.SND_REPAIRING_THE_DOME,
+  title: 'Getting Serious',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_REPAIRING_THE_DOME + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    const qs = gState.questStatus;
+    return (qs?.questsCompleted[QUESTS.ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION]
+        !== undefined
+      && qs?.questsCompleted[QUESTS.ASTRONOMY_REPAIRING_THE_DOME] === undefined
+      && qs?.quests[QUESTS.ASTRONOMY_REPAIRING_THE_DOME] === undefined);
+  }
+});
+sndConvoStatements[CVS.SND_REPAIRING_THE_DOME + ' - s0'] =
+new ConversationStatement({
+  name: CVS.SND_REPAIRING_THE_DOME + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `The next part won't be easy. By now you've guessed what that beat up dome-shaped building was for, am I right? With that Observatory repaired you'll be able to draw up starcharts. No other way to tell where you're going in the deep desert.`,
+  questsBegin: [QUESTS.ASTRONOMY_REPAIRING_THE_DOME]
 });
 
 export { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }

@@ -782,7 +782,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Bountiful Kitchen gives Speed x 1.5
   [X] Research to increase speed of field notes
   [X] Charcoal is twice as effective as fuel
-  [ ] Exploration long-term progression quests
+  [X] Long-term exploration prep quests
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
@@ -992,6 +992,28 @@ const rtg = rtc.map((resource) => {
   return new Resource({...resource, quantity: 20000});
 });
 increaseResources(vault, rtg);
+```
+
+### Minor timeskip
+```
+const timeskipVault = new Vault({...vault,
+  lastTimestamp: (new Date(Date.now()).valueOf() - 600000)
+});
+dispatch(setVault(timeskipVault));
+```
+
+### Terrain test
+```
+const { terrain: newTerrain } = new Terrain(null).generateTerrain(null);
+const oneTerrain = newTerrain.addColumn(newTerrain, 'left');
+const twoTerrain = oneTerrain.addColumn(oneTerrain, 'right');
+const threeTerrain = twoTerrain.addRow(twoTerrain);
+const fourTerrain = threeTerrain.addRow(threeTerrain);
+const fiveTerrain = fourTerrain.addRow(fourTerrain);
+const sixTerrain = fiveTerrain.addRow(fiveTerrain);
+const sevenTerrain = sixTerrain.addRow(sixTerrain);
+const eightTerrain = sevenTerrain.flowRiver(sevenTerrain);
+dispatch(setTerrain(eightTerrain));
 ```
 
 ## Infrastructure
