@@ -26,6 +26,9 @@ export enum RESEARCH_OPTIONS {
   METAL_VARIETY = "Metal Variety",
   WOOD_VARIETY = "Wood Variety",
 
+  // Scholarship Lv 2
+  BRACHYGRAPHIC_SYMBOLS = "Brachiographic Symbols",
+
   // Biology Lv 1
   LEGUME_DISSECTION = "Legume Dissection",
   WATER_UNDER_THE_SUN = "Water Under the Sun",

@@ -7,6 +7,7 @@ export enum RESEARCHES {
   GATE_EXPANSION_METAL_CLAD = "Metal-Clad Gate Expansion",
   STUDY_PORTENTOUS = "Portentous Study",
   FIELD_NOTES = "Field Notes",
+  BRACHYGRAPHY = "Brachygraphy",
   BIOLOGY = "Biology",
   BIOLOGY_ADVANCED = "Advanced Biology",
   LENTIL_FARMING = "Lentil Farming",

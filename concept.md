@@ -779,8 +779,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Difficulty 2 buildings to use implements and specific bricks/wood
   [X] Rename simplified buildings
   [X] New building upgrades: Channeled Reed Delta, Auroch Paddock, Adept Atelier
-  [ ] Bountiful Kitchen gives Speed x 1.5
-  [ ] Research to increase speed of field notes
+  [X] Bountiful Kitchen gives Speed x 1.5
+  [X] Research to increase speed of field notes
   [ ] Revamp fuel
   [ ] Exploration long-term progression quests
   [ ] Remove De Nang, too boring

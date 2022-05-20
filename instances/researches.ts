@@ -112,7 +112,7 @@ researches[RESEARCHES.STUDY_PORTENTOUS] = new Research({
   icon: new Icon({provider: 'svg', name: SVGS.PORTENTOUS_STUDY}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
-  difficulty: 0,
+  difficulty: 1,
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
@@ -135,6 +135,20 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   prereq: [RESEARCHES.ANALYSIS],
   knowledgeReq: 1000,
   actionCategory: TABS.RESEARCH
+});
+
+researches[RESEARCHES.BRACHYGRAPHY] = new Research({
+  name: RESEARCHES.BRACHYGRAPHY,
+  unlocks: `Create field notes in half the time`,
+  description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases, which would increase your speed drastically`,
+  icon: new Icon({provider: 'FontAwesome', name: 'align-center', color: '#2b2b2d'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 10000
 });
 
 researches[RESEARCHES.BIOLOGY] = new Research({

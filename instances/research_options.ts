@@ -202,6 +202,17 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   manditory: true
 });
 
+researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
+  name: RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING,
+  appliesTo: RESEARCHES.BRACHYGRAPHY,
+  difficulty: 2,
+  description: `Your system of representative shortened sylables will need to be easily distinguished and intuitive.`,
+  cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 2},
+    {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40}],
+  manditory: true
+});
+
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
   name: RESEARCH_OPTIONS.LEGUME_DISSECTION,
   appliesTo: RESEARCHES.BIOLOGY,
