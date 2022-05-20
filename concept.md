@@ -76,9 +76,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Shell from something mythical
     - Resin from something mythical
     - Maps to find other expeditions
-    - Petrtified wood
     - Ancient seeds
-    - Stone tablets containing poetry, stone dice, stone figurines, stone masks
+    - Petrtified wood tablets containing poetry dice masks
+    - Stone figurines in the shape of many different animals
     - Instruments made from various woods
 
 ## Resource Subcategories:
@@ -358,18 +358,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Exquisite unmarked equipment is 80% 3, 18% 4, 2% 5
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
   - Implements:
-    - Iron Edge: Iron x10
+    - Iron Edge: Iron x10 (Relic: Menacing)
     - Vitrius Edge: Vitrius Sheet x5, Steel x2
-    - Hardened Slab: Iron x5, Bronze x5
+    - Hardened Slab: Iron x5, Bronze x5 (Relic: Steadfast)
     - Unbreakable Slab: Steel x20, Ceramic Hull x1
-    - Crude Needle: Iron x4, Bronze x1
+    - Crude Needle: Iron x4, Bronze x1 (Relic: Precise)
     - Delicate Needle: Vitrius Sheet x1, Brass x4
-    - Gearwork: Bronze x2, Brass x4
+    - Gearwork: Bronze x2, Brass x4 (Relic: Ingenious)
     - Precise Gearwork: Ceramic Hull x12, Steel x4
-    - Rough Rope: Thatch x20, Papyrus x20
+    - Rough Rope: Thatch x20, Papyrus x20 (Relic: Connecting)
     - Ceramic Cable: Terracotta x100, Thatch x20
-    - Torch: Wood x5, Charcoal x10
-    - Reed Binding: Reeds x40, Pulp x40
+    - Torch: Wood x5, Charcoal x10 (Relic: Luminous)
+    - Reed Binding: Reeds x40, Pulp x40 (Relic: Healing)
   - Recipes:
     * Rough Mattock: Wood x40, Iron Edge x2
     * Wooden Pole: Wood x60, Hardened Slab x1
@@ -778,7 +778,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [X] Difficulty 2 buildings to use implements and specific bricks/wood
   [X] Rename simplified buildings
-  [ ] New building upgrades: Channeled Reed Delta, Auroch Paddock, Adept Atelier
+  [X] New building upgrades: Channeled Reed Delta, Auroch Paddock, Adept Atelier
   [ ] Bountiful Kitchen gives Speed x 1.5
   [ ] Research to increase speed of field notes
   [ ] Revamp fuel

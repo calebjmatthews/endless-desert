@@ -7,6 +7,7 @@ import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUALITY_VALUES } from '../constants';
 const QV = QUALITY_VALUES;
+import { BUILDING_TYPES } from '../enums/building_types';
 
 export default class Building {
   id: string = '';
@@ -43,7 +44,9 @@ export default class Building {
 
   getDishFromIngredients(ingredients: ResourceType[],
     resourceTypes: { [typeName: string] : ResourceType }) {
-    return getDishFromIngredients(ingredients, resourceTypes);
+    const multiplier = (this.buildingType === BUILDING_TYPES.KITCHEN_BOUNTIFUL)
+      ? 1.5 : 1;
+    return getDishFromIngredients(ingredients, resourceTypes, multiplier);
   }
 
   export() {

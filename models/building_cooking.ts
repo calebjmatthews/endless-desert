@@ -16,7 +16,7 @@ const RCA = RESOURCE_CATEGORIES;
 import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 
 export default function getDishFromIngredients(ingredients: ResourceType[],
-  resourceTypes: { [typeName: string] : ResourceType }) {
+  resourceTypes: { [typeName: string] : ResourceType }, multiplier: number) {
   const dishTypes: DishType[] = [
     new DishType({name: RTY.MISTAKE, valueChange: -90, tags: [ RTA.FOOD ],
       contains: [ ]}),
@@ -134,7 +134,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       quantity = DEFAULT_SPICE_COST;
     }
     consumes.push({ specificity: RSP.EXACT, type: ingredient.name,
-      quantity: quantity });
+      quantity: (quantity * multiplier) });
 
     if (utils.arrayIncludes(ingredient.tags, RTA.SPICE)) {
       if (ingredient.name == RTY.OLIVE_OIL) {
@@ -205,7 +205,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
   const dishRecipe = { index: 0,
     produces: [{ specificity: RSP.EXACT,  type: (dishType.name + '-' + id),
-      quantity: DEFAULT_DISH_COST, probability: 1 }],
+      quantity: (DEFAULT_DISH_COST * multiplier), probability: 1 }],
     consumes: consumes };
 
   return { resource: dishResource, recipe: dishRecipe };

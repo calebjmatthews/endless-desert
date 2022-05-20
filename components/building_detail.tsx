@@ -491,7 +491,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderKitchenButton() {
-    if (building.buildingType == BTY.KITCHEN) {
+    if (building.buildingType.includes(BTY.KITCHEN)) {
       return (
         <TouchableOpacity style={styles.buttonLarge}
           onPress={() => openDishSelection()} >

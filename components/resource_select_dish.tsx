@@ -25,6 +25,7 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { MODALS } from '../enums/modals';
+import { BUILDING_TYPES } from '../enums/building_types';
 import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 
 export default function ResourceSelectDishComponent() {
@@ -32,6 +33,8 @@ export default function ResourceSelectDishComponent() {
   const vault = useTypedSelector(state => state.vault);
   const modalValue: {type?: string,
     building: Building} = useTypedSelector(state => state.ui.modalValue);
+  const multiplier = (modalValue.building.buildingType ===
+    BUILDING_TYPES.KITCHEN_BOUNTIFUL) ? 1.5 : 1;
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -95,7 +98,7 @@ export default function ResourceSelectDishComponent() {
     setResourcesSelected: Function) {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={resource.type} resource={resource}
-        resourcesSelected={resourcesSelected}
+        resourcesSelected={resourcesSelected} multiplier={multiplier}
         pressResource={pressResource} positioner={positioner} />;
     });
   }
@@ -194,7 +197,7 @@ export default function ResourceSelectDishComponent() {
     });
     const cResources = resourcesSelected.map((resource) => {
       return new Resource({type: resource.type, quality: resource.quality,
-        quantity: getExperimentCost(resource)});
+        quantity: getExperimentCost(resource, multiplier)});
     });
     const dishRes = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
@@ -257,7 +260,8 @@ export default function ResourceSelectDishComponent() {
 }
 
 function ResourceSelector(props: {resource: Resource, resourcesSelected: Resource[],
-  pressResource: (resource: Resource) => void, positioner: Positioner}) {
+  multiplier: number, pressResource: (resource: Resource) => void,
+  positioner: Positioner}) {
   const resourceType = utils.getResourceType(props.resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
   if (props.resource.quality == 1) {
@@ -277,20 +281,23 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
             {utils.formatNumberShort(props.resource.quantity)}
           </Text>
-          {renderButton(props.resource, props.resourcesSelected, props.pressResource)}
+          {renderButton(props.resource, props.resourcesSelected, props.multiplier,
+            props.pressResource)}
         </View>
       </View>
     </View>
   );
 
   function renderButton(resource: Resource, resourcesSelected: Resource[],
-    pressResource: (resource: Resource) => void) {
+    multiplier: number, pressResource: (resource: Resource) => void) {
     if (ingredientsInclude(resourcesSelected, resource)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
           onPress={() => { pressResource(resource)} } >
-          <Text style={styles.buttonText}>{'Use ' + getExperimentCost(resource)}</Text>
+          <Text style={styles.buttonText}>
+            {`Use ${getExperimentCost(resource, multiplier)}`}
+          </Text>
         </TouchableOpacity>
       );
     }
@@ -326,12 +333,16 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
   }
 }
 
-function getExperimentCost(resource: Resource) {
+function getExperimentCost(resource: Resource, multiplier: number) {
   const resourceType = utils.getResourceType(resource);
-  if (resource.type == RESOURCE_TYPES.WATER) { return DEFAULT_SPICE_COST; }
+  if (resource.type == RESOURCE_TYPES.WATER) {
+    return (DEFAULT_SPICE_COST * multiplier);
+  }
   for (let index = 0; index < resourceType.tags.length; index++) {
     const tag = resourceType.tags[index];
-    if (tag == RESOURCE_TAGS.SPICE) { return DEFAULT_SPICE_COST; }
+    if (tag == RESOURCE_TAGS.SPICE) {
+      return (DEFAULT_SPICE_COST * multiplier);
+    }
   }
-  return DEFAULT_DISH_COST;
+  return (DEFAULT_DISH_COST * multiplier);
 }
