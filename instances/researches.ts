@@ -201,13 +201,10 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 
-researches[RESEARCHES.REED_CULTIVATION_BOUNTIFUL] = new Research({
-  name: RESEARCHES.REED_CULTIVATION_BOUNTIFUL,
-  unlocks: ('Unlocks Bountiful Reed Deltas.'),
-  description: ('You\'ve been diverting a signficant amount of water to keep '
-    + 'the banks of your reed deltas productive. However, you\'ve stumbled across '
-    + 'a new strain of reed grass that requires a litle more water but grows '
-    + 'explosively.'),
+researches[RESEARCHES.REED_CULTIVATION_CHANNELED] = new Research({
+  name: RESEARCHES.REED_CULTIVATION_CHANNELED,
+  unlocks: ('Unlocks Channeled Reed Deltas.'),
+  description: `You have an idea for an alternate way of growing reeds: with thin, flowing channels between bunches to both use less water and speed growth.`,
   icon: new Icon({provider: 'svg', name: SVGS.REEDS}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
@@ -216,7 +213,7 @@ researches[RESEARCHES.REED_CULTIVATION_BOUNTIFUL] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.REED_CULTIVATION],
   knowledgeReq: 350,
-  unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_BOUNTIFUL]
+  unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_CHANNELED]
 });
 
 researches[RESEARCHES.LENTIL_FARMING] = new Research({
@@ -382,8 +379,23 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
 researches[RESEARCHES.AUROCH_HUSBANDRY] = new Research({
   name: RESEARCHES.AUROCH_HUSBANDRY,
   unlocks: ('Unlocks Auroch Pastures.'),
-  description: ('River oxen are big, noisy beasts. Useful though: depending on '
-    + 'method used they can give either milk or meat and hides.'),
+  description: ('Aurochs are big, noisy beasts. Useful though: depending on '
+    + 'method used they can give either milk or meat.'),
+  icon: new Icon({provider: 'svg', name: SVGS.AUROCH}),
+  category: RESEARCHES.BIOLOGY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 2,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.BIOLOGY_ADVANCED],
+  knowledgeReq: 6000,
+  unlocksBuilding: [BUILDING_TYPES.AUROCH_PASTURE]
+});
+
+researches[RESEARCHES.ROTATIONAL_GRAZING] = new Research({
+  name: RESEARCHES.ROTATIONAL_GRAZING,
+  unlocks: ('Unlocks Auroch Paddocks.'),
+  description: `Your current method of carring for Aurochs requires a large amount of water and attention. There must be a better way.`,
   icon: new Icon({provider: 'svg', name: SVGS.AUROCH}),
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
@@ -701,6 +713,21 @@ researches[RESEARCHES.IMPLEMENT_ASSEMBLY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.GRINDING, RESEARCHES.COMBUSTION],
   knowledgeReq: 1600,
+  unlocksBuilding: [BUILDING_TYPES.ATELIER]
+});
+
+researches[RESEARCHES.ADVANCED_IMPLEMENTS] = new Research({
+  name: RESEARCHES.ADVANCED_IMPLEMENTS,
+  unlocks: `Allows Alteliers to be run without a leader, and unlocks new implements`,
+  description: `The next step up in your creation of implements will require exotic insights and new materials. Objects from the distant past will be a good place to start.`,
+  icon: new Icon({provider: 'svg', name: SVGS.GEARWORK}),
+  category: RESEARCHES.PHYSICS,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.COMBUSTION_VENTILATED, RESEARCHES.IMPLEMENT_ASSEMBLY],
+  knowledgeReq: 32000,
   unlocksBuilding: [BUILDING_TYPES.ATELIER]
 });
 

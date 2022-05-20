@@ -778,15 +778,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Dark bricks to use trade sand, red bricks to use rust ore, blue bricks to use salt
   [X] Difficulty 2 buildings to use implements and specific bricks/wood
   [X] Rename simplified buildings
-  [ ] New building upgrades: Channeled Reed Delta, Ox Paddock, Adept Atelier
+  [ ] New building upgrades: Channeled Reed Delta, Auroch Paddock, Adept Atelier
   [ ] Bountiful Kitchen gives Speed x 1.5
   [ ] Research to increase speed of field notes
   [ ] Revamp fuel
+  [ ] Exploration long-term progression quests
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
-  [ ] Exploration long-term progression quests
   [ ] Fortuity with options for new equipment quests
   [ ] More repeatable fortuities
   [ ] Max analysis increases with items studied

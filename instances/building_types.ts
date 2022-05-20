@@ -465,8 +465,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 10}],
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED, quantity: 40},
-      {specificity: RSP.EXACT, type: RTY.WATER, quantity: 40}],
-    upgradesInto: BTY.REED_DELTA_BOUNTIFUL,
+      {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, quantity: 100}],
+    upgradesInto: BTY.REED_DELTA_CHANNELED,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 10, probability: 1}],
@@ -476,16 +476,16 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.REED_DELTA_BOUNTIFUL]: new BuildingType({
-    name: BTY.REED_DELTA_BOUNTIFUL,
+  [BTY.REED_DELTA_CHANNELED]: new BuildingType({
+    name: BTY.REED_DELTA_CHANNELED,
     description: 'Reeds cluster along the muddy banks',
     category: BCA.FARMING,
     icon: new Icon({provider: 'svg', name: SVGS.REED_DELTA}),
     cost: null,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 22, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 6}]}) ],
+      [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 12, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 2}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -644,15 +644,15 @@ const buildingTypes: { [name: string] : BuildingType } = {
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 4, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 16},
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 8, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.EGG, quantity: 16, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
         {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: 8, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 8}]}) ],
+      [{specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: 12, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.QUAIL, quantity: 12}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -672,19 +672,42 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 1, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
+      [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 16},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.MILK, quantity: 4, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 4}]}),
+      [{specificity: RSP.EXACT, type: RTY.MILK, quantity: 8, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 16},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: 16, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 8}]}) ],
+      [{specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: 12, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 6}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
     requiresLeader: true
+  }),
+
+  [BTY.AUROCH_PADDOCK]: new BuildingType({
+    name: BTY.AUROCH_PADDOCK,
+    description: `Auroch cover themselves in mud at the river's edge`,
+    category: BCA.FARMING,
+    icon: new Icon({provider: 'svg', name: SVGS.AUROCH_PASTURE}),
+    cost: null,
+    terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 83},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 16}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.MILK, quantity: 8, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 8}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: 12, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 6}]}) ],
+    givesNote: RTY.NOTES_CULTIVATION,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
   }),
 
   [BTY.SPICE_FIELD]: new BuildingType({
@@ -1227,6 +1250,51 @@ const buildingTypes: { [name: string] : BuildingType } = {
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true
+  }),
+
+  [BTY.ATELIER_ADEPT]: new BuildingType({
+    name: BTY.ATELIER_ADEPT,
+    description: `Rows of benches, with myriad tools in easy reach`,
+    category: BCA.MATERIAL_REFINED,
+    icon: new Icon({provider: 'svg', name: SVGS.ATELIER}),
+    cost: [{specificity: RSP.SUBCATEGORY, type: RSC.BRICK, quantity: 100},
+      {specificity: RSP.SUBCATEGORY, type: RSC.GLASS, quantity: 200},
+      {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 20},
+      {specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.WOOD_ASH, quantity: 400},
+      {specificity: RSP.EXACT, type: RTY.STEEL, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 20},
+      {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 20}],
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 8}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 4},
+        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 4}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2},
+        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2},
+        {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 4}]}),
+    new BuildingRecipe({index: 4, produces:
+      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 20},
+        {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 20}]}),
+    new BuildingRecipe({index: 5, produces:
+      [{specificity: RSP.EXACT, type: RTY.TORCH, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1000},
+        {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 30}]}),
+    new BuildingRecipe({index: 6, produces:
+      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 2, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 40},
+        {specificity: RSP.EXACT, type: RTY.PULP, quantity: 40}]}) ],
+    givesNote: RTY.NOTES_HEAT,
+    noteCost: defaultNoteCost,
+    requiresLeader: false
   }),
 
   [BTY.KITCHEN]: new BuildingType({

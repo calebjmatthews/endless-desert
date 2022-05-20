@@ -440,7 +440,7 @@ resourceTypes[RTY.EGG] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 80,
+  value: 40,
   description: `Rich yolk in a crackling shell`,
   icon: new Icon({provider: 'svg', name: SVGS.EGG})
 });
