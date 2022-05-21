@@ -14,6 +14,7 @@ import { displayModalValue, addMemos } from '../actions/ui';
 import Leader from '../models/leader';
 import Building from '../models/building';
 import Vault from '../models/vault';
+import QuestStatus from '../models/quest_status';
 import { Conversation } from '../models/conversation';
 import ConversationStatus from '../models/conversation_status';
 import Memo from '../models/memo';
@@ -32,13 +33,15 @@ export default function LeadersComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const vault = useTypedSelector(state => state.vault);
+  const questStatus = useTypedSelector(state => state.questStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   const [newConvos, setNewConvos] = useState<{ [leaderId: string] : boolean }>({});
   useEffect(() => {
     let initNewConvos: { [leaderName: string] : boolean } = {};
     leaderArray.map((leader) => {
-      const convoPoolRes = getConvoPool(leader, conversationStatus, vault, leaders);
+      const convoPoolRes = getConvoPool(leader, conversationStatus, vault,
+        questStatus, leaders);
       if (convoPoolRes.newConvo) { initNewConvos[leader.id] = true; }
     });
     setNewConvos(initNewConvos);
@@ -71,7 +74,7 @@ export default function LeadersComponent() {
 
   function talkPress(leader: Leader) {
     let convoPoolRes = getConvoPool(leader, conversationStatus, vault,
-      leaders);
+      questStatus, leaders);
     if (convoPoolRes.convoPool.length > 0) {
       const conversationSelected: Conversation =
         utils.randomWeightedSelect(convoPoolRes.convoPool);
@@ -87,7 +90,7 @@ export default function LeadersComponent() {
         convoName: conversationSelected.name
       })]));
       const secondConvoPoolRes = getConvoPool(leader, conversationStatus,
-        vault, leaders);
+        vault, questStatus, leaders);
       if (!secondConvoPoolRes.newConvo) {
         setNewConvos({...newConvos, [leader.id] : false});
       }
@@ -220,14 +223,14 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
 }
 
 function getConvoPool(leader: Leader, conversationStatus: ConversationStatus,
-  vault: Vault, leaders: { [id: string] : Leader }) {
+  vault: Vault, questStatus: QuestStatus, leaders: { [id: string] : Leader }) {
   let primaryPool: Conversation[] = [];
   let secondaryPool: Conversation[] = [];
   Object.keys(conversations).map((name) => {
     const conversation = conversations[name];
     if (conversation.partnerType == leader.name) {
       if (conversationStatus.seen[name] == undefined) {
-        if (conversation.available({ vault, conversationStatus, leaders },
+        if (conversation.available({ vault, conversationStatus, leaders, questStatus },
           conversation)) {
           primaryPool.push(conversation);
         }

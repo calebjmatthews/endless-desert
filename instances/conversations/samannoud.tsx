@@ -244,7 +244,11 @@ sndConversations[CVS.SND_GETTING_SERIOUS] = new Conversation({
   daily: false,
   weight: 1000,
   available: (gState: GameState, conversation: Conversation) => {
-    return (gState.questStatus?.questsCompleted[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
+    console.log(`gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
+      !== undefined`);
+    console.log(gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
+      !== undefined);
+    return (gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
       !== undefined);
   }
 });
@@ -267,7 +271,7 @@ sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1c'] = new ConversationStateme
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So it's up to you.
 
-  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
   questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
 });
 sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0a'] = new ConversationResponse({
@@ -282,22 +286,22 @@ sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1a'] = new ConversationStateme
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So as you say, it's up to you.
 
-  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
   questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
 });
-sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0a'] = new ConversationResponse({
-  name: CVS.SND_GETTING_SERIOUS + ' - r0a',
+sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0h'] = new ConversationResponse({
+  name: CVS.SND_GETTING_SERIOUS + ' - r0h',
   textIntro: `I think I know where you're going with this...`,
   text: `I think I know where you're going with this, and I suspect it involves a lot of work.`,
-  statementName: CVS.SND_GETTING_SERIOUS + ' - s1a',
+  statementName: CVS.SND_GETTING_SERIOUS + ' - s1h',
   speechType: 'Humorous'
 });
-sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1a'] = new ConversationStatement({
-  name: CVS.SND_GETTING_SERIOUS + ' - s1a',
+sndConvoStatements[CVS.SND_GETTING_SERIOUS + ' - s1h'] = new ConversationStatement({
+  name: CVS.SND_GETTING_SERIOUS + ' - s1h',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   text: `If I still had access to your father's wealth and connections, I could pull it together in a day. But that time is behind both of us, eh? So as you say, you've got a lot of work ahead of you.
 
-  We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
+We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as fast as breathing. Decent fuel. Let's start there.`,
   questsBegin: [QUESTS.ASTRONOMY_POTENT_FUEL]
 });
 

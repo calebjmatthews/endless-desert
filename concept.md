@@ -634,6 +634,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Different housing types that can hold more than one leader (and crew)
   - Moving fortress that runs on waterwheels turned by golden oil, surplus leaders can work there for ocational non-scaling benefits
 
+## Expeditions
+  - Select starchart
+  - Select leader, display expedition/exploration related effects
+  - Select camels, display speed and carrying capacity
+  - Select food, drink, and implements
+  - Go!
+
 ## Tips
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
@@ -783,6 +790,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Research to increase speed of field notes
   [X] Charcoal is twice as effective as fuel
   [X] Long-term exploration prep quests
+  [ ] Icon bar to replace main dropdown menu
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
@@ -793,7 +801,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Research leveling system
   [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
   [ ] Flashy display for rare trades
-  [ ] Icon bar to replace main dropdown menu
   [ ] Expeditions! (without crawling)
 
   [ ] Hide recipes missing ingredients
