@@ -17,6 +17,7 @@ import { increaseResources, consumeResources, setVault } from '../actions/vault'
 import { handleIncreaseSlots } from '../actions/trading_status';
 import { setTimers, addTimer } from '../actions/timers';
 import { setTerrain } from '../actions/terrain';
+import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import HourglassComponent from '../components/hourglass';
 import BuildingsComponent from '../components/buildings';
 import ResourcesComponent from '../components/resources';
@@ -36,6 +37,7 @@ import ValueCheckComponent from '../components/value_check';
 import QuestsComponent from '../components/quests';
 import BadgeComponent from '../components/badge';
 import MapComponent from '../components/map';
+import NavbarComponent from '../components/navbar';
 import { styles } from '../styles';
 
 import Tab from '../models/tab';
@@ -56,6 +58,7 @@ import { leaderTypes } from '../instances/leader_types';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
 import { questGen } from '../instances/quest_gen';
+import { quests } from '../instances/quests';
 import { utils } from '../utils';
 import { INTRO_STATES } from '../enums/intro_states';
 import { TABS } from '../enums/tabs';
@@ -100,21 +103,6 @@ export default function MainComponent() {
     {window: ScaledSize, screen: ScaledSize}) => {
     dispatch(setPositioner(new Positioner(window.width, window.height, Platform.OS)));
   }
-
-  let tabsArray = Object.keys(tabs).map((tabName) => {
-    return tabs[tabName];
-  });
-  tabsArray = tabsArray.filter((tab) => {
-    if (utils.arrayIncludes(account.tabsUnloked, tab.name)) {
-      return tab;
-    }
-  });
-  tabsArray = [new Tab({
-    name: 'debug',
-    order: -2,
-    icon: {provider: 'FontAwesome5', name: 'bug'},
-    settings: []
-  }), ...tabsArray];
 
   // return (
   //   <LinearGradient
@@ -179,121 +167,18 @@ export default function MainComponent() {
       <QuestHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>
+      <NavbarComponent />
       <View style={styles.scrollWrapper}>
+        <View style={styles.break} />
         <View style={{flexGrow: 1, height: positioner.bodyHeight}}>
           {renderTab(tabSelected)}
         </View>
       </View>
       <MessageBarComponent />
       <StorageHandlerComponent />
-      <View style={styles.menuButtonWrapper}>
-        <TouchableOpacity style={styles.button}
-          onPress={() => { dropdownSet(!dropdownExpanded) }} >
-          <IconComponent provider="Entypo" name="menu" color="#fff" size={30} />
-        </TouchableOpacity>
-      </View>
-      {renderDropdown(dropdownExpanded, dropdownPress)}
       <ModalHandlerComponent />
     </LinearGradient>
   );
-
-  function renderDropdown(expanded: boolean, dropdownPress: Function) {
-    if (expanded) {
-      return (
-        <View style={styles.dropdownList}>
-          {renderDropdownTabsSection()}
-          {renderTabSettingsSection()}
-        </View>
-      );
-    }
-    return null;
-  }
-
-  function renderDropdownTabsSection() {
-    let tab = tabs[tabSelected];
-    let sectionHeading = null;
-    if (tab) {
-      if (tab.settings.length > 0) {
-        sectionHeading = <Text style={styles.dropdownHeading}>{'Go to:'}</Text>
-      }
-    }
-    return (
-      <>
-        {sectionHeading}
-        {renderDropdownTabs()}
-      </>
-    );
-  }
-
-  function renderDropdownTabs() {
-    return tabsArray.map((tab) => {
-      return (
-        <TouchableOpacity key={tab.name} style={styles.dropdownListItem}
-          onPress={() => dropdownPress(tab.name)} >
-          <IconComponent provider={tab.icon.provider} name={tab.icon.name}
-            color="#000" size={14} />
-          <Text>{' ' + tab.name}</Text>
-        </TouchableOpacity>
-      )
-    })
-  }
-
-  function renderTabSettingsSection() {
-    let tab = tabs[tabSelected];
-    if (tab) {
-      if (tab.settings.length > 0) {
-        let sectionHeading = <Text style={styles.dropdownHeading}>{'Settings:'}</Text>
-        return (
-          <>
-            {sectionHeading}
-            {renderTabSettings()}
-          </>
-        );
-      }
-    }
-    return null;
-  }
-
-  function renderTabSettings() {
-    let tab = tabs[tabSelected];
-    return tab.settings.map((setting) => {
-      return (
-        <TouchableOpacity key={setting.name} style={styles.dropdownListItem}
-          onPress={() => settingPress(setting)} >
-          <IconComponent provider={setting.icon.provider} name={setting.icon.name}
-            color="#000" size={14} />
-          <Text>{' ' + setting.displayName}</Text>
-        </TouchableOpacity>
-      )
-    });
-  }
-
-  function dropdownPress(tabName: string) {
-    if (tabName == 'debug') {
-      const timeskipVault = new Vault({...vault,
-        lastTimestamp: (new Date(Date.now()).valueOf() - 600000)
-      });
-      dispatch(setVault(timeskipVault));
-    }
-    else {
-      dispatch(selectTab(tabName));
-    }
-    dropdownSet(false);
-  }
-
-  function settingPress(setting: {name: string, displayName: string, type: string,
-    icon: {provider: string, name: string}}) {
-    switch(setting.type) {
-      case 'toggle':
-      // @ts-ignore
-      dispatch(changeSetting(setting.name, !(account[setting.name])));
-      dropdownSet(false);
-      break;
-
-      default:
-      break;
-    }
-  }
 
   function renderTab(tabName: string) {
     switch(tabName) {

@@ -407,7 +407,9 @@ export const styles = StyleSheet.create({
   },
 
   statusBarSpacer: {
-    height: 50
+    height: 50,
+    width: '100%',
+    backgroundColor: '#8294cf'
   },
   headingWrapper: {
     display: 'flex',
@@ -418,14 +420,9 @@ export const styles = StyleSheet.create({
   },
   saveButtonWrapper: {
     position: 'absolute',
-    top: 50,
+    top: 90,
     left: 20,
     opacity: 0
-  },
-  menuButtonWrapper: {
-    position: 'absolute',
-    top: 50,
-    right: 20
   },
   buttonResearchWrapper: {
     width: 110,

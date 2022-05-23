@@ -279,7 +279,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.OX, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.AUROCH, weight: 50},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_TOOLPACK + ' (U)'), weight: 25},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (U)'), weight: 25}
   ], [
@@ -295,7 +295,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 75},
-    {specificity: RSP.EXACT, type: RTY.OX, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.AUROCH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.FLAX, weight: 75},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_TOOLPACK + ' (U)'), weight: 25},
     {specificity: RSP.EXACT, type: (ETY.JOURNEYMANS_HAVERSACK + ' (U)'), weight: 25},
@@ -346,10 +346,8 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
     {specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (U)'), weight: 25},
     {specificity: RSP.EXACT, type: (ETY.WOODEN_POLE + ' (U)'), weight: 25},
@@ -363,10 +361,8 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
@@ -383,10 +379,8 @@ tradingPartnerTypes[TRADING_PARTNERS.SPRING_AUTUMN_KINGDOM] = new TradingPartner
     {specificity: RSP.EXACT, type: RTY.KUMQUAT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.LOTUS_ROOT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WOOD_WILLOW, weight: 200},
-    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 100},
-    {specificity: RSP.EXACT, type: RTY.PALE_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, weight: 50},
-    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, weight: 100},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 50},
     {specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, weight: 100},
     {specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, weight: 100},
@@ -517,8 +511,8 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
 const defaultGetTier = (trust: number, demarkers: number[]) => {
   let value = 0, toNext = 0;
   demarkers.forEach((demarker, index) => {
-    const currentSum = utils.arraySum(demarkers.slice(index));
-    const previousSum = index > 0 ? utils.arraySum(demarkers.slice(index-1)) : 0;
+    const currentSum = utils.arraySum(demarkers.slice(0, (index+1)));
+    const previousSum = index > 0 ? utils.arraySum(demarkers.slice(0, index)) : 0;
     if (trust < currentSum && trust >= previousSum) {
       value = index;
       toNext = ((trust - previousSum) / demarker) * 100;

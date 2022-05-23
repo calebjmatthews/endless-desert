@@ -1,6 +1,6 @@
 export default class Positioner {
   screenWidth: number = 320;
-  screenHeight: number = 540;
+  screenHeight: number = 505;
 
   majorPadding: number = 20;
   minorPadding: number = 10;
@@ -9,6 +9,7 @@ export default class Positioner {
   headerSpacerAndroid: number = 39;
   titleSpacer: number = 25;
   buildingButtonSpacer: number = 47;
+  navBarHeight: number = 40;
 
   bodyHeight: number = 470;
   majorWidth: number = 280;
@@ -34,9 +35,12 @@ export default class Positioner {
       this.screenWidth = screenWidth; this.screenHeight = screenHeight;
       switch(os) {
         case('android'):
-          this.bodyHeight = screenHeight - (this.headerSpacerAndroid); break;
+          this.bodyHeight = screenHeight - (this.headerSpacerAndroid)
+            - this.navBarHeight;
+          break;
         default:
-        this.bodyHeight = screenHeight - (this.headerSpacer); break;
+        this.bodyHeight = screenHeight - (this.headerSpacer) - this.navBarHeight;
+        break;
       }
       this.majorWidth = screenWidth - (this.majorPadding * 2);
       this.minorWidth = (this.majorWidth / 2) - this.minorPadding;

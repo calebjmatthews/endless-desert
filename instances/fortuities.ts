@@ -436,8 +436,7 @@ Weifang, his Spring-Autumn Majesty's Seventh Seneschal of Trade"`)
     });
     for (let index = 0; index < buildingsArray.length; index++) {
       const building = buildingsArray[index];
-      if (building?.buildingType === BUILDING_TYPES.GATE_BAKED_CLAY
-        || building?.buildingType === BUILDING_TYPES.GATE_BRICKWORK
+      if (building?.buildingType === BUILDING_TYPES.GATE_BRICKWORK
         || building?.buildingType === BUILDING_TYPES.GATE_METAL_CLAD
         || building?.buildingType === BUILDING_TYPES.GATE_SHINING
         || building?.buildingType === BUILDING_TYPES.GATE_RUNIC

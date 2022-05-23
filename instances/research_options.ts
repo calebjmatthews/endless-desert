@@ -202,8 +202,8 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   manditory: true
 });
 
-researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
-  name: RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING,
+researchOptions[RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS,
   appliesTo: RESEARCHES.BRACHYGRAPHY,
   difficulty: 2,
   description: `Your system of representative shortened sylables will need to be easily distinguished and intuitive.`,

@@ -46,8 +46,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     ]}),
     new DishType({name: RTY.OMELET, valueChange: 60, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.STEW, valueChange: 80, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },

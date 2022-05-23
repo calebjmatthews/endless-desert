@@ -550,6 +550,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/spring-4/
     https://www.svgrepo.com/collection/symbol-set/
     https://www.svgrepo.com/collection/symbol/
+    https://www.svgrepo.com/collection/kitchenware-2/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -614,6 +615,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Use hawk scrip to send out more hawks than the single daily hawk
   - Buy as many things from the Hawk Bazaar as you wish
   - When sending out a hawk, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
+  - For early game when there are few players, have auto-generated trades from "Shades"?
 
 ## Building Limits
   - Initial stage, 6 to start: 3 special, 1 housing, 2 material
@@ -790,7 +792,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Research to increase speed of field notes
   [X] Charcoal is twice as effective as fuel
   [X] Long-term exploration prep quests
-  [ ] Icon bar to replace main dropdown menu
+  [ ] Navbar to replace main dropdown menu
+  [ ] Fix buggy cooking
+  [ ] Add new easy Gate upgrade, wood based
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty?
   [ ] Trader conversations
@@ -803,6 +807,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Flashy display for rare trades
   [ ] Expeditions! (without crawling)
 
+  [ ] Autoselect first resource
   [ ] Hide recipes missing ingredients
   [ ] Add animations to memos
   [ ] Storing an occupied house kicks out the leader

@@ -307,7 +307,7 @@ We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as f
 
 sndConversations[CVS.SND_THE_GRINDING_MILL] = new Conversation({
   name: CVS.SND_THE_GRINDING_MILL,
-  title: 'Getting Serious',
+  title: 'The Grinding Mill',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_THE_GRINDING_MILL + ' - s0',
   repeatable: false,
@@ -323,13 +323,25 @@ sndConversations[CVS.SND_THE_GRINDING_MILL] = new Conversation({
 sndConvoStatements[CVS.SND_THE_GRINDING_MILL + ' - s0'] = new ConversationStatement({
   name: CVS.SND_THE_GRINDING_MILL + ' - s0',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `Charcoal, check. Melting metal ore with be shoddy work until we have a Grinding Mill, so let's do that next. You'll need ten Crude Iron to make the mill, and try not to smelt any more than that directly from the ore.`,
+  text: `Charcoal, check?`,
+  responseNames: [CVS.SND_THE_GRINDING_MILL + ' - r0']
+});
+sndConvoResponses[CVS.SND_THE_GRINDING_MILL + ' - r0'] = new ConversationResponse({
+  name: CVS.SND_THE_GRINDING_MILL + ' - r0',
+  textIntro: `Charcoal, check.`,
+  text: `Charcoal, check.`,
+  statementName: CVS.SND_THE_GRINDING_MILL + ' - s1'
+});
+sndConvoStatements[CVS.SND_THE_GRINDING_MILL + ' - s1'] = new ConversationStatement({
+  name: CVS.SND_THE_GRINDING_MILL + ' - s1',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Good, good. Melting metal ore will be shoddy work until we have a Grinding Mill, so let's do that next. You'll need ten Crude Iron to make the mill, and try not to smelt any more than that directly from the ore.`,
   questsBegin: [QUESTS.ASTRONOMY_THE_GRINDING_MILL]
 });
 
 sndConversations[CVS.SND_IMPLEMENTS_FOR_EXPLORATION] = new Conversation({
   name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION,
-  title: 'Getting Serious',
+  title: 'Implements for Exploration',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0',
   repeatable: false,
@@ -346,13 +358,27 @@ sndConvoStatements[CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0'] =
 new ConversationStatement({
   name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s0',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `Metal grinding, check. That one was a big step, now the town can make the tools we'll need to scour the desert.`,
+  text: `Metal grinding, check?`,
+  responseNames: [CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - r0']
+});
+sndConvoResponses[CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - r0'] =
+new ConversationResponse({
+  name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - r0',
+  textIntro: `Metal grinding, check.`,
+  text: `Metal grinding, check.`,
+  statementName: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s1'
+});
+sndConvoStatements[CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s1'] =
+new ConversationStatement({
+  name: CVS.SND_IMPLEMENTS_FOR_EXPLORATION + ' - s1',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Ok, good. That one was a big step; now the town can make the tools we'll need to scour the desert. We'll need a variety, and in quantity. Might as well get those made now.`,
   questsBegin: [QUESTS.ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION]
 });
 
 sndConversations[CVS.SND_REPAIRING_THE_DOME] = new Conversation({
   name: CVS.SND_REPAIRING_THE_DOME,
-  title: 'Getting Serious',
+  title: 'Repairing the dome',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_REPAIRING_THE_DOME + ' - s0',
   repeatable: false,
@@ -370,7 +396,23 @@ sndConvoStatements[CVS.SND_REPAIRING_THE_DOME + ' - s0'] =
 new ConversationStatement({
   name: CVS.SND_REPAIRING_THE_DOME + ' - s0',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `The next part won't be easy. By now you've guessed what that beat up dome-shaped building was for, am I right? With that Observatory repaired you'll be able to draw up starcharts. No other way to tell where you're going in the deep desert.`,
+  text: `Tools, ch--`,
+  responseNames: [CVS.SND_REPAIRING_THE_DOME + ' - r0']
+});
+sndConvoResponses[CVS.SND_REPAIRING_THE_DOME + ' - r0'] =
+new ConversationResponse({
+  name: CVS.SND_REPAIRING_THE_DOME + ' - r0',
+  textIntro: `Tools, check!`,
+  text: `Tools, check!`,
+  statementName: CVS.SND_REPAIRING_THE_DOME + ' - s1'
+});
+sndConvoStatements[CVS.SND_REPAIRING_THE_DOME + ' - s1'] =
+new ConversationStatement({
+  name: CVS.SND_REPAIRING_THE_DOME + ' - s1',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Ha ha, yes. You've made torches, blades, rope, the whole set.
+
+The next part, though, won't be easy. By now you've guessed what that beat up dome-shaped building was for, am I right? With that Observatory repaired you'll be able to draw up starcharts. No other way to tell where you're going in the deep desert.`,
   questsBegin: [QUESTS.ASTRONOMY_REPAIRING_THE_DOME]
 });
 

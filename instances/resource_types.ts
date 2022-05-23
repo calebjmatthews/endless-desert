@@ -781,7 +781,7 @@ resourceTypes[RTY.SAND_PURE] = new ResourceType({
 resourceTypes[RTY.CHARCOAL] = new ResourceType({
   name: RTY.CHARCOAL,
   category: RCA.MATERIAL_REFINED,
-  tags: [RTA.SMELTED, RTA.FUEL],
+  tags: [RTA.SMELTED, RTA.FUEL, RTA.FUEL_POTENT],
   value: 60,
   icon: new Icon({provider: 'svg', name: SVGS.CHARCOAL})
 });
