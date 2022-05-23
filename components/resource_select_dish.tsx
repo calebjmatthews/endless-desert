@@ -211,7 +211,9 @@ export default function ResourceSelectDishComponent() {
 
   function confirmPress() {
     if (dish) {
-      dispatch(increaseResources(vault, [dish.resource]));
+      dispatch(increaseResources(vault, [
+        new Resource({ ...dish.resource, quantity: 0.01 })
+      ]));
       dispatch(setBuildingSpecificRecipe(modalValue.building, dish.recipe, 0));
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', modalValue.building));
     }
