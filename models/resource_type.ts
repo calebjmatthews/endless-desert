@@ -20,32 +20,37 @@ export default class ResourceType {
     let value = this.value;
     let happiness = 0;
 
-    happiness += Math.floor(this.value / 5);  // Max of 5
-    value -= 25;
-    if (value < 0) { return happiness; }
+    if (value <= 25) { // Max of 5
+      return Math.floor((happiness + (value / 5)));
+    }
+    happiness += 5; value -= 25;
 
-    happiness += Math.floor(this.value / 10); // Max of 7.5
-    value -= 75;
-    if (value < 0) { return happiness; }
+    if (value <= 75) { // Max of 7.5
+      return Math.floor((happiness + (value / 10)));
+    }
+    happiness += 7.5; value -= 75;
 
-    happiness += Math.floor(this.value / 20); // Max of 10
-    value -= 200;
-    if (value < 0) { return happiness; }
+    if (value <= 200) { // Max of 10
+      return Math.floor((happiness + (value / 20)));
+    }
+    happiness += 10; value -= 200;
 
-    happiness += Math.floor(this.value / 40); // Max of 12.5
-    value -= 500;
-    if (value < 0) { return happiness; }
+    if (value <= 500) { // Max of 12.5
+      return Math.floor((happiness + (value / 40)));
+    }
+    happiness += 12.5; value -= 500;
 
-    happiness += Math.floor(this.value / 150); // Max of 13.3
-    value -= 2000;
-    if (value < 0) { return happiness; }
+    if (value <= 2000) { // Max of 13.3
+      return Math.floor((happiness + (value / 150)));
+    }
+    happiness += 13.3; value -= 2000;
 
-    happiness += Math.floor(this.value / 550); // Max of 14.5
-    value -= 8000;
-    if (value < 0) { return happiness; }
+    if (value <= 8000) { // Max of 14.5
+      return Math.floor((happiness + (value / 550)));
+    }
+    happiness += 14.5; value -= 8000;
 
-    happiness += Math.floor(this.value / 10000);
-    return happiness;
+    return Math.floor((happiness + (value / 10000)));
   }
 }
 
