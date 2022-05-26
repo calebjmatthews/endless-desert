@@ -140,7 +140,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
 researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   name: RESEARCHES.BRACHYGRAPHY,
   unlocks: `Create field notes in half the time`,
-  description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases, which would increase your speed drastically`,
+  description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases, which would increase your speed drastically.`,
   icon: new Icon({provider: 'FontAwesome', name: 'align-center', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
@@ -414,10 +414,10 @@ researches[RESEARCHES.ROTATIONAL_GRAZING] = new Research({
   category: RESEARCHES.BIOLOGY,
   isCategory: false,
   difficulty: 2,
-  stepsNeeded: 2,
+  stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.BIOLOGY_ADVANCED],
-  knowledgeReq: 6000,
+  prereq: [RESEARCHES.AUROCH_HUSBANDRY],
+  knowledgeReq: 18000,
   unlocksBuilding: [BUILDING_TYPES.AUROCH_PASTURE]
 });
 

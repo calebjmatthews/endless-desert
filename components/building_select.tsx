@@ -56,6 +56,8 @@ export function BuildingSelectContents() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
+  const brachygraphy = useTypedSelector(state =>
+    state.researchStatus.status[RESEARCHES.BRACHYGRAPHY]);
   const modalValue: {type: string, subType: string, leader: Leader,
     coords: [number, number]} = useTypedSelector(state => state.ui.modalValue);
   let buildingsLeader: {[buildingId: string] : Leader} = {};
@@ -248,15 +250,16 @@ export function BuildingSelectContents() {
           buildingName = buildings[buildingSelected].name || buildingType.name;
         }
         const noteType = resourceTypes[buildingType.givesNote];
+        const duration = (brachygraphy === 'completed') ? 1800000 : 3600000;
         const rsIncrease = [new Resource({ type: buildingType.givesNote,
           quality: 0, quantity: 1 })];
         const rsConsume = buildingType.noteCost.map((cost) => {
           return new Resource({ type: cost.type, quality: 0,
             quantity: cost.quantity });
-        })
+        });
         let timer = new Timer({
           name: RESEARCHES.FIELD_NOTES,
-          endsAt: (new Date(Date.now()).valueOf() + 3600000),
+          endsAt: (new Date(Date.now()).valueOf() + duration),
           resourcesToIncrease: rsIncrease,
           resourcesToConsume: rsConsume,
           messageToDisplay: ('Your notes on the ' + buildingName + ' are finished.'),

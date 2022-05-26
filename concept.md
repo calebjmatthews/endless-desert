@@ -792,7 +792,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Research to increase speed of field notes
   [X] Charcoal is twice as effective as fuel
   [X] Long-term exploration prep quests
-  [ ] Navbar to replace main dropdown menu
+  [X] Navbar to replace main dropdown menu
+  [ ] Navbar tabs to shine when content is new
+  [ ] Expensive trades to check whether "give" can result in min of 1
   [ ] Fix buggy cooking
   [ ] Add new easy Gate upgrade, wood based
   [ ] Remove De Nang, too boring

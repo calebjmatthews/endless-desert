@@ -1153,7 +1153,7 @@ resourceTypes[RTY.FLAX] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.TRADE_GOOD],
-  value: 10,
+  value: 120,
   icon: new Icon({provider: 'svg', name: SVGS.FLAX})
 });
 
