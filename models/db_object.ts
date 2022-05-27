@@ -191,7 +191,10 @@ export default class DBObject {
       impObj.quest_status = new QuestStatus(dbObj.quest_status);
     }
     if (dbObj.messages) {
-      impObj.messages = dbObj.messages.map((message) => ( new Message({
+      const dbMessages = dbObj.messages.sort((a, b) => {
+        return a.timestamp - b.timestamp;
+      });
+      impObj.messages = dbMessages.map((message) => ( new Message({
           ...message,
           timestamp: new Date(message.timestamp),
           icon: message.icon ? new Icon(JSON.parse(message.icon)) : undefined,
