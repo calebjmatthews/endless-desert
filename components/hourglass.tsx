@@ -237,13 +237,13 @@ export default function HourglassComponent() {
           const fortuity = fortuityCheck();
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
-            addMessage(new Message({
+            dispatch(addMessage(new Message({
               text: fortuity.openLine,
               type: '',
               timestamp: new Date(Date.now()),
               icon: new Icon({ provider: 'FontAwesome5', name: 'question-circle',
                 color: '#17265d' })
-            }));
+            })));
           }
           else {
             timerToAdd = new Timer({
@@ -258,12 +258,12 @@ export default function HourglassComponent() {
           const quest = dailyQuestCheck();
           if (quest) {
             dispatch(addQuest(quest));
-            addMessage(new Message({
+            dispatch(addMessage(new Message({
               text: (`The Firefly wants to watch something new.`),
               type: '',
               timestamp: new Date(Date.now()),
               icon: new Icon({ provider: 'svg', name: SVGS.FIREFLY })
-            }));
+            })));
           }
           dispatch(addTimer(new Timer({
             name: `Daily Quest-${utils.randHex(8)}`,

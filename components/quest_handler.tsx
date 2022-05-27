@@ -174,12 +174,12 @@ export default function QuestHandlerComponent() {
     });
     if (readyToComplete) {
       dispatch(setQuestReadyToComplete(quest.id));
-      addMessage(new Message({
+      dispatch(addMessage(new Message({
         text: (`The quest "${quest.name} is ready to complete!"`),
         type: '',
         timestamp: new Date(Date.now()),
         icon: quest.icon
-      }))
+      })));
     }
     dispatch(setQuestProgress(questProgress));
   }

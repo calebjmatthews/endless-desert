@@ -91,17 +91,17 @@ export default function TradingComponent() {
   }
 
   function dismissPress(slot: number) {
-    dispatch(dismissTradingPartnerVisit(slot));
-    const tpName = tradingStatus.visits[slot]?.name
+    const tpName = tradingStatus.visits[slot]?.name;
     const tradingPartner = tpName ? tradingPartnerTypes[tpName] : null;
     if (tradingPartner) {
-      addMessage(new Message({
-        text: (`The ${tpName} left.`),
+      dispatch(addMessage(new Message({
+        text: (`The ${tpName} traders have left.`),
         type: '',
         timestamp: new Date(Date.now()),
         icon: tradingPartner.icon
-      }));
+      })));
     }
+    dispatch(dismissTradingPartnerVisit(slot));
   }
 
   function welcomePress(slot: number) {
@@ -115,7 +115,7 @@ export default function TradingComponent() {
       name: `Trading|${slot}`,
       endsAt: (new Date(Date.now()).valueOf() + delays[slot]),
       tradingPartnerToArrive: visit.name,
-      messageToDisplay: `${visit.name} are waiting outside the gate.`,
+      messageToDisplay: `${visit.name} traders are waiting outside the gate.`,
       iconToDisplay: new Icon(tradingPartnerTypes[visit.name].icon)
     });
     dispatch(addTimer(newTimer));
@@ -159,7 +159,7 @@ export default function TradingComponent() {
         contents = (
          <>
            <Text style={styles.bodyTextMed}>
-             {`The ${visitPending.name} are waiting outside the gate.`}
+             {`The ${visitPending.name} traders are waiting outside the gate.`}
            </Text>
            <View style={styles.buttonRow}>
              <TouchableOpacity style={styles.buttonRowItem}
@@ -176,7 +176,7 @@ export default function TradingComponent() {
           contents = (
            <>
              <Text style={styles.bodyTextMed}>
-               {`The ${visitPending.name} are waiting outside the gate, but there's no room in the market.`}
+               {`The ${visitPending.name} traders are waiting outside the gate, but there's no room in the market.`}
              </Text>
              <View style={styles.buttonRow}>
                <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,

@@ -802,8 +802,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Long-term exploration prep quests
   [X] Navbar to replace main dropdown menu
   [X] Additional message events: new quest from Firefly, quest ready to complete, trader left, new fortuity
-  [ ] Fix message fetching
-  [ ] Expensive trades to check whether "give" can result in min of 1
+  [X] Fix message fetching
   [ ] Fix buggy cooking
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
@@ -825,6 +824,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Store memo and conversation state in reducer
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
+  [ ] Expensive trades to check whether "give" can result in min of 1
 
 ## Commands
 ### Delete all records from all tables:
