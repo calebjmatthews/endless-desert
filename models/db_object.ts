@@ -179,6 +179,8 @@ export default class DBObject {
       const impEquipment: { [id: string] : Equipment } = {};
       Object.keys(dbObj.equipment).forEach((id) => {
         if (dbObj.equipment) { impEquipment[id] = new Equipment(dbObj.equipment[id]); }
+        // @ts-ignore
+        delete impEquipment[id].leader;
       });
       impObj.equipment = impEquipment;
     }

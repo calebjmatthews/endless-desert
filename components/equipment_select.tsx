@@ -32,7 +32,10 @@ export default function EquipmentSelectComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
-  const matchedEquipment: { [id: string] : EquipmentMatched } = { ...equipment };
+  const matchedEquipment: { [id: string] : EquipmentMatched } = {};
+  Object.keys(equipment).forEach((id) => {
+    matchedEquipment[id] = new Equipment(equipment[id]);
+  });
   Object.keys(leaders).forEach((id) => {
     const leader = leaders[id];
     if (modalValue.subType == EQUIPMENT_SLOTS.TOOL && leader.toolEquipped) {

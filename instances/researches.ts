@@ -740,7 +740,8 @@ researches[RESEARCHES.ADVANCED_IMPLEMENTS] = new Research({
   difficulty: 2,
   stepsNeeded: 5,
   beginsCompleted: false,
-  prereq: [RESEARCHES.COMBUSTION_VENTILATED, RESEARCHES.IMPLEMENT_ASSEMBLY],
+  prereq: [RESEARCHES.PHYSICS_ADVANCED, RESEARCHES.COMBUSTION_VENTILATED,
+    RESEARCHES.IMPLEMENT_ASSEMBLY],
   knowledgeReq: 32000,
   unlocksBuilding: [BUILDING_TYPES.ATELIER]
 });
@@ -1011,7 +1012,7 @@ researches[RESEARCHES.SOLVENTS] = new Research({
   difficulty: 2,
   stepsNeeded: 3,
   beginsCompleted: false,
-  prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
+  prereq: [RESEARCHES.GLASS_SHAPING],
   knowledgeReq: 33000,
   unlocksBuilding: [BUILDING_TYPES.LABORATORY]
 });
