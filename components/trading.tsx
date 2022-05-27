@@ -15,6 +15,7 @@ import { dismissTradingPartnerVisit, welcomePendingVisit,
   setUpcomingTradingPartnerNames, addPendingVisit, talkTo }
   from '../actions/trading_status';
 import { addTimer } from '../actions/timers';
+import { addMessage } from '../actions/messages';
 
 import TradingPartnerVisit from '../models/trading_partner_visit';
 import TradingPartner from '../models/trading_partner';
@@ -26,6 +27,7 @@ import ResourceCategory from '../models/resource_category';
 import TradingStatus from '../models/trading_status';
 import Timer from '../models/timer';
 import Icon from '../models/icon';
+import Message from '../models/message';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
@@ -90,6 +92,16 @@ export default function TradingComponent() {
 
   function dismissPress(slot: number) {
     dispatch(dismissTradingPartnerVisit(slot));
+    const tpName = tradingStatus.visits[slot]?.name
+    const tradingPartner = tpName ? tradingPartnerTypes[tpName] : null;
+    if (tradingPartner) {
+      addMessage(new Message({
+        text: (`The ${tpName} left.`),
+        type: '',
+        timestamp: new Date(Date.now()),
+        icon: tradingPartner.icon
+      }));
+    }
   }
 
   function welcomePress(slot: number) {

@@ -80,6 +80,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Petrtified wood tablets containing poetry dice masks
     - Stone figurines in the shape of many different animals
     - Instruments made from various woods
+  - There's a need for more high-value trade goods:
+    - More jewels/precious goods
+    - Ice, as recipe ingredient
+    - Ingredients used in advanced implements? Medicinal herbs, plaster molds, resin, golden oil
+    - Rumors, used to create starcharts
+    - Herbs!
 
 ## Resource Subcategories:
   - Sand
@@ -551,6 +557,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/symbol-set/
     https://www.svgrepo.com/collection/symbol/
     https://www.svgrepo.com/collection/kitchenware-2/
+    https://www.svgrepo.com/collection/ice-cream-icon-collection/
+    https://www.svgrepo.com/collection/holidays-2/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -793,19 +801,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Charcoal is twice as effective as fuel
   [X] Long-term exploration prep quests
   [X] Navbar to replace main dropdown menu
-  [ ] Navbar tabs to shine when content is new
+  [X] Additional message events: new quest from Firefly, quest ready to complete, trader left, new fortuity
+  [ ] Fix message fetching
   [ ] Expensive trades to check whether "give" can result in min of 1
   [ ] Fix buggy cooking
-  [ ] Add new easy Gate upgrade, wood based
   [ ] Remove De Nang, too boring
-  [ ] Very early quest about displaced, beaten down, sassy royalty?
+  [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [ ] Trader conversations
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Fortuity with options for new equipment quests
   [ ] More repeatable fortuities
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
-  [ ] Repeat analysis gives less knowledge? 100% => 50% => 25%?
+  [ ] Scale quests with research level
   [ ] Flashy display for rare trades
   [ ] Expeditions! (without crawling)
 

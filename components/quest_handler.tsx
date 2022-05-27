@@ -3,16 +3,18 @@ import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
+import { setQuestProgress, setQuestReadyToComplete, removeFromActivityQueue }
+  from '../actions/quest_status';
+import { addMessage } from '../actions/messages';
+
 import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import QuestProgress from '../models/quest_progress';
+import Message from '../models/message'
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
-
-import { setQuestProgress, setQuestReadyToComplete, removeFromActivityQueue }
-  from '../actions/quest_status';
 
 export default function QuestHandlerComponent() {
   const dispatch = useDispatch();
@@ -170,8 +172,15 @@ export default function QuestHandlerComponent() {
     tempQuest.tasks.forEach((task, index) => {
       if (!task.isCompleted(quest.progress[index])) { readyToComplete = false; }
     });
-    if (readyToComplete) { console.log('Ready to complete!'); console.log(quest); }
-    if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
+    if (readyToComplete) {
+      dispatch(setQuestReadyToComplete(quest.id));
+      addMessage(new Message({
+        text: (`The quest "${quest.name} is ready to complete!"`),
+        type: '',
+        timestamp: new Date(Date.now()),
+        icon: quest.icon
+      }))
+    }
     dispatch(setQuestProgress(questProgress));
   }
 
