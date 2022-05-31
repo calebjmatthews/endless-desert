@@ -466,6 +466,8 @@ export default function ResourceSelectOneComponent() {
         }));
         dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
           tradedWith: { typeName: trade.tradingPartnerType, quantity: quantityGiven } })));
+        dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+          resourceGained: { type: trade.give.type, quantity: quantityGiven } })));
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
