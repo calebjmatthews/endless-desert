@@ -2,6 +2,7 @@ export enum RESOURCE_TAGS {
   MIND = "Mind",
   DRINK = "Drink",
   CROP = "Crop",
+  FRUIT = "Fruit",
   ANIMAL = "Animal",
   EARTH = "Earth",
   FOOD = "Food",

@@ -100,6 +100,7 @@ import PieSvgComponent from './resources/pie';
 import CakeSvgComponent from './resources/cake';
 import WaybreadSvgComponent from './resources/waybread';
 import DriedFruitSvgComponent from './resources/dried_fruit';
+import SaltfishSvgComponent from './resources/saltfish';
 import SaltedMeatSvgComponent from './resources/salted_meat';
 import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
@@ -409,6 +410,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <WaybreadSvgComponent icon={props.icon} />;
     case SVGS.DRIED_FRUIT:
     return <DriedFruitSvgComponent icon={props.icon} />;
+    case SVGS.SALTFISH:
+    return <SaltfishSvgComponent icon={props.icon} />;
     case SVGS.SALTED_MEAT:
     return <SaltedMeatSvgComponent icon={props.icon} />;
     case SVGS.MISTAKE:

@@ -21,8 +21,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     new DishType({name: RTY.MISTAKE, valueChange: -90, tags: [ RTA.FOOD ],
       contains: [ ]}),
     new DishType({name: RTY.SOUP, valueChange: 10, tags: [ RTA.FOOD ], contains: [
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.TEA_DARJEELING, valueChange: 15, tags: [ RTA.DRINK ],
       contains: [
@@ -44,25 +44,50 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
+    new DishType({name: RTY.WAYBREAD, valueChange: 40, tags: [ RTA.FOOD ], contains: [
+      { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.DRIED_FRUIT, valueChange: 40, tags: [ RTA.FOOD ],
+      contains: [
+      { specificity: RSP.TAG, type: RTA.FRUIT, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.SALTFISH, valueChange: 40, tags: [ RTA.FOOD ],
+      contains: [
+      { specificity: RSP.SUBCATEGORY, type: RSC.FISH, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD ],
+      contains: [
+      { specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
+    ]}),
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD ],
+      contains: [
+      { specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
+    ]}),
     new DishType({name: RTY.OMELET, valueChange: 60, tags: [ RTA.FOOD ], contains: [
-      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST }
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST },
+      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST }
     ]}),
     new DishType({name: RTY.STEW, valueChange: 80, tags: [ RTA.FOOD ], contains: [
+      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
-      { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST }
     ]}),
     new DishType({name: RTY.PIE, valueChange: 100, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
-      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: DEFAULT_SPICE_COST },
-      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
+      { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST }
     ]}),
     new DishType({name: RTY.CAKE, valueChange: 120, tags: [ RTA.FOOD ], contains: [
-      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
-      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST }
+      { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
+      { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST }
     ]})
   ];
 
@@ -79,13 +104,14 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
     'Savory' : 2, 'Sweet' : 2, 'Bitter' : 2, 'Tart' : 2, 'Seasoned' : 2, 'Spicy' : 2,
     'Mint' : 2, 'Herbed' : 2, 'Spiced' : 3 };
   let adjective = 'Plain';
-  // Main Tier Map: For determining the tier of the current main ingredient: lower tiers
-  // are overwritten by higher tiers
+  // Main Tier Map: For determining the tier of the current main ingredient:
+  // lower tiers are overwritten by higher tiers
   const mtm : { [name : string] : number } = { [RTY.LENTIL] : 1, [RTY.GRAPE] : 2,
     [RTY.BLUEBERRY] : 3, [RTY.SQUASH] : 2, [RTY.TOMATO] : 3, [RTY.KUMQUAT] : 2,
     [RTY.LEMON] : 3, [RTY.SPINACH]: 2, [RTY.RADISH] : 3, [RTY.ONION] : 2,
     [RTY.CHILLI_PEPPER] : 3, [RTY.POTATO] : 2, [RTY.LOTUS_ROOT] : 3, [RTY.DATE] : 2,
-    [RTY.FIG] : 3,[RSC.SEEDS] : 2, [RTY.QUAIL] : 4 };
+    [RTY.FIG] : 3,[RSC.SEEDS] : 2, [RTY.QUAIL_MEAT] : 4, [RTY.AUROCH_MEAT] : 5,
+    [RTY.MUSSEL]: 3, [RTY.MINNOW]: 4, [RTY.CARP] : 4, [RTY.BARRAMUNDI] : 4 };
   let main = '';
   let mainColors: { color: string, shadow: string }|null = null;
   const tagBlacklist: string[] = [RTA.INGREDIENT, RTA.SPICE, RTA.DRINK, RTA.TRADE_GOOD,
@@ -118,6 +144,14 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
         }
         break;
 
+        case RSP.SUBCATEGORY:
+        if (ingredient.subcategory == contain.type && !matched[contain.type]) {
+          matched[contain.type] = true;
+          anyMatch = true;
+          quantity = contain.quantity;
+        }
+        break;
+
         case RSP.TAG:
         if (utils.arrayIncludes(ingredient.tags, contain.type)
           && !matched[contain.type]) {
@@ -140,7 +174,8 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
         dishValue += ingredient.value;
         if (atm[adjective] < atm['Tasty']) { adjective = 'Tasty'; }
       }
-      else {
+      else if (dishType.contains.filter((contain) =>
+        (contain.type === ingredient.name)).length === 0) {
         const ingAdjective = getSpiceAdjective(ingredient);
         // Spice-specific adjective replacing "Plain" or "Tasty"
         if (atm[adjective] < atm[ingAdjective]) {
@@ -180,7 +215,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   dishValue *= ((dishType.valueChange + 100) / 100);
 
   let name = dishType.name;
-  if (dishType.name != 'Mistake') {
+  if (dishType.name !== 'Mistake' && !dishType.name.includes('Juice')) {
     if (main.length > 0) { name = (getMainName(main) + ' ' + name); }
     name = (adjective + ' ' + name);
   }
@@ -226,13 +261,9 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
   }
 
   function getMainName(typeName: string) {
-    const mainNameMap: { [typeName : string] : string } = { [RTY.LENTIL] : 'Lentil',
-      [RTY.GRAPE] : 'Grape', [RTY.BLUEBERRY] : 'Blueberry', [RTY.SQUASH] : 'Squash',
-      [RTY.TOMATO] : 'Tomato', [RTY.KUMQUAT] : 'Kumquat', [RTY.LEMON] : 'Lemon',
-      [RTY.RADISH] : 'Radish', [RTY.ONION] : 'Onion',
-      [RTY.CHILLI_PEPPER] : 'Chilli Pepper', [RTY.POTATO] : 'Potato',
-      [RTY.LOTUS_ROOT] : 'Lotus Root', [RTY.DATE] : 'Date', [RTY.FIG] : 'Fig',
-      [RSC.SEEDS] : 'Seed', [RTY.QUAIL] : 'Quail', [RTY.AUROCH] : 'Beef' };
+    const mainNameMap: { [typeName : string] : string } = { [RSC.SEEDS] : 'Seed',
+      [RTY.QUAIL_MEAT] : 'Quail', [RTY.AUROCH_MEAT] : 'Beef' ,
+      [RTY.MUSSEL] : 'Seafood' };
     return (mainNameMap[typeName] ? mainNameMap[typeName] : typeName);
   }
 }
@@ -257,6 +288,16 @@ class DishType implements DishTypeInterface {
         switch(contain.specificity) {
           case RSP.TAG:
           if (utils.arrayIncludes(ingredient.tags, contain.type)
+            && !utils.arrayIncludes(ingredientsUsed, ingredient.name)
+            && !utils.arrayIncludes(containsMatched, contain.type)) {
+            thisMatch = true;
+            ingredientsUsed.push(ingredient.name);
+            containsMatched.push(contain.type);
+          }
+          break;
+
+          case RSP.SUBCATEGORY:
+          if (ingredient.subcategory == contain.type
             && !utils.arrayIncludes(ingredientsUsed, ingredient.name)
             && !utils.arrayIncludes(containsMatched, contain.type)) {
             thisMatch = true;

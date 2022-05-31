@@ -803,7 +803,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Navbar to replace main dropdown menu
   [X] Additional message events: new quest from Firefly, quest ready to complete, trader left, new fortuity
   [X] Fix message fetching
-  [ ] Fix buggy cooking
+  [X] Fix buggy cooking
+  [ ] Map icon that shows resting buildings
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [ ] Trader conversations

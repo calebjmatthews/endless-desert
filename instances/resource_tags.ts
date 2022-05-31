@@ -68,6 +68,14 @@ resourceTags[RESOURCE_TAGS.CROP] = new ResourceTag({
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'sprout',
     color:'#008000'})});
 
+resourceTags[RESOURCE_TAGS.FRUIT] = new ResourceTag({
+  name: RESOURCE_TAGS.FRUIT,
+  plural: 'Fruits',
+  value: 5,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'fruit-cherries',
+    color:'#c72222'})});
+
 resourceTags[RESOURCE_TAGS.ANIMAL] = new ResourceTag({
   name: RESOURCE_TAGS.ANIMAL,
   plural: 'Animal Products',

@@ -98,6 +98,7 @@ export enum SVGS {
   CAKE = "Cake",
   WAYBREAD = "Waybread",
   DRIED_FRUIT = "Dried Fruit",
+  SALTFISH = "Saltfish",
   SALTED_MEAT = "Salted Meat",
   MISTAKE = "Mistake",
   BEER = "Beer",

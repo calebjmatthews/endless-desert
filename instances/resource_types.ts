@@ -132,7 +132,7 @@ resourceTypes[RTY.GRAPE] = new ResourceType({
   name: RTY.GRAPE,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.COOLING],
   value: 40,
   description: `Beloved by winemakers across the world`,
   icon: new Icon({provider: 'svg', name: SVGS.GRAPE, color: "#be4dd8",
@@ -143,7 +143,7 @@ resourceTypes[RTY.BLUEBERRY] = new ResourceType({
   name: RTY.BLUEBERRY,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.COOLING],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.COOLING],
   value: 200,
   description: `Cool and juicy`,
   icon: new Icon({provider: 'svg', name: SVGS.BLUEBERRY, color: "#888fe6",
@@ -165,7 +165,7 @@ resourceTypes[RTY.TOMATO] = new ResourceType({
   name: RTY.TOMATO,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SAVORY],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.SAVORY],
   value: 200,
   description: `Red, glossy, and full of savory flavor`,
   icon: new Icon({provider: 'svg', name: SVGS.TOMATO, color: "#FF4800",
@@ -176,7 +176,7 @@ resourceTypes[RTY.KUMQUAT] = new ResourceType({
   name: RTY.KUMQUAT,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SOUR],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.SOUR],
   value: 40,
   description: `An adorable sour fruit`,
   icon: new Icon({provider: 'svg', name: SVGS.KUMQUAT, color: "#ffc34d",
@@ -187,7 +187,7 @@ resourceTypes[RTY.LEMON] = new ResourceType({
   name: RTY.LEMON,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SOUR],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.SOUR],
   value: 200,
   description: `A spash of lemon juice gives depth to many dishes`,
   icon: new Icon({provider: 'svg', name: SVGS.LEMON, color: "#ffd400",
@@ -264,7 +264,7 @@ resourceTypes[RTY.DATE] = new ResourceType({
   name: RTY.DATE,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SWEET],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.SWEET],
   value: 40,
   description: `Heavy, rich, and sweet`,
   icon: new Icon({provider: 'svg', name: SVGS.DATE, color: "#995c5c",
@@ -275,7 +275,7 @@ resourceTypes[RTY.FIG] = new ResourceType({
   name: RTY.FIG,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
-  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.SWEET],
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD, RTA.FRUIT, RTA.SWEET],
   value: 200,
   description: `Tangy-sweet and full of tiny, crunchy seeds`,
   icon: new Icon({provider: 'svg', name: SVGS.FIG, color: "#ff4d4d",
@@ -289,7 +289,8 @@ resourceTypes[RTY.TEA_LEAVES_DARJEELING] = new ResourceType({
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 20,
   description: `A commonly available tea leaf with a simple flavor`,
-  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES})
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#65b31b',
+    shadow: '#599a14'})
 });
 
 resourceTypes[RTY.REEDS] = new ResourceType({
@@ -372,7 +373,8 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   tags: [RTA.POWDER, RTA.INGREDIENT],
   value: 30,
   description: `A wonderfully versatile starch made from grinding grain`,
-  icon: new Icon({provider: 'svg', name: SVGS.FLOUR})
+  icon: new Icon({provider: 'svg', name: SVGS.FLOUR, color: '#f4da90',
+    shadow: '#e7aa60'})
 });
 
 resourceTypes[RTY.MUSSEL] = new ResourceType({
@@ -382,7 +384,8 @@ resourceTypes[RTY.MUSSEL] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.FOOD, RTA.INGREDIENT],
   value: 32,
   description: `These mollusks should be eaten fresh, while they still taste like the distant sea`,
-  icon: new Icon({provider: 'svg', name: SVGS.MUSSEL})
+  icon: new Icon({provider: 'svg', name: SVGS.MUSSEL, color: '#FF5023',
+    shadow: '#57565C'})
 });
 
 resourceTypes[RTY.MINNOW] = new ResourceType({
@@ -392,7 +395,8 @@ resourceTypes[RTY.MINNOW] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 24,
   description: `Tiny, abundant fish that glint in the sunlight`,
-  icon: new Icon({provider: 'svg', name: SVGS.MINNOW})
+  icon: new Icon({provider: 'svg', name: SVGS.MINNOW, color: '#f9d43a',
+    shadow: '#f9993a'})
 });
 
 resourceTypes[RTY.CARP] = new ResourceType({
@@ -402,7 +406,8 @@ resourceTypes[RTY.CARP] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 80,
   description: `Tough, and willing to eat almost anything`,
-  icon: new Icon({provider: 'svg', name: SVGS.CARP})
+  icon: new Icon({provider: 'svg', name: SVGS.CARP, color: '#ff7459',
+    shadow: '#d9472b'})
 });
 
 resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
@@ -412,7 +417,8 @@ resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 400,
   description: `Enormous river fish that are a difficult catch`,
-  icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI})
+  icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI, color: '#39a3db',
+    shadow: '#4881c2'})
 });
 
 resourceTypes[RTY.QUAIL] = new ResourceType({
@@ -432,7 +438,8 @@ resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 160,
   description: `Sweet, mild meat from a quail`,
-  icon: new Icon({provider: 'svg', name: SVGS.QUAIL_MEAT})
+  icon: new Icon({provider: 'svg', name: SVGS.QUAIL_MEAT, color: '#9a4c00',
+    shadow: '#723700'})
 });
 
 resourceTypes[RTY.EGG] = new ResourceType({
@@ -442,7 +449,8 @@ resourceTypes[RTY.EGG] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 40,
   description: `Rich yolk in a crackling shell`,
-  icon: new Icon({provider: 'svg', name: SVGS.EGG})
+  icon: new Icon({provider: 'svg', name: SVGS.EGG, color: '#ffd200',
+    shadow: '#ffd200'})
 });
 
 resourceTypes[RTY.FERTILIZER] = new ResourceType({
@@ -472,7 +480,8 @@ resourceTypes[RTY.AUROCH_MEAT] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 240,
   description: `Marbled red meat from an auroch, excellent when roasted over a fire`,
-  icon: new Icon({provider: 'svg', name: SVGS.AUROCH_MEAT})
+  icon: new Icon({provider: 'svg', name: SVGS.AUROCH_MEAT, color: '#86000f',
+    shadow: '#70000a'})
 });
 
 resourceTypes[RTY.MILK] = new ResourceType({
@@ -482,7 +491,8 @@ resourceTypes[RTY.MILK] = new ResourceType({
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
   value: 100,
   description: `Rich, creamy milk used in a variety of dishes`,
-  icon: new Icon({provider: 'svg', name: SVGS.MILK})
+  icon: new Icon({provider: 'svg', name: SVGS.MILK, color: '#eee',
+    shadow: '#bbb'})
 });
 
 resourceTypes[RTY.SILKWORM_COCOON] = new ResourceType({
@@ -1376,6 +1386,14 @@ resourceTypes[RTY.DRIED_FRUIT] = new ResourceType({
   tags: [RTA.FOOD, RTA.PROVISION,  RTA.BRACKISH],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.DRIED_FRUIT})
+});
+
+resourceTypes[RTY.SALTFISH] = new ResourceType({
+  name: RTY.SALTFISH,
+  category: RCA.DISH,
+  tags: [RTA.FOOD, RTA.PROVISION,  RTA.BRACKISH],
+  value: 40,
+  icon: new Icon({provider: 'svg', name: SVGS.SALTFISH})
 });
 
 resourceTypes[RTY.SALTED_MEAT] = new ResourceType({
