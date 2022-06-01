@@ -125,6 +125,12 @@ function Spot(props: { spot: { type: string }, coords: [number, number],
             name: 'exclamation-triangle', color: '#b9313a', size: 14})}  />
         </View>
       )}
+      {props.building?.recipeSelected === -1 && (
+        <View style={styles.problemMini}>
+          <BadgeComponent icon={new Icon({ provider: 'FontAwesome5',
+            name: 'minus-circle', color: '#cec3e4', size: 14 })}  />
+        </View>
+      )}
     </TouchableOpacity>
   );
 

@@ -128,7 +128,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Truffle: Strange
     * Melange: Rich
     * Taro: Deep
-  - Gemsx
+  - Gems
     * Jade Token: None
     * Dusky Amethyst: Cooling
     * Topaz Slate: Savory
@@ -804,7 +804,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Additional message events: new quest from Firefly, quest ready to complete, trader left, new fortuity
   [X] Fix message fetching
   [X] Fix buggy cooking
-  [ ] Map icon that shows resting buildings
+  [ ] Map icon that shows resting builxdings
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [ ] Trader conversations
