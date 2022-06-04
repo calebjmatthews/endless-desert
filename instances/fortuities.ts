@@ -161,6 +161,28 @@ fortuities[FORTUITIES.LIMPING_FIGURE] = new Fortuity({
   }
 });
 
+fortuities[FORTUITIES.BELLIGERENT_FIGURE] = new Fortuity({
+  name: FORTUITIES.BELLIGERENT_FIGURE,
+  openLine: 'Samannoud is waiting to speak to you',
+  memos: [
+    new Memo({
+      name: 'A Belligerent Figure',
+      title: 'A Belligerent Figure',
+      convoName: FORTUITIES.BELLIGERENT_FIGURE
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    if (fState.questStatus) {
+      return (fState.questStatus.questsCompleted
+        [QUESTS.OPPORTUNITY_A_STRANDED_STRANGER]) !== undefined;
+    }
+    return false;
+  }
+});
+
 fortuities[FORTUITIES.RAIN] = new Fortuity({
   name: FORTUITIES.RAIN,
   openLine: 'It\'s raining',

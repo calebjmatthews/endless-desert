@@ -12,20 +12,26 @@ import { tfsConversations, tfsConvoStatements, tfsConvoResponses, tfsConvoNarrat
   from './trefoil_sower';
 import { scnConversations, scnConvoStatements, scnConvoResponses, scnConvoNarrations }
   from './scarred_navigator';
+import { exaConversations, exaConvoStatements, exaConvoResponses, exaConvoNarrations }
+  from './exiled_ambassador';
 import { etcConversations, etcConvoStatements, etcConvoResponses, etcConvoNarrations }
   from './etc';
 
 const conversations = { ...sndConversations, ...sreConversations,
   ...ffhConversations, ...auwConversations, ...tfsConversations,
-  ...scnConversations, ...fifConversations, ...etcConversations };
+  ...scnConversations, ...fifConversations, ...exaConversations,
+  ...etcConversations };
 const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
   ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
-  ...scnConvoStatements, ...fifConvoStatements, ...etcConvoStatements };
+  ...scnConvoStatements, ...fifConvoStatements, ...exaConvoStatements,
+  ...etcConvoStatements };
 const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
-  ...scnConvoResponses, ...fifConvoResponses, ...etcConvoResponses };
+  ...scnConvoResponses, ...fifConvoResponses, ...exaConvoResponses,
+  ...etcConvoResponses };
 const convoNarrations = { ...sndConvoNarrations, ...sreConvoNarrations,
   ...ffhConvoNarrations, ...auwConvoNarrations, ...tfsConvoNarrations,
-  ...scnConvoNarrations, ...fifConvoNarrations, ...etcConvoNarrations };
+  ...scnConvoNarrations, ...fifConvoNarrations, ...exaConvoNarrations,
+  ...etcConvoNarrations };
 
 export { conversations, convoStatements, convoResponses, convoNarrations };

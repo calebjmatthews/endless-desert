@@ -183,6 +183,7 @@ import SamannoudSvgComponent from './people/samannoud';
 import ShudderingRefugeSvgComponent from './people/shuddering_refuge';
 import FoxfireHereticSvgComponent from './people/foxfire_heretic';
 import TrefoilSowerSvgComponent from './people/trefoil_sower';
+import ExiledAmbassadorSvgComponent from './people/exiled_ambassador';
 import ScarredScholarSvgComponent from './people/scarred_scholar';
 import AuspiciousWaifSvgComponent from './people/auspicious_waif';
 import YouSvgComponent from './people/you';
@@ -205,6 +206,8 @@ import EpauletteSvgComponent from './symbols/epaulette';
 import TerrainSandSvgComponent from './backgrounds/terrain_sand';
 import TerrainRiverbankSvgComponent from './backgrounds/terrain_riverbank';
 import TerrainWaterSvgComponent from './backgrounds/terrain_water';
+
+import DesertSunsetSvgComponent from './illustrations/desert_sunset';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -572,6 +575,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FoxfireHereticSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_SOWER:
     return <TrefoilSowerSvgComponent icon={props.icon} />;
+    case SVGS.EXILED_AMBASSADOR:
+    return <ExiledAmbassadorSvgComponent icon={props.icon} />;
     case SVGS.SCARRED_NAVIGATOR:
     return <ScarredScholarSvgComponent icon={props.icon} />;
     case SVGS.AUSPICIOUS_WAIF:
@@ -613,6 +618,9 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <TerrainRiverbankSvgComponent icon={props.icon} />;
     case SVGS.TERRAIN_WATER:
     return <TerrainWaterSvgComponent icon={props.icon} />;
+
+    case SVGS.DESERT_SUNSET:
+    return <DesertSunsetSvgComponent icon={props.icon} />;
   }
   return null;
 }

@@ -235,6 +235,89 @@ sndConvoStatements[CVS.SND_A_WOUND + ' - s2'] = new ConversationStatement({
   text: `Oh, you know, a lot can go wrong in the desert. Coyotes, bandits, rock slides, Eternal Beasts... Don't give me that look. I can handle anything.`
 });
 
+sndConversations[CVS.SND_A_STRANDED_STRANGER] = new Conversation({
+  name: CVS.SND_A_STRANDED_STRANGER,
+  title: 'A Stranded Stranger',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    return ((gState.vault?.resources[`${RTY.KNOWLEDGE}|0`].quantity || 0) > 5000);
+  }
+});
+sndConvoStatements[CVS.SND_A_STRANDED_STRANGER + ' - s0'] = new ConversationStatement({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `I saw something out to the west this morning: a trail of smoke from what must have been a stunted campfire. It's not easy country there, even a half-day's travel from our walls. What do you think kid, should I go check it out?`,
+  responseNames: [CVS.SND_A_STRANDED_STRANGER + ' - r0c',
+    CVS.SND_A_STRANDED_STRANGER + ' - r0a', CVS.SND_A_STRANDED_STRANGER + ' - r0h']
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r0c'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r0c',
+  textIntro: `Absolutely, we can't leave a stranger to die.`,
+  text: `Absolutely, we can't leave a stranger to die when there's something we could do to help.`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s1c',
+  speechType: 'Calm'
+});
+sndConvoStatements[CVS.SND_A_STRANDED_STRANGER + ' - s1c'] = new ConversationStatement({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - s1c',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Couldn't have said it better.`,
+  responseNames: [CVS.SND_A_STRANDED_STRANGER + ' - r1c']
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r1c'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r1c',
+  textIntro: `What do you need to save them?`,
+  text: `What do you need to save them?`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s2'
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r0a'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r0a',
+  textIntro: `Go if you'd like, you don't need my permission.`,
+  text: `Go if you'd like, you don't need my permission.`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s1a',
+  speechType: 'Aggressive'
+});
+sndConvoStatements[CVS.SND_A_STRANDED_STRANGER + ' - s1a'] = new ConversationStatement({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - s1a',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `I will go. And you'll help.`,
+  responseNames: [CVS.SND_A_STRANDED_STRANGER + ' - r1a']
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r1a'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r1a',
+  textIntro: `Is that so? How kind of me.`,
+  text: `Is that so? How kind of me.`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s2'
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r0h'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r0h',
+  textIntro: `Samannoud, are you getting soft?`,
+  text: `Samannoud, are you getting soft?`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s1h',
+  speechType: 'Humorous'
+});
+sndConvoStatements[CVS.SND_A_STRANDED_STRANGER + ' - s1h'] = new ConversationStatement({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - s1h',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Maybe so. Maybe it was seeing a certain defenseless childhood friend almost kill themselves by wandering into the desert.`,
+  responseNames: [CVS.SND_A_STRANDED_STRANGER + ' - r1h']
+});
+sndConvoResponses[CVS.SND_A_STRANDED_STRANGER + ' - r1h'] = new ConversationResponse({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - r1h',
+  textIntro: `Alright, point taken. What do you need?`,
+  text: `Alright, point taken. What do you need?`,
+  statementName: CVS.SND_A_STRANDED_STRANGER + ' - s2'
+});
+sndConvoStatements[CVS.SND_A_STRANDED_STRANGER + ' - s2'] = new ConversationStatement({
+  name: CVS.SND_A_STRANDED_STRANGER + ' - s2',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `I have plenty of gear for myself, but I'll need provisions. Water, and some salt-dried food that won't spoil in the heat. Let me know when you have them gathered and I'll leave at once.`,
+  questsBegin: [QUESTS.OPPORTUNITY_A_STRANDED_STRANGER]
+});
+
 sndConversations[CVS.SND_GETTING_SERIOUS] = new Conversation({
   name: CVS.SND_GETTING_SERIOUS,
   title: 'Getting Serious',
@@ -244,10 +327,6 @@ sndConversations[CVS.SND_GETTING_SERIOUS] = new Conversation({
   daily: false,
   weight: 1000,
   available: (gState: GameState, conversation: Conversation) => {
-    console.log(`gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
-      !== undefined`);
-    console.log(gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
-      !== undefined);
     return (gState.questStatus?.questsCompleted?.[QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
       !== undefined);
   }

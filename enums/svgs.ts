@@ -182,6 +182,7 @@ export enum SVGS {
   SHUDDERING_REFUGE = "Da Nang",
   FOXFIRE_HERETIC = "Guangzhou",
   TREFOIL_SOWER = "Louth",
+  EXILED_AMBASSADOR = "Najran",
   SCARRED_NAVIGATOR = "Szczecin",
   AUSPICIOUS_WAIF = "Reims",
   YOU = "You",
@@ -203,5 +204,7 @@ export enum SVGS {
 
   TERRAIN_SAND = "Terrain: Sand",
   TERRAIN_RIVERBANK = "Terrain: Riverbank",
-  TERRAIN_WATER = "Terrain: Water"
+  TERRAIN_WATER = "Terrain: Water",
+
+  DESERT_SUNSET = "Desert Sunset"
 }

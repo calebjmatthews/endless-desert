@@ -1204,7 +1204,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 800}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
-    requiresLeader: false
+    requiresLeader: true
   }),
 
   [BTY.ATELIER]: new BuildingType({
@@ -1294,7 +1294,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
         {specificity: RSP.EXACT, type: RTY.PULP, quantity: 40}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
-    requiresLeader: false
+    requiresLeader: true
   }),
 
   [BTY.KITCHEN]: new BuildingType({

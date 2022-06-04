@@ -19,7 +19,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Groups can be assigned to a specific building, which will dramatically increase the output of the building. Otherwise buildings are run by generic citizens (if the building has that capability). Buildings that produce artisan goods or an entertainment bonus can't be run by citizens.
   - Sunset gradient: #f58f7d @ 0, #6a41b4 @ 67, #0034aa @ 100
   - Day gradient?: linear-gradient(#009aaa, #a1ded0, #f5cb7d);
-  - Night gradient?: linear-gradient(#000d2d, #001869, #484396); //
+  - Night gradient?: linear-gradient(#000d2d, #001869, #484396);
   - Chemistry research for Perfumery, need original perfume to be able to duplicate.
   - Logistics research that increases building output if located next to the source of its consumption resources.
   - Logistics research that increases output if group leader lives next to where he/she is working.
@@ -44,7 +44,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
       - Build time x 1000 in large island that is continuously shrinking
       - One resource production x 100 (but can't claim that resource)
       - Randomizing the output of resources with a subcategory
-      - Broad availability of raw resources, but no leaders can be found
+      - Broad availability of raw resources, but just one leader
       - Buildings produce much more, but can only be built once and only work for an hour before vanishing
       - Highly beneficial trades arrive each hour, but must be completed within five minutes or the island vanishes
       - Leaders who are incredibly effective at a single task, and vanish after working for one hour
@@ -81,11 +81,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Stone figurines in the shape of many different animals
     - Instruments made from various woods
   - There's a need for more high-value trade goods:
-    - More jewels/precious goods
+    - More jewels/precious goods: coral, ivory
     - Ice, as recipe ingredient
     - Ingredients used in advanced implements? Medicinal herbs, plaster molds, resin, golden oil
-    - Rumors, used to create starcharts
+    - Rumors (of various areas), used to create starcharts
     - Herbs!
+    - Field Notes
+    - Honey, wax
 
 ## Resource Subcategories:
   - Sand
@@ -466,10 +468,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Kingdoms:
   ### North
-    - Relatively safe traveling before sea, where many travelers come from. A huge Egypt-inspired kingdom (Alabaster) obsessed with the afterlife, govered by the five faction pharoate: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens.
+    - Relatively safe traveling before sea, where many travelers come from. A huge Arabian kingdom (Alabaster) govered by the five faction sultanate: Tourmaline Jewelers (Sultanate of Gems), Sandstone Edificers (Sultanate of Pillars), Wet-Wax Chandlers (Sultanate of Candles), Cochineal Scribes (Sultanate of Scrolls), and Keepers of the Hanging Gardens (Sultanate of Vines).
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
     - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
-    - People: You, Samannoud, Kubra (Tourmaline), Asyut (Sandstone)
+    - People: You (Gardens), Samannoud (Gardens), Kubra (Tourmaline), Najran (Tourmaline), Asyut (Sandstone)
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
     - God of branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living.
@@ -529,16 +531,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.flaticon.com/packs/prehistoric-age
     https://www.flaticon.com/packs/morocco-16\
     https://www.svgrepo.com/collection/landscapes-collection/
-    https://www.svgrepo.com/collection/tools-flat-vectors/
+    https://www.svgrepo.com/collection/landscapes-22/
+    https://www.svgrepo.com/collection/landscapes-18/
     https://www.svgrepo.com/collection/italy-4/
     https://www.svgrepo.com/collection/japan-13/
     https://www.svgrepo.com/collection/japan-10/
     https://www.svgrepo.com/collection/japan-9/
+    https://www.svgrepo.com/collection/china/
     https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
     https://www.svgrepo.com/collection/knowledge-4/
+    https://www.svgrepo.com/collection/science-10/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/in-the-forest-6/
+    https://www.svgrepo.com/collection/camping-5/
+    https://www.svgrepo.com/collection/camping-12/
     https://www.svgrepo.com/collection/man-clothes/
     https://www.svgrepo.com/collection/woman-clothes/
     https://www.svgrepo.com/collection/clothes-13/
@@ -550,15 +557,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/feathers-set-2/
     https://www.svgrepo.com/collection/saint-patrick-day-5/
     https://www.svgrepo.com/collection/prehistoric-age/
-    https://www.svgrepo.com/collection/camping-12/
     https://www.svgrepo.com/collection/jewelry-3/
     https://www.svgrepo.com/collection/gardening-9/
     https://www.svgrepo.com/collection/spring-4/
+    https://www.svgrepo.com/collection/autumn-2/
     https://www.svgrepo.com/collection/symbol-set/
     https://www.svgrepo.com/collection/symbol/
     https://www.svgrepo.com/collection/kitchenware-2/
     https://www.svgrepo.com/collection/ice-cream-icon-collection/
     https://www.svgrepo.com/collection/holidays-2/
+    https://www.svgrepo.com/collection/beauty-30/
+    https://www.shareicon.net/pack/landscapes?p=4
+    https://www.shareicon.net/pack/landscapes-collection?p=2
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -804,7 +814,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Additional message events: new quest from Firefly, quest ready to complete, trader left, new fortuity
   [X] Fix message fetching
   [X] Fix buggy cooking
-  [ ] Map icon that shows resting builxdings
+  [X] Map icon that shows resting buildings
   [ ] Remove De Nang, too boring
   [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [ ] Trader conversations
@@ -813,9 +823,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] More repeatable fortuities
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
-  [ ] Scale quests with research level
+  [ ] Scale Firefly quests with research level
   [ ] Flashy display for rare trades
-  [ ] Expeditions! (without crawling)
+  [ ] Dromedarian fortuities and quests
+  [ ] Expeditions! (without exploration)
 
   [ ] Autoselect first resource
   [ ] Hide recipes missing ingredients

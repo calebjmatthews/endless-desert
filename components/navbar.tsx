@@ -5,12 +5,15 @@ import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
-import { selectTab } from '../actions/ui';
+import { selectTab, addMemos } from '../actions/ui';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
+import Memo from '../models/memo';
 import { tabs } from '../instances/tabs';
 import { utils } from '../utils';
+import { CONVERSATIONS } from '../enums/conversations';
+import { FORTUITIES } from '../enums/fortuities';
 
 export default function  NavbarComponent() {
   const dispatch = useDispatch();
@@ -48,6 +51,15 @@ export default function  NavbarComponent() {
   )
 
   function dropdownPress(tabName: string) {
-    dispatch(selectTab(tabName));
+    if (tabName === 'debug') {
+      dispatch(addMemos([new Memo({
+        name: 'test',
+        title: 'Test convo',
+        convoName: FORTUITIES.BELLIGERENT_FIGURE
+      })]));
+    }
+    else {
+      dispatch(selectTab(tabName));
+    }
   }
 }

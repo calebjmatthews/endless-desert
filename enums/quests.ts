@@ -17,6 +17,7 @@ export enum QUESTS {
   MYSTICISM_REPAIRING_THE_FIRST_KEY = "Mysticism: Repairing the First Key",
   MYSTICISM_REPAIRING_THE_SECOND_KEY = "Mysticism: Repairing the Second Key",
   MYSTICISM_REPAIRING_THE_THIRD_KEY = "Mysticism: Repairing the Third Key",
+  OPPORTUNITY_A_STRANDED_STRANGER = "Opportunity: A Stranded Stranger",
   MYSTICISM_A_TERRACED_PLATFORM = "Mysticism: A Terraced Platform",
   NATIONS_A_SANDSTONE_THROUGHWAY = "Nations: A Sandstone Throughway",
   NATIONS_SPRING_AUTUMN_PROOFS = "Nations: Spring-Autumn Proofs",

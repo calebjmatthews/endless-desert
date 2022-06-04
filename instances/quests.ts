@@ -10,6 +10,8 @@ import { ACTIVITIES } from '../enums/activities';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
+import { RESOURCE_TAGS } from '../enums/resource_tags';
+const RTA = RESOURCE_TAGS;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -499,6 +501,26 @@ You're not sure if it's related to your actions, but someone has put a set of ru
           quantity: 240, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.BROKEN_RED_KEY, value: 10000 }]
+  }),
+  [QUESTS.OPPORTUNITY_A_STRANDED_STRANGER]: new Quest({
+    id: QUESTS.OPPORTUNITY_A_STRANDED_STRANGER,
+    subtitle: 'Opportunity',
+    name: 'A Stranded Stranger',
+    givenBy: LEADER_TYPES.SAMANNOUD,
+    type: QUEST_TYPES.OBLIGATORY,
+    icon: new Icon({provider: 'svg', name: SVGS.DESERT_SUNSET}),
+    description: `Samannoud has noticed smoke from a tiny campfire coming from the dangerous lands to the west, and needs provisions before journeying there.`,
+    finishText: `After giving you a nod, Samannoud heads toward the wisp of rising smoke. Now, to wait.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.OPPORTUNITY_A_STRANDED_STRANGER,
+        label: `Collect 600 Water.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.CLAY_MUDDY}`,
+          quantity: 600, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.OPPORTUNITY_A_STRANDED_STRANGER,
+        label: `Cook 600 travel-ready dishes (these use Salt).`,
+        resourceToProduce: { specType: `${RSP.TAG}|${RTA.PROVISION}`,
+          quantity: 600, consumed: true, includeExisting: true } })
+    ]
   }),
   [QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY]: new Quest({
     id: QUESTS.NATIONS_A_SANDSTONE_THROUGHWAY,

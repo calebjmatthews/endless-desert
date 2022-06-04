@@ -5,6 +5,7 @@ export enum FORTUITIES {
   SLIGHT_FIGURE = "A Slight Figure",
   CHEERY_FIGURE = "A Cheery Figure",
   LIMPING_FIGURE = "A Limping Figure",
+  BELLIGERENT_FIGURE = "A Belligerent Figure",
   RAIN = "Rain",
   UNSPEAKING = "Unspeaking",
   FIERCE_WIND = "Fierce Wind",

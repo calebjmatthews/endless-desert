@@ -26,7 +26,7 @@ leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
     + 'down is one of the most sorrowful things you\'ve ever heard.'),
   speechType: 'Calm',
   toolStarting: null,
-  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  clothingStarting: EQUIPMENT_TYPES.RAGS_TATTERED,
   backStarting: EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK,
   icon: new Icon({provider: 'svg', name: SVGS.SHUDDERING_REFUGE})
 });
@@ -40,7 +40,7 @@ leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
     + 'in the eyes, and decidedly non-traditional views on alcohol consumption.'),
   speechType: 'Calm',
   toolStarting: EQUIPMENT_TYPES.WOODEN_POLE,
-  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  clothingStarting: EQUIPMENT_TYPES.RAGS_TATTERED,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.FOXFIRE_HERETIC})
 });
@@ -54,7 +54,7 @@ leaderTypes[LEADER_TYPES.AUSPICIOUS_WAIF] = new LeaderType({
     + 'hungry for more.'),
   speechType: 'Humorous',
   toolStarting: EQUIPMENT_TYPES.ROUGH_MATTOCK,
-  clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
+  clothingStarting: EQUIPMENT_TYPES.RAGS_TATTERED,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.AUSPICIOUS_WAIF})
 });
@@ -71,6 +71,17 @@ leaderTypes[LEADER_TYPES.TREFOIL_SOWER] = new LeaderType({
   clothingStarting: EQUIPMENT_TYPES.SIMPLE_ROBE,
   backStarting: null,
   icon: new Icon({provider: 'svg', name: SVGS.TREFOIL_SOWER})
+});
+
+leaderTypes[LEADER_TYPES.EXILED_AMBASSADOR] = new LeaderType({
+  name: LEADER_TYPES.EXILED_AMBASSADOR,
+  title: 'Exiled Ambassador',
+  description: `|name| once lived like royalty: fine silks, exquisite food, and crowds of people to win over with charm and guile. So far living in |town| hasn't seemed like an change much appreciated.`,
+  speechType: 'Humorous',
+  toolStarting: null,
+  clothingStarting: EQUIPMENT_TYPES.RAGS_TATTERED,
+  backStarting: null,
+  icon: new Icon({provider: 'svg', name: SVGS.EXILED_AMBASSADOR})
 });
 
 leaderTypes[LEADER_TYPES.SCARRED_NAVIGATOR] = new LeaderType({
