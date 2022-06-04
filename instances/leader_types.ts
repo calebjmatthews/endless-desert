@@ -18,19 +18,6 @@ leaderTypes[LEADER_TYPES.SAMANNOUD] = new LeaderType({
   icon: new Icon({provider: 'svg', name: SVGS.SAMANNOUD})
 });
 
-leaderTypes[LEADER_TYPES.SHUDDERING_REFUGE] = new LeaderType({
-  name: LEADER_TYPES.SHUDDERING_REFUGE,
-  title: 'the Shuddering Refuge',
-  description: ('You don\'t see many physical scars, but |name| and company '
-    + 'are a downcast and solumn group. Their nightly singing as the sun goes '
-    + 'down is one of the most sorrowful things you\'ve ever heard.'),
-  speechType: 'Calm',
-  toolStarting: null,
-  clothingStarting: EQUIPMENT_TYPES.RAGS_TATTERED,
-  backStarting: EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK,
-  icon: new Icon({provider: 'svg', name: SVGS.SHUDDERING_REFUGE})
-});
-
 leaderTypes[LEADER_TYPES.FOXFIRE_HERETIC] = new LeaderType({
   name: LEADER_TYPES.FOXFIRE_HERETIC,
   title: 'the Foxfire Heretic',

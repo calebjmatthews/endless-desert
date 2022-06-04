@@ -179,7 +179,6 @@ export enum SVGS {
   PYRE = "Pyre",
 
   SAMANNOUD = "Samannoud",
-  SHUDDERING_REFUGE = "Da Nang",
   FOXFIRE_HERETIC = "Guangzhou",
   TREFOIL_SOWER = "Louth",
   EXILED_AMBASSADOR = "Najran",

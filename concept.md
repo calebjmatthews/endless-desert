@@ -815,8 +815,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix message fetching
   [X] Fix buggy cooking
   [X] Map icon that shows resting buildings
-  [ ] Remove De Nang, too boring
-  [ ] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
+  [X] Remove De Nang, too boring
+  [X] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [ ] Trader conversations
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Fortuity with options for new equipment quests
