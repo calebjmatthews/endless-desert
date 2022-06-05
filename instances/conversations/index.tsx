@@ -2,8 +2,6 @@ import { fifConversations, fifConvoStatements, fifConvoResponses, fifConvoNarrat
   from './firefly';
 import { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }
   from './samannoud';
-import { sreConversations, sreConvoStatements, sreConvoResponses, sreConvoNarrations }
-  from './shuddering_refuge';
 import { ffhConversations, ffhConvoStatements, ffhConvoResponses, ffhConvoNarrations }
   from './foxfire_heretic';
 import { auwConversations, auwConvoStatements, auwConvoResponses, auwConvoNarrations }
@@ -17,19 +15,19 @@ import { exaConversations, exaConvoStatements, exaConvoResponses, exaConvoNarrat
 import { etcConversations, etcConvoStatements, etcConvoResponses, etcConvoNarrations }
   from './etc';
 
-const conversations = { ...sndConversations, ...sreConversations,
+const conversations = { ...sndConversations,
   ...ffhConversations, ...auwConversations, ...tfsConversations,
   ...scnConversations, ...fifConversations, ...exaConversations,
   ...etcConversations };
-const convoStatements = { ...sndConvoStatements, ...sreConvoStatements,
+const convoStatements = { ...sndConvoStatements,
   ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
   ...scnConvoStatements, ...fifConvoStatements, ...exaConvoStatements,
   ...etcConvoStatements };
-const convoResponses = { ...sndConvoResponses, ...sreConvoResponses,
+const convoResponses = { ...sndConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
   ...scnConvoResponses, ...fifConvoResponses, ...exaConvoResponses,
   ...etcConvoResponses };
-const convoNarrations = { ...sndConvoNarrations, ...sreConvoNarrations,
+const convoNarrations = { ...sndConvoNarrations,
   ...ffhConvoNarrations, ...auwConvoNarrations, ...tfsConvoNarrations,
   ...scnConvoNarrations, ...fifConvoNarrations, ...exaConvoNarrations,
   ...etcConvoNarrations };
