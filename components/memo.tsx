@@ -105,6 +105,7 @@ export default function MemoComponent() {
           <Text style={styles.bodyText}>{'Your town ' + label + ':'}</Text>
           {resources.map((resource, index) => {
             const resourceType = utils.getResourceType(resource);
+            if (Math.floor(resource.quantity) === 0) { return null; }
             return (
               <View key={index} style={styles.containerStretchRow}>
                 <BadgeComponent icon={resourceType.icon} size={21} />
