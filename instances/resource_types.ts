@@ -122,7 +122,7 @@ resourceTypes[RTY.LENTIL] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.FOOD, RTA.INGREDIENT],
-  value: 10,
+  value: 6,
   description: `Dry, dull, sustaining, and unlike many crops can be eaten raw`,
   icon: new Icon({provider: 'svg', name: SVGS.LENTIL, color: '#a0ddb0',
     shadow: '#5bc980'})
@@ -298,7 +298,7 @@ resourceTypes[RTY.REEDS] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.CONSTRUCTION, RTA.FUEL],
-  value: 8,
+  value: 4,
   description: `For roofing, fabric, paper, papyrus, etc, etc`,
   icon: new Icon({provider: 'svg', name: SVGS.REEDS})
 });
@@ -308,7 +308,7 @@ resourceTypes[RTY.GRAIN] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP],
-  value: 12,
+  value: 8,
   description: `Grind it and bake it, or wet it down and wait`,
   icon: new Icon({provider: 'svg', name: SVGS.GRAIN})
 });
@@ -318,7 +318,7 @@ resourceTypes[RTY.OLIVE] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP],
-  value: 60,
+  value: 28,
   description: `Can be pressed into a lovely rich oil`,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE})
 });
@@ -371,7 +371,7 @@ resourceTypes[RTY.FLOUR] = new ResourceType({
   name: RTY.FLOUR,
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.POWDER, RTA.INGREDIENT],
-  value: 30,
+  value: 12,
   description: `A wonderfully versatile starch made from grinding grain`,
   icon: new Icon({provider: 'svg', name: SVGS.FLOUR, color: '#f4da90',
     shadow: '#e7aa60'})
@@ -382,7 +382,7 @@ resourceTypes[RTY.MUSSEL] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.FOOD, RTA.INGREDIENT],
-  value: 32,
+  value: 12,
   description: `These mollusks should be eaten fresh, while they still taste like the distant sea`,
   icon: new Icon({provider: 'svg', name: SVGS.MUSSEL, color: '#FF5023',
     shadow: '#57565C'})
@@ -393,7 +393,7 @@ resourceTypes[RTY.MINNOW] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 24,
+  value: 14,
   description: `Tiny, abundant fish that glint in the sunlight`,
   icon: new Icon({provider: 'svg', name: SVGS.MINNOW, color: '#f9d43a',
     shadow: '#f9993a'})
@@ -415,7 +415,7 @@ resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.FISH,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 400,
+  value: 100,
   description: `Enormous river fish that are a difficult catch`,
   icon: new Icon({provider: 'svg', name: SVGS.BARRAMUNDI, color: '#39a3db',
     shadow: '#4881c2'})
@@ -426,7 +426,7 @@ resourceTypes[RTY.QUAIL] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
-  value: 200,
+  value: 50,
   description: `Small docile birds that frolic in the dawn and dusk`,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL})
 });
@@ -436,7 +436,7 @@ resourceTypes[RTY.QUAIL_MEAT] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 160,
+  value: 60,
   description: `Sweet, mild meat from a quail`,
   icon: new Icon({provider: 'svg', name: SVGS.QUAIL_MEAT, color: '#9a4c00',
     shadow: '#723700'})
@@ -447,7 +447,7 @@ resourceTypes[RTY.EGG] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 40,
+  value: 12,
   description: `Rich yolk in a crackling shell`,
   icon: new Icon({provider: 'svg', name: SVGS.EGG, color: '#ffd200',
     shadow: '#ffd200'})
@@ -468,7 +468,7 @@ resourceTypes[RTY.AUROCH] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
-  value: 400,
+  value: 120,
   description: `Auroch are slow growing, but their meat and milk are prized`,
   icon: new Icon({provider: 'svg', name: SVGS.AUROCH})
 });
@@ -478,7 +478,7 @@ resourceTypes[RTY.AUROCH_MEAT] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 240,
+  value: 80,
   description: `Marbled red meat from an auroch, excellent when roasted over a fire`,
   icon: new Icon({provider: 'svg', name: SVGS.AUROCH_MEAT, color: '#86000f',
     shadow: '#70000a'})
@@ -489,7 +489,7 @@ resourceTypes[RTY.MILK] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL, RTA.INGREDIENT],
-  value: 100,
+  value: 32,
   description: `Rich, creamy milk used in a variety of dishes`,
   icon: new Icon({provider: 'svg', name: SVGS.MILK, color: '#eee',
     shadow: '#bbb'})
@@ -590,7 +590,7 @@ resourceTypes[RTY.CLAY_MUDDY] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH],
-  value: 25,
+  value: 12,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a06363',
     shadow: '#754646'})
 });
@@ -640,7 +640,7 @@ resourceTypes[RTY.BRICKS_MUD] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.BRICK,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 40,
+  value: 22,
   description: `Simple mud bricks, neither especially strong nor beautiful`,
   icon: new Icon({provider: 'svg', name: SVGS.BRICK, color: '#674648',
     shadow: '#50392d', secondaryColor: '#845d59'})
@@ -694,7 +694,7 @@ resourceTypes[RTY.THATCH] = new ResourceType({
   name: RTY.THATCH,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.DRIED, RTA.CONSTRUCTION],
-  value: 40,
+  value: 8,
   icon: new Icon({provider: 'svg', name: SVGS.THATCH})
 });
 
@@ -703,7 +703,7 @@ resourceTypes[RTY.SAND_YELLOW] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
   tags: [RTA.EARTH, RTA.SAVORY],
-  value: 3,
+  value: 2,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
     shadow: '#e6a960'})
 });
@@ -879,7 +879,7 @@ resourceTypes[RTY.BRONZE] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.METAL_INGOT,
   tags: [RTA.SMELTED],
-  value: 800,
+  value: 1100,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#ce6112',
     shadow: '#a94e23', secondaryColor: '#d87444'})
 });
@@ -919,7 +919,7 @@ resourceTypes[RTY.BRASS] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.METAL_INGOT,
   tags: [RTA.SMELTED],
-  value: 740,
+  value: 880,
   icon: new Icon({provider: 'svg', name: SVGS.BAR, color: '#ff9825',
     shadow: '#e06900', secondaryColor: '#ffbc81'})
 });
@@ -1101,7 +1101,7 @@ resourceTypes[RTY.GLASS] = new ResourceType({
   subcategory: RSC.GLASS,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.SMELTED, RTA.CONSTRUCTION],
-  value: 40,
+  value: 16,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
 });
 
@@ -1110,7 +1110,7 @@ resourceTypes[RTY.GLASS_FLOAT] = new ResourceType({
   subcategory: RSC.GLASS,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.SMELTED, RTA.CONSTRUCTION],
-  value: 400,
+  value: 520,
   description: `An incredibly clear and smooth material created by floating liquid glass on a pool of molten tin`,
   icon: new Icon({provider: 'svg', name: SVGS.GLASS_FLOAT}),
 });
@@ -1120,7 +1120,7 @@ resourceTypes[RTY.OLIVE_OIL] = new ResourceType({
   subcategory: RSC.OIL,
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.PRESSED, RTA.SPICE],
-  value: 180,
+  value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
 });
 
@@ -1128,7 +1128,7 @@ resourceTypes[RTY.PULP] = new ResourceType({
   name: RTY.PULP,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.POWDER],
-  value: 50,
+  value: 8,
   icon: new Icon({provider: 'svg', name: SVGS.PULP})
 });
 
@@ -1136,7 +1136,7 @@ resourceTypes[RTY.PAPYRUS] = new ResourceType({
   name: RTY.PAPYRUS,
   category: RCA.ARTISAN_GOOD,
   tags: [RTA.PRESSED],
-  value: 100,
+  value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.PAPYRUS})
 });
 
@@ -1172,7 +1172,7 @@ resourceTypes[RTY.LINEN] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.TEXTILE,
   tags: [RTA.TEXTILE],
-  value: 160,
+  value: 800,
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
@@ -1189,7 +1189,7 @@ resourceTypes[RTY.ABRASIVE] = new ResourceType({
   name: RTY.ABRASIVE,
   category: RCA.MATERIAL_REFINED,
   tags: [RTA.POWDER],
-  value: 5,
+  value: 70,
   icon: new Icon({provider: 'svg', name: SVGS.ABRASIVE})
 });
 
@@ -1198,7 +1198,7 @@ resourceTypes[RTY.BEADS] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.GLASS,
   tags: [RTA.GLASS],
-  value: 180,
+  value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.BEADS})
 });
 
@@ -1207,7 +1207,7 @@ resourceTypes[RTY.GLASSWARE] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.GLASS,
   tags: [RTA.GLASS],
-  value: 800,
+  value: 90,
   description: `Glass drinking vessels decorated with cloth`,
   icon: new Icon({provider: 'svg', name: SVGS.GLASSWARE})
 });
@@ -1217,7 +1217,7 @@ resourceTypes[RTY.LENS] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.GLASS,
   tags: [RTA.GLASS],
-  value: 1800,
+  value: 340,
   icon: new Icon({provider: 'svg', name: SVGS.LENS})
 });
 
@@ -1235,7 +1235,7 @@ resourceTypes[RTY.GLAZE_ASH] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.GLAZE,
   tags: [RTA.SYNTHESIZED],
-  value: 240,
+  value: 160,
   icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#676767',
     shadow: '#1d1d1d'})
 });
@@ -1255,7 +1255,7 @@ resourceTypes[RTY.GLAZE_LAPIS] = new ResourceType({
   category: RCA.MATERIAL_REFINED,
   subcategory: RSC.GLAZE,
   tags: [RTA.SYNTHESIZED],
-  value: 5500,
+  value: 64100,
   icon: new Icon({provider: 'svg', name: SVGS.GLAZE, color: '#353cff',
     shadow: '#13177f'})
 });
@@ -1274,7 +1274,7 @@ resourceTypes[RTY.ASHWARE] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.CERAMIC,
   tags: [RTA.CERAMIC],
-  value: 480,
+  value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.ASHWARE})
 });
 
@@ -1283,7 +1283,7 @@ resourceTypes[RTY.FAIENCE] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.CERAMIC,
   tags: [RTA.CERAMIC],
-  value: 1200,
+  value: 580,
   icon: new Icon({provider: 'svg', name: SVGS.FAIENCE})
 });
 
@@ -1292,7 +1292,7 @@ resourceTypes[RTY.PORCELAIN] = new ResourceType({
   category: RCA.ARTISAN_GOOD,
   subcategory: RSC.CERAMIC,
   tags: [RTA.CERAMIC],
-  value: 7800,
+  value: 68000,
   icon: new Icon({provider: 'svg', name: SVGS.PORCELAIN})
 });
 
@@ -1450,7 +1450,7 @@ resourceTypes[RTY.CRUDE_NEEDLE] = new ResourceType({
   name: RTY.CRUDE_NEEDLE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP],
-  value: 1400,
+  value: 1480,
   description: `A roughly-made needle; can be placed pointing upwards as a simple trap`,
   icon: new Icon({provider: 'svg', name: SVGS.NEEDLE})
 });
@@ -1459,7 +1459,7 @@ resourceTypes[RTY.GEARWORK] = new ResourceType({
   name: RTY.GEARWORK,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
-  value: 2480,
+  value: 3060,
   description: `A simple gear-driven component; used in everything from dart-traps to bomb-triggers`,
   icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
 });
@@ -1468,7 +1468,7 @@ resourceTypes[RTY.ROUGH_ROPE] = new ResourceType({
   name: RTY.ROUGH_ROPE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP, RTA.ACTION_LOOSE],
-  value: 1600,
+  value: 1640,
   description: `Made from corded reed fibers; can be used to make a spring trap or to pull yourself from a hole`,
   icon: new Icon({provider: 'svg', name: SVGS.ROPE})
 });
@@ -1486,7 +1486,7 @@ resourceTypes[RTY.BINDING] = new ResourceType({
   name: RTY.BINDING,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_HEAL],
-  value: 1360,
+  value: 1320,
   description: `A soft fibrous band that can stop bleeding or hold things together`,
   icon: new Icon({provider: 'svg', name: SVGS.BINDING})
 });

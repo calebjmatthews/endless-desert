@@ -574,7 +574,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.FISHING_POND_DREDGED,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 2, probability: 1}],
       consumes: null}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
@@ -596,7 +596,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     upgradesInto: BTY.FISHING_POND_OLIVE_SHADED,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 2, probability: 1}],
       consumes: null}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
@@ -617,7 +617,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 6, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.MUSSEL, quantity: 2, probability: 1}],
       consumes: null}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.MINNOW, quantity: 16, probability: 1}],
@@ -1222,31 +1222,32 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 8}]}),
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 6},
+        {specificity: RSP.EXACT, type: RTY.GLASS, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 4}]}),
+      consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 6},
+        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2},
-        {specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2}]}),
+        {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 2}]}),
     new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.BRONZE, quantity: 2},
         {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 4}]}),
     new BuildingRecipe({index: 4, produces:
-      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 20},
-        {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 20}]}),
-    new BuildingRecipe({index: 5, produces:
       [{specificity: RSP.EXACT, type: RTY.TORCH, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1000},
         {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 30}]}),
+    new BuildingRecipe({index: 5, produces:
+      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 80},
+        {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 40}]}),
     new BuildingRecipe({index: 6, produces:
-      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 2, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 40},
-        {specificity: RSP.EXACT, type: RTY.PULP, quantity: 40}]}) ],
+      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 1, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 100},
+        {specificity: RSP.EXACT, type: RTY.PULP, quantity: 80}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -1340,7 +1341,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 40}],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.BEADS, quantity: 10, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10}]}),
+      consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10},
+        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 1}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.GLASSWARE, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 8},
@@ -1396,25 +1398,25 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 20},
       {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.TERRACOTTA, quantity: 6, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RED, quantity: 6},
-        {specificity: RSP.EXACT, type: RTY.WATER, quantity: 2},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 20}]}),
+      [{specificity: RSP.EXACT, type: RTY.TERRACOTTA, quantity: 22, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 88},
+        {specificity: RSP.EXACT, type: RTY.WATER, quantity: 22},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.ASHWARE, quantity: 4, probability: 1}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 4},
-        {specificity: RSP.EXACT, type: RTY.GLAZE_ASH, quantity: 2},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 40}]}),
+      [{specificity: RSP.EXACT, type: RTY.ASHWARE, quantity: 8, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.GLAZE_ASH, quantity: 4},
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.FAIENCE, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_BLUE, quantity: 4},
         {specificity: RSP.EXACT, type: RTY.GLAZE_TIN, quantity: 2},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 40}]}),
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 160}]}),
     new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.PORCELAIN, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, quantity: 2},
         {specificity: RSP.EXACT, type: RTY.GLAZE_LAPIS, quantity: 2},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 60}]}) ],
+        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 320}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true

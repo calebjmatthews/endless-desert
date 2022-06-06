@@ -9,6 +9,7 @@ import BuildingRecipe from '../models/building_recipe';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
 import { utils } from '../utils';
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 
 const RATE_ADJ = 10;
 
@@ -158,15 +159,15 @@ export default function ValueCheckComponent() {
     if (br.consumes) {
       br.consumes.map((consume) => {
         const crt = utils.getMatchingResourceKind(consume.specificity, consume.type);
-        if (crt) {
-          if (crt.value) {
-            computedValue += (crt.value * (consume.quantity / RATE_ADJ));
-          }
+        let value = 1;
+        if (consume.specificity === RESOURCE_SPECIFICITY.EXACT && crt.value) {
+          value = crt.value;
         }
+        computedValue += (value * (consume.quantity / RATE_ADJ));
       });
     }
     computedValue *= (RATE_ADJ / p.quantity);
-    computedValue += (buildingValue * 0.001);
+    computedValue += (buildingValue * 0.0001);
     let newValueDisplay = new ValueDisplay({ resourceName: p.type, currentValue,
       building: bt.name, buildingValue, rate: p.quantity,
       ingredients: br.consumes, computedValue });

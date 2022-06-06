@@ -36,6 +36,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     -  Perfumes/other products are created by account-specific combinations of extracts.
     -  Extract types include: Sweet (pink), Sour (green), Bitter (purple), Brackish (dark blue), Savory (orange), Spicy (red), Cooling (light blue), Herbal (green), Deep (shining yellow), Strange (shining purple), Rich (shining green), Airy (shining blue)
   - Somewhat hidden overall goal is to find the secret of undoing death, the quest for which cannot be tainted by killing. There could be a previous explorer (or duo?) who searched for the secret, and an elusive beast that has to willingly give you its eye.
+    - Brother (Dani) left to look for a path into death (after his fianceé died (of some sickness?)
+    - PC didn't like fianceé because she acted as a wedge between them, and tried to persuade his brother to let her go
+    - Idle game-esque themes about endlessly pushing forward
   - Temporary settlements can be made in the Dreaming (the River of Pearls?), last 24 hours (?) before evaporating and allowing the player to claim one single resource.
     - These can have produce unusual resources, such as metal, wood, or stone.
     - These can have unusual ruined buildings, such as sculpture gardens and luthiers.
@@ -817,15 +820,17 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Map icon that shows resting buildings
   [X] Remove De Nang, too boring
   [X] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
+  [X] Rebalance resource values
+  [ ] Add leader selection to building detail
+  [ ] Add resource quantities/rates to building detail
+  [ ] Dromedarian fortuities and quests
   [ ] Trader conversations
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
   [ ] Fortuity with options for new equipment quests
-  [ ] More repeatable fortuities
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
   [ ] Flashy display for rare trades
-  [ ] Dromedarian fortuities and quests
   [ ] Expeditions! (without exploration)
 
   [ ] Autoselect first resource
@@ -837,6 +842,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] Expensive trades to check whether "give" can result in min of 1
+  [ ] More repeatable fortuities
+  [ ] Leaders running out of consumed food/drink begin foraging
 
 ## Commands
 ### Delete all records from all tables:
