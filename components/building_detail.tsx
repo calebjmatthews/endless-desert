@@ -52,6 +52,7 @@ export default function BuildDetailComponent() {
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
+  const rates = useTypedSelector(state => state.rates);
   let leaderId = Object.keys(leaders).filter((aLeaderId) => (
     leaders[aLeaderId].assignedTo === building.id
   ))[0];
@@ -484,7 +485,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderRecipe(recipe: BuildingRecipe) {
-    let rates: {specificity: string, type: string, quantity: number}[] = [];
+    let buildingRates: BuildingRate[] = [];
     if (recipe.index == -1) {
       const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4,
         minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
@@ -498,20 +499,49 @@ export default function BuildDetailComponent() {
       )
     }
     if (recipe.produces) {
-      recipe.produces.map((produce) => {
-        rates.push({ specificity: produce.specificity, type: produce.type,
-          quantity: produce.quantity});
+      recipe.produces.forEach((produce) => {
+        buildingRates.push({ ...produce });
       });
     }
     if (recipe.consumes) {
-      recipe.consumes.map((consume) => {
-        rates.push({ specificity: consume.specificity, type: consume.type,
-          quantity: (consume.quantity * -1)});
+      recipe.consumes.forEach((consume) => {
+        let newRate: BuildingRate = { specificity: consume.specificity,
+          type: consume.type, quantity: (consume.quantity * -1)};
+        let typeQuality = `${consume.type}|0`;
+
+        let inexact = false;
+        if (consume.specificity === RESOURCE_SPECIFICITY.TAG
+          || consume.specificity === RESOURCE_SPECIFICITY.SUBCATEGORY
+          || consume.specificity === RESOURCE_SPECIFICITY.CATEGORY) {
+          newRate.inexact = true;
+        }
+        const specType = `${consume.specificity}|${consume.type}`;
+        if (building.resourcesSelected[specType]) {
+          const resource = new Resource(building.resourcesSelected[specType]);
+          const resourceType = resourceTypes[resource.type];
+          newRate.specificity = RESOURCE_SPECIFICITY.EXACT;
+          newRate.type = resource.type;
+          newRate.quantity = (consume.quantity / resourceType.value) * -1;
+          newRate.quality = resource.quality;
+          newRate.inexactSelected = true;
+          typeQuality = `${resource.type}|${resource.quality}`;
+        }
+
+        if (consume.type.includes('-')) {
+          newRate.type = consume.type + '|0';
+          newRate.specificity = RESOURCE_SPECIFICITY.EXACT;
+        }
+
+        if (rates.exhaustions[typeQuality]) {
+          newRate.exhaustion = rates.exhaustions[typeQuality];
+        }
+
+        buildingRates.push(newRate);
       });
     }
     return (
       <View>
-        {rates.map((rate) => renderRate(rate))}
+        {buildingRates.map((rate) => renderRate(rate))}
       </View>
     );
   }
@@ -522,21 +552,19 @@ export default function BuildDetailComponent() {
         fromBuildingDetail: true}));
   }
 
-  function renderRate(rate: {specificity: string, type: string, quantity: number}) {
+  function renderRate(rate: BuildingRate) {
+    let typeQuality = `${rate.type}|0`;
     let resourceKind = utils.getMatchingResourceKind(rate.specificity, rate.type);
-    let inexact = false;
-    if (rate.specificity === RESOURCE_SPECIFICITY.TAG
-      || rate.specificity === RESOURCE_SPECIFICITY.SUBCATEGORY
-      || rate.specificity === RESOURCE_SPECIFICITY.CATEGORY) {
-      inexact = true;
-    }
-    let name = resourceKind.name;
+    let name = `${resourceKind.name}/m`;
     if (rate.type.includes('-')) {
-      const resource = vault.resources[rate.type + '|0'];
-      if (resource) {
-        resourceKind = new Resource(resource).toResourceType(resourceTypes);
-        name = resource.name || name;
-      }
+      const resourceType = new Resource(vault.resources[`${rate.type}|0`])
+      .toResourceType(resourceTypes);
+      resourceKind = resourceType;
+      name = (resourceType.displayName || name);
+    }
+    let quantity = '';
+    if (vault.resources[typeQuality]) {
+      quantity = `(of ${utils.formatNumberShort(vault.resources[typeQuality].quantity)})`;
     }
 
     let sign = '+';
@@ -546,41 +574,56 @@ export default function BuildDetailComponent() {
       sign = '';
       rateStyle.backgroundColor = '#ffb4b1';
     }
-    if (!inexact) {
+    let exhaustionString: string|null = null;
+    if (rate.exhaustion) {
+      const diff = rate.exhaustion - new Date(Date.now()).valueOf();
+      exhaustionString = `Out in ${utils.formatDuration(diff)}`;
+    }
+    if (!rate.inexact) {
       return (
-        <View key={resourceKind.name} style={[styles.rows, rateStyle]}>
-          <Text>{sign + rate.quantity}</Text>
+        <View key={`${sign}${resourceKind.name}`} style={[styles.rows, rateStyle]}>
+        <Text style={{minWidth: 33, textAlign: 'right'}}>{sign + rate.quantity}</Text>
           <BadgeComponent icon={resourceKind.icon} size={21} />
-          <Text>{ name + '/m ' }</Text>
+          <View style={[styles.columns, {maxWidth: positioner.recipeTextWidth}]}>
+            <Text>{name}<Text style={{opacity: 0.6}}>{` ${quantity}`}</Text></Text>
+            {exhaustionString && (
+              <Text style={{fontSize: 12, opacity: 0.6}}>{exhaustionString}</Text>
+            )}
+          </View>
         </View>
       );
     }
-    let icon = resourceKind.icon;
-    const specType = rate.specificity + '|' + rate.type;
     let label = `${rate.quantity / (resourceKind.value || 1)}(~)`;
     let quality = 0;
-    name = `Any ${name}`;
+    name = `Any ${name}/m`;
     rateStyle = {...rateStyle, borderStyle: 'solid', borderWidth: 1,
       borderColor: '#444', borderRadius: 4, marginVertical: 1, marginLeft: 2,
       backgroundColor: '#ffe0de'};
-    if (building.resourcesSelected[specType]) {
-      const resource = new Resource(building.resourcesSelected[specType]);
+    const specType = `${rate.specificity}|${rate.type}`;
+    if (rate.inexactSelected) {
+      const resource = new Resource({...rate, quality: (rate.quality || 0)});
       const resourceType = resourceTypes[resource.type];
+      typeQuality = `${resource.type}|${resource.quality || 0}`;
       quality = resource.quality;
-      const rRate = rate.quantity / resourceType.value;
-      label = ((rRate > 0 ? '+' : '') + utils.formatNumberShort(rRate));
-      icon = resourceType.icon;
-      name = utils.getResourceName(resource);
+      label = `${(rate.quantity > 0 ? '+' : '')}${utils.formatNumberShort(rate.quantity)}`;
+      name = `${utils.getResourceName(resource)}/m`;
+      quantity = `(of ${utils.formatNumberShort(vault.resources[typeQuality].quantity)})`;
       rateStyle = {...rateStyle, backgroundColor: '#ffccca'};
     }
     return (
-      <TouchableOpacity key={resourceKind.name} style={[styles.rows, rateStyle]}
+      <TouchableOpacity key={`${sign}${resourceKind.name}`}
+        style={[styles.rows, rateStyle]}
         onPress={() => inexactRateOpen(building, `${specType}|0`, rate.quantity)}>
-        <Text>{label}</Text>
-        <BadgeComponent icon={icon}
+        <Text style={{minWidth: 33, textAlign: 'right'}}>{label}</Text>
+        <BadgeComponent icon={resourceKind.icon}
           quality={quality}
           size={21} />
-        <Text>{`${name}/m `}</Text>
+        <View style={[styles.columns, {maxWidth: positioner.recipeTextWidth}]}>
+          <Text>{name}<Text style={{opacity: 0.6}}>{` ${quantity}`}</Text></Text>
+          {exhaustionString && (
+            <Text style={{fontSize: 12, opacity: 0.6}}>{exhaustionString}</Text>
+          )}
+        </View>
       </TouchableOpacity>
     );
   }
@@ -604,3 +647,13 @@ export default function BuildDetailComponent() {
       {type: 'Building detail', building}))
   }
 }
+
+interface BuildingRate {
+  specificity: string;
+  type: string;
+  quantity: number;
+  quality?: number;
+  inexact?: boolean;
+  inexactSelected?: boolean;
+  exhaustion?: number;
+};

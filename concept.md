@@ -823,6 +823,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Rebalance resource values
   [X] Add leader selection to building detail
   [X] Add resource selection to inexact rates in building detail
+  [X] Add vault quantities and exhaustions in building detail
   [ ] Add resource quantities/rates to building detail
   [ ] Hide inapplicable fields from building in progress detail
   [ ] Tab linking buttons on special buildings (Study, Market)

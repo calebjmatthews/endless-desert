@@ -29,6 +29,8 @@ export default class Positioner {
   speechButtonWidth: number = 270;
   mapHeight: number = 460;
   confirmationRowHeight: number = 108;
+  recipeButtonIconWidth: number = 90;
+  recipeTextWidth: number = 160;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {
@@ -61,6 +63,7 @@ export default class Positioner {
         - (this.majorPadding * 2);
       this.speechButtonWidth = this.modalMajor - this.majorPadding;
       this.mapHeight = this.bodyHeight - (this.majorPadding * 2.5);
+      this.recipeTextWidth = this.modalMinor - this.recipeButtonIconWidth;
     }
   }
 }

@@ -30,8 +30,7 @@ export default function ResourceSelectRateComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const buildings = useTypedSelector(state => state.buildings);
   const modalValue: {building: Building, specTypeQuality: string, rate: number,
-    fromBuildingDetail?: boolean} =
-    useTypedSelector(state => state.ui.modalValue);
+    fromBuildingDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
