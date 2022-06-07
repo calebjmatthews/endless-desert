@@ -18,6 +18,7 @@ import { displayModal, displayModalValue } from '../actions/ui';
 import { addMessage } from '../actions/messages';
 import { consumeResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
+import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 
 import Building from '../models/building';
 import BuildingRecipe from '../models/building_recipe';
@@ -47,12 +48,21 @@ export default function BuildDetailComponent() {
   const introState = useTypedSelector(state => state.account.introState);
   const modalDisplayed = useTypedSelector(state => state.ui.modalDisplayed);
   const modalValue: Building = useTypedSelector(state => state.ui.modalValue);
+  let building: Building = buildings[modalValue.id];
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
+  let leaderId = Object.keys(leaders).filter((aLeaderId) => (
+    leaders[aLeaderId].assignedTo === building.id
+  ))[0];
+  if (!leaderId) {
+    leaderId = Object.keys(leaders).filter((aLeaderId) => (
+      leaders[aLeaderId].livingAt === building.id
+    ))[0];
+  }
+  const leader = leaderId ? leaders[leaderId] : null;
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  let building: Building = modalValue;
   const buildingType = new BuildingType(buildingTypes[building.buildingType]);
 
   const [initializing, setInitializing] = useState<boolean>(true);
@@ -106,7 +116,10 @@ export default function BuildDetailComponent() {
             maxWidth: positioner.modalWidth}])}>
           <Text style={styles.descriptionBandText}>{buildingType.description}</Text>
         </View>
-        {renderToStorageButton()}
+        <View style={styles.spacedRows}>
+          {renderLeader()}
+          {renderToStorageButton()}
+        </View>
         {renderUpgradeCostContainer()}
         {renderRecipeContainer()}
         {renderKitchenButton()}
@@ -117,10 +130,11 @@ export default function BuildDetailComponent() {
   function renderToStorageButton() {
     return !buildingType.cannotStore && (
       <TouchableOpacity onPress={() => { toStoragePress(building) }}
-        style={StyleSheet.flatten([styles.button, styles.buttonAway])}>
+        style={StyleSheet.flatten([styles.buttonSubtle, styles.buttonAway,
+          { alignSelf: 'stretch' }])}>
         <IconComponent provider="FontAwesome5" name="level-down-alt" color="#fff"
-          size={12} />
-        <Text style={styles.buttonText}>{' Into storage'}</Text>
+          size={16} />
+        <Text style={styles.buttonTextLarge}>{' Into storage'}</Text>
       </TouchableOpacity>
     );
   }
@@ -419,6 +433,45 @@ export default function BuildDetailComponent() {
           size={20} />
       </TouchableOpacity>
     );
+  }
+
+  function leaderAssign(building: Building) {
+    const subType = (buildingType.category === BUILDING_CATEGORIES.HOUSING)
+      ? LIVE_AT_BUILDING : ASSIGN_TO_BUILDING;
+    dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open',
+      {type: MODALS.LEADER_DETAIL, subType, building: building, fromDetail: true}));
+  }
+
+  function renderLeader() {
+    const label = (buildingType.category === BUILDING_CATEGORIES.HOUSING)
+      ? 'living' : 'working';
+    if (leader) {
+      return (
+        <TouchableOpacity style={[styles.buttonSubtle,
+          {opacity: 0.9, marginBottom: 6}]}
+          onPress={() => leaderAssign(building)}>
+          <BadgeComponent icon={leader.icon} size={24} borderless />
+          <Text>
+            {`${leader.name} ${label}`}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    else {
+      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
+        color: '#cec3e4', size: 14 });
+      return (
+        <TouchableOpacity style={[styles.buttonSubtle,
+          {opacity: 0.9, marginBottom: 6}]} onPress={() => leaderAssign(building)}>
+          <IconComponent provider='FontAwesome5' name='minus-circle' color='#cec3e4'
+            size={14} />
+          <Text>
+            {` No leader ${label}`}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    return null;
   }
 
   function pressSelectRecipe(building: Building, recipeIndex: number) {

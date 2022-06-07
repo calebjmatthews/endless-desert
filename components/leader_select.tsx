@@ -18,6 +18,7 @@ import Building from '../models/building';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { buildingTypes } from '../instances/building_types';
+import { MODALS } from '../enums/modals';
 
 export default function LeaderSelectComponent() {
   const dispatch = useDispatch();
@@ -25,8 +26,8 @@ export default function LeaderSelectComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: {type: string, subType: string, building: Building} =
-    useTypedSelector(state => state.ui.modalValue);
+  const modalValue: {type: string, subType: string, building: Building,
+    fromDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   let leadersArray = Object.keys(leaders).map((leaderId) => {
@@ -121,7 +122,6 @@ export default function LeaderSelectComponent() {
         tempLeaders[leader.id].assignedTo = modalValue.building.id;
         let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
-        dispatch(displayModalValue(null, 'closed', null));
       }
       else if (modalValue.subType == LIVE_AT_BUILDING) {
         let newLeaders = Object.assign({}, leaders);
@@ -135,6 +135,12 @@ export default function LeaderSelectComponent() {
         dispatch(setLeaders(newLeaders));
         let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
+      }
+      if (modalValue.fromDetail) {
+        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open',
+          modalValue.building));
+      }
+      else {
         dispatch(displayModalValue(null, 'closed', null));
       }
     }
