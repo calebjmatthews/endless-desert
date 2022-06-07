@@ -439,7 +439,7 @@ export default function BuildDetailComponent() {
     const subType = (buildingType.category === BUILDING_CATEGORIES.HOUSING)
       ? LIVE_AT_BUILDING : ASSIGN_TO_BUILDING;
     dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open',
-      {type: MODALS.LEADER_DETAIL, subType, building: building, fromDetail: true}));
+      {type: MODALS.LEADER_DETAIL, subType, building: building, fromBuildingDetail: true}));
   }
 
   function renderLeader() {
@@ -516,8 +516,20 @@ export default function BuildDetailComponent() {
     );
   }
 
+  function inexactRateOpen(building: Building, specTypeQuality: string, rate: number) {
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_RATE, 'open',
+      {type: MODALS.RESOURCE_SELECT_RATE, building, specTypeQuality, rate,
+        fromBuildingDetail: true}));
+  }
+
   function renderRate(rate: {specificity: string, type: string, quantity: number}) {
     let resourceKind = utils.getMatchingResourceKind(rate.specificity, rate.type);
+    let inexact = false;
+    if (rate.specificity === RESOURCE_SPECIFICITY.TAG
+      || rate.specificity === RESOURCE_SPECIFICITY.SUBCATEGORY
+      || rate.specificity === RESOURCE_SPECIFICITY.CATEGORY) {
+      inexact = true;
+    }
     let name = resourceKind.name;
     if (rate.type.includes('-')) {
       const resource = vault.resources[rate.type + '|0'];
@@ -528,18 +540,48 @@ export default function BuildDetailComponent() {
     }
 
     let sign = '+';
-    let rateStyle = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
+    let rateStyle: any = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
       minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
     if (rate.quantity < 0) {
       sign = '';
       rateStyle.backgroundColor = '#ffb4b1';
     }
+    if (!inexact) {
+      return (
+        <View key={resourceKind.name} style={[styles.rows, rateStyle]}>
+          <Text>{sign + rate.quantity}</Text>
+          <BadgeComponent icon={resourceKind.icon} size={21} />
+          <Text>{ name + '/m ' }</Text>
+        </View>
+      );
+    }
+    let icon = resourceKind.icon;
+    const specType = rate.specificity + '|' + rate.type;
+    let label = `${rate.quantity / (resourceKind.value || 1)}(~)`;
+    let quality = 0;
+    name = `Any ${name}`;
+    rateStyle = {...rateStyle, borderStyle: 'solid', borderWidth: 1,
+      borderColor: '#444', borderRadius: 4, marginVertical: 1, marginLeft: 2,
+      backgroundColor: '#ffe0de'};
+    if (building.resourcesSelected[specType]) {
+      const resource = new Resource(building.resourcesSelected[specType]);
+      const resourceType = resourceTypes[resource.type];
+      quality = resource.quality;
+      const rRate = rate.quantity / resourceType.value;
+      label = ((rRate > 0 ? '+' : '') + utils.formatNumberShort(rRate));
+      icon = resourceType.icon;
+      name = utils.getResourceName(resource);
+      rateStyle = {...rateStyle, backgroundColor: '#ffccca'};
+    }
     return (
-      <View key={resourceKind.name} style={StyleSheet.flatten([styles.rows, rateStyle]) }>
-        <Text>{sign + rate.quantity}</Text>
-        <BadgeComponent icon={resourceKind.icon} size={21} />
-        <Text>{ name + '/m ' }</Text>
-      </View>
+      <TouchableOpacity key={resourceKind.name} style={[styles.rows, rateStyle]}
+        onPress={() => inexactRateOpen(building, `${specType}|0`, rate.quantity)}>
+        <Text>{label}</Text>
+        <BadgeComponent icon={icon}
+          quality={quality}
+          size={21} />
+        <Text>{`${name}/m `}</Text>
+      </TouchableOpacity>
     );
   }
 

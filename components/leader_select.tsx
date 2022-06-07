@@ -27,7 +27,7 @@ export default function LeaderSelectComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
   const modalValue: {type: string, subType: string, building: Building,
-    fromDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
+    fromBuildingDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   let leadersArray = Object.keys(leaders).map((leaderId) => {
@@ -136,9 +136,8 @@ export default function LeaderSelectComponent() {
         let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
       }
-      if (modalValue.fromDetail) {
-        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open',
-          modalValue.building));
+      if (modalValue.fromBuildingDetail) {
+        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', modalValue.building));
       }
       else {
         dispatch(displayModalValue(null, 'closed', null));

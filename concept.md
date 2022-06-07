@@ -821,7 +821,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Remove De Nang, too boring
   [X] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [X] Rebalance resource values
-  [ ] Add leader selection to building detail
+  [X] Add leader selection to building detail
+  [X] Add resource selection to inexact rates in building detail
   [ ] Add resource quantities/rates to building detail
   [ ] Hide inapplicable fields from building in progress detail
   [ ] Tab linking buttons on special buildings (Study, Market)

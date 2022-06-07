@@ -22,13 +22,15 @@ import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { MODALS } from '../enums/modals';
 
 export default function ResourceSelectRateComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const leaders = useTypedSelector(state => state.leaders);
   const buildings = useTypedSelector(state => state.buildings);
-  const modalValue: {building: Building, specTypeQuality: string, rate: number} =
+  const modalValue: {building: Building, specTypeQuality: string, rate: number,
+    fromBuildingDetail?: boolean} =
     useTypedSelector(state => state.ui.modalValue);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
@@ -141,7 +143,12 @@ export default function ResourceSelectRateComponent() {
       tempBuildings[newBuilding.id] = newBuilding;
       let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
       dispatch(setRates(newRates));
-      dispatch(displayModalValue(null, 'closed', null));
+      if (!modalValue.fromBuildingDetail) {
+        dispatch(displayModalValue(null, 'closed', null));
+      }
+      else {
+        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', modalValue.building));
+      }
     }
   }
 }
