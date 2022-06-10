@@ -20,6 +20,7 @@ const EQT = EQUIPMENT_TYPES;
 import { TERRAIN_TYPES } from '../enums/terrain_types';
 const TTY = TERRAIN_TYPES;
 import { SVGS } from '../enums/svgs';
+import { TABS } from '../enums/tabs';
 
 const defaultNoteCost = [
   { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
@@ -247,7 +248,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     upgradesInto: BTY.STUDY_PORTENTOUS,
-    cannotStore: true
+    cannotStore: true,
+    opensTab: {
+      tabName: TABS.RESEARCH,
+      icon: new Icon({provider: "FontAwesome", name: "book"}),
+      label: 'Research awaits'
+    }
   }),
 
   [BTY.STUDY_PORTENTOUS]: new BuildingType({
@@ -259,7 +265,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_DIALECTIC,
     noteCost: dialecticNoteCost,
-    cannotStore: true
+    cannotStore: true,
+    opensTab: {
+      tabName: TABS.RESEARCH,
+      icon: new Icon({provider: "FontAwesome", name: "book"}),
+      label: 'Research awaits'
+    }
   }),
 
   [BTY.MARKET]: new BuildingType({
@@ -277,7 +288,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    cannotStore: true
+    cannotStore: true,
+    opensTab: {
+      tabName: TABS.TRADING,
+      icon: new Icon({provider: "Entypo", name: "address"}),
+      label: 'Do some trading'
+    }
   }),
 
   [BTY.MARKET_GRAND]: new BuildingType({
@@ -289,7 +305,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
-    cannotStore: true
+    cannotStore: true,
+    opensTab: {
+      tabName: TABS.TRADING,
+      icon: new Icon({provider: "Entypo", name: "address"}),
+      label: 'Do some trading'
+    }
   }),
 
   [BTY.HUTS]: new BuildingType({

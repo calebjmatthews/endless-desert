@@ -22,6 +22,7 @@ export default class BuildingType implements BuildingTypeInterface {
   livingHappiness?: number;
   requiresLeader?: boolean;
   cannotStore?: boolean;
+  opensTab?: { tabName: string, icon: Icon, label: string };
 
   constructor(buildingType: BuildingTypeInterface | null) {
     if (buildingType) {
@@ -96,4 +97,5 @@ interface BuildingTypeInterface {
   livingHappiness?: number;
   requiresLeader?: boolean;
   cannotStore?: boolean;
+  opensTab?: { tabName: string, icon: Icon, label: string };
 }

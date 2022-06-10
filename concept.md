@@ -827,7 +827,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Leader-affected resource rates in building detail
   [X] Building problems in building detail header
   [X] Hide inapplicable fields from building in progress detail
-  [ ] Tab linking buttons on special buildings (Study, Market)
+  [X] Tab linking buttons on special buildings (Study, Market)
   [ ] Dromedarian fortuities and quests
   [ ] Trader conversations
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods

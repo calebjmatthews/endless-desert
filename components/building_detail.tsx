@@ -14,7 +14,7 @@ import { payBuildingCost, removeBuildingConstruction }
 import { addBuildingToStorage } from '../actions/buildings_storage';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
-import { displayModal, displayModalValue } from '../actions/ui';
+import { displayModal, displayModalValue, selectTab } from '../actions/ui';
 import { addMessage } from '../actions/messages';
 import { consumeResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
@@ -151,6 +151,20 @@ export default function BuildDetailComponent() {
         {renderUpgradeCostContainer()}
         {renderRecipeContainer()}
         {!unbuilt && renderKitchenButton()}
+        {buildingType.opensTab && (
+          <TouchableOpacity style={styles.buttonLarge} onPress={() => {
+            dispatch(selectTab(buildingType.opensTab?.tabName||''));
+            dispatch(displayModal(null));
+          }}>
+            <IconComponent
+              provider={buildingType.opensTab.icon.provider}
+              name={buildingType.opensTab.icon.name}
+              color="#fff" size={18} style={styles.headingIcon} />
+            <Text style={[styles.buttonText, {fontSize: 16}]}>
+              {` ${buildingType.opensTab.label}`}
+            </Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </View>
   );
