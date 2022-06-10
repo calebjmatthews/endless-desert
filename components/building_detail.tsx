@@ -54,6 +54,7 @@ export default function BuildDetailComponent() {
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
   const rates = useTypedSelector(state => state.rates);
+  const problems = useTypedSelector(state => state.rates.problems[building.id]);
   let leaderId = Object.keys(leaders).filter((aLeaderId) => (
     leaders[aLeaderId].assignedTo === building.id
   ))[0];
@@ -104,13 +105,34 @@ export default function BuildDetailComponent() {
       const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
       dispatch(setRates(newRates));
     }
-  }, [recipeSelected])
+  }, [recipeSelected]);
 
   return (
     <View style={styles.modalContent}>
+
       <View style={styles.headingWrapper}>
         <BadgeComponent icon={buildingType.icon} size={55} />
-        <Text style={styles.heading1}>{building.name}</Text>
+        <View style={styles.columns}>
+          <Text style={styles.heading1}>{building.name}</Text>
+          {problems && (
+            <View>
+              <View style={styles.breakSmall} />
+              {problems.map((problem) => {
+                return (
+                  <View key={problem} style={[styles.infoBar,
+                    { backgroundColor: '#b9313a', borderColor: '#860009',
+                      borderRadius: 10 }]}>
+                    <IconComponent provider="FontAwesome5" name="exclamation-circle"
+                      color="#fff"  size={12} />
+                    <Text style={{fontSize: 12, color: '#ffffff'}}>
+                      {' ' + problem}
+                    </Text>
+                  </View>
+                )
+              })}
+            </View>
+          )}
+        </View>
       </View>
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
         <View style={StyleSheet.flatten([styles.descriptionBand,
