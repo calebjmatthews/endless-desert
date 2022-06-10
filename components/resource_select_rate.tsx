@@ -62,7 +62,8 @@ export default function ResourceSelectRateComponent() {
   function renderResources(resourceArray: Resource[],
     setResourcesSelected: Function) {
     return resourceArray.map((resource) => {
-      return <ResourceSelector key={resource.type} resource={resource}
+      return <ResourceSelector key={`${resource.type}|${resource.quality}`}
+        resource={resource}
         rate={modalValue.rate} resourceSelected={resourceSelected}
         resourceSelect={resourceSelect} positioner={positioner} />;
     });

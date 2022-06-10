@@ -227,16 +227,27 @@ export default class Hourglass {
           if (recipe.consumes) {
             recipe.consumes.map((consumption) => {
               let consQuantity = consumption.quantity;
+              let cResource = new Resource({...consumption, quality: 0});
+              let specificity = consumption.specificity;
+              if (consumption.specificity !== RESOURCE_SPECIFICITY.EXACT) {
+                const specType = consumption.specificity + '|' + consumption.type;
+                if (building.resourcesSelected[specType]) {
+                  cResource = new Resource(building.resourcesSelected[specType]);
+                  const resourceType = utils.getResourceType(cResource);
+                  consQuantity = consQuantity / resourceType.value;
+                  specificity = RESOURCE_SPECIFICITY.EXACT;
+                }
+              }
               if (buildingLeaders[building.id]) {
                 const leaderMod = findLeaderMod(buildingLeaders[building.id],
-                  (consumption.type + '|0'), LQ.SPEED);
+                  (cResource.type + '|0'), LQ.SPEED);
                 consQuantity *= (1 + (leaderMod / 100));
                 const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
-                  (consumption.type + '|0'), LQ.EFFICIENCY);
+                  (cResource.type + '|0'), LQ.EFFICIENCY);
                 consQuantity *= (1 - (leaderNegMod / 100));
               }
-              utils.mapAdd(r.recipesRates[id][index], (consumption.specificity
-                + '|' + consumption.type + '|0'), (consQuantity * -1));
+              utils.mapAdd(r.recipesRates[id][index], (specificity
+                + '|' + cResource.type + '|0'), (consQuantity * -1));
             });
           }
         });

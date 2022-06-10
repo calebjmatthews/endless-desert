@@ -4,6 +4,7 @@ export default class Rates {
   productionRates: Rate = {};
   consumptionRates: Rate = {};
   buildingRates: { [buildingId: string] : Rate } = {};
+  buildingAllRates: { [buildingId: string] : Rate } = {};
   recipesRates: { [buildingId: string] : Rate[] } = {};
   bGroupRates: { [typeName: string] : Rate } = {};
   netRates: Rate = {};

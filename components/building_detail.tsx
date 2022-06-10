@@ -29,6 +29,7 @@ import Timer from '../models/timer';
 import Resource from '../models/resource';
 import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
+import Rate from '../models/rate';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -402,7 +403,7 @@ export default function BuildDetailComponent() {
       new BuildingRecipe({ index: -1, produces: null, consumes: null }),
       ...recipes
     ];
-    return recipesToRender.map((recipe) => {
+    return recipesToRender.map((recipe, index) => {
       return (
         <View key={recipe.index}>
           <View style={styles.break}></View>
@@ -458,7 +459,7 @@ export default function BuildDetailComponent() {
         </TouchableOpacity>
       );
     }
-    else {
+    else if (buildingType.category !== BUILDING_CATEGORIES.GENERAL) {
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
         color: '#cec3e4', size: 14 });
       return (
@@ -510,12 +511,11 @@ export default function BuildDetailComponent() {
         let typeQuality = `${consume.type}|0`;
 
         let inexact = false;
-        if (consume.specificity === RESOURCE_SPECIFICITY.TAG
-          || consume.specificity === RESOURCE_SPECIFICITY.SUBCATEGORY
-          || consume.specificity === RESOURCE_SPECIFICITY.CATEGORY) {
+        if (consume.specificity !== RESOURCE_SPECIFICITY.EXACT) {
           newRate.inexact = true;
         }
         const specType = `${consume.specificity}|${consume.type}`;
+        newRate.originalSpecType = specType;
         if (building.resourcesSelected[specType]) {
           const resource = new Resource(building.resourcesSelected[specType]);
           const resourceType = resourceTypes[resource.type];
@@ -539,6 +539,15 @@ export default function BuildDetailComponent() {
         buildingRates.push(newRate);
       });
     }
+    const recipeRate = rates.recipesRates[building.id]?.[recipe.index];
+    if (recipeRate) {
+      Object.keys(recipeRate).forEach((specTypeQuality, index) => {
+        const [ rrSpec, rrType, rrQuality ] = specTypeQuality.split('|');
+        buildingRates[index] = { ...buildingRates[index], type: rrType,
+          quality: parseInt(rrQuality), quantity: recipeRate[specTypeQuality] };
+      });
+    }
+
     return (
       <View>
         {buildingRates.map((rate) => renderRate(rate))}
@@ -582,7 +591,9 @@ export default function BuildDetailComponent() {
     if (!rate.inexact) {
       return (
         <View key={`${sign}${resourceKind.name}`} style={[styles.rows, rateStyle]}>
-        <Text style={{minWidth: 33, textAlign: 'right'}}>{sign + rate.quantity}</Text>
+        <Text style={{minWidth: 33, textAlign: 'right'}}>
+          {sign + utils.formatNumberShort(rate.quantity)}
+        </Text>
           <BadgeComponent icon={resourceKind.icon} size={21} />
           <View style={[styles.columns, {maxWidth: positioner.recipeTextWidth}]}>
             <Text>{name}<Text style={{opacity: 0.6}}>{` ${quantity}`}</Text></Text>
@@ -593,7 +604,7 @@ export default function BuildDetailComponent() {
         </View>
       );
     }
-    let label = `${rate.quantity / (resourceKind.value || 1)}(~)`;
+    let label = `${utils.formatNumberShort(rate.quantity / (resourceKind.value || 1))}(~)`;
     let quality = 0;
     name = `Any ${name}/m`;
     rateStyle = {...rateStyle, borderStyle: 'solid', borderWidth: 1,
@@ -613,7 +624,8 @@ export default function BuildDetailComponent() {
     return (
       <TouchableOpacity key={`${sign}${resourceKind.name}`}
         style={[styles.rows, rateStyle]}
-        onPress={() => inexactRateOpen(building, `${specType}|0`, rate.quantity)}>
+        onPress={() => inexactRateOpen(building,
+          (rate.originalSpecType || `${specType}|0`), rate.quantity)}>
         <Text style={{minWidth: 33, textAlign: 'right'}}>{label}</Text>
         <BadgeComponent icon={resourceKind.icon}
           quality={quality}
@@ -652,6 +664,7 @@ interface BuildingRate {
   specificity: string;
   type: string;
   quantity: number;
+  originalSpecType?: string;
   quality?: number;
   inexact?: boolean;
   inexactSelected?: boolean;

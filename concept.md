@@ -821,10 +821,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Remove De Nang, too boring
   [X] Very early quest about displaced, beaten down, sassy royalty? Introduction into Alabaster society?
   [X] Rebalance resource values
-  [X] Add leader selection to building detail
-  [X] Add resource selection to inexact rates in building detail
-  [X] Add vault quantities and exhaustions in building detail
-  [ ] Add resource quantities/rates to building detail
+  [X] Leader selection in building detail
+  [X] Resource selection in inexact rates in building detail
+  [X] Vault quantities and exhaustions in building detail
+  [ ] Leader-affected resource rates in building detail
+  [ ] Building problems in building detail header
   [ ] Hide inapplicable fields from building in progress detail
   [ ] Tab linking buttons on special buildings (Study, Market)
   [ ] Dromedarian fortuities and quests
@@ -834,6 +835,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
+  [ ] Revamp equipment marking and deconstruction
   [ ] Flashy display for rare trades
   [ ] Expeditions! (without exploration)
 
@@ -845,9 +847,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Store memo and conversation state in reducer
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
-  [ ] Expensive trades to check whether "give" can result in min of 1
+  [ ] Fix for impossible expensive trades
   [ ] More repeatable fortuities
   [ ] Leaders running out of consumed food/drink begin foraging
+  [ ] Resource production/consumption breakdown in resource detail
 
 ## Commands
 ### Delete all records from all tables:

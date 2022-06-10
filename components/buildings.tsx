@@ -354,10 +354,21 @@ function BuildingDescription(props: any) {
   function renderRateContainer(problems: string[]) {
     if (building.recipeSelected == undefined) { return null; }
     if (!props.rates.recipesRates[building.id]) { return null; }
-    const rates = props.rates.recipesRates[building.id][building.recipeSelected];
+    const buildingType = buildingTypes[building.buildingType];
+    const recipe = building.recipe || buildingType.recipes?.[building.recipeSelected];
+    const rateObj: Rate =
+      props.rates.recipesRates[building.id][building.recipeSelected];
+    const singleRates = Object.keys(rateObj || {}).map((specTypeQuality, index) => (
+      { specTypeQuality, quantity: rateObj[specTypeQuality], index }
+    ))
+    const originalRates = [...(recipe?.produces || []).map((p, index) => (
+      { specTypeQuality: `${p.specificity}|${p.type}|0`, quantity: p.quantity, index }
+    )), ...(recipe?.consumes || []).map((c, index) => (
+      { specTypeQuality: `${c.specificity}|${c.type}|0`, quantity: c.quantity, index }
+    ))];
     if (building.recipeSelected !== -1) {
-      if (!rates) { return null; }
-      if (!Object.keys(rates).length) { return null; }
+      if (!singleRates) { return null; }
+      if (!Object.keys(singleRates).length) { return null; }
     }
 
     let content = null;
@@ -365,7 +376,9 @@ function BuildingDescription(props: any) {
       content = (
         <View style={StyleSheet.flatten([styles.rows, { flexWrap: 'wrap',
           justifyContent: 'center', maxWidth: props.positioner.buildingBarWidth }])}>
-          {renderRates(rates, problems)}
+          {singleRates.map((singleRate, index) => (
+            renderRate(singleRate, originalRates[index], problems)
+          ))}
         </View>
       );
     }
@@ -428,27 +441,21 @@ function BuildingDescription(props: any) {
     }
   }
 
-  function renderRates(rates: Rate, problems: string[]) {
-    return Object.keys(rates).map((specTypeQuality) => {
-      return renderRate(specTypeQuality, rates[specTypeQuality], problems)
-    });
-  }
-
-  function renderRate(specTypeQuality: string, rate: number, problems: string[]) {
-    const stqSplit = specTypeQuality.split('|');
+  function renderRate(singleRate: SingleRate, originalRate?: SingleRate,
+    problems?: string[]) {
+    const [specificity, type, quality] = singleRate.specTypeQuality.split('|');
+    const [oSpecificity, oType, oQuality] = (originalRate?.specTypeQuality || '')
+      .split('|');
     let resourceKind: ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory
       |null = null;
-    let inexact = false;
-    if (stqSplit[0] == RESOURCE_SPECIFICITY.TAG
-      || stqSplit[0] == RESOURCE_SPECIFICITY.SUBCATEGORY
-      || stqSplit[0] == RESOURCE_SPECIFICITY.CATEGORY) {
-      inexact = true;
-    }
-    resourceKind = utils.getMatchingResourceKind(stqSplit[0], stqSplit[1]);
-    if (specTypeQuality.includes('-')) {
-      if (props.vault.resources[stqSplit[1] + '|' + stqSplit[2]]) {
-        const resource = props.vault.resources[stqSplit[1] + '|' + stqSplit[2]]
+    let inexact = (specificity !== oSpecificity)
+      || specificity !== RESOURCE_SPECIFICITY.EXACT;
+    resourceKind = utils.getMatchingResourceKind(specificity, type);
+    if (singleRate.specTypeQuality.includes('-')) {
+      if (props.vault.resources[`${type}|${quality}`]) {
+        const resource = props.vault.resources[`${type}|${quality}`];
         resourceKind = new Resource(resource).toResourceType(resourceTypes);
+        inexact = false;
       }
     }
     if (!resourceKind) { return null; }
@@ -456,19 +463,19 @@ function BuildingDescription(props: any) {
     let sign = '+';
     let rateStyle: any = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
       maxHeight: 19, marginVertical: 6 };
-    if (rate < 0) {
+    if (singleRate.quantity < 0) {
       sign = '';
       rateStyle.backgroundColor = '#ffb4b1';
     }
-    if (problems.length > 0) {
+    if ((problems?.length || 0) > 0) {
       rateStyle.opacity = 0.6;
     }
     if (!inexact) {
       return (
-        <View key={specTypeQuality}
+        <View key={singleRate.specTypeQuality}
           style={StyleSheet.flatten([styles.rows, rateStyle]) }>
-          <Text>{sign + utils.formatNumberShort(rate)}</Text>
-          <BadgeComponent icon={resourceKind.icon} quality={parseInt(stqSplit[2])}
+          <Text>{sign + utils.formatNumberShort(singleRate.quantity)}</Text>
+          <BadgeComponent icon={resourceKind.icon} quality={(parseInt(quality) || 0)}
             size={21} />
           <Text>{'/m '}</Text>
         </View>
@@ -479,19 +486,19 @@ function BuildingDescription(props: any) {
       const style = StyleSheet.flatten([styles.rows, styles.rateButton, rateStyle]);
       let label = '???';
       let icon = resourceKind.icon;
-      const specType = stqSplit[0] + '|' + stqSplit[1];
-      if (building.resourcesSelected[specType]) {
-        const resource = new Resource(building.resourcesSelected[specType]);
-        const resourceType = resourceTypes[resource.type];
-        const rRate = rate / resourceType.value;
-        label = ((rRate > 0 ? '+' : '') + utils.formatNumberShort(rRate));
-        icon = resourceType.icon;
+      const specType = `${specificity}|${type}`;
+      if (specificity === RESOURCE_SPECIFICITY.EXACT) {
+        const resourceType = resourceTypes[type];
+        label = ((singleRate.quantity > 0 ? '+' : '')
+          + utils.formatNumberShort(singleRate.quantity));
+        icon = resourceType?.icon;
       }
       return (
-        <TouchableOpacity key={specTypeQuality} style={style}
-          onPress={() => inexactRatePress(specTypeQuality, rate)}>
+        <TouchableOpacity key={singleRate.specTypeQuality} style={style}
+          onPress={() => inexactRatePress(originalRate?.specTypeQuality,
+            originalRate?.quantity)}>
           <Text>{label}</Text>
-          <BadgeComponent icon={icon} quality={parseInt(stqSplit[2])}
+          <BadgeComponent icon={icon} quality={parseInt(quality)}
             size={21} />
           <Text>{'/m '}</Text>
         </TouchableOpacity>
@@ -499,8 +506,10 @@ function BuildingDescription(props: any) {
     }
   }
 
-  function inexactRatePress(specTypeQuality: string, rate: number) {
-    props.inexactRateOpen(props.building, specTypeQuality, rate);
+  function inexactRatePress(specTypeQuality?: string, rate?: number) {
+    if (specTypeQuality && rate) {
+      props.inexactRateOpen(props.building, specTypeQuality, rate);
+    }
   }
 
   function renderProblems(problems: string[]) {
@@ -523,4 +532,10 @@ function BuildingDescription(props: any) {
       </View>
     )
   }
+}
+
+interface SingleRate {
+  specTypeQuality: string;
+  quantity: number;
+  index: number;
 }
