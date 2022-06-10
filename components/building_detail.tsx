@@ -50,6 +50,10 @@ export default function BuildDetailComponent() {
   const modalDisplayed = useTypedSelector(state => state.ui.modalDisplayed);
   const modalValue: Building = useTypedSelector(state => state.ui.modalValue);
   let building: Building = buildings[modalValue.id];
+  let unbuilt = !building;
+  if (!building) {
+    building = buildingsConstruction[modalValue.id] || modalValue;
+  }
   const vault: Vault = useTypedSelector(state => state.vault);
   const buildTimer: Timer = useTypedSelector(state => state.timers['Build']);
   const leaders = useTypedSelector(state => state.leaders);
@@ -66,7 +70,7 @@ export default function BuildDetailComponent() {
   const leader = leaderId ? leaders[leaderId] : null;
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const buildingType = new BuildingType(buildingTypes[building.buildingType]);
+  const buildingType = new BuildingType(buildingTypes[building.buildingType] || null);
 
   const [initializing, setInitializing] = useState<boolean>(true);
   const [recipes, setRecipes] = useState<BuildingRecipe[] | null>(null);
@@ -146,7 +150,7 @@ export default function BuildDetailComponent() {
         </View>
         {renderUpgradeCostContainer()}
         {renderRecipeContainer()}
-        {renderKitchenButton()}
+        {!unbuilt && renderKitchenButton()}
       </ScrollView>
     </View>
   );
@@ -411,6 +415,12 @@ export default function BuildDetailComponent() {
       return (
         <View style={{minWidth: positioner.majorWidth,
           maxWidth: positioner.majorWidth}}>
+          {unbuilt && (
+            <>
+              <View style={styles.break} />
+              <Text style={styles.bareText}>Can produce:</Text>
+            </>
+          )}
           {renderRecipes(recipes)}
         </View>
       );
@@ -421,7 +431,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderRecipes(recipes: BuildingRecipe[]) {
-    const recipesToRender: BuildingRecipe[] = [
+    const recipesToRender: BuildingRecipe[] = unbuilt ? [...recipes] : [
       new BuildingRecipe({ index: -1, produces: null, consumes: null }),
       ...recipes
     ];
@@ -430,7 +440,7 @@ export default function BuildDetailComponent() {
         <View key={recipe.index}>
           <View style={styles.break}></View>
           <View style={styles.sideButtonContainer}>
-            {renderSelectButton(recipe)}
+            {!unbuilt && renderSelectButton(recipe)}
             {renderRecipe(recipe)}
           </View>
         </View>
@@ -508,10 +518,11 @@ export default function BuildDetailComponent() {
   }
 
   function renderRecipe(recipe: BuildingRecipe) {
+    const width = !unbuilt ? positioner.modalMinor : positioner.modalMajor;
     let buildingRates: BuildingRate[] = [];
     if (recipe.index == -1) {
       const rateStyle = { backgroundColor: '#cec3e4', paddingHorizontal: 4,
-        minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
+        minWidth: width, maxWidth: width };
       const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
         color: '#cec3e4', size: 21 });
       return (
@@ -584,6 +595,7 @@ export default function BuildDetailComponent() {
   }
 
   function renderRate(rate: BuildingRate) {
+    const width = !unbuilt ? positioner.modalMinor : positioner.modalMajor;
     let typeQuality = `${rate.type}|0`;
     let resourceKind = utils.getMatchingResourceKind(rate.specificity, rate.type);
     let name = `${resourceKind.name}/m`;
@@ -600,7 +612,7 @@ export default function BuildDetailComponent() {
 
     let sign = '+';
     let rateStyle: any = { backgroundColor: '#b8ccfb', paddingHorizontal: 4,
-      minWidth: positioner.modalMinor, maxWidth: positioner.modalMinor };
+      minWidth: width, maxWidth: width };
     if (rate.quantity < 0) {
       sign = '';
       rateStyle.backgroundColor = '#ffb4b1';
@@ -613,9 +625,9 @@ export default function BuildDetailComponent() {
     if (!rate.inexact) {
       return (
         <View key={`${sign}${resourceKind.name}`} style={[styles.rows, rateStyle]}>
-        <Text style={{minWidth: 33, textAlign: 'right'}}>
-          {sign + utils.formatNumberShort(rate.quantity)}
-        </Text>
+          <Text style={{minWidth: 33, textAlign: 'right'}}>
+            {sign + utils.formatNumberShort(rate.quantity)}
+          </Text>
           <BadgeComponent icon={resourceKind.icon} size={21} />
           <View style={[styles.columns, {maxWidth: positioner.recipeTextWidth}]}>
             <Text>{name}<Text style={{opacity: 0.6}}>{` ${quantity}`}</Text></Text>
@@ -629,7 +641,7 @@ export default function BuildDetailComponent() {
     let label = `${utils.formatNumberShort(rate.quantity / (resourceKind.value || 1))}(~)`;
     let quality = 0;
     name = `Any ${name}/m`;
-    rateStyle = {...rateStyle, borderStyle: 'solid', borderWidth: 1,
+    let btnRateStyle = {...rateStyle, borderStyle: 'solid', borderWidth: 1,
       borderColor: '#444', borderRadius: 4, marginVertical: 1, marginLeft: 2,
       backgroundColor: '#ffe0de'};
     const specType = `${rate.specificity}|${rate.type}`;
@@ -641,23 +653,35 @@ export default function BuildDetailComponent() {
       label = `${(rate.quantity > 0 ? '+' : '')}${utils.formatNumberShort(rate.quantity)}`;
       name = `${utils.getResourceName(resource)}/m`;
       quantity = `(of ${utils.formatNumberShort(vault.resources[typeQuality].quantity)})`;
-      rateStyle = {...rateStyle, backgroundColor: '#ffccca'};
+      btnRateStyle = {...btnRateStyle, backgroundColor: '#ffccca'};
     }
-    return (
-      <TouchableOpacity key={`${sign}${resourceKind.name}`}
-        style={[styles.rows, rateStyle]}
-        onPress={() => inexactRateOpen(building,
-          (rate.originalSpecType || `${specType}|0`), rate.quantity)}>
-        <Text style={{minWidth: 33, textAlign: 'right'}}>{label}</Text>
-        <BadgeComponent icon={resourceKind.icon}
-          quality={quality}
-          size={21} />
+    const contents = (
+      <>
+        <Text style={{minWidth: 33, textAlign: 'right'}}>
+          {sign + utils.formatNumberShort(rate.quantity)}
+        </Text>
+        <BadgeComponent icon={resourceKind.icon} size={21} />
         <View style={[styles.columns, {maxWidth: positioner.recipeTextWidth}]}>
           <Text>{name}<Text style={{opacity: 0.6}}>{` ${quantity}`}</Text></Text>
           {exhaustionString && (
             <Text style={{fontSize: 12, opacity: 0.6}}>{exhaustionString}</Text>
           )}
         </View>
+      </>
+    );
+    if (unbuilt) {
+      return (
+        <View key={`${sign}${resourceKind.name}`} style={[styles.rows, rateStyle]}>
+          {contents}
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity key={`${sign}${resourceKind.name}`}
+        style={[styles.rows, btnRateStyle]}
+        onPress={() => inexactRateOpen(building,
+          (rate.originalSpecType || `${specType}|0`), rate.quantity)}>
+        {contents}
       </TouchableOpacity>
     );
   }

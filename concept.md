@@ -826,7 +826,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Vault quantities and exhaustions in building detail
   [X] Leader-affected resource rates in building detail
   [X] Building problems in building detail header
-  [ ] Hide inapplicable fields from building in progress detail
+  [X] Hide inapplicable fields from building in progress detail
   [ ] Tab linking buttons on special buildings (Study, Market)
   [ ] Dromedarian fortuities and quests
   [ ] Trader conversations

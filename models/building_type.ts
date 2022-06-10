@@ -23,18 +23,20 @@ export default class BuildingType implements BuildingTypeInterface {
   requiresLeader?: boolean;
   cannotStore?: boolean;
 
-  constructor(buildingType: BuildingTypeInterface) {
-    let newRecipes = null;
-    if (buildingType.recipes) {
-      newRecipes = [];
-      buildingType.recipes.map((recipe) => newRecipes.push(new BuildingRecipe(recipe)));
+  constructor(buildingType: BuildingTypeInterface | null) {
+    if (buildingType) {
+      let newRecipes = null;
+      if (buildingType.recipes) {
+        newRecipes = [];
+        buildingType.recipes.map((recipe) => newRecipes.push(new BuildingRecipe(recipe)));
+      }
+      buildingType.recipes = newRecipes;
+      if (!buildingType.terrainAllowed) {
+        buildingType.terrainAllowed = [TERRAIN_TYPES.SAND, TERRAIN_TYPES.RIVERBANK];
+      }
+      Object.assign(this, buildingType);
+      this.setDurations();
     }
-    buildingType.recipes = newRecipes;
-    if (!buildingType.terrainAllowed) {
-      buildingType.terrainAllowed = [TERRAIN_TYPES.SAND, TERRAIN_TYPES.RIVERBANK];
-    }
-    Object.assign(this, buildingType);
-    this.setDurations();
   }
 
   setDurations() {
