@@ -173,6 +173,14 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.TEXTILE] = new ResourceSubcategory(
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.DROMEDARY] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.DROMEDARY,
+  plural: 'Dromedaries',
+  value: 2000,
+  order: 18,
+  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_DARJEELING] =
 new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.TEA_DARJEELING,

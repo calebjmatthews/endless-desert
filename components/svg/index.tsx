@@ -104,10 +104,12 @@ import SaltfishSvgComponent from './resources/saltfish';
 import SaltedMeatSvgComponent from './resources/salted_meat';
 import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
+import WineSvgComponent from './resources/wine';
 import LiquorSvgComponent from './resources/liquor';
 import TomeSvgComponent from './resources/tome';
 import BrokenKeySvgComponent from './resources/broken_key';
 import KeySvgComponent from './resources/key';
+import DromedarySvgComponent from './resources/dromedary';
 
 import EdgeSvgComponent from './implements/edge';
 import SlabSvgComponent from './implements/slab';
@@ -180,7 +182,7 @@ import BrewerySvgComponent from './buildings/brewery';
 import PyreSvgComponent from './buildings/pyre';
 
 import SamannoudSvgComponent from './people/samannoud';
-import ShudderingRefugeSvgComponent from './people/shuddering_refuge';
+import DromedarianSvgComponent from './people/dromedarian';
 import FoxfireHereticSvgComponent from './people/foxfire_heretic';
 import TrefoilSowerSvgComponent from './people/trefoil_sower';
 import ExiledAmbassadorSvgComponent from './people/exiled_ambassador';
@@ -421,6 +423,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <MistakeSvgComponent icon={props.icon} />;
     case SVGS.BEER:
     return <BeerSvgComponent icon={props.icon} />;
+    case SVGS.WINE:
+    return <WineSvgComponent icon={props.icon} />;
     case SVGS.LIQUOR:
     return <LiquorSvgComponent icon={props.icon} />;
     case SVGS.TOME:
@@ -429,6 +433,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <BrokenKeySvgComponent icon={props.icon} />;
     case SVGS.KEY:
     return <KeySvgComponent icon={props.icon} />;
+    case SVGS.DROMEDARY:
+    return <DromedarySvgComponent icon={props.icon} />;
 
     case SVGS.EDGE:
     return <EdgeSvgComponent icon={props.icon} />;
@@ -569,8 +575,8 @@ export default function SvgComponent(props: { icon: Icon }) {
 
     case SVGS.SAMANNOUD:
     return <SamannoudSvgComponent icon={props.icon} />;
-    case SVGS.SHUDDERING_REFUGE:
-    return <ShudderingRefugeSvgComponent icon={props.icon} />;
+    case SVGS.DROMEDARIAN:
+    return <DromedarianSvgComponent icon={props.icon} />;
     case SVGS.FOXFIRE_HERETIC:
     return <FoxfireHereticSvgComponent icon={props.icon} />;
     case SVGS.TREFOIL_SOWER:

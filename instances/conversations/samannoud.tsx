@@ -457,7 +457,7 @@ new ConversationStatement({
 
 sndConversations[CVS.SND_REPAIRING_THE_DOME] = new Conversation({
   name: CVS.SND_REPAIRING_THE_DOME,
-  title: 'Repairing the dome',
+  title: 'Repairing the Dome',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
   statementName: CVS.SND_REPAIRING_THE_DOME + ' - s0',
   repeatable: false,
@@ -493,6 +493,79 @@ new ConversationStatement({
 
 The next part, though, won't be easy. By now you've guessed what that beat up dome-shaped building was for, am I right? With that Observatory repaired you'll be able to draw up starcharts. No other way to tell where you're going in the deep desert.`,
   questsBegin: [QUESTS.ASTRONOMY_REPAIRING_THE_DOME]
+});
+
+sndConversations[CVS.SND_BEASTS_OF_BURDEN] = new Conversation({
+  name: CVS.SND_BEASTS_OF_BURDEN,
+  title: 'Beasts of Burden',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_BEASTS_OF_BURDEN + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    const qs = gState.questStatus;
+
+    return (qs?.questsCompleted[QUESTS.ASTRONOMY_REPAIRING_THE_DOME] !== undefined);
+  }
+});
+sndConvoStatements[CVS.SND_BEASTS_OF_BURDEN + ' - s0'] =
+new ConversationStatement({
+  name: CVS.SND_BEASTS_OF_BURDEN + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `You've repaired the busted Observatory?`,
+  responseNames: [CVS.SND_BEASTS_OF_BURDEN + ' - r0']
+});
+sndConvoResponses[CVS.SND_BEASTS_OF_BURDEN + ' - r0'] =
+new ConversationResponse({
+  name: CVS.SND_BEASTS_OF_BURDEN + ' - r0',
+  textIntro: `It's good as new.`,
+  text: `It's good as new.`,
+  statementName: CVS.SND_BEASTS_OF_BURDEN + ' - s1'
+});
+sndConvoStatements[CVS.SND_BEASTS_OF_BURDEN + ' - s1'] =
+new ConversationStatement({
+  name: CVS.SND_BEASTS_OF_BURDEN + ' - s1',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Beautiful. You'll want to start using it to chart out potential locations. No, don't know the details myself, but you're a smart kid. I'm sure you'll figure it out.
+
+We're only missing one final thing, but it's the most important. We need a ride; beasts to carry us through the desert! There's one group of Dromedary breeders that has cornerned the market, so we have no choice but to go through them. You can imagine what that means for the price. I'll send them a message, and you'll see them soon.`
+});
+
+sndConversations[CVS.SND_THE_FIRST_EXPEDITION] = new Conversation({
+  name: CVS.SND_THE_FIRST_EXPEDITION,
+  title: 'The First Expedition',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  statementName: CVS.SND_THE_FIRST_EXPEDITION + ' - s0',
+  repeatable: false,
+  daily: false,
+  weight: 1000,
+  available: (gState: GameState, conversation: Conversation) => {
+    return ((gState.vault?.getSubcategoryQuantity(RSC.DROMEDARY, 0, 2) || 0) > 0);
+  }
+});
+sndConvoStatements[CVS.SND_THE_FIRST_EXPEDITION + ' - s0'] =
+new ConversationStatement({
+  name: CVS.SND_THE_FIRST_EXPEDITION + ' - s0',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `You've got a set of Dromedaries? We'll need 'em for desert travel, unless you're prepared to carry a literal barrel of water on your back.`,
+  responseNames: [CVS.SND_THE_FIRST_EXPEDITION + ' - r0']
+});
+sndConvoResponses[CVS.SND_THE_FIRST_EXPEDITION + ' - r0'] =
+new ConversationResponse({
+  name: CVS.SND_THE_FIRST_EXPEDITION + ' - r0',
+  textIntro: `We've got them, and they were expensive!`,
+  text: `We've got them, and they were expensive!`,
+  statementName: CVS.SND_THE_FIRST_EXPEDITION + ' - s1'
+});
+sndConvoStatements[CVS.SND_THE_FIRST_EXPEDITION + ' - s1'] =
+new ConversationStatement({
+  name: CVS.SND_THE_FIRST_EXPEDITION + ' - s1',
+  partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
+  text: `Do you know what this means? It's time to load up our gear, fasten our belts, and scour the desert until we bring your brother back safe and sound. It's been a long time, at this point, but I hope you haven't lost hope. He's resourceful, and survivor, like you.
+
+Well, why are you waiting? Let's get started!`,
+  questsBegin: [QUESTS.ASTRONOMY_THE_FIRST_EXPEDITION]
 });
 
 export { sndConversations, sndConvoStatements, sndConvoResponses, sndConvoNarrations }

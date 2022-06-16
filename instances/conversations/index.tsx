@@ -12,24 +12,26 @@ import { scnConversations, scnConvoStatements, scnConvoResponses, scnConvoNarrat
   from './scarred_navigator';
 import { exaConversations, exaConvoStatements, exaConvoResponses, exaConvoNarrations }
   from './exiled_ambassador';
+import { droConversations, droConvoStatements, droConvoResponses, droConvoNarrations }
+  from './dromedarian';
 import { etcConversations, etcConvoStatements, etcConvoResponses, etcConvoNarrations }
   from './etc';
 
 const conversations = { ...sndConversations,
   ...ffhConversations, ...auwConversations, ...tfsConversations,
   ...scnConversations, ...fifConversations, ...exaConversations,
-  ...etcConversations };
+  ...droConversations, ...etcConversations };
 const convoStatements = { ...sndConvoStatements,
   ...ffhConvoStatements, ...auwConvoStatements, ...tfsConvoStatements,
   ...scnConvoStatements, ...fifConvoStatements, ...exaConvoStatements,
-  ...etcConvoStatements };
+  ...droConvoStatements, ...etcConvoStatements };
 const convoResponses = { ...sndConvoResponses,
   ...ffhConvoResponses, ...auwConvoResponses, ...tfsConvoResponses,
   ...scnConvoResponses, ...fifConvoResponses, ...exaConvoResponses,
-  ...etcConvoResponses };
+  ...droConvoResponses, ...etcConvoResponses };
 const convoNarrations = { ...sndConvoNarrations,
   ...ffhConvoNarrations, ...auwConvoNarrations, ...tfsConvoNarrations,
   ...scnConvoNarrations, ...fifConvoNarrations, ...exaConvoNarrations,
-  ...etcConvoNarrations };
+  ...droConvoNarrations, ...etcConvoNarrations };
 
 export { conversations, convoStatements, convoResponses, convoNarrations };

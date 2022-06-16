@@ -27,6 +27,7 @@ import Positioner from '../models/positioner';
 import ConversationStatus from '../models/conversation_status';
 import ResearchStatus from '../models/research_status';
 import QuestActivity from '../models/quest_activity';
+import QuestStatus from '../models/quest_status';
 import { Conversation, ConversationStatement, ConversationResponse,
   ConversationNarration } from '../models/conversation';
 import { conversations, convoStatements, convoResponses, convoNarrations }
@@ -53,13 +54,15 @@ export default function ConversationComponent(props: { convoName: string }) {
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const vault = useTypedSelector(state => state.vault);
   const account = useTypedSelector(state => state.account);
-  const positioner = useTypedSelector(state => state.ui.positioner);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const questStatus = useTypedSelector(state => state.questStatus);
+  const positioner = useTypedSelector(state => state.ui.positioner);
 
   return useMemo(() => {
     return <ConversationStatic convoName={props.convoName} leaders={leaders}
       conversationStatus={conversationStatus} vault={vault} account={account}
-      researchStatus={researchStatus} positioner={positioner} />;
+      researchStatus={researchStatus} questStatus={questStatus}
+      positioner={positioner} />;
   }, [positioner])
 }
 
@@ -69,8 +72,9 @@ function ConversationStatic(props: ConversationProps) {
   const conversationStatus = props.conversationStatus;
   const vault = props.vault;
   const account = props.account;
-  const positioner = props.positioner;
   const researchStatus = props.researchStatus;
+  const questStatus = props.questStatus;
+  const positioner = props.positioner;
 
   const [state, setState] = useState('initializing');
   const [conversation, setConversation] = useState<Conversation>(new Conversation(null));
@@ -181,7 +185,7 @@ function ConversationStatic(props: ConversationProps) {
 
       case 'responseOption':
       return <ResponseOption key={name} response={convoResponses[name]} vault={vault}
-        responseOptionPress={responseOptionPress}
+        questStatus={questStatus} responseOptionPress={responseOptionPress}
         speechButtonWidth={positioner.speechButtonWidth} />;
 
       case 'response':
@@ -398,6 +402,7 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
 
 
 function ResponseOption(props: {response: ConversationResponse, vault: Vault,
+  questStatus: QuestStatus,
   responseOptionPress: (response: ConversationResponse) => void,
   speechButtonWidth: number }) {
   const response = props.response;
@@ -432,7 +437,7 @@ function ResponseOption(props: {response: ConversationResponse, vault: Vault,
     }
   }
   else if (response.requirementLabel) {
-    if (!response.available({ vault: props.vault })) {
+    if (!response.available({ vault: props.vault, questStatus: props.questStatus })) {
       buttonStyle = StyleSheet.flatten([styles.button, styles.buttonDisabled]);
       buttonDisabled = true;
     }
@@ -691,6 +696,7 @@ interface ConversationProps {
   vault: Vault;
   account: Account;
   researchStatus: ResearchStatus;
+  questStatus: QuestStatus;
   positioner: Positioner;
 }
 

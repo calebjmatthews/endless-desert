@@ -1146,7 +1146,7 @@ resourceTypes[RTY.INK_FERROUS] = new ResourceType({
   tags: [RTA.SYNTHESIZED],
   value: 300,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
-    shadow: '#000', secondaryColor: '#a2a2a2'})
+    shadow: '#111', secondaryColor: '#a2a2a2'})
 });
 
 resourceTypes[RTY.REEDCLOTH] = new ResourceType({
@@ -1420,6 +1420,14 @@ resourceTypes[RTY.BEER] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.BEER})
 });
 
+resourceTypes[RTY.WINE] = new ResourceType({
+  name: RTY.BEER,
+  category: RCA.ARTISAN_GOOD,
+  tags: [RTA.DRINK],
+  value: 200,
+  icon: new Icon({provider: 'svg', name: SVGS.WINE})
+});
+
 resourceTypes[RTY.LIQUOR] = new ResourceType({
   name: RTY.LIQUOR,
   category: RCA.ARTISAN_GOOD,
@@ -1649,8 +1657,7 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
-resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] =
-new ResourceType({
+resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] = new ResourceType({
   name: (RESOURCE_TYPES.THRICE_LOCKED_TOME),
   category: RCA.SPECIAL,
   tags: [RESOURCE_TAGS.MIND],
@@ -1658,8 +1665,7 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.TOME})
 });
 
-resourceTypes[RESOURCE_TYPES.BROKEN_RED_KEY] =
-new ResourceType({
+resourceTypes[RESOURCE_TYPES.BROKEN_RED_KEY] = new ResourceType({
   name: (RESOURCE_TYPES.BROKEN_RED_KEY),
   category: RCA.SPECIAL,
   tags: [RESOURCE_TAGS.MIND],
@@ -1667,13 +1673,22 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.BROKEN_KEY})
 });
 
-resourceTypes[RESOURCE_TYPES.RED_KEY] =
-new ResourceType({
+resourceTypes[RESOURCE_TYPES.RED_KEY] = new ResourceType({
   name: (RESOURCE_TYPES.RED_KEY),
   category: RCA.SPECIAL,
   tags: [RESOURCE_TAGS.MIND],
   value: 13000,
   icon: new Icon({provider: 'svg', name: SVGS.KEY})
+});
+
+resourceTypes[RESOURCE_TYPES.DROMEDARY_PLAINS] = new ResourceType({
+  name: (RESOURCE_TYPES.DROMEDARY_PLAINS),
+  category: RCA.SPECIAL,
+  subcategory: RSC.DROMEDARY,
+  tags: [RESOURCE_TAGS.ANIMAL],
+  value: 20000,
+  description: `The "Plains" breed is a hybrid; it both travel relatively fast and carry a respectable amount of weight`,
+  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
 });
 
 export { resourceTypes }

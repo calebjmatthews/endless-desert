@@ -55,7 +55,7 @@ export default function  NavbarComponent() {
       dispatch(addMemos([new Memo({
         name: 'test',
         title: 'Test convo',
-        convoName: FORTUITIES.BELLIGERENT_FIGURE
+        convoName: CONVERSATIONS.DRO_THE_NOBLE_DROMEDARY
       })]));
     }
     else {

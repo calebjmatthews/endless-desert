@@ -7,8 +7,8 @@ export enum CONVERSATIONS {
   SND_THE_GRINDING_MILL = "Samannoud: The Grinding Mill",
   SND_IMPLEMENTS_FOR_EXPLORATION = "Samannoud: Implements for Exploration",
   SND_REPAIRING_THE_DOME = "Samannoud: Repairing the Dome",
-
-  SRE_SAYING_HELLO = "Shuddering Refuge: Saying Hello",
+  SND_BEASTS_OF_BURDEN = "Samannoud: Beasts of Burden",
+  SND_THE_FIRST_EXPEDITION = "Samannoud: The First Expedition",
 
   FFH_SAYING_HELLO = "Foxfire Heretic: Saying Hello",
   FFH_THRICE_LOCKED_TOME = "Foxfire Heretic: A Thrice Locked Tome",
@@ -20,6 +20,11 @@ export enum CONVERSATIONS {
 
   AUW_SAYING_HELLO = "Auspicious Waif: Saying Hello",
   AUW_A_BROKEN_KEY = "Auspicious Waif: A Broken Key",
+
+  DRO_THE_NOBLE_DROMEDARY = "Dromedarian: The Noble Dromedary",
+  DRO_BARTERING_DROMEDARY = "Dromedarian: Bartering for Dromedaries",
+  DRO_A_SUSPICION = "Dromedarian: A Suspicion",
+  DRO_SOUTHERN_WADI = "Dromedarian: The Sourthern Wadi",
 
   TFS_SAYING_HELLO = "Trefoil Sower: Saying Hello",
 

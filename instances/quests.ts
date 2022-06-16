@@ -10,10 +10,12 @@ import { ACTIVITIES } from '../enums/activities';
 import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
-import { RESOURCE_TAGS } from '../enums/resource_tags';
-const RTA = RESOURCE_TAGS;
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+const RCA = RESOURCE_CATEGORIES;
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
+import { RESOURCE_TAGS } from '../enums/resource_tags';
+const RTA = RESOURCE_TAGS;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
@@ -22,6 +24,7 @@ import { TRADING_PARTNERS } from '../enums/trading_partners';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { CONVERSATIONS } from '../enums/conversations';
 import { LEADER_TYPES } from '../enums/leader_types';
+import { PEOPLE } from '../enums/people';
 import { SVGS } from '../enums/svgs';
 
 const testingId = utils.randHex(16);
@@ -30,7 +33,7 @@ const quests: { [id: string] : Quest } = {
     id: QUESTS.EARLY_DAYS_SURVIVE,
     subtitle: 'Early Days',
     name: 'Survive',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#28aae1',
       shadow: '#2887c3', secondaryColor: '#aaebf0'}),
@@ -57,7 +60,7 @@ const quests: { [id: string] : Quest } = {
     id: QUESTS.EARLY_DAYS_STUDY,
     subtitle: 'Early Days',
     name: 'Study',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.STUDY }),
     description: `You feel like someone wants you to examine the world. Check the "Research" tab.`,
@@ -82,17 +85,17 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_ANALYZE,
     subtitle: 'Early Days',
     name: 'Analyze',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.KNOWLEDGE }),
     description: `You feel like someone wants you to examine the world even further.`,
     finishText: `Analyzing gives less Knowledge than studying, but its the only source if you have nothing new to study.`,
     tasks: [
-      new QuestTask({ index: 0, parentId: QUESTS.EARLY_DAYS_STUDY,
+      new QuestTask({ index: 0, parentId: QUESTS.EARLY_DAYS_ANALYZE,
         label: `Complete the "Analysis" research.`,
         actionToPerform: { kind: ACTIVITIES.RESEARCH, value: RESEARCHES.ANALYSIS,
           includeExisting: true } }),
-      new QuestTask({ index: 1, parentId: QUESTS.EARLY_DAYS_STUDY,
+      new QuestTask({ index: 1, parentId: QUESTS.EARLY_DAYS_ANALYZE,
         label: `Analyze 100 Water.`,
         resourceToAnalyze: { specificity: RSP.EXACT, type: RTY.WATER, quantity: 100 } })
     ],
@@ -102,7 +105,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_BUILD,
     subtitle: 'Early Days',
     name: 'Build',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.HUTS }),
     description: `You feel like someone wants you to try your hand at construction. After researching a bit of Biology or Physics, look for the "Build" button in the "Buildings" tab.`,
@@ -119,7 +122,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_TRADE,
     subtitle: 'Early Days',
     name: 'Trade',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.MARKET }),
     description: `Some force wants you to do business with a trading partner from across the desert. First you'll need to research Anthropology, research Trading, repair the Market, and look inside the "Trading" tab.`,
@@ -135,7 +138,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_BUILDING_STORAGE,
     subtitle: 'Early Days',
     name: 'Building Storage',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({provider: 'svg', name: SVGS.FURNACE}),
     description: `A voice in your mind tells you to put buildings away. We are all descendants of desert nomads, and our buildings can be easily packed away and brought back out. Put one into storage after inspecting it within the "Buildings" tab.`,
@@ -151,7 +154,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_BUILDING_UPGRADE,
     subtitle: 'Early Days',
     name: 'Building Upgrade',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.COTTAGES }),
     description: `Something seems to whisper that buildings you've made can be improved. You'll need to finish the proper research first, then inspect the building within the "Buildings" tab.`,
@@ -167,7 +170,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_LEADER_SETUP,
     subtitle: 'Early Days',
     name: 'Leader Setup',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.BREAD }),
     description: `A subtle feeling advises you that you need to take care of your leaders. After inspecting them in the "Leaders" tab, you can give them what they need to get by.`,
@@ -193,7 +196,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     id: QUESTS.EARLY_DAYS_MARK_EQUIPMENT,
     subtitle: 'Early Days',
     name: 'Mark Equipment',
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.OBLIGATORY,
     icon: new Icon({ provider: 'svg', name: SVGS.SIMPLE_ROBE }),
     description: `A whisper tells you that the generic equipment you make or find needs to be inspected and marked with your town's seal before it can be used.`,
@@ -325,11 +328,10 @@ You're not sure if it's related to your actions, but someone has put a set of ru
       new QuestTask({ index: 4, parentId: QUESTS.ASTRONOMY_THE_GRINDING_MILL,
         label: `Repair the Shattered Dome.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
-          value: BUILDING_TYPES.SHATTERED_DOME } }),
-
+          value: BUILDING_TYPES.SHATTERED_DOME } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.NOTES_STAR, value: 10000 }],
-    // conversationBegins: conversations[]
+    conversationBegins: conversations[CONVERSATIONS.SND_BEASTS_OF_BURDEN]
   }),
   [QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME]: new Quest({
     id: QUESTS.MYSTICISM_A_THRICE_LOCKED_TOME,
@@ -588,7 +590,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     description: `A rather entitled trader is demanding you furnish materials to repair her "fourth-finest riding dress."`,
     finishText: `And here the materials are, in neat little stacks.`,
     tasks: [
-      new QuestTask({ index: 0, parentId: QUESTS.EARLY_DAYS_STUDY,
+      new QuestTask({ index: 0, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
         label: `Complete the "Glass Shaping" research.`,
         actionToPerform: { kind: ACTIVITIES.RESEARCH, value: RESEARCHES.GLASS_SHAPING,
           includeExisting: true } }),
@@ -596,7 +598,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Produce 200 Beads.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BEADS}`,
           quantity: 200, consumed: true, includeExisting: true } }),
-      new QuestTask({ index: 2, parentId: QUESTS.EARLY_DAYS_STUDY,
+      new QuestTask({ index: 2, parentId: QUESTS.NATIONS_TOURMALINE_JEWELERS,
         label: `Complete the "Weaving" research.`,
         actionToPerform: { kind: ACTIVITIES.RESEARCH, value: RESEARCHES.WEAVING,
           includeExisting: true } }),
@@ -612,10 +614,210 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     tradingPartnerJoins: TRADING_PARTNERS.TOURMALINE_JEWELERS,
     conversationBegins: conversations[CONVERSATIONS.ETC_BEADS_AND_BOLTS_OF_CLOTH]
   }),
+  [QUESTS.DROMEDARIES_RATIONS]: new Quest({
+    id: QUESTS.DROMEDARIES_RATIONS,
+    subtitle: 'Dromedaries',
+    name: 'Rations, Wrapped and Labeled',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.SALTFISH}),
+    description: `The Dromedarian has requested "Rations, Wrapped and Labeled" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_RATIONS,
+        label: `Requested: 2000 Provisions.`,
+        resourceToProduce: { specType: `${RSP.TAG}|${RTA.PROVISION}`,
+          quantity: 2000, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_RATIONS,
+        label: `Requested: 400 Papyrus`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.PAPYRUS}`,
+          quantity: 400, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_BEER]: new Quest({
+    id: QUESTS.DROMEDARIES_BEER,
+    subtitle: 'Dromedaries',
+    name: 'Beer, Sealed in Jars',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.BEER}),
+    description: `The Dromedarian has requested "Beer, Sealed in Jars" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_BEER,
+        label: `Requested: 1800 Beer.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.BEER}`,
+          quantity: 1800, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_BEER,
+        label: `Requested: 300 Earthenware`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.TERRACOTTA}`,
+          quantity: 300, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_WINE]: new Quest({
+    id: QUESTS.DROMEDARIES_WINE,
+    subtitle: 'Dromedaries',
+    name: 'Wine, Decanted and Bottled',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.WINE}),
+    description: `The Dromedarian has requested "Wine, Decanted and Bottled" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_WINE,
+        label: `Requested: 200 Wine.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WINE}`,
+          quantity: 200, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_WINE,
+        label: `Requested: 20 Glassware`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GLASSWARE}`,
+          quantity: 300, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_LINEN]: new Quest({
+    id: QUESTS.DROMEDARIES_LINEN,
+    subtitle: 'Dromedaries',
+    name: 'Linen, Rolled into Bolts',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.LINEN}),
+    description: `The Dromedarian has requested "Linen, Rolled into Bolts" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_LINEN,
+        label: `Requested: 120 Linen.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LINEN}`,
+          quantity: 120, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_LINEN,
+        label: `Requested: 20 Crude Needles`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.CRUDE_NEEDLE}`,
+          quantity: 20, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_OLIVE_OIL]: new Quest({
+    id: QUESTS.DROMEDARIES_OLIVE_OIL,
+    subtitle: 'Dromedaries',
+    name: 'Oilve Oil, Cleanly Pressed',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.OLIVE_OIL}),
+    description: `The Dromedarian has requested "Oilve Oil, Cleanly Pressed" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_OLIVE_OIL,
+        label: `Requested: 2200 Olive Oil.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.OLIVE_OIL}`,
+          quantity: 2200, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_OLIVE_OIL,
+        label: `Requested: 200 Ashware`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.ASHWARE}`,
+          quantity: 200, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_INK]: new Quest({
+    id: QUESTS.DROMEDARIES_INK,
+    subtitle: 'Dromedaries',
+    name: 'Ink, for Use as Kohl',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
+      shadow: '#111', secondaryColor: '#a2a2a2'}),
+    description: `The Dromedarian has requested "Ink, for Use as Kohl" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_INK,
+        label: `Requested: 340 Ferrous Ink.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.INK_FERROUS}`,
+          quantity: 340, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_INK,
+        label: `Requested: 34 Faience`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.FAIENCE}`,
+          quantity: 34, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_GEARWORK]: new Quest({
+    id: QUESTS.DROMEDARIES_GEARWORK,
+    subtitle: 'Dromedaries',
+    name: 'Gearwork, with Annotations',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
+      shadow: '#111', secondaryColor: '#a2a2a2'}),
+    description: `The Dromedarian has requested "Gearwork, with Annotations" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_GEARWORK,
+        label: `Requested: 40 Gearwork.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GEARWORK}`,
+          quantity: 340, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_GEARWORK,
+        label: `Requested: Field Notes`,
+        resourceToProduce: { specType: `${RSP.CATEGORY}|${RCA.FIELD_NOTES}`,
+          quantity: 1, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_LENSES]: new Quest({
+    id: QUESTS.DROMEDARIES_LENSES,
+    subtitle: 'Dromedaries',
+    name: 'Lenses, for Nighttime Use',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.LENS}),
+    description: `The Dromedarian has requested "Lenses, for Nighttime Use" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_LENSES,
+        label: `Requested: 300 Lenses.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GEARWORK}`,
+          quantity: 300, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_LENSES,
+        label: `Requested: 15 Torches`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.TORCH}`,
+          quantity: 15, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
+  [QUESTS.DROMEDARIES_GLASS]: new Quest({
+    id: QUESTS.DROMEDARIES_GLASS,
+    subtitle: 'Dromedaries',
+    name: 'Crystal Glass, Ready to Grind',
+    givenBy: PEOPLE.DROMEDARIAN,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.GLASS_FLOAT}),
+    description: `The Dromedarian has requested "Crystal Glass, Ready to Grind" in exchange for ten noble beasts of burden`,
+    finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_GLASS,
+        label: `Requested: 200 Float Glass.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LENS}`,
+          quantity: 200, consumed: true, includeExisting: true } }),
+      new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_GLASS,
+        label: `Requested: 200 Abrasive`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.ABRASIVE}`,
+          quantity: 200, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
+      value: 200000 }]
+  }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
     name: QUESTS.TESTING,
-    givenBy: 'Firefly',
+    givenBy: PEOPLE.FIREFLY,
     type: QUEST_TYPES.CONVENTIONAL,
     description: `Is Water an inside job??? Or Lentils!?!?`,
     finishText: `Turns out, neither Water nor Lentils are an inside job.`,

@@ -146,6 +146,7 @@ export enum RESOURCE_TYPES {
   SALTED_MEAT = "Salted Meat",
   MISTAKE = "Mistake",
   BEER = "Beer",
+  WINE = "Wine",
   LIQUOR = "Liquor",
 
   IRON_EDGE = "Iron Edge",
@@ -163,5 +164,6 @@ export enum RESOURCE_TYPES {
 
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",
-  RED_KEY = "Red Key"
+  RED_KEY = "Red Key",
+  DROMEDARY_PLAINS = "Plains Dromedary"
 }

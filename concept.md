@@ -828,14 +828,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Building problems in building detail header
   [X] Hide inapplicable fields from building in progress detail
   [X] Tab linking buttons on special buildings (Study, Market)
-  [ ] Dromedarian fortuities and quests
-  [ ] Trader conversations
+  [X] Dromedarian fortuities and quests
   [ ] Additional equipment, tea, jewels, and textile sources as trade goods
+  [ ] Wine from distillery
   [ ] Fortuity with options for new equipment quests
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
+  [ ] Firefly mother quests?
   [ ] Revamp equipment marking and deconstruction
+  [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Expeditions! (without exploration)
 
@@ -845,6 +847,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
   [ ] Store memo and conversation state in reducer
+  [ ] Conversations can be repeatable, but not daily
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] Fix for impossible expensive trades

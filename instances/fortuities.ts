@@ -45,27 +45,6 @@ fortuities[FORTUITIES.FAMILIAR_FIGURE] = new Fortuity({
   }
 });
 
-fortuities[FORTUITIES.SHUDDERING_FIGURE] = new Fortuity({
-  name: FORTUITIES.SHUDDERING_FIGURE,
-  openLine: 'Someone is waiting to speak to you',
-  memos: [
-    new Memo({
-      name: 'A Shuddering Figure',
-      title: 'A Shuddering Figure',
-      convoName: FORTUITIES.SHUDDERING_FIGURE
-    })
-  ],
-  type: 'Conversation',
-  repeatable: false,
-  weight: 20,
-  available: (fState: GameState) => {
-    if (fState.account?.fortuitiesSeen[FORTUITIES.THRICE_LOCKED_TOME]) {
-      return true;
-    }
-    return false;
-  }
-});
-
 fortuities[FORTUITIES.SLIGHT_FIGURE] = new Fortuity({
   name: FORTUITIES.SLIGHT_FIGURE,
   openLine: 'Someone is waiting to speak to you',
@@ -180,6 +159,97 @@ fortuities[FORTUITIES.BELLIGERENT_FIGURE] = new Fortuity({
         [QUESTS.OPPORTUNITY_A_STRANDED_STRANGER]) !== undefined;
     }
     return false;
+  }
+});
+
+fortuities[FORTUITIES.THE_NOBLE_DROMEDARY] = new Fortuity({
+  name: FORTUITIES.THE_NOBLE_DROMEDARY,
+  openLine: 'A slow-moving caravan of Dromedaries approaches',
+  memos: [
+    new Memo({
+      name: 'The Noble Dromedary',
+      title: 'The Noble Dromedary',
+      convoName: CONVERSATIONS.DRO_THE_NOBLE_DROMEDARY
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    if (fState.questStatus) {
+      return (fState.questStatus.questsCompleted
+        [QUESTS.ASTRONOMY_REPAIRING_THE_DOME]) !== undefined;
+    }
+    return false;
+  }
+});
+
+fortuities[FORTUITIES.BARTERING_DROMEDARY] = new Fortuity({
+  name: FORTUITIES.BARTERING_DROMEDARY,
+  openLine: 'A slow-moving caravan of Dromedaries approaches',
+  memos: [
+    new Memo({
+      name: 'Bartering for Dromedaries',
+      title: 'Bartering for Dromedaries',
+      convoName: CONVERSATIONS.DRO_BARTERING_DROMEDARY
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+    const currentDromedarianQuest = Object.keys(fState.questStatus?.
+      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+    return (dromedarianQuestsCompleted.length >= 1
+      && currentDromedarianQuest.length === 0);
+  }
+});
+
+fortuities[FORTUITIES.A_SUSPICION_DROMEDARIAN] = new Fortuity({
+  name: FORTUITIES.A_SUSPICION_DROMEDARIAN,
+  openLine: 'A slow-moving caravan of Dromedaries approaches',
+  memos: [
+    new Memo({
+      name: 'A Suspicion of the Dromedarian',
+      title: 'A Suspicion of the Dromedarian',
+      convoName: CONVERSATIONS.DRO_A_SUSPICION
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+    const currentDromedarianQuest = Object.keys(fState.questStatus?.
+      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+    return (dromedarianQuestsCompleted.length >= 3
+      && currentDromedarianQuest.length === 0);
+  }
+});
+
+fortuities[FORTUITIES.SOUTHERN_WADI] = new Fortuity({
+  name: FORTUITIES.SOUTHERN_WADI,
+  openLine: 'A slow-moving caravan of Dromedaries approaches',
+  memos: [
+    new Memo({
+      name: 'A Southern Wadi',
+      title: 'A Southern Wadi',
+      convoName: CONVERSATIONS.DRO_SOUTHERN_WADI
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+    const currentDromedarianQuest = Object.keys(fState.questStatus?.
+      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+    return (dromedarianQuestsCompleted.length >= 6
+      && currentDromedarianQuest.length === 0);
   }
 });
 

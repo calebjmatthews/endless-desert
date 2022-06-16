@@ -101,6 +101,7 @@ export enum SVGS {
   SALTFISH = "Saltfish",
   SALTED_MEAT = "Salted Meat",
   MISTAKE = "Mistake",
+  WINE = "Wine",
   BEER = "Beer",
   LIQUOR = "Liquor",
 
@@ -115,6 +116,7 @@ export enum SVGS {
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",
   KEY = "Key",
+  DROMEDARY = "Dromedary",
 
   ROUGH_MATTOCK = "Rough Mattock",
   WOODEN_POLE = "Wooden Pole",
@@ -187,6 +189,7 @@ export enum SVGS {
   YOU = "You",
   FIREFLY = "Firefly",
   TOURMALINE_JEWELER = "Kubra",
+  DROMEDARIAN = "The Dromedarian",
 
   FOXFIRE_ASCETICS = "Foxfire Ascetics",
   TREFOIL_KINGDOM = "Trefoil Kingdom",

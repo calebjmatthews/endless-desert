@@ -11,6 +11,7 @@ export enum QUESTS {
   ASTRONOMY_POTENT_FUEL = "Astronomy: Potent Fuel",
   ASTRONOMY_THE_GRINDING_MILL = "Astronomy: The Grinding Mill",
   ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION = "Astronomy: Implements for Exploration",
+  ASTRONOMY_THE_FIRST_EXPEDITION = "Astronomy: The First Expedition",
   ASTRONOMY_REPAIRING_THE_DOME = "Astronomy: Repairing the Dome",
   MYSTICISM_A_THRICE_LOCKED_TOME = "Mysticism: A Thrice Locked Tome",
   MYSTICISM_A_RUINED_RED_METAL = "Mysticism: A Ruined Red Metal",
@@ -22,5 +23,14 @@ export enum QUESTS {
   NATIONS_A_SANDSTONE_THROUGHWAY = "Nations: A Sandstone Throughway",
   NATIONS_SPRING_AUTUMN_PROOFS = "Nations: Spring-Autumn Proofs",
   NATIONS_TOURMALINE_JEWELERS = "Nations: Tourmaline Jewelers",
+  DROMEDARIES_RATIONS = "Dromedaries: Rations, Wrapped and Labeled",
+  DROMEDARIES_BEER = "Dromedaries: Beer, Sealed in Jars",
+  DROMEDARIES_WINE = "Dromedaries: Wine, Decanted and Bottled",
+  DROMEDARIES_LINEN = "Dromedaries: Linen, Rolled into Bolts",
+  DROMEDARIES_OLIVE_OIL = "Dromedaries: Oilve Oil, Cleanly Pressed",
+  DROMEDARIES_INK = "Dromedaries: Ink, for Use as Kohl",
+  DROMEDARIES_GEARWORK = "Dromedaries: Gearwork, with Annotations",
+  DROMEDARIES_LENSES = "Dromedaries: Lenses, for Nighttime Use",
+  DROMEDARIES_GLASS = "Dromedaries: Crystal Glass, Ready to Grind",
   TESTING = "Testing"
 }
