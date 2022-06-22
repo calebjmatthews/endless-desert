@@ -206,8 +206,8 @@
         "quantity": 23,
         "tags": []
       },
-      "Darjeeling Tea Leaves|0": {
-        "type": "Darjeeling Tea Leaves",
+      "Celadon Tea Leaves|0": {
+        "type": "Celadon Tea Leaves",
         "quality": 0,
         "quantity": 268,
         "tags": []
@@ -364,7 +364,7 @@
       "Pale Ore|0": true,
       "Mud Bricks|0": true,
       "Brine|0": true,
-      "Darjeeling Tea Leaves|0": true,
+      "Celadon Tea Leaves|0": true,
       "Dusty Ore|0": true,
       "Greenish Ore|0": true,
       "Glass|0": true,
@@ -5189,7 +5189,7 @@
       }
     },
     {
-      "text": "You studied Darjeeling Tea Leaves for 20 knowledge.",
+      "text": "You studied Celadon Tea Leaves for 20 knowledge.",
       "type": "Study",
       "timestamp": "2022-03-21T15:51:41.494Z",
       "icon": {

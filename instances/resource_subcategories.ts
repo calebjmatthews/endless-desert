@@ -181,10 +181,10 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.DROMEDARY] = new ResourceSubcategor
   icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
 });
 
-resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_DARJEELING] =
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_CELADON] =
 new ResourceSubcategory({
-  name: RESOURCE_SUBCATEGORIES.TEA_DARJEELING,
-  plural: 'Pots of Darjeeling Tea',
+  name: RESOURCE_SUBCATEGORIES.TEA_CELADON,
+  plural: 'Pots of Celadon Tea',
   value: 30,
   order: 80,
   icon: new Icon({provider: 'svg', name: SVGS.TEA})

@@ -27,7 +27,7 @@ export enum RESOURCE_TYPES {
   LOTUS_ROOT = "Lotus Root",
   FIG = "Fig",
   DATE = "Date",
-  TEA_LEAVES_DARJEELING = "Darjeeling Tea Leaves",
+  TEA_LEAVES_CELADON = "Celadon Tea Leaves",
   REEDS = "Reeds",
   SEEDS_LENTIL = "Lentil Seeds",
   SEEDS_REED = "Reed Seeds",
@@ -131,7 +131,7 @@ export enum RESOURCE_TYPES {
   FAIENCE = "Faience",
   PORCELAIN = "Porcelain",
 
-  TEA_DARJEELING = "Darjeeling Tea",
+  TEA_CELADON = "Celadon Tea",
   JUICE_BLUEBERRY = "Blueberry Juice",
   JUICE_TOMATO = "Tomato Juice",
   SOUP = "Soup",

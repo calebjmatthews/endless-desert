@@ -19,7 +19,7 @@ export enum RESOURCE_SUBCATEGORIES {
   CERAMIC = "Ceramic",
   TEXTILE = "Textile",
   DROMEDARY = "Dromedary",
-  TEA_DARJEELING = "Darjeeling Tea",
+  TEA_CELADON = "Celadon Tea",
   JUICE_BLUEBERRY = "Blueberry Juice",
   JUICE_TOMATO = "Tomato Juice",
   SOUP = "Soup",

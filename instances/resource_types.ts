@@ -282,13 +282,13 @@ resourceTypes[RTY.FIG] = new ResourceType({
     shadow: "#8066ff"})
 });
 
-resourceTypes[RTY.TEA_LEAVES_DARJEELING] = new ResourceType({
-  name: RTY.TEA_LEAVES_DARJEELING,
+resourceTypes[RTY.TEA_LEAVES_CELADON] = new ResourceType({
+  name: RTY.TEA_LEAVES_CELADON,
   category: RCA.MATERIAL,
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 20,
-  description: `A commonly available tea leaf with a simple flavor`,
+  description: `A commonly found tea leaf with a simple flavor`,
   icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#65b31b',
     shadow: '#599a14'})
 });
@@ -1296,8 +1296,8 @@ resourceTypes[RTY.PORCELAIN] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.PORCELAIN})
 });
 
-resourceTypes[RTY.TEA_DARJEELING] = new ResourceType({
-  name: RTY.TEA_DARJEELING,
+resourceTypes[RTY.TEA_CELADON] = new ResourceType({
+  name: RTY.TEA_CELADON,
   category: RCA.DISH,
   tags: [RTA.DRINK],
   value: 30,

@@ -75,19 +75,24 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Expedition introductory quest
     - Cries in the night: Samannoud wants to  investigate unexplained cries coming from nearby in the night
     - Some connection with Alabaster; refugees? bandits?
+  - Expeditions:
+    - Thieves' Hideout
+    - Under-Reservoir
+    - Hall of Silken Mirrors
+    - Painted Ravine
   - Expedition relics:
     - Shell from something mythical
     - Resin from something mythical
     - Maps to find other expeditions
     - Ancient seeds
-    - Petrtified wood tablets containing poetry dice masks
+    - Petrtified wood tablets containing poetry, dice, masks
     - Stone figurines in the shape of many different animals
     - Instruments made from various woods
   - There's a need for more high-value trade goods:
     - More jewels/precious goods: coral, ivory
     - Ice, as recipe ingredient
     - Ingredients used in advanced implements? Medicinal herbs, plaster molds, resin, golden oil
-    - Rumors (of various areas), used to create starcharts
+    - Rumors (of various areas), used to create starcharts: Rumors of the Near Desert, Rumors of the All-River Deltas, Rumors of Larcenous Activity, Rumors of Deep Strangeness, Rumors of Long Antiquity, Rumors of a Translocated Hall
     - Herbs!
     - Field Notes
     - Honey, wax
@@ -122,7 +127,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Lignum Vitae: Airy
   - Herbs
     * Cinnamon: Savory
-    * Carob: Sweet
+    * Sugar Cane: Sweet
     * Mint: Cooling
     * Peppercorn: Spicy
     * Salt: Brackish
@@ -169,6 +174,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Nilgiri: Indian, subtle
     * Kukicha (twigs): Japanese
     * Ryokucha: Japanese, green tea
+    * Chartreuse: Yellow-green
+    * Celadon: Ceramic resembling jade
+    * Myrtle: Evergreen shrub
+    * Jannah: Islamic heaven
 
 ## Where is the bottleneck?
   - Creation of basic resources should be based on buildings (rather than working groups), with specialty goods for limited use or trade created by groups.
@@ -370,7 +379,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
   - Implements:
     - Iron Edge: Iron x10 (Relic: Menacing)
-    - Vitrius Edge: Vitrius Sheet x5, Steel x2
+    - Vitrius Edge: Float Glass x5, Steel x2
     - Hardened Slab: Iron x5, Bronze x5 (Relic: Steadfast)
     - Unbreakable Slab: Steel x20, Ceramic Hull x1
     - Crude Needle: Iron x4, Bronze x1 (Relic: Precise)
@@ -406,7 +415,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Adjectives come from a spice used in the dish (or oil), then the main ingredient used in the dish. "Plain" is used if there is no spice or oil, "Tasty" is used if there is oil but no spice, and "Spiced" is used if there is more than one spice. For example, Lentils + Water + Olive Oil = "Tasty Lentil Soup", Fish + Grain + Water + Peppercorns = "Peppered Fish Pie", Onion + Egg + Water = "Plain Onion Omelet"
 
 ## Expeditions:
-- Colossal underground "House of Forms" produced sap (?) that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
+- Colossal underground "House of Forms" produced fungus (?) that healed all sickness and sated all hunger, and had some method of existing in multiple locations at once (?); Various expeditions go to different locations within the House:
   - Gardens with reward of rare seeds and plant-related equipment
   - Library with knowledge-related rewards
   - Kitchens with recipes, rare ingredients, and cooking-related equipment
@@ -541,11 +550,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/japan-10/
     https://www.svgrepo.com/collection/japan-9/
     https://www.svgrepo.com/collection/china/
+    https://www.svgrepo.com/collection/india-6/
     https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
     https://www.svgrepo.com/collection/knowledge-4/
     https://www.svgrepo.com/collection/science-10/
     https://www.svgrepo.com/collection/labour-day/
+    https://www.svgrepo.com/collection/crafting-3/
+    https://www.svgrepo.com/collection/musical-instruments-9/
     https://www.svgrepo.com/collection/in-the-forest-6/
     https://www.svgrepo.com/collection/camping-5/
     https://www.svgrepo.com/collection/camping-12/
@@ -572,6 +584,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/beauty-30/
     https://www.shareicon.net/pack/landscapes?p=4
     https://www.shareicon.net/pack/landscapes-collection?p=2
+    https://www.svgrepo.com/collection/stationery-elements/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -829,7 +842,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Hide inapplicable fields from building in progress detail
   [X] Tab linking buttons on special buildings (Study, Market)
   [X] Dromedarian fortuities and quests
-  [ ] Additional equipment, tea, jewels, and textile sources as trade goods
+  [ ] Tea, jewels, and textile sources as trade goods
   [ ] Wine from distillery
   [ ] Fortuity with options for new equipment quests
   [ ] Max analysis increases with items studied
