@@ -911,6 +911,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.FLAX, quantity: 20},
         {specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 1}]}),
     new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.WOOL, quantity: 4, probability: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.FLEECE, quantity: 8},
+        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 1}]}),
+    new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.SILK, quantity: 4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SILKWORM_COCOON, quantity: 20},
         {specificity: RSP.EXACT, type: RTY.WATER, quantity: 20},

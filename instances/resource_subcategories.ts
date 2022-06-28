@@ -5,6 +5,14 @@ import { SVGS } from '../enums/svgs';
 
 let resourceSubcategories: { [name: string] : ResourceSubcategory } = {};
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.RUMORS] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.RUMORS,
+  plural: 'Rumors',
+  value: 800,
+  order: 300,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_LONG_ANTIQUITY})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.WATER] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.WATER,
   plural: 'Water',
@@ -39,6 +47,15 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SEEDS] = new ResourceSubcategory({
   order: 2,
   icon: new Icon({provider: 'svg', name: SVGS.SEEDS, color: '#ffbe00',
     shadow: '#ffb655'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_LEAVES] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.TEA_LEAVES,
+  plural: 'Tea Leaves',
+  value: 30,
+  order: 2.5,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#7bb344',
+    shadow: '#5e932b'})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.WOOD] = new ResourceSubcategory({
@@ -173,18 +190,26 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.TEXTILE] = new ResourceSubcategory(
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.IMPLEMENT_PARTS] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.TEXTILE,
+  plural: 'Textiles',
+  value: 180,
+  order: 17,
+  icon: new Icon({provider: 'svg', name: SVGS.ECHINACEA_BLOOM})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.DROMEDARY] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.DROMEDARY,
   plural: 'Dromedaries',
   value: 2000,
-  order: 18,
+  order: 19,
   icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
 });
 
-resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_CELADON] =
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA] =
 new ResourceSubcategory({
-  name: RESOURCE_SUBCATEGORIES.TEA_CELADON,
-  plural: 'Pots of Celadon Tea',
+  name: RESOURCE_SUBCATEGORIES.TEA,
+  plural: 'Pots of Tea',
   value: 30,
   order: 80,
   icon: new Icon({provider: 'svg', name: SVGS.TEA})

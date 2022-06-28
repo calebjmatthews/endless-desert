@@ -32,6 +32,56 @@ resourceTypes[RTY.GLOAMING_LIGHT] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.GLOAMING_LIGHT})
 });
 
+resourceTypes[RTY.RUMORS_LONG_ANTIQUITY] = new ResourceType({
+  name: RTY.RUMORS_LONG_ANTIQUITY,
+  category: RCA.ETHERIAL,
+  subcategory: RSC.RUMORS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `This part of the world has a long history; layers of dead heroes and ruined civilizations piled together like a midden`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_LONG_ANTIQUITY})
+});
+
+resourceTypes[RTY.RUMORS_ALL_RIVER_DELTA] = new ResourceType({
+  name: RTY.RUMORS_ALL_RIVER_DELTA,
+  category: RCA.ETHERIAL,
+  subcategory: RSC.RUMORS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `The All-River winds through this dry land, seasonal flooding leaving its banks flush with life`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_ALL_RIVER_DELTA})
+});
+
+resourceTypes[RTY.RUMORS_LARCENOUS_ACTIVITY] = new ResourceType({
+  name: RTY.RUMORS_LARCENOUS_ACTIVITY,
+  category: RCA.ETHERIAL,
+  subcategory: RSC.RUMORS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `The caves and ravines here are studded with thieves caches made by bands that no longer exist`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_LARCENOUS_ACTIVITY})
+});
+
+resourceTypes[RTY.RUMORS_NEAR_DESERT] = new ResourceType({
+  name: RTY.RUMORS_NEAR_DESERT,
+  category: RCA.ETHERIAL,
+  subcategory: RSC.RUMORS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `The desert near the deltas is markedly safer than the deeper reaches; this despite the sandstorms, bandits, wolves, and sudden opening of crevices`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_NEAR_DESERT})
+});
+
+resourceTypes[RTY.RUMORS_TRANSLOCATED_HALL] = new ResourceType({
+  name: RTY.RUMORS_TRANSLOCATED_HALL,
+  category: RCA.ETHERIAL,
+  subcategory: RSC.RUMORS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `Have you heard of The Hall, Home to All? With doors that stand in every land, and hearth-fire forever tall?`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_TRANSLOCATED_HALL})
+});
+
 resourceTypes[RTY.NOTES_SKY] = new ResourceType({
   name: RTY.NOTES_SKY,
   category: RCA.FIELD_NOTES,
@@ -115,6 +165,16 @@ resourceTypes[RTY.BRINE] = new ResourceType({
   description: `A concentrated form of salty water, pulled from the sea`,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#23b39b',
     shadow: '#1b8f7c', secondaryColor: '#68ddc9'})
+});
+
+resourceTypes[RTY.ICE] = new ResourceType({
+  name: RTY.ICE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.WATER,
+  tags: [RTA.TRADE_GOOD, RTA.INGREDIENT, RTA.COOLING],
+  value: 400,
+  description: `In the desert heat ice is an incredible luxury`,
+  icon: new Icon({provider: 'svg', name: SVGS.ICE})
 });
 
 resourceTypes[RTY.LENTIL] = new ResourceType({
@@ -285,12 +345,34 @@ resourceTypes[RTY.FIG] = new ResourceType({
 resourceTypes[RTY.TEA_LEAVES_CELADON] = new ResourceType({
   name: RTY.TEA_LEAVES_CELADON,
   category: RCA.MATERIAL,
-  subcategory: RSC.CROP,
+  subcategory: RSC.TEA_LEAVES,
   tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
   value: 20,
   description: `A commonly found tea leaf with a simple flavor`,
-  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#65b31b',
-    shadow: '#599a14'})
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#7bb344',
+    shadow: '#5e932b'})
+});
+
+resourceTypes[RTY.TEA_LEAVES_VIRIDIAN] = new ResourceType({
+  name: RTY.TEA_LEAVES_VIRIDIAN,
+  category: RCA.MATERIAL,
+  subcategory: RSC.TEA_LEAVES,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 56,
+  description: `A deep blue-green tea leaf grown on grassy islands`,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#10b78b',
+    shadow: '#028361'})
+});
+
+resourceTypes[RTY.TEA_LEAVES_JASMINE] = new ResourceType({
+  name: RTY.TEA_LEAVES_JASMINE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.TEA_LEAVES,
+  tags: [RTA.CROP, RTA.INGREDIENT, RTA.TRADE_GOOD],
+  value: 136,
+  description: `A blush-shaded leaf with a delicious aroma`,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA_LEAVES, color: '#e8cad7',
+    shadow: '#4caf50'})
 });
 
 resourceTypes[RTY.REEDS] = new ResourceType({
@@ -495,11 +577,21 @@ resourceTypes[RTY.MILK] = new ResourceType({
     shadow: '#bbb'})
 });
 
+resourceTypes[RTY.FLEECE] = new ResourceType({
+  name: RTY.FLEECE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.ANIMAL,
+  tags: [RTA.ANIMAL, RTA.TRADE_GOOD],
+  value: 400,
+  description: `The fluffy, unprocessed coat of a sheep`,
+  icon: new Icon({provider: 'svg', name: SVGS.FLEECE})
+});
+
 resourceTypes[RTY.SILKWORM_COCOON] = new ResourceType({
   name: RTY.SILKWORM_COCOON,
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
-  tags: [RTA.ANIMAL],
+  tags: [RTA.ANIMAL, RTA.TRADE_GOOD],
   value: 200,
   description: `Can be boiled and weaved to produce a soft, smooth fabric beyond compare`,
   icon: new Icon({provider: 'svg', name: SVGS.SILKWORM_COCOON})
@@ -934,13 +1026,33 @@ resourceTypes[RTY.STEEL] = new ResourceType({
     shadow: '#444b6b', secondaryColor: '#b1b9e4'})
 });
 
+resourceTypes[RTY.CORAL_BRANCH] = new ResourceType({
+  name: RTY.CORAL_BRANCH,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS],
+  value: 62,
+  description: `Often unintentionally pulled up by fishing nets`,
+  icon: new Icon({provider: 'svg', name: SVGS.CORAL})
+});
+
+resourceTypes[RTY.IVORY_SHARD] = new ResourceType({
+  name: RTY.IVORY_SHARD,
+  category: RCA.MATERIAL,
+  subcategory: RSC.GEM,
+  tags: [RTA.TRADE_GOOD, RTA.PRECIOUS],
+  value: 250,
+  description: `Fragments of animal horn are traditionally carved into jewelry or figurines`,
+  icon: new Icon({provider: 'svg', name: SVGS.IVORY})
+});
+
 resourceTypes[RTY.JADE_TOKEN] = new ResourceType({
   name: RTY.JADE_TOKEN,
   category: RCA.MATERIAL,
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS],
   value: 1000,
-  description: `These small jade disks are exchanged for goods or services in the Spring-Autumn Kingdom`,
+  description: `Small jade disks exchanged for goods or services in the Spring-Autumn Kingdom`,
   icon: new Icon({provider: 'svg', name: SVGS.JADE})
 });
 
@@ -950,7 +1062,7 @@ resourceTypes[RTY.AMETHYST_DUSKY] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.COOLING],
   value: 4000,
-  description: `A gem seared to a smokey purple by an ancient fire`,
+  description: `Seared to a smokey purple by an ancient fire`,
   icon: new Icon({provider: 'svg', name: SVGS.AMETHYST})
 });
 
@@ -960,7 +1072,7 @@ resourceTypes[RTY.TOPAZ_SLATE] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SAVORY],
   value: 16000,
-  description: `A thick slab of topaz covered with mysterious letters and shapes that look like scorpions`,
+  description: `Thick slabs of topaz covered with mysterious shapes reminiscent of scorpions`,
   icon: new Icon({provider: 'svg', name: SVGS.TOPAZ})
 });
 
@@ -980,7 +1092,7 @@ resourceTypes[RTY.ONYX_HUSK] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BITTER],
   value: 256000,
-  description: `Incredibly hard but hollow, this gem is said to be the shell of an insect that lives deep within the earth`,
+  description: `Incredibly hard but hollow; said to be the shells of insects that lives deep within the earth`,
   icon: new Icon({provider: 'svg', name: SVGS.ONYX})
 });
 
@@ -990,7 +1102,7 @@ resourceTypes[RTY.RUBY_CURSED] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SPICY],
   value: 1024000,
-  description: `Dismal fortune is said to befall anyone who holds these beautiful red gems`,
+  description: `Dismal fortune is said to befall anyone who possesses these beautiful red gems`,
   icon: new Icon({provider: 'svg', name: SVGS.RUBY})
 });
 
@@ -1000,7 +1112,7 @@ resourceTypes[RTY.SAPPHIRE_FLOATING] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.BRACKISH],
   value: 4096000,
-  description: `They don't exactly float, but these gems are so light that they can be carried away by a gentle breeze`,
+  description: `While they don't literally float, these gems are somehow so light that they could be carried away by a gentle breeze`,
   icon: new Icon({provider: 'svg', name: SVGS.SAPPHIRE})
 });
 
@@ -1010,7 +1122,7 @@ resourceTypes[RTY.EMERALD_REFRACTING] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.HERBAL],
   value: 16384000,
-  description: `Looking head on, the light refracting through this gem seems to stretch it into an infinite depth`,
+  description: `Looking head on, any light refracting through seems to stretch into an infinite depth`,
   icon: new Icon({provider: 'svg', name: SVGS.EMERALD})
 });
 
@@ -1020,7 +1132,7 @@ resourceTypes[RTY.DIAMOND_IRRADIENT] = new ResourceType({
   subcategory: RSC.GEM,
   tags: [RTA.TRADE_GOOD, RTA.PRECIOUS, RTA.SWEET],
   value: 65536000,
-  description: `Could a gem shine so brightly that it gives off its own light, dazzling even in the dark?`,
+  description: `Could a gem shine brightly enough to give off its own light, dazzling even in the dark?`,
   icon: new Icon({provider: 'svg', name: SVGS.DIAMOND})
 });
 
@@ -1038,7 +1150,7 @@ resourceTypes[RTY.CINNAMON] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
   tags: [RTA.CROP, RTA.SAVORY, RTA.SPICE],
-  value: 40,
+  value: 240,
   icon: new Icon({provider: 'svg', name: SVGS.CINNAMON})
 });
 
@@ -1049,6 +1161,15 @@ resourceTypes[RTY.CAROB] = new ResourceType({
   tags: [RTA.CROP, RTA.SWEET, RTA.SPICE],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CAROB})
+});
+
+resourceTypes[RTY.SUGAR_CANE] = new ResourceType({
+  name: RTY.SUGAR_CANE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.SPICE,
+  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE],
+  value: 120,
+  icon: new Icon({provider: 'svg', name: SVGS.SUGAR_CANE})
 });
 
 resourceTypes[RTY.MINT] = new ResourceType({
@@ -1083,7 +1204,7 @@ resourceTypes[RTY.ANISE] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
   tags: [RTA.CROP, RTA.BITTER, RTA.SPICE],
-  value: 40,
+  value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.ANISE})
 });
 
@@ -1092,7 +1213,7 @@ resourceTypes[RTY.SORREL] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
   tags: [RTA.CROP, RTA.SOUR, RTA.SPICE],
-  value: 40,
+  value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.SORREL}),
 });
 
@@ -1174,6 +1295,15 @@ resourceTypes[RTY.LINEN] = new ResourceType({
   tags: [RTA.TEXTILE],
   value: 800,
   icon: new Icon({provider: 'svg', name: SVGS.LINEN})
+});
+
+resourceTypes[RTY.WOOL] = new ResourceType({
+  name: RTY.WOOL,
+  category: RCA.ARTISAN_GOOD,
+  subcategory: RSC.TEXTILE,
+  tags: [RTA.TEXTILE],
+  value: 950,
+  icon: new Icon({provider: 'svg', name: SVGS.WOOL})
 });
 
 resourceTypes[RTY.SILK] = new ResourceType({
@@ -1296,12 +1426,81 @@ resourceTypes[RTY.PORCELAIN] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.PORCELAIN})
 });
 
-resourceTypes[RTY.TEA_CELADON] = new ResourceType({
-  name: RTY.TEA_CELADON,
+resourceTypes[RTY.GOLDEN_OIL] = new ResourceType({
+  name: RTY.GOLDEN_OIL,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 2300,
+  description: `It's said that great machines stride somewhere in the desert, driven by internal streams of this gleaming oil`,
+  icon: new Icon({provider: 'svg', name: SVGS.GOLDEN_OIL})
+});
+
+resourceTypes[RTY.ECHINACEA_BLOOM] = new ResourceType({
+  name: RTY.ECHINACEA_BLOOM,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 450,
+  description: `Both the flower and the leaves have healing properties`,
+  icon: new Icon({provider: 'svg', name: SVGS.ECHINACEA_BLOOM})
+});
+
+resourceTypes[RTY.WOLFRAM_PEBBLES] = new ResourceType({
+  name: RTY.WOLFRAM_PEBBLES,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 2100,
+  description: `A small addition of this rare metal can create a magnificently hard alloy`,
+  icon: new Icon({provider: 'svg', name: SVGS.WOLFRAM_PEBBLES})
+});
+
+resourceTypes[RTY.CASTING_PLASTER] = new ResourceType({
+  name: RTY.CASTING_PLASTER,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 180,
+  description: `White chunks to be formed into moulds for molten metal`,
+  icon: new Icon({provider: 'svg', name: SVGS.CASTING_PLASTER})
+});
+
+resourceTypes[RTY.MERCURY_DROPS] = new ResourceType({
+  name: RTY.MERCURY_DROPS,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 1200,
+  description: `A curious silvery metal that runs like water`,
+  icon: new Icon({provider: 'svg', name: SVGS.MERCURY_DROPS})
+});
+
+resourceTypes[RTY.CHITENOUS_PINS] = new ResourceType({
+  name: RTY.CHITENOUS_PINS,
+  category: RCA.MATERIAL,
+  subcategory: RSC.IMPLEMENT_PARTS,
+  tags: [RTA.TRADE_GOOD],
+  value: 800,
+  description: `Made in imitation of insect chitin (or out of insect chitin?)`,
+  icon: new Icon({provider: 'svg', name: SVGS.CHITENOUS_PINS})
+});
+
+resourceTypes[RTY.TEA] = new ResourceType({
+  name: RTY.TEA,
   category: RCA.DISH,
   tags: [RTA.DRINK],
   value: 30,
-  icon: new Icon({provider: 'svg', name: SVGS.TEA})
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#7bb344',
+    shadow: '#5e932b'})
+});
+
+resourceTypes[RTY.CHILLED_WATER] = new ResourceType({
+  name: RTY.CHILLED_WATER,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 405,
+  icon: new Icon({provider: 'svg', name: SVGS.CHILLED_WATER})
 });
 
 resourceTypes[RTY.JUICE_TOMATO] = new ResourceType({
@@ -1687,7 +1886,7 @@ resourceTypes[RESOURCE_TYPES.DROMEDARY_PLAINS] = new ResourceType({
   subcategory: RSC.DROMEDARY,
   tags: [RESOURCE_TAGS.ANIMAL],
   value: 20000,
-  description: `The "Plains" breed is a hybrid; it both travel relatively fast and carry a respectable amount of weight`,
+  description: `The "Plains" breed is a hybrid; it can both travel relatively fast and carry a respectable amount of weight`,
   icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
 });
 

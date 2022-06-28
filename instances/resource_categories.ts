@@ -16,7 +16,7 @@ resourceCategories[RESOURCE_CATEGORIES.FIELD_NOTES] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.FIELD_NOTES,
   value: 10000,
   order: 1,
-  icon: new Icon({provider: 'FontAwesome5', name: 'clipboard-list',
+  icon: new Icon({provider: 'FontAwesome', name: 'book',
     color: '#2b2b2d'}),
 });
 

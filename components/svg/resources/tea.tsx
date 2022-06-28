@@ -13,6 +13,8 @@ export default function TeaSvgComponent(props: any) {
       <Path d="m294.96 205.91h-72.348v300.52h72.348c64.445 0 116.87-52.429 116.87-116.87v-66.783c-1e-3 -64.44-52.425-116.87-116.87-116.87z" fill="#895F3A"/>
       <Path d="m150.26 506.44h-66.783c-46.032 0-83.478-37.446-83.478-83.478v-100.17c0-9.223 7.479-16.696 16.696-16.696h200.35c9.217 0 16.696 7.473 16.696 16.696v100.17c-1e-3 46.032-37.447 83.478-83.479 83.478z" fill="#EBE2E2"/>
       <Path d="m217.04 306.09h-100.17v200.35h33.391c46.032 0 83.478-37.446 83.478-83.478v-100.17c0-9.223-7.478-16.696-16.696-16.696z" fill="#DCCACA"/>
+      <Rect y="342.21" width="233.97" height="57.128" fill={props.icon.color} fillRule="evenodd" strokeWidth="1.076"/>
+      <Rect x="116.93" y="342.21" width="117.05" height="57.128" fill={props.icon.shadow} fillRule="evenodd" strokeWidth=".76106"/>
     </Svg>
   );
 }

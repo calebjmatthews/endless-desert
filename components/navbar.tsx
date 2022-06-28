@@ -6,11 +6,14 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import { selectTab, addMemos } from '../actions/ui';
+import { increaseResources } from '../actions/vault';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
 import Memo from '../models/memo';
+import Resource from '../models/resource';
 import { tabs } from '../instances/tabs';
+import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { CONVERSATIONS } from '../enums/conversations';
 import { FORTUITIES } from '../enums/fortuities';
@@ -19,6 +22,7 @@ export default function  NavbarComponent() {
   const dispatch = useDispatch();
   const tabsUnloked = useTypedSelector(state => state.account.tabsUnloked);
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
+  const vault = useTypedSelector(state => state.vault);
 
   let tabsArray = Object.keys(tabs).map((tabName) => {
     return tabs[tabName];
@@ -52,11 +56,11 @@ export default function  NavbarComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName === 'debug') {
-      dispatch(addMemos([new Memo({
-        name: 'test',
-        title: 'Test convo',
-        convoName: CONVERSATIONS.DRO_THE_NOBLE_DROMEDARY
-      })]));
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else {
       dispatch(selectTab(tabName));

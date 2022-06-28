@@ -3,6 +3,12 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import KnowledgeSvgComponent from './resources/knowledge';
 import GloamingLightSvgComponent from './resources/gloaming_light';
+import LongAntiquitySvgComponent from './resources/long_antiquity';
+import AllRiverDeltasSvgComponent from './resources/all_river_delta';
+import LarcenousActivitySvgComponent from './resources/larcenous_activity';
+import NearDesertSvgComponent from './resources/near_desert';
+import TranslocatedHallSvgComponent from './resources/translocated_hall';
+
 import NotesSkySvgComponent from './resources/notes_sky';
 import NotesStarSvgComponent from './resources/notes_star';
 import NotesWaterSvgComponent from './resources/notes_water';
@@ -10,6 +16,7 @@ import NotesEarthSvgComponent from './resources/notes_earth';
 import NotesHeatSvgComponent from './resources/notes_heat';
 import NotesCultivationSvgComponent from './resources/notes_cultivation';
 import NotesDialecticSvgComponent from './resources/notes_dialectic';
+
 import LentilSvgComponent from './resources/lentil';
 import BlueberrySvgComponent from './resources/blueberry';
 import GrapeSvgComponent from './resources/grape';
@@ -27,6 +34,7 @@ import DateSvgComponent from './resources/date';
 import FigSvgComponent from './resources/fig';
 import TeaLeavesSvgComponent from './resources/tea_leaves';
 import DropSvgComponent from './resources/drop';
+import IceSvgComponent from './resources/ice';
 import SeedsSvgComponent from './resources/seeds';
 import ReedsSvgComponent from './resources/reeds';
 import GrainSvgComponent from './resources/grain';
@@ -54,6 +62,8 @@ import CarbonSvgComponent from './resources/carbon';
 import OreSvgComponent from './resources/ore';
 import PowderSvgComponent from './resources/powder';
 import BarSvgComponent from './resources/bar';
+import CoralSvgComponent from './resources/coral';
+import IvorySvgComponent from './resources/ivory';
 import JadeSvgComponent from './resources/jade';
 import AmethystSvgComponent from './resources/amethyst';
 import TopazSvgComponent from './resources/topaz';
@@ -66,6 +76,7 @@ import DiamondSvgComponent from './resources/diamond';
 import SaltSvgComponent from './resources/salt';
 import CinnamonSvgComponent from './resources/cinnamon';
 import CarobSvgComponent from './resources/carob';
+import SugarCaneSvgComponent from './resources/sugar_cane';
 import MintSvgComponent from './resources/mint';
 import PeppercornSvgComponent from './resources/peppercorn';
 import CorianderSvgComponent from './resources/coriander';
@@ -79,6 +90,8 @@ import PapyrusSvgComponent from './resources/papyrus';
 import ReedclothSvgComponent from './resources/reedcloth';
 import FlaxSvgComponent from './resources/flax';
 import LinenSvgComponent from './resources/linen';
+import FleeceSvgComponent from './resources/fleece';
+import WoolSvgComponent from './resources/wool';
 import SilkSvgComponent from './resources/silk';
 import AbrasiveSvgComponent from './resources/abrasive';
 import BeadsSvgComponent from './resources/beads';
@@ -90,6 +103,7 @@ import FaienceSvgComponent from './resources/faience';
 import AshwareSvgComponent from './resources/ashware';
 import PorcelainSvgComponent from './resources/porcelain';
 import TeaSvgComponent from './resources/tea';
+import ChilledWaterSvgComponent from './resources/chilled_water';
 import JuiceBlueberrySvgComponent from './resources/juice_blueberry';
 import JuiceTomatoSvgComponent from './resources/juice_tomato';
 import SoupSvgComponent from './resources/soup';
@@ -106,6 +120,13 @@ import MistakeSvgComponent from './resources/mistake';
 import BeerSvgComponent from './resources/beer';
 import WineSvgComponent from './resources/wine';
 import LiquorSvgComponent from './resources/liquor';
+import GoldenOilSvgComponent from './resources/golden_oil';
+import EchinaceaBloomSvgComponent from './resources/echinacea_bloom';
+import WolframPebblesSvgComponent from './resources/wolfram_pebbles';
+import CastingPlasterSvgComponent from './resources/casting_plaster';
+import MercuryDropsSvgComponent from './resources/mercury_drops';
+import ChitinousPinsSvgComponent from './resources/chitinous_pins';
+
 import TomeSvgComponent from './resources/tome';
 import BrokenKeySvgComponent from './resources/broken_key';
 import KeySvgComponent from './resources/key';
@@ -218,6 +239,16 @@ export default function SvgComponent(props: { icon: Icon }) {
   switch (props.icon.name) {
     case SVGS.KNOWLEDGE:
     return <KnowledgeSvgComponent icon={props.icon} />;
+    case SVGS.RUMORS_LONG_ANTIQUITY:
+    return <LongAntiquitySvgComponent icon={props.icon} />;
+    case SVGS.RUMORS_ALL_RIVER_DELTA:
+    return <AllRiverDeltasSvgComponent icon={props.icon} />;
+    case SVGS.RUMORS_LARCENOUS_ACTIVITY:
+    return <LarcenousActivitySvgComponent icon={props.icon} />;
+    case SVGS.RUMORS_NEAR_DESERT:
+    return <NearDesertSvgComponent icon={props.icon} />;
+    case SVGS.RUMORS_TRANSLOCATED_HALL:
+    return <TranslocatedHallSvgComponent icon={props.icon} />;
     case SVGS.GLOAMING_LIGHT:
     return <GloamingLightSvgComponent icon={props.icon} />;
     case SVGS.NOTES_SKY:
@@ -268,6 +299,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <TeaLeavesSvgComponent icon={props.icon} />;
     case SVGS.DROP:
     return <DropSvgComponent icon={props.icon} />;
+    case SVGS.ICE:
+    return <IceSvgComponent icon={props.icon} />;
     case SVGS.SEEDS:
     return <SeedsSvgComponent icon={props.icon} />;
     case SVGS.REEDS:
@@ -322,6 +355,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <PowderSvgComponent icon={props.icon} />;
     case SVGS.BAR:
     return <BarSvgComponent icon={props.icon} />;
+    case SVGS.CORAL:
+    return <CoralSvgComponent icon={props.icon} />;
+    case SVGS.IVORY:
+    return <IvorySvgComponent icon={props.icon} />;
     case SVGS.JADE:
     return <JadeSvgComponent icon={props.icon} />;
     case SVGS.AMETHYST:
@@ -346,6 +383,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <CinnamonSvgComponent icon={props.icon} />;
     case SVGS.CAROB:
     return <CarobSvgComponent icon={props.icon} />;
+    case SVGS.SUGAR_CANE:
+    return <SugarCaneSvgComponent icon={props.icon} />;
     case SVGS.MINT:
     return <MintSvgComponent icon={props.icon} />;
     case SVGS.PEPPERCORN:
@@ -372,6 +411,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FlaxSvgComponent icon={props.icon} />;
     case SVGS.LINEN:
     return <LinenSvgComponent icon={props.icon} />;
+    case SVGS.FLEECE:
+    return <FleeceSvgComponent icon={props.icon} />;
+    case SVGS.WOOL:
+    return <WoolSvgComponent icon={props.icon} />;
     case SVGS.SILK:
     return <SilkSvgComponent icon={props.icon} />;
     case SVGS.ABRASIVE:
@@ -395,6 +438,8 @@ export default function SvgComponent(props: { icon: Icon }) {
 
     case SVGS.TEA:
     return <TeaSvgComponent icon={props.icon} />;
+    case SVGS.CHILLED_WATER:
+    return <ChilledWaterSvgComponent icon={props.icon} />;
     case SVGS.JUICE_BLUEBERRY:
     return <JuiceBlueberrySvgComponent icon={props.icon} />;
     case SVGS.JUICE_TOMATO:
@@ -427,6 +472,19 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <WineSvgComponent icon={props.icon} />;
     case SVGS.LIQUOR:
     return <LiquorSvgComponent icon={props.icon} />;
+    case SVGS.GOLDEN_OIL:
+    return <GoldenOilSvgComponent icon={props.icon} />;
+    case SVGS.ECHINACEA_BLOOM:
+    return <EchinaceaBloomSvgComponent icon={props.icon} />;
+    case SVGS.WOLFRAM_PEBBLES:
+    return <WolframPebblesSvgComponent icon={props.icon} />;
+    case SVGS.CASTING_PLASTER:
+    return <CastingPlasterSvgComponent icon={props.icon} />;
+    case SVGS.MERCURY_DROPS:
+    return <MercuryDropsSvgComponent icon={props.icon} />;
+    case SVGS.CHITENOUS_PINS:
+    return <ChitinousPinsSvgComponent icon={props.icon} />;
+
     case SVGS.TOME:
     return <TomeSvgComponent icon={props.icon} />;
     case SVGS.BROKEN_KEY:

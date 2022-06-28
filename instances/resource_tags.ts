@@ -169,7 +169,7 @@ resourceTags[RESOURCE_TAGS.TEXTILE] = new ResourceTag({
   plural: 'Textiles',
   value: 200,
   extract: false,
-  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'grid',
+  icon: new Icon({provider: 'FontAwesome5', name: 'scroll',
     color:'#3f51b5'})});
 
 resourceTags[RESOURCE_TAGS.GLASS] = new ResourceTag({

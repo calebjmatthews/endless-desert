@@ -103,10 +103,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     * Dune: Sweet      Rust Ore
     * Pale: Cooling    Pale Ore
     * Volcanic: Spicy  Dusty Ore
-    * Coral: Brackish  Jade
+    * Coral: Brackish  Coral
     * Olivine: Herbal  Greenish Ore
     * Black: Bitter    Charcoal
-    * Ochre: Sour      Seeds
+    * Ochre: Sour      Date Seeds
     * Pure: None
     * Shining: Airy
     * Purple: Strange
@@ -482,21 +482,25 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   ### North
     - Relatively safe traveling before sea, where many travelers come from. A huge Arabian kingdom (Alabaster) govered by the five faction sultanate: Tourmaline Jewelers (Sultanate of Gems), Sandstone Edificers (Sultanate of Pillars), Wet-Wax Chandlers (Sultanate of Candles), Cochineal Scribes (Sultanate of Scrolls), and Keepers of the Hanging Gardens (Sultanate of Vines).
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
+    - Understanding of Rhapsodic Auto-Exhumation
     - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
     - People: You (Gardens), Samannoud (Gardens), Kubra (Tourmaline), Najran (Tourmaline), Asyut (Sandstone)
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
     - God of branching creation: bountiful, many-from-one. Tarantula whose exuvia embody one trait and continue living.
+    - Understanding of Inflorencent Fission
     - Trading partners: Spring-Autumn Kingdom
     - People: Guangzhou, Weifang
   ### South
     - River that ends in the town stretches away, ruins of a Japan-inspired kingdom dedicated to high art, may still exist in mirages. Clusters of sky-high bamboo-like "dry grass" that makes excellent fuel.
     - God of enduring creation: languid, perfection-from-mortality. Scorpion whose venom grants paralyzed eternal life and continually stings itself.
+    - Understanding of Athanastic Catalepsy
     - Trading partners: ?
     - People:
   ### West
     - Mirages? Constant fires? Oceans made from glass? Hanging gardens?
     - God of merging creation: harmonious, one-from-many. Swarm of cicadas that create weather, visions, etc.
+    - Understanding of Aeolian Concordance
     - Trading partners: ?
     - People:
   ### Nomads
@@ -506,6 +510,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Distant islands in the sea north of Alabaster
     - Trading partners: Trefoil Islands
     - People:
+
+## Scholar level
+  - Begins at "Novice", transitions through a series of other titles? Initiate, Pupil, Student, Disciple, Collegian, Scholar, Researcher, Intellect, Sophist, Authority, Maven, Virtuoso, Master, Polymath, Cognoscente, Sage, Illuminant
+  - Brainstorming for bonuses: Study+Analysis 25% (50%, 75%) Less Time, Study+Analysis 50% (100%, 150%) more Knowledge, Field Notes 50% Less Time, Field Notes 50% Cheaper
 
 ## Tabs:
   - Map, showing locations of each building and the river running through the middle
@@ -553,8 +561,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/india-6/
     https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
+    https://www.svgrepo.com/collection/circle-color-food/
+    https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/knowledge-4/
     https://www.svgrepo.com/collection/science-10/
+    https://www.svgrepo.com/collection/design-tools-6/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/crafting-3/
     https://www.svgrepo.com/collection/musical-instruments-9/
@@ -567,7 +578,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/clothes-18/
     https://www.svgrepo.com/collection/clothes-24/
     https://www.svgrepo.com/collection/animals-26/
-    https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
     https://www.svgrepo.com/collection/saint-patrick-day-5/
@@ -584,7 +594,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/beauty-30/
     https://www.shareicon.net/pack/landscapes?p=4
     https://www.shareicon.net/pack/landscapes-collection?p=2
+    https://www.svgrepo.com/collection/landscapes-22/
     https://www.svgrepo.com/collection/stationery-elements/
+    https://www.svgrepo.com/collection/weapons-5/
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -842,8 +854,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Hide inapplicable fields from building in progress detail
   [X] Tab linking buttons on special buildings (Study, Market)
   [X] Dromedarian fortuities and quests
-  [ ] Tea, jewels, and textile sources as trade goods
+  [X] Tea, jewels, second tier implement ingredients, rumors, and textile sources as trade goods
+  [ ] New implements
   [ ] Wine from distillery
+  [ ] Equipment production unlocked after study
   [ ] Fortuity with options for new equipment quests
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
@@ -852,6 +866,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Revamp equipment marking and deconstruction
   [ ] Trader conversations
   [ ] Flashy display for rare trades
+  [ ] Ingredient-specific recipes
   [ ] Expeditions! (without exploration)
 
   [ ] Autoselect first resource
