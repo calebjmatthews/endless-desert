@@ -170,7 +170,7 @@ export enum RESOURCE_TYPES {
   MISTAKE = "Mistake",
 
   IRON_EDGE = "Iron Edge",
-  VITRIUS_EDGE = "Vitrius Edge",
+  VITREOUS_EDGE = "Vitreous Edge",
   HARDENED_SLAB = "Hardened Slab",
   UNBREAKABLE_SLAB = "Unbreakable Slab",
   CRUDE_NEEDLE = "Crude Needle",
@@ -180,7 +180,9 @@ export enum RESOURCE_TYPES {
   ROUGH_ROPE = "Rough Rope",
   CERAMIC_CABLE = "Ceramic Cable",
   TORCH = "Torch",
+  MERCURIC_CANDLE = "Mercuric Candle",
   BINDING = "Binding",
+  ECHINACEA_BINDING = "Echinacea Binding",
 
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",

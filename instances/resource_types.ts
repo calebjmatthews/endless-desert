@@ -1641,7 +1641,18 @@ resourceTypes[RTY.IRON_EDGE] = new ResourceType({
   tags: [RTA.ACTION_LOOSE],
   value: 1800,
   description: `A sharp iron blade; useful for cutting through traps and snares`,
-  icon: new Icon({provider: 'svg', name: SVGS.EDGE})
+  icon: new Icon({provider: 'svg', name: SVGS.EDGE, color: '#f4ecec',
+    shadow: '#e2dada'})
+});
+
+resourceTypes[RTY.VITREOUS_EDGE] = new ResourceType({
+  name: RTY.VITREOUS_EDGE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_LOOSE],
+  value: 17760,
+  description: `The glassy edge is devilishly sharp, and its delicacy is supported by flexible steel`,
+  icon: new Icon({provider: 'svg', name: SVGS.EDGE, color: '#ebf4ff',
+    shadow: '#c4e0ff'})
 });
 
 resourceTypes[RTY.HARDENED_SLAB] = new ResourceType({
@@ -1653,13 +1664,31 @@ resourceTypes[RTY.HARDENED_SLAB] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.SLAB})
 });
 
+resourceTypes[RTY.UNBREAKABLE_SLAB] = new ResourceType({
+  name: RTY.UNBREAKABLE_SLAB,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_BREAK],
+  value: 27300,
+  description: `The infusion of Wolfram has made this metal plate alarming strong; swing it hard enough and you could break through just about anything`,
+  icon: new Icon({provider: 'svg', name: SVGS.UNBREAKABLE_SLAB})
+});
+
 resourceTypes[RTY.CRUDE_NEEDLE] = new ResourceType({
   name: RTY.CRUDE_NEEDLE,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_TRAP],
   value: 1480,
   description: `A roughly-made needle; can be placed pointing upwards as a simple trap`,
-  icon: new Icon({provider: 'svg', name: SVGS.NEEDLE})
+  icon: new Icon({provider: 'svg', name: SVGS.NEEDLE, color: '#918c8c', shadow: '#666', secondaryColor: '#70bcd8', secondaryShadow: '#1ba6da'})
+});
+
+resourceTypes[RTY.DELICATE_NEEDLE] = new ResourceType({
+  name: RTY.DELICATE_NEEDLE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP],
+  value: 14840,
+  description: `Keen, light, durable, and drawing into an invisibly small point`,
+  icon: new Icon({provider: 'svg', name: SVGS.NEEDLE, color: '#d5b0f0', shadow: '#c595ea', secondaryColor: '#e5bd7c', secondaryShadow: '#e3a133'})
 });
 
 resourceTypes[RTY.GEARWORK] = new ResourceType({
@@ -1671,6 +1700,24 @@ resourceTypes[RTY.GEARWORK] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
 });
 
+resourceTypes[RTY.GEARWORK] = new ResourceType({
+  name: RTY.GEARWORK,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
+  value: 3060,
+  description: `A simple gear-driven component; used in everything from dart-traps to bomb-triggers`,
+  icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
+});
+
+resourceTypes[RTY.PRECISE_GEARWORK] = new ResourceType({
+  name: RTY.PRECISE_GEARWORK,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
+  value: 29520,
+  description: `Durable metal, small-toothed clinking pieces, and subtle lubrication put this worlds above its previous model`,
+  icon: new Icon({provider: 'svg', name: SVGS.PRECISE_GEARWORK})
+});
+
 resourceTypes[RTY.ROUGH_ROPE] = new ResourceType({
   name: RTY.ROUGH_ROPE,
   category: RCA.IMPLEMENT,
@@ -1680,13 +1727,31 @@ resourceTypes[RTY.ROUGH_ROPE] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.ROPE})
 });
 
+resourceTypes[RTY.CERAMIC_CABLE] = new ResourceType({
+  name: RTY.CERAMIC_CABLE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_TRAP, RTA.ACTION_LOOSE],
+  value: 18500,
+  description: `Smooth braided cord made from webbing coated in alternating multi-colored ceramics`,
+  icon: new Icon({provider: 'svg', name: SVGS.CERAMIC_CABLE})
+});
+
 resourceTypes[RTY.TORCH] = new ResourceType({
   name: RTY.TORCH,
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_SEEK],
   value: 1600,
-  description: `A short-lived, smoky torch that can still light your way in dark places`,
+  description: `Short-lived and smoky, but can still light your way in dark places`,
   icon: new Icon({provider: 'svg', name: SVGS.TORCH})
+});
+
+resourceTypes[RTY.MERCURIC_CANDLE] = new ResourceType({
+  name: RTY.MERCURIC_CANDLE,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_SEEK],
+  value: 19400,
+  description: `The mercury salt rendered in these candles' wax burns with a bright scarlet light`,
+  icon: new Icon({provider: 'svg', name: SVGS.CANDLE, color: '#c85856', shadow: '#b63331', secondaryColor: '#f9f5f6', secondaryShadow: '#d9c6c6', tertiaryShadow: '#ffbfc3'})
 });
 
 resourceTypes[RTY.BINDING] = new ResourceType({
@@ -1694,8 +1759,17 @@ resourceTypes[RTY.BINDING] = new ResourceType({
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_HEAL],
   value: 1320,
-  description: `A soft fibrous band that can stop bleeding or hold things together`,
+  description: `Soft fibrous bands that can stop bleeding or hold things together`,
   icon: new Icon({provider: 'svg', name: SVGS.BINDING})
+});
+
+resourceTypes[RTY.ECHINACEA_BINDING] = new ResourceType({
+  name: RTY.ECHINACEA_BINDING,
+  category: RCA.IMPLEMENT,
+  tags: [RTA.ACTION_HEAL],
+  value: 21700,
+  description: `Durable cloth blend impregnated with Echinacea paste`,
+  icon: new Icon({provider: 'svg', name: SVGS.ECHINACEA_BINDING})
 });
 
 resourceTypes[(EQUIPMENT_TYPES.FOUR_POINT_BANGLE + ' (U)')] = new ResourceType({

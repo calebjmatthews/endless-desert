@@ -7,13 +7,16 @@ import { styles } from '../styles';
 
 import { selectTab, addMemos } from '../actions/ui';
 import { increaseResources } from '../actions/vault';
+import { addBuilding } from '../actions/buildings';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
 import Memo from '../models/memo';
 import Resource from '../models/resource';
+import Building from '../models/building';
 import { tabs } from '../instances/tabs';
 import { resourceTypes } from '../instances/resource_types';
+import { buildingTypes } from '../instances/building_types';
 import { utils } from '../utils';
 import { CONVERSATIONS } from '../enums/conversations';
 import { FORTUITIES } from '../enums/fortuities';
@@ -56,11 +59,24 @@ export default function  NavbarComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName === 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
+      Object.keys(buildingTypes).map((typeName) => {
+        let buildingType = buildingTypes[typeName];
+        let suffix = 1;
+        let name = buildingType.name;
+        let building = new Building({
+          id: utils.randHex(16),
+          buildingType: buildingType.name,
+          suffix: suffix,
+          name: name,
+          paidCosts: {},
+          paidResources: [],
+          paidUpgradeCosts: {},
+          paidUpgradeResources: [],
+          resourcesSelected: {},
+          recipe: null
+        });
+        dispatch(addBuilding(building));
       });
-      dispatch(increaseResources(vault, allResources));
     }
     else {
       dispatch(selectTab(tabName));

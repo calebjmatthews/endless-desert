@@ -134,11 +134,16 @@ import DromedarySvgComponent from './resources/dromedary';
 
 import EdgeSvgComponent from './implements/edge';
 import SlabSvgComponent from './implements/slab';
+import UnbreakableSlabSvgComponent from './implements/unbreakable_slab';
 import NeedleSvgComponent from './implements/needle';
 import GearworkSvgComponent from './implements/gearwork';
+import PreciseGearworkSvgComponent from './implements/precise_gearwork';
 import RopeSvgComponent from './implements/rope';
+import CeramicCableSvgComponent from './implements/ceramic_cable';
 import TorchSvgComponent from './implements/torch';
+import CandleSvgComponent from './implements/candle';
 import BindingSvgComponent from './implements/binding';
+import EchinaceaBindingSvgComponent from './implements/echinacea_binding';
 
 import RoughMattockSvgComponent from './equipment/rough_mattock';
 import WoodenPoleSvgComponent from './equipment/wooden_pole';
@@ -498,16 +503,26 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <EdgeSvgComponent icon={props.icon} />;
     case SVGS.SLAB:
     return <SlabSvgComponent icon={props.icon} />;
+    case SVGS.UNBREAKABLE_SLAB:
+    return <UnbreakableSlabSvgComponent icon={props.icon} />;
     case SVGS.NEEDLE:
     return <NeedleSvgComponent icon={props.icon} />;
     case SVGS.GEARWORK:
     return <GearworkSvgComponent icon={props.icon} />;
+    case SVGS.PRECISE_GEARWORK:
+    return <PreciseGearworkSvgComponent icon={props.icon} />;
     case SVGS.ROPE:
     return <RopeSvgComponent icon={props.icon} />;
+    case SVGS.CERAMIC_CABLE:
+    return <CeramicCableSvgComponent icon={props.icon} />;
     case SVGS.TORCH:
     return <TorchSvgComponent icon={props.icon} />;
+    case SVGS.CANDLE:
+    return <CandleSvgComponent icon={props.icon} />;
     case SVGS.BINDING:
     return <BindingSvgComponent icon={props.icon} />;
+    case SVGS.ECHINACEA_BINDING:
+    return <EchinaceaBindingSvgComponent icon={props.icon} />;
 
     case SVGS.ROUGH_MATTOCK:
     return <RoughMattockSvgComponent icon={props.icon} />;

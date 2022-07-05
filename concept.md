@@ -379,11 +379,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Effect display for leaders combines identical effects, and shows the cumulative total of overlapping effects. For example: Speed +10%, Speed +5%, Drink Speed +10%, Water Speed +5% would give the final effects Speed +16%, Drink Speed +27%, and Water Speed +33%
   - Implements:
     - Iron Edge: Iron x10 (Relic: Menacing)
-    - Vitrius Edge: Float Glass x5, Steel x2
+    - Vitreous Edge: Float Glass x5, Steel x2
     - Hardened Slab: Iron x5, Bronze x5 (Relic: Steadfast)
     - Unbreakable Slab: Steel x20, Ceramic Hull x1
     - Crude Needle: Iron x4, Bronze x1 (Relic: Precise)
-    - Delicate Needle: Vitrius Sheet x1, Brass x4
+    - Delicate Needle: Vitreous Sheet x1, Brass x4
     - Gearwork: Bronze x2, Brass x4 (Relic: Ingenious)
     - Precise Gearwork: Ceramic Hull x12, Steel x4
     - Rough Rope: Thatch x20, Papyrus x20 (Relic: Connecting)
@@ -503,6 +503,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Understanding of Aeolian Concordance
     - Trading partners: ?
     - People:
+  ### Nowhere, Everywhere
+    - The Translocated Hall
+    - The lost Eternal Beast, and the lost people
+    - Understanding of Unrepining Omnipresence
   ### Nomads
     - Trading partners: Foxfire Ascetics, Red Crow Traders
     - People:
@@ -565,6 +569,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/knowledge-4/
     https://www.svgrepo.com/collection/science-10/
+    https://www.svgrepo.com/collection/scientific-study-2/
     https://www.svgrepo.com/collection/design-tools-6/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/crafting-3/
@@ -855,7 +860,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Tab linking buttons on special buildings (Study, Market)
   [X] Dromedarian fortuities and quests
   [X] Tea, jewels, second tier implement ingredients, rumors, and textile sources as trade goods
-  [ ] New implements
+  [X] New implements
   [ ] Wine from distillery
   [ ] Equipment production unlocked after study
   [ ] Fortuity with options for new equipment quests

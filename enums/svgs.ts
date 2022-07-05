@@ -126,11 +126,16 @@ export enum SVGS {
 
   EDGE = "Edge",
   SLAB = "Slab",
+  UNBREAKABLE_SLAB = "Unbreakable Slab",
   NEEDLE = "Needle",
   GEARWORK = "Gearwork",
+  PRECISE_GEARWORK = "Precise Gearwork",
   ROPE = "Rope",
+  CERAMIC_CABLE = "Ceramic Cable",
   TORCH = "Torch",
+  CANDLE = "Candle",
   BINDING = "Binding",
+  ECHINACEA_BINDING = "Echinacea Binding",
 
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",
