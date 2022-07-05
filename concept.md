@@ -861,7 +861,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Dromedarian fortuities and quests
   [X] Tea, jewels, second tier implement ingredients, rumors, and textile sources as trade goods
   [X] New implements
-  [ ] Wine from distillery
+  [X] Wine from brewery
   [ ] Equipment production unlocked after study
   [ ] Fortuity with options for new equipment quests
   [ ] Max analysis increases with items studied
