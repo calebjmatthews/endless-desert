@@ -23,6 +23,7 @@ export default class BuildingType implements BuildingTypeInterface {
   requiresLeader?: boolean;
   cannotStore?: boolean;
   opensTab?: { tabName: string, icon: Icon, label: string };
+  recipesUnlockAfterStudy?: boolean;
 
   constructor(buildingType: BuildingTypeInterface | null) {
     if (buildingType) {
@@ -77,6 +78,20 @@ export default class BuildingType implements BuildingTypeInterface {
       this.upgradeDuration = (upgradeValue / Math.pow(3, Math.log10(upgradeValue)));
     }
   }
+
+  getRecipes(resourcesStudied: { [typeQuality: string] : boolean }) {
+    if (!this.recipesUnlockAfterStudy) { return this.recipes; }
+    
+    return this.recipes?.filter((recipe) => {
+      let match: boolean = false;
+      [0, 1, 2].forEach((quality) => {
+        if (resourcesStudied[`${recipe?.produces?.[0].type}|${quality}`]) {
+          match = true;
+        }
+      });
+      return match;
+    });
+  }
 }
 
 interface BuildingTypeInterface {
@@ -98,4 +113,5 @@ interface BuildingTypeInterface {
   requiresLeader?: boolean;
   cannotStore?: boolean;
   opensTab?: { tabName: string, icon: Icon, label: string };
+  recipesUnlockAfterStudy?: boolean;
 }

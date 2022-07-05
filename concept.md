@@ -862,7 +862,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Tea, jewels, second tier implement ingredients, rumors, and textile sources as trade goods
   [X] New implements
   [X] Wine from brewery
-  [ ] Equipment production unlocked after study
+  [X] Equipment production unlocked after study
   [ ] Fortuity with options for new equipment quests
   [ ] Max analysis increases with items studied
   [ ] Research leveling system

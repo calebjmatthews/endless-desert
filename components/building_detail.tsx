@@ -81,7 +81,7 @@ export default function BuildDetailComponent() {
       setInitializing(false);
 
       if (buildingType.recipes) {
-        setRecipes(buildingType.recipes);
+        setRecipes(buildingType.getRecipes(researchStatus.resourcesStudied) || []);
       }
 
       if (building.recipe) {

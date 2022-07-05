@@ -986,7 +986,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 2}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
-    requiresLeader: true
+    requiresLeader: true,
+    recipesUnlockAfterStudy: true
   }),
 
   [BTY.OUTFITTERS]: new BuildingType({
@@ -1016,12 +1017,13 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.LINEN, quantity: 1}]}) ],
     givesNote: RTY.NOTES_CULTIVATION,
     noteCost: defaultNoteCost,
-    requiresLeader: true
+    requiresLeader: true,
+    recipesUnlockAfterStudy: true
   }),
 
   [BTY.FABRICATORY]: new BuildingType({
     name: BTY.FABRICATORY,
-    description: 'The acrid tang of hot metal hangs outside the wide doors',
+    description: 'The acrid tang of hot metal and rows of finished tools',
     category: BCA.ARTISAN_GOOD,
     icon: new Icon({provider: 'svg', name: SVGS.FABRICATORY}),
     cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_SABLE, quantity: 400},
@@ -1044,7 +1046,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 2}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
-    requiresLeader: true
+    requiresLeader: true,
+    recipesUnlockAfterStudy: true
   }),
 
   [BTY.DRYING_YARD]: new BuildingType({

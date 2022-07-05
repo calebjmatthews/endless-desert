@@ -37,6 +37,8 @@ import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { ACTIVITIES } from '../enums/activities';
 import { QUALITY_VALUES } from '../constants';
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 const QV = QUALITY_VALUES;
 
 export default function ResourceSelectOneComponent() {
@@ -368,7 +370,17 @@ export default function ResourceSelectOneComponent() {
           + resourceSelected.quality);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
           quantity: (knowledge)})];
-        const rsConsume = [new Resource({...resourceSelected, quantity: 1})]
+        const rsConsume = [new Resource({...resourceSelected, quantity: 1})];
+        let messageToDisplay = `You studied ${utils.getResourceName(resourceSelected)} for ${utils.formatNumberShort(knowledge)} knowledge.`;
+        if (resourceType.tags.includes(EQUIPMENT_SLOTS.TOOL)) {
+          messageToDisplay = `${messageToDisplay} It can now be made in a Fabricatory!`;
+        }
+        if (resourceType.tags.includes(EQUIPMENT_SLOTS.CLOTHING)) {
+          messageToDisplay = `${messageToDisplay} It can now be made in a Tailors!`;
+        }
+        if (resourceType.tags.includes(EQUIPMENT_SLOTS.BACK)) {
+          messageToDisplay = `${messageToDisplay} It can now be made in an Outfitters!`;
+        }
         let timer = new Timer({
           name: RESEARCHES.STUDY,
           endsAt: (new Date(Date.now()).valueOf() + duration),
@@ -376,9 +388,7 @@ export default function ResourceSelectOneComponent() {
           resourcesToConsume: rsConsume,
           questActivity: new QuestActivity({ id: utils.randHex(16),
             actionPerformed: { kind: RESEARCHES.STUDY, quantity: 1 } }),
-          messageToDisplay: ('You studied '
-            + utils.getResourceName(resourceSelected) + ' for '
-            + utils.formatNumberShort(knowledge) + ' knowledge.'),
+          messageToDisplay,
           iconToDisplay: resourceType.icon
         });
         dispatch(addTimer(timer));
