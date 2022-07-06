@@ -245,7 +245,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
   const dishRecipe = { index: 0,
     produces: [{ specificity: RSP.EXACT,  type: (dishType.name + '-' + id),
-      quantity: (DEFAULT_DISH_COST * multiplier), probability: 1 }],
+      quantity: (DEFAULT_DISH_COST * multiplier) }],
     consumes: consumes };
 
   return { resource: dishResource, recipe: dishRecipe };
