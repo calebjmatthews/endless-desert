@@ -9,6 +9,8 @@ export enum FORTUITIES {
   BARTERING_DROMEDARY = "Dromedarian: Bartering for Dromedaries",
   A_SUSPICION_DROMEDARIAN = "Dromedarian: A Suspicion",
   SOUTHERN_WADI = "Dromedarian: The Sourthern Wadi",
+  SIMPLE_TOOLS_WATER_EARTH = "Simple Tools: Water and Earth",
+  SIMPLE_TOOLS_FIRE_LEAVES = "Simple Tools: Fire and Leaves",
   RAIN = "Rain",
   UNSPEAKING = "Unspeaking",
   FIERCE_WIND = "Fierce Wind",

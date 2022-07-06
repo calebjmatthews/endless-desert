@@ -814,6 +814,110 @@ You're not sure if it's related to your actions, but someone has put a set of ru
     gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
       value: 200000 }]
   }),
+  [QUESTS.SIMPLE_TOOLS_POT_OF_SEALANT_PITCH]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_POT_OF_SEALANT_PITCH,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.POT_OF_SEALANT_PITCH}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool for maintaining the Cistern in exchange for one hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_POT_OF_SEALANT_PITCH,
+        label: `Deliver 100 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 100, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH, value: 12800 }]
+  }),
+  [QUESTS.SIMPLE_TOOLS_REED_MUCK_RAKE]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_REED_MUCK_RAKE,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.REED_MUCK_RAKE,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.REED_MUCK_RAKE}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool to care for Reeds in exchange for one hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.REED_MUCK_RAKE} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_REED_MUCK_RAKE,
+        label: `Deliver 100 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 100, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.REED_MUCK_RAKE, value: 12800 }]
+  }),
+  [QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.CLAY_SPADE_BROAD,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.CLAY_SPADE_BROAD}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool for shoveling Clay in exchange for one hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.CLAY_SPADE_BROAD} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD,
+        label: `Deliver 100 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 100, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CLAY_SPADE_BROAD, value: 12000 }]
+  }),
+  [QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#d83e20',
+    shadow: '#c1321f', secondaryColor: '#f4e3c3', secondaryShadow: '#efc59e'}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool for creating Charcoal quickly in exchange for two hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT,
+        label: `Deliver 200 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 200, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT, value: 13000 }]
+  }),
+  [QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#d83e20',
+    shadow: '#c1321f', secondaryColor: '#f4e3c3', secondaryShadow: '#efc59e'}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool for creating high quality Charcoal in exchange for two hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE,
+        label: `Deliver 200 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 200, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE, value: 12600 }]
+  }),
+  [QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS]: new Quest({
+    id: QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS,
+    subtitle: 'Simple Tools',
+    name: EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS,
+    givenBy: LEADER_TYPES.SCARRED_NAVIGATOR,
+    type: QUEST_TYPES.CONVENTIONAL,
+    icon: new Icon({provider: 'svg', name: SVGS.OLIVE_GRAFTING_SHEARS}),
+    description: `${LEADER_TYPES.SCARRED_NAVIGATOR} has promised you a tool for creating high quality Charcoal in exchange for two hundred bundles of Wood.`,
+    finishText: `${LEADER_TYPES.SCARRED_NAVIGATOR} hands over the ${EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS} with a grin.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS,
+        label: `Deliver 200 bundles of Wood.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+          quantity: 200, consumed: true, includeExisting: true } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS, value: 12000 }]
+  }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,
     name: QUESTS.TESTING,

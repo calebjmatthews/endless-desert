@@ -29,6 +29,8 @@ export enum CONVERSATIONS {
   TFS_SAYING_HELLO = "Trefoil Sower: Saying Hello",
 
   SCN_SAYING_HELLO = "Scarred Navigator: Saying Hello",
+  SCN_WATER_EARTH = "Scarred Navigator: Water and Earth",
+  SCN_FIRE_LEAVES = "Scarred Navigator: Fire and Leaves",
 
   FIF_INTRODUCTION = "Firefly Introduction",
 

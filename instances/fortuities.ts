@@ -18,6 +18,8 @@ import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 const RSC = RESOURCE_SUBCATEGORIES;
 import { QUESTS } from '../enums/quests';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { EQUIPMENT_TYPES } from '../enums/equipment_types';
+const ETY = EQUIPMENT_TYPES;
 
 let fortuities: { [name: string] : Fortuity } = {};
 
@@ -250,6 +252,75 @@ fortuities[FORTUITIES.SOUTHERN_WADI] = new Fortuity({
       quests || {}).filter((questName) => questName.includes('Dromedarian:'));
     return (dromedarianQuestsCompleted.length >= 6
       && currentDromedarianQuest.length === 0);
+  }
+});
+
+fortuities[FORTUITIES.SIMPLE_TOOLS_WATER_EARTH] = new Fortuity({
+  name: FORTUITIES.SIMPLE_TOOLS_WATER_EARTH,
+  openLine: 'One of the Red Crow Traders wishes to speak to you',
+  memos: [
+    new Memo({
+      name: 'Simple Tools: Water and Earth',
+      title: 'Simple Tools: Water and Earth',
+      convoName: CONVERSATIONS.SCN_WATER_EARTH
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    // If the Red Crow Traders are currently in town...
+    if (fState.tradingStatus?.visits[0]?.name !== TRADING_PARTNERS.RED_CROW_TRADERS) {
+      return false;
+    }
+    // And if there's no current Simple Tools quest...
+    if (Object.keys(fState.questStatus?.quests || {}).filter((questName) => 
+      ( questName.includes('Simple Tools:') )).length > 0) {
+      return false;
+    }
+    // And if at least one of the tools has not yet been received...
+    const potReceived = fState.vault?.resources[`${ETY.POT_OF_SEALANT_PITCH} (U)|0`] !== undefined;
+    const rakeReceived = fState.vault?.resources[`${ETY.REED_MUCK_RAKE} (U)|0`] !== undefined;
+    const spadeReceived = fState.vault?.resources[`${ETY.CLAY_SPADE_BROAD} (U)|0`] !== undefined;
+
+    return (!potReceived || !rakeReceived || !spadeReceived);
+  }
+});
+
+fortuities[FORTUITIES.SIMPLE_TOOLS_FIRE_LEAVES] = new Fortuity({
+  name: FORTUITIES.SIMPLE_TOOLS_FIRE_LEAVES,
+  openLine: 'One of the Red Crow Traders wishes to speak to you',
+  memos: [
+    new Memo({
+      name: 'Simple Tools: Fire and Leaves',
+      title: 'Simple Tools: Fire and Leaves',
+      convoName: CONVERSATIONS.SCN_FIRE_LEAVES
+    })
+  ],
+  type: 'Conversation',
+  repeatable: false,
+  weight: 1000,
+  available: (fState: GameState) => {
+    // If the Red Crow Traders are currently in town...
+    if (fState.tradingStatus?.visits[0]?.name !== TRADING_PARTNERS.RED_CROW_TRADERS) {
+      return false;
+    }
+    // And if there's no current Simple Tools quest...
+    if (Object.keys(fState.questStatus?.quests || {}).filter((questName) => 
+      ( questName.includes('Simple Tools:') )).length > 0) {
+      return false;
+    }
+    // And if at least one Simple Tools quest has been completed...
+    if (Object.keys(fState.questStatus?.questsCompleted || {}).filter((questName) => 
+      ( questName.includes('Simple Tools:') )).length === 0) {
+      return false;
+    }
+    // And if at least one of the tools has not yet been received...
+    const fervReceived = fState.vault?.resources[`${ETY.CHAR_BELLOWS_FERVENT} (U)|0`] !== undefined;
+    const tempReceived = fState.vault?.resources[`${ETY.CHAR_BELLOWS_TEMPERATE} (U)|0`] !== undefined;
+    const shearsReceived = fState.vault?.resources[`${ETY.OLIVE_GRAFTING_SHEARS} (U)|0`] !== undefined;
+
+    return (!fervReceived || !tempReceived || !shearsReceived);
   }
 });
 

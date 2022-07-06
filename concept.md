@@ -863,7 +863,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] New implements
   [X] Wine from brewery
   [X] Equipment production unlocked after study
-  [ ] Fortuity with options for new equipment quests
+  [X] Fortuities with options for new equipment quests
+  [ ] Refactor equipment
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
@@ -871,11 +872,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Revamp equipment marking and deconstruction
   [ ] Trader conversations
   [ ] Flashy display for rare trades
-  [ ] Ingredient-specific recipes
+  [ ] Ingredient-specific cooking recipes
   [ ] Expeditions! (without exploration)
 
   [ ] Autoselect first resource
-  [ ] Hide recipes missing ingredients
   [ ] Add animations to memos
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
@@ -887,6 +887,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] More repeatable fortuities
   [ ] Leaders running out of consumed food/drink begin foraging
   [ ] Resource production/consumption breakdown in resource detail
+  [ ] Combine "While you were away" memos
+  [ ] Select non-exact resources in quest completion
+  [ ] Select non-exact resources in conversations
+  [ ] Hide recipes missing ingredients
 
 ## Commands
 ### Delete all records from all tables:

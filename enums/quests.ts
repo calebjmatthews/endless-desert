@@ -32,5 +32,11 @@ export enum QUESTS {
   DROMEDARIES_GEARWORK = "Dromedaries: Gearwork, with Annotations",
   DROMEDARIES_LENSES = "Dromedaries: Lenses, for Nighttime Use",
   DROMEDARIES_GLASS = "Dromedaries: Crystal Glass, Ready to Grind",
+  SIMPLE_TOOLS_POT_OF_SEALANT_PITCH = "Simple Tools: Pot of Sealant Pitch",
+  SIMPLE_TOOLS_REED_MUCK_RAKE = "Simple Tools: Reed Muck Rake",
+  SIMPLE_TOOLS_CLAY_SPADE_BROAD = "Simple Tools: Broad Clay Spade",
+  SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE = "Simple Tools: Temperate Char Bellows",
+  SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT = "Simple Tools: Fervent Char Bellows",
+  SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS = "Simple Tools: Olive Grafting Shears",
   TESTING = "Testing"
 }
