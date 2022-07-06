@@ -564,12 +564,10 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.CLAY_PIT]
 });
 
-researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
-  name: RESEARCHES.CLAY_EXCAVATION_QUALITY,
+researches[RESEARCHES.CLAY_EXCAVATION_RAPID] = new Research({
+  name: RESEARCHES.CLAY_EXCAVATION_RAPID,
   unlocks: ('Allows an upgrade to Clay Pits.'),
-  description: ('Application of wooden scaffolding and additional water could '
-    + 'produce clay of superior quality. The kind that could make beautiful '
-    + 'pottery, rather than bricks.'),
+  description: `Application of wooden scaffolding and additional water could produce clay far more quickly than in the past.`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'}),
   category: RESEARCHES.PHYSICS,
@@ -579,7 +577,7 @@ researches[RESEARCHES.CLAY_EXCAVATION_QUALITY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
   knowledgeReq: 10000,
-  unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_RICH]
+  unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_RAPID]
 });
 
 researches[RESEARCHES.SAND_EXCAVATION] = new Research({

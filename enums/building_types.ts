@@ -35,7 +35,7 @@ export enum BUILDING_TYPES {
   AUROCH_PADDOCK = "Auroch Paddock",
   SPICE_FIELD = "Spice Field",
   CLAY_PIT = "Clay Pit",
-  CLAY_PIT_RICH = "Rich Clay Pit",
+  CLAY_PIT_RAPID = "Rapid Clay Pit",
   SAND_PIT = "Sand Pit",
   SAND_PIT_RAPID = "Rapid Sand Pit",
   HUTS = "Huts",

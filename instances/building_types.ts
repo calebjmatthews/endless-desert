@@ -383,7 +383,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 10}],
-    upgradesInto: BTY.CLAY_PIT_RICH,
+    upgradesInto: BTY.CLAY_PIT_RAPID,
     terrainAllowed: [TTY.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 6, probability: 1}],
@@ -393,16 +393,15 @@ const buildingTypes: { [name: string] : BuildingType } = {
     requiresLeader: false
   }),
 
-  [BTY.CLAY_PIT_RICH]: new BuildingType({
-    name: BTY.CLAY_PIT_RICH,
+  [BTY.CLAY_PIT_RAPID]: new BuildingType({
+    name: BTY.CLAY_PIT_RAPID,
     description: 'Extra water and care produce the best possible clay',
     category: BCA.MATERIAL,
     icon: new Icon({provider: 'svg', name: SVGS.CLAY_PIT}),
     cost: null,
     terrainAllowed: [TTY.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 4, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 2, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 12, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 12}]}) ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
@@ -949,8 +948,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
         {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 0.3, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, quantity: 100}]}),
     new BuildingRecipe({index: 4, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100, probability: 1},
-        {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, quantity: 0.1, probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 90, probability: 1},
+        {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, quantity: 10, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_CORAL, quantity: 100}]}),
     new BuildingRecipe({index: 5, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100, probability: 1},
