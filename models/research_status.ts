@@ -157,6 +157,10 @@ export default class ResearchStatus implements ResearchStatusInterface {
     });
     return researchTree;
   }
+
+  getAnalysisMax() {
+    return 100 + Object.keys(this.resourcesStudied).length;
+  }
 }
 
 interface ResearchStatusInterface {

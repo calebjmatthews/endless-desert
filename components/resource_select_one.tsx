@@ -39,6 +39,7 @@ import { ACTIVITIES } from '../enums/activities';
 import { QUALITY_VALUES } from '../constants';
 import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
+import research_status from '../reducers/research_status';
 const QV = QUALITY_VALUES;
 
 export default function ResourceSelectOneComponent() {
@@ -144,11 +145,9 @@ export default function ResourceSelectOneComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
         resource={resource} resourceSelected={resourceSelected} vault={vault}
-        setResourceSelected={setResourceSelected}
-        setQuantitySelected={setQuantitySelected}
-        setQuantityGiven={setQuantityGiven}
-        visit={visit} modalValue={modalValue}
-        positioner={positioner} />;
+        analysisMax={researchStatus.getAnalysisMax()}  setResourceSelected={setResourceSelected} 
+        setQuantitySelected={setQuantitySelected} setQuantityGiven={setQuantityGiven} 
+        visit={visit} modalValue={modalValue} positioner={positioner} />;
     });
   }
 
@@ -168,7 +167,7 @@ export default function ResourceSelectOneComponent() {
           <TextInput style={styles.inputBox} value={quantitySelected}
             editable={(resourceSelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
-          <Text>{' (Max 100)'}</Text>
+          <Text>{` (Max ${researchStatus.getAnalysisMax()})`}</Text>
           </View>
           <View style={styles.spacedRows}>
             {renderQuantitySelected()}
@@ -583,7 +582,7 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
 }
 
 function ResourceSelector(props: {resource: Resource, resourceSelected: Resource|null,
-  vault: Vault, modalValue: any,  visit: TradingPartnerVisit,
+  vault: Vault, modalValue: any,  visit: TradingPartnerVisit, analysisMax: number,
   setResourceSelected: (resourceSelected: Resource|null) => void,
   setQuantitySelected: (quantity: string) => void,
   setQuantityGiven: (quantity: number) => void,
@@ -672,7 +671,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
         visit));
     }
     if (modalValue.type == RESEARCHES.ANALYSIS) {
-      if (quantity > 100) { quantity = 100; }
+      if (quantity > props.analysisMax) { quantity = props.analysisMax; }
       setQuantitySelected(quantity.toString());
     }
   }

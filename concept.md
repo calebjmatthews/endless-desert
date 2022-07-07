@@ -865,7 +865,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Equipment production unlocked after study
   [X] Fortuities with options for new equipment quests
   [X] Refactor equipment
-  [ ] Max analysis increases with items studied
+  [X] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
   [ ] Firefly mother quests?
@@ -891,6 +891,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Select non-exact resources in quest completion
   [ ] Select non-exact resources in conversations
   [ ] Hide recipes missing ingredients
+  [ ] Handle number parsing within ResourceSelectOne
 
 ## Commands
 ### Delete all records from all tables:
