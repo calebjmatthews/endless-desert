@@ -864,7 +864,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Wine from brewery
   [X] Equipment production unlocked after study
   [X] Fortuities with options for new equipment quests
-  [ ] Refactor equipment
+  [X] Refactor equipment
   [ ] Max analysis increases with items studied
   [ ] Research leveling system
   [ ] Scale Firefly quests with research level
