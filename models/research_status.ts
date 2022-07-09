@@ -159,7 +159,11 @@ export default class ResearchStatus implements ResearchStatusInterface {
   }
 
   getAnalysisMax() {
-    return 100 + Object.keys(this.resourcesStudied).length;
+    const base = 100;
+    if (this.status[RESEARCHES.ANALYSIS_OF_VARIANCE] === 'completed') {
+      return base + Object.keys(this.resourcesStudied).length;
+    }
+    return base;
   }
 }
 

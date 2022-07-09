@@ -105,6 +105,20 @@ researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
   unlocksUpgrade: [BUILDING_TYPES.GATE_METAL_CLAD]
 });
 
+researches[RESEARCHES.ANALYSIS_OF_VARIANCE] = new Research({
+  name: RESEARCHES.ANALYSIS_OF_VARIANCE,
+  unlocks: `Every resource studied increases maximum analysis quantity.`,
+  description: `There's a limit to how many items you can analyze before your eyes start to cross and a break is unavoidable. But with more experience, things may become easier.`,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'magnify-close', color: '#2b2b2d'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 0,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANALYSIS],
+  knowledgeReq: 400,
+});
+
 researches[RESEARCHES.STUDY_PORTENTOUS] = new Research({
   name: RESEARCHES.STUDY_PORTENTOUS,
   unlocks: `Upgrade the Study for an additional research option.`,
@@ -140,7 +154,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
 researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   name: RESEARCHES.BRACHYGRAPHY,
   unlocks: `Create field notes in half the time`,
-  description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases, which would increase your speed drastically.`,
+  description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases and increase your speed drastically.`,
   icon: new Icon({provider: 'FontAwesome', name: 'align-center', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,

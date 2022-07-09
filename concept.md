@@ -865,8 +865,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Equipment production unlocked after study
   [X] Fortuities with options for new equipment quests
   [X] Refactor equipment
-  [X] Max analysis increases with items studied
-  [ ] Research leveling system
+  [X] Research to increase max analysis with items studied
+  [ ] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with research level
   [ ] Firefly mother quests?
   [ ] Revamp equipment marking and deconstruction

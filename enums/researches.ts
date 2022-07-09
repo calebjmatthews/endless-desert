@@ -2,6 +2,7 @@ export enum RESEARCHES {
   SCHOLARSHIP = "Scholarship",
   STUDY = "Study",
   ANALYSIS = "Analysis",
+  ANALYSIS_OF_VARIANCE = "Analysis of Variance",
   GATE_EXPANSION = "Gate Expansion",
   GATE_EXPANSION_BRICKWORK = "Brickwork Gate Expansion",
   GATE_EXPANSION_METAL_CLAD = "Metal-Clad Gate Expansion",
