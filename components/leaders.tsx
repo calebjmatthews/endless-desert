@@ -118,9 +118,11 @@ function LeaderDescription(props: {leader: Leader, positioner: Positioner,
             <Text>{leader.name}</Text>
             {renderMoreButton()}
           </View>
-          <View>
+          <View style={[styles.equipmentEffectSmallContainer,
+          {minWidth: props.positioner.leaderEffectWidth,
+          maxWidth: props.positioner.leaderEffectWidth}]}>
             {leader.effects.map((anEffect, index) => {
-              return <EquipmentEffectComponent key={index} anEffect={anEffect} />;
+              return <EquipmentEffectComponent key={index} anEffect={anEffect} size='small' />;
             })}
           </View>
           <View>

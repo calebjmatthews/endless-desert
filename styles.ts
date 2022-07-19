@@ -539,6 +539,7 @@ export const styles = StyleSheet.create({
     borderColor: '#dce0e8',
     borderStyle: 'solid',
     marginVertical: 2,
+    marginRight: 4,
     paddingHorizontal: 5,
     paddingVertical: 1
   },
@@ -634,5 +635,11 @@ export const styles = StyleSheet.create({
     zIndex: 1,
     marginBottom: 8,
     fontSize: 10
+  },
+
+  equipmentEffectSmallContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 });

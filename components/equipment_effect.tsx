@@ -22,33 +22,46 @@ import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 
 export default function EquipmentEffectComponent(props:
-  { anEffect: EquipmentEffect, size?: string }) {
+  { anEffect: EquipmentEffect, size?: 'large'|'medium'|'small' }) {
+  if (props.anEffect.change === 0) { return null; }
   let fontSize = 12; let iconSize = 16;
   if (props.size == 'large') { fontSize = 14; iconSize = 18; }
 
   return (
     <View style={styles.infoBar}>
-      {renderChange(props.anEffect)}
-      {renderEffectSpecificity(props.anEffect)}
-      {renderEffectQuality(props.anEffect)}
+      {renderChange(props.anEffect, props.size)}
+      {renderEffectSpecificity(props.anEffect, props.size)}
+      {renderEffectQuality(props.anEffect, props.size)}
     </View>
   );
 
-  function renderChange(anEffect: EquipmentEffect) {
+  function renderChange(anEffect: EquipmentEffect, size?: 'large'|'medium'|'small') {
     let text = null;
-    if ((anEffect.quality == LQ.HAPPINESS_TO_SPEED
+    let sign = '+';
+    const happinessChange = (anEffect.quality == LQ.HAPPINESS_TO_SPEED
       || anEffect.quality == LQ.HAPPINESS_TO_QUALITY
-      || anEffect.quality == LQ.HAPPINESS_TO_EFFICIENCY)) {
-      if (anEffect.change == 100) { return null; }
-      else if (anEffect.change == 50) { text = '½ '; }
-      else if (anEffect.change == 25) { text = '¼ '; }
-      else { text = `${utils.formatNumberShort(props.anEffect.change)}% `; }
+      || anEffect.quality == LQ.HAPPINESS_TO_EFFICIENCY);
+    if (size === 'small' && happinessChange) {
+      sign = 'x';
+      if (anEffect.change == 100) { text = '100% '; }
+        else if (anEffect.change == 50) { text = '50% '; }
+        else if (anEffect.change == 25) { text = '25% '; }
+        else { text = `${utils.formatNumberShort(props.anEffect.change)}% `; }
+        text = `${sign}${text}`;
     }
     else {
-      let sign = '+'
-      if (props.anEffect.change < 0) { sign = ''; }
-      text = `${sign}${utils.formatNumberShort(props.anEffect.change)}% `;
+      if (happinessChange) {
+        if (anEffect.change == 100) { return null; }
+        else if (anEffect.change == 50) { text = '½ '; }
+        else if (anEffect.change == 25) { text = '¼ '; }
+        else { text = `${utils.formatNumberShort(props.anEffect.change)}% `; }
+      }
+      else {
+        if (props.anEffect.change < 0) { sign = ''; }
+        text = `${sign}${utils.formatNumberShort(props.anEffect.change)}% `;
+      }
     }
+    
     return (
       <Text style={{fontSize}}>
         {text}
@@ -56,7 +69,7 @@ export default function EquipmentEffectComponent(props:
     );
   }
 
-  function renderEffectSpecificity(anEffect: EquipmentEffect) {
+  function renderEffectSpecificity(anEffect: EquipmentEffect, size?: 'large'|'medium'|'small') {
     if (anEffect.specificity && anEffect.type) {
       let type: ResourceType|ResourceTag|ResourceSubcategory|ResourceCategory =
         resourceTypes[anEffect.type];
@@ -76,20 +89,24 @@ export default function EquipmentEffectComponent(props:
       return (
         <View style={styles.rows}>
           {icon}
-          <Text style={{fontSize}}>{' ' + anEffect.type + ' '}</Text>
+          {(size !== 'small') && (
+            <Text style={{fontSize}}>{` ${anEffect.type} `}</Text>
+          )}
         </View>
       );
     }
     return null;
   }
 
-  function renderEffectQuality(anEffect: EquipmentEffect) {
+  function renderEffectQuality(anEffect: EquipmentEffect, size?: 'large'|'medium'|'small') {
     let quality = leaderQualities[anEffect.quality];
     return (
       <View style={styles.rows}>
         <IconComponent provider={quality.icon.provider} name={quality.icon.name}
           color={quality.icon.color} size={iconSize} />
-        <Text style={{fontSize}}>{' ' + anEffect.quality}</Text>
+        {(size !== 'small') && (
+          <Text style={{fontSize}}>{` ${anEffect.quality}`}</Text>
+        )}
       </View>
     );
   }

@@ -7,7 +7,7 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import EquipmentTierComponent from './equipment_name';
+import EquipmentNameComponent from './equipment_name';
 import EquipmentEffectComponent from './equipment_effect';
 import ProgressBarComponent from './progress_bar';
 import { displayModal } from '../actions/ui';
@@ -51,7 +51,7 @@ export default function EquipmentMarkedOneComponent() {
           <View style={[styles.panelFlexColumn, {alignItems: 'flex-start'}]}>
             <View style={styles.rows}>
               <BadgeComponent icon={new Icon({...equipmentType.icon, size: 38})} />
-              <EquipmentTierComponent anEquipment={anEquipment} />
+              <EquipmentNameComponent anEquipment={anEquipment} />
             </View>
             <View style={styles.columns}>
               {anEquipment.effects.map((anEffect, index) => (

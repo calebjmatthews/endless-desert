@@ -8,6 +8,7 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
+import EquipmentNameComponent from './equipment_name';
 import { removeEquipment } from '../actions/equipment';
 import { increaseResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
@@ -280,7 +281,7 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
         <View style={StyleSheet.flatten([styles.buttonTextRow,
           {minWidth: props.positioner.bodyMedWidth,
             maxWidth: props.positioner.bodyMedWidth}])}>
-          <Text>{anEquipment.typeName}</Text>
+          <EquipmentNameComponent anEquipment={anEquipment} size='medium' />
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
             onPress={() => {}}>
@@ -301,10 +302,11 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
   function renderEquipmentEffects(anEquipment: Equipment) {
     if (anEquipment.effects) {
       return (
-        <View style={styles.columns}>
+        <View style={[styles.equipmentEffectSmallContainer, {minWidth: props.positioner.bodyMedWidth,
+          maxWidth: props.positioner.bodyMedWidth}]}>
           {anEquipment.effects.map((anEffect, index) => {
             return (
-              <EquipmentEffectComponent key={index} anEffect={anEffect} />
+              <EquipmentEffectComponent key={index} anEffect={anEffect} size='small' />
             );
           })}
         </View>
