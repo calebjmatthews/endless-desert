@@ -152,6 +152,7 @@ export default function EquipmentMarkedOneComponent() {
       })]));
       dispatch(addEquipment([anEquipment]));
     }
+    dispatch(clearEquipmentMarked());
     dispatch(displayModal(null));
   }
 }
