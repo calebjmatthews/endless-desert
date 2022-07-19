@@ -20,6 +20,7 @@ import { setAccount, setUserId, setSessionId, setStorageCallSave }
 import { setRates } from '../actions/rates';
 import { setLeaders } from '../actions/leaders';
 import { setEquipment } from '../actions/equipment';
+import { setEquipmentMarked } from '../actions/equipment_marked';
 import { setConversationStatus } from '../actions/conversation_status';
 import { setQuestStatus } from '../actions/quest_status';
 import { setGlobalState } from '../actions/ui';
@@ -53,6 +54,7 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'accounts': setAccount,
   'leaders': setLeaders,
   'equipment': setEquipment,
+  'equipmentMarked': setEquipmentMarked,
   'conversation_status': setConversationStatus,
   'quest_status': setQuestStatus,
   'messages': setMessages,
@@ -73,6 +75,7 @@ export default function StorageHandlerComponent() {
   const account = useTypedSelector(state => state.account);
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
+  const equipmentMarked = useTypedSelector(state => state.equipmentMarked);
   const conversationStatus = useTypedSelector(state => state.conversationStatus);
   const questStatus = useTypedSelector(state => state.questStatus);
   const globalState = useTypedSelector(state => state.ui.globalState);
@@ -267,7 +270,6 @@ export default function StorageHandlerComponent() {
         console.log(error);
         return false;
       }
-      return false;
     })
     .then((booleanRes) => {
       if (booleanRes == false) {
@@ -301,6 +303,7 @@ export default function StorageHandlerComponent() {
         account: accountToSave,
         leaders: leaders,
         equipment: equipment,
+        equipmentMarked: equipmentMarked,
         conversationStatus: conversationStatus,
         questStatus: questStatus,
         messages: messages,

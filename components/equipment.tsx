@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, View, ScrollView, FlatList, TouchableOpacity, StyleSheet }
-  from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -9,33 +8,25 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import EquipmentEffectComponent from './equipment_effect';
-import { addEquipment, removeEquipment } from '../actions/equipment';
-import { increaseResources, consumeResources } from '../actions/vault';
+import { removeEquipment } from '../actions/equipment';
+import { increaseResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
+import { setEquipmentMarked } from '../actions/equipment_marked';
+import { displayModal } from '../actions/ui';
 
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
-import ResourceTag from '../models/resource_tag';
-import ResourceSubcategory from '../models/resource_subcategory';
-import ResourceCategory from '../models/resource_category';
 import Equipment from '../models/equipment';
 import Leader from '../models/leader';
-import EquipmentEffect from '../models/equipment_effect';
 import Vault from '../models/vault';
 import QuestActivity from '../models/quest_activity';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
-import { resourceTags } from '../instances/resource_tags';
-import { resourceSubcategories } from '../instances/resource_subcategories';
-import { resourceCategories } from '../instances/resource_categories';
 import { equipmentTypes } from '../instances/equipment_types';
-import { leaderQualities } from '../instances/leader_qualities';
 import { utils } from '../utils';
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 const EQS = EQUIPMENT_SLOTS;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
-import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
-import { ACTIVITIES } from '../enums/activities';
+import { MODALS } from '../enums/modals';
 
 export default function EquipmentComponent() {
   const dispatch = useDispatch();
@@ -245,22 +236,25 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
   }
 
   function markEquipment(count: number) {
-    let equipmentArray: Equipment[] = [];
+    displayModal(MODALS.EQUIPMENT_MARKED_ONE);
+    const newEquipmentMarked: { [id: string] : Equipment} = {};
     let rtc: Resource[] = [];
     for (let loop = 0; loop < count; loop++) {
       const moeRes = createEquipment();
-      equipmentArray.push(moeRes.anEquipment);
+      newEquipmentMarked[moeRes.anEquipment.id] = moeRes.anEquipment;
       rtc.push(moeRes.resource);
     }
-    dispatch(addEquipment(equipmentArray));
-    dispatch(consumeResources(props.vault, rtc));
+    dispatch(setEquipmentMarked(newEquipmentMarked));
+    dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
+    // dispatch(addEquipment(equipmentArray));
+    // dispatch(consumeResources(props.vault, rtc));
   }
 
   function createEquipment() {
     const equipmentResource: Resource = props.resource;
     const equipmentTypeName = equipmentResource.type.split(' (')[0];
     const equipmentType = equipmentTypes[equipmentTypeName];
-    const tier = 1;
+    const tier = 0;
     const anEquipment = equipmentType.createEquipment(tier, props.vault, resourceTypes);
     const resource = new Resource({type: equipmentResource.type, quality:
       equipmentResource.quality, quantity: 1});

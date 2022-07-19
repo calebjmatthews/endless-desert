@@ -18,12 +18,16 @@ export default class EquipmentType implements EquipmentTypeInterface {
     Object.assign(this, equipmentType);
   }
 
-  createEquipment(tier: number, vault: Vault,
-    resourceTypes: { [name: string] : ResourceType}) {
+  createEquipment(quality: number, vault: Vault, resourceTypes: { [name: string] : ResourceType}) {
+    let tier = quality;
+    const roll = utils.random();
+    if (roll < 0.02) { tier += 2; }
+    else if (roll < 0.18) { tier += 1; }
     let effects = this.effectGenerators[tier].generateEffects(vault, resourceTypes);
     return new Equipment({
       id: utils.randHex(16),
       typeName: this.name,
+      tier,
       effects: effects
     })
   }

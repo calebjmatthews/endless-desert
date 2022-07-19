@@ -227,6 +227,12 @@ export enum SVGS {
   MYSTICISM = "Mysticism",
   HAMMERS = "Hammers",
   EPAULETTE = "Epaulette",
+  STAR = "Star",
+  STARS_TWO = "Stars Two",
+  STARS_THREE = "Stars Three",
+  STARS_FOUR = "Stars Four",
+  STARS_FIVE = "Stars Five",
+  STARS_SIX = "Stars Six",
 
   TERRAIN_SAND = "Terrain: Sand",
   TERRAIN_RIVERBANK = "Terrain: Riverbank",

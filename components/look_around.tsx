@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Provider, useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
@@ -7,7 +7,6 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../styles';
 
-import MessageBarComponent from '../components/message_bar';
 import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import ProgressBarComponent from '../components/progress_bar';

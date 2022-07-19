@@ -11,6 +11,7 @@ import TradingStatusReducer from './trading_status';
 import AccountReducer from './account';
 import LeadersReducer from './leaders';
 import EquipmentReducer from './equipment';
+import EquipmentMarkedReducer from './equipment_marked';
 import ConversationStatusReducer from './conversation_status';
 import QuestStatusReducer from './quest_status';
 import UIReducer from './ui';
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   account: AccountReducer,
   leaders: LeadersReducer,
   equipment: EquipmentReducer,
+  equipmentMarked: EquipmentMarkedReducer,
   conversationStatus: ConversationStatusReducer,
   questStatus: QuestStatusReducer,
   ui: UIReducer,

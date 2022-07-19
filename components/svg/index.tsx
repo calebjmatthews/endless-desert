@@ -230,6 +230,12 @@ import RoadSignSvgComponent from './symbols/road_sign';
 import MysticismSvgComponent from './symbols/mysticism';
 import HammersSvgComponent from './symbols/hammers';
 import EpauletteSvgComponent from './symbols/epaulette';
+import StarSvgComponent from './symbols/star';
+import StarsTwoSvgComponent from './symbols/stars_two';
+import StarsThreeSvgComponent from './symbols/stars_three';
+import StarsFourSvgComponent from './symbols/stars_four';
+import StarsFiveSvgComponent from './symbols/stars_five';
+import StarsSixSvgComponent from './symbols/stars_six';
 
 import TerrainSandSvgComponent from './backgrounds/terrain_sand';
 import TerrainRiverbankSvgComponent from './backgrounds/terrain_riverbank';
@@ -690,6 +696,18 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <HammersSvgComponent icon={props.icon} />;
     case SVGS.EPAULETTE:
     return <EpauletteSvgComponent icon={props.icon} />;
+    case SVGS.STAR:
+    return <StarSvgComponent icon={props.icon} />;
+    case SVGS.STARS_TWO:
+    return <StarsTwoSvgComponent icon={props.icon} />;
+    case SVGS.STARS_THREE:
+    return <StarsThreeSvgComponent icon={props.icon} />;
+    case SVGS.STARS_FOUR:
+    return <StarsFourSvgComponent icon={props.icon} />;
+    case SVGS.STARS_FIVE:
+    return <StarsFiveSvgComponent icon={props.icon} />;
+    case SVGS.STARS_SIX:
+    return <StarsSixSvgComponent icon={props.icon} />;
 
     case SVGS.TERRAIN_SAND:
     return <TerrainSandSvgComponent icon={props.icon} />;

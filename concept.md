@@ -662,10 +662,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Hawk Bazaar
   - Hawk your wares!
-  - One per day, send out a passenger hawk containing any quantity of a resource at a price set by the player
-  - Use hawk scrip to send out more hawks than the single daily hawk
-  - Buy as many things from the Hawk Bazaar as you wish
-  - When sending out a hawk, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
+  - One per day, receive a Hawk Chit which allows any quantity of a single resource to be purchased from another player, at the price they have set
+  - Sell as many things in the Hawk Bazaar as you wish
+  - When setting up a resource for sale, see a suggested price based on the average of the last ten? successful trades, excluding outliers?, and lacking recent trades the total value of the resources to be traded
   - For early game when there are few players, have auto-generated trades from "Shades"?
 
 ## Building Limits
@@ -702,6 +701,22 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Value checking table
   - Should display current value, name, building that produces, computed value from rate of production + value of ingredients + value of building
+
+## Equipment marking modal
+  - Separate modals for marking a single equipment vs. multiple
+  - Single equipment:
+    - Shows name and rarity in large characters at top: Basic, Notable, Eminent, Superior, Peerless, Transcendent
+    - Below that effects of equipment
+    - Options at bottom to Deconstruct or Keep the equipment
+    - If deconstuct is selected, quick timer bar, then show resources gained, then button changes to Next
+  - Multiple equipment:
+    - Shows a count of best rarity at top, with lesser rarities below
+    - Each rarity section can be expanded, with selection buttons on left
+    - Deconstruct all button below each section, which changes to Deconstruct selected if any are selected
+    - After equipment are deconstructed, they are removed from the list
+    - At very bottom of modal is a Keep all button that changes to Keep remaining if any have been deconstructed, or Next if all have been deconstructed
+    - Keep all or Keep remaining button changes to "No room! (1104 / 1000)" if capacity is exceeded
+  - Keep status of marking modal in its own reducer, for the purposes of closing and reopening the app
 
 ## Styling:
   - Fine border:
@@ -866,10 +881,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fortuities with options for new equipment quests
   [X] Refactor equipment
   [X] Research to increase max analysis with items studied
+  [ ] Revamp equipment marking and deconstruction
   [ ] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with research level
   [ ] Firefly mother quests?
-  [ ] Revamp equipment marking and deconstruction
   [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes
@@ -923,7 +938,7 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-CREATE TABLE `terrain` (
+CREATE TABLE `equipment_marked` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(16) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

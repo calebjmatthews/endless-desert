@@ -10,6 +10,7 @@ import Memo from './memo';
 import Positioner from './positioner';
 import Leader from './leader';
 import Equipment from './equipment';
+import { EquipmentMarked } from './equipment_marked';
 import Rates from './rates';
 import ConversationStatus from './conversation_status';
 import QuestStatus from './quest_status';
@@ -34,6 +35,7 @@ export interface DBRootState {
   account: Account;
   leaders: { [id: string] : Leader };
   equipment: { [id: string] : Equipment };
+  equipmentMarked: EquipmentMarked;
   conversationStatus: ConversationStatus;
   questStatus: QuestStatus;
   messages: Message[];

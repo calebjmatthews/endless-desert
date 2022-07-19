@@ -213,6 +213,21 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
     borderColor: '#071f56'
   },
+  buttonMedium: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 4,
+    paddingRight: 8,
+    paddingBottom: 4,
+    paddingLeft: 8,
+    backgroundColor: '#071f56',
+    color: '#fff',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#071f56'
+  },
   buttonLarge: {
     display: 'flex',
     flexDirection: 'row',

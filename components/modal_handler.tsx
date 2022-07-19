@@ -24,6 +24,7 @@ import SignupComponent from './signup';
 import QuestQuitConfirmComponent from './quest_quit_confirm';
 import MessagesComponent from './messages';
 import { MODALS } from '../enums/modals';
+import EquipmentMarkedOneComponent from './equipment_marked_one';
 
 const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
   [MODALS.RESOURCE_DETAIL]: '50%',
@@ -101,6 +102,9 @@ function renderModal(modalType: string) {
 
     case MODALS.EQUIPMENT_SELECT:
     return <EquipmentSelectComponent />;
+
+    case MODALS.EQUIPMENT_MARKED_ONE:
+    return <EquipmentMarkedOneComponent />;
 
     case MODALS.LEADER_SELECT:
     return <LeaderSelectComponent />;
