@@ -54,7 +54,7 @@ export default function ModalHandlerComponent() {
   }, [modalType])
 
   function modalCancel() {
-    if (modalType != MODALS.MEMO) {
+    if (modalType !== MODALS.MEMO && modalType !== MODALS.EQUIPMENT_MARKED_ONE) {
       dispatch(displayModal(null));
     }
   }
