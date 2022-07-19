@@ -178,6 +178,7 @@ export default function LeaderDetailComponent() {
 
   function renderExplanation(quality: string, anEffect?: EquipmentEffect) {
     const explanation = leader.explanations[quality];
+    if (!explanation) { return null; }
     const full = {width: ((positioner.modalMajor) - 2)};
     const half = {width: (((positioner.modalMajor) / 2) - 2)};
     const fullStyle: any = StyleSheet.flatten([full, styles.pseudoCell,
