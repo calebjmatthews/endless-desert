@@ -1,6 +1,7 @@
 import { RESOURCE_CATEGORIES } from './enums/resource_categories';
 import { RESOURCE_TAGS } from './enums/resource_tags';
 import { LEADER_QUALITIES } from './enums/leader_qualities';
+import { SVGS } from './enums/svgs';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
@@ -31,3 +32,12 @@ export const DEFAULT_DISH_COST = 20;
 export const DEFAULT_SPICE_COST = 4;
 export const STUDY_CATEGORY_BLACKLIST = [RESOURCE_CATEGORIES.SPECIAL];
 export const STUDY_TAG_BLACKLIST = [RESOURCE_TAGS.MIND];
+
+export const EQUIPMENT_TIER_DATA: { label: string, headingColor: string, color?: string, iconName?: string }[] = [
+  { label: 'Basic', headingColor: '#555555' },
+  { label: 'Notable', headingColor: '#a02c75', color: '#e9358b', iconName: SVGS.STAR },
+  { label: 'Eminent', headingColor: '#ad6924', color: '#ff9812', iconName: SVGS.STARS_TWO },
+  { label: 'Superior', headingColor: '#35654b', color: '#64c37d', iconName: SVGS.STARS_THREE },
+  { label: 'Peerless', headingColor: '#448d9c', color: '#00d7df', iconName: SVGS.STARS_FOUR },
+  { label: 'Transcendent', headingColor: '#6c319a', color: '#933ec5', iconName: SVGS.STARS_FIVE }
+];

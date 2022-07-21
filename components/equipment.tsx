@@ -237,7 +237,6 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
   }
 
   function markEquipment(count: number) {
-    displayModal(MODALS.EQUIPMENT_MARKED_ONE);
     const newEquipmentMarked: { [id: string] : Equipment} = {};
     let rtc: Resource[] = [];
     for (let loop = 0; loop < count; loop++) {
@@ -245,24 +244,28 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
       newEquipmentMarked[moeRes.anEquipment.id] = moeRes.anEquipment;
       rtc.push(moeRes.resource);
     }
+    const equipmentTypeName = props.resource.type.split(' (')[0];
+    const tier = 0;
+    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+      equipmentMarked: { typeName: equipmentTypeName, tier, quantity: count } })));
     dispatch(setEquipmentMarked(newEquipmentMarked));
-    dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
-    // dispatch(addEquipment(equipmentArray));
-    // dispatch(consumeResources(props.vault, rtc));
+    if (count > 1) {
+      dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ALL));
+    }
+    else {
+      dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
+    }
   }
 
   function createEquipment() {
     const equipmentResource: Resource = props.resource;
     const equipmentTypeName = equipmentResource.type.split(' (')[0];
     const equipmentType = equipmentTypes[equipmentTypeName];
-    const tier = 0;
-    const anEquipment = equipmentType.createEquipment(tier, props.vault, resourceTypes);
+    const anEquipment = equipmentType.createEquipment(equipmentResource.quality, props.vault, 
+      resourceTypes);
     const resource = new Resource({type: equipmentResource.type, quality:
       equipmentResource.quality, quantity: 1});
-    console.log('anEquipment');
-    console.log(anEquipment);
-    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-      equipmentMarked: { typeName: equipmentTypeName, tier, quantity: 1 } })));
+    
     return { anEquipment, resource };
   }
 }

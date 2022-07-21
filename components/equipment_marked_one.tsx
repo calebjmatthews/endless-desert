@@ -40,12 +40,12 @@ export default function EquipmentMarkedOneComponent() {
 
   return (
     <View style={styles.modalContent}>
-
       <View style={styles.headingWrapper}>
         <IconComponent provider="FontAwesome5" name="stamp"
           color="#fff" size={20} style={styles.headingIcon} />
         <Text style={styles.heading1}>{` Marked Equipment`}</Text>
       </View>
+      
       <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
         {(state !== 'deconstructed') && (
           <View style={[styles.panelFlexColumn, {alignItems: 'flex-start'}]}>
@@ -63,8 +63,7 @@ export default function EquipmentMarkedOneComponent() {
         
         {(state === 'init' || state === 'confirmDeconstruct') && (
           <TouchableOpacity style={[styles.buttonMedium, styles.buttonAway,
-            {alignSelf: 'center', marginTop: 10}]}
-            onPress={() => deconstructPress()} >
+            {alignSelf: 'center', marginTop: 10}]} onPress={() => deconstructPress()} >
             <IconComponent provider="FontAwesome5" name="bomb" color="#fff" size={12}
               style={styles.headingIcon} />
             <Text style={styles.buttonText}>
@@ -116,10 +115,7 @@ export default function EquipmentMarkedOneComponent() {
   );
 
   function deconstructPress() {
-    if (state !== 'confirmDeconstruct') {
-      setState('confirmDeconstruct');
-    }
-    else {
+    if (state === 'confirmDeconstruct') {
       setState('deconstructing');
 
       const rti: Resource[] = [];
@@ -132,7 +128,7 @@ export default function EquipmentMarkedOneComponent() {
       setRfd(rti);
       dispatch(consumeResources(vault, [new Resource({
         type: `${anEquipment.typeName} (U)`,
-        quality: 0,
+        quality: anEquipment.originalQuality,
         quantity: 1
       })]));
 
@@ -140,6 +136,9 @@ export default function EquipmentMarkedOneComponent() {
         setState('deconstructed');
       }, 2500);
       setTimeouts([...timeouts, progressTimeout]);
+    }
+    else {
+      setState('confirmDeconstruct');
     }
   }
 

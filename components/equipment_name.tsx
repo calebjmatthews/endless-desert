@@ -7,21 +7,13 @@ import SvgComponent from './svg';
 import Equipment from '../models/equipment';
 import Icon from '../models/icon';
 import { SVGS } from '../enums/svgs';
-
-const tierData: { label: string, headingColor: string, color?: string, iconName?: string }[] = [
-  { label: 'Basic', headingColor: '#555555' },
-  { label: 'Notable', headingColor: '#a02c75', color: '#e9358b', iconName: SVGS.STAR },
-  { label: 'Eminent', headingColor: '#ad6924', color: '#ff9812', iconName: SVGS.STARS_TWO },
-  { label: 'Superior', headingColor: '#35654b', color: '#64c37d', iconName: SVGS.STARS_THREE },
-  { label: 'Peerless', headingColor: '#448d9c', color: '#00d7df', iconName: SVGS.STARS_FOUR },
-  { label: 'Transcendent', headingColor: '#6c319a', color: '#933ec5', iconName: SVGS.STARS_FIVE }
-];
+import { EQUIPMENT_TIER_DATA } from '../constants';
 
 export default function EquipmentNameComponent(props: {anEquipment: Equipment,
-  size: 'large'|'medium'}) {
+  size?: 'large'|'medium'}) {
   const anEquipment = props.anEquipment;
   const size = props.size || 'large';
-  const td = tierData[anEquipment.tier];
+  const td = EQUIPMENT_TIER_DATA[anEquipment.tier];
 
   const textStyle: any = (size === 'large') ? [styles.heading2, {color: td.headingColor, 
     fontWeight: '500'}] : {color: td.headingColor};

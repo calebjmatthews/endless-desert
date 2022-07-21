@@ -381,7 +381,7 @@ resourceTypes[RTY.REEDS] = new ResourceType({
   subcategory: RSC.CROP,
   tags: [RTA.CROP, RTA.CONSTRUCTION, RTA.FUEL],
   value: 4,
-  description: `For roofing, fabric, paper, papyrus, etc, etc`,
+  description: `For roofing, fabric, fuel, papyrus, etc, etc`,
   icon: new Icon({provider: 'svg', name: SVGS.REEDS})
 });
 

@@ -28,6 +28,7 @@ export default class EquipmentType implements EquipmentTypeInterface {
       id: utils.randHex(16),
       typeName: this.name,
       tier,
+      originalQuality: quality,
       effects: effects
     })
   }

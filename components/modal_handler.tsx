@@ -15,6 +15,8 @@ import ResourceSelectDishComponent from './resource_select_dish';
 import ResourceSelectRateComponent from './resource_select_rate';
 import BuildingSelectComponent from './building_select';
 import EquipmentSelectComponent from './equipment_select';
+import EquipmentMarkedOneComponent from './equipment_marked_one';
+import EquipmentMarkedAllComponent from './equipment_marked_all';
 import LeaderSelectComponent from './leader_select';
 import MemoComponent from './memo';
 import BuildingDetailComponent from './building_detail';
@@ -24,7 +26,6 @@ import SignupComponent from './signup';
 import QuestQuitConfirmComponent from './quest_quit_confirm';
 import MessagesComponent from './messages';
 import { MODALS } from '../enums/modals';
-import EquipmentMarkedOneComponent from './equipment_marked_one';
 
 const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
   [MODALS.RESOURCE_DETAIL]: '50%',
@@ -54,7 +55,8 @@ export default function ModalHandlerComponent() {
   }, [modalType])
 
   function modalCancel() {
-    if (modalType !== MODALS.MEMO && modalType !== MODALS.EQUIPMENT_MARKED_ONE) {
+    if (modalType !== MODALS.MEMO && modalType !== MODALS.EQUIPMENT_MARKED_ONE
+      && modalType !== MODALS.EQUIPMENT_MARKED_ALL) {
       dispatch(displayModal(null));
     }
   }
@@ -105,6 +107,9 @@ function renderModal(modalType: string) {
 
     case MODALS.EQUIPMENT_MARKED_ONE:
     return <EquipmentMarkedOneComponent />;
+
+    case MODALS.EQUIPMENT_MARKED_ALL:
+    return <EquipmentMarkedAllComponent />;
 
     case MODALS.LEADER_SELECT:
     return <LeaderSelectComponent />;

@@ -14,6 +14,8 @@ export default function (equipmentMarked: EquipmentMarked = { equipment: {},
     action.equipmentIds.forEach((id: string) => {
       delete newREMEquipmentMarked.equipment[id];
     });
+    console.log('newREMEquipmentMarked');
+    console.log(newREMEquipmentMarked);
     return newREMEquipmentMarked;
 
     case ADD_TO_RESOURCES_FROM_DECONSTRUCTION:

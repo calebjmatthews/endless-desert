@@ -1,0 +1,320 @@
+import React, { useEffect, useState, useMemo } from 'react';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import { RootState } from '../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { styles } from '../styles';
+
+import BadgeComponent from './badge';
+import IconComponent from './icon';
+import SvgComponent from './svg';
+import EquipmentNameComponent from './equipment_name';
+import EquipmentEffectComponent from './equipment_effect';
+import ProgressBarComponent from './progress_bar';
+import { displayModal } from '../actions/ui';
+import { addEquipment } from '../actions/equipment';
+import { removeEquipmentMarked, clearEquipmentMarked } from '../actions/equipment_marked';
+import { increaseResources, consumeResources } from '../actions/vault';
+
+import Icon from '../models/icon';
+import Resource from '../models/resource';
+import Equipment from '../models/equipment';
+import Vault from '../models/vault';
+import Positioner from '../models/positioner';
+import { CategoryBranch } from '../models/category_branch';
+import { equipmentTypes } from '../instances/equipment_types';
+import { utils } from '../utils';
+import { EQUIPMENT_TIER_DATA } from '../constants';
+const ETD = EQUIPMENT_TIER_DATA;
+
+export default function EquipmentMarkedAllComponent() {
+  const equipment = useTypedSelector(state => state.equipmentMarked.equipment);
+  const vault = useTypedSelector(state => state.vault);
+  const positioner = useTypedSelector(state => state.ui.positioner);
+
+  return useMemo(() => (
+    <EquipmentMarkedOneComponentStatic equipment={equipment} vault={vault} positioner={positioner} />
+  ), [positioner, equipment]);
+}
+
+function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : Equipment },
+  vault: Vault, positioner: Positioner }) {
+  const { equipment, vault, positioner } = props;
+  const dispatch = useDispatch();
+
+  // The UI state of each category branch
+  const [state, setState] = useState(['clean']);
+  // The array of catgegory branches, reversed so rarest tier is first
+  const [branches, setBranches] = useState <CategoryBranch[]> ([]);
+  // Which category branches are currently expanded
+  const [expanded, setExpanded] = useState([true]);
+  // Qualitatively how many equipment within each branch are checked (selected)
+  const [branchChecked, setBranchChecked] = useState <('all'|'some'|'none')[]> (['none']);
+  // Whether an individual equipment has been selected
+  const [checked, setChecked] = useState <{ [id:string] : boolean }> ({});
+  // Timeouts created to handle animation delay
+  const [timeouts, setTimeouts] = useState <NodeJS.Timeout[]> ([]);
+  // Resources from deconstruction
+  const [rfd, setRfd] = useState <Resource[]> ([]);
+
+  useEffect(() => {
+    if (state[0] === 'clean') {
+      setState(['initializing']);
+      buildBranches();
+    }
+  }, [state, equipment]);
+
+  if (branches.length === 0) { return null; }
+
+  return (
+    <View style={styles.modalContent}>
+      <View style={styles.headingWrapper}>
+        <IconComponent provider="FontAwesome5" name="stamp"
+          color="#fff" size={20} style={styles.headingIcon} />
+        <Text style={styles.heading1}>{` Marked Equipment`}</Text>
+      </View>
+
+      <ScrollView contentContainerStyle={{display: 'flex', alignItems: 'center'}}>
+        {branches.map((branch, index) => (
+          <View key={`branch-${branch.order}`} style={styles.columns}>
+            <View style={[styles.buttonTextRow, {minWidth: positioner.modalMajor,
+              maxWidth: positioner.modalMajor}]}>
+              <View style={styles.rows}>
+                <SvgComponent icon={branch.icon} />
+                <Text style={[styles.heading2, {color: ETD[branch.order].color}]}>
+                  {` ${ETD[branch.order].label} x${branch.value}`}
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.buttonRowItemSmall}
+                onPress={() => branchToggle(index)}>
+                <IconComponent provider="FontAwesome5" color='#fff' size={14} 
+                  name={(expanded[index]) ? 'angle-up' : 'angle-down'} />
+                <Text style={styles.buttonTextSmall}>
+                  {(expanded[index]) ? ' Hide' : ' Show'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            
+            {(expanded[index] && branch.equipment) && branch.equipment.map((anEquipment) => {
+              const equipmentType = equipmentTypes[anEquipment.typeName];
+              let buttonStyle: any = [styles.button, styles.sideButton];
+              let iconProps = { provider:"FontAwesome5", name:"check-square", color:"#fff", size: 20 };
+              if (!checked[anEquipment.id]) {
+                buttonStyle.push(styles.buttonLight);
+                iconProps = {...iconProps, name:"square", color: "#071f56"};
+              }
+              return (
+                <View key={anEquipment.id} style={[styles.panelFlex, styles.sideButtonContainer,
+                  {alignItems: 'flex-start', padding: 0}]}>
+                  <TouchableOpacity style={buttonStyle}
+                    onPress={() => checkBoxPress(index, anEquipment.id)} >
+                    <IconComponent {...iconProps} />
+                  </TouchableOpacity>
+                  <View style={styles.columns}>
+                    <View style={styles.rows}>
+                      <BadgeComponent icon={new Icon({...equipmentType.icon, size: 38})} />
+                      <EquipmentNameComponent anEquipment={anEquipment} />
+                    </View>
+                    <View style={styles.columns}>
+                      {anEquipment.effects.map((anEffect, index) => (
+                        <EquipmentEffectComponent key={`equip-${index}`} anEffect={anEffect} />
+                      ))}
+                    </View>
+                  </View>
+                </View>
+              )
+            })}
+
+            {(state[index] !== 'deconstructing') && (
+              <DeconstructButton state={state} index={index} branchChecked={branchChecked}
+                branch={branch} deconstructPress={deconstructPress} />
+            )}
+
+            {(state[index] === 'deconstructing') && (
+              <View style={{marginTop: 10}}>
+                <ProgressBarComponent startingProgress={0}
+                  width={positioner.majorWidth - positioner.minorPadding}
+                  endingProgress={1} duration={2000}
+                  labelStyle={styles.bareText}
+                  color={'#9e3733'}
+                  label={'Deconstructing...'} />
+              </View>
+            )}
+            
+          </View>
+        ))}
+        {(rfd?.length > 0) && (
+          <View style={styles.panelFlexColumn}>
+            <Text style={styles.bodyText}>
+              {`Taking the equipment apart yielded:`}
+            </Text>
+            {rfd.map((resource, index) => {
+              const resourceType = utils.getResourceType(resource);
+              if (Math.floor(resource.quantity) === 0) { return null; }
+              return (
+                <View key={index} style={styles.containerStretchRow}>
+                  <BadgeComponent icon={resourceType.icon} size={21} />
+                  <Text style={styles.bodyText}>
+                    {` +${utils.formatNumberShort(resource.quantity)} ${utils.getResourceName(resource)}`}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        )}
+      </ScrollView>
+    </View>
+  );
+
+  function buildBranches() {
+    const newBranches: CategoryBranch[] = [];
+    Object.keys(equipment).forEach((id) => {
+      const anEquipment = equipment[id];
+      if (!newBranches[anEquipment.tier]) {
+        newBranches[anEquipment.tier] = {
+          name: ETD[anEquipment.tier].label,
+          value: 0,
+          order: anEquipment.tier,
+          icon: new Icon({ provider: 'svg', name: (ETD[anEquipment.tier].iconName || ''),
+            color: ETD[anEquipment.tier].color, secondaryColor: '#555' }),
+          equipment: []
+        };
+      }
+      newBranches[anEquipment.tier].equipment?.push(anEquipment);
+      newBranches[anEquipment.tier].value = (newBranches[anEquipment.tier].value || 0) + 1;
+    });
+    setBranches(newBranches.reverse());
+    const newState: string[] = [];
+    const newBranchChecked: ('all'|'some'|'none')[] = [];
+    newBranches.forEach((branch, index) => {
+      newState[index] = 'initialized';
+      newBranchChecked[index] = 'none';
+    });
+    setState(newState);
+    setBranchChecked(newBranchChecked);
+  }
+
+  function branchToggle(index: number) {
+    const newExpanded = [...expanded];
+    (expanded[index] === true) ? newExpanded[index] = false : newExpanded[index] = true;
+    setExpanded(newExpanded);
+  }
+
+  function checkBoxPress(branchIndex: number, id: string) {
+    const newChecked = {...checked};
+    (checked[id] === true) ? newChecked[id] = false : newChecked[id] = true;
+    setChecked(newChecked);
+
+    const newBranchChecked: ('all'|'some'|'none')[] = [...branchChecked];
+    let anyChecked = false;
+    let allChecked = true;
+    branches[branchIndex].equipment?.forEach((anEquipment) => {
+      (newChecked[anEquipment.id]) ? anyChecked = true : allChecked = false;
+    });
+    if (allChecked) { newBranchChecked[branchIndex] = 'all'; }
+    else if (anyChecked) { newBranchChecked[branchIndex] = 'some'; }
+    else { newBranchChecked[branchIndex] = 'none'; }
+    setBranchChecked(newBranchChecked);
+    if (state[branchIndex] === 'confirmDeconstruct') {
+      const newState = [...state];
+      newState[branchIndex] = 'initialized';
+      setState(newState);
+    }
+  }
+
+  function deconstructPress(index: number) {
+    if (state[index] === 'confirmDeconstruct') {
+      const newState = [...state];
+      newState[index] = 'deconstructing';
+      setState(newState);
+
+      const rti: { [typeQuality: string] : Resource } = {};
+      rfd.forEach((r) => { rti[`${r.type}|${r.quality}`] = r; });
+      const rtc: { [typeQuality: string] : Resource } = {};
+      const idsRemoved: string[] = [];
+      branches[index].equipment?.forEach((anEquipment) => {
+        if (checked[anEquipment.id]) {
+          idsRemoved.push(anEquipment.id);
+          const equipmentType = equipmentTypes[anEquipment.typeName];
+          const eResource = new Resource({
+            type: `${anEquipment.typeName} (U)`,
+            quality: anEquipment.originalQuality,
+            quantity: 1
+          });
+          if (!rtc[`${eResource.type}|${eResource.quality}`]) {
+            rtc[`${eResource.type}|${eResource.quality}`] = eResource;
+          }
+          else {
+            rtc[`${eResource.type}|${eResource.quality}`].quantity += eResource.quantity;
+          }
+          if (equipmentType.recipeConsumes) {
+            equipmentType.recipeConsumes.forEach((consume) => {
+              const resource = new Resource({ ...consume, 
+                quantity: (consume.quantity * 0.1), quality: 0 });
+              if (!rti[`${resource.type}|${resource.quality}`]) {
+                rti[`${resource.type}|${resource.quality}`] = resource;
+              }
+              else {
+                rti[`${resource.type}|${resource.quality}`].quantity += resource.quantity;
+              }
+            });
+          }
+        }
+      });
+      dispatch(removeEquipmentMarked(idsRemoved));
+      const newRfd: Resource[] = Object.keys(rti).map((typeQuality) => rti[typeQuality]);
+      dispatch(increaseResources(vault, newRfd));
+      const rtcArray: Resource[] = Object.keys(rtc).map((typeQuality) => rtc[typeQuality]);
+      dispatch(consumeResources(vault, rtcArray));
+
+      const progressTimeout = setTimeout(() => {
+        const afterState = [...newState];
+        afterState[index] = 'initialized';
+        setState(afterState);
+        setRfd(newRfd);
+        buildBranches();
+      }, 2500);
+      setTimeouts([...timeouts, progressTimeout]);
+    }
+    else {
+      const newState = [...state];
+      newState[index] = 'confirmDeconstruct';
+      setState(newState);
+      if (branchChecked[index] === 'none') {
+        checkAllOrNone(index, true);
+      }
+    }
+  }
+
+  function checkAllOrNone(index: number, check: boolean) {
+    const newChecked = {...checked};
+    branches[index].equipment?.forEach((anEquipment) => {
+      newChecked[anEquipment.id] = check;
+    });
+    setChecked(newChecked);
+    const newBranchChecked = [...branchChecked];
+    newBranchChecked[index] = (check) ? 'all' : 'none';
+    setBranchChecked(newBranchChecked);
+  }
+}
+
+function DeconstructButton(props: { state: string[], index: number, branchChecked: ('all'|'some'|'none')[],
+  branch: CategoryBranch, deconstructPress: (index: number) => void }) {
+  const { state, index, branchChecked, branch, deconstructPress } = props;
+  let text = ` Deconstruct`;
+  if (branchChecked[index] === 'all' || branchChecked[index] === 'none') { text = `${text} All`; }
+  else { text = `${text} Selected`; }
+  text = `${text} ${ETD[branch.order].label}`;
+  if (state[index] === 'confirmDeconstruct') { text = ` Really${text}?`; }
+
+  return (
+    <TouchableOpacity style={[styles.buttonMedium, styles.buttonAway,
+      {alignSelf: 'center', marginTop: 10}]} onPress={() => deconstructPress(index)} >
+      <IconComponent provider="FontAwesome5" name="bomb" color="#fff" size={12}
+        style={styles.headingIcon} />
+      <Text style={styles.buttonText}>
+        {text}
+      </Text>
+    </TouchableOpacity>
+  )
+}

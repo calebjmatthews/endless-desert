@@ -372,7 +372,10 @@ export const styles = StyleSheet.create({
   },
   sideButton: {
     minWidth: 40,
-    borderWidth: 0
+    height: '100%',
+    borderWidth: 0,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0
   },
   modalContainer: {
     zIndex: 100,

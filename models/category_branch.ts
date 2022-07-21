@@ -1,4 +1,5 @@
 import Resource from './resource';
+import Equipment from './equipment';
 import Icon from './icon';
 
 export interface CategoryBranch {
@@ -7,4 +8,5 @@ export interface CategoryBranch {
   order: number;
   icon: Icon;
   resources?: Resource[];
+  equipment?: Equipment[];
 }

@@ -573,12 +573,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/design-tools-6/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/crafting-3/
+    https://www.svgrepo.com/collection/real-assets-5/
     https://www.svgrepo.com/collection/musical-instruments-9/
     https://www.svgrepo.com/collection/in-the-forest-6/
     https://www.svgrepo.com/collection/camping-5/
     https://www.svgrepo.com/collection/camping-12/
     https://www.svgrepo.com/collection/man-clothes/
     https://www.svgrepo.com/collection/woman-clothes/
+    https://www.svgrepo.com/collection/pretty-2/
     https://www.svgrepo.com/collection/clothes-13/
     https://www.svgrepo.com/collection/clothes-18/
     https://www.svgrepo.com/collection/clothes-24/
