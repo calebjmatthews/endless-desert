@@ -883,9 +883,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fortuities with options for new equipment quests
   [X] Refactor equipment
   [X] Research to increase max analysis with items studied
-  [ ] Revamp equipment marking and deconstruction
+  [X] Single equipment marked modal
+  [ ] All equipment marked modal
+  [ ] Equipment detail modal
+  [ ] Store memo/ui state in reducer
+  [ ] Load equipment marked state
   [ ] Other reasearches to improve researching (speed, knowledge gain)
-  [ ] Scale Firefly quests with research level
+  [ ] Scale Firefly quests with # resources studied
   [ ] Firefly mother quests?
   [ ] Trader conversations
   [ ] Flashy display for rare trades
@@ -896,8 +900,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Add animations to memos
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
-  [ ] Store memo and conversation state in reducer
   [ ] Conversations can be repeatable, but not daily
+  [ ] Store conversation state in reducer
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] Fix for impossible expensive trades

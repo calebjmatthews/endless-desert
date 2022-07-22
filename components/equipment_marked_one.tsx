@@ -146,7 +146,7 @@ export default function EquipmentMarkedOneComponent() {
     if (state !== 'deconstructed') {
       dispatch(consumeResources(vault, [new Resource({
         type: `${anEquipment.typeName} (U)`,
-        quality: 0,
+        quality: anEquipment.originalQuality,
         quantity: 1
       })]));
       dispatch(addEquipment([anEquipment]));

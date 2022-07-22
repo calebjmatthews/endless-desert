@@ -56,6 +56,8 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
   const [timeouts, setTimeouts] = useState <NodeJS.Timeout[]> ([]);
   // Resources from deconstruction
   const [rfd, setRfd] = useState <Resource[]> ([]);
+  // Whether any equipment from any branch has been deconstructed
+  const [anyDeconstructed, setAnyDeconstructed] = useState(false);
 
   useEffect(() => {
     if (state[0] === 'clean') {
@@ -114,7 +116,8 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
               }
               return (
                 <View key={anEquipment.id} style={[styles.panelFlex, styles.sideButtonContainer,
-                  {alignItems: 'flex-start', padding: 0}]}>
+                  {alignItems: 'flex-start', padding: 0, minWidth: positioner.modalMajor,
+                  maxWidth: positioner.modalMajor}]}>
                   <TouchableOpacity style={buttonStyle}
                     onPress={() => checkBoxPress(index, anEquipment.id)} >
                     <IconComponent {...iconProps} />
@@ -135,7 +138,8 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
             })}
 
             {!expanded[index] && (
-              <View style={[styles.panelFlex, {justifyContent: 'center'}]}>
+              <View style={[styles.panelFlex, {justifyContent: 'center', minWidth: positioner.modalMajor,
+                maxWidth: positioner.modalMajor}]}>
                 <Text style={styles.mutedText}>{`- ${branch.value} hidden -`}</Text>
               </View>
             )}
@@ -159,8 +163,10 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
             <View style={styles.breakLarge} />
           </View>
         ))}
+
         {(rfd?.length > 0) && (
-          <View style={styles.panelFlexColumn}>
+          <View style={[styles.panelFlexColumn, {minWidth: positioner.modalMajor,
+            maxWidth: positioner.modalMajor}]}>
             <Text style={styles.bodyText}>
               {`Taking equipment apart yielded:`}
             </Text>
@@ -178,6 +184,11 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
             })}
           </View>
         )}
+
+        {(!anyDeconstructing()) && (
+          <NextButton branches={branches} anyDeconstructed={anyDeconstructed} nextPress={nextPress} />
+        )}
+
       </ScrollView>
     </View>
   );
@@ -242,11 +253,27 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
     }
   }
 
+  function checkAllOrNone(index: number, check: boolean) {
+    const newChecked = {...checked};
+    branches[index].equipment?.forEach((anEquipment) => {
+      newChecked[anEquipment.id] = check;
+    });
+    setChecked(newChecked);
+    const newBranchChecked = [...branchChecked];
+    newBranchChecked[index] = (check) ? 'all' : 'none';
+    setBranchChecked(newBranchChecked);
+  }
+
+  function anyDeconstructing() {
+    return state.filter((oneState) => oneState === 'deconstructing').length > 0;
+  }
+
   function deconstructPress(index: number) {
     if (state[index] === 'confirmDeconstruct' && !anyDeconstructing()) {
       const newState = [...state];
       newState[index] = 'deconstructing';
       setState(newState);
+      if (!anyDeconstructed) { setAnyDeconstructed(true); }
 
       const rti: { [typeQuality: string] : Resource } = {};
       rfd.forEach((r) => { rti[`${r.type}|${r.quality}`] = r; });
@@ -306,19 +333,31 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
     }
   }
 
-  function checkAllOrNone(index: number, check: boolean) {
-    const newChecked = {...checked};
-    branches[index].equipment?.forEach((anEquipment) => {
-      newChecked[anEquipment.id] = check;
+  function nextPress() {
+    let rtc: { [typeQuality: string] : Resource} = {};
+    let eta: Equipment[] = [];
+    branches.forEach((branch) => {
+      branch.equipment?.forEach((anEquipment) => {
+        const typeQuality = `${anEquipment.typeName} (U)|${anEquipment.originalQuality}`;
+        if (!rtc[typeQuality]) {
+          rtc[typeQuality] = new Resource({
+            type: `${anEquipment.typeName} (U)`,
+            quality: anEquipment.originalQuality,
+            quantity: 1
+          });
+        }
+        else {
+          rtc[typeQuality].quantity++;
+        }
+        eta.push(anEquipment);
+      });
     });
-    setChecked(newChecked);
-    const newBranchChecked = [...branchChecked];
-    newBranchChecked[index] = (check) ? 'all' : 'none';
-    setBranchChecked(newBranchChecked);
-  }
 
-  function anyDeconstructing() {
-    return state.filter((oneState) => oneState === 'deconstructing').length > 0;
+    const rtcArray = Object.keys(rtc).map((typeQuality) => rtc[typeQuality]);
+    dispatch(consumeResources(vault, rtcArray));
+    dispatch(addEquipment(eta));
+    dispatch(clearEquipmentMarked());
+    dispatch(displayModal(null));
   }
 }
 
@@ -356,7 +395,7 @@ function DeconstructButton(props: { state: string[], index: number, branchChecke
 
   return (
     <TouchableOpacity style={[styles.buttonMedium, styles.buttonAway,
-      {alignSelf: 'center', marginTop: 10}]} onPress={() => deconstructPress(index)} >
+      {alignSelf: 'center'}]} onPress={() => deconstructPress(index)} >
       <IconComponent provider="FontAwesome5" name="bomb" color="#fff" size={12}
         style={styles.headingIcon} />
       <Text style={styles.buttonText}>
@@ -364,4 +403,23 @@ function DeconstructButton(props: { state: string[], index: number, branchChecke
       </Text>
     </TouchableOpacity>
   )
+}
+
+function NextButton(props: { branches: CategoryBranch[], anyDeconstructed: boolean,
+  nextPress: () => void }) {
+  const { branches, anyDeconstructed, nextPress} = props;
+  let text = ' Next';
+  if (branches) { text = ' Keep All'; }
+  if (anyDeconstructed) { text = ' Keep Remaining'; }
+
+  return (
+    <TouchableOpacity style={[styles.buttonLarge, {alignSelf: 'center', marginBottom: 20}]}
+      onPress={() => nextPress()} >
+      <IconComponent provider="FontAwesome" color="#fff" size={16} style={styles.headingIcon}
+        name={(branches.length > 0) ? "arrow-down" : "arrow-right"} />
+      <Text style={styles.buttonTextLarge}>
+        {text}
+      </Text>
+    </TouchableOpacity>
+  );
 }
