@@ -79,22 +79,31 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
           <View key={`branch-${branch.order}`} style={styles.columns}>
             <View style={[styles.buttonTextRow, {minWidth: positioner.modalMajor,
               maxWidth: positioner.modalMajor}]}>
-              <View style={styles.rows}>
-                <SvgComponent icon={branch.icon} />
-                <Text style={[styles.heading2, {color: ETD[branch.order].color}]}>
-                  {` ${ETD[branch.order].label} x${branch.value}`}
-                </Text>
+              <View style={styles.columns}>
+                <View style={styles.rows}>
+                  <Text style={[styles.heading1, {color: (ETD[branch.order].color !== '#111')
+                    ? ETD[branch.order].color : '#fff'}]}>
+                    {` ${ETD[branch.order].label}`}
+                  </Text>
+                  <SvgComponent icon={branch.icon} />
+                </View>
               </View>
-              <TouchableOpacity style={styles.buttonRowItemSmall}
+             
+              <TouchableOpacity style={[styles.button, {width: 64}]}
                 onPress={() => branchToggle(index)}>
-                <IconComponent provider="FontAwesome5" color='#fff' size={14} 
+                <IconComponent provider="FontAwesome5" color='#fff' size={18} 
                   name={(expanded[index]) ? 'angle-up' : 'angle-down'} />
-                <Text style={styles.buttonTextSmall}>
+                <Text style={styles.buttonText}>
                   {(expanded[index]) ? ' Hide' : ' Show'}
                 </Text>
               </TouchableOpacity>
             </View>
-            
+
+            {expanded[index] && (
+              <CheckAllOrNoneButton index={index} branchChecked={branchChecked}
+                checkAllOrNone={checkAllOrNone} />
+            )}
+
             {(expanded[index] && branch.equipment) && branch.equipment.map((anEquipment) => {
               const equipmentType = equipmentTypes[anEquipment.typeName];
               let buttonStyle: any = [styles.button, styles.sideButton];
@@ -125,6 +134,12 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
               )
             })}
 
+            {!expanded[index] && (
+              <View style={[styles.panelFlex, {justifyContent: 'center'}]}>
+                <Text style={styles.mutedText}>{`- ${branch.value} hidden -`}</Text>
+              </View>
+            )}
+
             {(state[index] !== 'deconstructing') && (
               <DeconstructButton state={state} index={index} branchChecked={branchChecked}
                 branch={branch} deconstructPress={deconstructPress} />
@@ -141,12 +156,13 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
               </View>
             )}
             
+            <View style={styles.breakLarge} />
           </View>
         ))}
         {(rfd?.length > 0) && (
           <View style={styles.panelFlexColumn}>
             <Text style={styles.bodyText}>
-              {`Taking the equipment apart yielded:`}
+              {`Taking equipment apart yielded:`}
             </Text>
             {rfd.map((resource, index) => {
               const resourceType = utils.getResourceType(resource);
@@ -195,35 +211,39 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
   }
 
   function branchToggle(index: number) {
-    const newExpanded = [...expanded];
-    (expanded[index] === true) ? newExpanded[index] = false : newExpanded[index] = true;
-    setExpanded(newExpanded);
+    if (!anyDeconstructing()) {
+      const newExpanded = [...expanded];
+      (expanded[index] === true) ? newExpanded[index] = false : newExpanded[index] = true;
+      setExpanded(newExpanded);
+    }
   }
 
   function checkBoxPress(branchIndex: number, id: string) {
-    const newChecked = {...checked};
-    (checked[id] === true) ? newChecked[id] = false : newChecked[id] = true;
-    setChecked(newChecked);
+    if (!anyDeconstructing()) {
+      const newChecked = {...checked};
+      (checked[id] === true) ? newChecked[id] = false : newChecked[id] = true;
+      setChecked(newChecked);
 
-    const newBranchChecked: ('all'|'some'|'none')[] = [...branchChecked];
-    let anyChecked = false;
-    let allChecked = true;
-    branches[branchIndex].equipment?.forEach((anEquipment) => {
-      (newChecked[anEquipment.id]) ? anyChecked = true : allChecked = false;
-    });
-    if (allChecked) { newBranchChecked[branchIndex] = 'all'; }
-    else if (anyChecked) { newBranchChecked[branchIndex] = 'some'; }
-    else { newBranchChecked[branchIndex] = 'none'; }
-    setBranchChecked(newBranchChecked);
-    if (state[branchIndex] === 'confirmDeconstruct') {
-      const newState = [...state];
-      newState[branchIndex] = 'initialized';
-      setState(newState);
+      const newBranchChecked: ('all'|'some'|'none')[] = [...branchChecked];
+      let anyChecked = false;
+      let allChecked = true;
+      branches[branchIndex].equipment?.forEach((anEquipment) => {
+        (newChecked[anEquipment.id]) ? anyChecked = true : allChecked = false;
+      });
+      if (allChecked) { newBranchChecked[branchIndex] = 'all'; }
+      else if (anyChecked) { newBranchChecked[branchIndex] = 'some'; }
+      else { newBranchChecked[branchIndex] = 'none'; }
+      setBranchChecked(newBranchChecked);
+      if (state[branchIndex] === 'confirmDeconstruct') {
+        const newState = [...state];
+        newState[branchIndex] = 'initialized';
+        setState(newState);
+      }
     }
   }
 
   function deconstructPress(index: number) {
-    if (state[index] === 'confirmDeconstruct') {
+    if (state[index] === 'confirmDeconstruct' && !anyDeconstructing()) {
       const newState = [...state];
       newState[index] = 'deconstructing';
       setState(newState);
@@ -296,6 +316,33 @@ function EquipmentMarkedOneComponentStatic(props: { equipment: { [id: string] : 
     newBranchChecked[index] = (check) ? 'all' : 'none';
     setBranchChecked(newBranchChecked);
   }
+
+  function anyDeconstructing() {
+    return state.filter((oneState) => oneState === 'deconstructing').length > 0;
+  }
+}
+
+function CheckAllOrNoneButton(props: { index: number, branchChecked: ('all'|'some'|'none')[],
+  checkAllOrNone: (index: number, check: boolean) => void}) {
+  const {index, branchChecked, checkAllOrNone} = props;
+  let buttonStyle: any = [styles.button];
+  let iconProps = { provider:"FontAwesome5", name:"check-square", color:"#fff", size: 16 };
+  if (branchChecked[index] === 'none') {
+    buttonStyle.push(styles.buttonLight);
+    iconProps = {...iconProps, name:"square", color: "#071f56"};
+  }
+  else if (branchChecked[index] === 'some') {
+    buttonStyle.push({ backgroundColor: '#6882c0' })
+  }
+  buttonStyle.push(styles.checkAllOrNoneButton);
+
+  return (
+    <TouchableOpacity style={buttonStyle}
+      onPress={() => checkAllOrNone(index, (branchChecked[index] === 'none'))} >
+      <IconComponent {...iconProps} />
+      <IconComponent {...iconProps} name='angle-down' />
+    </TouchableOpacity>
+  );
 }
 
 function DeconstructButton(props: { state: string[], index: number, branchChecked: ('all'|'some'|'none')[],

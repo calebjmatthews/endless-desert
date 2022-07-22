@@ -202,6 +202,10 @@ export const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: {width: 0, height: 1}
   },
+  mutedText: {
+    color: '#535353'
+  },
+
   button: {
     display: 'flex',
     flexDirection: 'row',
@@ -422,6 +426,9 @@ export const styles = StyleSheet.create({
   },
   breakSmall: {
     marginTop: 4
+  },
+  breakLarge: {
+    marginTop: 20
   },
 
   statusBarSpacer: {
@@ -644,5 +651,14 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap'
+  },
+
+  checkAllOrNoneButton: {
+    opacity: 0.9,
+    justifyContent: 'space-evenly',
+    width: 38,
+    paddingVertical: 1,
+    marginTop: 2,
+    marginLeft: 11,
   }
 });
