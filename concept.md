@@ -884,8 +884,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Refactor equipment
   [X] Research to increase max analysis with items studied
   [X] Single equipment marked modal
-  [ ] All equipment marked modal
+  [X] All equipment marked modal
   [ ] Equipment detail modal
+  [ ] Mass deconstruct option in Equipment tab
   [ ] Store memo/ui state in reducer
   [ ] Load equipment marked state
   [ ] Other reasearches to improve researching (speed, knowledge gain)

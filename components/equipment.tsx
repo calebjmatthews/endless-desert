@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet, TouchableHighlight } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -13,7 +13,7 @@ import { removeEquipment } from '../actions/equipment';
 import { increaseResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setEquipmentMarked } from '../actions/equipment_marked';
-import { displayModal } from '../actions/ui';
+import { displayModal, displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
 import Equipment from '../models/equipment';
@@ -182,7 +182,9 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent icon={resourceType.icon} size={29} />
+      <TouchableOpacity onPress={() => resourceDetailOpen(resource)}>
+        <BadgeComponent icon={resourceType.icon} size={29} />
+      </TouchableOpacity>
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow,
           {minWidth: props.positioner.bodyMedWidth,
@@ -190,7 +192,7 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
           <Text>{resource.type}</Text>
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
-            onPress={() => {}}>
+            onPress={() => resourceDetailOpen(resource)}>
             <IconComponent provider="FontAwesome5" name="angle-down"
               color="#17265d" size={14} />
             <Text style={StyleSheet.flatten([styles.buttonTextSmall,
@@ -267,6 +269,11 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
       equipmentResource.quality, quantity: 1});
     
     return { anEquipment, resource };
+  }
+
+  function resourceDetailOpen(resource: Resource) {
+    const typeQuality = resource.type + '|' + resource.quality;
+    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', typeQuality));
   }
 }
 

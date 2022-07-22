@@ -1864,7 +1864,7 @@ resourceTypes[(EQUIPMENT_TYPES.RAGS_TATTERED + ' (U)')] =
 new ResourceType({
   name: (EQUIPMENT_TYPES.RAGS_TATTERED + ' (U)'),
   category: RCA.EQUIPMENT,
-  tags: [EQUIPMENT_SLOTS.TOOL],
+  tags: [EQUIPMENT_SLOTS.CLOTHING],
   value: 880,
   icon: new Icon({provider: 'svg', name: SVGS.RAGS_TATTERED})
 });
