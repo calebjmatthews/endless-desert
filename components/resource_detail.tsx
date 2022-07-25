@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 const flat = StyleSheet.flatten;
 import { styles } from '../styles';
 
@@ -10,9 +10,6 @@ import IconComponent from './icon';
 import BadgeComponent from './badge';
 
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
-import ResourceTag from '../models/resource_tag';
-import Vault from '../models/vault';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
@@ -21,17 +18,13 @@ import { renderValue } from './utils_react';
 import { utils } from '../utils';
 
 export default function ResourceDetailComponent() {
-  const dispatch = useDispatch();
   const modalValue: string = useTypedSelector(state => state.ui.modalValue);
   const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const resource = vault.resources[modalValue];
-  const rtSplit = resource.type.split('-');
   const resourceType = new Resource(resource).toResourceType(resourceTypes);
   const resourceCategory = resourceCategories[resourceType.category];
-  const value = utils.formatNumberShort(resourceType.value);
   const count = utils.formatNumberShort(resource.quantity);
-  const total = utils.formatNumberShort(resourceType.value * resource.quantity);
 
   const name = utils.getResourceName(resource).replace(' (U)', ', Unmarked');
 

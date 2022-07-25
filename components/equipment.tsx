@@ -280,13 +280,17 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
 function MarkedEquipmentDescription(props: { anEquipment: Equipment,
   positioner: Positioner, equipment: { [id: string] : Equipment},
   leaderMap: { [equipmentId: string] : Leader } }) {
+  const dispatch = useDispatch();
   const anEquipment: Equipment = props.equipment[props.anEquipment.id];
   const equipmentType = equipmentTypes[anEquipment.typeName];
+
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
       {minWidth: props.positioner.majorWidth,
         maxWidth: props.positioner.majorWidth}])}>
-      <BadgeComponent icon={equipmentType.icon} size={29} />
+      <TouchableOpacity onPress={() => morePress(anEquipment)}>
+        <BadgeComponent icon={equipmentType.icon} size={29} />
+      </TouchableOpacity>
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow,
           {minWidth: props.positioner.bodyMedWidth,
@@ -294,7 +298,7 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
           <EquipmentNameComponent anEquipment={anEquipment} size='medium' />
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
-            onPress={() => {}}>
+            onPress={() => morePress(anEquipment)}>
             <IconComponent provider="FontAwesome5" name="angle-down"
               color="#17265d" size={14} />
             <Text style={StyleSheet.flatten([styles.buttonTextSmall,
@@ -337,6 +341,10 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
       );
     }
     return null;
+  }
+
+  function morePress(anEquipment: Equipment) {
+    dispatch(displayModalValue(MODALS.EQUIPMENT_DETAIL, 'opening', anEquipment));
   }
 }
 

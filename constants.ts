@@ -33,8 +33,9 @@ export const DEFAULT_SPICE_COST = 4;
 export const STUDY_CATEGORY_BLACKLIST = [RESOURCE_CATEGORIES.SPECIAL];
 export const STUDY_TAG_BLACKLIST = [RESOURCE_TAGS.MIND];
 
-export const EQUIPMENT_TIER_DATA: { label: string, headingColor: string, color?: string, iconName?: string }[] = [
-  { label: 'Basic', headingColor: '#555555', color: '#111' },
+export const EQUIPMENT_TIER_DATA: { label: string, headingColor: string, color?: string, 
+  altColor?: string, iconName?: string }[] = [
+  { label: 'Basic', headingColor: '#555555', color: '#111', altColor: '#fff' },
   { label: 'Notable', headingColor: '#a02c75', color: '#e9358b', iconName: SVGS.STAR },
   { label: 'Eminent', headingColor: '#ad6924', color: '#ff9812', iconName: SVGS.STARS_TWO },
   { label: 'Superior', headingColor: '#35654b', color: '#64c37d', iconName: SVGS.STARS_THREE },

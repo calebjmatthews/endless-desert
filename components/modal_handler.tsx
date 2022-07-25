@@ -17,6 +17,7 @@ import BuildingSelectComponent from './building_select';
 import EquipmentSelectComponent from './equipment_select';
 import EquipmentMarkedOneComponent from './equipment_marked_one';
 import EquipmentMarkedAllComponent from './equipment_marked_all';
+import EquipmentDetailComponent from './equipment_detail';
 import LeaderSelectComponent from './leader_select';
 import MemoComponent from './memo';
 import BuildingDetailComponent from './building_detail';
@@ -110,6 +111,9 @@ function renderModal(modalType: string) {
 
     case MODALS.EQUIPMENT_MARKED_ALL:
     return <EquipmentMarkedAllComponent />;
+
+    case MODALS.EQUIPMENT_DETAIL:
+    return <EquipmentDetailComponent />;
 
     case MODALS.LEADER_SELECT:
     return <LeaderSelectComponent />;

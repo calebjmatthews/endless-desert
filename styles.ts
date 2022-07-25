@@ -660,5 +660,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 1,
     marginTop: 2,
     marginLeft: 11,
+  },
+
+  equipmentDetailEffects: {
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    paddingHorizontal: 5
   }
 });
