@@ -8,7 +8,8 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, setLeaders }
+import EquipmentNameComponent from './equipment_name';
+import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, DON_EQUIPMENT, setLeaders }
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
@@ -16,9 +17,13 @@ import { displayModalValue } from '../actions/ui';
 import Leader from '../models/leader';
 import Building from '../models/building';
 import Hourglass from '../models/hourglass';
+import Equipment from '../models/equipment';
 import Positioner from '../models/positioner';
 import { buildingTypes } from '../instances/building_types';
+import { equipmentTypes } from '../instances/equipment_types';
 import { MODALS } from '../enums/modals';
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
+const ES = EQUIPMENT_SLOTS;
 
 export default function LeaderSelectComponent() {
   const dispatch = useDispatch();
@@ -26,8 +31,9 @@ export default function LeaderSelectComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: {type: string, subType: string, building: Building,
-    fromBuildingDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
+  const modalValue: {type: string, subType: string, building: Building, fromBuildingDetail?: boolean, 
+    anEquipment? : Equipment} = useTypedSelector(state => state.ui.modalValue);
+  const { subType, building, fromBuildingDetail, anEquipment } = modalValue;
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   let leadersArray = Object.keys(leaders).map((leaderId) => {
@@ -41,15 +47,20 @@ export default function LeaderSelectComponent() {
   let buildingsLeader: {[buildingId: string] : Leader} = {};
   Object.keys(leaders).map((leaderId) => {
     const leader = leaders[leaderId];
-    if (modalValue.subType == ASSIGN_TO_BUILDING && leader.assignedTo) {
+    if (subType == ASSIGN_TO_BUILDING && leader.assignedTo) {
       buildingsLeader[leader.assignedTo] = leader;
     }
-    else if (modalValue.subType == LIVE_AT_BUILDING && leader.livingAt) {
+    else if (subType == LIVE_AT_BUILDING && leader.livingAt) {
       buildingsLeader[leader.livingAt] = leader;
     }
   });
-  let buildingsArray = Object.keys(buildings).map((buildingId) => {
-    return buildings[buildingId];
+  let equipmentLeader: string|null = null;
+  Object.keys(leaders).forEach((leaderId) => {
+    const leader = leaders[leaderId];
+    if (leader.toolEquipped === anEquipment?.id || leader.clothingEquipped === anEquipment?.id
+        || leader.backEquipped === anEquipment?.id) {
+        equipmentLeader = leaderId;
+      }
   });
 
   return (
@@ -77,8 +88,9 @@ export default function LeaderSelectComponent() {
 
   function renderLeaders() {
     return leadersArray.map((leader) => {
+      const leadersEquipment = (equipmentLeader === leader.id) ? (anEquipment || null) : null;
       return <LeaderSelector key={leader.id} leader={leader} buildings={buildings}
-        subType={modalValue.subType} leaderSelected={leaderSelected}
+        subType={subType} leaderSelected={leaderSelected} anEquipment={leadersEquipment}
         setLeaderSelected={setLeaderSelected} positioner={positioner}  />;
     });
   }
@@ -112,32 +124,59 @@ export default function LeaderSelectComponent() {
   function submit() {
     if (leaderSelected) {
       const leader = leaders[leaderSelected];
-      if (modalValue.subType == ASSIGN_TO_BUILDING) {
-        let tempLeaders = Object.assign({}, leaders);
-        if (buildingsLeader[modalValue.building.id]) {
-          dispatch(assignToBuilding(buildingsLeader[modalValue.building.id], null));
-          tempLeaders[buildingsLeader[modalValue.building.id].id].assignedTo = null;
+      if (subType === ASSIGN_TO_BUILDING) {
+        const tempLeaders = Object.assign({}, leaders);
+        if (buildingsLeader[building.id]) {
+          dispatch(assignToBuilding(buildingsLeader[building.id], null));
+          tempLeaders[buildingsLeader[building.id].id].assignedTo = null;
         }
-        dispatch(assignToBuilding(leader, modalValue.building.id));
-        tempLeaders[leader.id].assignedTo = modalValue.building.id;
-        let newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
+        dispatch(assignToBuilding(leader, building.id));
+        tempLeaders[leader.id].assignedTo = building.id;
+        const newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
         dispatch(setRates(newRates));
       }
-      else if (modalValue.subType == LIVE_AT_BUILDING) {
-        let newLeaders = Object.assign({}, leaders);
-        if (buildingsLeader[modalValue.building.id]) {
-          newLeaders[buildingsLeader[modalValue.building.id].id].livingAt = null;
-          newLeaders[buildingsLeader[modalValue.building.id].id]
+      else if (subType === LIVE_AT_BUILDING) {
+        const newLeaders = Object.assign({}, leaders);
+        if (buildingsLeader[building.id]) {
+          newLeaders[buildingsLeader[building.id].id].livingAt = null;
+          newLeaders[buildingsLeader[building.id].id]
             .calcEffects(equipment, buildings, vault);
         }
-        newLeaders[leader.id].livingAt = modalValue.building.id;
+        newLeaders[leader.id].livingAt = building.id;
         newLeaders[leader.id].calcEffects(equipment, buildings, vault);
         dispatch(setLeaders(newLeaders));
-        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
         dispatch(setRates(newRates));
       }
-      if (modalValue.fromBuildingDetail) {
-        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', modalValue.building));
+      else if (subType === DON_EQUIPMENT) {
+        const newLeaders = Object.assign({}, leaders);
+        const equipmentType = equipmentTypes[anEquipment?.typeName || ''];
+        
+        if (equipmentType.slot === ES.TOOL) {
+          if (equipmentLeader) { newLeaders[equipmentLeader].toolEquipped = null; }
+          newLeaders[leader.id].toolEquipped = anEquipment?.id || '';
+        }
+        else if (equipmentType.slot === ES.CLOTHING) {
+          if (equipmentLeader) { newLeaders[equipmentLeader].clothingEquipped = null; }
+          newLeaders[leader.id].clothingEquipped = anEquipment?.id || '';
+        }
+        else if (equipmentType.slot === ES.BACK) {
+          if (equipmentLeader) { newLeaders[equipmentLeader].backEquipped = null; }
+          newLeaders[leader.id].backEquipped = anEquipment?.id || '';
+        }
+        if (equipmentLeader) { newLeaders[equipmentLeader].calcEffects(equipment, buildings, vault); }
+        newLeaders[leader.id].calcEffects(equipment, buildings, vault);
+        console.log('newLeaders');
+        console.log(newLeaders);
+        dispatch(setLeaders(newLeaders));
+        const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        dispatch(setRates(newRates));
+      }
+      if (fromBuildingDetail) {
+        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', building));
+      }
+      else if (subType === DON_EQUIPMENT) {
+        dispatch(displayModalValue(MODALS.EQUIPMENT_DETAIL, 'open', anEquipment));
       }
       else {
         dispatch(displayModalValue(null, 'closed', null));
@@ -147,21 +186,22 @@ export default function LeaderSelectComponent() {
 }
 
 function LeaderSelector(props: {leader: Leader, buildings: { [id: string] : Building },
-  subType: string, leaderSelected: string|null, setLeaderSelected: Function,
-  positioner: Positioner}) {
+  subType: string, leaderSelected: string|null, anEquipment: Equipment|null,
+  setLeaderSelected: Function, positioner: Positioner}) {
+  const { leader, buildings, subType, leaderSelected, anEquipment,  setLeaderSelected, positioner}
+    = props;
   const optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   const panelStyle = StyleSheet.flatten([styles.panelTile,
-    {minWidth: props.positioner.majorWidth,
-      maxWidth: props.positioner.majorWidth}]);
+    {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]);
 
   return (
     <View style={panelStyle}>
-      <BadgeComponent icon={props.leader.icon} size={29} />
+      <BadgeComponent icon={leader.icon} size={29} />
       <View>
-        <Text style={optionTextStyle}>{props.leader.name}</Text>
+        <Text style={optionTextStyle}>{leader.name}</Text>
         {renderBuilding()}
-        {renderButton(props.leader, props.leaderSelected,
-          props.setLeaderSelected)}
+        {renderEquipment()}
+        {renderButton(leader, leaderSelected, setLeaderSelected)}
       </View>
     </View>
   );
@@ -169,12 +209,12 @@ function LeaderSelector(props: {leader: Leader, buildings: { [id: string] : Buil
   function renderBuilding() {
     let building : Building|null = null;
     let label = '';
-    if (props.subType == ASSIGN_TO_BUILDING && props.leader.assignedTo) {
-      building = props.buildings[props.leader.assignedTo];
+    if (subType == ASSIGN_TO_BUILDING && leader.assignedTo) {
+      building = buildings[leader.assignedTo];
       label = ' working at ';
     }
-    else if (props.subType == LIVE_AT_BUILDING && props.leader.livingAt) {
-      building = props.buildings[props.leader.livingAt];
+    else if (subType == LIVE_AT_BUILDING && leader.livingAt) {
+      building = buildings[leader.livingAt];
       label = ' living at ';
     }
     if (!building) { return null; }
@@ -185,6 +225,18 @@ function LeaderSelector(props: {leader: Leader, buildings: { [id: string] : Buil
         <Text style={{fontSize: 12}}>
           {label + building.name}
         </Text>
+      </View>
+    );
+  }
+
+  function renderEquipment() {
+    if (!anEquipment) { return null; }
+
+    const equipmentType = equipmentTypes[anEquipment.typeName];
+    return (
+      <View style={styles.spacedRows}>
+        <BadgeComponent icon={equipmentType.icon} size={19} />
+        <EquipmentNameComponent anEquipment={anEquipment} size='small' />
       </View>
     );
   }

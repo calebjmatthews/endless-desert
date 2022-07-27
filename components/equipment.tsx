@@ -344,7 +344,7 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
   }
 
   function morePress(anEquipment: Equipment) {
-    dispatch(displayModalValue(MODALS.EQUIPMENT_DETAIL, 'opening', anEquipment));
+    dispatch(displayModalValue(MODALS.EQUIPMENT_DETAIL, 'open', anEquipment));
   }
 }
 

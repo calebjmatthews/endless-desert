@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -13,26 +13,46 @@ import EquipmentEffectComponent from './equipment_effect';
 import ProgressBarComponent from './progress_bar';
 import { increaseResources } from '../actions/vault';
 import { removeEquipment } from '../actions/equipment';
+import { DON_EQUIPMENT } from '../actions/leaders';
+import { displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
 import Equipment from '../models/equipment';
+import Leader from '../models/leader';
+import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { equipmentTypes } from '../instances/equipment_types';
 import { utils } from '../utils';
+import { MODALS } from '../enums/modals';
 
 export default function EquipmentDetailComponent() {
   const dispatch = useDispatch();
   const anEquipment: Equipment = useTypedSelector(state => state.ui.modalValue);
   const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
+  const leaders = useTypedSelector(state => state.leaders);
+
   const equipmentType = equipmentTypes[anEquipment.typeName];
   const resourceType = resourceTypes[`${anEquipment.typeName} (U)`];
   const slotTag = resourceTags[resourceType.tags[resourceType.tags.length-1]];
 
-  const [state, setState] = useState('init');
+  const [state, setState] = useState('clean');
   const [timeouts, setTimeouts] = useState <NodeJS.Timeout[]> ([]);
   const [rfd, setRfd] = useState <Resource[]> ([]); // Resources from deconstruction
+  const [leader, setLeader] = useState <Leader|null> (null);
+
+  useEffect(() => {
+    if (state === 'clean') {
+      setState('initializing');
+      Object.keys(leaders).forEach((id) => {
+        const leader = leaders[id];
+        if (leader.toolEquipped === anEquipment.id || leader.clothingEquipped === anEquipment.id
+            || leader.backEquipped === anEquipment.id) { setLeader(leader); }
+      });
+      setState('initialized');
+    }
+  }, [state, anEquipment, leaders])
 
   if (rfd?.length > 0 && state === 'deconstructed') {
     return <ResourcesFromDeconstruction anEquipment={anEquipment} rfd={rfd} />;
@@ -65,7 +85,15 @@ export default function EquipmentDetailComponent() {
           ))}
         </View>
         <View style={styles.break} />
-        {(state === 'init' || state === 'confirmDeconstruct') && (
+        <TouchableOpacity style={[styles.buttonMedium, styles.buttonLight, { opacity: 0.9 }]}
+            onPress={() => leaderPress()}>
+            {leader && <BadgeComponent icon={leader.icon} size={28} />}
+            {!leader && <BadgeComponent icon={new Icon({ provider: 'FontAwesome5',
+              name: 'minus-circle', color: '#cec3e4' })} size={28} />}
+            {leader && <Text>{` Equipped by: ${leader.name} `}</Text>}
+            {!leader && <Text>{` Equip on a leader `}</Text>}
+          </TouchableOpacity>
+        {(!leader && (state === 'initialized' || state === 'confirmDeconstruct')) && (
           <TouchableOpacity style={[styles.buttonMedium, styles.buttonAway,
             {alignSelf: 'center', marginTop: 10}]} onPress={() => deconstructPress()} >
             <IconComponent provider="FontAwesome5" name="bomb" color="#fff" size={12}
@@ -112,6 +140,10 @@ export default function EquipmentDetailComponent() {
     else {
       setState('confirmDeconstruct');
     }
+  }
+
+  function leaderPress() {
+    dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open', { subType: DON_EQUIPMENT, anEquipment }));
   }
 }
 

@@ -10,7 +10,7 @@ import { SVGS } from '../enums/svgs';
 import { EQUIPMENT_TIER_DATA } from '../constants';
 
 export default function EquipmentNameComponent(props: {anEquipment: Equipment,
-  size?: 'large'|'medium', altColor?: boolean}) {
+  size?: 'large'|'medium'|'small', altColor?: boolean}) {
   const anEquipment = props.anEquipment;
   const size = props.size || 'large';
   const altColor = props.altColor || false;
@@ -43,7 +43,7 @@ export default function EquipmentNameComponent(props: {anEquipment: Equipment,
 
 class EquipmentNameComponentProps {
   anEquipment: Equipment;
-  size: 'large'|'medium';
+  size: 'large'|'medium'|'small';
 
   constructor(equipmentNameComponentProps: { anEquipment: Equipment; size?: 'large'|'medium'; }) {
     this.anEquipment = equipmentNameComponentProps.anEquipment;
