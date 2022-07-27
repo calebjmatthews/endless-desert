@@ -1149,7 +1149,7 @@ resourceTypes[RTY.CINNAMON] = new ResourceType({
   name: RTY.CINNAMON,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.SAVORY, RTA.SPICE],
+  tags: [RTA.CROP, RTA.SAVORY, RTA.SPICE, RTA.TRADE_GOOD],
   value: 240,
   icon: new Icon({provider: 'svg', name: SVGS.CINNAMON})
 });
@@ -1158,7 +1158,7 @@ resourceTypes[RTY.CAROB] = new ResourceType({
   name: RTY.CAROB,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE],
+  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE, RTA.TRADE_GOOD],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CAROB})
 });
@@ -1167,7 +1167,7 @@ resourceTypes[RTY.SUGAR_CANE] = new ResourceType({
   name: RTY.SUGAR_CANE,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE],
+  tags: [RTA.CROP, RTA.SWEET, RTA.SPICE, RTA.TRADE_GOOD],
   value: 120,
   icon: new Icon({provider: 'svg', name: SVGS.SUGAR_CANE})
 });
@@ -1176,7 +1176,7 @@ resourceTypes[RTY.MINT] = new ResourceType({
   name: RTY.MINT,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.COOLING, RTA.SPICE],
+  tags: [RTA.CROP, RTA.COOLING, RTA.SPICE, RTA.TRADE_GOOD],
   value: 80,
   icon: new Icon({provider: 'svg', name: SVGS.MINT})
 });
@@ -1185,7 +1185,7 @@ resourceTypes[RTY.PEPPERCORN] = new ResourceType({
   name: RTY.PEPPERCORN,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.SPICY, RTA.SPICE],
+  tags: [RTA.CROP, RTA.SPICY, RTA.SPICE, RTA.TRADE_GOOD],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.PEPPERCORN})
 });
@@ -1194,7 +1194,7 @@ resourceTypes[RTY.CORIANDER] = new ResourceType({
   name: RTY.CORIANDER,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.HERBAL, RTA.SPICE],
+  tags: [RTA.CROP, RTA.HERBAL, RTA.SPICE, RTA.TRADE_GOOD],
   value: 40,
   icon: new Icon({provider: 'svg', name: SVGS.CORIANDER})
 });
@@ -1203,7 +1203,7 @@ resourceTypes[RTY.ANISE] = new ResourceType({
   name: RTY.ANISE,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.BITTER, RTA.SPICE],
+  tags: [RTA.CROP, RTA.BITTER, RTA.SPICE, RTA.TRADE_GOOD],
   value: 180,
   icon: new Icon({provider: 'svg', name: SVGS.ANISE})
 });
@@ -1212,7 +1212,7 @@ resourceTypes[RTY.SORREL] = new ResourceType({
   name: RTY.SORREL,
   category: RCA.MATERIAL,
   subcategory: RSC.SPICE,
-  tags: [RTA.CROP, RTA.SOUR, RTA.SPICE],
+  tags: [RTA.CROP, RTA.SOUR, RTA.SPICE, RTA.TRADE_GOOD],
   value: 20,
   icon: new Icon({provider: 'svg', name: SVGS.SORREL}),
 });
