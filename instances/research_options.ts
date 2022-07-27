@@ -585,11 +585,11 @@ researchOptions[RESEARCH_OPTIONS.THE_REDOLENCE_OF_VINES] = new ResearchOption({
   description: (`"The Redolance of Vines
 constricts the earth, and bodies from air
 are drawn beneath an immutable beat"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.REEDS , quantity: 700},
-    {specificity: RSP.EXACT, type: RTY.LENTIL , quantity: 555},
-    {specificity: RSP.EXACT, type: RTY.GRAIN , quantity: 450},
-    {specificity: RSP.EXACT, type: RTY.OLIVE , quantity: 100},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 20}]
+  cost: [{specificity: RSP.EXACT, type: RTY.REEDS , quantity: 7000},
+    {specificity: RSP.EXACT, type: RTY.LENTIL , quantity: 5555},
+    {specificity: RSP.EXACT, type: RTY.GRAIN , quantity: 4500},
+    {specificity: RSP.EXACT, type: RTY.OLIVE , quantity: 1000},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 200}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_SAVOR_OF_THE_VERDANT] = new ResearchOption({
@@ -599,10 +599,10 @@ researchOptions[RESEARCH_OPTIONS.THE_SAVOR_OF_THE_VERDANT] = new ResearchOption(
   description: (`"The Savor of the Verdant
 pulls from time and tide the sun
 through lands where moon is low"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.POTATO , quantity: 150},
-    {specificity: RSP.EXACT, type: RTY.ONION , quantity: 150},
-    {specificity: RSP.EXACT, type: RTY.BLUEBERRY , quantity: 30},
-    {specificity: RSP.EXACT, type: RTY.TOMATO , quantity: 30}]
+  cost: [{specificity: RSP.EXACT, type: RTY.POTATO , quantity: 1500},
+    {specificity: RSP.EXACT, type: RTY.ONION , quantity: 1500},
+    {specificity: RSP.EXACT, type: RTY.BLUEBERRY , quantity: 300},
+    {specificity: RSP.EXACT, type: RTY.TOMATO , quantity: 300}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_GERMINATION_OF_PROMISE] = new ResearchOption({
@@ -612,10 +612,10 @@ researchOptions[RESEARCH_OPTIONS.THE_GERMINATION_OF_PROMISE] = new ResearchOptio
   description: (`"The Germination of Promise
 rises from the secret heart
 of the buried unborn"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED , quantity: 180},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL , quantity: 140},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN , quantity: 90},
-    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE , quantity: 70}]
+  cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_REED , quantity: 1800},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_LENTIL , quantity: 1400},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN , quantity: 900},
+    {specificity: RSP.EXACT, type: RTY.SEEDS_OLIVE , quantity: 700}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_SCINTILLATION_OF_RINGS] = new ResearchOption({
@@ -625,10 +625,10 @@ researchOptions[RESEARCH_OPTIONS.THE_SCINTILLATION_OF_RINGS] = new ResearchOptio
   description: (`"The Scintillation of Rings
 glitters downcast as flavor and ash
 paper and acrid decay"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.SALT , quantity: 280},
-    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 90},
-    {specificity: RSP.EXACT, type: RTY.PAPYRUS , quantity: 55},
-    {specificity: RSP.EXACT, type: RTY.SULFUR , quantity: 25}]
+  cost: [{specificity: RSP.EXACT, type: RTY.SALT , quantity: 2800},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 900},
+    {specificity: RSP.EXACT, type: RTY.PAPYRUS , quantity: 555},
+    {specificity: RSP.EXACT, type: RTY.SULFUR , quantity: 250}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_EMINENCE_OF_SMOKE] = new ResearchOption({
@@ -638,10 +638,10 @@ researchOptions[RESEARCH_OPTIONS.THE_EMINENCE_OF_SMOKE] = new ResearchOption({
   description: (`"The Eminence of Smoke
 demands your thought
 blinded eye but opened foot"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.WOOD_ALDER , quantity: 110},
-    {specificity: RSP.EXACT, type: RTY.WOOD_OAK , quantity: 110},
-    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN , quantity: 110},
-    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 90}]
+  cost: [{specificity: RSP.EXACT, type: RTY.WOOD_ALDER , quantity: 1100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_OAK , quantity: 1100},
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN , quantity: 1100},
+    {specificity: RSP.EXACT, type: RTY.CHARCOAL , quantity: 900}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_LEAPING_OF_THE_SILVER_CORDS] = new ResearchOption({
@@ -652,9 +652,9 @@ researchOptions[RESEARCH_OPTIONS.THE_LEAPING_OF_THE_SILVER_CORDS] = new Research
 through furrowed wave and seaward course
 ply the way and trace the door"`),
   cost: [{specificity: RSP.EXACT, type: RTY.MINNOW , quantity: 230},
-    {specificity: RSP.EXACT, type: RTY.MUSSEL , quantity: 170},
-    {specificity: RSP.EXACT, type: RTY.CARP , quantity: 70},
-    {specificity: RSP.EXACT, type: RTY.WATER , quantity: 555}]
+    {specificity: RSP.EXACT, type: RTY.MUSSEL , quantity: 1700},
+    {specificity: RSP.EXACT, type: RTY.CARP , quantity: 700},
+    {specificity: RSP.EXACT, type: RTY.WATER , quantity: 5555}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_MURMURATION_OF_SHIFTING_DUNES] =
@@ -665,11 +665,11 @@ researchOptions[RESEARCH_OPTIONS.THE_MURMURATION_OF_SHIFTING_DUNES] =
   description: (`"The Murmuration of Shifting Dunes
 purrs and sighs, highs and waves
 stained with dust below our moons"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW , quantity: 1800},
-    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE , quantity: 1400},
-    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC , quantity: 1400},
-    {specificity: RSP.EXACT, type: RTY.SAND_DUNE , quantity: 1100},
-    {specificity: RSP.EXACT, type: RTY.SAND_BLACK , quantity: 55}]
+  cost: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW , quantity: 18000},
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE , quantity: 14000},
+    {specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC , quantity: 14000},
+    {specificity: RSP.EXACT, type: RTY.SAND_DUNE , quantity: 11000},
+    {specificity: RSP.EXACT, type: RTY.SAND_BLACK , quantity: 555}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_CONSEQUENCE_OF_PONDEROUS_EARTH] =
@@ -680,10 +680,10 @@ researchOptions[RESEARCH_OPTIONS.THE_CONSEQUENCE_OF_PONDEROUS_EARTH] =
   description: (`"The Consequence of Ponderous Earth
 demands the flex of bended knee
 for rounded spine and stifled breath"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY , quantity: 250},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RED , quantity: 160},
-    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE , quantity: 120},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 90}]
+  cost: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY , quantity: 2500},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RED , quantity: 1600},
+    {specificity: RSP.EXACT, type: RTY.CLAY_BLUE , quantity: 1200},
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH , quantity: 900}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_ABSTRACTION_OF_THE_INWARD_SPACE] =
@@ -694,9 +694,9 @@ researchOptions[RESEARCH_OPTIONS.THE_ABSTRACTION_OF_THE_INWARD_SPACE] =
   description: (`"The Abstraction of the Inward Space
 removes the walls between the walls
 and floors beneath its downward swirls"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 111},
-    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 140}]
+  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 500},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 1111},
+    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 1400}]
 });
 
 researchOptions[RESEARCH_OPTIONS.THE_DIAPHONY_OF_THE_GOLDEN_SHEET] =
@@ -707,9 +707,9 @@ researchOptions[RESEARCH_OPTIONS.THE_DIAPHONY_OF_THE_GOLDEN_SHEET] =
   description: (`"The Diaphony of the Golden Sheet
 is smooth within its floured curls
 and lithely lissome opens stairs"`),
-  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 111},
-    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 140}]
+  cost: [{specificity: RSP.EXACT, type: RTY.GLASS , quantity: 500},
+    {specificity: RSP.EXACT, type: RTY.BRICKS_MUD , quantity: 1111},
+    {specificity: RSP.EXACT, type: RTY.THATCH , quantity: 1400}]
 });
 
 export { researchOptions };
