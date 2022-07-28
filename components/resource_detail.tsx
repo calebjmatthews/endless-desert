@@ -1,21 +1,29 @@
 import React from 'react';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 const flat = StyleSheet.flatten;
 import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import { addToActivityQueue } from '../actions/quest_status';
+import { setEquipmentMarked } from '../actions/equipment_marked';
+import { displayModal } from '../actions/ui';
 
 import Resource from '../models/resource';
+import Equipment from '../models/equipment';
+import Vault from '../models/vault';
+import QuestActivity from '../models/quest_activity';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
 import { equipmentTypes } from '../instances/equipment_types';
 import { renderValue } from './utils_react';
 import { utils } from '../utils';
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+import { MODALS } from '../enums/modals';
 
 export default function ResourceDetailComponent() {
   const modalValue: string = useTypedSelector(state => state.ui.modalValue);
@@ -79,6 +87,9 @@ export default function ResourceDetailComponent() {
             </View>
           </View>
         </View>
+        {resourceCategory.name === RESOURCE_CATEGORIES.EQUIPMENT && (
+          <MarkEquipmentButtons resource={resource} vault={vault} />
+        )}
         <View style={styles.break} />
       </View>
     </View>
@@ -96,6 +107,53 @@ export default function ResourceDetailComponent() {
           </View>
         </View>
       );
+    }
+  }
+}
+
+function MarkEquipmentButtons(props: {resource: Resource, vault: Vault}) {
+  const dispatch = useDispatch();
+  const { resource, vault } = props;
+  const equipmentType = equipmentTypes[resource.type.split(' (')[0]];
+  return (
+    <>
+      <View style={styles.break} />
+      <TouchableOpacity style={styles.buttonLarge}
+        onPress={() => { markEquipment(1) }}>
+        <IconComponent provider="FontAwesome5" name="stamp" color="#fff" size={18}
+          style={styles.headingIcon} />
+        <Text style={[styles.buttonText, {fontSize: 16}]}>{` Mark One`}</Text>
+      </TouchableOpacity>
+      {resource.quantity > 1 && (
+        <>
+          <View style={styles.break} />
+          <TouchableOpacity style={styles.buttonLarge}
+            onPress={() => { markEquipment(resource.quantity) }}>
+            <IconComponent provider="FontAwesome5" name="layer-group" color="#fff" size={18}
+              style={styles.headingIcon} />
+            <Text style={[styles.buttonText, {fontSize: 16}]}>{` Mark All`}</Text>
+          </TouchableOpacity>
+        </>
+      )}
+    </>
+  );
+
+  function markEquipment(count: number) {
+    const newEquipmentMarked: { [id: string] : Equipment} = {};
+    for (let loop = 0; loop < count; loop++) {
+      const anEquipment = equipmentType.createEquipment(resource.quality, vault, resourceTypes);
+      newEquipmentMarked[anEquipment.id] = anEquipment;
+    }
+    const equipmentTypeName = props.resource.type.split(' (')[0];
+    const tier = 0;
+    dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+      equipmentMarked: { typeName: equipmentTypeName, tier, quantity: count } })));
+    dispatch(setEquipmentMarked(newEquipmentMarked));
+    if (count > 1) {
+      dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ALL));
+    }
+    else {
+      dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
     }
   }
 }

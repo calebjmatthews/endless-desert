@@ -239,12 +239,11 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
   }
 
   function markEquipment(count: number) {
+    const equipmentType = equipmentTypes[resource.type.split(' (')[0]];
     const newEquipmentMarked: { [id: string] : Equipment} = {};
-    let rtc: Resource[] = [];
     for (let loop = 0; loop < count; loop++) {
-      const moeRes = createEquipment();
-      newEquipmentMarked[moeRes.anEquipment.id] = moeRes.anEquipment;
-      rtc.push(moeRes.resource);
+      const anEquipment = equipmentType.createEquipment(resource.quality, props.vault, resourceTypes);
+      newEquipmentMarked[anEquipment.id] = anEquipment;
     }
     const equipmentTypeName = props.resource.type.split(' (')[0];
     const tier = 0;
@@ -257,18 +256,6 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
     else {
       dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
     }
-  }
-
-  function createEquipment() {
-    const equipmentResource: Resource = props.resource;
-    const equipmentTypeName = equipmentResource.type.split(' (')[0];
-    const equipmentType = equipmentTypes[equipmentTypeName];
-    const anEquipment = equipmentType.createEquipment(equipmentResource.quality, props.vault, 
-      resourceTypes);
-    const resource = new Resource({type: equipmentResource.type, quality:
-      equipmentResource.quality, quantity: 1});
-    
-    return { anEquipment, resource };
   }
 
   function resourceDetailOpen(resource: Resource) {

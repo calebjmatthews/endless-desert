@@ -508,7 +508,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - The lost Eternal Beast, and the lost people
     - Understanding of Unrepining Omnipresence
   ### Nomads
-    - Trading partners: Foxfire Ascetics, Red Crow Traders
+    - Trading partners: Foxfire Ascetics (unless they're from the West?), Red Crow Traders
     - People:
   ### Far North
     - Distant islands in the sea north of Alabaster
@@ -885,10 +885,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Research to increase max analysis with items studied
   [X] Single equipment marked modal
   [X] All equipment marked modal
+  [X] Increase basic Mysticism research costs by a power of ten
   [ ] Equipment detail modal
-  [ ] Mass deconstruct option in Equipment tab
-  [ ] Store memo/ui state in reducer
-  [ ] Load equipment marked state
   [ ] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with # resources studied
   [ ] Firefly mother quests?
@@ -897,6 +895,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Ingredient-specific cooking recipes
   [ ] Expeditions! (without exploration)
 
+  [ ] Mass deconstruct option in Equipment tab
+  [ ] Store memo/ui state in reducer
+  [ ] Load equipment marked state
   [ ] Autoselect first resource
   [ ] Add animations to memos
   [ ] Storing an occupied house kicks out the leader
