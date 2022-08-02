@@ -292,6 +292,13 @@ resourceTags[RESOURCE_TAGS.ACTION_HEAL] = new ResourceTag({
   icon: new Icon({provider: 'FontAwesome5', name: 'heart',
     color:'#69b71e'})});
 
+resourceTags[RESOURCE_TAGS.ONE_OF_A_KIND] = new ResourceTag({
+  name: RESOURCE_TAGS.ONE_OF_A_KIND,
+  plural: 'Ones of a Kind',
+  value: 100000,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'star-of-life', color:'#444'})});
+
 resourceTags[EQUIPMENT_SLOTS.TOOL] = new ResourceTag({
   name: EQUIPMENT_SLOTS.TOOL,
   plural: 'Tools',

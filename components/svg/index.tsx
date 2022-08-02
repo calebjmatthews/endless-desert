@@ -127,6 +127,9 @@ import CastingPlasterSvgComponent from './resources/casting_plaster';
 import MercuryDropsSvgComponent from './resources/mercury_drops';
 import ChitinousPinsSvgComponent from './resources/chitinous_pins';
 
+import ScrollSvgComponent from './resources/scroll';
+import CarpetSvgComponent from './resources/carpet';
+
 import TomeSvgComponent from './resources/tome';
 import BrokenKeySvgComponent from './resources/broken_key';
 import KeySvgComponent from './resources/key';
@@ -495,6 +498,11 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <MercuryDropsSvgComponent icon={props.icon} />;
     case SVGS.CHITENOUS_PINS:
     return <ChitinousPinsSvgComponent icon={props.icon} />;
+
+    case SVGS.SCROLL:
+    return <ScrollSvgComponent icon={props.icon} />;
+    case SVGS.CARPET:
+    return <CarpetSvgComponent icon={props.icon} />;
 
     case SVGS.TOME:
     return <TomeSvgComponent icon={props.icon} />;

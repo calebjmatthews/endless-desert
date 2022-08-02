@@ -4,6 +4,7 @@ import { RESEARCHES } from '../enums/researches';
 import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
+import { RESOURCE_TYPES } from '../enums/resource_types';
 
 let researches: { [name: string] : Research } = {};
 researches[RESEARCHES.SCHOLARSHIP] = new Research({
@@ -107,7 +108,7 @@ researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
 
 researches[RESEARCHES.ANALYSIS_OF_VARIANCE] = new Research({
   name: RESEARCHES.ANALYSIS_OF_VARIANCE,
-  unlocks: `Every resource studied increases maximum analysis quantity.`,
+  unlocks: `A Treasure: every resource studied increases maximum analysis quantity.`,
   description: `There's a limit to how many items you can analyze before your eyes start to cross and a break is unavoidable. But with more experience, things may become easier.`,
   icon: new Icon({provider: 'MaterialCommunityIcons', name: 'magnify-close', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
@@ -117,6 +118,7 @@ researches[RESEARCHES.ANALYSIS_OF_VARIANCE] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.ANALYSIS],
   knowledgeReq: 400,
+  givesTreasure: RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY
 });
 
 researches[RESEARCHES.STUDY_PORTENTOUS] = new Research({
@@ -153,7 +155,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
 
 researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   name: RESEARCHES.BRACHYGRAPHY,
-  unlocks: `Create field notes in half the time`,
+  unlocks: `A treasure: write field notes in half the time`,
   description: `Writing down your observations takes entirely too long. It should be possible to invent a series of shortened symbols that correspond to longer, frequently used words and phrases and increase your speed drastically.`,
   icon: new Icon({provider: 'FontAwesome', name: 'align-center', color: '#2b2b2d'}),
   category: RESEARCHES.SCHOLARSHIP,
@@ -162,7 +164,8 @@ researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 10000
+  knowledgeReq: 10000,
+  givesTreasure: RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY
 });
 
 researches[RESEARCHES.BIOLOGY] = new Research({

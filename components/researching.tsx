@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -15,13 +15,10 @@ import { updateResearchOptionDeck } from '../actions/research_option_decks';
 import { completeResearch } from '../actions/research_status';
 import { addToActivityQueue } from '../actions/quest_status';
 import { unlockTab } from '../actions/account';
+import { increaseResources } from '../actions/vault';
 
 import ResearchOption from '../models/research_option';
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
-import ResourceTag from '../models/resource_tag';
-import ResourceSubcategory from '../models/resource_subcategory';
-import ResourceCategory from '../models/resource_category';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
 import QuestActivity from '../models/quest_activity';
@@ -29,10 +26,6 @@ import Message from '../models/message';
 import Positioner from '../models/positioner';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
-import { resourceTypes } from '../instances/resource_types';
-import { resourceTags } from '../instances/resource_tags';
-import { resourceSubcategories } from '../instances/resource_subcategories';
-import { resourceCategories } from '../instances/resource_categories';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -227,9 +220,14 @@ export default function ResearchingComponent() {
       timestamp: new Date(Date.now()),
       icon: research.icon
     })));
-    switch (research.unlocksTab) {
-      case TABS.TRADING:
-      dispatch(unlockTab(TABS.TRADING));
+
+    if (research.unlocksTab) {
+      dispatch(unlockTab(research.unlocksTab));
+    }
+    if (research.givesTreasure) {
+      dispatch(increaseResources(vault, [
+        new Resource({ type: research.givesTreasure, quality: 0, quantity: 1 })
+      ]));
     }
     dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
       actionPerformed: { kind: ACTIVITIES.RESEARCH, value: research.name } })));
@@ -290,8 +288,7 @@ function OptionDescription(props: { optionName: string, vault: Vault,
           </Text>
         </TouchableOpacity>
       );
-    })
-    return null;
+    });
   }
 
 

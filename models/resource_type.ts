@@ -1,7 +1,8 @@
 import Icon from './icon';
+import { RESOURCE_TYPES } from '../enums/resource_types'
 
 export default class ResourceType {
-  name: string = '';
+  name: string|RESOURCE_TYPES = '';
   displayName?: string;
   category: string = '';
   subcategory?: string|null = null;
@@ -55,7 +56,7 @@ export default class ResourceType {
 }
 
 interface ResourceTypeInterface {
-  name: string;
+  name: string|RESOURCE_TYPES;
   displayName?: string;
   category: string;
   subcategory?: string|null;

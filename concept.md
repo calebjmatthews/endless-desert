@@ -562,6 +562,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/japan-10/
     https://www.svgrepo.com/collection/japan-9/
     https://www.svgrepo.com/collection/china/
+    https://www.svgrepo.com/collection/chinese-new-year-3/
     https://www.svgrepo.com/collection/india-6/
     https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
@@ -571,9 +572,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/science-10/
     https://www.svgrepo.com/collection/scientific-study-2/
     https://www.svgrepo.com/collection/design-tools-6/
+    https://www.svgrepo.com/collection/gym-and-fitness-2/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/crafting-3/
     https://www.svgrepo.com/collection/real-assets-5/
+    https://www.svgrepo.com/collection/furniture-12/
     https://www.svgrepo.com/collection/musical-instruments-9/
     https://www.svgrepo.com/collection/in-the-forest-6/
     https://www.svgrepo.com/collection/camping-5/
@@ -886,9 +889,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Single equipment marked modal
   [X] All equipment marked modal
   [X] Increase basic Mysticism research costs by a power of ten
-  [ ] Equipment detail modal
+  [X] Equipment detail modal
+  [X] Treasures given by research
+  [ ] Display treasures on Wall
+  [ ] Displayed treasures can affect building recipes
   [ ] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with # resources studied
+
+  [ ] ?
+
   [ ] Firefly mother quests?
   [ ] Trader conversations
   [ ] Flashy display for rare trades

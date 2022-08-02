@@ -34,5 +34,6 @@ export enum RESOURCE_TAGS {
   BRACKISH = "Brackish", // dark blue
   SPICY = "Spicy", // red
   COOLING = "Cooling", // light blue
-  HERBAL = "Herbal" // green
+  HERBAL = "Herbal", // green
+  ONE_OF_A_KIND = "One of a Kind"
 }

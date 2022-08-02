@@ -184,6 +184,10 @@ export enum RESOURCE_TYPES {
   BINDING = "Binding",
   ECHINACEA_BINDING = "Echinacea Binding",
 
+  CARPET_CURLING_GREEN_MOTIF = "Carpet with a Curling Green Motif",
+  MEMORANDA_ON_A_GROWING_PANOPLY = "Your Memoranda on a Growing Panoply",
+  SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY = "Your System of Abbreviated Brachygraphy",
+
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",
   RED_KEY = "Red Key",

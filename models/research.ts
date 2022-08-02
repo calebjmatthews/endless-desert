@@ -17,6 +17,7 @@ export default class Research {
   unlocksTab?: string;
   actionCategory?: string;
   hidden?: boolean;
+  givesTreasure?: string;
 
   constructor(research: Research) {
     Object.assign(this, research);

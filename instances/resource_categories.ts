@@ -66,10 +66,17 @@ resourceCategories[RESOURCE_CATEGORIES.EQUIPMENT] = new ResourceCategory({
   icon: new Icon({provider: 'FontAwesome5', name: 'tools', color: '#2b2b2d'})
 });
 
+resourceCategories[RESOURCE_CATEGORIES.TREASURE] = new ResourceCategory({
+  name: RESOURCE_CATEGORIES.TREASURE,
+  value: 20000,
+  order: 8,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'treasure-chest', color: '#2b2b2d'})
+});
+
 resourceCategories[RESOURCE_CATEGORIES.SPECIAL] = new ResourceCategory({
   name: RESOURCE_CATEGORIES.SPECIAL,
   value: 10000,
-  order: 8,
+  order: 9,
   icon: new Icon({provider: 'FontAwesome5', name: 'star', color: '#2b2b2d'})
 });
 

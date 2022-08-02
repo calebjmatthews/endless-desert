@@ -137,6 +137,9 @@ export enum SVGS {
   BINDING = "Binding",
   ECHINACEA_BINDING = "Echinacea Binding",
 
+  SCROLL = "Scroll",
+  CARPET = "Carpet",
+
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",
   KEY = "Key",

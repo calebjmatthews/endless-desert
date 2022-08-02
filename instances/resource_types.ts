@@ -1930,6 +1930,35 @@ new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.JOURNEYMANS_TOOLPACK})
 });
 
+resourceTypes[RESOURCE_TYPES.CARPET_CURLING_GREEN_MOTIF] = new ResourceType({
+  name: (RESOURCE_TYPES.CARPET_CURLING_GREEN_MOTIF),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.CROP],
+  value: 20000,
+  description: `There's a repeated twining pattern on this carpet that looks incredibly familiar`,
+  icon: new Icon({provider: 'svg', name: SVGS.CARPET})
+});
+
+resourceTypes[RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY] = new ResourceType({
+  name: (RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 100000,
+  description: `Your set of diligently summarized yet continually increasing notes; increases maximum analysis amount for every resource studied when displayed on the Gate`,
+  icon: new Icon({provider: 'svg', name: SVGS.SCROLL, color: '#d83e20', shadow: '#c1321f',
+    secondaryShadow: '#a82116'})
+});
+
+resourceTypes[RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY] = new ResourceType({
+  name: (RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 100000,
+  description: `A method of shortening words of your own design; halves field note writing time when displayed on the Gate`,
+  icon: new Icon({provider: 'svg', name: SVGS.SCROLL, color: '#a6abe4', shadow: '#6b73d1',
+    secondaryShadow: '#3f48b3'})
+});
+
 resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] = new ResourceType({
   name: (RESOURCE_TYPES.THRICE_LOCKED_TOME),
   category: RCA.SPECIAL,

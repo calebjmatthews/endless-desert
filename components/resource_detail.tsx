@@ -8,6 +8,7 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
+import EquipmentEffectComponent from './equipment_effect';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setEquipmentMarked } from '../actions/equipment_marked';
 import { displayModal } from '../actions/ui';
@@ -16,10 +17,13 @@ import Resource from '../models/resource';
 import Equipment from '../models/equipment';
 import Vault from '../models/vault';
 import QuestActivity from '../models/quest_activity';
+import EquipmentEffect from '../models/equipment_effect';
+import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
 import { equipmentTypes } from '../instances/equipment_types';
+import { treasures } from '../instances/treasures';
 import { renderValue } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
@@ -73,6 +77,9 @@ export default function ResourceDetailComponent() {
             {justifyContent: 'center'}])}>
             {resourceType.tags.map((tagName) => {return renderTag(tagName)})}
           </View>
+          {resourceCategory.name === RESOURCE_CATEGORIES.TREASURE && (
+            <TreasureEffects {...treasures[resource.type]} />
+          )}
           <View style={styles.break} />
           <View style={flat([styles.rows, {justifyContent: 'space-between',
             alignItems: 'flex-end', minWidth: positioner.modalMajor,
@@ -156,4 +163,25 @@ function MarkEquipmentButtons(props: {resource: Resource, vault: Vault}) {
       dispatch(displayModal(MODALS.EQUIPMENT_MARKED_ONE));
     }
   }
+}
+
+function TreasureEffects(props: {equipmentEffects?: EquipmentEffect[],
+  otherEffects?: { icon: Icon, label: string }[]}) {
+  const { equipmentEffects, otherEffects } = props;
+  if (!equipmentEffects && !otherEffects) { return null; }
+  return (
+    <View style={styles.columns}>
+      <View style={styles.break} />
+      <Text style={styles.bareText}>{`Effects:`}</Text>
+      {equipmentEffects?.map((equipmentEffect) => (
+        <EquipmentEffectComponent key={`eec-${equipmentEffect.type}`} anEffect={equipmentEffect} />
+      ))}
+      {otherEffects?.map((otherEffect) => (
+        <View key={`ooc-${otherEffect.label}`} style={styles.infoBar}>
+          <IconComponent {...otherEffect.icon} size={16} />
+          <Text style={{fontSize: 12, marginLeft: 5}}>{otherEffect.label}</Text>
+        </View>
+      ))}
+    </View>
+  )
 }

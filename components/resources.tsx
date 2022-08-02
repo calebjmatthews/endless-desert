@@ -89,11 +89,11 @@ export default function ResourcesComponent() {
 }
 
 function ResourceDescription(props: UiItemProps) {
-  if (!props.resource) { return null; }
-  const resource: Resource = props.resource;
+  const { resource, category, rates, resourceDetailOpen, positioner } = props;
+  if (!resource) { return null; }
   let resourceType = utils.getResourceType(resource);
   const typeQuality = (resource.type + '|' + resource.quality);
-  const rate = props.rates.netRates[typeQuality];
+  const rate = rates.netRates[typeQuality];
   let rateString = '';
   if (rate) {
     rateString = utils.formatNumberShort(rate);
@@ -102,21 +102,20 @@ function ResourceDescription(props: UiItemProps) {
     rateString = (sign + rateString + '/m');
   }
   let exhaustionString: string|null = null;
-  const exhaustion = props.rates.exhaustions[typeQuality];
+  const exhaustion = rates.exhaustions[typeQuality];
   if (exhaustion) {
     const diff = exhaustion - new Date(Date.now()).valueOf();
     exhaustionString = `Out in ${utils.formatDuration(diff)}`
   }
-  let textStyle: any = { color: '#000' };
+  let textStyle: any[] = [{ color: '#000', maxWidth: positioner.bodyMedTextWidth, 
+    minWidth: positioner.bodyMedTextWidth }];
   if (resource.quality == 1) {
-    textStyle = { color: '#6a7791', textShadowColor: '#a3bcdb',
-      textShadowRadius: 1 };
+    textStyle.push({ color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 });
   }
   return (
     <TouchableOpacity style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}
-      onPress={() => { props.resourceDetailOpen(resource) }}>
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])}
+      onPress={() => { resourceDetailOpen(resource) }}>
       <BadgeComponent icon={resourceType.icon} quality={resource.quality} size={29} />
       <View style={styles.containerStretchRow}>
         <View>
@@ -134,7 +133,7 @@ function ResourceDescription(props: UiItemProps) {
         </View>
         <View style={styles.quantityContainer}>
           <Text style={{fontSize: 20}}>
-            {utils.formatNumberShort(props.resource.quantity)}
+            {utils.formatNumberShort(resource.quantity)}
           </Text>
         </View>
       </View>
