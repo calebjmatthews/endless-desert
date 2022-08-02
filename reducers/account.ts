@@ -1,6 +1,7 @@
 import { SET_ACCOUNT, SET_USER_ID, SET_SESSION_ID, CHANGE_SETTING, SET_INTRO_STATE,
   UNLOCK_TAB, SET_CURRENT_FORTUITY, FORTUITY_SEEN, SET_FORTUITY_DAILY_LAST,
-  ACHIEVE_MILESTONE, SET_STORAGE_CALL_SAVE } from '../actions/account';
+  ACHIEVE_MILESTONE, SET_STORAGE_CALL_SAVE, DISPLAY_TREASURE, REMOVE_TREASURE } 
+  from '../actions/account';
 
 import Account from '../models/account';
 import { INTRO_STATES } from '../enums/intro_states';
@@ -11,12 +12,13 @@ let accountStarting = new Account({
   sessionId: '',
   storageCallSave: false,
   introState: INTRO_STATES.LOOK_AROUND,
-  tabsUnloked: [TABS.TOWN, TABS.RESOURCES, TABS.BUILDINGS],
+  tabsUnloked: [TABS.TOWN, TABS.RESOURCES],
   fortuityCurrent: null,
   fortuitiesSeen: {},
   fortuityDailyLast: 0,
   showCompletedResearches: false,
-  milestones: {}
+  milestones: {},
+  treasures: {}
 });
 
 export default function (account: Account = accountStarting,
@@ -75,6 +77,16 @@ export default function (account: Account = accountStarting,
     let newSSCSAccount = new Account(account);
     newSSCSAccount.storageCallSave = action.storageCallSave;
     return newSSCSAccount;
+
+    case DISPLAY_TREASURE:
+    let newDTAccount = new Account(account);
+    newDTAccount.treasures[action.name] = true;
+    return newDTAccount;
+
+    case REMOVE_TREASURE:
+    let newRTAccount = new Account(account);
+    delete newRTAccount.treasures[action.name];
+    return newRTAccount;
 
 		default:
 		return account;

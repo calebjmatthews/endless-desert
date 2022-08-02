@@ -90,3 +90,19 @@ export function setStorageCallSave(storageCallSave: boolean) {
     storageCallSave
   }
 }
+
+export const DISPLAY_TREASURE = 'DISPLAY_TREASURE';
+export function displayTreasure(name: string) {
+  return {
+    type: DISPLAY_TREASURE,
+    name
+  }
+}
+
+export const REMOVE_TREASURE = 'REMOVE_TREASURE';
+export function removeTreasure(name: string) {
+  return {
+    type: REMOVE_TREASURE,
+    name
+  }
+}

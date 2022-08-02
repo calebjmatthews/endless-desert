@@ -11,10 +11,12 @@ export default class Account {
   fortuityDailyLast: number = 0;
   showCompletedResearches: boolean = false;
   milestones: { [name: string] : boolean } = {};
+  treasures: { [name: string] : boolean } = {};
 
   constructor(account: Account) {
     Object.assign(this, account);
     this.fortuitiesSeen = Object.assign({}, account.fortuitiesSeen);
     this.milestones = Object.assign({}, (account.milestones || {}));
+    this.treasures = Object.assign({}, (account.treasures || {}));
   }
 }
