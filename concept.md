@@ -891,6 +891,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Increase basic Mysticism research costs by a power of ten
   [X] Equipment detail modal
   [X] Treasures given by research
+  [X] Treasure in account reducer and actions
   [ ] Display treasures on Wall
   [ ] Displayed treasures can affect building recipes
   [ ] Other reasearches to improve researching (speed, knowledge gain)
