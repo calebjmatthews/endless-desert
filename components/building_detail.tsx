@@ -7,15 +7,13 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { selectBuildingRecipe, setBuildingSpecificRecipe, payBuildingUpgradeCost,
-  removeBuilding } from '../actions/buildings';
-import { payBuildingCost, removeBuildingConstruction }
-  from '../actions/buildings_construction';
+import BuildingDetailGateComponent from './building_detail_gate';
+import { selectBuildingRecipe, payBuildingUpgradeCost, removeBuilding } from '../actions/buildings';
+import { payBuildingCost, removeBuildingConstruction } from '../actions/buildings_construction';
 import { addBuildingToStorage } from '../actions/buildings_storage';
 import { setRates } from '../actions/rates';
 import { addTimer } from '../actions/timers';
 import { displayModal, displayModalValue, selectTab } from '../actions/ui';
-import { addMessage } from '../actions/messages';
 import { consumeResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
 import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
@@ -29,7 +27,6 @@ import Timer from '../models/timer';
 import Resource from '../models/resource';
 import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
-import Rate from '../models/rate';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
@@ -164,6 +161,9 @@ export default function BuildDetailComponent() {
               {` ${buildingType.opensTab.label}`}
             </Text>
           </TouchableOpacity>
+        )}
+        {building.buildingType.includes('Gate') && (
+          <BuildingDetailGateComponent buildingId={modalValue.id} />
         )}
       </ScrollView>
     </View>

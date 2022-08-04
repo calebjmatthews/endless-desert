@@ -260,7 +260,7 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
 
   function resourceDetailOpen(resource: Resource) {
     const typeQuality = resource.type + '|' + resource.quality;
-    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', typeQuality));
+    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', { typeQuality }));
   }
 }
 

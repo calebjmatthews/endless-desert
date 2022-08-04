@@ -18,7 +18,7 @@ let accountStarting = new Account({
   fortuityDailyLast: 0,
   showCompletedResearches: false,
   milestones: {},
-  treasures: {}
+  treasuresDisplayed: {}
 });
 
 export default function (account: Account = accountStarting,
@@ -80,12 +80,12 @@ export default function (account: Account = accountStarting,
 
     case DISPLAY_TREASURE:
     let newDTAccount = new Account(account);
-    newDTAccount.treasures[action.name] = true;
+    newDTAccount.treasuresDisplayed[action.name] = new Date(Date.now()).valueOf();
     return newDTAccount;
 
     case REMOVE_TREASURE:
     let newRTAccount = new Account(account);
-    delete newRTAccount.treasures[action.name];
+    delete newRTAccount.treasuresDisplayed[action.name];
     return newRTAccount;
 
 		default:

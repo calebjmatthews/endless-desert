@@ -8,17 +8,15 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import EquipmentEffectComponent from './equipment_effect';
+import TreasureEffects from './treasure_effects';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setEquipmentMarked } from '../actions/equipment_marked';
-import { displayModal } from '../actions/ui';
+import { displayModal, displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
 import Equipment from '../models/equipment';
 import Vault from '../models/vault';
 import QuestActivity from '../models/quest_activity';
-import EquipmentEffect from '../models/equipment_effect';
-import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { resourceCategories } from '../instances/resource_categories';
@@ -28,17 +26,22 @@ import { renderValue } from './utils_react';
 import { utils } from '../utils';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 import { MODALS } from '../enums/modals';
+import { removeTreasure } from '../actions/account';
+import { increaseResources } from '../actions/vault';
 
 export default function ResourceDetailComponent() {
-  const modalValue: string = useTypedSelector(state => state.ui.modalValue);
+  const modalValue: { typeQuality: string, displayedTreasure: boolean, buildingId: string } =
+    useTypedSelector(state => state.ui.modalValue);
+  const { typeQuality, displayedTreasure, buildingId } = modalValue;
   const vault = useTypedSelector(state => state.vault);
   const positioner = useTypedSelector(state => state.ui.positioner);
-  const resource = vault.resources[modalValue];
+  const resource = vault.resources[typeQuality];
   const resourceType = new Resource(resource).toResourceType(resourceTypes);
   const resourceCategory = resourceCategories[resourceType.category];
   const count = utils.formatNumberShort(resource.quantity);
 
   const name = utils.getResourceName(resource).replace(' (U)', ', Unmarked');
+  const displayFooter = !displayedTreasure;
 
   let description = resourceType.description;
   const equipmentDescription = equipmentTypes[resourceType.name
@@ -78,24 +81,32 @@ export default function ResourceDetailComponent() {
             {resourceType.tags.map((tagName) => {return renderTag(tagName)})}
           </View>
           {resourceCategory.name === RESOURCE_CATEGORIES.TREASURE && (
-            <TreasureEffects {...treasures[resource.type]} />
+            <>
+              <View style={styles.break} />
+              <TreasureEffects {...treasures[resource.type]} />
+            </>
           )}
           <View style={styles.break} />
-          <View style={flat([styles.rows, {justifyContent: 'space-between',
-            alignItems: 'flex-end', minWidth: positioner.modalMajor,
-            maxWidth: positioner.modalMajor}])}>
-            <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
-              {renderValue(resourceType.value, 20, styles.bareText)}
-              <Text style={styles.bareText}>{' value'}</Text>
+          {displayFooter && (
+            <View style={flat([styles.rows, {justifyContent: 'space-between',
+              alignItems: 'flex-end', minWidth: positioner.modalMajor,
+              maxWidth: positioner.modalMajor}])}>
+              <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
+                {renderValue(resourceType.value, 20, styles.bareText)}
+                <Text style={styles.bareText}>{' value'}</Text>
+              </View>
+              <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
+                <Text style={styles.bareText}>{'total (x' + count + ') '}</Text>
+                {renderValue((resourceType.value * resource.quantity), 25, styles.bareText)}
+              </View>
             </View>
-            <View style={flat([styles.rows, {alignItems: 'flex-end'}])}>
-              <Text style={styles.bareText}>{'total (x' + count + ') '}</Text>
-              {renderValue((resourceType.value * resource.quantity), 25, styles.bareText)}
-            </View>
-          </View>
+          )}
         </View>
         {resourceCategory.name === RESOURCE_CATEGORIES.EQUIPMENT && (
           <MarkEquipmentButtons resource={resource} vault={vault} />
+        )}
+        {displayedTreasure && (
+          <RemoveTreasureButton resource={resource} vault={vault} buildingId={buildingId} />
         )}
         <View style={styles.break} />
       </View>
@@ -165,23 +176,25 @@ function MarkEquipmentButtons(props: {resource: Resource, vault: Vault}) {
   }
 }
 
-function TreasureEffects(props: {equipmentEffects?: EquipmentEffect[],
-  otherEffects?: { icon: Icon, label: string }[]}) {
-  const { equipmentEffects, otherEffects } = props;
-  if (!equipmentEffects && !otherEffects) { return null; }
+function RemoveTreasureButton(props: { vault: Vault, resource: Resource, buildingId: string }) {
+  const { vault, resource, buildingId } = props;
+  const dispatch = useDispatch();
+
   return (
-    <View style={styles.columns}>
+    <>
       <View style={styles.break} />
-      <Text style={styles.bareText}>{`Effects:`}</Text>
-      {equipmentEffects?.map((equipmentEffect) => (
-        <EquipmentEffectComponent key={`eec-${equipmentEffect.type}`} anEffect={equipmentEffect} />
-      ))}
-      {otherEffects?.map((otherEffect) => (
-        <View key={`ooc-${otherEffect.label}`} style={styles.infoBar}>
-          <IconComponent {...otherEffect.icon} size={16} />
-          <Text style={{fontSize: 12, marginLeft: 5}}>{otherEffect.label}</Text>
-        </View>
-      ))}
-    </View>
-  )
+      <TouchableOpacity style={styles.buttonLarge}
+        onPress={() => { removeTreasurePress(); }}>
+        <IconComponent provider="FontAwesome5" name="layer-group" color="#fff" size={18}
+          style={styles.headingIcon} />
+        <Text style={[styles.buttonText, {fontSize: 16}]}>{` Remove Treasure`}</Text>
+      </TouchableOpacity>
+    </>
+  );
+
+  function removeTreasurePress() {
+    dispatch(removeTreasure(resource.type));
+    dispatch(increaseResources(vault, [new Resource({ ...resource, quantity: 1 })]));
+    dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', { id: buildingId }))
+  }
 }

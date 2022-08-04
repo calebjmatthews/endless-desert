@@ -9,16 +9,12 @@ import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { displayModalValue } from '../actions/ui';
 
-import ResourceType from '../models/resource_type';
 import ResourceCategory from '../models/resource_category';
 import Resource from '../models/resource';
-import Vault from '../models/vault';
 import Rates from '../models/rates';
 import Positioner from '../models/positioner';
 import { CategoryBranch } from '../models/category_branch';
-import { resourceTypes } from '../instances/resource_types';
 import { resourceCategories } from '../instances/resource_categories';
-import { resourceSubcategories } from '../instances/resource_subcategories';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 
@@ -69,7 +65,7 @@ export default function ResourcesComponent() {
 
   function resourceDetailOpen(resource: Resource) {
     const typeQuality = resource.type + '|' + resource.quality;
-    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', typeQuality));
+    dispatch(displayModalValue(MODALS.RESOURCE_DETAIL, 'open', { typeQuality }));
   }
 
   return (
@@ -89,7 +85,7 @@ export default function ResourcesComponent() {
 }
 
 function ResourceDescription(props: UiItemProps) {
-  const { resource, category, rates, resourceDetailOpen, positioner } = props;
+  const { resource, rates, resourceDetailOpen, positioner } = props;
   if (!resource) { return null; }
   let resourceType = utils.getResourceType(resource);
   const typeQuality = (resource.type + '|' + resource.quality);

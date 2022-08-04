@@ -16,9 +16,9 @@ import { addTimer } from '../actions/timers';
 import { SET_EATING, SET_DRINKING, setLeader } from '../actions/leaders';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setRates } from '../actions/rates';
+import { DISPLAY_TREASURE, displayTreasure } from '../actions/account';
 
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Timer from '../models/timer';
 import TradingPartnerVisit from '../models/trading_partner_visit';
@@ -37,10 +37,9 @@ import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { ACTIVITIES } from '../enums/activities';
 import { QUALITY_VALUES } from '../constants';
-import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
-import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
-import research_status from '../reducers/research_status';
 const QV = QUALITY_VALUES;
+import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
+import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 
 export default function ResourceSelectOneComponent() {
   const dispatch = useDispatch();
@@ -51,6 +50,7 @@ export default function ResourceSelectOneComponent() {
   const modalValue: any = useTypedSelector(state => state.ui.modalValue);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
+  const treasuresDisplayed = useTypedSelector(state => state.account.treasuresDisplayed);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -84,7 +84,8 @@ export default function ResourceSelectOneComponent() {
   }
   const [quantityGiven, setQuantityGiven] = useState(setStartingQuantityG());
   const titleMap: { [type: string] : string } = {
-    'Trading': ' Select Resource to Trade'
+    Trading: ' Select Resource to Trade',
+    [DISPLAY_TREASURE]: ' Display New Treasure'
   }
   let descriptionBand: JSX.Element|null = null;
   if (modalValue.type === 'Trading') {
@@ -357,6 +358,10 @@ export default function ResourceSelectOneComponent() {
         actionSetLeaderConsuming('drinking');
       }
       break;
+
+      case DISPLAY_TREASURE:
+      actionDisplayTreasure();
+      break;
     }
   }
 
@@ -504,6 +509,17 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
+  function actionDisplayTreasure() {
+    if (resourceSelected != null) {
+      dispatch(consumeResources(vault, [new Resource({...resourceSelected, quantity: 1})]));
+      dispatch(displayTreasure(resourceSelected.type));
+      
+      dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
+        actionPerformed: { kind: DISPLAY_TREASURE, value: resourceSelected.type } })));
+      dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', {id: modalValue.buildingId}));
+    }
+  }
+
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
@@ -539,6 +555,11 @@ export default function ResourceSelectOneComponent() {
       else if (modalValue.subType == SET_DRINKING) {
         return rSort(filterOutZero(vault.getTagResources(RESOURCE_TAGS.DRINK)));
       }
+
+      case DISPLAY_TREASURE:
+      const tr = rSort(filterOutZero(vault.getCategoryResources(RESOURCE_CATEGORIES.TREASURE)));
+      return tr.filter((resource) => (!utils.arrayIncludes(Object.keys(treasuresDisplayed),
+        resource.type) ));
 
       default:
       return [];
@@ -595,7 +616,7 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
   }
   return (
     <View style={StyleSheet.flatten([styles.panelTile, styles.columns,
-      {minWidth: props.positioner.minorWidth,
+      {justifyContent: 'space-between', minWidth: props.positioner.minorWidth,
         maxWidth: props.positioner.minorWidth}])}>
       <Text style={optionTextStyle}>
         {utils.getResourceName(props.resource)}

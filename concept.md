@@ -892,7 +892,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Equipment detail modal
   [X] Treasures given by research
   [X] Treasure in account reducer and actions
-  [ ] Display treasures on Wall
+  [X] Display treasures on/remove treasures from Wall
   [ ] Displayed treasures can affect building recipes
   [ ] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with # resources studied
