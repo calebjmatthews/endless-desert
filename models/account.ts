@@ -48,7 +48,6 @@ export default class Account {
     });
 
     let moddedArray: EquipmentEffect[] = [];
-    console.l
     Object.keys(combineMap).forEach((key) => {
       const combObj = combineMap[key];
       const combEffect = combObj.effect;
@@ -74,9 +73,7 @@ export default class Account {
       moddedArray.push(moddedEffect);
     });
 
-    this.treasureEffects   = moddedArray;
-    console.log('this');
-    console.log(this);
+    this.treasureEffects = moddedArray;
   }
 
   export(): DBAccount {

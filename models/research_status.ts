@@ -6,6 +6,7 @@ import { researches } from '../instances/researches';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESEARCHES } from '../enums/researches';
+import { RESOURCE_TYPES } from '../enums/resource_types';
 
 export default class ResearchStatus implements ResearchStatusInterface {
   // Each research and whether it is "completed", "visible" or "hidden"
@@ -158,9 +159,9 @@ export default class ResearchStatus implements ResearchStatusInterface {
     return researchTree;
   }
 
-  getAnalysisMax() {
+  getAnalysisMax(treasuresDisplayed: { [name: string] : number }) {
     const base = 100;
-    if (this.status[RESEARCHES.ANALYSIS_OF_VARIANCE] === 'completed') {
+    if (treasuresDisplayed[RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY]) {
       return base + Object.keys(this.resourcesStudied).length;
     }
     return base;

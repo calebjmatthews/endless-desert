@@ -45,7 +45,7 @@ export default function BuildingDetailGateComponent(props: { buildingId: string 
         const treasure = treasures[treasureObj.name];
         const resourceType = resourceTypes[treasureObj.name];
         return (
-          <TouchableOpacity style={StyleSheet.flatten([styles.panelFlexColumn,
+          <TouchableOpacity key={treasureObj.name} style={StyleSheet.flatten([styles.panelFlexColumn,
             {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth, alignItems: 'flex-start'}])}
             onPress={() => { resourceDetailOpen(new Resource({
               type: treasure.typeName, quality: 0, quantity: 0

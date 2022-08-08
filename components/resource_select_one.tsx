@@ -147,7 +147,8 @@ export default function ResourceSelectOneComponent() {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
         resource={resource} resourceSelected={resourceSelected} vault={vault}
-        analysisMax={researchStatus.getAnalysisMax()}  setResourceSelected={setResourceSelected} 
+        analysisMax={researchStatus.getAnalysisMax(treasuresDisplayed)}
+        setResourceSelected={setResourceSelected} 
         setQuantitySelected={setQuantitySelected} setQuantityGiven={setQuantityGiven} 
         visit={visit} modalValue={modalValue} positioner={positioner} />;
     });
@@ -169,7 +170,7 @@ export default function ResourceSelectOneComponent() {
           <TextInput style={styles.inputBox} value={quantitySelected}
             editable={(resourceSelected != null)}
             onChangeText={ (text) => setQuantitySelected(text) } />
-          <Text>{` (Max ${researchStatus.getAnalysisMax()})`}</Text>
+          <Text>{` (Max ${researchStatus.getAnalysisMax(treasuresDisplayed)})`}</Text>
           </View>
           <View style={styles.spacedRows}>
             {renderQuantitySelected()}

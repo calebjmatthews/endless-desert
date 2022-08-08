@@ -56,7 +56,7 @@ export function BuildingSelectContents() {
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
   const brachygraphy = useTypedSelector(state =>
-    state.researchStatus.status[RESEARCHES.BRACHYGRAPHY]);
+    state.account.treasuresDisplayed[RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY]);
   const modalValue: {type: string, subType: string, leader: Leader,
     coords: [number, number]} = useTypedSelector(state => state.ui.modalValue);
   const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
