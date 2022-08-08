@@ -1943,8 +1943,8 @@ resourceTypes[RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY] = new ResourceType(
   name: (RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY),
   category: RCA.TREASURE,
   tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
-  value: 100000,
-  description: `Your set of diligently summarized yet continually increasing notes; increases maximum analysis amount for every resource studied when displayed on the Gate`,
+  value: 20000,
+  description: `Your set of diligently summarized yet continually increasing volume of notes`,
   icon: new Icon({provider: 'svg', name: SVGS.SCROLL, color: '#d83e20', shadow: '#c1321f',
     secondaryShadow: '#a82116'})
 });
@@ -1953,10 +1953,70 @@ resourceTypes[RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY] = new ResourceT
   name: (RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY),
   category: RCA.TREASURE,
   tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
-  value: 100000,
-  description: `A method of shortening words of your own design; halves field note writing time when displayed on the Gate`,
+  value: 20000,
+  description: `A clever method of shortening words of your own design`,
   icon: new Icon({provider: 'svg', name: SVGS.SCROLL, color: '#a6abe4', shadow: '#6b73d1',
     secondaryShadow: '#3f48b3'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 40000,
+  description: `An excess of ink allows for layers of indexes referencing other indexes`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#f6e5e5', shadow: '#dbb8b8',
+    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 80000,
+  description: `Precision-ground lenses enable a kind of in-depth analysis that would take hours without`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#e6f7ff', shadow: '#c3dbe7',
+    secondaryColor: '#69a8c7', secondaryShadow: '#3c8bb1', tertiaryColor: '#005780'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 160000,
+  description: `With compound lenses, details of form and color far beyond human eyes are available to you`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#f6e3fa', shadow: '#ddc0e3',
+    secondaryColor: '#94699d', secondaryShadow: '#82568b', tertiaryColor: '#6b3676'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 40000,
+  description: `More writing means more knowledge, obviously`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#f6e5e5', shadow: '#dbb8b8',
+    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 80000,
+  description: `You've invented an improvement to the abacus; it can even perform higher level arithmatic if you know which levers to depress`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#e6f7ff', shadow: '#c3dbe7',
+    secondaryColor: '#69a8c7', secondaryShadow: '#3c8bb1', tertiaryColor: '#005780'})
+});
+
+resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION] = new ResourceType({
+  name: (RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND],
+  value: 160000,
+  description: `You've devised a mechanism that aids in trigonometry, keeps accurate time, and sharpens your quill to the perfect point`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#f6e3fa', shadow: '#ddc0e3',
+    secondaryColor: '#94699d', secondaryShadow: '#82568b', tertiaryColor: '#6b3676'})
 });
 
 resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] = new ResourceType({

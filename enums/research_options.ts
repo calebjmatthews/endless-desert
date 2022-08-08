@@ -25,6 +25,7 @@ export enum RESEARCH_OPTIONS {
   EXCESSIVE_NOTE_TAKING = "Excessive Note Taking",
   METAL_VARIETY = "Metal Variety",
   WOOD_VARIETY = "Wood Variety",
+  SYSTEMS_OF_KNOWLEDGE = "Systems of Knowledge",
 
   // Scholarship Lv 2
   BRACHYGRAPHIC_SYMBOLS = "Brachiographic Symbols",

@@ -153,6 +153,38 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   actionCategory: TABS.RESEARCH
 });
 
+researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
+  name: RESEARCHES.EXAMINATION_SWIFT,
+  unlocks: ('A treasure: Study and Analyze in x50% less time with the added cost of Ink.'),
+  description: `You're beginning to learn about your own process of discovery, and have some ideas about ways to speed it along.`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#f6e5e5', shadow: '#dbb8b8',
+    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 8000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION
+});
+
+researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
+  name: RESEARCHES.EXAMINATION_SWIFT,
+  unlocks: ('A treasure: Study and Analyze for x50% more Knowledge with the added cost of Papyrus.'),
+  description: `You're beginning to learn about your own process of discovery, and have some ideas about ways to make your conclusions more impactful.`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#f6e5e5', shadow: '#dbb8b8',
+    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 8000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION
+});
+
 researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   name: RESEARCHES.BRACHYGRAPHY,
   unlocks: `A treasure: write field notes in half the time`,

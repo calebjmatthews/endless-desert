@@ -129,6 +129,8 @@ import ChitinousPinsSvgComponent from './resources/chitinous_pins';
 
 import ScrollSvgComponent from './resources/scroll';
 import CarpetSvgComponent from './resources/carpet';
+import OpenBookQuillSvgComponent from './resources/open_book_quill';
+import OpenBookWindSvgComponent from './resources/open_book_wind';
 
 import TomeSvgComponent from './resources/tome';
 import BrokenKeySvgComponent from './resources/broken_key';
@@ -503,6 +505,10 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <ScrollSvgComponent icon={props.icon} />;
     case SVGS.CARPET:
     return <CarpetSvgComponent icon={props.icon} />;
+    case SVGS.OPEN_BOOK_QUILL:
+    return <OpenBookQuillSvgComponent icon={props.icon} />;
+    case SVGS.OPEN_BOOK_WIND:
+    return <OpenBookWindSvgComponent icon={props.icon} />;
 
     case SVGS.TOME:
     return <TomeSvgComponent icon={props.icon} />;

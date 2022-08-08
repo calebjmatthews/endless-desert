@@ -187,6 +187,12 @@ export enum RESOURCE_TYPES {
   CARPET_CURLING_GREEN_MOTIF = "Carpet with a Curling Green Motif",
   MEMORANDA_ON_A_GROWING_PANOPLY = "Your Memoranda on a Growing Panoply",
   SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY = "Your System of Abbreviated Brachygraphy",
+  TECHNIQUES_FOR_SWIFT_EXAMINATION = "Your Techniques for Increasingly Speedy Examination",
+  TECHNIQUES_FOR_MERCURIAL_EXAMINATION = "Your Techniques for Decidedly Mercurial Examination",
+  TECHNIQUES_FOR_ALACRITOUS_EXAMINATION = "Your Techniques for Shockingly Alacritous Examination",
+  TECHNIQUES_FOR_WEIGHTY_EXAMINATION = "Your Techniques for Rather Weighty Examination",
+  TECHNIQUES_FOR_POTENT_EXAMINATION = "Your Techniques for Impressively Potent Examination",
+  TECHNIQUES_FOR_VISIONARY_EXAMINATION = "Your Techniques for Dazzlingly Visionary Examination",
 
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",

@@ -202,6 +202,15 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   manditory: true
 });
 
+researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_KNOWLEDGE] = new ResearchOption({
+  name: RESEARCH_OPTIONS.SYSTEMS_OF_KNOWLEDGE,
+  appliesTo: RESEARCHES.SCHOLARSHIP,
+  difficulty: 1,
+  description: `To devise an effective improvement to your own research methods, you'll need potentially dizzying notes on your own process. You have a hunch that these could be found while researching, after upgrading the Study.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}],
+  manditory: true
+});
+
 researchOptions[RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS] = new ResearchOption({
   name: RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS,
   appliesTo: RESEARCHES.BRACHYGRAPHY,

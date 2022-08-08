@@ -139,6 +139,8 @@ export enum SVGS {
 
   SCROLL = "Scroll",
   CARPET = "Carpet",
+  OPEN_BOOK_QUILL = "Open Book Quill",
+  OPEN_BOOK_WIND = "Open Book Wind",
 
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",
