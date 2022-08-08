@@ -13,12 +13,9 @@ import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
 import Building from '../models/building';
-import Vault from '../models/vault';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
-import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
@@ -31,6 +28,7 @@ export default function ResourceSelectRateComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const modalValue: {building: Building, specTypeQuality: string, rate: number,
     fromBuildingDetail?: boolean} = useTypedSelector(state => state.ui.modalValue);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -141,7 +139,7 @@ export default function ResourceSelectRateComponent() {
       let newBuilding = new Building(modalValue.building);
       newBuilding.resourcesSelected[specType] = resourceSelected;
       tempBuildings[newBuilding.id] = newBuilding;
-      let newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+      let newRates = new Hourglass().calcRates(tempBuildings, leaders, treasureEffects, vault);
       dispatch(setRates(newRates));
       if (!modalValue.fromBuildingDetail) {
         dispatch(displayModalValue(null, 'closed', null));

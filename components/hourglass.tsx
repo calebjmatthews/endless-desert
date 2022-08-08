@@ -12,8 +12,7 @@ import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addMemos } from '../actions/ui';
 import { addMessage } from '../actions/messages';
 import { setLeaders } from '../actions/leaders';
-import { setIntroState, unlockTab, setCurrentFortuity, fortuitySeen,
-  setFortuityDailyLast, achieveMilestone, setStorageCallSave }
+import { setIntroState, unlockTab, setCurrentFortuity, achieveMilestone, setStorageCallSave }
   from '../actions/account';
 import { setTerrain } from '../actions/terrain';
 import { handleIncreaseSlots } from '../actions/trading_status';
@@ -26,9 +25,6 @@ import Building from '../models/building';
 import Fortuity from '../models/fortuity';
 import Memo from '../models/memo';
 import Resource from '../models/resource';
-import Rates from '../models/rates';
-import Leader from '../models/leader';
-import Account from '../models/account';
 import Quest from '../models/quest';
 import QuestActivity from '../models/quest_activity';
 import Icon from '../models/icon';
@@ -57,8 +53,6 @@ export default function HourglassComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const rates = useTypedSelector(state => state.rates);
   const buildings = useTypedSelector(state => state.buildings);
-  const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
-  const researchOptionDecks = useTypedSelector(state => state.researchOptionDecks);
   const timers = useTypedSelector(state => state.timers);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const account = useTypedSelector(state => state.account);
@@ -95,9 +89,10 @@ export default function HourglassComponent() {
       let recalcLeaderEffects: boolean = false;
       let tempBuildings = Object.assign({}, buildings);
 
-      const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders, vault) : rates;
+      const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders,
+        account.treasureEffects, vault) : rates;
       if (whileAway.diff > 60000) { recalcRates = true; }
-      const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {},
+      const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {}, {},
         vault.lastTimestamp, questStatus.resourcesToCheck);
 
       rti = utils.sumToResources(vault, results.productionSum);
@@ -306,7 +301,7 @@ export default function HourglassComponent() {
         });
         rti.forEach((r) => { tempVault.increaseResource(r); });
         rtc.forEach((r) => { tempVault.consumeResource(r); });
-        let newRates = hourglass.calcRates(tempBuildings, leaders, tempVault);
+        let newRates = hourglass.calcRates(tempBuildings, leaders, account.treasureEffects, tempVault);
         dispatch(setRates(newRates));
         newRates.buildingsToRest?.forEach((id) => {
           const building = buildings[id];

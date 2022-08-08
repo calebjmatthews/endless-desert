@@ -36,9 +36,8 @@ import Building from '../models/building';
 import Vault from '../models/vault';
 import DBObject from '../models/db_object';
 import Terrain from '../models/terrain';
+import EquipmentEffect from '../models/equipment_effect';
 import { genStartingBuildings } from '../instances/buildings';
-import { memos } from '../instances/memos';
-import { MEMOS } from '../enums/memos';
 import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
   FADE_IN_DELAY } from '../constants';
 
@@ -211,6 +210,7 @@ export default function StorageHandlerComponent() {
         let buildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
+        let treasureEffects: EquipmentEffect[] = [];
         let vault: Vault = new Vault({ lastTimestamp: Date.now(), resources: {} });
 
         Object.keys(TABLE_SETTERS).map((tableName) => {
@@ -249,8 +249,10 @@ export default function StorageHandlerComponent() {
               dispatch(TABLE_SETTERS[tableName](tableValue));
             }
             else if (tableName == 'accounts' && tableValue) {
-              let account = tableValue;
+              let account: Account = tableValue;
               account.sessionId = sessionId;
+              account.calcTreasureEffects();
+              treasureEffects = account.treasureEffects;
               dispatch(TABLE_SETTERS[tableName](account));
             }
           }
@@ -262,7 +264,7 @@ export default function StorageHandlerComponent() {
           leaders[id] = leader;
         });
         dispatch(setLeaders(leaders));
-        const newRates = hourglass.calcRates(buildings, leaders, vault);
+        const newRates = hourglass.calcRates(buildings, leaders, treasureEffects, vault);
         dispatch(setRates(newRates));
         return true;
       }
@@ -334,7 +336,7 @@ export default function StorageHandlerComponent() {
     dispatch(setTerrain(terrain));
     const buildingsStarting = genStartingBuildings(buildingMap);
     dispatch(setBuildings(buildingsStarting));
-    const newRates = hourglass.calcRates(buildingsStarting, {});
+    const newRates = hourglass.calcRates(buildingsStarting, {}, {});
     dispatch(setRates(newRates));
     dispatch(setGlobalState('landing'));
   }

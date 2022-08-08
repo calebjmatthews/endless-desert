@@ -9,13 +9,12 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import EquipmentEffectComponent from './equipment_effect';
-import { DON_EQUIPMENT, setLeaders } from '../actions/leaders';
+import { setLeaders } from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Equipment from '../models/equipment';
-import EquipmentType from '../models/equipment_type';
 import EquipmentEffect from '../models/equipment_effect';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
@@ -29,6 +28,7 @@ export default function EquipmentSelectComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const buildings = useTypedSelector(state => state.buildings);
   const vault = useTypedSelector(state => state.vault);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
@@ -137,7 +137,7 @@ export default function EquipmentSelectComponent() {
         newLeaders[id] = leader;
       });
       dispatch(setLeaders(newLeaders));
-      let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+      let newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
       dispatch(setRates(newRates));
       dispatch(displayModalValue(MODALS.LEADER_DETAIL, 'open',
         newLeaders[modalValue.leader.id]));
@@ -229,9 +229,6 @@ function EquipmentSelector(props: {anEquipment: EquipmentMatched,
   }
 }
 
-interface EquipmentMatched {
-  id: string;
-  typeName: string;
-  effects: EquipmentEffect[];
+interface EquipmentMatched extends Equipment {
   leader?: Leader;
 }

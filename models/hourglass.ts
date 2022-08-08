@@ -1,9 +1,7 @@
 import Building from './building';
-import BuildingType from './building_type';
 import BuildingRecipe from './building_recipe';
 import Timer from './timer';
 import Leader from './leader';
-import Equipment from './equipment';
 import EquipmentEffect from './equipment_effect';
 import Vault from './vault';
 import Rates from './rates';
@@ -70,6 +68,7 @@ export default class Hourglass {
   // new subset of time until all exhausted resources are accounted for
   callCalcs(rates: Rates, vault: Vault,
     buildings: { [id: string] : Building }, leaders: { [id: string] : Leader },
+    treasureEffects: EquipmentEffect[] = [],
     startingTimestamp: number = vault.lastTimestamp,
     resourcesToCheck: { [specType: string] : boolean } = {},
     productionSum: { [typeQuality: string] : number } = {},
@@ -102,11 +101,11 @@ export default class Hourglass {
       rates.buildingsToRest?.forEach((id) => {
         newBuildings[id].recipeSelected = -1;
       });
-      const newRates = this.calcRates(newBuildings, leaders, newVault);
+      const newRates = this.calcRates(newBuildings, leaders, treasureEffects, newVault);
       const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
         utils.arraysCombine(rates.buildingsToRest,
           newRates.buildingsToRest));
-      return this.callCalcs(newRates, vault, buildings, leaders,
+      return this.callCalcs(newRates, vault, buildings, leaders, treasureEffects,
         (rates?.soonestExhaustion || timestamp), resourcesToCheck, newPSum, newCSum,
         newQRChecks, newBuildingsToRest);
     }
@@ -168,7 +167,8 @@ export default class Hourglass {
   }
 
   calcRates(buildings: { [id: string] : Building },
-    leaders: { [id: string] : Leader }, vault: Vault = new Vault({
+    leaders: { [id: string] : Leader }, treasureEffects: EquipmentEffect[],
+    vault: Vault = new Vault({
       lastTimestamp: new Date(Date.now()).valueOf(),
       resources: {}
     })): Rates {
@@ -195,6 +195,7 @@ export default class Hourglass {
         missingLeader = true;
         r.problems[id].push('Leader required');
       }
+      // Determine recipesRates; rates for all recipes, not just the one selected
       if (buildingType.recipes || (building.recipe && building.recipeSelected !== -1)) {
         let recipes: BuildingRecipe[] = [];
         if (building.recipe) { recipes = [building.recipe]; }
@@ -207,13 +208,17 @@ export default class Hourglass {
               let prod0Quantity = production.quantity;
               let qualityChance = 0;
               if (buildingLeaders[building.id]) {
-                const leaderSMod = findLeaderMod(buildingLeaders[building.id],
+                const leaderSMod = findEffectMod(buildingLeaders[building.id].effects,
                   (production.type + '|0'), LQ.SPEED);
                 prod0Quantity *= (1 + (leaderSMod / 100));
-                const leaderQMod =  findLeaderMod(buildingLeaders[building.id],
+                const leaderQMod =  findEffectMod(buildingLeaders[building.id].effects,
                   (production.type + '|0'), LQ.QUALITY);
                 qualityChance = leaderQMod/100;
               }
+              const treasureSMod = findEffectMod(treasureEffects, (production.type + '|0'), LQ.SPEED);
+              prod0Quantity *= (1 + (treasureSMod / 100));
+              const treasureQMod =  findEffectMod(treasureEffects, (production.type + '|0'), LQ.QUALITY);
+              qualityChance += treasureQMod/100;
               if (qualityChance > 0) {
                 let prod1Quantity = (prod0Quantity * qualityChance);
                 utils.mapAdd(r.recipesRates[id][index], (production.specificity
@@ -238,20 +243,29 @@ export default class Hourglass {
                   specificity = RESOURCE_SPECIFICITY.EXACT;
                 }
               }
+              const originalConsQuantity = consQuantity;
               if (buildingLeaders[building.id]) {
-                const leaderMod = findLeaderMod(buildingLeaders[building.id],
+                const leaderMod = findEffectMod(buildingLeaders[building.id].effects,
                   (cResource.type + '|0'), LQ.SPEED);
                 consQuantity *= (1 + (leaderMod / 100));
-                const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
+                const leaderNegMod = findEffectMod(buildingLeaders[building.id].effects,
                   (cResource.type + '|0'), LQ.EFFICIENCY);
                 consQuantity *= (1 - (leaderNegMod / 100));
               }
+              const treasureMod = findEffectMod(treasureEffects,
+                (cResource.type + '|0'), LQ.SPEED);
+              consQuantity *= (1 + (treasureMod / 100));
+              const treasureNegMod = findEffectMod(treasureEffects,
+                (cResource.type + '|0'), LQ.EFFICIENCY);
+              consQuantity *= (1 - (treasureNegMod / 100));
+              if (consQuantity <= 0) { consQuantity = originalConsQuantity * 0.05; }
               utils.mapAdd(r.recipesRates[id][index], (specificity
                 + '|' + cResource.type + '|0'), (consQuantity * -1));
             });
           }
         });
       }
+      // Determine production, building, and net rates for the recipe selected
       if ((buildingType.recipes || (building.recipe && building.recipeSelected !== -1))
         && !missingLeader) {
         let recipeSelected = building.recipeSelected || 0;
@@ -303,13 +317,17 @@ export default class Hourglass {
             let prod0Quantity = production.quantity;
             let qualityChance = 0;
             if (buildingLeaders[building.id]) {
-              const leaderSMod = findLeaderMod(buildingLeaders[building.id],
+              const leaderSMod = findEffectMod(buildingLeaders[building.id].effects,
                 (production.type + '|0'), LQ.SPEED);
               prod0Quantity *= (1 + (leaderSMod / 100));
-              const leaderQMod =  findLeaderMod(buildingLeaders[building.id],
+              const leaderQMod =  findEffectMod(buildingLeaders[building.id].effects,
                 (production.type + '|0'), LQ.QUALITY);
               qualityChance = leaderQMod/100;
             }
+            const treasureSMod = findEffectMod(treasureEffects, (production.type + '|0'), LQ.SPEED);
+            prod0Quantity *= (1 + (treasureSMod / 100));
+            const treasureQMod =  findEffectMod(treasureEffects, (production.type + '|0'), LQ.QUALITY);
+            qualityChance += treasureQMod/100;
             if (qualityChance > 0) {
               let prod1Quantity = (prod0Quantity * qualityChance);
               utils.mapAdd(r.productionRates, (production.type + '|1'), prod1Quantity);
@@ -343,14 +361,22 @@ export default class Hourglass {
                 quantity: (rawConsumption.quantity / resourceValue) };
             }
             let consQuantity = consumption.quantity;
+            const originalConsQuantity = consQuantity;
             if (buildingLeaders[building.id]) {
-              const leaderMod = findLeaderMod(buildingLeaders[building.id],
+              const leaderMod = findEffectMod(buildingLeaders[building.id].effects,
                 (consumption.type + '|0'), LQ.SPEED);
               consQuantity *= (1 + (leaderMod / 100));
-              const leaderNegMod = findLeaderMod(buildingLeaders[building.id],
+              const leaderNegMod = findEffectMod(buildingLeaders[building.id].effects,
                 (consumption.type + '|0'), LQ.EFFICIENCY);
               consQuantity *= (1 - (leaderNegMod / 100));
             }
+            const treasureMod = findEffectMod(treasureEffects,
+              (consumption.type + '|0'), LQ.SPEED);
+            consQuantity *= (1 + (treasureMod / 100));
+            const treasureNegMod = findEffectMod(treasureEffects,
+              (consumption.type + '|0'), LQ.EFFICIENCY);
+            consQuantity *= (1 - (treasureNegMod / 100));
+            if (consQuantity <= 0) { consQuantity = originalConsQuantity * 0.05; }
             utils.mapAdd(r.consumptionRates, (consumption.type + '|0'), consQuantity);
             utils.mapAdd(r.buildingRates[id], (consumption.type + '|0'),
               (consQuantity * -1));
@@ -426,16 +452,16 @@ export default class Hourglass {
       return buildingLeaders;
     }
 
-    function findLeaderMod(leader: Leader, prodResource: string, quality: string) {
-      let leaderMod = 0;
-      leader.effects.map((anEffect) => {
+    function findEffectMod(effects: EquipmentEffect[], prodResource: string, quality: string) {
+      let effectMod = 0;
+      effects?.map((anEffect) => {
         const resourceName = prodResource.split('|')[0].split('-')[0];
         if (anEffect.quality == quality && doesResourceMatch(resourceName,
-          anEffect) && anEffect.change > leaderMod) {
-          leaderMod = anEffect.change;
+          anEffect) && anEffect.change > effectMod) {
+            effectMod = anEffect.change;
         }
       });
-      return leaderMod;
+      return effectMod;
     }
 
     function doesResourceMatch(prodResource: string, effect: EquipmentEffect) {
@@ -467,5 +493,3 @@ export default class Hourglass {
     }
   }
 }
-
-interface Rate { [typeQuality: string] : number };

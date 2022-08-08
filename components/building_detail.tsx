@@ -34,7 +34,6 @@ import { INTRO_STATES } from '../enums/intro_states';
 import { BUILDING_TYPES } from '../enums/building_types';
 const BTY = BUILDING_TYPES;
 import { BUILDING_CATEGORIES } from '../enums/building_categories';
-import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 import { ACTIVITIES } from '../enums/activities';
@@ -66,6 +65,7 @@ export default function BuildDetailComponent() {
   }
   const leader = leaderId ? leaders[leaderId] : null;
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingType = new BuildingType(buildingTypes[building.buildingType] || null);
 
@@ -103,7 +103,7 @@ export default function BuildDetailComponent() {
 
       tempBuildings[building.id].recipeSelected = recipeSelected;
       dispatch(selectBuildingRecipe(building, recipeSelected));
-      const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+      const newRates = new Hourglass().calcRates(tempBuildings, leaders, treasureEffects, vault);
       dispatch(setRates(newRates));
     }
   }, [recipeSelected]);
@@ -382,7 +382,7 @@ export default function BuildDetailComponent() {
       tempBuildings[id] = new Building(buildings[id]);
     });
     delete tempBuildings[building.id];
-    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, treasureEffects, vault);
     dispatch(setRates(newRates));
     dispatch(displayModal(null));
   }

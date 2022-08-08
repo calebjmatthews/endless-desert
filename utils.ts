@@ -4,11 +4,15 @@ import ResourceSubcategory from './models/resource_subcategory';
 import ResourceCategory from './models/resource_category';
 import Resource from './models/resource';
 import Vault from './models/vault';
+import EquipmentEffect from './models/equipment_effect';
+import Icon from './models/icon';
 import { resourceTypes } from './instances/resource_types';
 import { resourceTags } from './instances/resource_tags';
 import { resourceSubcategories } from './instances/resource_subcategories';
 import { resourceCategories } from './instances/resource_categories';
 import { RESOURCE_SPECIFICITY } from './enums/resource_specificity';
+import { LEADER_QUALITIES } from './enums/leader_qualities';
+const LQ = LEADER_QUALITIES;
 import { MILESTONES } from './enums/milestones';
 
 class Utils {
@@ -669,6 +673,85 @@ class Utils {
       return 2;
     }
     return 1;
+  }
+  
+  doesEffectMatch(effect: EquipmentEffect, compEffect: EquipmentEffect) {
+    if (effect.quality == compEffect.quality) {
+      switch(compEffect.specificity) {
+        // If effects are identical, they should already be combined
+        case RESOURCE_SPECIFICITY.EXACT:
+        if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
+          && effect.type) {
+          if (effect.type == compEffect.type) {
+            return true;
+          }
+        }
+        return false;
+
+        case RESOURCE_SPECIFICITY.TAG:
+        if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
+          && effect.type) {
+          const resourceType = resourceTypes[effect.type];
+          for (let index = 0; index < resourceType.tags.length; index++) {
+            if (resourceType.tags[index] == compEffect.type) {
+              return true;
+            }
+          }
+        }
+        return false;
+
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
+          && effect.type) {
+          return (resourceTypes[effect.type].subcategory == compEffect.type);
+        }
+        return false;
+
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
+          && effect.type) {
+          return (resourceTypes[effect.type].category == compEffect.type);
+        }
+        return false;
+
+        case undefined:
+        return true;
+      }
+      console.log('Unexpected resource specifcity: ' + effect.specificity);
+    }
+    return false;
+  }
+
+  explanationsAdd(p: {explanations: { [subject: string] :
+    { source: string, sourceIcon?: Icon, change: string, total: string }[] },
+    subject: string, source: string, sourceIcon?: Icon, change: number,
+    total: number}) {
+    const baseZero = [ LQ.HAPPINESS, LQ.HAPPINESS_TO_SPEED,
+      LQ.HAPPINESS_TO_QUALITY, LQ.HAPPINESS_TO_EFFICIENCY];
+    if (!p.explanations[p.subject]) {
+      let total = '100%';
+      if (utils.arrayIncludes(baseZero, p.subject.split('|')[0])) {
+        total = '0%';
+      }
+      p.explanations[p.subject] = [{ source: 'Base', change: ' ', total: total }];
+    }
+
+    let sign = ''; let changeStr = ''; let total = '';
+    if (utils.arrayIncludes(baseZero, p.subject.split('|')[0])) {
+      sign = '+';
+      if (p.change < 0) { sign = ''; }
+      changeStr += (sign + utils.formatNumberShort(p.change) + '%');
+      total = (utils.formatNumberShort(p.total) + '%');
+    }
+    else {
+      sign = 'x';
+      changeStr += (sign + utils.formatNumberShort(100 + p.change) + '%');
+      total = (utils.formatNumberShort(100 + p.total) + '%');
+    }
+
+    p.explanations[p.subject].push({ source: p.source, sourceIcon: p.sourceIcon,
+      change: changeStr, total: total });
+    return p.explanations;
   }
 }
 

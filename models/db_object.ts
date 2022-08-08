@@ -44,7 +44,7 @@ export default class DBObject {
         research_option_decks: exportRODs(obj.researchOptionDecks),
         timers: exportTimers(obj.timers),
         trading_status: obj.tradingStatus,
-        accounts: obj.account,
+        accounts: obj.account?.export(),
         leaders: exportLeaders(obj.leaders),
         equipment: obj.equipment,
         conversation_status: obj.conversationStatus,

@@ -51,6 +51,7 @@ export default function ResourceSelectOneComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const treasuresDisplayed = useTypedSelector(state => state.account.treasuresDisplayed);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -499,7 +500,7 @@ export default function ResourceSelectOneComponent() {
       }
       newLeaders[modalValue.leader.id].calcEffects(equipment, buildings, vault);
       dispatch(setLeader(newLeaders[modalValue.leader.id]));
-      const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+      const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
       dispatch(setRates(newRates));
       dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
         actionPerformed: { kind: (kind === 'eating' ? ACTIVITIES.LEADER_SET_EATING

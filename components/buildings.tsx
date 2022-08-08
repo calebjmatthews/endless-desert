@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -8,11 +8,10 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
-import { displayModal, displayModalValue } from '../actions/ui';
 import { selectBuildingRecipe, payBuildingUpgradeCost } from '../actions/buildings';
 import { payBuildingCost } from '../actions/buildings_construction';
 import { setRates } from '../actions/rates';
-import { addTimer } from '../actions/timers';
+import { displayModalValue } from '../actions/ui';
 import { ASSIGN_TO_BUILDING, LIVE_AT_BUILDING } from '../actions/leaders';
 
 import Building from '../models/building';
@@ -42,7 +41,6 @@ export default function BuildingsComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const buildings = useTypedSelector(state => state.buildings);
-  const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
   const buildTimer = useTypedSelector(state => state.timers['Build']);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const introState = useTypedSelector(state => state.account.introState);
@@ -50,6 +48,7 @@ export default function BuildingsComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const modalStage = useTypedSelector(state => state.ui.modalStage);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let buildingsArray = Object.keys(buildings).map((id) => {
     return buildings[id];
@@ -179,7 +178,7 @@ export default function BuildingsComponent() {
     });
 
     tempBuildings[building.id].recipeSelected = recipeSelected;
-    const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+    const newRates = new Hourglass().calcRates(tempBuildings, leaders, treasureEffects, vault);
     dispatch(setRates(newRates));
     dispatch(selectBuildingRecipe(building, recipeSelected));
   }

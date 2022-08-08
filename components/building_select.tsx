@@ -53,13 +53,14 @@ export function BuildingSelectContents() {
   const buildings = useTypedSelector(state => state.buildings);
   const buildingsStorage = useTypedSelector(state => state.buildingsStorage);
   const leaders = useTypedSelector(state => state.leaders);
-  const positioner = useTypedSelector(state => state.ui.positioner);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
   const brachygraphy = useTypedSelector(state =>
     state.researchStatus.status[RESEARCHES.BRACHYGRAPHY]);
   const modalValue: {type: string, subType: string, leader: Leader,
     coords: [number, number]} = useTypedSelector(state => state.ui.modalValue);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
+  const positioner = useTypedSelector(state => state.ui.positioner);
   let buildingsLeader: {[buildingId: string] : Leader} = {};
   Object.keys(leaders).map((leaderId) => {
     const leader = leaders[leaderId];
@@ -216,7 +217,7 @@ export function BuildingSelectContents() {
           newLeaders[buildingsLeader[buildingSelected].id].assignedTo = null;
         }
         dispatch(setLeaders(newLeaders));
-        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        let newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
         dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
           actionPerformed: { kind: ACTIVITIES.LEADER_WORKING_AT,
@@ -234,7 +235,7 @@ export function BuildingSelectContents() {
             .calcEffects(equipment, buildings, vault);
         }
         dispatch(setLeaders(newLeaders));
-        let newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        let newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
         dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
           actionPerformed: { kind: ACTIVITIES.LEADER_LIVING_AT,
@@ -278,7 +279,7 @@ export function BuildingSelectContents() {
           tempBuildings[id] = new Building(buildings[id]);
         });
         tempBuildings[building.id] = building;
-        const newRates = new Hourglass().calcRates(tempBuildings, leaders, vault);
+        const newRates = new Hourglass().calcRates(tempBuildings, leaders, treasureEffects, vault);
         dispatch(setRates(newRates));
         dispatch(displayModalValue(null, 'closed', null));
       }

@@ -161,12 +161,8 @@ export default function EquipmentComponent() {
       }
     });
     if (etd.length > 0) {
-      console.log('etd');
-      console.log(etd);
       dispatch(removeEquipment(etd));
       if (rti.length > 0) {
-        console.log('rti');
-        console.log(rti);
         dispatch(increaseResources(vault, rti));
       }
     }

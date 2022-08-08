@@ -54,7 +54,7 @@ export default class Leader {
     const homeType = home ? buildingTypes[home.buildingType] : null;
     if (homeType?.livingHappiness) {
       happiness += homeType.livingHappiness;
-      this.explanations = explanationsAdd({
+      this.explanations = utils.explanationsAdd({
         explanations: this.explanations,
         subject: LQ.HAPPINESS,
         source: (home?.name || 'Home'),
@@ -71,7 +71,7 @@ export default class Leader {
     if (eatingResourceType) {
       const eatingValue = eatingResourceType.getFoodOrDrinkHappinessValue();
       happiness += eatingValue;
-      this.explanations = explanationsAdd({
+      this.explanations = utils.explanationsAdd({
         explanations: this.explanations,
         subject: LQ.HAPPINESS,
         source: utils.getResourceName(eating),
@@ -88,7 +88,7 @@ export default class Leader {
     if (drinkingResourceType) {
       const drinkingValue = drinkingResourceType.getFoodOrDrinkHappinessValue();
       happiness += drinkingValue;
-      this.explanations = explanationsAdd({
+      this.explanations = utils.explanationsAdd({
         explanations: this.explanations,
         subject: LQ.HAPPINESS,
         source: utils.getResourceName(drinking),
@@ -144,7 +144,7 @@ export default class Leader {
             }
 
             if (effect.quality == LQ.HAPPINESS) {
-              this.explanations = explanationsAdd({
+              this.explanations = utils.explanationsAdd({
                 explanations: this.explanations,
                 subject: effect.quality,
                 source: anEquipment.typeName,
@@ -154,9 +154,9 @@ export default class Leader {
               });
             }
             else if (effect.quality == LQ.HAPPINESS_TO_SPEED
-              || effect.quality == LQ.HAPPINESS_TO_SPEED
-              || effect.quality == LQ.HAPPINESS_TO_SPEED) {
-              this.explanations = explanationsAdd({
+              || effect.quality == LQ.HAPPINESS_TO_EFFICIENCY
+              || effect.quality == LQ.HAPPINESS_TO_QUALITY) {
+              this.explanations = utils.explanationsAdd({
                 explanations: this.explanations,
                 subject: effect.quality,
                 source: anEquipment.typeName,
@@ -208,13 +208,13 @@ export default class Leader {
       let moddedEffect = new EquipmentEffect(combEffect);
       moddedEffect.change = 0;
       effectArray.map((compEffect, index) => {
-        if (doesEffectMatch(combEffect, compEffect)) {
+        if (utils.doesEffectMatch(combEffect, compEffect)) {
           const total = ((((100 + moddedEffect.change) / 100)
             * ((100 + compEffect.change) / 100)) - 1) * 100;
           moddedEffect.change = total;
           const sourceIcon = compEffect.source ?
             equipmentTypes[compEffect.source].icon : undefined;
-          this.explanations = explanationsAdd({
+          this.explanations = utils.explanationsAdd({
             explanations: this.explanations,
             subject: key,
             source: compEffect.source || '',
@@ -230,7 +230,7 @@ export default class Leader {
         const total = ((((100 + moddedEffect.change) / 100)
           * ((100 + happinessMod) / 100)) - 1) * 100;
         moddedEffect.change = total;
-        this.explanations = explanationsAdd({
+        this.explanations = utils.explanationsAdd({
           explanations: this.explanations,
           subject: key,
           source: 'Happiness',
@@ -244,85 +244,6 @@ export default class Leader {
 
     this.effects = moddedArray;
     this.happiness = happiness;
-
-    function explanationsAdd(p: {explanations: { [subject: string] :
-      { source: string, sourceIcon?: Icon, change: string, total: string }[] },
-      subject: string, source: string, sourceIcon?: Icon, change: number,
-      total: number}) {
-      const baseZero = [ LQ.HAPPINESS, LQ.HAPPINESS_TO_SPEED,
-        LQ.HAPPINESS_TO_QUALITY, LQ.HAPPINESS_TO_EFFICIENCY];
-      if (!p.explanations[p.subject]) {
-        let total = '100%';
-        if (utils.arrayIncludes(baseZero, p.subject.split('|')[0])) {
-          total = '0%';
-        }
-        p.explanations[p.subject] = [{ source: 'Base', change: ' ', total: total }];
-      }
-
-      let sign = ''; let changeStr = ''; let total = '';
-      if (utils.arrayIncludes(baseZero, p.subject.split('|')[0])) {
-        sign = '+';
-        if (p.change < 0) { sign = ''; }
-        changeStr += (sign + utils.formatNumberShort(p.change) + '%');
-        total = (utils.formatNumberShort(p.total) + '%');
-      }
-      else {
-        sign = 'x';
-        changeStr += (sign + utils.formatNumberShort(100 + p.change) + '%');
-        total = (utils.formatNumberShort(100 + p.total) + '%');
-      }
-
-      p.explanations[p.subject].push({ source: p.source, sourceIcon: p.sourceIcon,
-        change: changeStr, total: total });
-      return p.explanations;
-    }
-
-    function doesEffectMatch(effect: EquipmentEffect, compEffect: EquipmentEffect) {
-      if (effect.quality == compEffect.quality) {
-        switch(compEffect.specificity) {
-          // If effects are identical, they should already be combined
-          case RESOURCE_SPECIFICITY.EXACT:
-          if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
-            && effect.type) {
-            if (effect.type == compEffect.type) {
-              return true;
-            }
-          }
-          return false;
-
-          case RESOURCE_SPECIFICITY.TAG:
-          if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
-            && effect.type) {
-            const resourceType = resourceTypes[effect.type];
-            for (let index = 0; index < resourceType.tags.length; index++) {
-              if (resourceType.tags[index] == compEffect.type) {
-                return true;
-              }
-            }
-          }
-          return false;
-
-          case RESOURCE_SPECIFICITY.SUBCATEGORY:
-          if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
-            && effect.type) {
-            return (resourceTypes[effect.type].subcategory == compEffect.type);
-          }
-          return false;
-
-          case RESOURCE_SPECIFICITY.CATEGORY:
-          if (effect.specificity == RESOURCE_SPECIFICITY.EXACT
-            && effect.type) {
-            return (resourceTypes[effect.type].category == compEffect.type);
-          }
-          return false;
-
-          case undefined:
-          return true;
-        }
-        console.log('Unexpected resource specifcity: ' + effect.specificity);
-      }
-      return false;
-    }
   }
 
   export() {

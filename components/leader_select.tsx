@@ -31,6 +31,7 @@ export default function LeaderSelectComponent() {
   const buildings = useTypedSelector(state => state.buildings);
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
+  const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
   const modalValue: {type: string, subType: string, building: Building, fromBuildingDetail?: boolean, 
     anEquipment? : Equipment} = useTypedSelector(state => state.ui.modalValue);
   const { subType, building, fromBuildingDetail, anEquipment } = modalValue;
@@ -132,7 +133,7 @@ export default function LeaderSelectComponent() {
         }
         dispatch(assignToBuilding(leader, building.id));
         tempLeaders[leader.id].assignedTo = building.id;
-        const newRates = new Hourglass().calcRates(buildings, tempLeaders, vault);
+        const newRates = new Hourglass().calcRates(buildings, tempLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
       }
       else if (subType === LIVE_AT_BUILDING) {
@@ -145,7 +146,7 @@ export default function LeaderSelectComponent() {
         newLeaders[leader.id].livingAt = building.id;
         newLeaders[leader.id].calcEffects(equipment, buildings, vault);
         dispatch(setLeaders(newLeaders));
-        const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
       }
       else if (subType === DON_EQUIPMENT) {
@@ -164,12 +165,13 @@ export default function LeaderSelectComponent() {
           if (equipmentLeader) { newLeaders[equipmentLeader].backEquipped = null; }
           newLeaders[leader.id].backEquipped = anEquipment?.id || '';
         }
-        if (equipmentLeader) { newLeaders[equipmentLeader].calcEffects(equipment, buildings, vault); }
+        if (equipmentLeader) { newLeaders[equipmentLeader].calcEffects(equipment, buildings,
+          treasureEffects, vault); }
         newLeaders[leader.id].calcEffects(equipment, buildings, vault);
         console.log('newLeaders');
         console.log(newLeaders);
         dispatch(setLeaders(newLeaders));
-        const newRates = new Hourglass().calcRates(buildings, newLeaders, vault);
+        const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
       }
       if (fromBuildingDetail) {
