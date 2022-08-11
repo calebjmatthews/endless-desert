@@ -135,6 +135,7 @@ export enum RESOURCE_TYPES {
   BEADS = "Beads",
   GLASSWARE = "Glassware",
   LENS = "Lens",
+  LENS_COMPOUND = "Compound Lens",
   ACID = "Acid",
   GLAZE_ASH = "Ash Glaze",
   GLAZE_TIN = "Tin Glaze",

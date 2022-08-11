@@ -7,6 +7,7 @@ import { Text, View, ScrollView, TouchableOpacity, StyleSheet, TextInput }
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
+import SvgComponent from './svg';
 import IconComponent from './icon';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources, increaseResources } from '../actions/vault';
@@ -36,10 +37,11 @@ import { RESEARCHES } from '../enums/researches';
 import { MODALS } from '../enums/modals';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { ACTIVITIES } from '../enums/activities';
-import { QUALITY_VALUES } from '../constants';
+import { QUALITY_VALUES, ANALYSIS_TREASURES_KNOWLEDGE, ANALYSIS_TREASURES_SPEED } from '../constants';
 const QV = QUALITY_VALUES;
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
+import { RESEARCH_OPTION_ACTIONS } from '../enums/research_option_actions';
 
 export default function ResourceSelectOneComponent() {
   const dispatch = useDispatch();
@@ -211,55 +213,75 @@ export default function ResourceSelectOneComponent() {
     if (!resourceSelected) { return null; }
     if (modalValue.type == RESEARCHES.STUDY) {
       const resourceType = utils.getResourceType(resourceSelected);
-      const { knowledge, duration } = calcStudy();
+      const { knowledge, duration } = calcExamination(RESEARCHES.STUDY, treasuresDisplayed);
 
       return (
         <>
           <View style={styles.rows}>
             <Text>{'Gain '}</Text>
-            <BadgeComponent icon={resourceTypes[RTY.KNOWLEDGE].icon} size={21} />
-            <Text>{'Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
+            <SvgComponent icon={new Icon({...resourceTypes[RTY.KNOWLEDGE].icon, size: 21})} />
+            <Text>{' Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
           </View>
           <View style={styles.rows}>
             <Text>{' by studying '}</Text>
           </View>
           <View style={styles.rows}>
-            <BadgeComponent icon={resourceType.icon} size={21} />
-            <Text>{utils.getResourceName(resourceSelected)}</Text>
+            <SvgComponent icon={new Icon({...resourceType.icon, size: 21})} />
+            <Text>{' ' + utils.getResourceName(resourceSelected)}</Text>
           </View>
           <View style={styles.rows}>
             <Text>{' for '}</Text>
-            <BadgeComponent icon={new Icon({ provider: 'FontAwesome',
-              name: 'clock-o', color: '#8390da' })} size={21} />
-            <Text>{utils.formatDuration(duration) + '.'}</Text>
+            <IconComponent provider='FontAwesome' name='clock-o' color='#8390da' size={21} />
+            <Text>{' ' + utils.formatDuration(duration) + '.'}</Text>
           </View>
         </>
       );
     }
     else if (modalValue.type == RESEARCHES.ANALYSIS) {
       const resourceType = utils.getResourceType(resourceSelected);
-      const { knowledge, duration } = calcAnalysis();
+      const { knowledge, duration } = calcExamination(RESEARCHES.ANALYSIS, treasuresDisplayed);
+      const costs = getAnalysisCost(treasuresDisplayed);
 
       return (
         <>
           <View style={styles.rows}>
             <Text>{'Gain '}</Text>
-            <BadgeComponent icon={resourceTypes[RTY.KNOWLEDGE].icon} size={21} />
-            <Text>{'Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
+            <SvgComponent icon={new Icon({...resourceTypes[RTY.KNOWLEDGE].icon, size: 21})} />
+            <Text>{' Knowledge x' + utils.formatNumberShort(knowledge)}</Text>
           </View>
           <View style={styles.rows}>
             <Text>{' by analyzing '}</Text>
           </View>
           <View style={styles.rows}>
-            <BadgeComponent icon={resourceType.icon} size={21} />
-            <Text>{utils.getResourceName(resourceSelected) +' x'
+            <SvgComponent icon={new Icon({...resourceType.icon, size: 21})} />
+            <Text>{' ' + utils.getResourceName(resourceSelected) +' x'
               + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
           </View>
           <View style={styles.rows}>
             <Text>{' for '}</Text>
-            <BadgeComponent icon={new Icon({ provider: 'FontAwesome',
-              name: 'clock-o', color: '#8390da' })} size={21} />
-            <Text>{utils.formatDuration(duration) + '.'}</Text>
+          </View>
+          {costs.map((cost, index) => {
+            const costResourceType = utils.getResourceType(cost);
+            return (
+              <View key={`analysis-${cost.type}`} style={styles.rows}>
+                <SvgComponent icon={new Icon({...costResourceType.icon, size: 21})} />
+                <Text>{' ' + utils.getResourceName(cost) +' x'
+                  + utils.formatNumberShort(cost.quantity)}</Text>
+                {(index < costs.length-1) && (
+                  <Text>{`, `}</Text>
+                )}
+                {(costs.length === 1) && (
+                  <Text>{` and `}</Text>
+                )}
+                {(costs.length > 1 && index === costs.length-1) && (
+                  <Text>{`, and `}</Text>
+                )}
+              </View>
+            );
+          })}
+          <View style={styles.rows}>
+            <IconComponent provider='FontAwesome' name='clock-o' color='#8390da' size={21} />
+            <Text>{' ' + utils.formatDuration(duration) + '.'}</Text>
           </View>
         </>
       );
@@ -322,8 +344,20 @@ export default function ResourceSelectOneComponent() {
     let isDisabled = false;
     let buttonStyle: any = StyleSheet.flatten([styles.buttonLarge,
       styles.buttonRowItem]);
+    let label = ' Go';
     if (resourceSelected == null) {
       isDisabled = true;
+    }
+    else if (modalValue.type === RESEARCHES.ANALYSIS) {
+      const costs = getAnalysisCost(treasuresDisplayed);
+      costs.forEach((cost) => {
+        if (vault.resources[`${cost.type}|${cost.quality}`].quantity < cost.quantity) {
+          isDisabled = true;
+          label = ` Missing ${cost.type}`;
+        }
+      })
+    }
+    if (isDisabled) {
       buttonStyle = StyleSheet.flatten([styles.buttonLarge,
         styles.buttonRowItem, styles.buttonDisabled]);
     }
@@ -333,7 +367,7 @@ export default function ResourceSelectOneComponent() {
         onPress={() => {submit()}} >
         <IconComponent provider="FontAwesome5" name="check-square" color="#fff"
           size={16} style={styles.headingIcon} />
-        <Text style={styles.buttonTextLarge}>{' Go'}</Text>
+        <Text style={styles.buttonTextLarge}>{label}</Text>
       </TouchableOpacity>
     )
   }
@@ -371,7 +405,7 @@ export default function ResourceSelectOneComponent() {
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        const { knowledge, duration } = calcStudy();
+        const { knowledge, duration } = calcExamination(RESEARCHES.STUDY, treasuresDisplayed);
         const typeQuality = (resourceSelected.type.split('-')[0] + '|'
           + resourceSelected.quality);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
@@ -404,28 +438,16 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
-  function calcStudy() {
-    let knowledge = 0;
-    let duration = 0;
-    if (resourceSelected != null) {
-      const resourceType = utils.getResourceType(resourceSelected);
-      knowledge = resourceType.value * QV[resourceSelected.quality];
-      duration = (knowledge / Math.pow(2, Math.log10(knowledge))) * 1000;
-      if (duration < 1000) { duration = 1000; }
-    }
-    return { knowledge, duration };
-  }
-
   function actionAnalysis() {
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
-        const { knowledge, duration } = calcAnalysis();
-        const typeQuality = (resourceSelected.type + '|' + resourceSelected.quality);
+        const { knowledge, duration } = calcExamination(RESEARCHES.ANALYSIS, treasuresDisplayed);
+        const costs = getAnalysisCost(treasuresDisplayed);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
           quantity: knowledge})];
         const rsConsume = [new Resource({type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)})];
+          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}), ...costs];
         let timer = new Timer({
           name: RESEARCHES.ANALYSIS,
           endsAt: (new Date(Date.now()).valueOf() + duration),
@@ -446,19 +468,53 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
-  function calcAnalysis() {
+  function calcExamination(kind: RESEARCHES.STUDY|RESEARCHES.ANALYSIS,
+    treasuresDisplayed: { [typeName: string] : number }) {
     let knowledge = 0;
     let duration = 0;
+    const quantity = (kind === RESEARCHES.STUDY) ? 1 : parseInt(quantitySelected);
     if (resourceSelected != null) {
       const resourceType = utils.getResourceType(resourceSelected);
       if (resourceType.value != null) {
         knowledge = ((resourceType.value * QV[resourceSelected.quality]
-          * parseInt(quantitySelected)) / 4);
+          * quantity) / ((kind === RESEARCHES.STUDY) ? 1 : 4));
         duration = ((knowledge / Math.pow(2, Math.log10(knowledge))) * 1.5) * 1000;
         if (duration < 1000) { duration = 1000; }
       }
     }
+
+    let knowledgeMult = 1;
+    ANALYSIS_TREASURES_KNOWLEDGE.forEach((t) => {
+      if (treasuresDisplayed[t.typeName]) {
+        knowledgeMult *= t.multiplier;
+      }
+    });
+    knowledge *= knowledgeMult;
+
+    let durationMult = kind === RESEARCHES.STUDY ? 1 : 1.5;
+    ANALYSIS_TREASURES_SPEED.forEach((t) => {
+      if (treasuresDisplayed[t.typeName]) {
+        durationMult *= t.multiplier;
+      }
+    });
+    duration *= durationMult;
     return { knowledge, duration };
+  }
+
+  function getAnalysisCost(treasuresDisplayed: { [typeName: string] : number }) {
+    const costs: Resource[] = [];
+    ANALYSIS_TREASURES_KNOWLEDGE.forEach((t) => {
+      if (treasuresDisplayed[t.typeName]) {
+        costs.push(t.cost);
+      }
+    });
+    ANALYSIS_TREASURES_SPEED.forEach((t) => {
+      if (treasuresDisplayed[t.typeName]) {
+        costs.push(t.cost);
+      }
+    });
+    
+    return costs.sort((a, b) => (b.quantity - a.quantity));
   }
 
   function actionTrading() {

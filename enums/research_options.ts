@@ -25,10 +25,14 @@ export enum RESEARCH_OPTIONS {
   EXCESSIVE_NOTE_TAKING = "Excessive Note Taking",
   METAL_VARIETY = "Metal Variety",
   WOOD_VARIETY = "Wood Variety",
-  SYSTEMS_OF_KNOWLEDGE = "Systems of Knowledge",
+  SYSTEMS_OF_EXAMINATION = "Systems of Examination",
 
   // Scholarship Lv 2
   BRACHYGRAPHIC_SYMBOLS = "Brachiographic Symbols",
+  MAGNIFIED_EXAMINATION = "Magnified Examination",
+  ASSISTED_EXAMINATION = "Assisted Examination",
+  EXPANDED_EXAMINATION = "Expanded Examination",
+  AUGMENTED_EXAMINATION = "Augmented Examination",
 
   // Biology Lv 1
   LEGUME_DISSECTION = "Legume Dissection",

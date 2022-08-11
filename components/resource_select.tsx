@@ -12,10 +12,8 @@ import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
 
 import Resource from '../models/resource';
-import ResourceType from '../models/resource_type';
 import Vault from '../models/vault';
 import Positioner from '../models/positioner';
-import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 

@@ -61,7 +61,7 @@ export default function  NavbarComponent() {
     if (tabName === 'debug') {
       let allResources: Resource[] = [];
       Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100 }));
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
       });
       dispatch(increaseResources(vault, allResources));
     }

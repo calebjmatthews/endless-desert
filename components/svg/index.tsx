@@ -97,6 +97,7 @@ import AbrasiveSvgComponent from './resources/abrasive';
 import BeadsSvgComponent from './resources/beads';
 import GlasswareSvgComponent from './resources/glassware';
 import LensSvgComponent from './resources/lens';
+import LensCompoundSvgComponent from './resources/lens_compound';
 import GlazeSvgComponent from './resources/glaze';
 import TerracottaSvgComponent from './resources/terracotta';
 import FaienceSvgComponent from './resources/faience';
@@ -441,6 +442,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <GlasswareSvgComponent icon={props.icon} />;
     case SVGS.LENS:
     return <LensSvgComponent icon={props.icon} />;
+    case SVGS.LENS_COMPOUND:
+    return <LensCompoundSvgComponent icon={props.icon} />;
     case SVGS.GLAZE:
     return <GlazeSvgComponent icon={props.icon} />;
     case SVGS.TERRACOTTA:

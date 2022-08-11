@@ -94,6 +94,7 @@ export enum SVGS {
   BEADS = "Beads",
   GLASSWARE = "Glassware",
   LENS = "Lens",
+  LENS_COMPOUND = "Compound Lens",
   GLAZE = "Glaze",
   TERRACOTTA = "Terracotta",
   FAIENCE = "Faience",

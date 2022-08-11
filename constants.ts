@@ -1,7 +1,9 @@
 import { RESOURCE_CATEGORIES } from './enums/resource_categories';
 import { RESOURCE_TAGS } from './enums/resource_tags';
 import { LEADER_QUALITIES } from './enums/leader_qualities';
+import { RESOURCE_TYPES } from './enums/resource_types';
 import { SVGS } from './enums/svgs';
+import Resource from './models/resource';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
@@ -41,4 +43,22 @@ export const EQUIPMENT_TIER_DATA: { label: string, headingColor: string, color?:
   { label: 'Superior', headingColor: '#35654b', color: '#64c37d', iconName: SVGS.STARS_THREE },
   { label: 'Peerless', headingColor: '#448d9c', color: '#00d7df', iconName: SVGS.STARS_FOUR },
   { label: 'Transcendent', headingColor: '#6c319a', color: '#933ec5', iconName: SVGS.STARS_FIVE }
+];
+
+export const ANALYSIS_TREASURES_KNOWLEDGE = [
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION, multiplier: 1.5,
+    cost: new Resource({ type: RESOURCE_TYPES.PAPYRUS, quality: 0, quantity: 5 }) },
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION, multiplier: 1.5,
+    cost: new Resource({ type: RESOURCE_TYPES.GEARWORK, quality: 0, quantity: 0.1 }) },
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION, multiplier: 1.5,
+    cost: new Resource({ type: RESOURCE_TYPES.PRECISE_GEARWORK, quality: 0, quantity: 0.03 }) }
+];
+
+export const ANALYSIS_TREASURES_SPEED = [
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION, multiplier: 0.5,
+    cost: new Resource({ type: RESOURCE_TYPES.INK_FERROUS, quality: 0, quantity: 0.3 }) },
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION, multiplier: 0.5,
+    cost: new Resource({ type: RESOURCE_TYPES.LENS, quality: 0, quantity: 0.25 }) },
+  { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION, multiplier: 0.5,
+    cost: new Resource({ type: RESOURCE_TYPES.LENS_COMPOUND, quality: 0, quantity: 0.05 }) }
 ];

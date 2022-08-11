@@ -1423,7 +1423,12 @@ const buildingTypes: { [name: string] : BuildingType } = {
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.LENS, quantity: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GLASS, quantity: 10},
-        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 2}]}) ],
+        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 2}]}),
+    new BuildingRecipe({index: 3, produces:
+      [{specificity: RSP.EXACT, type: RTY.LENS_COMPOUND, quantity: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.GLASS_FLOAT, quantity: 10},
+        {specificity: RSP.EXACT, type: RTY.BRASS, quantity: 10},
+        {specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true

@@ -202,12 +202,52 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   manditory: true
 });
 
-researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_KNOWLEDGE] = new ResearchOption({
-  name: RESEARCH_OPTIONS.SYSTEMS_OF_KNOWLEDGE,
+researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION,
   appliesTo: RESEARCHES.SCHOLARSHIP,
   difficulty: 1,
   description: `To devise an effective improvement to your own research methods, you'll need potentially dizzying notes on your own process. You have a hunch that these could be found while researching, after upgrading the Study.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}],
+  manditory: true
+});
+
+researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION,
+  appliesTo: RESEARCHES.SCHOLARSHIP,
+  difficulty: 2,
+  description: `You've learned how to grind precision lenses for magnification. It might be time to slow down and see if these can be used to assist you in your studies.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
+    {specificity: RSP.EXACT, type: RTY.LENS, quantity: 3}],
+  manditory: true
+});
+
+researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.ASSISTED_EXAMINATION,
+  appliesTo: RESEARCHES.SCHOLARSHIP,
+  difficulty: 2,
+  description: `You've learned how to make basic gear-driven mechanisms. It might be time to slow down and see if these can be used to assist you in your studies.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
+    {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 1}],
+  manditory: true
+});
+
+researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.EXPANDED_EXAMINATION,
+  appliesTo: RESEARCHES.SCHOLARSHIP,
+  difficulty: 2,
+  description: `You've learned how to create far more powerful lenses. You're certain there's some way these can be used in your studies.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
+    {specificity: RSP.EXACT, type: RTY.LENS_COMPOUND, quantity: 3}],
+  manditory: true
+});
+
+researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.ASSISTED_EXAMINATION,
+  appliesTo: RESEARCHES.SCHOLARSHIP,
+  difficulty: 2,
+  description: `You've learned how to create durable, intricate gearwork mechanisms. You're certain there's some way these can be used in your studies.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
+    {specificity: RSP.EXACT, type: RTY.PRECISE_GEARWORK, quantity: 1}],
   manditory: true
 });
 

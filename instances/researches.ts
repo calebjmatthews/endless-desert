@@ -153,6 +153,22 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   actionCategory: TABS.RESEARCH
 });
 
+researches[RESEARCHES.EXAMINATION_WEIGHTY] = new Research({
+  name: RESEARCHES.EXAMINATION_WEIGHTY,
+  unlocks: ('A treasure: Study and Analyze for x50% more Knowledge with the added cost of Papyrus.'),
+  description: `You're beginning to learn about your own process of discovery, and have some ideas about ways to make your conclusions more impactful.`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#f6e5e5', shadow: '#dbb8b8',
+    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 1,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.FIELD_NOTES],
+  knowledgeReq: 8000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION
+});
+
 researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
   name: RESEARCHES.EXAMINATION_SWIFT,
   unlocks: ('A treasure: Study and Analyze in x50% less time with the added cost of Ink.'),
@@ -169,20 +185,68 @@ researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION
 });
 
-researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
-  name: RESEARCHES.EXAMINATION_SWIFT,
-  unlocks: ('A treasure: Study and Analyze for x50% more Knowledge with the added cost of Papyrus.'),
-  description: `You're beginning to learn about your own process of discovery, and have some ideas about ways to make your conclusions more impactful.`,
-  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#f6e5e5', shadow: '#dbb8b8',
-    secondaryColor: '#ad6767', secondaryShadow: '#954646', tertiaryColor: '#800000'}),
+researches[RESEARCHES.EXAMINATION_POTENT] = new Research({
+  name: RESEARCHES.EXAMINATION_POTENT,
+  unlocks: ('A treasure: Study and Analyze for an additional x50% more Knowledge with the added cost of Gearwork.'),
+  description: `You've learned even more about your own techniques and methods, and could use this knowledge to improve the potency of your studies.`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#e6f7ff', shadow: '#c3dbe7',
+    secondaryColor: '#69a8c7', secondaryShadow: '#3c8bb1', tertiaryColor: '#005780'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
-  difficulty: 1,
+  difficulty: 2,
   stepsNeeded: 1,
   beginsCompleted: false,
-  prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 8000,
-  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION
+  prereq: [RESEARCHES.EXAMINATION_WEIGHTY, RESEARCHES.IMPLEMENT_ASSEMBLY],
+  knowledgeReq: 22000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION
+});
+
+researches[RESEARCHES.EXAMINATION_MERCURIAL] = new Research({
+  name: RESEARCHES.EXAMINATION_MERCURIAL,
+  unlocks: ('A treasure: Study and Analyze in an additional x50% less time with the added cost of Lens.'),
+  description: `You've learned even more about your own techniques and methods, and could use this knowledge to improve the speed of your studies.`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#e6f7ff', shadow: '#c3dbe7',
+    secondaryColor: '#69a8c7', secondaryShadow: '#3c8bb1', tertiaryColor: '#005780'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.EXAMINATION_SWIFT, RESEARCHES.GLASS_SHAPING],
+  knowledgeReq: 48000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION
+});
+
+researches[RESEARCHES.EXAMINATION_VISIONARY] = new Research({
+  name: RESEARCHES.EXAMINATION_VISIONARY,
+  unlocks: ('A treasure: Study and Analyze for an additional x50% more Knowledge with the added cost of Precise Gearwork.'),
+  description: `Your workmanship and capabilities are becoming increasingly sophisticated. Why not fill your study with the fruits of your labour?`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_QUILL, color: '#e6f7ff', shadow: '#c3dbe7',
+    secondaryColor: '#69a8c7', secondaryShadow: '#3c8bb1', tertiaryColor: '#005780'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.EXAMINATION_POTENT, RESEARCHES.ADVANCED_IMPLEMENTS],
+  knowledgeReq: 48000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION
+});
+
+researches[RESEARCHES.EXAMINATION_ALACRITOUS] = new Research({
+  name: RESEARCHES.EXAMINATION_ALACRITOUS,
+  unlocks: ('A treasure: Study and Analyze in an additional x50% less time with the added cost of Compond Lens.'),
+  description: `Your workmanship and capabilities are becoming increasingly sophisticated. Why not fill your study with the fruits of your labour?`,
+  icon: new Icon({provider: 'svg', name: SVGS.OPEN_BOOK_WIND, color: '#f6e3fa', shadow: '#ddc0e3',
+    secondaryColor: '#94699d', secondaryShadow: '#82568b', tertiaryColor: '#6b3676'}),
+  category: RESEARCHES.SCHOLARSHIP,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.EXAMINATION_MERCURIAL, RESEARCHES.ADVANCED_IMPLEMENTS],
+  knowledgeReq: 22000,
+  givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION
 });
 
 researches[RESEARCHES.BRACHYGRAPHY] = new Research({

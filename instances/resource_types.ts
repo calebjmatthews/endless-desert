@@ -1351,6 +1351,15 @@ resourceTypes[RTY.LENS] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.LENS})
 });
 
+resourceTypes[RTY.LENS_COMPOUND] = new ResourceType({
+  name: RTY.LENS_COMPOUND,
+  category: RCA.ARTISAN_GOOD,
+  subcategory: RSC.GLASS,
+  tags: [RTA.GLASS],
+  value: 16800,
+  icon: new Icon({provider: 'svg', name: SVGS.LENS_COMPOUND})
+});
+
 resourceTypes[RTY.ACID] = new ResourceType({
   name: RTY.ACID,
   category: RCA.MATERIAL_REFINED,

@@ -894,7 +894,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Treasure in account reducer and actions
   [X] Display treasures on/remove treasures from Wall
   [X] Displayed treasure effects can affect rates
-  [ ] Other reasearches to improve researching (speed, knowledge gain)
+  [X] Other reasearches to improve researching (speed, knowledge gain)
   [ ] Scale Firefly quests with # resources studied
 
   [ ] ?
@@ -925,6 +925,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Select non-exact resources in conversations
   [ ] Hide recipes missing ingredients
   [ ] Handle number parsing within ResourceSelectOne
+  [ ] Study and analysis consume resources at start, can be cancelled
 
 ## Commands
 ### Delete all records from all tables:
