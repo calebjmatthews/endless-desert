@@ -895,7 +895,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Display treasures on/remove treasures from Wall
   [X] Displayed treasure effects can affect rates
   [X] Other reasearches to improve researching (speed, knowledge gain)
-  [ ] Scale Firefly quests with # resources studied
+  [X] Scale Firefly quests with # resources studied
 
   [ ] ?
 

@@ -1,8 +1,6 @@
 import Quest from '../models/quest';
 import QuestTask from '../models/quest_task';
 import Resource from '../models/resource';
-import ResourceTag from '../models/resource_tag';
-import ResourceSubcategory from '../models/resource_subcategory';
 import Building from '../models/building';
 import Vault from '../models/vault';
 import { GameState } from '../models/game_state';
@@ -20,7 +18,7 @@ import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const TASK_VALUE = 1000;
 
 export function questGen(gState: GameState) : Quest|null {
-  if (!gState.vault || !gState.buildings) { return null; }
+  if (!gState.vault || !gState.buildings || !gState.researchStatus) { return null; }
   const gens = [
     { name: 'produce_type', weight: 10,
       prefixes: [`Producing`, `How to Make`, `Creating`] },
@@ -111,8 +109,8 @@ export function questGen(gState: GameState) : Quest|null {
 
     resources = resources.map((resource) => {
       const resourceType = resourceTypes[resource.type];
-      const quantity = Math.ceil((TASK_VALUE *
-        (1 + (0.2 * resources.length))) / resourceType.value);
+      const quantity = Math.ceil(((1000 + Object.keys(gState.researchStatus?.resourcesStudied || {})
+        .length * 20) * (1 + (0.2 * resources.length))) / resourceType.value);
       totalValue += (quantity * resourceType.value);
       return new Resource({ ...resource, quantity });
     });
@@ -199,5 +197,5 @@ function genReward(gState: GameState, value: number, vault: Vault):
   const resourceType = resourceTypes[rewardTypeName];
   return [{ specificity: RESOURCE_SPECIFICITY.EXACT, type: rewardTypeName, value },
     { specificity: RESOURCE_SPECIFICITY.EXACT, type: RESOURCE_TYPES.GLOAMING_LIGHT,
-      value: 1000 }];
+      value: Math.round(value / 1000) }];
 }

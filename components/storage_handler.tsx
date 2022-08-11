@@ -336,7 +336,7 @@ export default function StorageHandlerComponent() {
     dispatch(setTerrain(terrain));
     const buildingsStarting = genStartingBuildings(buildingMap);
     dispatch(setBuildings(buildingsStarting));
-    const newRates = hourglass.calcRates(buildingsStarting, {}, {});
+    const newRates = hourglass.calcRates(buildingsStarting, {}, []);
     dispatch(setRates(newRates));
     dispatch(setGlobalState('landing'));
   }
