@@ -446,8 +446,8 @@ export default function ResourceSelectOneComponent() {
         const costs = getAnalysisCost(treasuresDisplayed);
         const rsIncrease = [new Resource({type: RTY.KNOWLEDGE, quality: 0,
           quantity: knowledge})];
-        const rsConsume = [new Resource({type: resourceSelected.type,
-          quality: resourceSelected.quality, quantity: parseInt(quantitySelected)}), ...costs];
+        const rsConsume = [new Resource({...resourceSelected, quantity: parseInt(quantitySelected)}), 
+          ...costs];
         let timer = new Timer({
           name: RESEARCHES.ANALYSIS,
           endsAt: (new Date(Date.now()).valueOf() + duration),
