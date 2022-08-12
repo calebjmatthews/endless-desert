@@ -17,15 +17,17 @@ import Building from '../models/building';
 import { tabs } from '../instances/tabs';
 import { resourceTypes } from '../instances/resource_types';
 import { buildingTypes } from '../instances/building_types';
+import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { utils } from '../utils';
 import { CONVERSATIONS } from '../enums/conversations';
 import { FORTUITIES } from '../enums/fortuities';
+import { TRADING_PARTNERS } from '../enums/trading_partners';
 
 export default function  NavbarComponent() {
   const dispatch = useDispatch();
   const tabsUnloked = useTypedSelector(state => state.account.tabsUnloked);
   const tabSelected = useTypedSelector(state => state.ui.tabSelected);
-  const vault = useTypedSelector(state => state.vault);
+  const tradingPartners = useTypedSelector(state => state.tradingStatus.tradingPartners);
 
   let tabsArray = Object.keys(tabs).map((tabName) => {
     return tabs[tabName];
@@ -59,11 +61,9 @@ export default function  NavbarComponent() {
 
   function dropdownPress(tabName: string) {
     if (tabName === 'debug') {
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
+      const tradingPartnerType = tradingPartnerTypes[TRADING_PARTNERS.TREFOIL_ISLANDS];
+      const visit = tradingPartnerType.createTradingPartnerVisit(tradingPartners[TRADING_PARTNERS.TREFOIL_ISLANDS]);
+      console.log('visit.trades', visit.trades);
     }
     else {
       dispatch(selectTab(tabName));

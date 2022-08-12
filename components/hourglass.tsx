@@ -92,7 +92,7 @@ export default function HourglassComponent() {
       const ratesToUse = (whileAway.diff > 60000) ? hourglass.calcRates(buildings, leaders,
         account.treasureEffects, vault) : rates;
       if (whileAway.diff > 60000) { recalcRates = true; }
-      const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {}, {},
+      const results = hourglass.callCalcs(ratesToUse, vault, tempBuildings, {}, [],
         vault.lastTimestamp, questStatus.resourcesToCheck);
 
       rti = utils.sumToResources(vault, results.productionSum);

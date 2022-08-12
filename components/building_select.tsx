@@ -251,7 +251,7 @@ export function BuildingSelectContents() {
           buildingName = buildings[buildingSelected].name || buildingType.name;
         }
         const noteType = resourceTypes[buildingType.givesNote];
-        const duration = (brachygraphy === 'completed') ? 1800000 : 3600000;
+        const duration = (brachygraphy) ? 1800000 : 3600000;
         const rsIncrease = [new Resource({ type: buildingType.givesNote,
           quality: 0, quantity: 1 })];
         const rsConsume = buildingType.noteCost.map((cost) => {

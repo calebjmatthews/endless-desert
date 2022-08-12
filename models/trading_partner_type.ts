@@ -1,6 +1,5 @@
 import TradingPartnerVisit from './trading_partner_visit';
 import TradingPartner from './trading_partner';
-import Resource from './resource';
 import ResourceType from './resource_type';
 import Trade from './trade';
 import Icon from './icon';
@@ -13,8 +12,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   description: string = '';
   icon: Icon = new Icon({provider: '', name: ''});
   givesPool: {specificity: string, type: string, quality?: number,
-    weight: number}[][] = [];
-  receivesPool: {specificity: string, type: string, weight: number}[][] = [];
+    weight: number, valuable?: boolean}[][] = [];
+  receivesPool: {specificity: string, type: string, weight: number, valuable?: boolean}[][] = [];
   initialTrust: number = 0;
   maxTrust: number = 0;
   getTier: (trust: number) => {value: number, toNext: number} = (trust) => ({
@@ -197,10 +196,14 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return { type: typeName, quality: pGive.quality };
   }
 
-  choosePReceive(give: {type: string, quality?: number}, tier: number) {
+  choosePReceive(give: {type: string, quality?: number, valuable?: boolean}, tier: number) {
     for (let loop = 0; loop < 100; loop++) {
+      let receivesPool = this.receivesPool[tier];
+      if (give.valuable) {
+        receivesPool = receivesPool.filter((receive) => (receive.valuable === true));
+      }
       let tReceive: {specificity: string, type: string, weight: number} =
-        utils.randomWeightedSelect(this.receivesPool[tier]);
+        utils.randomWeightedSelect(receivesPool);
       if (give.type != tReceive.type) {
         return tReceive;
       }
@@ -213,8 +216,8 @@ interface TradingPartnerTypeInterface {
   name: string;
   description: string;
   icon: Icon;
-  givesPool: {specificity: string, type: string, quality?: number, weight: number}[][];
-  receivesPool: {specificity: string, type: string, weight: number}[][];
+  givesPool: {specificity: string, type: string, quality?: number, weight: number, valuable?: boolean}[][];
+  receivesPool: {specificity: string, type: string, weight: number, valuable?: boolean}[][];
   initialTrust: number;
   maxTrust: number;
   getTier: (trust: number) => {value: number, toNext: number};
