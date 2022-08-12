@@ -40,6 +40,7 @@ import EquipmentEffect from '../models/equipment_effect';
 import { genStartingBuildings } from '../instances/buildings';
 import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
   FADE_IN_DELAY } from '../constants';
+import { utils } from '../utils';
 
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
@@ -207,7 +208,7 @@ export default function StorageHandlerComponent() {
         const importedState = new DBObject().import(rawDataRes.data);
         console.log('importedState');
         console.log(importedState);
-        let buildings: { [id: string] : Building } = {};
+        let rawBuildings: { [id: string] : Building } = {};
         let rawLeaders: { [id: string] : Leader } = {};
         let equipment = {};
         let treasureEffects: EquipmentEffect[] = [];
@@ -234,8 +235,7 @@ export default function StorageHandlerComponent() {
               dispatch(setResearchStatus(researchStatus));
             }
             else if (tableName == 'buildings' && tableValue) {
-              buildings = tableValue;
-              dispatch(TABLE_SETTERS[tableName](tableValue));
+              rawBuildings = tableValue;
             }
             else if (tableName == 'leaders' && tableValue) {
               rawLeaders = tableValue;
@@ -257,13 +257,31 @@ export default function StorageHandlerComponent() {
             }
           }
         });
+
+        let buildings: { [id: string] : Building } = {};
+        Object.keys(rawBuildings).forEach((id) => {
+          const building = rawBuildings[id];
+          if (building.recipe) {
+            if (vault.isResourceCustomAndBroken(building.recipe?.produces?.[0]?.type)) {
+              console.log(`Broken building recipe removed: `, building.recipe);
+              building.recipe = null;
+              building.recipeSelected = -1;
+            }
+          }
+          buildings[id] = building;
+        });
+        dispatch(setBuildings(buildings));
+
         let leaders: { [id: string] : Leader } = {};
         Object.keys(rawLeaders).map((id) => {
           let leader = new Leader(rawLeaders[id]);
+          if (vault.isResourceCustomAndBroken(leader.eating?.split('|')[0])) { leader.eating = null; }
+          if (vault.isResourceCustomAndBroken(leader.drinking?.split('|')[0])) { leader.drinking = null; }
           leader.calcEffects(equipment, buildings, vault);
           leaders[id] = leader;
         });
         dispatch(setLeaders(leaders));
+
         const newRates = hourglass.calcRates(buildings, leaders, treasureEffects, vault);
         dispatch(setRates(newRates));
         return true;

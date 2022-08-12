@@ -484,6 +484,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
     - Understanding of Rhapsodic Auto-Exhumation
     - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
+      - Tourmaline Jewelers are pretentious, but have keen eyes
+      - Sandstone Edificers are impressive engineers, practical and competent
+      - Wet-Wax Chandlers are mysterious, and have unexpected influence
+      - Cochineal Scribes are very learned in theory and languages, but vague
+      - Keepers of the Hanging Gardens are idealistic and concerned with the beauty of tradition and growing things
     - People: You (Gardens), Samannoud (Gardens), Kubra (Tourmaline), Najran (Tourmaline), Asyut (Sandstone)
   ### East
     - Salt flats? Large, extant China-inspired kingdom (Spring-Autumn Kingdom) with heavy bureaucracy and centers of learning.
@@ -897,6 +902,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Other reasearches to improve researching (speed, knowledge gain)
   [X] Scale Firefly quests with # resources studied
 
+  [ ] Fix for analyzing cooked things
   [ ] Fix for impossible expensive trades
   [ ] Press anywhere to skip dialogue animation
   [ ] When gaining treasure from research, show in completion message

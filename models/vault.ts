@@ -352,6 +352,15 @@ export default class Vault {
     return null;
   }
 
+  isResourceCustomAndBroken(typeName?: string) {
+    if (!typeName?.includes('-')) { return false; }
+
+    const resource = this.resources[`${typeName}|0`] || this.resources[`${typeName}|1`]
+      || this.resources[`${typeName}|2`];
+    if (!resource || !resource?.id) { return true; }
+    return false;
+  }
+
   export(): DBVault {
     const expResources: { [name: string] : Resource|number } = {};
     Object.keys(this.resources).forEach((typeQuality) => {
