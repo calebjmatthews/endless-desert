@@ -902,8 +902,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Other reasearches to improve researching (speed, knowledge gain)
   [X] Scale Firefly quests with # resources studied
 
-  [ ] Fix for analyzing cooked things
-  [ ] Fix for impossible expensive trades
+  [X] Fix for analyzing cooked things
+  [X] Fix for impossible expensive trades
   [ ] Press anywhere to skip dialogue animation
   [ ] When gaining treasure from research, show in completion message
   [ ] Quest for treasure display on Wall
