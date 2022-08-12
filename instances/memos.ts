@@ -47,7 +47,7 @@ memos[MEMOS.LOOK_AROUND_REPAIR] = new Memo({
 memos[MEMOS.CISTERN_REPAIRED] = new Memo({
   name: MEMOS.CISTERN_REPAIRED,
   title: "Flowing Water",
-  text: "The tributary that flows into the cistern now makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls of the gigantic basin, you can climb down and access the reminant of the village's stored water:",
+  text: "The tributary that flows into the cistern makes a reassuring burble as water level begins to rise. And now that you've repaired the sandstone walls of the gigantic basin, you can climb down and access the reminant of the village's stored water:",
   resourcesGained: [
     new Resource({ type: RESOURCE_TYPES.WATER, quality: 0, quantity: 2080 })
   ]

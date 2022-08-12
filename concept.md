@@ -897,26 +897,33 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Other reasearches to improve researching (speed, knowledge gain)
   [X] Scale Firefly quests with # resources studied
 
-  [ ] ?
+  [ ] Fix for impossible expensive trades
+  [ ] Press anywhere to skip dialogue animation
+  [ ] When gaining treasure from research, show in completion message
+  [ ] Quest for treasure display on Wall
+  [ ] Small icon to show when there are resources to be studied (or disable button?)
+  [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
+  [ ] Add images to memos
 
   [ ] Firefly mother quests?
   [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes
   [ ] Expeditions! (without exploration)
+  [ ] Fix `built` issue in BuildingDetail
 
   [ ] Mass deconstruct option in Equipment tab
   [ ] Store memo/ui state in reducer
   [ ] Load equipment marked state
   [ ] Autoselect first resource
   [ ] Add animations to memos
+  [ ] Rich text rendering
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
   [ ] Conversations can be repeatable, but not daily
   [ ] Store conversation state in reducer
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
-  [ ] Fix for impossible expensive trades
   [ ] More repeatable fortuities
   [ ] Leaders running out of consumed food/drink begin foraging
   [ ] Resource production/consumption breakdown in resource detail
@@ -926,6 +933,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Hide recipes missing ingredients
   [ ] Handle number parsing within ResourceSelectOne
   [ ] Study and analysis consume resources at start, can be cancelled
+  [ ] Hide leader assignment buttons until there are leaders
+  [ ] Restyle completed quests
+  [ ] Only show most recent completed quests, with "Show more" button
+  [ ] Fix quest completion resource display (Mattock x0)
 
 ## Commands
 ### Delete all records from all tables:

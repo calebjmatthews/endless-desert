@@ -518,9 +518,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
     icon: new Icon({provider: 'svg', name: SVGS.GRAIN_FIELD}),
     cost: [{specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 10},
       {specificity: RSP.EXACT, type: RTY.WATER, quantity: 200}],
-    upgradeCost: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 200},
-      {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 80},
-      {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 10}],
+    upgradeCost: [{specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 80},
+      {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 30}],
     upgradesInto: BTY.GRAIN_FIELD_FURROWED,
     terrainAllowed: [TERRAIN_TYPES.RIVERBANK],
     recipes: [ new BuildingRecipe({index: 0, produces:

@@ -356,7 +356,9 @@ export default function HourglassComponent() {
       if (quest.isDaily) { currentDaily = true; }
     });
     if (!currentDaily && !withinLastDay(questStatus.lastDailyCompleted)) {
-      return questGen({ vault, buildings });
+      const quest = questGen({ vault, buildings, researchStatus });
+      console.log('quest: ', quest);
+      return quest;
     }
     return null;
   }

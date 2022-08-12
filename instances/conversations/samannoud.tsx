@@ -371,7 +371,7 @@ We'll need fuel for smelting metal, and plenty of it. Not Reeds, those burn as f
 sndConvoResponses[CVS.SND_GETTING_SERIOUS + ' - r0h'] = new ConversationResponse({
   name: CVS.SND_GETTING_SERIOUS + ' - r0h',
   textIntro: `I think I know where you're going with this...`,
-  text: `I think I know where you're going with this, and I suspect it involves a lot of work.`,
+  text: `I think I know where you're going with this, and I suspect it involves a lot of work. For me.`,
   statementName: CVS.SND_GETTING_SERIOUS + ' - s1h',
   speechType: 'Humorous'
 });
