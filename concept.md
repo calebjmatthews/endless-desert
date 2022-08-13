@@ -905,11 +905,14 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix for analyzing cooked things
   [X] Fix for impossible expensive trades
   [ ] Press anywhere to skip dialogue animation
+  [ ] Fix new dialogue available styling on button
   [ ] When gaining treasure from research, show in completion message
   [ ] Quest for treasure display on Wall
   [ ] Small icon to show when there are resources to be studied (or disable button?)
   [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
   [ ] Add images to memos
+  [ ] Improved ordering of equipment
+  [ ] On equipment selection, show current leader equipping
 
   [ ] Firefly mother quests?
   [ ] Trader conversations
