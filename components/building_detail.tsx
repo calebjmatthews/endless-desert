@@ -176,7 +176,7 @@ export default function BuildDetailComponent() {
           { alignSelf: 'stretch' }])}>
         <IconComponent provider="FontAwesome5" name="level-down-alt" color="#fff"
           size={16} />
-        <Text style={styles.buttonTextLarge}>{' Into storage'}</Text>
+        <Text style={styles.buttonText}>{' Into storage'}</Text>
       </TouchableOpacity>
     );
   }
@@ -233,6 +233,7 @@ export default function BuildDetailComponent() {
               {renderBuildCosts()}
             </View>
           </View>
+          <View style={styles.break} />
         </View>
       );
     }

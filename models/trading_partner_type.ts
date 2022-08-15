@@ -69,8 +69,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     }
 
     let trades: { [id: string] : Trade} = {};
-    let pGives: {specificity: string, type: string, quality?: number,
-      weight: number}[] = [];
+    let pGives: {specificity: string, type: string, quality?: number, weight: number,
+      valuable?: boolean}[] = [];
 
     let retryLimit = 100;
     for (let loop = 0; loop < tCount; loop++) {
@@ -108,7 +108,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   }
 
   createNewTrade(pGives: {specificity: string, type: string, quality?: number,
-    weight: number}[], tier: number) {
+    weight: number, valuable?: boolean}[], tier: number) {
     const pGive = this.choosePGive(pGives, tier);
     const give = this.createGive(pGive);
     if (give) {
@@ -131,11 +131,10 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   }
 
   choosePGive(pGives: {specificity: string, type: string, quality?: number,
-    weight: number}[], tier: number) {
+    weight: number, valuable?: boolean}[], tier: number) {
     for (let loop = 0; loop < 100; loop++) {
-      let tGive: {specificity: string, type: string, quality?: number,
-        weight: number} =
-        utils.randomWeightedSelect(this.givesPool[tier]);
+      let tGive: {specificity: string, type: string, quality?: number, weight: number, 
+        valuable?: boolean} = utils.randomWeightedSelect(this.givesPool[tier]);
       let alreadyPresent = false;
       pGives.map((pGive) => {
         if (pGive.type == tGive.type) {
@@ -149,8 +148,8 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     return this.givesPool[tier][0];
   }
 
-  createGive(pGive: {specificity: string, type: string, quality?: number,
-    weight: number}) {
+  createGive(pGive: {specificity: string, type: string, quality?: number, weight: number,
+    valuable?: boolean}) {
     let typeNames: string[] = [];
     switch(pGive.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
@@ -193,7 +192,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
     else {
       return null;
     }
-    return { type: typeName, quality: pGive.quality };
+    return { type: typeName, quality: pGive.quality, valuable: pGive.valuable };
   }
 
   choosePReceive(give: {type: string, quality?: number, valuable?: boolean}, tier: number) {

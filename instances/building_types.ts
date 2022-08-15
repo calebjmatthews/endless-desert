@@ -1312,11 +1312,11 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 1000},
         {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 30}]}),
     new BuildingRecipe({index: 5, produces:
-      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 1}],
+      [{specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 2}],
       consumes: [{specificity: RSP.EXACT, type: RTY.THATCH, quantity: 80},
         {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 40}]}),
     new BuildingRecipe({index: 6, produces:
-      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 1}],
+      [{specificity: RSP.EXACT, type: RTY.BINDING, quantity: 2}],
       consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 100},
         {specificity: RSP.EXACT, type: RTY.PULP, quantity: 80}]}) ],
     givesNote: RTY.NOTES_HEAT,

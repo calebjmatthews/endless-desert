@@ -35,7 +35,7 @@ export default function MessagesComponent() {
                 { alignSelf: 'flex-start', marginLeft: 15 }])}>
                 {utils.getDatetimeString(new Date(message.timestamp))}
               </Text>
-              <View style={styles.messageBar}>
+              <View style={[styles.messageBar, {height: 'unset', minHeight: 30}]}>
                 {message.icon &&
                   <BadgeComponent icon={message.icon} size={24} borderless={true} />}
                 <Text style={styles.messageBarText}>{message.text}</Text>

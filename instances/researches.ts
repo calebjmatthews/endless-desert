@@ -142,7 +142,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   description: ('Until now, your research and observations have only lived inside your '
     + 'own head. Parchment and ink will allow you to record the phenomena '
     + 'you see as they\'re occurring.'),
-  icon: new Icon({provider: 'FontAwesome', name: 'book', color: '#2b2b2d'}),
+  icon: new Icon({provider: 'FontAwesome', name: 'book', color: '#fff', backgroundColor: '#071f56'}),
   category: RESEARCHES.SCHOLARSHIP,
   isCategory: false,
   difficulty: 1,

@@ -846,7 +846,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
           quantity: 100, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.REED_MUCK_RAKE, value: 12800 }]
+    gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.REED_MUCK_RAKE} (U)`, value: 12800 }]
   }),
   [QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD]: new Quest({
     id: QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD,
@@ -863,7 +863,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
           quantity: 100, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CLAY_SPADE_BROAD, value: 12000 }]
+    gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CLAY_SPADE_BROAD} (U)`, value: 12000 }]
   }),
   [QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT]: new Quest({
     id: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT,
@@ -881,7 +881,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT, value: 13000 }]
+    gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT} (U)`, value: 13000 }]
   }),
   [QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE]: new Quest({
     id: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE,
@@ -899,7 +899,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE, value: 12600 }]
+    gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE} (U)`, value: 12600 }]
   }),
   [QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS]: new Quest({
     id: QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS,
@@ -916,7 +916,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS, value: 12000 }]
+    gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS} (U)`, value: 12000 }]
   }),
   [QUESTS.TESTING]: new Quest({
     id: testingId,

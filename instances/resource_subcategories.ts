@@ -233,6 +233,14 @@ new ResourceSubcategory({
   icon: new Icon({provider: 'svg', name: SVGS.JUICE_BLUEBERRY})
 });
 
+resourceSubcategories[RESOURCE_SUBCATEGORIES.CHILLED_WATER] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.CHILLED_WATER,
+  plural: 'Jars of Chilled Water',
+  value: 405,
+  order: 83,
+  icon: new Icon({provider: 'svg', name: SVGS.CHILLED_WATER})
+});
+
 resourceSubcategories[RESOURCE_SUBCATEGORIES.SOUP] = new ResourceSubcategory({
   name: RESOURCE_SUBCATEGORIES.SOUP,
   plural: 'Bowls of Soup',
@@ -307,6 +315,14 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.SALTED_MEAT] = new ResourceSubcateg
   value: 280,
   order: 108,
   icon: new Icon({provider: 'svg', name: SVGS.SALTED_MEAT})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.SALTFISH] = new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.SALTFISH,
+  plural: 'Saltfish',
+  value: 40,
+  order: 109,
+  icon: new Icon({provider: 'svg', name: SVGS.SALTFISH})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.MISTAKE] = new ResourceSubcategory({

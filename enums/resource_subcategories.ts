@@ -23,6 +23,7 @@ export enum RESOURCE_SUBCATEGORIES {
   IMPLEMENT_PARTS = "Implement Parts",
   DROMEDARY = "Dromedary",
   TEA = "Tea",
+  CHILLED_WATER = "Chilled Water",
   JUICE_BLUEBERRY = "Blueberry Juice",
   JUICE_TOMATO = "Tomato Juice",
   SOUP = "Soup",
@@ -34,5 +35,6 @@ export enum RESOURCE_SUBCATEGORIES {
   WAYBREAD = "Waybread",
   DRIED_FRUIT = "Dried Fruit",
   SALTED_MEAT = "Salted Meat",
+  SALTFISH = "Saltfish",
   MISTAKE = "Mistake",
 }
