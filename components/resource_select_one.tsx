@@ -478,7 +478,7 @@ export default function ResourceSelectOneComponent() {
       if (resourceType.value != null) {
         knowledge = ((resourceType.value * QV[resourceSelected.quality]
           * quantity) / ((kind === RESEARCHES.STUDY) ? 1 : 4));
-        duration = ((knowledge / Math.pow(2, Math.log10(knowledge))) * 1.5) * 1000;
+        duration = (knowledge / Math.pow(2.5, Math.log10(knowledge))) * 1.5 * 1000;
         if (duration < 1000) { duration = 1000; }
       }
     }

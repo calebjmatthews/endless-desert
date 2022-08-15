@@ -110,24 +110,25 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
   createNewTrade(pGives: {specificity: string, type: string, quality?: number,
     weight: number, valuable?: boolean}[], tier: number) {
     const pGive = this.choosePGive(pGives, tier);
+    
     const give = this.createGive(pGive);
-    if (give) {
-      const pReceive = this.choosePReceive(give, tier);
+    if (!give) { return null; }
 
-      const multiplierMap: { [spec: string] : number } = {
-        [RESOURCE_SPECIFICITY.CATEGORY]: 0.8,
-        [RESOURCE_SPECIFICITY.TAG]: 0.9,
-        [RESOURCE_SPECIFICITY.SUBCATEGORY]: 1,
-        [RESOURCE_SPECIFICITY.EXACT]: 1.1
-      }
-      let multiplier = multiplierMap[pReceive.specificity];
-      multiplier = multiplier + (0.4 * utils.random() - 0.2);
-
-      const receive = { specificity: pReceive.specificity, type: pReceive.type,
-        multiplier };
-      return { pGive, give, receive, multiplier }
+    const pReceive = this.choosePReceive(give, tier);
+    if (!pReceive) { return null; }
+      
+    const multiplierMap: { [spec: string] : number } = {
+      [RESOURCE_SPECIFICITY.CATEGORY]: 0.8,
+      [RESOURCE_SPECIFICITY.TAG]: 0.9,
+      [RESOURCE_SPECIFICITY.SUBCATEGORY]: 1,
+      [RESOURCE_SPECIFICITY.EXACT]: 1.1
     }
-    return null;
+    let multiplier = multiplierMap[pReceive.specificity];
+    multiplier = multiplier + (0.4 * utils.random() - 0.2);
+
+    const receive = { specificity: pReceive.specificity, type: pReceive.type,
+      multiplier };
+    return { pGive, give, receive, multiplier };
   }
 
   choosePGive(pGives: {specificity: string, type: string, quality?: number,
@@ -203,7 +204,7 @@ export default class TradingPartnerType implements TradingPartnerTypeInterface {
       }
       let tReceive: {specificity: string, type: string, weight: number} =
         utils.randomWeightedSelect(receivesPool);
-      if (give.type != tReceive.type) {
+      if (give.type != tReceive?.type) {
         return tReceive;
       }
     }

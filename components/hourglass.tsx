@@ -406,7 +406,7 @@ export default function HourglassComponent() {
       addTerrain = terrain.addColumn(terrain, 'left');
       break;
 
-      case BUILDING_TYPES.GATE_BRICKWORK:
+      case BUILDING_TYPES.GATE_METAL_CLAD:
       addTerrain = terrain.addColumn(terrain, 'right');
       break;
 

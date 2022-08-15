@@ -639,7 +639,7 @@ export default function BuildDetailComponent() {
     }
     if (!rate.inexact) {
       return (
-        <View key={`${sign}${resourceKind.name}`} style={[styles.rows, rateStyle]}>
+        <View key={`${sign}${resourceKind.name}|${rate.quality}`} style={[styles.rows, rateStyle]}>
           <Text style={{minWidth: 33, textAlign: 'right'}}>
             {sign + utils.formatNumberShort(rate.quantity)}
           </Text>

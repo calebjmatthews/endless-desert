@@ -1678,7 +1678,7 @@ resourceTypes[RTY.UNBREAKABLE_SLAB] = new ResourceType({
   category: RCA.IMPLEMENT,
   tags: [RTA.ACTION_BREAK],
   value: 27300,
-  description: `The infusion of Wolfram has made this metal plate alarming strong; swing it hard enough and you could break through just about anything`,
+  description: `The infusion of Wolfram has made this metal plate alarmingly strong; swing it hard enough and you could break through just about anything`,
   icon: new Icon({provider: 'svg', name: SVGS.UNBREAKABLE_SLAB})
 });
 
