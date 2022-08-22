@@ -333,7 +333,7 @@ export default function HourglassComponent() {
       const fortuity = fortuities[fName];
       if (fortuity.repeatable || account.fortuitiesSeen[fName] == undefined) {
         if (!(fortuity.repeatable && withinLastDay(account.fortuityDailyLast))
-          && fortuity.available({ vault, researchStatus, buildings, timers,  tradingStatus, account, leaders, equipment })) {
+          && fortuity.available({ vault, researchStatus, buildings, timers,  tradingStatus, account, leaders, equipment, questStatus })) {
           fortuityPool.push(fortuity);
         }
       }

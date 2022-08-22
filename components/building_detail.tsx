@@ -613,6 +613,7 @@ export default function BuildDetailComponent() {
     const width = !unbuilt ? positioner.modalMinor : positioner.modalMajor;
     let typeQuality = `${rate.type}|0`;
     let resourceKind = utils.getMatchingResourceKind(rate.specificity, rate.type);
+    if (!resourceKind) { return null; }
     let name = `${resourceKind.name}/m`;
     if (rate.type.includes('-')) {
       const resourceType = new Resource(vault.resources[`${rate.type}|0`])

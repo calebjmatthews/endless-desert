@@ -597,6 +597,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/feathers-set-2/
     https://www.svgrepo.com/collection/saint-patrick-day-5/
     https://www.svgrepo.com/collection/prehistoric-age/
+    https://www.svgrepo.com/collection/medieval-3/
     https://www.svgrepo.com/collection/jewelry-3/
     https://www.svgrepo.com/collection/gardening-9/
     https://www.svgrepo.com/collection/spring-4/
@@ -904,8 +905,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
   [X] Fix for analyzing cooked things
   [X] Fix for impossible expensive trades
-  [ ] Press anywhere to skip dialogue animation
-  [ ] Fix new dialogue available styling on button
   [ ] When gaining treasure from research, show in completion message
   [ ] Quest for treasure display on Wall
   [ ] Small icon to show when there are resources to be studied (or disable button?)
@@ -913,6 +912,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Add images to memos
   [ ] Improved ordering of equipment
   [ ] On equipment selection, show current leader equipping
+  [ ] Nerf cooking (7/m give 50% value?)
+  [ ] Repeatable research to translate a poem
+  [ ] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
+  [ ] Show happiness added by housing
+  [ ] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
+  [ ] Specialized tools to use happiness
+  [ ] Specialized tools earlier in trading party pools, lower cost?
+  [ ] Press anywhere to skip dialogue animation
+  [ ] Fix new dialogue available styling on button
 
   [ ] Firefly mother quests?
   [ ] Trader conversations

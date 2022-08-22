@@ -862,8 +862,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.FLOUR, quantity: 40}],
       consumes: [{specificity: RSP.EXACT, type: RTY.GRAIN, quantity: 40}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
+      [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 40}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.REEDS, quantity: 40}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 20},
         {specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 20}],
@@ -886,7 +886,8 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 40}]}),
     new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.ABRASIVE, quantity: 40}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, quantity: 40}]})],
+      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 40},
+        {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 4}]})],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -974,7 +975,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     description: 'Robes and cloaks lined in display cases, behind shining windows',
     category: BCA.ARTISAN_GOOD,
     icon: new Icon({provider: 'svg', name: SVGS.TAILORS}),
-    cost: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 400},
+    cost: [{specificity: RSP.EXACT, type: RTY.WOOD_ASH, quantity: 400},
       {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 50},
       {specificity: RSP.EXACT, type: RTY.CRUDE_NEEDLE, quantity: 20},
       {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 20}],
@@ -1409,7 +1410,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     category: BCA.ARTISAN_GOOD,
     icon: new Icon({provider: 'svg', name: SVGS.GLASSWORKS}),
     cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 150},
-      {specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 100},
+      {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 100},
       {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 40}],
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.BEADS, quantity: 10}],

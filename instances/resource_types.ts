@@ -603,6 +603,7 @@ resourceTypes[RTY.WOOD_OAK] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.BITTER],
   value: 50,
+  description: `Handsome brown wood from a handsome brown tree`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#9b6e42',
     shadow: '#825a3a', secondaryColor: '#f3d488', secondaryShadow: '#daae90'})
 });
@@ -613,6 +614,7 @@ resourceTypes[RTY.WOOD_ROWAN] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.HERBAL],
   value: 50,
+  description: `Comes from trees crowned with shining red berries`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#95a53c',
     shadow: '#7c822b', secondaryColor: '#a0775b', secondaryShadow: '#5f4c42'})
 });
@@ -623,6 +625,7 @@ resourceTypes[RTY.WOOD_WALNUT] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SOUR],
   value: 50,
+  description: `Dense, hard, and dark colored`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#927150',
     shadow: '#c1a086', secondaryColor: '#3c2613', secondaryShadow: '#a7897a'})
 });
@@ -633,6 +636,7 @@ resourceTypes[RTY.WOOD_ALDER] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SPICY],
   value: 50,
+  description: `Soft and pliable, from trees found near streams`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#a5104e',
     shadow: '#800437', secondaryColor: '#d85454', secondaryShadow: '#c13636'})
 });

@@ -323,25 +323,20 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
     {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
     {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
-    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100},
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 200}
   ], [
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100, valuable: true},
     {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.MINNOW, weight: 50, valuable: true},
-    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100, valuable: true},
-    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100, valuable: true},
-    {specificity: RSP.TAG, type: RTA.DRIED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100}
   ], [
     {specificity: RSP.SUBCATEGORY, type: RSC.SAND, weight: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100},
+    {specificity: RSP.SUBCATEGORY, type: RSC.CLAY, weight: 100, valuable: true},
     {specificity: RSP.TAG, type: RTA.EARTH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.MINNOW, weight: 50, valuable: true},
-    {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 100, valuable: true},
-    {specificity: RSP.SUBCATEGORY, type: RSC.BRICK, weight: 100, valuable: true},
-    {specificity: RSP.TAG, type: RTA.DRIED, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.THATCH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.WATER, weight: 100}
   ]],
   initialTrust: 0,

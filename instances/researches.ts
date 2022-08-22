@@ -1005,7 +1005,7 @@ researches[RESEARCHES.DEHYDRATION_ORGANIZED] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 1800,
+  knowledgeReq: 11000,
   unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_ORGANIZED]
 });
 

@@ -63,7 +63,7 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 4
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 2}],
   icon: new Icon({provider: 'svg', name: SVGS.ROUGH_MATTOCK})
 })
@@ -91,7 +91,7 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 4
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 60},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 1}],
   icon: new Icon({provider: 'svg', name: SVGS.WOODEN_POLE})
 });
@@ -175,7 +175,7 @@ equipmentTypes[EQUIPMENT_TYPES.REED_MUCK_RAKE] = new EquipmentType({
       finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: -30, weight: 100 }],
     count: 2
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 60},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 4},
     {specificity: RSP.EXACT, type: RTY.BINDING, quantity: 1}],
   icon: new Icon({provider: 'svg', name: SVGS.REED_MUCK_RAKE})
@@ -215,7 +215,7 @@ equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT] = new EquipmentType({
         finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 }],
     count: 2
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 40},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.LINEN, quantity: 30},
     {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 2}],
   icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#d83e20',
@@ -256,7 +256,7 @@ equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE] = new EquipmentType({
         finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 }],
     count: 2
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 80},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 80},
     {specificity: RSP.EXACT, type: RTY.LINEN, quantity: 15},
     {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 2}],
   icon: new Icon({provider: 'svg', name: SVGS.CHAR_BELLOWS, color: '#712d20',
@@ -291,7 +291,7 @@ equipmentTypes[EQUIPMENT_TYPES.CLAY_SPADE_BROAD] = new EquipmentType({
       baseChange: 100, weight: 100 }],
     count: 2
   })],
-  recipeConsumes: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 60},
+  recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 3}],
   icon: new Icon({provider: 'svg', name: SVGS.CLAY_SPADE_BROAD})
 });
