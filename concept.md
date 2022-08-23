@@ -75,19 +75,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Expedition introductory quest
     - Cries in the night: Samannoud wants to  investigate unexplained cries coming from nearby in the night
     - Some connection with Alabaster; refugees? bandits?
-  - Expeditions:
-    - Thieves' Hideout
-    - Under-Reservoir
-    - Hall of Silken Mirrors
-    - Painted Ravine
-  - Expedition relics:
-    - Shell from something mythical
-    - Resin from something mythical
-    - Maps to find other expeditions
-    - Ancient seeds
-    - Petrtified wood tablets containing poetry, dice, masks
-    - Stone figurines in the shape of many different animals
-    - Instruments made from various woods
   - There's a need for more high-value trade goods:
     - More jewels/precious goods: coral, ivory
     - Ice, as recipe ingredient
@@ -423,6 +410,31 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Armory with combat-themed equipment
   - Bedrooms with luxury clothing
   - Servant's quarters with working tools and clothes
+- Explorations:
+  - Thieves' Hideout
+  - Under-Reservoir
+  - Hall of Silken Mirrors
+  - Painted Ravine
+- Expedition relics:
+  - Shell from something mythical
+  - Resin from something mythical
+  - Maps to find other expeditions
+  - Ancient seeds
+  - Petrtified wood tablets containing poetry, dice, masks
+  - Stone figurines in the shape of many different animals
+  - Instruments made from various woods
+- Locations while traveling:
+  - Oases: Grow figs, dates, lemons, herbs
+  - Empty well: Pull strange things up from it
+  - Groups of animals: Can be hunted for meat or captured with traps
+  - Crevice: Mysteries at the bottom, can be crossed with rope
+  - Door to Hall, Home to All
+- Events while traveling:
+  - Sandstorm: Can trudge through with bindings to heal up later, Aeolian Concordance
+  - Intense sun: Use up excess water, Rhapsodic Auto-Exhumation
+  - Swarm of scorpions: Trap them, Athanastic Catalepsy
+  - Sinkhole: Break out, Inflorencent Fission
+  - Run into trader: Far better exchange rates than normal
 - Expedition method:
   - Pick a cardinal direction, a previously visited region (if map making has been learned), or previously visited destination (also if map making has been leared),
   - For every area that is traversed through, various random events can occur. This could:
@@ -905,7 +917,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
   [X] Fix for analyzing cooked things
   [X] Fix for impossible expensive trades
-  [ ] When gaining treasure from research, show in completion message
+  [X] When gaining treasure from research, show in completion message
   [ ] Quest for treasure display on Wall
   [ ] Small icon to show when there are resources to be studied (or disable button?)
   [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists

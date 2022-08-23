@@ -18,6 +18,7 @@ import { unlockTab } from '../actions/account';
 import { increaseResources } from '../actions/vault';
 
 import ResearchOption from '../models/research_option';
+import Research from '../models/research';
 import Resource from '../models/resource';
 import Vault from '../models/vault';
 import ResearchOptionDeck from '../models/research_option_deck';
@@ -26,6 +27,8 @@ import Message from '../models/message';
 import Positioner from '../models/positioner';
 import { researches } from '../instances/researches';
 import { researchOptions } from '../instances/research_options';
+import { buildingTypes } from '../instances/building_types';
+import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
@@ -91,42 +94,23 @@ export default function ResearchingComponent() {
             label={pBarLabel} />
         </View>
         <View style={styles.break} />
-        {renderOptions()}
+        {(rod.stepsCompleted < rod.stepsNeeded) && (
+           <>
+            <Text style={StyleSheet.flatten([styles.heading2, styles.bareText, styles.centeredRows])}>
+              {'- Options -'}
+            </Text>
+            {rod.currentOptions.map((option) => (
+              <OptionDescription key={option} optionName={option} vault={vault} applyCost={applyCost} 
+                rod={rod} positioner={positioner} />
+            ))}
+          </>
+        )}
+        {(rod.stepsCompleted >= rod.stepsNeeded) && (
+          <CompletedDescription research={research} positioner={positioner} backPress={backPress} />
+        )}
       </ScrollView>
     </View>
   );
-
-  function renderOptions() {
-    if (rod.stepsCompleted < rod.stepsNeeded) {
-      return (
-        <>
-          <Text style={StyleSheet.flatten([styles.heading2, styles.bareText, styles.centeredRows])}>
-            {'- Options -'}
-          </Text>
-          {rod.currentOptions.map((option) => renderOption(option))}
-        </>
-      );
-    }
-    return (
-      <View style={StyleSheet.flatten([styles.panelFlex,
-        {minWidth: positioner.majorWidth,
-          maxWidth: positioner.majorWidth}])}>
-        <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-          {'justifyContent': 'center'}])}
-          onPress={() => { backClick(); }} >
-          <IconComponent provider="FontAwesome5" name="arrow-left"
-            color="#fff" size={16} style={styles.headingIcon} />
-          <Text style={styles.buttonText}>
-            {' Back'}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
-  function renderOption(option: string) {
-    return <OptionDescription key={option} optionName={option} vault={vault} applyCost={applyCost} rod={rod} positioner={positioner} />
-  }
 
   function applyCost(aCost: {specificity: string, type: string, quantity: number},
     optionName: string) {
@@ -233,18 +217,19 @@ export default function ResearchingComponent() {
       actionPerformed: { kind: ACTIVITIES.RESEARCH, value: research.name } })));
   }
 
-  function backClick() {
+  function backPress() {
     dispatch(selectTab(TABS.RESEARCH));
   }
 }
 
 function OptionDescription(props: { optionName: string, vault: Vault,
   rod: ResearchOptionDeck, applyCost: Function, positioner: Positioner }) {
-  let option: ResearchOption = researchOptions[props.optionName];
+  const { optionName, positioner } = props;
+  let option: ResearchOption = researchOptions[optionName];
   return (
     <View style={StyleSheet.flatten([styles.panelFlexColumn,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+      {minWidth: positioner.majorWidth,
+        maxWidth: positioner.majorWidth}])}>
       <View>
         <Text style={styles.heading2}>
           {option.name}
@@ -252,44 +237,92 @@ function OptionDescription(props: { optionName: string, vault: Vault,
         <Text style={styles.bodyText}>{option.description}</Text>
         <Text>{'Cost:'}</Text>
         <View>
-          {renderCost(option.cost, props.vault, props.applyCost, option.name,
-            props.rod)}
+          {option.cost.map((aCost) => (
+            <OptionCost key={aCost.type} {...props} aCost={aCost} />)
+          )}
         </View>
       </View>
     </View>
   );
+}
 
-  function renderCost(cost: {specificity: string, type: string, quantity: number}[],
-    vault: Vault, applyCost: Function, optionName: string, rod: ResearchOptionDeck) {
-    return cost.map((aCost) => {
-      let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
-      let resourceQuantity =
-        Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
-      let buttonStyle: any = styles.button;
-      let buttonDisabled = false;
-      let paidCost = false;
-      if (rod.paidCosts[optionName]) {
-        rod.paidCosts[optionName].map((cn) => {if (cn == aCost.type) paidCost = true});
-      }
-
-      if (resourceQuantity < aCost.quantity || paidCost) {
-        buttonStyle = StyleSheet.compose(styles.button, styles.buttonDisabled);
-        buttonDisabled = true;
-      }
-      let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
-        + utils.formatNumberShort(resourceQuantity) + ') ' + resource.name);
-      if (paidCost) { costText = 'Paid'; }
-      return (
-        <TouchableOpacity key={aCost.type} style={buttonStyle}
-          disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
-          <BadgeComponent icon={resource.icon} size={21} />
-          <Text style={styles.buttonText}>
-            {costText}
-          </Text>
-        </TouchableOpacity>
-      );
-    });
+function OptionCost(props: { aCost: {specificity: string, type: string, quantity: number},
+  vault: Vault, applyCost: Function, optionName: string, rod: ResearchOptionDeck }) {
+  const { aCost, vault, applyCost, optionName, rod } = props;
+  let resource = utils.getMatchingResourceKind(aCost.specificity, aCost.type);
+  let resourceQuantity =
+    Math.floor(vault.getQuantity(aCost.specificity, aCost.type));
+  let buttonStyle: any = styles.button;
+  let buttonDisabled = false;
+  let paidCost = false;
+  if (rod.paidCosts[optionName]) {
+    rod.paidCosts[optionName].map((cn) => {if (cn == aCost.type) paidCost = true});
   }
 
+  if (resourceQuantity < aCost.quantity || paidCost) {
+    buttonStyle = StyleSheet.compose(styles.button, styles.buttonDisabled);
+    buttonDisabled = true;
+  }
+  let costText = (utils.formatNumberShort(aCost.quantity) + ' (of '
+    + utils.formatNumberShort(resourceQuantity) + ') ' + resource.name);
+  if (paidCost) { costText = 'Paid'; }
+  return (
+    <TouchableOpacity key={aCost.type} style={buttonStyle}
+      disabled={buttonDisabled} onPress={() => { applyCost(aCost, optionName); }} >
+      <BadgeComponent icon={resource.icon} size={21} />
+      <Text style={styles.buttonText}>
+        {costText}
+      </Text>
+    </TouchableOpacity>
+  );
+}
 
+function CompletedDescription(props: { research: Research, positioner: Positioner,
+  backPress: () => void }) {
+  const { research, positioner, backPress } = props;
+  const buildingUnlocked = buildingTypes[(research.unlocksBuilding?.[0]) || ''];
+  const upgradeUnlocked = buildingTypes[(research.unlocksUpgrade?.[0]) || ''];
+  const upgradeFrom = buildingTypes[(Object.keys(buildingTypes).filter((typeName) => {
+    const buildingType = buildingTypes[typeName];
+    return (buildingType?.upgradesInto === upgradeUnlocked?.name)
+  }) || [''])[0]];
+  const treasureGiven = resourceTypes[(research.givesTreasure) || ''];
+  return (
+    <View style={StyleSheet.flatten([styles.panelFlexColumn,
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])}>
+      {buildingUnlocked && (
+        <View style={[styles.rows, {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
+          <BadgeComponent icon={buildingUnlocked.icon} />
+          <Text>{`${buildingUnlocked.name} can now be built!`}</Text>
+          <View style={styles.breakSmall} />
+        </View>
+      )}
+      {upgradeUnlocked && (
+        <View style={[styles.rows, {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
+          <BadgeComponent icon={upgradeUnlocked.icon} />
+          <Text>
+            <Text>{`${upgradeUnlocked.name} can now be made`}</Text>
+            {upgradeFrom && (<Text>{` by upgrading ${upgradeFrom.name}`}</Text>)}
+            <Text>{`!`}</Text>
+          </Text>
+          <View style={styles.breakSmall} />
+        </View>
+      )}
+      {treasureGiven && (
+        <View style={[styles.rows, {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
+          <BadgeComponent icon={treasureGiven.icon} />
+          <Text>{`Your town gained ${treasureGiven.name}!`}</Text>
+          <View style={styles.breakSmall} />
+        </View>
+      )}
+      <TouchableOpacity style={[styles.buttonLarge, styles.buttonRowItem]}
+        onPress={() => { backPress(); }} >
+        <IconComponent provider="FontAwesome5" name="arrow-left"
+          color="#fff" size={16} style={styles.headingIcon} />
+        <Text style={styles.buttonText}>
+          {' Back'}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
