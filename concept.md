@@ -922,9 +922,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix cooking not adding Provision tag
   [X] Fix quests not progressing with Provision gain
   [X] Fix tea
-  [ ] Small icon to show when there are resources to be studied (or disable button?)
+  [X] Disable Study button when no resources to be studied
   [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
-  [ ] Add images to memos
   [ ] Improved ordering of equipment
   [ ] On equipment selection, show current leader equipping
   [ ] De-equip existing leader if new leader dons equipment
@@ -937,6 +936,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Specialized tools earlier in trading party pools, lower cost?
   [ ] Press anywhere to skip dialogue animation
   [ ] Fix new dialogue available styling on button
+  [ ] Add images to memos
 
   [ ] Firefly mother quests?
   [ ] Trader conversations

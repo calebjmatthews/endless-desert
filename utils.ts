@@ -753,6 +753,12 @@ class Utils {
       change: changeStr, total: total });
     return p.explanations;
   }
+
+  filterOutZero(resources: Resource[]) {
+    return resources.filter((resource) => {
+      if (Math.floor(resource.quantity) >= 1) { return resource; }
+    });
+  }
 }
 
 export let utils = new Utils();

@@ -6,7 +6,6 @@ import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import { consumeResources } from '../actions/vault';
-import { completeResearch } from '../actions/research_status';
 import { startResearch } from '../actions/research_option_decks';
 import { selectTab, displayModalValue } from '../actions/ui';
 import BadgeComponent from './badge';
@@ -14,8 +13,6 @@ import IconComponent from './icon';
 import ProgressBarComponent from './progress_bar';
 import { styles } from '../styles';
 
-import Research from '../models/research';
-import ResearchStatus from '../models/research_status';
 import ResearchBranch from '../models/research_branch';
 import Vault from '../models/vault';
 import Resource from '../models/resource';
@@ -111,11 +108,16 @@ export default function ResearchesComponent() {
     let buttonDisabled = false;
     let buttonStyle: any = StyleSheet.flatten([styles.buttonRowItem,
       {'flexGrow': 10}]);
-    if (studyTimer || analysisTimer || notesTimer) {
-      buttonDisabled = true;
+    if (studyTimer || analysisTimer || notesTimer) { buttonDisabled = true; }
+    if (actionName === RESEARCHES.STUDY) {
+      const resourcesToStudy = utils.filterOutZero(researchStatus.getResourcesToStudy(vault));
+      if (resourcesToStudy.length === 0) { buttonDisabled = true; }
+    }
+    if (buttonDisabled) {
       buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
         {'flexGrow': 10}]);
     }
+
     return (
       <View key={actionName}
         style={StyleSheet.flatten([styles.panelFlex,

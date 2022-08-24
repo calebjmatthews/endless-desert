@@ -581,10 +581,10 @@ export default function ResourceSelectOneComponent() {
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
-      return rSort(filterOutZero(researchStatus.getResourcesToStudy(vault)));
+      return rSort(utils.filterOutZero(researchStatus.getResourcesToStudy(vault)));
 
       case RESEARCHES.ANALYSIS:
-      return rSort(filterOutZero(vault.getStudyableResources()));
+      return rSort(utils.filterOutZero(vault.getStudyableResources()));
 
       case 'Trading':
       const visit = tradingStatus.visits[modalValue.slot];
@@ -592,41 +592,35 @@ export default function ResourceSelectOneComponent() {
         const trade = visit.trades[modalValue.tradeId];
         switch(trade.receive.specificity) {
           case RESOURCE_SPECIFICITY.EXACT:
-          return rSort(filterOutZero(vault.getExactResources(trade.receive.type)));
+          return rSort(utils.filterOutZero(vault.getExactResources(trade.receive.type)));
 
           case RESOURCE_SPECIFICITY.TAG:
-          return rSort(filterOutZero(vault.getTagResources(trade.receive.type)));
+          return rSort(utils.filterOutZero(vault.getTagResources(trade.receive.type)));
 
           case RESOURCE_SPECIFICITY.SUBCATEGORY:
-          return rSort(filterOutZero(vault.getSubcategoryResources(trade.receive.type)));
+          return rSort(utils.filterOutZero(vault.getSubcategoryResources(trade.receive.type)));
 
           case RESOURCE_SPECIFICITY.CATEGORY:
-          return rSort(filterOutZero(vault.getCategoryResources(trade.receive.type)));
+          return rSort(utils.filterOutZero(vault.getCategoryResources(trade.receive.type)));
         }
       }
       return [];
 
       case MODALS.LEADER_DETAIL:
       if (modalValue.subType == SET_EATING) {
-        return rSort(filterOutZero(vault.getTagResources(RESOURCE_TAGS.FOOD)));
+        return rSort(utils.filterOutZero(vault.getTagResources(RESOURCE_TAGS.FOOD)));
       }
       else if (modalValue.subType == SET_DRINKING) {
-        return rSort(filterOutZero(vault.getTagResources(RESOURCE_TAGS.DRINK)));
+        return rSort(utils.filterOutZero(vault.getTagResources(RESOURCE_TAGS.DRINK)));
       }
 
       case DISPLAY_TREASURE:
-      const tr = rSort(filterOutZero(vault.getCategoryResources(RESOURCE_CATEGORIES.TREASURE)));
+      const tr = rSort(utils.filterOutZero(vault.getCategoryResources(RESOURCE_CATEGORIES.TREASURE)));
       return tr.filter((resource) => (!utils.arrayIncludes(Object.keys(treasuresDisplayed),
         resource.type) ));
 
       default:
       return [];
-    }
-
-    function filterOutZero(resources: Resource[]) {
-      return resources.filter((resource) => {
-        if (Math.floor(resource.quantity) >= 1) { return resource; }
-      });
     }
 
     function rSort(resources: Resource[]) {
