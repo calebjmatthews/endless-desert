@@ -89,7 +89,7 @@ export default class Hourglass {
       const newPSum = utils.mapsCombine(productionSum, results.productionSum);
       const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
       const newQRChecks = utils.mapsCombine(questResourceChecks,
-        this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
+        this.formQuestResourceChecks(resourcesToCheck, results.productionSum, vault));
       const pResources = utils.sumToResources(vault, newPSum);
       const cResources = utils.sumToResources(vault, newCSum);
       const newVault = new Vault({
@@ -113,7 +113,7 @@ export default class Hourglass {
     const newPSum = utils.mapsCombine(productionSum, results.productionSum);
     const newCSum = utils.mapsCombine(consumptionSum, results.consumptionSum);
     const newQRChecks = utils.mapsCombine(questResourceChecks,
-      this.formQuestResourceChecks(resourcesToCheck, results.productionSum));
+      this.formQuestResourceChecks(resourcesToCheck, results.productionSum, vault));
     const newBuildingsToRest = utils.arraysCombine(buildingsToRest,
       rates.buildingsToRest);
 
@@ -122,15 +122,16 @@ export default class Hourglass {
   }
 
   formQuestResourceChecks(resourcesToCheck: { [specType: string] : boolean },
-    productionSum: { [typeQuality: string] : number }) {
+    productionSum: { [typeQuality: string] : number }, vault: Vault) {
     const exactMap: { [typeName: string] : number } = {};
     const tagMap: { [tagName: string] : number } = {};
     const subcategoryMap: { [subcategoryName: string] : number } = {};
     const categoryMap: { [categoryName: string] : number } = {};
+
     Object.keys(productionSum).forEach((typeQuality) => {
       const typeName = typeQuality.split('|')[0];
       const production = productionSum[typeQuality];
-      const resourceType = resourceTypes[typeName];
+      const resourceType = vault.resources[typeQuality].toResourceType(resourceTypes);
       utils.mapAdd(exactMap, typeName, production);
       resourceType?.tags.forEach((tagName) => {
         utils.mapAdd(tagMap, tagName, production);
