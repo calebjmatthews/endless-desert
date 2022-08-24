@@ -206,13 +206,34 @@ resourceSubcategories[RESOURCE_SUBCATEGORIES.DROMEDARY] = new ResourceSubcategor
   icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
 });
 
-resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA] =
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_CELADON] =
 new ResourceSubcategory({
-  name: RESOURCE_SUBCATEGORIES.TEA,
-  plural: 'Pots of Tea',
+  name: RESOURCE_SUBCATEGORIES.TEA_CELADON,
+  plural: 'Pots of Celadon Tea',
   value: 30,
-  order: 80,
-  icon: new Icon({provider: 'svg', name: SVGS.TEA})
+  order: 70,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#7bb344',
+    shadow: '#5e932b'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_VIRIDIAN] = 
+new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.TEA_VIRIDIAN,
+  plural: 'Pots of Veridian Tea',
+  value: 72,
+  order: 71,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#10b78b',
+    shadow: '#028361'})
+});
+
+resourceSubcategories[RESOURCE_SUBCATEGORIES.TEA_JASMINE] =
+new ResourceSubcategory({
+  name: RESOURCE_SUBCATEGORIES.TEA_JASMINE,
+  plural: 'Pots of Jasmine Tea',
+  value: 168,
+  order: 72,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#e8cad7',
+    shadow: '#4caf50'})
 });
 
 resourceSubcategories[RESOURCE_SUBCATEGORIES.JUICE_TOMATO] =

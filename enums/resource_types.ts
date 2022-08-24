@@ -154,7 +154,9 @@ export enum RESOURCE_TYPES {
   MERCURY_DROPS = "Mercury Drops",
   CHITENOUS_PINS = "Chitenous Pins",
 
-  TEA = "Tea",
+  TEA_CELADON = "Celadon Tea",
+  TEA_VIRIDIAN = "Veridian Tea",
+  TEA_JASMINE = "Jasmine Tea",
   CHILLED_WATER = "Chilled Water",
   JUICE_BLUEBERRY = "Blueberry Juice",
   JUICE_TOMATO = "Tomato Juice",

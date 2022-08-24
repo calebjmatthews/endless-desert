@@ -1499,13 +1499,31 @@ resourceTypes[RTY.CHITENOUS_PINS] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.CHITENOUS_PINS})
 });
 
-resourceTypes[RTY.TEA] = new ResourceType({
-  name: RTY.TEA,
+resourceTypes[RTY.TEA_CELADON] = new ResourceType({
+  name: RTY.TEA_CELADON,
   category: RCA.DISH,
   tags: [RTA.DRINK],
   value: 30,
   icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#7bb344',
     shadow: '#5e932b'})
+});
+
+resourceTypes[RTY.TEA_VIRIDIAN] = new ResourceType({
+  name: RTY.TEA_VIRIDIAN,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 72,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#10b78b',
+    shadow: '#028361'})
+});
+
+resourceTypes[RTY.TEA_JASMINE] = new ResourceType({
+  name: RTY.TEA_JASMINE,
+  category: RCA.DISH,
+  tags: [RTA.DRINK],
+  value: 168,
+  icon: new Icon({provider: 'svg', name: SVGS.TEA, color: '#e8cad7',
+    shadow: '#4caf50'})
 });
 
 resourceTypes[RTY.CHILLED_WATER] = new ResourceType({
