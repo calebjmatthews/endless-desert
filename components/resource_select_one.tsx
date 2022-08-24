@@ -573,7 +573,7 @@ export default function ResourceSelectOneComponent() {
       dispatch(displayTreasure(resourceSelected.type));
       
       dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
-        actionPerformed: { kind: DISPLAY_TREASURE, value: resourceSelected.type } })));
+        actionPerformed: { kind: ACTIVITIES.DISPLAY_TREASURE, value: resourceSelected.type } })));
       dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', {id: modalValue.buildingId}));
     }
   }

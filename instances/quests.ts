@@ -1,6 +1,5 @@
 import Quest from '../models/quest';
 import QuestTask from '../models/quest_task';
-import QuestProgress from '../models/quest_progress';
 import Icon from '../models/icon';
 import { conversations } from '../instances/conversations';
 import { utils } from '../utils';
@@ -12,8 +11,6 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
-import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
-const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -206,7 +203,25 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Mark one piece of equipment.`,
         equipmentToMark: { quantity: 1 } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.PALE_ORE, value: 5250 }],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.CARPET_CURLING_GREEN_MOTIF, value: 20000 }]
+  }),
+  [QUESTS.EARLY_DAYS_DISPLAY_TREASURE]: new Quest({
+    id: QUESTS.EARLY_DAYS_DISPLAY_TREASURE,
+    subtitle: 'Early Days',
+    name: 'Display Treasure',
+    givenBy: PEOPLE.FIREFLY,
+    type: QUEST_TYPES.OBLIGATORY,
+    icon: new Icon({ provider: 'svg', name: SVGS.CARPET }),
+    description: `Somehow, you know your treasures won't have any effect unless you display them on your town Gate for all to see.`,
+    finishText: `Only one of each treasure can be displayed, and they can be removed at any time.
+    
+You find something strange in the perfumed box this time... And someone even stranger.`,
+    tasks: [
+      new QuestTask({ index: 0, parentId: QUESTS.EARLY_DAYS_DISPLAY_TREASURE,
+        label: `Display a treasure on the town's Gate.`,
+        actionToPerform: { kind: ACTIVITIES.DISPLAY_TREASURE } })
+    ],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT, value: 1000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   }),
   [QUESTS.ASTRONOMY_POTENT_FUEL]: new Quest({
@@ -675,7 +690,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
       new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_WINE,
         label: `Requested: 20 Glassware`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GLASSWARE}`,
-          quantity: 300, consumed: true, includeExisting: true } })
+          quantity: 20, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.DROMEDARY_PLAINS,
       value: 200000 }]
@@ -761,7 +776,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
       new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_GEARWORK,
         label: `Requested: 40 Gearwork.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.GEARWORK}`,
-          quantity: 340, consumed: true, includeExisting: true } }),
+          quantity: 40, consumed: true, includeExisting: true } }),
       new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_GEARWORK,
         label: `Requested: Field Notes`,
         resourceToProduce: { specType: `${RSP.CATEGORY}|${RCA.FIELD_NOTES}`,

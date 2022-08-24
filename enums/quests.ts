@@ -8,6 +8,7 @@ export enum QUESTS {
   EARLY_DAYS_BUILDING_STORAGE = "Early Days: Building Storage",
   EARLY_DAYS_LEADER_SETUP = "Early Days: Leader Setup",
   EARLY_DAYS_MARK_EQUIPMENT = "Early Days: Mark Equipment",
+  EARLY_DAYS_DISPLAY_TREASURE = "Early Days: Display Treasure",
   ASTRONOMY_POTENT_FUEL = "Astronomy: Potent Fuel",
   ASTRONOMY_THE_GRINDING_MILL = "Astronomy: The Grinding Mill",
   ASTRONOMY_IMPLEMENTS_FOR_EXPLORATION = "Astronomy: Implements for Exploration",

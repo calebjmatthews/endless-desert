@@ -918,13 +918,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix for analyzing cooked things
   [X] Fix for impossible expensive trades
   [X] When gaining treasure from research, show in completion message
-  [ ] Quest for treasure display on Wall
+  [X] Quest for treasure display on Wall
+  [ ] Fix cooking not adding Provision tag
+  [ ] Fix tea
   [ ] Small icon to show when there are resources to be studied (or disable button?)
   [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
   [ ] Add images to memos
   [ ] Improved ordering of equipment
   [ ] On equipment selection, show current leader equipping
-  [ ] Nerf cooking (7/m give 50% value?)
+  [ ] De-equip existing leader if new leader dons equipment
+  [ ] Nerf cooking value (7/m give 50% value?)
   [ ] Repeatable research to translate a poem
   [ ] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
   [ ] Show happiness added by housing

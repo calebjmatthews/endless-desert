@@ -6,5 +6,6 @@ export enum ACTIVITIES {
   LEADER_SET_EATING = "Leader set eating",
   LEADER_SET_DRINKING = "Leader set drinking",
   LEADER_LIVING_AT = "Leader living at",
-  LEADER_WORKING_AT = "Leader working at"
+  LEADER_WORKING_AT = "Leader working at",
+  DISPLAY_TREASURE = "Display treasure"
 }
