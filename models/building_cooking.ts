@@ -50,27 +50,27 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.WAYBREAD, valueChange: 40, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.WAYBREAD, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.DRIED_FRUIT, valueChange: 40, tags: [ RTA.FOOD ],
+    new DishType({name: RTY.DRIED_FRUIT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.TAG, type: RTA.FRUIT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTFISH, valueChange: 40, tags: [ RTA.FOOD ],
+    new DishType({name: RTY.SALTFISH, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.SUBCATEGORY, type: RSC.FISH, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD ],
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD ],
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }

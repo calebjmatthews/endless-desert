@@ -21,7 +21,6 @@ import Positioner from '../models/positioner';
 import Icon from '../models/icon';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
-import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { MODALS } from '../enums/modals';
@@ -97,7 +96,7 @@ export default function ResourceSelectDishComponent() {
   function renderResources(resourceArray: Resource[],
     setResourcesSelected: Function) {
     return resourceArray.map((resource) => {
-      return <ResourceSelector key={resource.type} resource={resource}
+      return <ResourceSelector key={`${resource.type}|${resource.quality}`} resource={resource}
         resourcesSelected={resourcesSelected} multiplier={multiplier}
         pressResource={pressResource} positioner={positioner} />;
     });

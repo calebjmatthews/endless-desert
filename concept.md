@@ -919,7 +919,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix for impossible expensive trades
   [X] When gaining treasure from research, show in completion message
   [X] Quest for treasure display on Wall
-  [ ] Fix cooking not adding Provision tag
+  [X] Fix cooking not adding Provision tag
+  [ ] Fix quests not progressing with Provision gain
   [ ] Fix tea
   [ ] Small icon to show when there are resources to be studied (or disable button?)
   [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
