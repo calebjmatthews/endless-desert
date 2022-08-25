@@ -9,6 +9,7 @@ export default class Message {
 
   constructor(message: MessageInterface) {
     Object.assign(this, message);
+    if (!message.timestamp) { this.timestamp = new Date(Date.now()); }
   }
 
   export() {
@@ -27,7 +28,7 @@ export default class Message {
 interface MessageInterface {
   text: string;
   type: string;
-  timestamp: Date;
+  timestamp?: Date;
   isNew?: boolean;
   icon?: Icon;
 }

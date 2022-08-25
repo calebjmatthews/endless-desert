@@ -9,7 +9,7 @@ import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding, selectBuildingRecipe }
   from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
-import { addMemos } from '../actions/ui';
+import { addMemos, addGlowingTab } from '../actions/ui';
 import { addMessage } from '../actions/messages';
 import { setLeaders } from '../actions/leaders';
 import { setIntroState, unlockTab, setCurrentFortuity, achieveMilestone, setStorageCallSave }
@@ -156,6 +156,7 @@ export default function HourglassComponent() {
           dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
             actionPerformed: { kind: ACTIVITIES.BUILDING_CONSTRUCTION,
               value: buildingType.name } })));
+          dispatch(addGlowingTab(TABS.TOWN));
           tempBuildings[building.id] = building;
           recalcRates = true;
         }
@@ -191,6 +192,7 @@ export default function HourglassComponent() {
             dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
               actionPerformed: { kind: ACTIVITIES.BUILDING_UPGRADE,
               value: buildingType.name } })));
+            dispatch(addGlowingTab(TABS.TOWN));
             tempBuildings[building.id] = upgBuilding;
             recalcRates = true;
             if (buildingType.upgradesInto == BUILDING_TYPES.STUDY_PORTENTOUS) {
@@ -221,10 +223,10 @@ export default function HourglassComponent() {
         }
         if (timer.messageToDisplay) {
           if (whileAway.diff > 60000) { whileAway.timers.push(timer); }
+          const type = timer.name.split('|')[0];
           dispatch(addMessage(new Message({
             text: timer.messageToDisplay,
-            type: timer.name.split('|')[0],
-            timestamp: new Date(Date.now()),
+            type,
             icon: new Icon(timer.iconToDisplay)
           })));
         }
@@ -232,10 +234,10 @@ export default function HourglassComponent() {
           const fortuity = fortuityCheck();
           if (fortuity) {
             dispatch(setCurrentFortuity(fortuity));
+            dispatch(addGlowingTab(TABS.TOWN));
             dispatch(addMessage(new Message({
               text: fortuity.openLine,
               type: '',
-              timestamp: new Date(Date.now()),
               icon: new Icon({ provider: 'FontAwesome5', name: 'question-circle',
                 color: '#17265d' })
             })));
@@ -253,10 +255,10 @@ export default function HourglassComponent() {
           const quest = dailyQuestCheck();
           if (quest) {
             dispatch(addQuest(quest));
+            dispatch(addGlowingTab(TABS.QUESTS));
             dispatch(addMessage(new Message({
-              text: (`The Firefly wants to watch something new.`),
+              text: `The Firefly wants to watch something new.`,
               type: '',
-              timestamp: new Date(Date.now()),
               icon: new Icon({ provider: 'svg', name: SVGS.FIREFLY })
             })));
           }
@@ -309,6 +311,7 @@ export default function HourglassComponent() {
           if (building.recipeSelected !== -1 && ui.tabSelected !== TABS.TOWN
             && ui.modalDisplayed !== MODALS.BUILDING_DETAIL) {
             dispatch(selectBuildingRecipe(building, -1));
+            dispatch(addGlowingTab(TABS.TOWN));
             dispatch(addMessage(new Message({
               text: `${(building.name || buildingType.name)} stopped because of a missing resource.`,
               type: MESSAGE_TYPES.RESOURCE_MISSING,

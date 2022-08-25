@@ -20,7 +20,8 @@ export interface RootState extends DBRootState {
   rates: Rates;
   ui: { globalState: string, tabSelected: string, valueSelected: any,
     modalDisplayed: string|null, modalStage: string, modalValue: any,
-    memos: Memo[], positioner: Positioner };
+    memos: Memo[], tabsGlowing: { [tabName: string] : boolean },
+    positioner: Positioner };
 }
 
 export interface DBRootState {

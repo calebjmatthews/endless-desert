@@ -12,7 +12,7 @@ let accountStarting = new Account({
   sessionId: '',
   storageCallSave: false,
   introState: INTRO_STATES.LOOK_AROUND,
-  tabsUnloked: [TABS.TOWN, TABS.RESOURCES],
+  tabsUnlocked: [TABS.TOWN, TABS.RESOURCES],
   fortuityCurrent: null,
   fortuitiesSeen: {},
   fortuityDailyLast: 0,
@@ -50,7 +50,7 @@ export default function (account: Account = accountStarting,
 
     case UNLOCK_TAB:
     let newUTAccount = new Account(account);
-    newUTAccount.tabsUnloked.push(action.tabName);
+    newUTAccount.tabsUnlocked.push(action.tabName);
     return newUTAccount;
 
     case SET_CURRENT_FORTUITY:

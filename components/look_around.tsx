@@ -11,9 +11,11 @@ import ModalHandlerComponent from '../components/modal_handler';
 import IconComponent from '../components/icon';
 import ProgressBarComponent from '../components/progress_bar';
 import { setIntroState, unlockTab } from '../actions/account';
-import { addMemos } from '../actions/ui';
+import { addMemos, addGlowingTab } from '../actions/ui';
+import { addMessage } from '../actions/messages';
 import { addQuest } from '../actions/quest_status';
 
+import Message from '../models/message';
 import { memos } from '../instances/memos';
 import { quests } from '../instances/quests';
 import { MEMOS } from '../enums/memos';
@@ -78,6 +80,12 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
       dispatch(setIntroState(INTRO_STATES.REPAIR_CISTERN));
       dispatch(unlockTab(TABS.QUESTS));
       dispatch(addQuest(quests[QUESTS.EARLY_DAYS_SURVIVE]));
+      dispatch(addGlowingTab(TABS.QUESTS));
+      dispatch(addMessage(new Message({
+        text: `You began the quest ${quests[QUESTS.EARLY_DAYS_SURVIVE]}.`,
+        type: '',
+        icon: quests[QUESTS.EARLY_DAYS_SURVIVE].icon
+      })));
     }, 3000);
 
     return () => { clearTimeout(timeout); }

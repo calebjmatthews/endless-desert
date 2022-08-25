@@ -15,7 +15,8 @@ import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { addTimer } from '../actions/timers';
 import { tradingPartnerJoins } from '../actions/trading_status';
-import { addMemos, displayModalValue } from '../actions/ui';
+import { addMessage } from '../actions/messages';
+import { addMemos, displayModalValue, addGlowingTab } from '../actions/ui';
 
 import QuestStatus from '../models/quest_status';
 import Quest from '../models/quest';
@@ -30,6 +31,7 @@ import Vault from '../models/vault';
 import Memo from '../models/memo';
 import Icon from '../models/icon';
 import Timer from '../models/timer';
+import Message from '../models/message';
 import Positioner from '../models/positioner';
 import { quests } from '../instances/quests';
 import { leaderTypes } from '../instances/leader_types';
@@ -40,6 +42,7 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUESTS } from '../enums/quests';
 import { SVGS } from '../enums/svgs';
 import { MODALS } from '../enums/modals';
+import { TABS } from '../enums/tabs';
 
 export default function QuestsComponent() {
   const dispatch = useDispatch();
@@ -158,6 +161,12 @@ export default function QuestsComponent() {
     if (quest.questsBegin) {
       quest.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
+        dispatch(addGlowingTab(TABS.QUESTS));
+        dispatch(addMessage(new Message({
+          text: `You began the quest ${quests[questName]}.`,
+          type: '',
+          icon: quests[questName].icon
+        })));
         const rtgExisting = quests[questName].taskCheckExisting(vault, researchStatus);
         rtgExisting.forEach((questActivity) => {
           dispatch(addToActivityQueue(questActivity));

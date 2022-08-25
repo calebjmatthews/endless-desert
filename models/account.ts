@@ -10,7 +10,7 @@ export default class Account {
   sessionId?: string;
   storageCallSave: boolean = false;
   introState: string = '';
-  tabsUnloked: string[] = [];
+  tabsUnlocked: string[] = [];
   fortuityCurrent: Fortuity|null = null;
   fortuitiesSeen: { [name: string] : number } = {};
   fortuityDailyLast: number = 0;
@@ -77,10 +77,10 @@ export default class Account {
   }
 
   export(): DBAccount {
-    const { userId, sessionId, storageCallSave, introState, tabsUnloked, fortuityCurrent, 
+    const { userId, sessionId, storageCallSave, introState, tabsUnlocked, fortuityCurrent, 
       fortuitiesSeen, fortuityDailyLast,  showCompletedResearches, milestones, 
       treasuresDisplayed } = this;
-    return { userId, sessionId, storageCallSave, introState, tabsUnloked, fortuityCurrent, 
+    return { userId, sessionId, storageCallSave, introState, tabsUnlocked, fortuityCurrent, 
       fortuitiesSeen, fortuityDailyLast,  showCompletedResearches, milestones, 
       treasuresDisplayed };
   }
@@ -91,7 +91,7 @@ export interface DBAccount {
   sessionId?: string;
   storageCallSave: boolean;
   introState: string;
-  tabsUnloked: string[];
+  tabsUnlocked: string[];
   fortuityCurrent: Fortuity|null;
   fortuitiesSeen: { [name: string] : number };
   fortuityDailyLast: number;

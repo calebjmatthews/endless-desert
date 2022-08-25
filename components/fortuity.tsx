@@ -11,13 +11,16 @@ import { setCurrentFortuity, fortuitySeen, setFortuityDailyLast }
 import { increaseResources } from '../actions/vault';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
 import { addTimer } from '../actions/timers';
-import { addMemos } from '../actions/ui';
+import { addMemos, addGlowingTab } from '../actions/ui';
+import { addMessage } from '../actions/messages';
 
 import Resource from '../models/resource';
 import Timer from '../models/timer';
+import Message from '../models/message';
 import { quests } from '../instances/quests';
 import { utils } from '../utils';
 import { FORTUITY_BASE } from '../constants';
+import { TABS } from '../enums/tabs';
 
 export default function FortuityComponent() {
   const dispatch = useDispatch();
@@ -61,6 +64,12 @@ export default function FortuityComponent() {
     if (fortuityCurrent.questsBegin) {
       fortuityCurrent.questsBegin.forEach((questName) => {
         dispatch(addQuest(quests[questName]));
+        dispatch(addGlowingTab(TABS.QUESTS));
+        dispatch(addMessage(new Message({
+          text: `You began the quest ${quests[questName]}.`,
+          type: '',
+          icon: quests[questName].icon
+        })));
         const rtgExisting = quests[questName].taskCheckExisting(vault,
           researchStatus);
         rtgExisting.forEach((questActivity) => {

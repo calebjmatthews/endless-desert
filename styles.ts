@@ -630,8 +630,6 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingTop: 2,
     marginHorizontal: -1,
     borderWidth: 2,
     borderStyle: 'solid',
@@ -639,6 +637,17 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomStyle: 'none'
+  },
+  tabIcon: {
+    marginHorizontal: 10,
+    marginTop: 2
+  },
+  tabGlow: {
+    position: 'absolute',
+    top: -2,
+    left: -1,
+    paddingTop: 1,
+    backgroundColor: '#ddd',
   },
 
   epauletteText: {

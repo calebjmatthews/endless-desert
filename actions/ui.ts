@@ -1,4 +1,3 @@
-import Message from '../models/message';
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
 
@@ -50,6 +49,22 @@ export const DISMISS_MEMO = 'DISMISS_MEMO';
 export function dismissMemo() {
   return {
     type: DISMISS_MEMO
+  }
+}
+
+export const ADD_GLOWING_TAB = 'ADD_GLOWING_TAB';
+export function addGlowingTab(tabName: string) {
+  return {
+    type: ADD_GLOWING_TAB,
+    tabName
+  }
+}
+
+export const REMOVE_GLOWING_TAB = 'REMOVE_GLOWING_TAB';
+export function removeGlowingTab(tabName: string) {
+  return {
+    type: REMOVE_GLOWING_TAB,
+    tabName
   }
 }
 

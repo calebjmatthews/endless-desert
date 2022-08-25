@@ -435,6 +435,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Swarm of scorpions: Trap them, Athanastic Catalepsy
   - Sinkhole: Break out, Inflorencent Fission
   - Run into trader: Far better exchange rates than normal
+  - Chase a falling star: Change destinations to track it down, or make a vow on it
+  - Gather rumors from wanderers
 - Expedition method:
   - Pick a cardinal direction, a previously visited region (if map making has been learned), or previously visited destination (also if map making has been leared),
   - For every area that is traversed through, various random events can occur. This could:
@@ -923,7 +925,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix quests not progressing with Provision gain
   [X] Fix tea
   [X] Disable Study button when no resources to be studied
-  [ ] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
+  [X] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
   [ ] Improved ordering of equipment
   [ ] On equipment selection, show current leader equipping
   [ ] De-equip existing leader if new leader dons equipment

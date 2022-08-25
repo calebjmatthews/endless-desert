@@ -14,7 +14,8 @@ import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
 import { unlockTab } from '../actions/account';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
-import { dismissMemo, displayModal } from '../actions/ui';
+import { dismissMemo, displayModal, addGlowingTab } from '../actions/ui';
+import { addMessage } from '../actions/messages';
 import { completeResearch } from '../actions/research_status';
 
 import Leader from '../models/leader';
@@ -23,6 +24,7 @@ import Equipment from '../models/equipment';
 import Vault from '../models/vault';
 import Icon from '../models/icon';
 import Account from '../models/account';
+import Message from '../models/message';
 import Positioner from '../models/positioner';
 import ConversationStatus from '../models/conversation_status';
 import ResearchStatus from '../models/research_status';
@@ -246,10 +248,17 @@ function ConversationStatic(props: ConversationProps) {
       ];
     }
     if (statement?.leaderJoins) {
-      if (!utils.arrayIncludes(account.tabsUnloked, TABS.LEADERS)) {
+      if (!utils.arrayIncludes(account.tabsUnlocked, TABS.LEADERS)) {
         dispatch(unlockTab(TABS.LEADERS));
         dispatch(unlockTab(TABS.EQUIPMENT));
         dispatch(addQuest(quests[QUESTS.EARLY_DAYS_LEADER_SETUP]));
+        const quest = quests[QUESTS.EARLY_DAYS_LEADER_SETUP];
+        dispatch(addGlowingTab(TABS.QUESTS));
+        dispatch(addMessage(new Message({
+          text: `You began the quest ${quest.name}.`,
+          type: '',
+          icon: quest.icon
+        })));
       }
       const leaderCreateRes =
         leaderTypes[statement.leaderJoins].createLeader(vault, resourceTypes);
