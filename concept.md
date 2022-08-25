@@ -926,7 +926,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix tea
   [X] Disable Study button when no resources to be studied
   [X] Shining navbar icon when quest can be completed, trader is waiting to be let in, fortuity exists
-  [ ] Improved ordering of equipment
+  [X] Improved ordering of equipment
   [ ] On equipment selection, show current leader equipping
   [ ] De-equip existing leader if new leader dons equipment
   [ ] Nerf cooking value (7/m give 50% value?)

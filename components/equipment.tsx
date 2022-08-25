@@ -131,13 +131,17 @@ export default function EquipmentComponent() {
       const eTypeB = equipmentTypes[b.anEquipment.typeName];
       if (eTypeA.slot != eTypeB.slot) {
         const slotSort: { [name: string] : number } =
-          { [EQS.TOOL] : -1, [EQS.CLOTHING] : 0, [EQS.BACK] : 1 };
-        return slotSort[eTypeA.slot];
+          { [EQS.TOOL] : 0, [EQS.CLOTHING] : 1, [EQS.BACK] : 2 };
+        return slotSort[eTypeA.slot] - slotSort[eTypeB.slot];
       }
 
       const rTypeA = resourceTypes[a.anEquipment.typeName + ' (U)'];
       const rTypeB = resourceTypes[b.anEquipment.typeName + ' (U)'];
-      return rTypeA.value - rTypeB.value;
+      if (rTypeA.value !== rTypeB.value) {
+        return rTypeA.value - rTypeB.value;
+      }
+      
+      return b.anEquipment.tier - a.anEquipment.tier;
     });
 
     uiArray = [...uiArray, ...equipmentArray];
