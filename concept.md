@@ -929,7 +929,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Improved ordering of equipment
   [X] On equipment selection, show current leader equipping
   [X] Equipment selection in equipment tab
-  [ ] De-equip existing leader if new leader dons equipment
+  [X] De-equip existing leader if new leader dons equipment
   [ ] Nerf cooking value (7/m give 50% value?)
   [ ] Repeatable research to translate a poem
   [ ] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5

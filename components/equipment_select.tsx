@@ -117,17 +117,32 @@ export default function EquipmentSelectComponent() {
       let newLeaders: { [id: string] : Leader } = {};
       Object.keys(leaders).map((id) => {
         let leader = new Leader(leaders[id]);
-        if (id == modalValue.leader.id) {
-          if (modalValue.subType == EQUIPMENT_SLOTS.TOOL) {
+        if (modalValue.subType == EQUIPMENT_SLOTS.TOOL) {
+          if (leader.toolEquipped === equipmentSelected) {
+            leader.toolEquipped = null;
+          }
+          if (id == modalValue.leader.id) {
             leader.toolEquipped = equipmentSelected;
           }
-          else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING) {
+          
+        }
+        else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING) {
+          if (leader.clothingEquipped === equipmentSelected) {
+            leader.clothingEquipped = null;
+          }
+          if (id == modalValue.leader.id) {
             leader.clothingEquipped = equipmentSelected;
           }
-          else if (modalValue.subType == EQUIPMENT_SLOTS.BACK) {
+        }
+        else if (modalValue.subType == EQUIPMENT_SLOTS.BACK) {
+          if (leader.backEquipped === equipmentSelected) {
+            leader.backEquipped = null;
+          }
+          if (id == modalValue.leader.id) {
             leader.backEquipped = equipmentSelected;
           }
         }
+        
         leader.calcEffects(equipment, buildings, vault);
         newLeaders[id] = leader;
       });

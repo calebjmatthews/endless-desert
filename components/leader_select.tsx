@@ -164,18 +164,31 @@ export default function LeaderSelectComponent() {
         const equipmentType = equipmentTypes[anEquipment?.typeName || ''];
         
         if (equipmentType.slot === ES.TOOL) {
+          Object.keys(leaders).forEach((id) => {
+            if (leaders[id].toolEquipped === anEquipment?.id) {
+              newLeaders[id].toolEquipped = null;
+            }
+          });
           newLeaders[leader.id].toolEquipped = anEquipment?.id || '';
         }
         else if (equipmentType.slot === ES.CLOTHING) {
+          Object.keys(leaders).forEach((id) => {
+            if (leaders[id].clothingEquipped === anEquipment?.id) {
+              newLeaders[id].clothingEquipped = null;
+            }
+          });
           newLeaders[leader.id].clothingEquipped = anEquipment?.id || '';
         }
         else if (equipmentType.slot === ES.BACK) {
+          Object.keys(leaders).forEach((id) => {
+            if (leaders[id].backEquipped === anEquipment?.id) {
+              newLeaders[id].backEquipped = null;
+            }
+          });
           newLeaders[leader.id].backEquipped = anEquipment?.id || '';
         }
-        
+
         newLeaders[leader.id].calcEffects(equipment, buildings, vault);
-        console.log('newLeaders');
-        console.log(newLeaders);
         dispatch(setLeaders(newLeaders));
         const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
