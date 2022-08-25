@@ -15,7 +15,6 @@ import { displayModalValue } from '../actions/ui';
 
 import Leader from '../models/leader';
 import Equipment from '../models/equipment';
-import EquipmentEffect from '../models/equipment_effect';
 import Hourglass from '../models/hourglass';
 import Positioner from '../models/positioner';
 import { equipmentTypes } from '../instances/equipment_types';
@@ -32,24 +31,21 @@ export default function EquipmentSelectComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const modalValue: {type: string, subType: string, leader: Leader} =
     useTypedSelector(state => state.ui.modalValue);
-  const matchedEquipment: { [id: string] : EquipmentMatched } = {};
-  Object.keys(equipment).forEach((id) => {
-    matchedEquipment[id] = new Equipment(equipment[id]);
-  });
+  const leaderMap: { [equipmentId: string] : Leader } = {};
+  
   Object.keys(leaders).forEach((id) => {
     const leader = leaders[id];
     if (modalValue.subType == EQUIPMENT_SLOTS.TOOL && leader.toolEquipped) {
-      matchedEquipment[leader.toolEquipped].leader = leader;
+      leaderMap[leader.toolEquipped] = leader;
     }
-    else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING
-      && leader.clothingEquipped) {
-      matchedEquipment[leader.clothingEquipped].leader = leader;
+    else if (modalValue.subType == EQUIPMENT_SLOTS.CLOTHING && leader.clothingEquipped) {
+      leaderMap[leader.clothingEquipped] = leader;
     }
     else if (modalValue.subType == EQUIPMENT_SLOTS.BACK && leader.backEquipped) {
-      matchedEquipment[leader.backEquipped].leader = leader;
+      leaderMap[leader.backEquipped] = leader;
     }
   });
-  let equipmentArray = Object.keys(matchedEquipment).map((equipmentId) => {
+  let equipmentArray = Object.keys(equipment).map((equipmentId) => {
     return equipment[equipmentId];
   });
   equipmentArray = equipmentArray.filter((equipment) => {
@@ -92,7 +88,7 @@ export default function EquipmentSelectComponent() {
       return <EquipmentSelector key={anEquipment.id} anEquipment={anEquipment}
         equipmentSelected={equipmentSelected}
         setEquipmentSelected={setEquipmentSelected}
-        positioner={positioner} />;
+        leaderMap={leaderMap} positioner={positioner} />;
     });
   }
 
@@ -118,7 +114,6 @@ export default function EquipmentSelectComponent() {
 
   function submit() {
     if (equipmentSelected) {
-      const anEquipment = equipment[equipmentSelected];
       let newLeaders: { [id: string] : Leader } = {};
       Object.keys(leaders).map((id) => {
         let leader = new Leader(leaders[id]);
@@ -145,22 +140,23 @@ export default function EquipmentSelectComponent() {
   }
 }
 
-function EquipmentSelector(props: {anEquipment: EquipmentMatched,
+function EquipmentSelector(props: {anEquipment: Equipment,
   equipmentSelected: string|null, setEquipmentSelected: Function,
-  positioner: Positioner}) {
-  let equipmentType = equipmentTypes[props.anEquipment.typeName];
+  leaderMap: { [equipmentId: string] : Leader }, positioner: Positioner}) {
+  const { anEquipment, equipmentSelected, setEquipmentSelected, leaderMap, positioner } = props;
+  let equipmentType = equipmentTypes[anEquipment.typeName];
   let optionTextStyle = {paddingLeft: 4, paddingRight: 4};
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.modalMajor,
-        maxWidth: props.positioner.modalMajor}])}>
-      <BadgeComponent icon={equipmentType.icon} size={19} />
+      {minWidth: positioner.modalMajor,
+        maxWidth: positioner.modalMajor}])}>
+      <BadgeComponent icon={equipmentType.icon} size={24} />
       <View>
         <Text style={optionTextStyle}>{equipmentType.name}</Text>
-        {renderEquipedBy(props.anEquipment)}
-        {renderEquipmentEffects(props.anEquipment)}
-        {renderButton(props.anEquipment, props.equipmentSelected,
-          props.setEquipmentSelected)}
+        <View style={styles.breakSmall} />
+        {renderEquipedBy(anEquipment, leaderMap)}
+        {renderEquipmentEffects(anEquipment)}
+        {renderButton(anEquipment, equipmentSelected, setEquipmentSelected)}
       </View>
     </View>
   );
@@ -188,13 +184,14 @@ function EquipmentSelector(props: {anEquipment: EquipmentMatched,
     );
   }
 
-  function renderEquipedBy(anEquipment: EquipmentMatched) {
-    if (anEquipment.leader) {
+  function renderEquipedBy(anEquipment: Equipment, leaderMap: { [equipmentId: string] : Leader }) {
+    const leader = leaderMap[anEquipment.id];
+    if (leader) {
       return (
         <View style={styles.rows}>
-          <BadgeComponent icon={anEquipment.leader.icon} size={19} />
+          <BadgeComponent icon={leader.icon} size={19} />
           <Text style={{color: '#000', fontSize: 12}}>
-            {` ${anEquipment.leader.name} using`}
+            {` ${leader.name} using`}
           </Text>
         </View>
       )
@@ -227,8 +224,4 @@ function EquipmentSelector(props: {anEquipment: EquipmentMatched,
   function equipmentIdSelect(anEquipment: Equipment, setEquipmentSelected: Function) {
     setEquipmentSelected(anEquipment.id);
   }
-}
-
-interface EquipmentMatched extends Equipment {
-  leader?: Leader;
 }
