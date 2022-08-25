@@ -13,6 +13,7 @@ import { removeEquipment } from '../actions/equipment';
 import { increaseResources } from '../actions/vault';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setEquipmentMarked } from '../actions/equipment_marked';
+import { DON_EQUIPMENT } from '../actions/leaders';
 import { displayModal, displayModalValue } from '../actions/ui';
 
 import Resource from '../models/resource';
@@ -83,7 +84,8 @@ export default function EquipmentComponent() {
       case 'equipment':
       if (data.item.anEquipment) {
         return <MarkedEquipmentDescription anEquipment={data.item.anEquipment}
-          positioner={positioner} equipment={equipment} leaderMap={leaderMap} />;
+          positioner={positioner} leaderMap={leaderMap}
+          leaderSelectOpen={leaderSelectOpen} />;
       } break;
     }
     return null;
@@ -171,24 +173,26 @@ export default function EquipmentComponent() {
       }
     }
   }
+
+  function leaderSelectOpen(anEquipment: Equipment) {
+    dispatch(displayModalValue(MODALS.LEADER_SELECT, 'open', { subType: DON_EQUIPMENT, anEquipment }));
+  }
 }
 
 function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
     positioner: Positioner }) {
+  const { resource, vault, positioner } = props;
   const dispatch = useDispatch();
-  const resource = props.resource;
   const resourceType = resourceTypes[resource.type];
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])}>
       <TouchableOpacity onPress={() => resourceDetailOpen(resource)}>
         <BadgeComponent icon={resourceType.icon} size={29} />
       </TouchableOpacity>
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow,
-          {minWidth: props.positioner.bodyMedWidth,
-            maxWidth: props.positioner.bodyMedWidth}])}>
+          {minWidth: positioner.bodyMedWidth, maxWidth: positioner.bodyMedWidth}])}>
           <Text>{resource.type}</Text>
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
@@ -202,8 +206,7 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
           </TouchableOpacity>
         </View>
         <View style={StyleSheet.flatten([styles.buttonTextRow,
-          {minWidth: props.positioner.bodyMedWidth,
-            maxWidth: props.positioner.bodyMedWidth, minHeight: 24}])}>
+          {minWidth: positioner.bodyMedWidth, maxWidth: positioner.bodyMedWidth, minHeight: 24}])}>
           {renderMarkButtons()}
           <Text style={{fontSize: 20}}>
             {"x" + utils.formatNumberShort(resource.quantity)}
@@ -234,7 +237,6 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
   }
 
   function markAllEquipment() {
-    const resource = props.resource;
     markEquipment(Math.floor(resource.quantity));
   }
 
@@ -242,10 +244,10 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
     const equipmentType = equipmentTypes[resource.type.split(' (')[0]];
     const newEquipmentMarked: { [id: string] : Equipment} = {};
     for (let loop = 0; loop < count; loop++) {
-      const anEquipment = equipmentType.createEquipment(resource.quality, props.vault, resourceTypes);
+      const anEquipment = equipmentType.createEquipment(resource.quality, vault, resourceTypes);
       newEquipmentMarked[anEquipment.id] = anEquipment;
     }
-    const equipmentTypeName = props.resource.type.split(' (')[0];
+    const equipmentTypeName = resource.type.split(' (')[0];
     const tier = 0;
     dispatch(addToActivityQueue(new QuestActivity({ id: utils.randHex(16),
       equipmentMarked: { typeName: equipmentTypeName, tier, quantity: count } })));
@@ -265,23 +267,21 @@ function CleanEquipmentDescription(props: { resource: Resource, vault: Vault,
 }
 
 function MarkedEquipmentDescription(props: { anEquipment: Equipment,
-  positioner: Positioner, equipment: { [id: string] : Equipment},
-  leaderMap: { [equipmentId: string] : Leader } }) {
+  positioner: Positioner, leaderMap: { [equipmentId: string] : Leader },
+  leaderSelectOpen: (anEquipment: Equipment) => void}) {
+  const { anEquipment, positioner, leaderMap, leaderSelectOpen } = props;
   const dispatch = useDispatch();
-  const anEquipment: Equipment = props.equipment[props.anEquipment.id];
   const equipmentType = equipmentTypes[anEquipment.typeName];
 
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])}>
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])}>
       <TouchableOpacity onPress={() => morePress(anEquipment)}>
         <BadgeComponent icon={equipmentType.icon} size={29} />
       </TouchableOpacity>
       <View style={styles.containerStretchColumn}>
         <View style={StyleSheet.flatten([styles.buttonTextRow,
-          {minWidth: props.positioner.bodyMedWidth,
-            maxWidth: props.positioner.bodyMedWidth}])}>
+          {minWidth: positioner.bodyMedWidth, maxWidth: positioner.bodyMedWidth}])}>
           <EquipmentNameComponent anEquipment={anEquipment} size='medium' />
           <TouchableOpacity
             style={StyleSheet.flatten([styles.buttonRowItemSmall, styles.buttonLight])}
@@ -295,7 +295,7 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
           </TouchableOpacity>
         </View>
         {renderEquipmentEffects(anEquipment)}
-        {renderEquippedBy(anEquipment, props.leaderMap)}
+        {renderEquippedBy(anEquipment, leaderMap)}
       </View>
     </View>
   );
@@ -303,8 +303,8 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
   function renderEquipmentEffects(anEquipment: Equipment) {
     if (anEquipment.effects) {
       return (
-        <View style={[styles.equipmentEffectSmallContainer, {minWidth: props.positioner.bodyMedWidth,
-          maxWidth: props.positioner.bodyMedWidth}]}>
+        <View style={[styles.equipmentEffectSmallContainer, {minWidth: positioner.bodyMedWidth,
+          maxWidth: positioner.bodyMedWidth}]}>
           {anEquipment.effects.map((anEffect, index) => {
             return (
               <EquipmentEffectComponent key={index} anEffect={anEffect} size='small' />
@@ -321,13 +321,27 @@ function MarkedEquipmentDescription(props: { anEquipment: Equipment,
     const leader = leaderMap[anEquipment.id];
     if (leader) {
       return (
-        <View style={styles.rows}>
-          <BadgeComponent icon={leader.icon} size={19} />
-          <Text style={{fontSize: 12}}>{' ' + leader.name + ' equipped'}</Text>
+        <View style={styles.spacedRows}>
+          <TouchableOpacity style={styles.buttonSubtle}
+            onPress={() => leaderSelectOpen(anEquipment)}>
+            <BadgeComponent icon={leader.icon} size={19} />
+            <Text style={{fontSize: 12}}>
+              {leader.name + ' equipped'}
+            </Text>
+          </TouchableOpacity>
         </View>
       );
     }
-    return null;
+    return (
+      <View style={styles.spacedRows}>
+        <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle,
+          { paddingLeft: 6 }])} onPress={() => leaderSelectOpen(anEquipment)}>
+          <Text style={{fontSize: 12, color: '#767279'}}>
+            {'No leader equipping'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   function morePress(anEquipment: Equipment) {
@@ -341,20 +355,21 @@ const display: { [name: string] : { provider: string, name: string, label: strin
 }
 function CategoryDescription(props: { name: string,
   deconstructNotEquipped: () => void, positioner: Positioner }) {
-  const width = props.positioner.majorWidth - 5;
+  const { name, deconstructNotEquipped, positioner } = props;
+  const width = positioner.majorWidth - 5;
   return (
     <View style={StyleSheet.flatten([styles.rows,
       {marginLeft: 10, marginTop: 10, minWidth: width, maxWidth: width}])} >
-      <IconComponent provider={display[props.name].provider} style={styles.headingIcon}
-        name={display[props.name].name} color="#fff" size={20} />
+      <IconComponent provider={display[name].provider} style={styles.headingIcon}
+        name={display[name].name} color="#fff" size={20} />
       <View style={StyleSheet.flatten([styles.containerStretchRow,
         {justifyContent: 'space-between'}])}>
         <View>
           <Text style={styles.bareText}>
-            {` ${display[props.name].label}`}
+            {` ${display[name].label}`}
           </Text>
         </View>
-        {props.name == 'equipment' && renderDeconstructButton()}
+        {name == 'equipment' && renderDeconstructButton()}
       </View>
 
     </View>
@@ -364,7 +379,7 @@ function CategoryDescription(props: { name: string,
     return (
       <TouchableOpacity
         style={StyleSheet.flatten([styles.buttonRowItemSmall])}
-        onPress={() => { props.deconstructNotEquipped() }}>
+        onPress={() => { deconstructNotEquipped() }}>
         <Text style={styles.buttonTextSmall}>{`Deconstruct`}</Text>
       </TouchableOpacity>
     );

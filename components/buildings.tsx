@@ -301,8 +301,6 @@ function BuildingDescription(props: any) {
       );
     }
     else if (buildingType.category == BUILDING_CATEGORIES.HOUSING) {
-      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
-        color: '#cec3e4', size: 19 });
       return (
         <View style={styles.spacedRows}>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle, { paddingLeft: 6 }])} onPress={() => props.livingAssign(building)}>
@@ -334,8 +332,6 @@ function BuildingDescription(props: any) {
     }
     else if (buildingType.category != BUILDING_CATEGORIES.GENERAL
       && buildingType.category != BUILDING_CATEGORIES.HOUSING) {
-      const icon = new Icon({ provider: 'FontAwesome5', name: 'minus-circle',
-        color: '#cec3e4', size: 14 });
       return (
         <View style={styles.spacedRows}>
           <TouchableOpacity style={StyleSheet.flatten([styles.buttonSubtle,

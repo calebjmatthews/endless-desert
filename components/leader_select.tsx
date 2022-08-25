@@ -35,6 +35,7 @@ export default function LeaderSelectComponent() {
   const modalValue: {type: string, subType: string, building: Building, fromBuildingDetail?: boolean, 
     anEquipment? : Equipment} = useTypedSelector(state => state.ui.modalValue);
   const { subType, building, fromBuildingDetail, anEquipment } = modalValue;
+  const equipmentType = anEquipment ? equipmentTypes[anEquipment?.typeName] : null;
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   let leadersArray = Object.keys(leaders).map((leaderId) => {
@@ -55,12 +56,11 @@ export default function LeaderSelectComponent() {
       buildingsLeader[leader.livingAt] = leader;
     }
   });
-  let equipmentLeader: string|null = null;
   Object.keys(leaders).forEach((leaderId) => {
     const leader = leaders[leaderId];
     if (leader.toolEquipped === anEquipment?.id || leader.clothingEquipped === anEquipment?.id
         || leader.backEquipped === anEquipment?.id) {
-        equipmentLeader = leaderId;
+        if (!leaderSelected) { setLeaderSelected(leaderId); }
       }
   });
 
@@ -89,10 +89,20 @@ export default function LeaderSelectComponent() {
 
   function renderLeaders() {
     return leadersArray.map((leader) => {
-      const leadersEquipment = (equipmentLeader === leader.id) ? (anEquipment || null) : null;
+      const equipmentType = (anEquipment) ? equipmentTypes[anEquipment.typeName] : null;
+      let leadersEquipment = null;
+      if (equipmentType?.slot === ES.TOOL) {
+        leadersEquipment = equipment[leader.toolEquipped || ''];
+      }
+      if (equipmentType?.slot === ES.CLOTHING) {
+        leadersEquipment = equipment[leader.clothingEquipped || ''];
+      }
+      if (equipmentType?.slot === ES.BACK) {
+        leadersEquipment = equipment[leader.backEquipped || ''];
+      }
       return <LeaderSelector key={leader.id} leader={leader} buildings={buildings}
         subType={subType} leaderSelected={leaderSelected} anEquipment={leadersEquipment}
-        setLeaderSelected={setLeaderSelected} positioner={positioner}  />;
+        setLeaderSelected={setLeaderSelected} positioner={positioner} />;
     });
   }
 
@@ -154,19 +164,15 @@ export default function LeaderSelectComponent() {
         const equipmentType = equipmentTypes[anEquipment?.typeName || ''];
         
         if (equipmentType.slot === ES.TOOL) {
-          if (equipmentLeader) { newLeaders[equipmentLeader].toolEquipped = null; }
           newLeaders[leader.id].toolEquipped = anEquipment?.id || '';
         }
         else if (equipmentType.slot === ES.CLOTHING) {
-          if (equipmentLeader) { newLeaders[equipmentLeader].clothingEquipped = null; }
           newLeaders[leader.id].clothingEquipped = anEquipment?.id || '';
         }
         else if (equipmentType.slot === ES.BACK) {
-          if (equipmentLeader) { newLeaders[equipmentLeader].backEquipped = null; }
           newLeaders[leader.id].backEquipped = anEquipment?.id || '';
         }
-        if (equipmentLeader) { newLeaders[equipmentLeader].calcEffects(equipment, buildings,
-          treasureEffects, vault); }
+        
         newLeaders[leader.id].calcEffects(equipment, buildings, vault);
         console.log('newLeaders');
         console.log(newLeaders);
@@ -238,7 +244,7 @@ function LeaderSelector(props: {leader: Leader, buildings: { [id: string] : Buil
     return (
       <View style={styles.spacedRows}>
         <BadgeComponent icon={equipmentType.icon} size={19} />
-        <EquipmentNameComponent anEquipment={anEquipment} size='small' />
+        <EquipmentNameComponent anEquipment={anEquipment} size='small' suffix='equipped' />
       </View>
     );
   }
