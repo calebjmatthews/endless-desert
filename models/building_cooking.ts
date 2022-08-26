@@ -55,50 +55,50 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.EXACT, type: RTY.TOMATO, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.BREAD, valueChange: 30, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.BREAD, valueChange: 10, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.WAYBREAD, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ], contains: [
+    new DishType({name: RTY.WAYBREAD, valueChange: 15, tags: [ RTA.FOOD, RTA.PROVISION ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.DRIED_FRUIT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
+    new DishType({name: RTY.DRIED_FRUIT, valueChange: 20, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.TAG, type: RTA.FRUIT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTFISH, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
+    new DishType({name: RTY.SALTFISH, valueChange: 20, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.SUBCATEGORY, type: RSC.FISH, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 30, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.QUAIL_MEAT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.SALTED_MEAT, valueChange: 40, tags: [ RTA.FOOD, RTA.PROVISION ],
+    new DishType({name: RTY.SALTED_MEAT, valueChange: 30, tags: [ RTA.FOOD, RTA.PROVISION ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.AUROCH_MEAT, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.EXACT, type: RTY.SALT, quantity: DEFAULT_SPICE_COST }
     ]}),
-    new DishType({name: RTY.OMELET, valueChange: 60, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.OMELET, valueChange: 20, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_DISH_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: RTY.STEW, valueChange: 80, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.STEW, valueChange: 40, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
     ]}),
-    new DishType({name: RTY.PIE, valueChange: 100, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.PIE, valueChange: 30, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: RTY.CAKE, valueChange: 120, tags: [ RTA.FOOD ], contains: [
+    new DishType({name: RTY.CAKE, valueChange: 50, tags: [ RTA.FOOD ], contains: [
       { specificity: RSP.EXACT, type: RTY.FLOUR, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.MILK, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.EGG, quantity: DEFAULT_SPICE_COST },
@@ -186,7 +186,7 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
 
     if (utils.arrayIncludes(ingredient.tags, RTA.SPICE)) {
       if (ingredient.name == RTY.OLIVE_OIL) {
-        dishValue += ingredient.value;
+        dishValue += (ingredient.value * 0.5);
         if (atm[adjective] < atm['Tasty']) { adjective = 'Tasty'; }
       }
       else if (dishType.contains.filter((contain) =>
@@ -194,19 +194,19 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
         const ingAdjective = getSpiceAdjective(ingredient);
         // Spice-specific adjective replacing "Plain" or "Tasty"
         if (atm[adjective] < atm[ingAdjective]) {
-          dishValue += ingredient.value;
+          dishValue += (ingredient.value * 0.5);
           adjective = ingAdjective;
         }
         // Two spice-specific adjectives, combined into "Spiced" and add only
-        // half the value of the new spice
+        // its exact value (7/20)
         else if (atm[adjective] == atm[ingAdjective]) {
-          dishValue += (ingredient.value * 0.5);
+          dishValue += (ingredient.value * 0.35);
           adjective = 'Spiced';
         }
-        // Two or more spices already used, keep "Spiced" adjective and add only one
-        // quarter the value of the new spice
+        // Two or more spices already used, keep "Spiced" adjective and add only
+        // its exact value (7/20)
         else if (atm[adjective] > atm[ingAdjective]) {
-          dishValue += (ingredient.value * 0.5);
+          dishValue += (ingredient.value * 0.35);
         }
       }
     }
