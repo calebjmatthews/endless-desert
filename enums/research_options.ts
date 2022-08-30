@@ -58,6 +58,11 @@ export enum RESEARCH_OPTIONS {
   WIDE_OPEN_SPACES = "Wide Open Spaces",
   LINGUISTIC_PROGRESSION = "Linguistic Progression",
 
+  // Poem Translation
+  REASSEMBLING_METER = "Reassembling Meter",
+  POETIC_CONTEXT = "Poetic Context",
+  FORGOTTEN_IMAGERY = "Forgotten Imagery",
+
   // Physics Lv 1
   EARLY_PRINCIPLES = "Early Principles",
   SAND_AND_SOIL = "Sand and Soil",

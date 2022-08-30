@@ -415,7 +415,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Under-Reservoir
   - Hall of Silken Mirrors
   - Painted Ravine
-- Expedition relics:
+- Expedition treasures:
   - Shell from something mythical
   - Resin from something mythical
   - Maps to find other expeditions
@@ -423,6 +423,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Petrtified wood tablets containing poetry, dice, masks
   - Stone figurines in the shape of many different animals
   - Instruments made from various woods
+- More specific expedition treasures:
+  - Ancient wine
+  - Daruma doll: lucky
+  - Ancient weapons
+  - Cultural items: fan, mask, badge
+  - Tablet depicting disasterous event
 - Locations while traveling:
   - Oases: Grow figs, dates, lemons, herbs
   - Empty well: Pull strange things up from it
@@ -576,6 +582,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/landscapes-collection/
     https://www.svgrepo.com/collection/landscapes-22/
     https://www.svgrepo.com/collection/landscapes-18/
+    https://www.svgrepo.com/collection/landmarks-6/
     https://www.svgrepo.com/collection/italy-4/
     https://www.svgrepo.com/collection/japan-13/
     https://www.svgrepo.com/collection/japan-10/
@@ -621,6 +628,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/kitchenware-2/
     https://www.svgrepo.com/collection/ice-cream-icon-collection/
     https://www.svgrepo.com/collection/holidays-2/
+    https://www.svgrepo.com/collection/valentines-day-6/
     https://www.svgrepo.com/collection/beauty-30/
     https://www.shareicon.net/pack/landscapes?p=4
     https://www.shareicon.net/pack/landscapes-collection?p=2
@@ -931,7 +939,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Equipment selection in equipment tab
   [X] De-equip existing leader if new leader dons equipment
   [X] Nerf cooking value (7/m give 50% value?)
-  [ ] Repeatable research to translate a poem
+  [X] Repeatable research to translate a poem
   [ ] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
   [ ] Show happiness added by housing
   [ ] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
@@ -939,15 +947,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Specialized tools earlier in trading party pools, lower cost?
   [ ] Press anywhere to skip dialogue animation
   [ ] Fix new dialogue available styling on button
-  [ ] Add images to memos
+  [ ] Fix `built` issue in BuildingDetail
+  [ ] Fix research options applying to inappropriate "Scholarship"
 
   [ ] Firefly mother quests?
   [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes
   [ ] Expeditions! (without exploration)
-  [ ] Fix `built` issue in BuildingDetail
 
+  [ ] Add images to memos
   [ ] Mass deconstruct option in Equipment tab
   [ ] Store memo/ui state in reducer
   [ ] Load equipment marked state

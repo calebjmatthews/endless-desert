@@ -142,6 +142,7 @@ export enum SVGS {
   CARPET = "Carpet",
   OPEN_BOOK_QUILL = "Open Book Quill",
   OPEN_BOOK_WIND = "Open Book Wind",
+  HIEROGLYPHICS = "Hieroglyphics",
 
   TOME = "Tome",
   BROKEN_KEY = "Broken Key",

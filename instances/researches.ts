@@ -613,6 +613,22 @@ researches[RESEARCHES.ANTHROPOLOGY_ADVANCED] = new Research({
   knowledgeReq: 5000
 });
 
+researches[RESEARCHES.TRANSLATION_OF_VERSE] = new Research({
+  name: RESEARCHES.TRANSLATION_OF_VERSE,
+  unlocks: 'A treasure: increase the Happiness of all leaders by +1%',
+  description: `Lately, inside rumors and gossip you've catching bits of a what could be truly ancient poem. At least, you're fairly sure it's a poem, if your assumptions about conjugation and diction are correct. Translating it into your modern tongue could result in something quite valuable.`,
+  icon: new Icon({provider: 'svg', name: SVGS.HIEROGLYPHICS}),
+  category: RESEARCHES.ANTHROPOLOGY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ANTHROPOLOGY_ADVANCED],
+  knowledgeReq: 10000,
+  repeatable: true,
+  givesTreasure: RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED
+});
+
 researches[RESEARCHES.TRADING_IMPROVED] = new Research({
   name: RESEARCHES.TRADING_IMPROVED,
   unlocks: 'Allows an upgrade to the Market',
@@ -996,8 +1012,7 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
 researches[RESEARCHES.DEHYDRATION_ORGANIZED] = new Research({
   name: RESEARCHES.DEHYDRATION_ORGANIZED,
   unlocks: ('Allows Drying Yards to be run without a leader.'),
-  description: ('You\'ve put together simple diagrams showing where each material '
-    + 'needs to be placed, and which shouldn\'t touch.'),
+  description: `You have an idea for a well-organized Drying Yard, with diagrams showing where each material should be placed, and which shouldn't touch.`,
   icon: new Icon({provider: 'svg', name: SVGS.THATCH}),
   category: RESEARCHES.CHEMISTRY,
   isCategory: false,
@@ -1013,7 +1028,7 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   name: RESEARCHES.COMBUSTION,
   unlocks: ('Unlocks Furnaces.'),
   description: ('You\'ll need more than fire. You\'ll need useful fire. '
-    + 'But if you can get the temperature and air flow high enough, you could start '
+    + 'And if you can get the temperature and air flow high enough, you could start '
     + 'turning sand into glass! Gods know there\'s enough sand around.'),
   icon: new Icon({provider: 'svg', name: SVGS.GLASS}),
   category: RESEARCHES.CHEMISTRY,

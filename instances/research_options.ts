@@ -421,8 +421,35 @@ researchOptions[RESEARCH_OPTIONS.LINGUISTIC_PROGRESSION] = new ResearchOption({
   difficulty: 2,
   description: `You've made some progress in learning the myriad languages of the desert. But the sheer amount of regional dialects, colloquialisms, and differences in pronunciation is eye-watering. You've still got a lot of work to do.`,
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
-    { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200 },
-    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10 }]
+    {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200},
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10}]
+});
+
+researchOptions[RESEARCH_OPTIONS.REASSEMBLING_METER] = new ResearchOption({
+  name: RESEARCH_OPTIONS.REASSEMBLING_METER,
+  appliesTo: RESEARCHES.TRANSLATION_OF_VERSE,
+  difficulty: 2,
+  description: `This is more guesswork than you'd like, equal parts inference from extant languages and going with what feels right.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.RUMORS_LONG_ANTIQUITY, quantity: 8},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.POETIC_CONTEXT] = new ResearchOption({
+  name: RESEARCH_OPTIONS.POETIC_CONTEXT,
+  appliesTo: RESEARCHES.TRANSLATION_OF_VERSE,
+  difficulty: 2,
+  description: `Puzzling out tone is more challenging than you expected. Is "a leader so wise, to change the eyes on her face" criticism, or some kind of strange praise?`,
+  cost: [{specificity: RSP.EXACT, type: RTY.RUMORS_ALL_RIVER_DELTA, quantity: 8},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3000}]
+});
+
+researchOptions[RESEARCH_OPTIONS.FORGOTTEN_IMAGERY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.FORGOTTEN_IMAGERY,
+  appliesTo: RESEARCHES.TRANSLATION_OF_VERSE,
+  difficulty: 2,
+  description: `Is a reference to "my father's shell" meant to be taken literally? Is the "wine dark sea" meant to invoke blood, or did colors shine differently when the poet lived?`,
+  cost: [{specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, quantity: 8},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3000}]
 });
 
 researchOptions[RESEARCH_OPTIONS.EARLY_PRINCIPLES] = new ResearchOption({

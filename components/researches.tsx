@@ -48,7 +48,7 @@ export default function ResearchesComponent() {
     return {name: name, status: researchStatus.status[name]}
   });
   researchArray = researchArray.filter((r) => {
-    if (r.status == 'visible' || r.status == 'completed') {
+    if (r.status == 'visible' || r.status == 'repeatable' || r.status == 'completed') {
       return r;
     }
   });
@@ -217,8 +217,8 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
   milestones: { [name: string] : boolean }, positioner: Positioner}) {
   const research = researches[props.branch.name];
 
-  if ((!props.showCompletedResearches && props.branch.status != 'visible')
-    || research.hidden) {
+  if ((!props.showCompletedResearches && (props.branch.status != 'visible'
+    && props.branch.status != 'repeatable')) || research.hidden) {
     return null;
   }
 
@@ -245,7 +245,7 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
 
   function renderCost(researchStatus: {name: string, status: string}) {
     const research = researches[researchStatus.name];
-    if (researchStatus.status == 'visible') {
+    if (researchStatus.status == 'visible' || researchStatus.status == 'repeatable') {
       return (
         <View>
           <Text>{'To start: ' + utils.formatNumberShort(research.knowledgeReq)
@@ -281,10 +281,20 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
         </TouchableOpacity>
       );
     }
+    if (props.branch.status == 'repeatable') {
+      return (
+        <TouchableOpacity style={styles.buttonRowItem}
+          onPress={() => {props.startClick(props.branch, props.vault,
+            props.milestones)}} >
+          <IconComponent provider="FontAwesome" name="refresh"
+            color="#fff" size={16} />
+          <Text style={styles.buttonText}>{' Repeat'}</Text>
+        </TouchableOpacity>
+      );
+    }
     let buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
     return (
-      <TouchableOpacity style={buttonStyle}
-        onPress={() => {}} disabled >
+      <TouchableOpacity style={buttonStyle} disabled >
         <IconComponent provider="FontAwesome5" name="check"
           color="#fff" size={16} />
         <Text style={styles.buttonText}>{' Done'}</Text>

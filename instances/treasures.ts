@@ -79,6 +79,14 @@ const treasures: { [name: string] : Treasure } = {
       label: 'Increases Study and Analysis Knowledge by a further x50%, but Analysis requires Precise Gearwork'
     }]
   }),
+
+  [RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED]: new Treasure({
+    typeName: RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED,
+    equipmentEffects: [new EquipmentEffect({
+      quality: LEADER_QUALITIES.HAPPINESS,
+      change: 1
+    })]
+  }),
 };
 
 export { treasures };

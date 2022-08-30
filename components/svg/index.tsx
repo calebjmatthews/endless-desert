@@ -128,10 +128,11 @@ import CastingPlasterSvgComponent from './resources/casting_plaster';
 import MercuryDropsSvgComponent from './resources/mercury_drops';
 import ChitinousPinsSvgComponent from './resources/chitinous_pins';
 
-import ScrollSvgComponent from './resources/scroll';
-import CarpetSvgComponent from './resources/carpet';
-import OpenBookQuillSvgComponent from './resources/open_book_quill';
-import OpenBookWindSvgComponent from './resources/open_book_wind';
+import ScrollSvgComponent from './treasures/scroll';
+import CarpetSvgComponent from './treasures/carpet';
+import OpenBookQuillSvgComponent from './treasures/open_book_quill';
+import OpenBookWindSvgComponent from './treasures/open_book_wind';
+import HieroglyphicsSvgComponent from './treasures/hieroglyphics';
 
 import TomeSvgComponent from './resources/tome';
 import BrokenKeySvgComponent from './resources/broken_key';
@@ -512,6 +513,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <OpenBookQuillSvgComponent icon={props.icon} />;
     case SVGS.OPEN_BOOK_WIND:
     return <OpenBookWindSvgComponent icon={props.icon} />;
+    case SVGS.HIEROGLYPHICS:
+    return <HieroglyphicsSvgComponent icon={props.icon} />;
 
     case SVGS.TOME:
     return <TomeSvgComponent icon={props.icon} />;

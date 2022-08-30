@@ -1,16 +1,12 @@
-import Research from './research';
 import Vault from './vault';
 import Resource from './resource';
 import ResearchBranch from './research_branch';
 import { researches } from '../instances/researches';
-import { resourceTypes } from '../instances/resource_types';
-import { utils } from '../utils';
-import { RESEARCHES } from '../enums/researches';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 
 export default class ResearchStatus implements ResearchStatusInterface {
   // Each research and whether it is "completed", "visible" or "hidden"
-  status: { [name: string] : string } = {};
+  status: { [name: string] : 'completed'|'visible'|'hidden'|'repeatable' } = {};
   actions: { [category: string] : string[] } = {};
   resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
@@ -25,7 +21,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   init() {
     Object.keys(researches).map((name) => {
       let research = researches[name];
-      if (research.beginsCompleted == true) {
+      if (research.beginsCompleted === true) {
         this.status[name] = 'completed';
       }
       else {
@@ -43,21 +39,21 @@ export default class ResearchStatus implements ResearchStatusInterface {
   checkAndSetVisible() {
     Object.keys(researches).map((name) => {
       let research = researches[name];
-      if (research.prereq == null) {
-        if (this.status[name] != 'completed') {
+      if (research.prereq === null) {
+        if (this.status[name] !== 'completed' && this.status[name] !== 'repeatable') {
           this.status[name] = 'visible';
         }
       }
       else {
         let allCompleted = true;
         research.prereq.map((prereqName) => {
-          if (this.status[prereqName] != 'completed'
-            && prereqName != 'No prerequisite') {
+          if ((this.status[prereqName] !== 'completed' && this.status[prereqName] !== 'repeatable')
+            && prereqName !== 'No prerequisite') {
             allCompleted = false;
           }
         });
-        if (allCompleted == true) {
-          if (this.status[name] != 'completed') {
+        if (allCompleted === true) {
+          if (this.status[name] !== 'completed' && this.status[name] !== 'repeatable') {
             this.status[name] = 'visible';
           }
         }
@@ -69,7 +65,14 @@ export default class ResearchStatus implements ResearchStatusInterface {
   }
 
   setCompleted(researchName: string) {
-    this.status[researchName] = 'completed';
+    const research = researches[researchName];
+    if (research.repeatable) {
+      this.status[researchName] = 'repeatable';
+    }
+    else {
+      this.status[researchName] = 'completed';
+    }
+    
     this.checkAndSetVisible();
     this.setResearchedActions();
     this.setBuildingsAvailable();
@@ -80,7 +83,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     this.actions = {};
 
     Object.keys(this.status).map((name) => {
-      if (this.status[name] == 'completed') {
+      if (this.status[name] === 'completed') {
         const research = researches[name];
         if (research.actionCategory) {
           if (!this.actions[research.actionCategory]) {
@@ -100,7 +103,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     let rts: Resource[] = vault.getStudyableResources();
     rts = rts.filter((resource) => {
       const typeQuality = (resource.type.split('-')[0] + '|' + resource.quality);
-      if (this.resourcesStudied[typeQuality] != true) {
+      if (this.resourcesStudied[typeQuality] !== true) {
         return resource;
       }
     });
@@ -113,7 +116,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
       if (!research) {
         console.log(`Missing research instance: ${researchName}`); return;
       }
-      if (research.unlocksBuilding && this.status[researchName] == 'completed') {
+      if (research.unlocksBuilding && this.status[researchName] === 'completed') {
         research.unlocksBuilding.map((buildingName) => {
           this.buildingsAvailable[buildingName] = true;
         });
@@ -127,7 +130,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
       if (!research) {
         console.log(`Missing research instance: ${researchName}`); return;
       }
-      if (research.unlocksUpgrade && this.status[researchName] == 'completed') {
+      if (research.unlocksUpgrade && this.status[researchName] === 'completed') {
         research.unlocksUpgrade.map((buildingName) => {
           this.upgradesAvailable[buildingName] = true;
         });
@@ -142,15 +145,16 @@ export default class ResearchStatus implements ResearchStatusInterface {
       if (research.isCategory) {
         researchTree[rName] = new ResearchBranch({ type: 'category', name: rName,
           status: '', children: [] });
-        if (((this.status[rName] == 'visible' || this.status[rName] == 'completed'))
-          && (showCompleted || this.status[rName] != 'completed')) {
+        if (((this.status[rName] === 'visible' || this.status[rName] === 'completed'))
+          && (showCompleted || this.status[rName] !== 'completed')) {
           researchTree[rName].children.push(new ResearchBranch({ type: 'research',
             name: rName, status: this.status[rName], children: [] }));
         }
       }
       else {
-        if (((this.status[rName] == 'visible' || this.status[rName] == 'completed'))
-          && (showCompleted || this.status[rName] != 'completed')) {
+        if (((this.status[rName] === 'visible' || this.status[rName] === 'repeatable' 
+            || this.status[rName] === 'completed'))
+          && (showCompleted || this.status[rName] !== 'completed')) {
           researchTree[research.category].children.push({ type: 'research',
             name: rName, status: this.status[rName], children: [] });
         }

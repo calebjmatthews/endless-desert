@@ -196,6 +196,7 @@ export enum RESOURCE_TYPES {
   TECHNIQUES_FOR_WEIGHTY_EXAMINATION = "Your Techniques for Rather Weighty Examination",
   TECHNIQUES_FOR_POTENT_EXAMINATION = "Your Techniques for Impressively Potent Examination",
   TECHNIQUES_FOR_VISIONARY_EXAMINATION = "Your Techniques for Dazzlingly Visionary Examination",
+  ANCIENT_POEM_TRANSLATED = "An Ancient Poem, Translated",
 
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",

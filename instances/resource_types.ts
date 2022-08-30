@@ -2050,6 +2050,15 @@ resourceTypes[RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION] = new Resourc
     secondaryColor: '#94699d', secondaryShadow: '#82568b', tertiaryColor: '#6b3676'})
 });
 
+resourceTypes[RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED] = new ResourceType({
+  name: (RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED),
+  category: RCA.TREASURE,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 40000,
+  description: `Not all the phrases make sense to a modern listener, but there's something compelling and almost transcendent in the words`,
+  icon: new Icon({provider: 'svg', name: SVGS.HIEROGLYPHICS})
+});
+
 resourceTypes[RESOURCE_TYPES.THRICE_LOCKED_TOME] = new ResourceType({
   name: (RESOURCE_TYPES.THRICE_LOCKED_TOME),
   category: RCA.SPECIAL,
