@@ -292,7 +292,7 @@ export default function HourglassComponent() {
       if (recalcLeaderEffects) {
         Object.keys(tempLeaders).forEach((id) => {
           const leader = tempLeaders[id];
-          leader.calcEffects(equipment, buildings, vault);
+          leader.calcEffects(equipment, buildings, vault, account.treasureEffects);
         });
         dispatch(setLeaders(tempLeaders));
       }

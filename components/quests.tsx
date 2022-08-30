@@ -154,7 +154,7 @@ export default function QuestsComponent() {
       });
       dispatch(addEquipment(newEquipment));
       let leader = new Leader(leaderCreateRes.leader);
-      leader.calcEffects(tempEquipment, {}, new Vault(null));
+      leader.calcEffects(tempEquipment, {}, new Vault(null), []);
       dispatch(addLeader(leader));
       memos[0].leaderJoined = quest.leaderJoins;
     }

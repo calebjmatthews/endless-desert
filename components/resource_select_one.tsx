@@ -555,7 +555,7 @@ export default function ResourceSelectOneComponent() {
       else if (kind === 'drinking') {
         newLeaders[modalValue.leader.id].drinking = typeQuality;
       }
-      newLeaders[modalValue.leader.id].calcEffects(equipment, buildings, vault);
+      newLeaders[modalValue.leader.id].calcEffects(equipment, buildings, vault, treasureEffects);
       dispatch(setLeader(newLeaders[modalValue.leader.id]));
       const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
       dispatch(setRates(newRates));

@@ -207,9 +207,16 @@ export default function LeaderDetailComponent() {
         {explanation.map((row, index) =>
           <View key={index} style={styles.pseudoCellRow}>
             <View style={halfStyle}>
-              {row.sourceIcon && (
+              {row.sourceIcon?.provider === 'svg' && (
                 <>
                   <SvgComponent icon={new Icon({...row.sourceIcon, size: 18})} />
+                  <Text>{' '}</Text>
+                </>
+              )}
+              {row.sourceIcon?.provider !== 'svg' && (
+                <>
+                  <IconComponent size={18} provider={row.sourceIcon?.provider || ''}
+                    name={row.sourceIcon?.name || ''} color={row.sourceIcon?.color || ''} />
                   <Text>{' '}</Text>
                 </>
               )}

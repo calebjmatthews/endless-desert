@@ -143,7 +143,7 @@ export default function EquipmentSelectComponent() {
           }
         }
         
-        leader.calcEffects(equipment, buildings, vault);
+        leader.calcEffects(equipment, buildings, vault, treasureEffects);
         newLeaders[id] = leader;
       });
       dispatch(setLeaders(newLeaders));

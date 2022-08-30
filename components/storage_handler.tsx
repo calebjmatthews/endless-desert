@@ -277,7 +277,7 @@ export default function StorageHandlerComponent() {
           let leader = new Leader(rawLeaders[id]);
           if (vault.isResourceCustomAndBroken(leader.eating?.split('|')[0])) { leader.eating = null; }
           if (vault.isResourceCustomAndBroken(leader.drinking?.split('|')[0])) { leader.drinking = null; }
-          leader.calcEffects(equipment, buildings, vault);
+          leader.calcEffects(equipment, buildings, vault, treasureEffects);
           leaders[id] = leader;
         });
         dispatch(setLeaders(leaders));

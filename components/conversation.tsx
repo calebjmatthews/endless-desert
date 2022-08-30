@@ -272,7 +272,7 @@ function ConversationStatic(props: ConversationProps) {
       });
       dispatch(addEquipment(equipmentArray));
       let leader = new Leader(leaderCreateRes.leader);
-      leader.calcEffects(tempEquipment, {}, new Vault(null));
+      leader.calcEffects(tempEquipment, {}, new Vault(null), []);
       dispatch(addLeader(leader));
     }
 

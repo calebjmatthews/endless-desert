@@ -13,6 +13,7 @@ const LQ = LEADER_QUALITIES;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
 import { SVGS } from '../enums/svgs';
+import { ListViewBase } from 'react-native';
 
 const HAT_MAP = {
   [LQ.HAPPINESS_TO_SPEED] : LQ.SPEED,
@@ -44,11 +45,30 @@ export default class Leader {
     if (leader.icon) { this.icon = new Icon(leader.icon); }
   }
 
-  calcEffects(equipment: { [id: string] : Equipment },
-    buildings: { [id: string] : Building }, vault: Vault) {
+  calcEffects(equipment: { [id: string] : Equipment }, buildings: { [id: string] : Building }, 
+    vault: Vault, treasureEffects: EquipmentEffect[]) {
     let effectArray: EquipmentEffect[] = []
     let happiness = 0;
     this.explanations = {};
+
+    let happinessFromTreasure = 0;
+    treasureEffects.forEach((anEffect) => {
+      if (anEffect.quality === LQ.HAPPINESS) {
+        happinessFromTreasure += anEffect.change;
+      }
+    });
+    if (happinessFromTreasure > 0) {
+      happiness += happinessFromTreasure;
+      this.explanations = utils.explanationsAdd({
+        explanations: this.explanations,
+        subject: LQ.HAPPINESS,
+        source: 'Treasure',
+        sourceIcon: new Icon({provider: 'MaterialCommunityIcons', name: 'treasure-chest', 
+          color: '#efbd03'}),
+        change: happinessFromTreasure,
+        total: happiness
+      });
+    }
 
     const home = this.livingAt ? buildings[this.livingAt] : null;
     const homeType = home ? buildingTypes[home.buildingType] : null;

@@ -151,10 +151,10 @@ export default function LeaderSelectComponent() {
         if (buildingsLeader[building.id]) {
           newLeaders[buildingsLeader[building.id].id].livingAt = null;
           newLeaders[buildingsLeader[building.id].id]
-            .calcEffects(equipment, buildings, vault);
+            .calcEffects(equipment, buildings, vault, treasureEffects);
         }
         newLeaders[leader.id].livingAt = building.id;
-        newLeaders[leader.id].calcEffects(equipment, buildings, vault);
+        newLeaders[leader.id].calcEffects(equipment, buildings, vault, treasureEffects);
         dispatch(setLeaders(newLeaders));
         const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
@@ -188,7 +188,7 @@ export default function LeaderSelectComponent() {
           newLeaders[leader.id].backEquipped = anEquipment?.id || '';
         }
 
-        newLeaders[leader.id].calcEffects(equipment, buildings, vault);
+        newLeaders[leader.id].calcEffects(equipment, buildings, vault, treasureEffects);
         dispatch(setLeaders(newLeaders));
         const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
