@@ -21,9 +21,9 @@ import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { LEADER_QUALITIES } from '../enums/leader_qualities';
 const LQ = LEADER_QUALITIES;
 
-export default function EquipmentEffectComponent(props:
-  { anEffect: EquipmentEffect, size?: 'large'|'medium'|'small' }) {
-  if (props.anEffect.change === 0) { return null; }
+export default function EquipmentEffectComponent(props: { anEffect: EquipmentEffect, 
+  size?: 'large'|'medium'|'small', showWhenZero?: boolean }) {
+  if (props.anEffect.change === 0 && !props.showWhenZero) { return null; }
   let fontSize = 12; let iconSize = 16;
   if (props.size == 'large') { fontSize = 14; iconSize = 18; }
 

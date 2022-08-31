@@ -8,6 +8,7 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import BuildingDetailGateComponent from './building_detail_gate';
+import EquipmentEffectComponent from './equipment_effect';
 import { selectBuildingRecipe, payBuildingUpgradeCost, removeBuilding } from '../actions/buildings';
 import { payBuildingCost, removeBuildingConstruction } from '../actions/buildings_construction';
 import { addBuildingToStorage } from '../actions/buildings_storage';
@@ -26,6 +27,7 @@ import Vault from '../models/vault';
 import Timer from '../models/timer';
 import Resource from '../models/resource';
 import QuestActivity from '../models/quest_activity';
+import EquipmentEffect from '../models/equipment_effect';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { resourceTypes } from '../instances/resource_types';
@@ -37,6 +39,7 @@ import { BUILDING_CATEGORIES } from '../enums/building_categories';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { MODALS } from '../enums/modals';
 import { ACTIVITIES } from '../enums/activities';
+import { LEADER_QUALITIES } from '../enums/leader_qualities';
 
 export default function BuildDetailComponent() {
   const dispatch = useDispatch();
@@ -164,6 +167,10 @@ export default function BuildDetailComponent() {
         )}
         {building.buildingType.includes('Gate') && (
           <BuildingDetailGateComponent buildingId={modalValue.id} />
+        )}
+        {(buildingType.category === BUILDING_CATEGORIES.HOUSING) && (
+          <EquipmentEffectComponent size='large' showWhenZero anEffect={new EquipmentEffect({
+            quality: LEADER_QUALITIES.HAPPINESS, change: (buildingType.livingHappiness || 0) })}  />
         )}
       </ScrollView>
     </View>

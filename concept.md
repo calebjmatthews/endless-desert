@@ -941,13 +941,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Nerf cooking value (7/m give 50% value?)
   [X] Repeatable research to translate a poem
   [X] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
-  [ ] Show happiness added by housing
+  [X] Show happiness added by housing
+  [ ] Fix `built` issue in BuildingDetail
   [ ] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
   [ ] Specialized tools to use happiness
   [ ] Specialized tools earlier in trading party pools, lower cost?
   [ ] Press anywhere to skip dialogue animation
   [ ] Fix new dialogue available styling on button
-  [ ] Fix `built` issue in BuildingDetail
   [ ] Fix research options applying to inappropriate "Scholarship"
 
   [ ] Firefly mother quests?
