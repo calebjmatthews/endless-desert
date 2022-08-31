@@ -1096,8 +1096,7 @@ researches[RESEARCHES.COOKING] = new Research({
 researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
   name: RESEARCHES.COOKING_BOUNTIFUL,
   unlocks: ('Allows an upgrade to Kitchens.'),
-  description: ('Some say that cooking is an art, but that\'s debatable. If it '
-    + 'were truly art, would you be able to make it this efficient?'),
+  description: `What does a chef want more than a larger kitchen, and then one even larger than that? More to cook with means more complexity, and better dishes.`,
   icon: new Icon({provider: 'svg', name: SVGS.CAKE, color: '#ffa6b7',
     shadow: '#d16479'}),
   category: RESEARCHES.CHEMISTRY,

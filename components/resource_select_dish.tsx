@@ -23,8 +23,8 @@ import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
-import { MODALS } from '../enums/modals';
 import { BUILDING_TYPES } from '../enums/building_types';
+import { MODALS } from '../enums/modals';
 import { DEFAULT_DISH_COST, DEFAULT_SPICE_COST } from '../constants';
 
 export default function ResourceSelectDishComponent() {
@@ -32,8 +32,8 @@ export default function ResourceSelectDishComponent() {
   const vault = useTypedSelector(state => state.vault);
   const modalValue: {type?: string,
     building: Building} = useTypedSelector(state => state.ui.modalValue);
-  const multiplier = (modalValue.building.buildingType ===
-    BUILDING_TYPES.KITCHEN_BOUNTIFUL) ? 1.5 : 1;
+  const ingredientMax = (modalValue.building.buildingType ===
+    BUILDING_TYPES.KITCHEN_BOUNTIFUL) ? 5 : 3;
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -53,7 +53,7 @@ export default function ResourceSelectDishComponent() {
       </View>
       <ScrollView>
         <View style={styles.tileContainer}>
-          {renderResources(resourcesArray, setResourcesSelected)}
+          {renderResources(resourcesArray)}
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
@@ -93,11 +93,10 @@ export default function ResourceSelectDishComponent() {
     }
   }
 
-  function renderResources(resourceArray: Resource[],
-    setResourcesSelected: Function) {
+  function renderResources(resourceArray: Resource[]) {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={`${resource.type}|${resource.quality}`} resource={resource}
-        resourcesSelected={resourcesSelected} multiplier={multiplier}
+        resourcesSelected={resourcesSelected} ingredientMax={ingredientMax}
         pressResource={pressResource} positioner={positioner} />;
     });
   }
@@ -196,7 +195,7 @@ export default function ResourceSelectDishComponent() {
     });
     const cResources = resourcesSelected.map((resource) => {
       return new Resource({type: resource.type, quality: resource.quality,
-        quantity: getExperimentCost(resource, multiplier)});
+        quantity: getExperimentCost(resource)});
     });
     const dishRes = modalValue.building.getDishFromIngredients(ingredientTypes,
       resourceTypes);
@@ -261,48 +260,47 @@ export default function ResourceSelectDishComponent() {
 }
 
 function ResourceSelector(props: {resource: Resource, resourcesSelected: Resource[],
-  multiplier: number, pressResource: (resource: Resource) => void,
-  positioner: Positioner}) {
-  const resourceType = utils.getResourceType(props.resource);
+  ingredientMax: number, pressResource: (resource: Resource) => void, positioner: Positioner}) {
+  const { resource, resourcesSelected, ingredientMax, pressResource, positioner } = props;
+  const resourceType = utils.getResourceType(resource);
   let optionTextStyle: any = {paddingLeft: 4, paddingRight: 4};
-  if (props.resource.quality == 1) {
+  if (resource.quality == 1) {
     optionTextStyle = { paddingLeft: 4, paddingRight: 4,
       color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 };
   }
   return (
     <View style={StyleSheet.flatten([styles.panelTile, styles.columns,
-      {minWidth: props.positioner.minorWidth,
-        maxWidth: props.positioner.minorWidth}])}>
+      {minWidth: positioner.minorWidth,
+        maxWidth: positioner.minorWidth}])}>
       <Text style={optionTextStyle}>
-        {utils.typeQualityName(props.resource.type + '|' + props.resource.quality)}
+        {utils.typeQualityName(resource.type + '|' + resource.quality)}
       </Text>
       <View style={styles.rows}>
         <BadgeComponent icon={resourceType.icon} size={21} />
         <View>
           <Text style={{paddingLeft: 4, paddingRight: 4, textAlign: 'right'}}>
-            {utils.formatNumberShort(props.resource.quantity)}
+            {utils.formatNumberShort(resource.quantity)}
           </Text>
-          {renderButton(props.resource, props.resourcesSelected, props.multiplier,
-            props.pressResource)}
+          {renderButton(resource, resourcesSelected, ingredientMax, pressResource)}
         </View>
       </View>
     </View>
   );
 
-  function renderButton(resource: Resource, resourcesSelected: Resource[],
-    multiplier: number, pressResource: (resource: Resource) => void) {
+  function renderButton(resource: Resource, resourcesSelected: Resource[], ingredientMax: number,
+    pressResource: (resource: Resource) => void) {
     if (ingredientsInclude(resourcesSelected, resource)) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, { width: 74 }]);
       return (
         <TouchableOpacity style={buttonStyle}
           onPress={() => { pressResource(resource)} } >
           <Text style={styles.buttonText}>
-            {`Use ${getExperimentCost(resource, multiplier)}`}
+            {`Use ${getExperimentCost(resource)}`}
           </Text>
         </TouchableOpacity>
       );
     }
-    else if (resourcesSelected.length >= 5) {
+    else if (resourcesSelected.length >= ingredientMax) {
       let buttonStyle = StyleSheet.flatten([styles.buttonRowItem, styles.buttonDisabled,
         { width: 74 }]);
       return (
@@ -334,7 +332,7 @@ function ResourceSelector(props: {resource: Resource, resourcesSelected: Resourc
   }
 }
 
-function getExperimentCost(resource: Resource, multiplier: number) {
+function getExperimentCost(resource: Resource, multiplier: number = 1) {
   const resourceType = utils.getResourceType(resource);
   if (resource.type == RESOURCE_TYPES.WATER) {
     return (DEFAULT_SPICE_COST * multiplier);

@@ -940,7 +940,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] De-equip existing leader if new leader dons equipment
   [X] Nerf cooking value (7/m give 50% value?)
   [X] Repeatable research to translate a poem
-  [ ] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
+  [X] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
   [ ] Show happiness added by housing
   [ ] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
   [ ] Specialized tools to use happiness
