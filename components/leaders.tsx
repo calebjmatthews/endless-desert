@@ -45,7 +45,7 @@ export default function LeadersComponent() {
       if (convoPoolRes.newConvo) { initNewConvos[leader.id] = true; }
     });
     setNewConvos(initNewConvos);
-  }, [])
+  }, [conversationStatus]);
 
   return (
     <View style={styles.container}>
