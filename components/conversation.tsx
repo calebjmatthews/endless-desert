@@ -2,13 +2,12 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, ScrollView, TouchableOpacity, StyleSheet, Animated }
+import { Text, View, ScrollView, TouchableOpacity, StyleSheet, Animated, TouchableWithoutFeedback }
   from 'react-native';
 import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import ConvoPieceComponent from './convo_piece';
-import { responseChosen } from '../actions/conversation_status';
 import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
@@ -373,6 +372,7 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
   sResourcesGained: {[ sName: string ] : Resource[]},
   addAllSegments: (statement: ConversationStatement,  nextSegments?: Segment[]) => void,
   leaders: { [id: string] : Leader }, nextSegments?: Segment[] }) {
+  const [skipAnimation, setSkipAnimation] = useState(false);
   const statement = props.statement;
   let partner: Partner = DEFAULT_PARTNER;
   if (statement.partnerKind == 'leader') {
@@ -387,13 +387,16 @@ function Statement(props: { statement: ConversationStatement, speechBubbleWidth:
   }
 
   return (
-    <View key={statement.name} style={styles.columns}>
-      <ConvoPieceComponent convoStatement={statement} partner={partner}
-        speechBubbleWidth={props.speechBubbleWidth}
-        finishedAnimating={() => props.addAllSegments(statement, props.nextSegments)}
-        />
+    <>
+      <TouchableOpacity key={statement.name} onPress={() => setSkipAnimation(true)} 
+        disabled={skipAnimation} style={styles.columns}>
+        <ConvoPieceComponent convoStatement={statement} partner={partner}
+          speechBubbleWidth={props.speechBubbleWidth} skipAnimation={skipAnimation}
+          finishedAnimating={() => props.addAllSegments(statement, props.nextSegments)}
+          />
+      </TouchableOpacity>
       <View style={styles.break} />
-    </View>
+    </>
   );
 
   function getLeaderByName(partnerType: string): Partner|null {
@@ -633,14 +636,15 @@ function Consequence(props: { modalMajor: number,
 
 function Response(props: {response: ConversationResponse, speechBubbleWidth: number,
 setSegmentsToAdd: (segments: Segment[]) => void, nextSegments?: Segment[]}) {
+  const [skipAnimation, setSkipAnimation] = useState(false);
+
   return (
-    <View key={props.response.name}
-      style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
+    <TouchableOpacity key={props.response.name} onPress={() => setSkipAnimation(true)} 
+      disabled={skipAnimation}  style={StyleSheet.flatten([styles.rows, { alignItems: 'flex-start' }])}>
       <ConvoPieceComponent convoResponse={props.response} partner={DEFAULT_PARTNER}
-        speechBubbleWidth={props.speechBubbleWidth}
+        speechBubbleWidth={props.speechBubbleWidth} skipAnimation={skipAnimation}
         finishedAnimating={() => setResponseSegmentsToAdd(props.nextSegments)} />
-      <View style={styles.break} />
-    </View>
+    </TouchableOpacity>
   );
 
   function setResponseSegmentsToAdd(nextSegments?: Segment[]) {

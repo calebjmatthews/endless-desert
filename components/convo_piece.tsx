@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Text, View, StyleSheet, Animated, Platform } from 'react-native';
 import { styles } from '../styles';
 
@@ -33,7 +33,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth,  maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginRight: 5, borderTopLeftRadius: 0 }])}>
-            <ConvoTextSection text={props.convoStatement.text}
+            <ConvoTextSection text={props.convoStatement.text} skipAnimation={props.skipAnimation}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
@@ -51,7 +51,7 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
           <View style={StyleSheet.flatten([styles.speechBubble,
             { minWidth: props.speechBubbleWidth, maxWidth: props.speechBubbleWidth,
               minHeight: 30, marginLeft: 5, borderTopRightRadius: 0 }])}>
-            <ConvoTextSection text={props.convoResponse.text}
+            <ConvoTextSection text={props.convoResponse.text} skipAnimation={props.skipAnimation}
               finishedAnimating={() => { props.finishedAnimating(); }} />
           </View>
         </View>
@@ -64,17 +64,21 @@ export default function ConvoPieceComponent(props: ConvoPieceProps) {
   return null;
 }
 
-function ConvoTextSection(props: { text: string, finishedAnimating: () => void }) {
-  return (Platform.OS === 'web') ?
+function ConvoTextSection(props: { text: string, skipAnimation: boolean, finishedAnimating: () => void }) {
+  return useMemo(() => ((Platform.OS === 'web' && !props.skipAnimation) ?
     <GradualTextSection text={props.text}
       finishedAnimating={props.finishedAnimating} /> :
-    <AtOnceTextSection text={props.text} finishedAnimating={props.finishedAnimating} />
+    <AtOnceTextSection text={props.text} skipAnimation={props.skipAnimation}
+      finishedAnimating={props.finishedAnimating} />
+  ), [props.skipAnimation]);
 }
 
-function AtOnceTextSection(props: { text: string, finishedAnimating: () => void }) {
+function AtOnceTextSection(props: { text: string, skipAnimation: boolean,
+  finishedAnimating: () => void }) {
   const textOpacity = useRef(new Animated.Value(0)).current;
+  const duration = (!props.skipAnimation) ? FADE_IN_DELAY*4 : 0;
   React.useEffect(() => { Animated.timing(textOpacity,
-    { toValue: 1, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+    { toValue: 1, duration, useNativeDriver: true }
   ).start(() => {
     props.finishedAnimating();
   }); }, []);
@@ -184,6 +188,7 @@ interface ConvoPieceProps {
   convoResponse?: ConversationResponse;
   partner: Partner;
   speechBubbleWidth: number;
+  skipAnimation: boolean;
   finishedAnimating: () => void;
 }
 

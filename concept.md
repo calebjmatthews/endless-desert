@@ -945,7 +945,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
   [X] Specialized tools to use happiness
   [X] Specialized tools earlier in trading party pools, lower cost?
-  [ ] Press anywhere to skip dialogue animation
+  [ ] Press dialogue to skip animation
   [ ] Fix new dialogue available styling on button
   [ ] Fix research options applying to inappropriate "Scholarship"
   [ ] Leaders that are eating/drinking missing food scavenge, "Ran out of food" notification
