@@ -25,16 +25,16 @@ equipmentTypes[EQUIPMENT_TYPES.FOUR_POINT_BANGLE] = new EquipmentType({
   description: 'A bangle shaped like a four pointed star; Samannoud is never without it',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], baseChange: 35, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], baseChange: 45, weight: 100 },
       { qualities: [LDQ.QUALITY], baseChange: 15, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], baseChange: 55, weight: 100 },
       { qualities: [LDQ.QUALITY], baseChange: 25, weight: 100 }],
     count: 3
@@ -48,17 +48,17 @@ equipmentTypes[EQUIPMENT_TYPES.ROUGH_MATTOCK] = new EquipmentType({
   description: 'A rough iron tool made for digging soil and splitting rocks',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 4
@@ -73,20 +73,20 @@ equipmentTypes[EQUIPMENT_TYPES.WOODEN_POLE] = new EquipmentType({
   description: 'An iron-capped wooden pole: only limited by your creativity',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
-      weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
+      weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
-      weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
+      weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
-      weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_EFFICIENCY], baseChange: 100,
+      weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 4
@@ -101,17 +101,17 @@ equipmentTypes[EQUIPMENT_TYPES.COARSE_MEASURES] = new EquipmentType({
   description: 'A set of small tools made out of crude metal',
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.QUALITY], givenSpecificity: RSP.CATEGORY,
       finalSpecificity: RSP.EXACT, type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 4
@@ -127,24 +127,20 @@ equipmentTypes[EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH] = new EquipmentType({
   description: `A pot filled with pitch, used to make a waterproof seal over cracks in cisterns`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 100, weight: 100 },
-    additionalOptions: [],
-    count: 1
-  }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 125, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.QUALITY, LDQ.EFFICIENCY],
-      givenSpecificity: RSP.EXACT, finalSpecificity: RSP.EXACT, type: RTY.WATER,
-      baseChange: 20, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 50, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 150, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.QUALITY, LDQ.EFFICIENCY],
-      givenSpecificity: RSP.EXACT, finalSpecificity: RSP.EXACT, type: RTY.WATER,
-      baseChange: 40, weight: 100 }],
-    count: 2
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 62.5, weight: 100 }],
+    count: 3
+  }), new EquipmentEffectGenerator({
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 75, weight: 100 }],
+    count: 3
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.HARDENED_SLAB, quantity: 2},
     {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 2},
@@ -154,26 +150,29 @@ equipmentTypes[EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH] = new EquipmentType({
 
 equipmentTypes[EQUIPMENT_TYPES.REED_MUCK_RAKE] = new EquipmentType({
   name: EQUIPMENT_TYPES.REED_MUCK_RAKE,
-  description: `A rake for clearing channels through stagnant mud, which keeps the reeds healthy`,
+  description: `A rake for clearing channels through stagnant mud, keeping reeds healthy`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
       finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: -50, weight: 100 }],
-    count: 2
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 100, weight: 100 }],
+    count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 120, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
       finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: -40, weight: 100 }],
-    count: 2
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 120, weight: 100 }],
+    count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 140, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
       finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: -30, weight: 100 }],
-    count: 2
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.REEDS, baseChange: 140, weight: 100 }],
+    count: 3
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 4},
@@ -183,36 +182,30 @@ equipmentTypes[EQUIPMENT_TYPES.REED_MUCK_RAKE] = new EquipmentType({
 
 equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT] = new EquipmentType({
   name: EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT,
-  description: `A set of bellows for wood-burning that create a hot, yet erratic flame`,
+  description: `A set of bellows for wood-burning that create a hot and erratic flame`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50,
-      weight: 100 },
-      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 },
+    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 40, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 80,
-      weight: 100 },
-      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 40, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 },
+    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 110,
-      weight: 100 },
-      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 },
+    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
     count: 2
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 40},
@@ -227,33 +220,27 @@ equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE] = new EquipmentType({
   description: `A set of bellows for wood-burning that create a hot and consistent flame`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50,
-      weight: 100 },
-      { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 40, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 80,
-      weight: 100 },
-      { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 40, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity:
-      RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 110,
-      weight: 100 },
-      { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT,
-        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 55, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
     count: 2
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 80},
@@ -268,27 +255,30 @@ equipmentTypes[EQUIPMENT_TYPES.CLAY_SPADE_BROAD] = new EquipmentType({
   description: `A wide shovel with just the right shape of blade for moving clay about`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.SUBCATEGORY,
-      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 50, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.CLAY,
-      baseChange: 50, weight: 100 }],
-    count: 2
-  }),
-  new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.SUBCATEGORY,
-      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 75, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.CLAY,
-      baseChange: 75, weight: 100 }],
-    count: 2
-  }),
-  new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], givenSpecificity: RSP.SUBCATEGORY,
-      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.SUBCATEGORY, finalSpecificity: RSP.EXACT, type: RSC.CLAY,
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED, LDQ.HAPPINESS_TO_QUALITY], 
       baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.SUBCATEGORY,
+      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 50, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.CLAY, baseChange: 50, weight: 50 }],
+    count: 2
+  }),
+  new EquipmentEffectGenerator({
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED, LDQ.HAPPINESS_TO_QUALITY], 
+      baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.SUBCATEGORY,
+      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 65, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.CLAY, baseChange: 65, weight: 50 }],
+    count: 2
+  }),
+  new EquipmentEffectGenerator({
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED, LDQ.HAPPINESS_TO_QUALITY], 
+      baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], givenSpecificity: RSP.SUBCATEGORY,
+      finalSpecificity: RSP.SUBCATEGORY, type: RSC.CLAY, baseChange: 80, weight: 100 },
+    { qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
+      finalSpecificity: RSP.EXACT, type: RSC.CLAY, baseChange: 80, weight: 50 }],
     count: 2
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 60},
@@ -301,27 +291,27 @@ equipmentTypes[EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS] = new EquipmentType({
   description: `Careful planning and grafting leads to olive trees with higher-quality fruit that use less water`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 50, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.EXACT, finalSpecificity: RSP.EXACT, type: RTY.WATER,
-      baseChange: 50, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 50, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 50, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 75, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.EXACT, finalSpecificity: RSP.EXACT, type: RTY.WATER,
-      baseChange: 75, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 65, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 65, weight: 100 }],
     count: 2
   }),
   new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 100, weight: 100 },
-    additionalOptions: [{ qualities: [LDQ.EFFICIENCY],
-      givenSpecificity: RSP.EXACT, finalSpecificity: RSP.EXACT, type: RTY.WATER,
-      baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.WATER, baseChange: 80, weight: 100 },
+    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT, 
+      finalSpecificity: RSP.EXACT, type: RTY.OLIVE, baseChange: 80, weight: 100 }],
     count: 2
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.IRON_EDGE, quantity: 4},
@@ -335,21 +325,21 @@ equipmentTypes[EQUIPMENT_TYPES.RAGS_TATTERED] = new EquipmentType({
   description: 'A bundle of hard-worn rags, neither comfortable nor flattering',
   slot: EQUIPMENT_SLOTS.CLOTHING,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL, baseChange: -20, weight: 100 },
+      type: RCA.MATERIAL, baseChange: -20, weight: 100 }],
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL, baseChange: -15, weight: 100 },
+      type: RCA.MATERIAL, baseChange: -15, weight: 100 }],
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL, baseChange: -10, weight: 100 },
+      type: RCA.MATERIAL, baseChange: -10, weight: 100 }],
     additionalOptions: [],
     count: 1
   })],
@@ -362,17 +352,17 @@ equipmentTypes[EQUIPMENT_TYPES.SIMPLE_ROBE] = new EquipmentType({
   description: 'An uncomplicated, long-lived robe made of reed linen',
   slot: EQUIPMENT_SLOTS.CLOTHING,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS], baseChange: 10, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS], baseChange: 10, weight: 100 }],
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS], baseChange: 15, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS], baseChange: 15, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
       type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.HAPPINESS], baseChange: 20, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS], baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
       type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
@@ -388,25 +378,25 @@ equipmentTypes[EQUIPMENT_TYPES.STURDY_OVERALLS] = new EquipmentType({
   description: 'These thick linen overalls can withstand all kinds of abuse',
   slot: EQUIPMENT_SLOTS.CLOTHING,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL_REFINED, baseChange: 10, weight: 100 },
+      type: RCA.MATERIAL_REFINED, baseChange: 10, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.MATERIAL_REFINED, baseChange: 20, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL_REFINED, baseChange: 20, weight: 100 },
+      type: RCA.MATERIAL_REFINED, baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.MATERIAL_REFINED, baseChange: 25, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.MATERIAL_REFINED, baseChange: 30, weight: 100 },
+      type: RCA.MATERIAL_REFINED, baseChange: 30, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.MATERIAL_REFINED, baseChange: 30, weight: 100 }],
@@ -423,25 +413,25 @@ equipmentTypes[EQUIPMENT_TYPES.APRON_OF_MANY_POCKETS] = new EquipmentType({
   description: 'Some of the pockets contain smaller pockets',
   slot: EQUIPMENT_SLOTS.CLOTHING,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.ARTISAN_GOOD, baseChange: 10, weight: 100 },
+      type: RCA.ARTISAN_GOOD, baseChange: 10, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.ARTISAN_GOOD, baseChange: 20, weight: 100 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.ARTISAN_GOOD, baseChange: 20, weight: 100 },
+      type: RCA.ARTISAN_GOOD, baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.ARTISAN_GOOD, baseChange: 25, weight: 100 }],
     count: 3
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.CATEGORY,
-      type: RCA.ARTISAN_GOOD, baseChange: 30, weight: 100 },
+      type: RCA.ARTISAN_GOOD, baseChange: 30, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY, LDQ.QUALITY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
       type: RCA.ARTISAN_GOOD, baseChange: 30, weight: 100 }],
@@ -458,21 +448,21 @@ equipmentTypes[EQUIPMENT_TYPES.SHOULDER_POUCH] = new EquipmentType({
   description: 'A small cloth bag tailor-made to carry specific goods',
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
-      type: RCA.MATERIAL, baseChange: 10, weight: 100 },
+      type: RCA.MATERIAL, baseChange: 10, weight: 100 }],
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
-      type: RCA.MATERIAL, baseChange: 15, weight: 100 },
+      type: RCA.MATERIAL, baseChange: 15, weight: 100 }],
     additionalOptions: [],
     count: 1
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
+    defaultOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY],
       givenSpecificity: RSP.CATEGORY, finalSpecificity: RSP.EXACT,
-      type: RCA.MATERIAL, baseChange: 20, weight: 100 },
+      type: RCA.MATERIAL, baseChange: 20, weight: 100 }],
     additionalOptions: [],
     count: 1
   })],
@@ -486,17 +476,17 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_HAVERSACK] = new EquipmentType({
     + 'remembering what you put where'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], baseChange: 10, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.SPEED], baseChange: 10, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], baseChange: -5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], baseChange: 15, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.SPEED], baseChange: 15, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], baseChange: -7.5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.SPEED], baseChange: 20, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.SPEED], baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY, LDQ.QUALITY], baseChange: -10,
       weight: 50 }],
     count: 2
@@ -512,17 +502,17 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_GEARBAG] = new EquipmentType({
   description: ('Smaller than you might like, but everything\'s within easy reach'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.EFFICIENCY], baseChange: 10, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.EFFICIENCY], baseChange: 10, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], baseChange: -5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.EFFICIENCY], baseChange: 15, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.EFFICIENCY], baseChange: 15, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], baseChange: -7.5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.EFFICIENCY], baseChange: 20, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.EFFICIENCY], baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.QUALITY], baseChange: -10,
       weight: 50 }],
     count: 2
@@ -538,17 +528,17 @@ equipmentTypes[EQUIPMENT_TYPES.JOURNEYMANS_TOOLPACK] = new EquipmentType({
   description: ('Filled with crude tools to inspect and measure'),
   slot: EQUIPMENT_SLOTS.BACK,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], baseChange: 10, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.QUALITY], baseChange: 10, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], baseChange: -5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], baseChange: 15, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.QUALITY], baseChange: 15, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], baseChange: -7.5,
       weight: 50 }],
     count: 2
   }), new EquipmentEffectGenerator({
-    defaultOption: { qualities: [LDQ.QUALITY], baseChange: 20, weight: 100 },
+    defaultOptions: [{ qualities: [LDQ.QUALITY], baseChange: 20, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.SPEED, LDQ.EFFICIENCY], baseChange: -10,
       weight: 50 }],
     count: 2

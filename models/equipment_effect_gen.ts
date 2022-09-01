@@ -10,7 +10,7 @@ import { CHANGE_MULTIPLIERS } from '../constants';
 
 export default class EquipmentEffectGenerator
   implements EquipmentEffectGeneratorInterface {
-  defaultOption: GeneratorOption|null = null;
+  defaultOptions: GeneratorOption[] = [];
   additionalOptions: GeneratorOption[] = [];
   count: number = 1;
 
@@ -22,8 +22,8 @@ export default class EquipmentEffectGenerator
     let effects: EquipmentEffect[] = [];
     for (let index = 0; index < this.count; index++) {
       let gos = this.additionalOptions;
-      if (index == 0 && this.defaultOption) {
-        gos = [this.defaultOption];
+      if (this.defaultOptions[index]) {
+        gos = [this.defaultOptions[index]];
       }
       effects.push(this.generateOneEffect(gos, vault, resourceTypes));
     }
@@ -46,21 +46,24 @@ export default class EquipmentEffectGenerator
         break;
 
         case RESOURCE_SPECIFICITY.TAG:
-        let mTRsc = filterOutTradeGoods(vault.getTagResources(go.type));
+        let mTRsc = vault.getTagResources(go.type);
+        mTRsc = (quality !== LEADER_QUALITIES.EFFICIENCY) ? filterOutTradeGoods(mTRsc) : mTRsc;
         if (mTRsc.length > 0) {
           type = mTRsc[Math.floor(mTRsc.length * utils.random())].type;
         }
         break;
 
         case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        const mSRsc = filterOutTradeGoods(vault.getSubcategoryResources(go.type));
+        let mSRsc = vault.getSubcategoryResources(go.type);
+        mSRsc = (quality !== LEADER_QUALITIES.EFFICIENCY) ? filterOutTradeGoods(mSRsc) : mSRsc;
         if (mSRsc.length > 0) {
           type = mSRsc[Math.floor(mSRsc.length * utils.random())].type;
         }
         break;
 
         case RESOURCE_SPECIFICITY.CATEGORY:
-        const mCRsc = filterOutTradeGoods(vault.getCategoryResources(go.type));
+        let mCRsc = vault.getCategoryResources(go.type);
+        mCRsc = (quality !== LEADER_QUALITIES.EFFICIENCY) ? filterOutTradeGoods(mCRsc) : mCRsc;
         if (mCRsc.length > 0) {
           type = mCRsc[Math.floor(mCRsc.length * utils.random())].type;
         }
@@ -83,8 +86,7 @@ export default class EquipmentEffectGenerator
     function filterOutTradeGoods(resources: Resource[]) {
       return resources.filter((resource) => {
         const resourceType = resourceTypes[resource.type];
-        const isTradeGood = utils.arrayIncludes(resourceType.tags,
-          RESOURCE_TAGS.TRADE_GOOD);
+        const isTradeGood = utils.arrayIncludes(resourceType.tags, RESOURCE_TAGS.TRADE_GOOD);
         if (!isTradeGood) { return resource; }
       });;
     }
@@ -105,7 +107,7 @@ interface GeneratorOption {
 }
 
 interface EquipmentEffectGeneratorInterface {
-  defaultOption: GeneratorOption|null;
+  defaultOptions: GeneratorOption[];
   additionalOptions: GeneratorOption[];
   count: number;
 }

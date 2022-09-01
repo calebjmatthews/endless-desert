@@ -942,19 +942,21 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Repeatable research to translate a poem
   [X] Standard Kitchen allows 3 ingredients, Bountiful Kitchen allows 5
   [X] Show happiness added by housing
-  [ ] Fix `built` issue in BuildingDetail
-  [ ] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
-  [ ] Specialized tools to use happiness
+  [X] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
+  [X] Specialized tools to use happiness
   [ ] Specialized tools earlier in trading party pools, lower cost?
   [ ] Press anywhere to skip dialogue animation
   [ ] Fix new dialogue available styling on button
   [ ] Fix research options applying to inappropriate "Scholarship"
+  [ ] Leaders that are eating/drinking missing food scavenge, "Ran out of food" notification
+  [ ] Fix `built` issue in BuildingDetail
 
-  [ ] Firefly mother quests?
   [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes
   [ ] Expeditions! (without exploration)
+  [ ] Revamp Thrice Locked Tome
+  [ ] Firefly mother quests?
 
   [ ] Add images to memos
   [ ] Mass deconstruct option in Equipment tab

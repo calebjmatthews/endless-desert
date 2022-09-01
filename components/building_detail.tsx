@@ -148,7 +148,7 @@ export default function BuildDetailComponent() {
           {renderLeader()}
           {renderToStorageButton()}
         </View>
-        {renderUpgradeCostContainer()}
+        {renderConstructionCostContainer()}
         {renderRecipeContainer()}
         {!unbuilt && renderKitchenButton()}
         {buildingType.opensTab && (
@@ -188,7 +188,7 @@ export default function BuildDetailComponent() {
     );
   }
 
-  function renderUpgradeCostContainer() {
+  function renderConstructionCostContainer() {
     const brokenBuildings = [BTY.BROKEN_CISTERN, BTY.FALLOW_FIELD,
       BTY.DECAYING_STUDY, BTY.MARKET_ABANDONED, BTY.RUINED_HUTS, BTY.SHATTERED_DOME];
 
