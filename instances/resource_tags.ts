@@ -36,6 +36,14 @@ resourceTags[RESOURCE_TAGS.DRINK] = new ResourceTag({
   icon: new Icon({provider: 'MaterialIcons', name: 'local-drink',
     color:'#03a9f4'})});
 
+resourceTags[RESOURCE_TAGS.TEA] = new ResourceTag({
+  name: RESOURCE_TAGS.TEA,
+  plural: 'Drinks',
+  value: 20,
+  extract: false,
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'tea',
+    color:'#7bb344'})});
+
 resourceTags[RESOURCE_TAGS.FOOD] = new ResourceTag({
   name: RESOURCE_TAGS.FOOD,
   plural: 'Foods',

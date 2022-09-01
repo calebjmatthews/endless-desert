@@ -944,7 +944,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Show happiness added by housing
   [X] Shift the Thrice Locked Tome to post-expedition, could discover the tome along with a clue/object from Dani
   [X] Specialized tools to use happiness
-  [ ] Specialized tools earlier in trading party pools, lower cost?
+  [X] Specialized tools earlier in trading party pools, lower cost?
   [ ] Press anywhere to skip dialogue animation
   [ ] Fix new dialogue available styling on button
   [ ] Fix research options applying to inappropriate "Scholarship"

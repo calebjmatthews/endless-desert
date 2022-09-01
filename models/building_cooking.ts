@@ -24,17 +24,17 @@ export default function getDishFromIngredients(ingredients: ResourceType[],
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.TAG, type: RTA.INGREDIENT, quantity: DEFAULT_DISH_COST },
     ]}),
-    new DishType({name: RTY.TEA_CELADON, valueChange: 15, tags: [ RTA.DRINK ],
+    new DishType({name: RTY.TEA_CELADON, valueChange: 15, tags: [ RTA.DRINK, RTA.TEA ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.TEA_LEAVES_CELADON, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: RTY.TEA_VIRIDIAN, valueChange: 15, tags: [ RTA.DRINK ],
+    new DishType({name: RTY.TEA_VIRIDIAN, valueChange: 15, tags: [ RTA.DRINK, RTA.TEA ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.TEA_LEAVES_VIRIDIAN, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
     ]}),
-    new DishType({name: RTY.TEA_JASMINE, valueChange: 15, tags: [ RTA.DRINK ],
+    new DishType({name: RTY.TEA_JASMINE, valueChange: 15, tags: [ RTA.DRINK, RTA.TEA ],
       contains: [
       { specificity: RSP.EXACT, type: RTY.TEA_JASMINE, quantity: DEFAULT_SPICE_COST },
       { specificity: RSP.EXACT, type: RTY.WATER, quantity: DEFAULT_DISH_COST }
