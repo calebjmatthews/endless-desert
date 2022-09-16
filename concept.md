@@ -435,6 +435,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Groups of animals: Can be hunted for meat or captured with traps
   - Crevice: Mysteries at the bottom, can be crossed with rope
   - Door to Hall, Home to All
+  - Prison colony
 - Events while traveling:
   - Sandstorm: Can trudge through with bindings to heal up later, Aeolian Concordance
   - Intense sun: Use up excess water, Rhapsodic Auto-Exhumation
@@ -443,6 +444,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Run into trader: Far better exchange rates than normal
   - Chase a falling star: Change destinations to track it down, or make a vow on it
   - Gather rumors from wanderers
+  - Traveling auctioneering caravan
 - Expedition method:
   - Pick a cardinal direction, a previously visited region (if map making has been learned), or previously visited destination (also if map making has been leared),
   - For every area that is traversed through, various random events can occur. This could:
@@ -717,7 +719,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Don't have an option of too many leaders
     - This isn't ideal, could be fun to have tons of seasonal or premium leaders
   - Different housing types that can hold more than one leader (and crew)
-  - Moving fortress that runs on waterwheels turned by golden oil, surplus leaders can work there for ocational non-scaling benefits
+  - Moving fortress that runs on waterwheels turned by golden oil, surplus leaders can work there for ocational non-scaling benefits (more leaders give more reward options, but not a higher quantity)
 
 ## Expeditions
   - Select starchart
@@ -947,7 +949,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Specialized tools earlier in trading party pools, lower cost?
   [X] Press dialogue to skip animation
   [X] Fix new dialogue available styling on button
-  [ ] Fix research options applying to inappropriate "Scholarship"
+  [X] Fix research options applying to inappropriate "Scholarship"
+  [ ] Tidy up quests
   [ ] Leaders that are eating/drinking missing food scavenge, "Ran out of food" notification
   [ ] Fix `built` issue in BuildingDetail
 

@@ -241,8 +241,8 @@ researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
   manditory: true
 });
 
-researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
-  name: RESEARCH_OPTIONS.ASSISTED_EXAMINATION,
+researchOptions[RESEARCH_OPTIONS.AUGMENTED_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.AUGMENTED_EXAMINATION,
   appliesTo: RESEARCHES.SCHOLARSHIP,
   difficulty: 2,
   description: `You've learned how to create durable, intricate gearwork mechanisms. You're certain there's some way these can be used in your studies.`,

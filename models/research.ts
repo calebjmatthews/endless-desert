@@ -12,6 +12,7 @@ export default class Research {
   beginsCompleted: boolean = false;
   prereq: string[]|null = null;
   knowledgeReq: number = 0;
+  options?: string[];
   repeatable?: boolean = false;
   unlocksBuilding?: string[];
   unlocksUpgrade?: string[];

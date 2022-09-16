@@ -26,15 +26,21 @@ export default class ResearchOptionDeck {
     let research = researches[this.researchName];
     Object.keys(researchOptions).map((roName) => {
       let researchOption = researchOptions[roName];
-      if (researchOption.difficulty == research.difficulty
-        && researchOption.appliesTo == research.name) {
-        this.preferredOptions[roName] = true;
+      const appliesToName = researchOption.appliesTo === research.name;
+      const appliesToCatDiff = (researchOption.difficulty === research.difficulty 
+        && researchOption.appliesTo === research.category);
+      const explicitResearchOption = research.options ?
+        utils.arrayIncludes(research.options, roName) : false;
+      if (research.options) {
+        if (explicitResearchOption && appliesToName) { this.preferredOptions[roName] = true; }
+        if (explicitResearchOption && appliesToCatDiff) { this.generalOptions[roName] = true; }
       }
-      else if (researchOption.difficulty == research.difficulty
-        && researchOption.appliesTo == research.category) {
-        this.generalOptions[roName] = true;
+      else {
+        if (appliesToName) { this.preferredOptions[roName] = true; }
+        if (appliesToCatDiff) { this.generalOptions[roName] = true; }
       }
-      else if (researchOption.difficulty == research.difficulty
+      
+      if (researchOption.difficulty === research.difficulty
         && researchOption.appliesTo === RESEARCH_OPTIONS.SECONDARY) {
         this.secondaryOptions[roName] = true;
       }

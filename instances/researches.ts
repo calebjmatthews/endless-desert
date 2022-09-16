@@ -5,6 +5,7 @@ import { BUILDING_TYPES } from '../enums/building_types';
 import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+import { RESEARCH_OPTIONS } from '../enums/research_options';
 
 let researches: { [name: string] : Research } = {};
 researches[RESEARCHES.SCHOLARSHIP] = new Research({
@@ -72,6 +73,7 @@ researches[RESEARCHES.GATE_EXPANSION] = new Research({
   prereq: [RESEARCHES.SCHOLARSHIP, RESEARCHES.BIOLOGY, RESEARCHES.ANTHROPOLOGY,
     RESEARCHES.PHYSICS, RESEARCHES.CHEMISTRY],
   knowledgeReq: 400,
+  options: [RESEARCH_OPTIONS.SAND_VARIETY, RESEARCH_OPTIONS.CLAY_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_BAKED_CLAY]
 });
 
@@ -87,6 +89,7 @@ researches[RESEARCHES.GATE_EXPANSION_BRICKWORK] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GATE_EXPANSION, RESEARCHES.TRADING, RESEARCHES.DEHYDRATION],
   knowledgeReq: 1600,
+  options: [RESEARCH_OPTIONS.BRICK_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_BRICKWORK]
 });
 
@@ -103,6 +106,7 @@ researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
   prereq: [RESEARCHES.GATE_EXPANSION_BRICKWORK, RESEARCHES.FIELD_NOTES,
     RESEARCHES.COMBUSTION],
   knowledgeReq: 6400,
+  options: [RESEARCH_OPTIONS.METAL_VARIETY, RESEARCH_OPTIONS.WOOD_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_METAL_CLAD]
 });
 
@@ -150,6 +154,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.ANALYSIS],
   knowledgeReq: 1000,
+  options: [RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING],
   actionCategory: TABS.RESEARCH
 });
 
@@ -166,6 +171,7 @@ researches[RESEARCHES.EXAMINATION_WEIGHTY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 8000,
+  options: [RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION
 });
 
@@ -182,6 +188,7 @@ researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 8000,
+  options: [RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION
 });
 
@@ -198,6 +205,7 @@ researches[RESEARCHES.EXAMINATION_POTENT] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_WEIGHTY, RESEARCHES.IMPLEMENT_ASSEMBLY],
   knowledgeReq: 22000,
+  options: [RESEARCH_OPTIONS.ASSISTED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION
 });
 
@@ -213,7 +221,8 @@ researches[RESEARCHES.EXAMINATION_MERCURIAL] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_SWIFT, RESEARCHES.GLASS_SHAPING],
-  knowledgeReq: 48000,
+  knowledgeReq: 22000,
+  options: [RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION
 });
 
@@ -230,6 +239,7 @@ researches[RESEARCHES.EXAMINATION_VISIONARY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_POTENT, RESEARCHES.ADVANCED_IMPLEMENTS],
   knowledgeReq: 48000,
+  options: [RESEARCH_OPTIONS.AUGMENTED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION
 });
 
@@ -245,7 +255,8 @@ researches[RESEARCHES.EXAMINATION_ALACRITOUS] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_MERCURIAL, RESEARCHES.ADVANCED_IMPLEMENTS],
-  knowledgeReq: 22000,
+  knowledgeReq: 48000,
+  options: [RESEARCH_OPTIONS.EXPANDED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION
 });
 
@@ -626,6 +637,8 @@ researches[RESEARCHES.TRANSLATION_OF_VERSE] = new Research({
   prereq: [RESEARCHES.ANTHROPOLOGY_ADVANCED],
   knowledgeReq: 10000,
   repeatable: true,
+  options: [RESEARCH_OPTIONS.REASSEMBLING_METER, RESEARCH_OPTIONS.POETIC_CONTEXT,
+    RESEARCH_OPTIONS.FORGOTTEN_IMAGERY],
   givesTreasure: RESOURCE_TYPES.ANCIENT_POEM_TRANSLATED
 });
 

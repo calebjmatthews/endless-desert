@@ -2,7 +2,7 @@ import { RESEARCH_OPTION_ACTIONS } from '../enums/research_option_actions';
 
 export default class ResearchOption {
   name: string = '';
-  appliesTo: string = '';
+  appliesTo?: string = '';
   difficulty: number = 0;
   description: string = '';
   cost: {specificity: string, type: string, quantity: number}[] = [];
@@ -18,7 +18,7 @@ export default class ResearchOption {
 
 interface ResearchOptionInterface {
   name: string;
-  appliesTo: string;
+  appliesTo?: string;
   difficulty: number;
   description: string;
   cost: {specificity: string, type: string, quantity: number}[];
