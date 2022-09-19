@@ -221,7 +221,7 @@ You find something strange in the perfumed box this time... And someone even str
         label: `Display a treasure on the town's Gate.`,
         actionToPerform: { kind: ACTIVITIES.DISPLAY_TREASURE } })
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT, value: 1000 }],
+    gainResources: [{ specificity: RSP.EXACT, type: RTY.GLOAMING_LIGHT, value: 10000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
   }),
   [QUESTS.ASTRONOMY_POTENT_FUEL]: new Quest({
@@ -340,7 +340,7 @@ You find something strange in the perfumed box this time... And someone even str
         label: `Produce 200 Steel.`,
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.STEEL}`, quantity: 200,
           includeExisting: true } }),
-      new QuestTask({ index: 4, parentId: QUESTS.ASTRONOMY_THE_GRINDING_MILL,
+      new QuestTask({ index: 4, parentId: QUESTS.ASTRONOMY_REPAIRING_THE_DOME,
         label: `Repair the Shattered Dome.`,
         actionToPerform: { kind: ACTIVITIES.BUILDING_UPGRADE,
           value: BUILDING_TYPES.SHATTERED_DOME } })
@@ -562,6 +562,7 @@ You find something strange in the perfumed box this time... And someone even str
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.SAND_YELLOW}`,
           quantity: 2000, consumed: true, includeExisting: true } })
     ],
+    conversationBegins: conversations[],
     tradingPartnerJoins: TRADING_PARTNERS.SANDSTONE_EDIFICERS
   }),
   [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS]: new Quest({

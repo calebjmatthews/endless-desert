@@ -128,8 +128,7 @@ researchOptions[RESEARCH_OPTIONS.CASUAL_INSPECTION] = new ResearchOption({
   description: ('At least it starts as a casual inspection. '
     + 'The closer you look at these lentils, this single bushel of dried beans, '
     + 'the more you discover. Who knew?'),
-  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1}],
-  manditory: true
+  cost: [{specificity: RSP.EXACT, type: RTY.LENTIL, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.SAND_VARIETY] = new ResearchOption({
@@ -139,8 +138,7 @@ researchOptions[RESEARCH_OPTIONS.SAND_VARIETY] = new ResearchOption({
   description: (`Varieties of sand come in an array colors, caused by impurities from their source: you find bits of clay, flecks of rust, and tiny clumps of a greenish metal.`),
   cost: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 200},
     {specificity: RSP.EXACT, type: RTY.SAND_DUNE, quantity: 50},
-    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, quantity: 50}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, quantity: 50}]
 });
 
 researchOptions[RESEARCH_OPTIONS.CLAY_VARIETY] = new ResearchOption({
@@ -150,8 +148,7 @@ researchOptions[RESEARCH_OPTIONS.CLAY_VARIETY] = new ResearchOption({
   description: (`Clay from different lands behaves in entiely distict ways. A shame that the clay from your town is mostly mud.`),
   cost: [{specificity: RSP.EXACT, type: RTY.CLAY_MUDDY, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.CLAY_BLUE, quantity: 10},
-    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 10}]
 });
 
 researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
@@ -162,8 +159,7 @@ researchOptions[RESEARCH_OPTIONS.BRICK_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.BRICKS_MUD, quantity: 200},
     {specificity: RSP.EXACT, type: RTY.BRICKS_SANDLIME, quantity: 20},
     {specificity: RSP.EXACT, type: RTY.BRICKS_SABLE, quantity: 20},
-    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 20}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.BRICKS_RED, quantity: 20}]
 });
 
 researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
@@ -174,8 +170,7 @@ researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
     + 'know your letters, although it\'s been a long time since you\'ve written. '
     + 'Better practice, and practice a lot.'),
   cost: [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}]
 });
 
 researchOptions[RESEARCH_OPTIONS.METAL_VARIETY] = new ResearchOption({
@@ -186,8 +181,7 @@ researchOptions[RESEARCH_OPTIONS.METAL_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 100},
     {specificity: RSP.EXACT, type: RTY.COPPER_POWDER, quantity: 60},
     {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 20},
-    {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.ZINC_POWDER, quantity: 20}]
 });
 
 researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
@@ -198,17 +192,15 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
     {specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 120},
     {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 120},
-    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, quantity: 120}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.WOOD_ROWAN, quantity: 120}]
 });
 
 researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION,
   appliesTo: RESEARCHES.SCHOLARSHIP,
   difficulty: 1,
-  description: `To devise an effective improvement to your own research methods, you'll need potentially dizzying notes on your own process. You have a hunch that these could be found while researching, after upgrading the Study.`,
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}],
-  manditory: true
+  description: `Reading notes on phenomena of a cosmic scale has made you reconsider things. Maybe the research methods you've been using aren't as effecient or as effective as you'd thought.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_STAR, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
@@ -217,8 +209,7 @@ researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
   difficulty: 2,
   description: `You've learned how to grind precision lenses for magnification. It might be time to slow down and see if these can be used to assist you in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
-    {specificity: RSP.EXACT, type: RTY.LENS, quantity: 3}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.LENS, quantity: 3}]
 });
 
 researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
@@ -227,8 +218,7 @@ researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
   difficulty: 2,
   description: `You've learned how to make basic gear-driven mechanisms. It might be time to slow down and see if these can be used to assist you in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
-    {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 1}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.GEARWORK, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
@@ -237,8 +227,7 @@ researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
   difficulty: 2,
   description: `You've learned how to create far more powerful lenses. You're certain there's some way these can be used in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
-    {specificity: RSP.EXACT, type: RTY.LENS_COMPOUND, quantity: 3}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.LENS_COMPOUND, quantity: 3}]
 });
 
 researchOptions[RESEARCH_OPTIONS.AUGMENTED_EXAMINATION] = new ResearchOption({
@@ -247,8 +236,7 @@ researchOptions[RESEARCH_OPTIONS.AUGMENTED_EXAMINATION] = new ResearchOption({
   difficulty: 2,
   description: `You've learned how to create durable, intricate gearwork mechanisms. You're certain there's some way these can be used in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
-    {specificity: RSP.EXACT, type: RTY.PRECISE_GEARWORK, quantity: 1}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.PRECISE_GEARWORK, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS] = new ResearchOption({
@@ -258,8 +246,7 @@ researchOptions[RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS] = new ResearchOption({
   description: `Your system of representative shortened sylables will need to be easily distinguished and intuitive.`,
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 2},
     {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40}],
-  manditory: true
+    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40}]
 });
 
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({

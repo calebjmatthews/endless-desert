@@ -224,6 +224,7 @@ import AuspiciousWaifSvgComponent from './people/auspicious_waif';
 import YouSvgComponent from './people/you';
 import FireflySvgComponent from './people/firefly';
 import TourmalineJewelerSvgComponent from './people/tourmaline_jeweler';
+import SandstoneArchetectSvgComponent from './people/sandstone_archetect';
 
 import FoxfireAsceticsSvgComponent from './symbols/foxfire_ascetics';
 import TrefoilKingdomSvgComponent from './symbols/trefoil_kingdom';
@@ -692,6 +693,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <FireflySvgComponent icon={props.icon} />;
     case SVGS.TOURMALINE_JEWELER:
     return <TourmalineJewelerSvgComponent icon={props.icon} />;
+    case SVGS.SANDSTONE_ARCHETECT:
+    return <SandstoneArchetectSvgComponent icon={props.icon} />;
 
     case SVGS.FOXFIRE_ASCETICS:
     return <FoxfireAsceticsSvgComponent icon={props.icon} />;

@@ -220,6 +220,7 @@ export enum SVGS {
   YOU = "You",
   FIREFLY = "Firefly",
   TOURMALINE_JEWELER = "Kubra",
+  SANDSTONE_ARCHETECT = "Asyut",
   DROMEDARIAN = "The Dromedarian",
 
   FOXFIRE_ASCETICS = "Foxfire Ascetics",

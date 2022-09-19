@@ -9,7 +9,6 @@ export default class ResearchOption {
   gain: {specificity: string, type: string, quantity: number}[] = [];
   actions: string[] = [ RESEARCH_OPTION_ACTIONS.COMPLETE_STEP ];
   weight: number = 100;
-  manditory: boolean = false;
 
   constructor(researchOption: ResearchOptionInterface) {
     Object.assign(this, researchOption);
@@ -25,5 +24,4 @@ interface ResearchOptionInterface {
   gain?: {specificity: string, type: string, quantity: number}[];
   actions?: string[];
   weight?: number;
-  manditory?: boolean;
 }
