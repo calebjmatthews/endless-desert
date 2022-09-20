@@ -562,7 +562,7 @@ You find something strange in the perfumed box this time... And someone even str
         resourceToProduce: { specType: `${RSP.EXACT}|${RTY.SAND_YELLOW}`,
           quantity: 2000, consumed: true, includeExisting: true } })
     ],
-    conversationBegins: conversations[],
+    // conversationBegins: conversations[],
     tradingPartnerJoins: TRADING_PARTNERS.SANDSTONE_EDIFICERS
   }),
   [QUESTS.NATIONS_SPRING_AUTUMN_PROOFS]: new Quest({

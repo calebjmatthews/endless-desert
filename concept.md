@@ -950,8 +950,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Press dialogue to skip animation
   [X] Fix new dialogue available styling on button
   [X] Fix research options applying to inappropriate "Scholarship"
-  [ ] Tidy up quests
-  [ ] Leaders that are eating/drinking missing food scavenge, "Ran out of food" notification
+  [X] Tidy up quests
+  [X] Leaders running out of food affects rates
   [ ] Fix `built` issue in BuildingDetail
 
   [ ] Trader conversations

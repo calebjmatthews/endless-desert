@@ -176,7 +176,7 @@ export default class Hourglass {
     let r = new Rates(null);
 
     const multiBT = getMultiBT(buildings);
-    const buildingLeaders = getBuildingLeaders(buildings, leaders);
+    const { buildingLeaders, leaderProblems } = getBuildingLeaders(leaders, vault);
 
     // Add each building's recipe to the rate maps
     Object.keys(buildings).map((id) => {
@@ -192,7 +192,11 @@ export default class Hourglass {
       }
       let buildingType = buildingTypes[building.buildingType];
       let missingLeader = false;
-      if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
+      if (buildingType.requiresLeader && leaderProblems[id]) {
+        missingLeader = true;
+        r.problems[id].push(leaderProblems[id]);
+      }
+      else if (buildingType.requiresLeader && buildingLeaders[id] == undefined) {
         missingLeader = true;
         r.problems[id].push('Leader required');
       }
@@ -386,7 +390,7 @@ export default class Hourglass {
             utils.mapAdd(r.netRates, (consumption.type + '|0'), (consQuantity * -1));
           });
         }
-        if (missingConsumption) {
+        if (missingConsumption || leaderProblems[id]) {
           r.buildingsToRest.push(id);
         }
       }
@@ -438,19 +442,27 @@ export default class Hourglass {
       return multiBT;
     }
 
-    function getBuildingLeaders(buildings: { [id: string] : Building },
-      leaders: { [id: string] : Leader }) {
-      let buildingLeaders: { [buildingId: string] : Leader } = {};
-      if (leaders) {
-
-      }
+    function getBuildingLeaders(leaders: { [id: string] : Leader }, vault: Vault) {
+      const buildingLeaders: { [buildingId: string] : Leader } = {};
+      const leaderProblems: { [buildingId: string] : string } = {};
       Object.keys(leaders).map((leaderId) => {
-        let leader = leaders[leaderId];
-        if (leader.assignedTo && leader.eating && leader.drinking && leader.livingAt) {
-          buildingLeaders[leader.assignedTo] = leader;
+        const leader = leaders[leaderId];
+        if (leader.assignedTo) {
+          if (!leader.eating || vault.resources[leader.eating]?.quantity <= 10) {
+            leaderProblems[leader.assignedTo] = 'Leader needs something to eat';
+          }
+          else if (!leader.drinking || vault.resources[leader.drinking]?.quantity <= 10) {
+            leaderProblems[leader.assignedTo] = 'Leader needs something to drink';
+          }
+          else if (!leader.livingAt) {
+            leaderProblems[leader.assignedTo] = 'Leader needs somewhere to live';
+          }
+          else {
+            buildingLeaders[leader.assignedTo] = leader;
+          }
         }
       });
-      return buildingLeaders;
+      return { buildingLeaders, leaderProblems };
     }
 
     function findEffectMod(effects: EquipmentEffect[], prodResource: string, quality: string) {
