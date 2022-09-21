@@ -82,7 +82,7 @@ export default function LookAroundComponent(props: {height: number, panelWidth: 
       dispatch(addQuest(quests[QUESTS.EARLY_DAYS_SURVIVE]));
       dispatch(addGlowingTab(TABS.QUESTS));
       dispatch(addMessage(new Message({
-        text: `You began the quest ${quests[QUESTS.EARLY_DAYS_SURVIVE]}.`,
+        text: `You began the quest ${quests[QUESTS.EARLY_DAYS_SURVIVE].name}.`,
         type: '',
         icon: quests[QUESTS.EARLY_DAYS_SURVIVE].icon
       })));

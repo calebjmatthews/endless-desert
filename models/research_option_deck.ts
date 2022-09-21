@@ -26,7 +26,7 @@ export default class ResearchOptionDeck {
     let research = researches[this.researchName];
     Object.keys(researchOptions).map((roName) => {
       let researchOption = researchOptions[roName];
-      const appliesToName = researchOption.appliesTo === research.name;
+      const appliesToName = !research.isCategory && researchOption.appliesTo === research.name;
       const appliesToCatDiff = (researchOption.difficulty === research.difficulty 
         && researchOption.appliesTo === research.category);
       const explicitResearchOption = research.options ?

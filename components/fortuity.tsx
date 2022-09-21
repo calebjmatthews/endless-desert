@@ -66,7 +66,7 @@ export default function FortuityComponent() {
         dispatch(addQuest(quests[questName]));
         dispatch(addGlowingTab(TABS.QUESTS));
         dispatch(addMessage(new Message({
-          text: `You began the quest ${quests[questName]}.`,
+          text: `You began the quest ${quests[questName].name}.`,
           type: '',
           icon: quests[questName].icon
         })));

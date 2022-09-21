@@ -952,7 +952,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix research options applying to inappropriate "Scholarship"
   [X] Tidy up quests
   [X] Leaders running out of food affects rates
-  [ ] Fix `built` issue in BuildingDetail
+
+  [X] Fix broken research option difficulty
+  [ ] "Trading" research allows update to Abandoned Market
 
   [ ] Trader conversations
   [ ] Flashy display for rare trades
@@ -960,7 +962,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Expeditions! (without exploration)
   [ ] Revamp Thrice Locked Tome
   [ ] Firefly mother quests?
-
+  [ ] Fix `built` issue in BuildingDetail
   [ ] Add images to memos
   [ ] Mass deconstruct option in Equipment tab
   [ ] Store memo/ui state in reducer

@@ -17,7 +17,7 @@ const ENSURED_DURATION = 5000;
 export default function MessageBarComponent() {
   const messages = useTypedSelector(state => state.messages);
   const [currentMessage, setCurrentMessage] =
-    useState(new Message(messages?.[messages?.length-1] || null));
+    useState(new Message(messages?.[messages?.length-1] || {}));
   const [messagesToUse, setMessagesToUse] = useState([...messages]);
 
   useEffect(() => {
