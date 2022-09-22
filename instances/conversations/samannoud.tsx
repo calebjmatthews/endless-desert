@@ -414,7 +414,7 @@ sndConvoResponses[CVS.SND_THE_GRINDING_MILL + ' - r0'] = new ConversationRespons
 sndConvoStatements[CVS.SND_THE_GRINDING_MILL + ' - s1'] = new ConversationStatement({
   name: CVS.SND_THE_GRINDING_MILL + ' - s1',
   partnerKind: 'leader', partnerType: LEADER_TYPES.SAMANNOUD,
-  text: `Good, good. Melting metal ore will be shoddy work until we have a Grinding Mill, so let's do that next. You'll need ten Crude Iron to make the mill, and try not to smelt any more than that directly from the ore.`,
+  text: `Good, good. Melting metal ore will be shoddy work until we have a Grinding Mill, so let's do that next. You'll need ten Crude Iron to make the mill, but try not to smelt any more than that directly from the ore.`,
   questsBegin: [QUESTS.ASTRONOMY_THE_GRINDING_MILL]
 });
 

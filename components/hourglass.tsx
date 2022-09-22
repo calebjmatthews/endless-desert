@@ -426,8 +426,7 @@ export default function HourglassComponent() {
     if (wa.rti.length == 0 && wa.rtc.length == 0 && wa.timers.length == 0) {
       return null;
     }
-    const duration = utils.formatDuration(wa.diff, 0, true).slice(0, -2);
-    let text = `You were away for ${duration}.`;
+    
     let messages: Message[] = [];
     wa.buildingsToRest.forEach((id) => {
       const building = buildings[id];
@@ -451,7 +450,8 @@ export default function HourglassComponent() {
     });
 
     dispatch(joinWhileAwayMemos(new Memo({ name: 'While Away', title: `You've returned.`,
-    text, messages, resourcesGained: wa.rti, resourcesConsumed: wa.rtc }), ui.memos));
+      text: '', duration: wa.diff, messages, resourcesGained: wa.rti, resourcesConsumed: wa.rtc }), 
+      ui.memos));
   }
 
   return <></>;

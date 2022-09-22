@@ -145,7 +145,7 @@ export default function ResourceSelectRateComponent() {
         dispatch(displayModalValue(null, 'closed', null));
       }
       else {
-        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', modalValue.building));
+        dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', modalValue.building));
       }
     }
   }

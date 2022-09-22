@@ -957,9 +957,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix "To build" building detail issue
   [X] Fix cramped trader arriving display
   [X] Fix build/storage tabs large text
-  [X] Combine "While you were away" memos\
+  [X] Combine resources in "While you were away" memos
   [X] Fix badge quality issue
-  [ ] Fix static width in coversation result flex panel
+  [X] Combine duration in "While you were away" memos
+  [X] Fix static width in coversation result flex panel
   [ ] Select non-exact resources in quest completion
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade

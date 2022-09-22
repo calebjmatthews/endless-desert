@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -12,8 +12,6 @@ import { dismissMemo, displayModal } from '../actions/ui';
 
 import Resource from '../models/resource';
 import Message from '../models/message';
-import Icon from '../models/icon';
-import { resourceTypes } from '../instances/resource_types';
 import { leaderTypes } from '../instances/leader_types';
 import { quests } from '../instances/quests';
 import { utils } from '../utils';
@@ -23,9 +21,12 @@ export default function MemoComponent() {
   const positioner = useTypedSelector(state => state.ui.positioner);
   const memos = useTypedSelector(state => state.ui.memos);
   const memo = memos[0];
-  const modalHeight = positioner.modalHeight - positioner.majorPadding;
 
-  const containerStyle: any = (memo.text
+  const memoText = memo.duration
+    ? `You were away for ${utils.formatDuration(memo.duration, 0, true).slice(0, -2)}.`
+    : memo.text;
+
+  const containerStyle: any = ((memoText)
     ? StyleSheet.flatten([styles.panelFlexColumn,
       {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth,
         justifyContent: 'space-between'}])
@@ -37,8 +38,8 @@ export default function MemoComponent() {
     <View style={styles.container}>
       {renderHeading()}
       <ScrollView contentContainerStyle={containerStyle}>
-        {memo.text && (<Text style={styles.bodyText}>
-          {memo.text}
+        {memoText && (<Text style={styles.bodyText}>
+          {memoText}
         </Text>)}
         {renderMessages(memo.messages)}
         {memo.convoName && <ConversationComponent convoName={memo.convoName} />}
