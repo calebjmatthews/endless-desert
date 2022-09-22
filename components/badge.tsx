@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { styles } from '../styles';
+import { View } from 'react-native';
 import IconComponent from './icon';
 import BadgeIconComponent from './badge_icon';
 import SvgComponent from './svg';
@@ -9,10 +8,10 @@ import Icon from '../models/icon';
 
 export default function BadgeComponent(props: BadgeProps) {
   if (props.icon) {
-    if (props.size) { props.icon.size = props.size; }
-    if (props.quality) { props.icon.quality = props.quality; }
-    if (props.borderless) { props.icon.borderless = props.borderless; }
     let icon = new Icon(props.icon);
+    if (props.size) { icon.size = props.size; }
+    if (props.quality) { icon.quality = props.quality; }
+    if (props.borderless) { icon.borderless = props.borderless; }
     let badgeStyle = getBadgeStyle(icon.size,
       icon.borderless, props.marginless, icon.quality);
     if (icon.provider == 'svg') {
@@ -23,7 +22,7 @@ export default function BadgeComponent(props: BadgeProps) {
       );
     }
     else {
-      let size = props.icon.size;
+      let size = icon.size;
       if (size > 28) {
         size -= 4;
       }
@@ -52,8 +51,9 @@ export default function BadgeComponent(props: BadgeProps) {
 
   return null;
 
-  function getBadgeStyle(size: number|undefined, borderless: boolean|undefined,
+  function getBadgeStyle(rawSize: number|undefined, borderless: boolean|undefined,
     marginless: boolean|undefined, quality: number|undefined) {
+    let size = rawSize || 20;
     let backgroundColor = '#fff';
     if (props.backgroundColor) { backgroundColor = props.backgroundColor; }
     if (props.icon?.backgroundColor) { backgroundColor = props.icon.backgroundColor; }
@@ -71,6 +71,14 @@ export default function BadgeComponent(props: BadgeProps) {
       borderColor: '#737f9c',
       borderRadius: 2
     };
+
+    if (quality) {
+      badgeStyle.borderStyle = 'outset';
+      badgeStyle.borderWidth = 2;
+      badgeStyle.borderColor = '#aecae0';
+
+      size += 2;
+    }
 
     if (size) {
       if (size < 21) {
@@ -90,11 +98,7 @@ export default function BadgeComponent(props: BadgeProps) {
     if (borderless) {
       // badgeStyle.borderWidth = 0;
     }
-    if (quality) {
-      badgeStyle.borderStyle = 'outset';
-      badgeStyle.borderWidth = 3;
-      badgeStyle.borderColor = '#aecae0';
-    }
+
     return badgeStyle;
   }
 }

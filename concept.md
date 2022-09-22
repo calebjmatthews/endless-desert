@@ -957,8 +957,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix "To build" building detail issue
   [X] Fix cramped trader arriving display
   [X] Fix build/storage tabs large text
-  [ ] Combine "While you were away" memos
+  [X] Combine "While you were away" memos\
+  [X] Fix badge quality issue
   [ ] Fix static width in coversation result flex panel
+  [ ] Select non-exact resources in quest completion
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
 
@@ -985,7 +987,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] More repeatable fortuities
   [ ] Leaders running out of consumed food/drink begin foraging
   [ ] Resource production/consumption breakdown in resource detail
-  [ ] Select non-exact resources in quest completion
   [ ] Select non-exact resources in conversations
   [ ] Hide recipes missing ingredients
   [ ] Handle number parsing within ResourceSelectOne
