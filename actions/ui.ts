@@ -56,7 +56,9 @@ export function joinWhileAwayMemos(newMemo: Memo, existingMemos: Memo[]) {
           memo.resourcesGained || []),
         resourcesConsumed: utils.resourceArraysCombine(newMemo.resourcesConsumed || [], 
           memo.resourcesConsumed || []),
-        duration: (newMemo.duration || 0) + (memo.duration || 0)
+        duration: (newMemo.duration || 0) + (memo.duration || 0),
+        messages: (newMemo.messages || memo.messages)
+          ? [...(newMemo.messages || []), ...memo.messages || []] : null
       })
     }
     return memo;
