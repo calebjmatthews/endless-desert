@@ -8,6 +8,7 @@ import { styles } from '../styles';
 import BadgeComponent from './badge';
 import IconComponent from './icon';
 import { addBuildingConstruction } from '../actions/buildings_construction';
+import { displayModalValue } from '../actions/ui';
 
 import Building from '../models/building';
 import BuildingType from '../models/building_type';

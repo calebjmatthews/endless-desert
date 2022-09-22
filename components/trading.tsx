@@ -10,7 +10,7 @@ import SvgComponent from './svg';
 import BadgeComponent from './badge';
 import RatingComponent from './rating';
 import EpauletteComponent from './epaulette';
-import { selectTab, displayModalValue } from '../actions/ui';
+import { displayModalValue } from '../actions/ui';
 import { dismissTradingPartnerVisit, welcomePendingVisit,
   setUpcomingTradingPartnerNames, addPendingVisit, talkTo }
   from '../actions/trading_status';
@@ -21,28 +21,19 @@ import TradingPartnerVisit from '../models/trading_partner_visit';
 import TradingPartner from '../models/trading_partner';
 import Trade from '../models/trade';
 import Vault from '../models/vault';
-import ResourceType from '../models/resource_type';
-import ResourceTag from '../models/resource_tag';
-import ResourceCategory from '../models/resource_category';
 import TradingStatus from '../models/trading_status';
 import Timer from '../models/timer';
 import Icon from '../models/icon';
 import Message from '../models/message';
 import { tradingPartnerTypes } from '../instances/trading_partner_types';
 import { resourceTypes } from '../instances/resource_types';
-import { resourceTags } from '../instances/resource_tags';
-import { resourceSubcategories } from '../instances/resource_subcategories';
-import { resourceCategories } from '../instances/resource_categories';
 import { utils } from '../utils';
-import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { INTRO_STATES } from '../enums/intro_states';
 import { MODALS } from '../enums/modals';
 
 export default function TradingComponent() {
   const dispatch = useDispatch();
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
-  const visits = tradingStatus.visits;
-  const visitsPending = tradingStatus.visitsPending;
   const vault = useTypedSelector(state => state.vault);
   const timers = useTypedSelector(state => state.timers);
   const introState = useTypedSelector(state => state.account.introState);
@@ -236,7 +227,8 @@ function VisitDescription(props: any) {
             name={'shield'} color={tpt.icon.backgroundColor} size={36} />
           <SvgComponent icon={new Icon({...tpt.icon, size: 19})} />
         </View>
-        <View style={styles.containerStretchColumn}>
+        <View style={[styles.columns, {minWidth: props.positioner.bodyMedWidth, 
+          maxWidth: props.positioner.bodyMedWidth}]}>
           <Text>
             {visit.name}
           </Text>
