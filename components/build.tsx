@@ -7,19 +7,11 @@ import { styles } from '../styles';
 
 import BadgeComponent from './badge';
 import IconComponent from './icon';
-import { displayModal, displayModalValue } from '../actions/ui';
-import { addBuilding } from '../actions/buildings';
 import { addBuildingConstruction } from '../actions/buildings_construction';
-import { consumeResources } from '../actions/vault';
-import { setRates } from '../actions/rates';
-import { addTimer } from '../actions/timers';
 
 import Building from '../models/building';
 import BuildingType from '../models/building_type';
-import Hourglass from '../models/hourglass';
-import Timer from '../models/timer';
 import { buildingTypes } from '../instances/building_types';
-import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';
 

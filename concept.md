@@ -956,10 +956,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix broken research option difficulty
   [X] Fix "To build" building detail issue
   [X] Fix cramped trader arriving display
-  [ ] Fix build/storage tabs large text
+  [X] Fix build/storage tabs large text
   [ ] Fix static width in coversation result flex panel
   [ ] "Trading" research allows update to Abandoned Market
-  [ ] 
+  [ ] Guangzhou available after one Gate upgrade
 
   [ ] Trader conversations
   [ ] Flashy display for rare trades
