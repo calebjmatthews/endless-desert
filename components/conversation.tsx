@@ -520,21 +520,23 @@ function Consequence(props: { modalMajor: number,
   resourcesSpent?: {specificity: string, type: string, quantity: number}[],
   leaderJoins?: string, questsBegin?: string[], nextSegments?: Segment[],
   completeResearch?: string[] }) {
+  const { modalMajor, setSegmentsToAdd, resourcesGained, resourcesSpent, leaderJoins, 
+    questsBegin, nextSegments, completeResearch } = props;
   const [finished, setFinished] = useState(false);
   const consequenceOpacity = useRef(new Animated.Value(finished ? 0.9 : 0)).current;
   React.useEffect(() => { Animated.timing(consequenceOpacity,
     { toValue: 0.9, duration: (FADE_IN_DELAY*2), useNativeDriver: true }
   ).start(() => {
-    if (!finished && props.nextSegments) { props.setSegmentsToAdd(props.nextSegments); }
+    if (!finished && nextSegments) { setSegmentsToAdd(nextSegments); }
     setFinished(true);
   })});
 
   let consequences: React.ReactFragment[] = [];
 
-  const leaderJoining = props.leaderJoins ? leaderTypes[props.leaderJoins] : null;
+  const leaderJoining = leaderJoins ? leaderTypes[leaderJoins] : null;
   if (leaderJoining) {
     consequences.push(
-      <View style={styles.panelFlexColumn}>
+      <View style={[styles.panelFlexColumn, {minWidth: modalMajor, maxWidth: modalMajor}]}>
         <BadgeComponent icon={leaderJoining.icon} size={37} />
         <Text>
           {` ${leaderJoining.name} joined you!`}
@@ -542,14 +544,14 @@ function Consequence(props: { modalMajor: number,
       </View>
     );
   }
-  if (props.questsBegin) {
+  if (questsBegin) {
     consequences.push(
-      <View style={styles.panelFlexColumn}>
+      <View style={[styles.panelFlexColumn, {minWidth: modalMajor, maxWidth: modalMajor}]}>
         <Text>
-          {(props.questsBegin.length == 1) ? "You began the quest:"
+          {(questsBegin.length == 1) ? "You began the quest:"
             : "You began the quests:"}
         </Text>
-        {props.questsBegin.map((questName) => {
+        {questsBegin.map((questName) => {
           const quest = quests[questName];
           return (
             <View key={quest.id} style={styles.rows}>
@@ -563,11 +565,11 @@ function Consequence(props: { modalMajor: number,
       </View>
     );
   }
-  if (props.resourcesGained) {
+  if (resourcesGained) {
     consequences.push(
-      <View style={styles.panelFlexColumn}>
+      <View style={[styles.panelFlexColumn, {minWidth: modalMajor, maxWidth: modalMajor}]}>
         <Text style={styles.heading3}>{"You gained:"}</Text>
-        {props.resourcesGained.map((resource) => {
+        {resourcesGained.map((resource) => {
           const resourceType = utils.getResourceType(resource);
           return (
             <View key={`${resource.type}|${resource.quality}`}
@@ -582,10 +584,10 @@ function Consequence(props: { modalMajor: number,
       </View>
     );
   }
-  if (props.resourcesSpent) {
+  if (resourcesSpent) {
     consequences.push(
-      <View style={styles.panelFlexColumn}>
-        {props.resourcesSpent.map((cost, index) => {
+      <View style={[styles.panelFlexColumn, {minWidth: modalMajor, maxWidth: modalMajor}]}>
+        {resourcesSpent.map((cost) => {
           const resourceKind = utils.getMatchingResourceKind(cost.specificity,
             cost.type);
           return (
@@ -601,10 +603,10 @@ function Consequence(props: { modalMajor: number,
       </View>
     );
   }
-  if (props.completeResearch) {
+  if (completeResearch) {
     consequences.push(
-      <View style={styles.panelFlexColumn}>
-        {props.completeResearch.map((researchName) => {
+      <View style={[styles.panelFlexColumn, {minWidth: modalMajor, maxWidth: modalMajor}]}>
+        {completeResearch.map((researchName) => {
           const research = researches[researchName];
           return (
             <View key={researchName} style={styles.rows}>
