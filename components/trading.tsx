@@ -192,19 +192,18 @@ export default function TradingComponent() {
       }
 
       return (
-        <View key={`pending|${slot}`} style={StyleSheet.flatten([styles.panelFlexColumn,
-          {minWidth: positioner.majorWidth,
-            maxWidth: positioner.majorWidth}])}>
+        <View key={`pending|${slot}`} style={[styles.panelFlexColumn, {minWidth: positioner.majorWidth,
+          maxWidth: positioner.majorWidth}]}>
           <View style={styles.containerStretchRow}>
             {tpt && (
-              <View style={StyleSheet.flatten([styles.container, {width: 40, height: 40}])}>
+              <View style={[styles.container, {width: 40, height: 40}]}>
                 <IconComponent style={{position: 'absolute', zIndex: -1}}
                   provider={'MaterialCommunityIcons'}
                   name={'shield'} color={tpt.icon.backgroundColor} size={36} />
                 <SvgComponent icon={new Icon({...tpt.icon, size: 19})} />
               </View>
             )}
-            <View style={styles.containerStretchColumn}>
+            <View style={{minWidth: positioner.bodyMedWidth, maxWidth: positioner.bodyMedWidth}}>
               {contents}
             </View>
           </View>

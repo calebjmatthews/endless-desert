@@ -955,10 +955,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
   [X] Fix broken research option difficulty
   [X] Fix "To build" building detail issue
-  [ ] "Trading" research allows update to Abandoned Market
-  [ ] Fix cramping trader arriving display
+  [X] Fix cramped trader arriving display
   [ ] Fix build/storage tabs large text
   [ ] Fix static width in coversation result flex panel
+  [ ] "Trading" research allows update to Abandoned Market
   [ ] 
 
   [ ] Trader conversations
