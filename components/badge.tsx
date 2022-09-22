@@ -8,8 +8,12 @@ import Icon from '../models/icon';
 
 export default function BadgeComponent(props: BadgeProps) {
   if (props.icon) {
-    let icon = new Icon(props.icon);
-    if (props.size) { icon.size = props.size; }
+    let icon = new Icon({...props.icon});
+    if (props.size) {
+      icon.size = props.size;
+      icon.width = `${props.size}px`;
+      icon.height = `${props.size}px`;
+    }
     if (props.quality) { icon.quality = props.quality; }
     if (props.borderless) { icon.borderless = props.borderless; }
     let badgeStyle = getBadgeStyle(icon.size,
@@ -32,8 +36,8 @@ export default function BadgeComponent(props: BadgeProps) {
 
       return (
         <View style={badgeStyle}>
-        <IconComponent provider={props.icon.provider} name={props.icon.name}
-          color={props.icon.color} size={size} />
+          <IconComponent provider={props.icon.provider} name={props.icon.name}
+            color={props.icon.color} size={size} />
         </View>
       );
     }
