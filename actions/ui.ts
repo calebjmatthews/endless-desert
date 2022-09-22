@@ -1,5 +1,6 @@
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
+import { utils } from '../utils';
 
 export const SET_GLOBAL_STATE = 'SET_GLOBAL_STATE';
 export function setGlobalState(globalState: string) {
@@ -42,6 +43,27 @@ export function addMemos(memos: Memo[]) {
   return {
     type: ADD_MEMOS,
     memos: memos
+  }
+}
+
+export const JOIN_WHILE_AWAY_MEMOS = 'JOIN_WHILE_AWAY_MEMOS';
+export function joinWhileAwayMemos(newMemo: Memo, existingMemos: Memo[]) {
+  const memos = (existingMemos.length === 0) ? [newMemo]
+  : existingMemos.map((memo) => {
+    if (memo.name === 'While Away') {
+      return new Memo({...memo,
+        resourcesGained: utils.resourceArraysCombine(newMemo.resourcesGained || [], 
+          memo.resourcesGained || []),
+        resourcesConsumed: utils.resourceArraysCombine(newMemo.resourcesConsumed || [], 
+          memo.resourcesConsumed || []),
+      })
+    }
+    return memo;
+  });
+
+  return {
+    type: JOIN_WHILE_AWAY_MEMOS,
+    memos
   }
 }
 

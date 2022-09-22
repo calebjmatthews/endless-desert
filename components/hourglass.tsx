@@ -9,7 +9,7 @@ import { removeTimer, updateTimers, addTimer } from '../actions/timers';
 import { addBuilding, replaceBuilding, selectBuildingRecipe }
   from '../actions/buildings';
 import { addQuest, addToActivityQueue } from '../actions/quest_status';
-import { addMemos, addGlowingTab } from '../actions/ui';
+import { addMemos, addGlowingTab, joinWhileAwayMemos } from '../actions/ui';
 import { addMessage } from '../actions/messages';
 import { setLeaders } from '../actions/leaders';
 import { setIntroState, unlockTab, setCurrentFortuity, achieveMilestone, setStorageCallSave }
@@ -450,8 +450,8 @@ export default function HourglassComponent() {
       }
     });
 
-    dispatch(addMemos([new Memo({ name: 'While Away', title: 'You\'ve returned.',
-      text, messages, resourcesGained: wa.rti, resourcesConsumed: wa.rtc })]));
+    dispatch(joinWhileAwayMemos(new Memo({ name: 'While Away', title: `You've returned.`,
+    text, messages, resourcesGained: wa.rti, resourcesConsumed: wa.rtc }), ui.memos));
   }
 
   return <></>;

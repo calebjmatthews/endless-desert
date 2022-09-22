@@ -1,5 +1,6 @@
 import { SET_GLOBAL_STATE, SELECT_TAB, DISPLAY_MODAL, DISPLAY_MODAL_VALUE,
-  ADD_MEMOS, DISMISS_MEMO, ADD_GLOWING_TAB, REMOVE_GLOWING_TAB, SET_POSITIONER } from '../actions/ui';
+  ADD_MEMOS, DISMISS_MEMO, ADD_GLOWING_TAB, REMOVE_GLOWING_TAB, SET_POSITIONER,
+  JOIN_WHILE_AWAY_MEMOS } from '../actions/ui';
 
 import Memo from '../models/memo';
 import Positioner from '../models/positioner';
@@ -32,6 +33,9 @@ export default function (ui: { globalState: string, tabSelected: string,
 
     case DISMISS_MEMO:
     return Object.assign({}, ui, {memos: [...ui.memos.slice(1)]});
+
+    case JOIN_WHILE_AWAY_MEMOS:
+    return Object.assign({}, ui, {memos: action.memos}); 
 
     case ADD_GLOWING_TAB:
     return Object.assign({}, ui, {tabsGlowing: {...ui.tabsGlowing, [action.tabName] : true}});

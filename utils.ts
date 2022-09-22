@@ -566,6 +566,29 @@ class Utils {
     return combinedArray;
   }
 
+  resourceArraysCombine(resourcesA: Resource[], resourcesB: Resource[]) {
+    let combinedArray = [...resourcesA];
+    resourcesB.forEach((resourceB) => {
+      const typeQualityB = `${resourceB.type}|${resourceB.quality}`;
+      let indexInA = -1;
+      resourcesA.forEach((resourceA, index) => {
+        const typeQualityA = `${resourceA.type}|${resourceA.quality}`;
+        if (typeQualityA === typeQualityB) {
+          indexInA = index;
+        }
+      });
+      if (indexInA !== -1) {
+        combinedArray[indexInA] = new Resource({...resourceB,
+          quantity: resourceB.quantity + resourcesA[indexInA].quantity
+        });
+      }
+      else {
+        combinedArray.push(resourceB);
+      }
+    });
+    return combinedArray;
+  }
+
   sumToResources(vault: Vault, aSum: { [typeQuality: string] : number }) {
     let resources: Resource[] = [];
     Object.keys(aSum).map((typeQuality) => {
