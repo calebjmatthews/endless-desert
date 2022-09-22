@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { Text, View, FlatList, TouchableOpacity, StyleSheet, ScrollView }
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView }
   from 'react-native';
 import { styles } from '../styles';
 
@@ -20,7 +20,6 @@ import EquipmentEffect from '../models/equipment_effect';
 import Icon from '../models/icon';
 import { buildingTypes } from '../instances/building_types';
 import { equipmentTypes } from '../instances/equipment_types';
-import { resourceTypes } from '../instances/resource_types';
 import { resourceTags } from '../instances/resource_tags';
 import { utils } from '../utils';
 import { MODALS } from '../enums/modals';

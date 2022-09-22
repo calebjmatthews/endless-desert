@@ -186,7 +186,7 @@ You're not sure if it's related to your actions, but someone has put a set of ru
         label: `Give a leader something to do.`,
         actionToPerform: { kind: ACTIVITIES.LEADER_WORKING_AT } }),
     ],
-    gainResources: [{ specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (U)'), value: 4000 }],
+    gainResources: [{ specificity: RSP.EXACT, type: (ETY.ROUGH_MATTOCK + ' (U)'), value: 6200 }],
     questsBegin: [QUESTS.EARLY_DAYS_MARK_EQUIPMENT]
   }),
   [QUESTS.EARLY_DAYS_MARK_EQUIPMENT]: new Quest({

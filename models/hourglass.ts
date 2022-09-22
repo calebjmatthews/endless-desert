@@ -131,7 +131,8 @@ export default class Hourglass {
     Object.keys(productionSum).forEach((typeQuality) => {
       const typeName = typeQuality.split('|')[0];
       const production = productionSum[typeQuality];
-      const resourceType = vault.resources[typeQuality].toResourceType(resourceTypes);
+      const resourceType = vault.resources[typeQuality]?.toResourceType(resourceTypes)
+        || resourceTypes[typeName];
       utils.mapAdd(exactMap, typeName, production);
       resourceType?.tags.forEach((tagName) => {
         utils.mapAdd(tagMap, tagName, production);

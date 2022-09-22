@@ -194,7 +194,7 @@ export default function LeaderSelectComponent() {
         dispatch(setRates(newRates));
       }
       if (fromBuildingDetail) {
-        dispatch(displayModalValue(MODALS.BUILD_DETAIL, 'open', building));
+        dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));
       }
       else if (subType === DON_EQUIPMENT) {
         dispatch(displayModalValue(MODALS.EQUIPMENT_DETAIL, 'open', anEquipment));

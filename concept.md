@@ -954,7 +954,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Leaders running out of food affects rates
 
   [X] Fix broken research option difficulty
+  [X] Fix "To build" building detail issue
   [ ] "Trading" research allows update to Abandoned Market
+  [ ] Fix cramping trader arriving display
+  [ ] Fix build/storage tabs large text
+  [ ] Fix static width in coversation result flex panel
+  [ ] 
 
   [ ] Trader conversations
   [ ] Flashy display for rare trades
