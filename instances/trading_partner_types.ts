@@ -238,7 +238,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.TAG, type: RTA.CONSTRUCTION, weight: 25},
     {specificity: RSP.EXACT, type: RTY.BARRAMUNDI, weight: 50, valuable: true},
     {specificity: RSP.TAG, type: RTA.ANIMAL, weight: 12.5, valuable: true},
-    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, weight: 50, valuable: true},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BREAD, weight: 50, valuable: true},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50, valuable: true},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50}
   ], [
@@ -253,7 +253,7 @@ tradingPartnerTypes[TRADING_PARTNERS.RED_CROW_TRADERS] = new TradingPartnerType(
     {specificity: RSP.EXACT, type: RTY.IRON_EDGE, weight: 25, valuable: true},
     {specificity: RSP.EXACT, type: RTY.TORCH, weight: 25, valuable: true},
     {specificity: RSP.CATEGORY, type: RCA.IMPLEMENT, weight: 25, valuable: true},
-    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, weight: 50, valuable: true},
+    {specificity: RSP.SUBCATEGORY, type: RSC.BREAD, weight: 50, valuable: true},
     {specificity: RSP.TAG, type: RTA.FOOD, weight: 50, valuable: true},
     {specificity: RSP.TAG, type: RTA.DRINK, weight: 50, valuable: true}
   ]],

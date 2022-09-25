@@ -1,5 +1,4 @@
 import EquipmentType from '../models/equipment_type';
-import EquipmentEffect from '../models/equipment_effect';
 import EquipmentEffectGenerator from '../models/equipment_effect_gen';
 import Icon from '../models/icon';
 import { EQUIPMENT_TYPES } from '../enums/equipment_types';
@@ -185,28 +184,28 @@ equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT] = new EquipmentType({
   description: `A set of bellows for wood-burning that create a hot and erratic flame`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 },
-    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 }],
+    count: 3
   }),
   new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 },
-    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 }],
+    count: 3
   }),
   new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_SPEED], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 },
-    { qualities: [LDQ.SPEED], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 }],
+    count: 3
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 40},
     {specificity: RSP.EXACT, type: RTY.LINEN, quantity: 30},
@@ -220,28 +219,28 @@ equipmentTypes[EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE] = new EquipmentType({
   description: `A set of bellows for wood-burning that create a hot and consistent flame`,
   slot: EQUIPMENT_SLOTS.TOOL,
   effectGenerators: [new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 },
-    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 25, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 50, weight: 100 }],
+    count: 3
   }),
   new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 },
-    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 30, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 60, weight: 100 }],
+    count: 3
   }),
   new EquipmentEffectGenerator({
-    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 }],
+    defaultOptions: [{ qualities: [LDQ.HAPPINESS_TO_QUALITY], baseChange: 100, weight: 100 },
+      { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
+        finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
     additionalOptions: [{ qualities: [LDQ.EFFICIENCY], givenSpecificity: RSP.SUBCATEGORY, 
-      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 },
-    { qualities: [LDQ.QUALITY], givenSpecificity: RSP.EXACT,
-      finalSpecificity: RSP.EXACT, type: RTY.CHARCOAL, baseChange: 35, weight: 100 }],
-    count: 2
+      finalSpecificity: RSP.EXACT, type: RSC.WOOD, baseChange: 70, weight: 100 }],
+    count: 3
   })],
   recipeConsumes: [{specificity: RSP.EXACT, type: RTY.WOOD_OAK, quantity: 80},
     {specificity: RSP.EXACT, type: RTY.LINEN, quantity: 15},

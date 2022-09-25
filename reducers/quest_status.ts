@@ -1,10 +1,10 @@
 import QuestStatus from '../models/quest_status';
 import Quest from '../models/quest';
-import QuestCompleted from '../models/quest_completed';
 import QuestProgress from '../models/quest_progress';
 import { SET_QUEST_STATUS, ADD_QUEST, REMOVE_QUEST, ADD_TO_ACTIVITY_QUEUE,
   REMOVE_FROM_ACTIVITY_QUEUE, SET_QUEST_PROGRESS, SET_QUEST_READY_TO_COMPLETE,
-  ADD_QUEST_COMPLETED } from '../actions/quest_status';
+  ADD_QUEST_COMPLETED, PAY_QUEST_TASK_COST } from '../actions/quest_status';
+import { quests } from '../instances/quests';
 
 export default function (questStatus: QuestStatus = new QuestStatus({
     quests: {},  questsCompleted: {}, lastDailyCompleted: 0, activityQueue: [], resourcesToCheck: {}
@@ -71,6 +71,14 @@ export default function (questStatus: QuestStatus = new QuestStatus({
     return new QuestStatus({ ...questStatus, questsCompleted: {
       ...questStatus.questsCompleted, [action.questCompleted.id]: action.questCompleted
     } });
+
+    case PAY_QUEST_TASK_COST:
+    let pqtcQuest = new Quest(questStatus.quests[action.questProgress.parentId]);
+    pqtcQuest.progress[action.questProgress.index] =
+      new QuestProgress(action.questProgress);
+    pqtcQuest.progress[action.questProgress.index].resourcesConsumed = true;
+    return new QuestStatus({ ...questStatus, quests: { ...questStatus.quests,
+      [action.questProgress.parentId]: pqtcQuest }});
 
 		default:
 		return questStatus;

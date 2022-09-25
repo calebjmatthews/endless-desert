@@ -11,6 +11,8 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
 const RCA = RESOURCE_CATEGORIES;
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
+const RSC = RESOURCE_SUBCATEGORIES;
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
@@ -842,7 +844,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_POT_OF_SEALANT_PITCH,
         label: `Deliver 100 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 100, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: EQUIPMENT_TYPES.POT_OF_SEALANT_PITCH, value: 12800 }]
@@ -859,7 +861,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_REED_MUCK_RAKE,
         label: `Deliver 100 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 100, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.REED_MUCK_RAKE} (U)`, value: 12800 }]
@@ -876,7 +878,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD,
         label: `Deliver 100 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 100, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CLAY_SPADE_BROAD} (U)`, value: 12000 }]
@@ -894,7 +896,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_FERVENT,
         label: `Deliver 200 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CHAR_BELLOWS_FERVENT} (U)`, value: 13000 }]
@@ -912,7 +914,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_CHAR_BELLOWS_TEMPERATE,
         label: `Deliver 200 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.CHAR_BELLOWS_TEMPERATE} (U)`, value: 12600 }]
@@ -929,7 +931,7 @@ You find something strange in the perfumed box this time... And someone even str
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.SIMPLE_TOOLS_OLIVE_GRAFTING_SHEARS,
         label: `Deliver 200 bundles of Wood.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WOOD_ASH}`,
+        resourceToProduce: { specType: `${RSP.SUBCATEGORY}|${RSC.WOOD}`,
           quantity: 200, consumed: true, includeExisting: true } })
     ],
     gainResources: [{ specificity: RSP.EXACT, type: `${EQUIPMENT_TYPES.OLIVE_GRAFTING_SHEARS} (U)`, value: 12000 }]

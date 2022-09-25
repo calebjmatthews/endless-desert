@@ -68,3 +68,13 @@ export function addQuestCompleted(questCompleted: QuestCompleted) {
     questCompleted: questCompleted
   }
 }
+
+export const PAY_QUEST_TASK_COST = 'PAY_QUEST_TASK_COST';
+export function payQuestTaskCost(questProgress: QuestProgress,
+  aCost: {specificity: string, type: string, quantity: number}) {
+  return {
+    type: PAY_QUEST_TASK_COST,
+    questProgress,
+    aCost
+  }
+}

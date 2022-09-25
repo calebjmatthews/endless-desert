@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet, ScrollView }
-  from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -8,8 +7,8 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { addQuest, removeQuest, addQuestCompleted, addToActivityQueue }
-  from '../actions/quest_status';
+import { addQuest, removeQuest, addQuestCompleted, addToActivityQueue, payQuestTaskCost,
+  setQuestReadyToComplete } from '../actions/quest_status';
 import { increaseResources, consumeResources } from '../actions/vault';
 import { addEquipment } from '../actions/equipment';
 import { addLeader } from '../actions/leaders';
@@ -76,7 +75,7 @@ export default function QuestsComponent() {
       case 'quest':
       if (data.item.quest) {
         return <QuestDescription quest={data.item.quest} completeQuest={completeQuest}
-          quitQuest={quitQuest} positioner={positioner} />;
+          quitQuest={quitQuest} vault={vault} positioner={positioner} />;
       } break;
 
       case 'quest_completed':
@@ -200,28 +199,30 @@ export default function QuestsComponent() {
 }
 
 const defaultIcon = new Icon({ provider: 'svg', name: SVGS.ROAD_SIGN });
-function QuestDescription(props: { quest: Quest,
+function QuestDescription(props: { quest: Quest, vault: Vault,
   quitQuest: (quest: Quest) => void,
   completeQuest: (quest: Quest) => void, positioner: Positioner }) {
-  const icon = props.quest.icon || defaultIcon;
-  const mandatoryQuest = (props.quest.type == QUEST_TYPES.PARAMOUNT
-    || props.quest.type == QUEST_TYPES.OBLIGATORY);
+  const dispatch = useDispatch();
+  const { quest, vault, quitQuest, completeQuest, positioner } = props;
+  const icon = quest.icon || defaultIcon;
+  const mandatoryQuest = (quest.type == QUEST_TYPES.PARAMOUNT
+    || quest.type == QUEST_TYPES.OBLIGATORY);
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])} >
+      {minWidth: positioner.majorWidth,
+        maxWidth: positioner.majorWidth}])} >
       <BadgeComponent icon={icon} size={29} />
       <View style={styles.containerSpacedColumn}>
         <View style={styles.buttonTextRow}>
-          <Text>{props.quest.name}</Text>
+          <Text>{quest.name}</Text>
           {!mandatoryQuest && renderQuitButton()}
         </View>
         <Text style={{fontSize: 12, fontStyle: 'italic',
-          maxWidth: props.positioner.bodyMedWidth}}>
-          {props.quest.description}
+          maxWidth: positioner.bodyMedWidth}}>
+          {quest.description}
         </Text>
-        {renderTasks(props.quest)}
-        {renderReward(props.quest)}
+        {renderTasks(quest)}
+        {renderReward(quest)}
       </View>
     </View>
   );
@@ -230,7 +231,7 @@ function QuestDescription(props: { quest: Quest,
     return (
       <TouchableOpacity style={StyleSheet.flatten([styles.button,
         styles.buttonOutlineAway])}
-        onPress={() => { props.quitQuest(props.quest) }}>
+        onPress={() => { quitQuest(quest) }}>
         <IconComponent provider="FontAwesome" name="trash"
           color="#5a201e" size={14} />
         <Text style={StyleSheet.flatten([styles.buttonTextSmall,
@@ -247,10 +248,11 @@ function QuestDescription(props: { quest: Quest,
         {quest.tasks.map((task, index) => {
           return (
             <View key={index}>
-              {renderTask(task, quest.progress[index])}
-              {(index < (quest.tasks.length-1)) && (
+              {(index === 0) && (
                 <View style={styles.breakSmall} />
               )}
+              {renderTask(task, quest.progress[index])}
+              <View style={styles.breakSmall} />
             </View>
           );
         })}
@@ -259,13 +261,22 @@ function QuestDescription(props: { quest: Quest,
   }
 
   function renderTask(task: QuestTask, progress: QuestProgress) {
+    if (task.resourceToGain?.consumed || task.resourceToProduce?.consumed) {
+      return renderTaskButton(task, progress);
+    }
+    else {
+      return renderStandardTask(task, progress);
+    }
+  }
+
+  function renderStandardTask(task: QuestTask, progress: QuestProgress) {
     const completed = task.isCompleted(progress);
     const color = completed ? "#6e78a2" : "#000";
     const progressLabel = task.getProgressLabel(progress);
     return (
       <View key={`${task.parentId}|${task.index}`}
         style={StyleSheet.flatten([styles.rows,
-          {maxWidth: props.positioner.bodyMedWidth}])}>
+          {maxWidth: positioner.bodyMedWidth}])}>
         <View style={{width: 15, marginRight: 3}}>
           {completed ?
           <IconComponent provider="FontAwesome" name="check-square-o"
@@ -278,6 +289,85 @@ function QuestDescription(props: { quest: Quest,
         </Text>
       </View>
     )
+  }
+
+  function renderTaskButton(task: QuestTask, progress: QuestProgress) {
+    const specificity = task.resourceToGain?.specificity
+      || task.resourceToProduce?.specType.split('|')[0] || '';
+    const type = task.resourceToGain?.type
+      || task.resourceToProduce?.specType.split('|')[1] || '';
+    const quantity = task.resourceToGain?.quantity
+      || task.resourceToProduce?.quantity || 0;
+    const progressLabel = task.getProgressLabel(progress);
+    const completed = task.isCompleted(progress);
+    const buttonStyle: any[] = [styles.buttonRowItemSmall];
+    if (completed) {
+      buttonStyle.push(styles.buttonDisabled);
+    }
+    return (
+      <TouchableOpacity key={`${task.parentId}|${task.index}`} style={buttonStyle}
+        disabled={completed} onPress={() => { applyCost({progress, 
+          aCost: { specificity, type, quantity }}) }} >
+        <View style={{width: 15, marginRight: 3}}>
+          {completed ?
+          <IconComponent provider="FontAwesome" name="check-square-o" color={'#fff'} size={16} /> :
+          <IconComponent provider="FontAwesome" name="square-o" color={'#fff'} size={16} />}
+        </View>
+        <Text style={styles.buttonTextSmall}>
+          {`${task.label} ${!completed ? progressLabel : ''}`}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+
+  function applyCost(args: {progress: QuestProgress,
+    aCost: {specificity: string, type: string, quantity: number}}) {
+    const { progress, aCost } = args;
+    let rTypePool: string[] = [];
+    switch(aCost.specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      rTypePool = [(aCost.type + '|0')];
+      break;
+
+      case RESOURCE_SPECIFICITY.TAG:
+      let tagPool = vault.getTagResources(aCost.type);
+      rTypePool = tagPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      let scPool = vault.getSubcategoryResources(aCost.type);
+      rTypePool = scPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      let catPool = vault.getCategoryResources(aCost.type);
+      rTypePool = catPool.map((resource) => {
+        return (resource.type + '|' + resource.quality);
+      });
+      break;
+    }
+
+    if (rTypePool.length == 1) {
+      const qtSplit = rTypePool[0].split('|');
+      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
+        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
+      dispatch(payQuestTaskCost(progress, aCost));
+      const tempQuest = new Quest(quest);
+      tempQuest.progress[progress.index].resourcesConsumed = true;
+      let readyToComplete = true;
+      tempQuest.progress.forEach((questProgress) => {
+        if (!questProgress.resourcesConsumed) { readyToComplete = false; }
+      });
+      if (readyToComplete) { setQuestReadyToComplete(quest.id); }
+    }
+    else {
+      dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
+        {type: TABS.QUESTS, aCost, questTask: quest.tasks[progress.index]}));
+    }
   }
 
   function renderReward(quest: Quest) {
@@ -312,8 +402,8 @@ function QuestDescription(props: { quest: Quest,
     return (
       <View style={styles.buttonRow}>
         <TouchableOpacity style={StyleSheet.flatten([buttonStyle,
-          {minWidth: (props.positioner.bodyMedWidth - 10),
-            maxWidth: (props.positioner.bodyMedWidth - 10)}])}
+          {minWidth: (positioner.bodyMedWidth - 10),
+            maxWidth: (positioner.bodyMedWidth - 10)}])}
           disabled={!quest.readyToComplete}
           onPress={() => { rewardPress(quest) }} >
           <Text style={styles.buttonText}>{actionLabel}</Text>
@@ -325,7 +415,7 @@ function QuestDescription(props: { quest: Quest,
   }
 
   function rewardPress(quest: Quest) {
-    props.completeQuest(quest);
+    completeQuest(quest);
   }
 }
 

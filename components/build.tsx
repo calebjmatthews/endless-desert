@@ -20,7 +20,6 @@ export default function BuildComponent() {
   const dispatch = useDispatch();
   const buildings = useTypedSelector(state => state.buildings);
   const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
-  const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const modalValue: { spot: { type: string }, coords: [number, number] } =
     useTypedSelector(state => state.ui.modalValue);

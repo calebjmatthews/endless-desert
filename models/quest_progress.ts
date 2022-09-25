@@ -8,13 +8,15 @@ export default class QuestProgress implements QuestProgressInterface {
   tradedWith?: number;
   equipmentMarked?: number;
   actionPerformed?: number;
+  resourcesConsumed?: boolean;
 
   constructor(questProgress: QuestProgressInterface) {
     Object.assign(this, questProgress);
   }
 
   addProgress(propName: 'resourceGained'|'resourceProduced'|'resourceAnalyzed'
-    |'dishCooked'|'tradedWith'|'equipmentMarked'|'actionPerformed', quantity: number) {
+    |'dishCooked'|'tradedWith'|'equipmentMarked'|'actionPerformed'|'resourcesConsumed', 
+    quantity: number) {
     switch (propName) {
       case 'resourceGained':
       if (!this.resourceGained) { this.resourceGained = 0; }
@@ -37,6 +39,8 @@ export default class QuestProgress implements QuestProgressInterface {
       case 'actionPerformed':
       if (!this.actionPerformed) { this.actionPerformed = 0; }
       this.actionPerformed += quantity; break;
+      case 'resourcesConsumed':
+      this.resourcesConsumed = true; break;
     }
     return this;
   }
@@ -52,4 +56,5 @@ interface QuestProgressInterface {
   tradedWith?: number;
   equipmentMarked?: number;
   actionPerformed?: number;
+  resourcesConsumed?: boolean;
 }

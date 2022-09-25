@@ -26,13 +26,27 @@ export default class QuestTask {
   isCompleted(progress: QuestProgress) {
     let completed = true;
     if (this.resourceToGain) {
-      if ((progress.resourceGained || 0) < this.resourceToGain.quantity) {
-        completed = false;
+      if (this.resourceToGain.consumed) {
+        if (!progress.resourcesConsumed) {
+          completed = false;
+        }
+      }
+      else {
+        if ((progress.resourceGained || 0) < this.resourceToGain.quantity) {
+          completed = false;
+        }
       }
     }
     if (this.resourceToProduce) {
-      if ((progress.resourceProduced || 0) < this.resourceToProduce.quantity) {
-        completed = false;
+      if (this.resourceToProduce.consumed) {
+        if (!progress.resourcesConsumed) {
+          completed = false;
+        }
+      }
+      else {
+        if ((progress.resourceProduced || 0) < this.resourceToProduce.quantity) {
+          completed = false;
+        }
       }
     }
     if (this.resourceToAnalyze) {

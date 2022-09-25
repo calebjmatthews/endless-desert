@@ -1,12 +1,8 @@
 import BuildingRecipe from './building_recipe';
-import BuildingType from './building_type';
 import Resource from './resource';
 import ResourceType from './resource_type';
 import getDishFromIngredients from './building_cooking';
-import { RESOURCE_TAGS } from '../enums/resource_tags';
-import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { QUALITY_VALUES } from '../constants';
-const QV = QUALITY_VALUES;
 import { BUILDING_TYPES } from '../enums/building_types';
 
 export default class Building {

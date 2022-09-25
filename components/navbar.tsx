@@ -5,14 +5,16 @@ import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
-import { selectTab, addGlowingTab, removeGlowingTab } from '../actions/ui';
+import { selectTab, removeGlowingTab } from '../actions/ui';
+import { addQuest } from '../actions/quest_status';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
 import { tabs } from '../instances/tabs';
+import { quests } from '../instances/quests';
 import { utils } from '../utils'
+import { QUESTS } from '../enums/quests';
 import { PULSE_DURATION } from '../constants';
-import { TABS } from '../enums/tabs';
 
 enum AP {
   START_RISING = 'start rising',
@@ -96,7 +98,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(addGlowingTab(TABS.EQUIPMENT));
+      dispatch(addQuest(quests[QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD]));
     }
     else {
       dispatch(selectTab(tabName));
