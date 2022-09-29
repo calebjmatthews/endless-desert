@@ -106,6 +106,7 @@ export default function MemoComponent() {
           <Text style={styles.bodyText}>{'Your town ' + label + ':'}</Text>
           {resources.map((resource, index) => {
             const resourceType = utils.getResourceType(resource);
+            if (!resourceType) { return null; }
             if (Math.floor(resource.quantity) === 0) { return null; }
             return (
               <View key={index} style={styles.containerStretchRow}>

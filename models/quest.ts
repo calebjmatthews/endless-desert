@@ -73,33 +73,6 @@ export default class Quest implements QuestInterface {
     return questActivities;
   }
 
-  getResourcesConsumed() {
-    let resourcesConsumed: Resource[] = [];
-    this.tasks.forEach((task) => {
-      if (task.resourceToGain?.consumed) {
-        if (task.resourceToGain.specificity != RESOURCE_SPECIFICITY.EXACT) {
-          console.log('Time to implement this!');
-        }
-        else {
-          resourcesConsumed.push(new Resource({ type: task.resourceToGain.type,
-            quality: 0, quantity: task.resourceToGain.quantity }));
-        }
-      }
-      if (task.resourceToProduce?.consumed) {
-        const [ specificity, type ] = task.resourceToProduce.specType.split('|');
-        if (specificity != RESOURCE_SPECIFICITY.EXACT) {
-          console.log('Time to implement this!');
-        }
-        else {
-          resourcesConsumed.push(new Resource({ type, quality: 0,
-            quantity: task.resourceToProduce.quantity }));
-        }
-      }
-    });
-    if (resourcesConsumed.length === 0) { return null; }
-    return resourcesConsumed;
-  }
-
   export() {
     const expQuest: DBQuest = Object.assign({}, this);
     if (this.icon) { expQuest.icon = new Icon(this.icon).export(); }

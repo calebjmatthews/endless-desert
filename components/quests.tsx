@@ -121,12 +121,7 @@ export default function QuestsComponent() {
   function completeQuest(quest: Quest) {
     let memos = [new Memo({ name: quest.id, title: quest.name,
       text: quest.finishText })];
-    const resourcesConsumed = quest.getResourcesConsumed();
-
-    if (resourcesConsumed) {
-      dispatch(consumeResources(vault, resourcesConsumed));
-      memos[0].resourcesConsumed = resourcesConsumed;
-    }
+      
     if (quest.gainResources) {
       let resourcesGained: Resource[] = [];
       let resourceNames: string[] = [];
@@ -351,7 +346,7 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
       break;
     }
 
-    if (rTypePool.length == 1) {
+    if (rTypePool.length === 1) {
       const qtSplit = rTypePool[0].split('|');
       dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
         quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
@@ -362,11 +357,11 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
       tempQuest.progress.forEach((questProgress) => {
         if (!questProgress.resourcesConsumed) { readyToComplete = false; }
       });
-      if (readyToComplete) { setQuestReadyToComplete(quest.id); }
+      if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
     }
     else {
       dispatch(displayModalValue(MODALS.RESOURCE_SELECT, 'open',
-        {type: TABS.QUESTS, aCost, questTask: quest.tasks[progress.index]}));
+        {type: TABS.QUESTS, aCost, quest, questProgress: progress}));
     }
   }
 

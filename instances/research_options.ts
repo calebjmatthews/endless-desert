@@ -381,14 +381,14 @@ researchOptions[RESEARCH_OPTIONS.CULINARY_INSIGHTS] = new ResearchOption({
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
     {specificity: RSP.SUBCATEGORY, type: RSC.SOUP, quantity: 100},
     {specificity: RSP.SUBCATEGORY, type: RSC.BREAD, quantity: 100},
-    {specificity: RSP.SUBCATEGORY, type: RSC.PIE, quantity: 100}]
+    {specificity: RSP.SUBCATEGORY, type: RSC.OMELET, quantity: 100}]
 });
 
 researchOptions[RESEARCH_OPTIONS.CURRENCY_IS_A_CONCEPT] = new ResearchOption({
   name: RESEARCH_OPTIONS.CURRENCY_IS_A_CONCEPT,
   appliesTo: RESEARCHES.ANTHROPOLOGY,
   difficulty: 2,
-  description: `You've heard the Spring-Autumn Kingdom has a concept called "currency", whereby any goods can be excanged for small Jade Tokens. The practice seems bizarrely restrictive, but is worth a closer look.`,
+  description: `You've heard the Spring-Autumn Kingdom has a concept called "currency", whereby any goods can be exchanged for small Jade Tokens. The practice seems bizarrely restrictive, but is worth a closer look.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, quantity: 10}]
 });

@@ -962,11 +962,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Combine duration in "While you were away" memos
   [X] Fix static width in coversation result flex panel
   [X] Combine messages in "While you were away" memos
-  [ ] Select non-exact resources in quest completion
+  [X] Select non-exact resources in quest completion
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
 
+  [ ] Handle custom food quality
   [ ] Trader conversations
   [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes

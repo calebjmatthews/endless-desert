@@ -647,6 +647,7 @@ resourceTypes[RTY.WOOD_MAPLE] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SWEET],
   value: 50,
+  description: `From trees whose sap can be made into sweet syrup`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#bf7229',
     shadow: '#ad6043', secondaryColor: '#ffb581', secondaryShadow: '#de805c'})
 });
@@ -657,6 +658,7 @@ resourceTypes[RTY.WOOD_WILLOW] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.BRACKISH],
   value: 50,
+  description: `Cut from trees whose graceful leaves swoop downward like hair`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#e87b7b',
     shadow: '#d66464', secondaryColor: '#ffb7b7', secondaryShadow: '#ff8e8e'})
 });
@@ -667,6 +669,7 @@ resourceTypes[RTY.WOOD_ASH] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.SAVORY],
   value: 50,
+  description: `The world-tree of northern legend was said to be an ash`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#daa86b',
     shadow: '#865e2e', secondaryColor: '#ffcd8f', secondaryShadow: '#b58e5f'})
 });
@@ -677,6 +680,7 @@ resourceTypes[RTY.WOOD_SPRUCE] = new ResourceType({
   subcategory: RSC.WOOD,
   tags: [RTA.CONSTRUCTION, RTA.TRADE_GOOD, RTA.COOLING],
   value: 50,
+  description: `Dark, dry, and aromatic`,
   icon: new Icon({provider: 'svg', name: SVGS.WOOD, color: '#4a2c00',
     shadow: '#271700', secondaryColor: '#905600', secondaryShadow: '#653c00'})
 });
@@ -687,6 +691,7 @@ resourceTypes[RTY.CLAY_MUDDY] = new ResourceType({
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH],
   value: 12,
+  description: `Abundant in the riverbanks of your town, although it cracks in the sun`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a06363',
     shadow: '#754646'})
 });
@@ -697,6 +702,7 @@ resourceTypes[RTY.CLAY_RICH] = new ResourceType({
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 60,
+  description: `Dark, loamy, and filled with nutrients for plants`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#5d2d00',
     shadow: '#2d1600'})
 });
@@ -707,6 +713,7 @@ resourceTypes[RTY.CLAY_RED] = new ResourceType({
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 35,
+  description: `Strikingly red, this would make lovely bricks`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#a91f1f',
     shadow: '#6f1b1b'})
 });
@@ -717,6 +724,7 @@ resourceTypes[RTY.CLAY_BLUE] = new ResourceType({
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 45,
+  description: `Bluish grey from alkaline dust`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#9cb0d2',
     shadow: '#818ea2'})
 });
@@ -727,6 +735,7 @@ resourceTypes[RTY.CLAY_KAOLIN] = new ResourceType({
   subcategory: RSC.CLAY,
   tags: [RTA.EARTH, RTA.TRADE_GOOD],
   value: 840,
+  description: `So white and shining its almost transparent`,
   icon: new Icon({provider: 'svg', name: SVGS.CLAY, color: '#f7e0c5',
     shadow: '#d6bfa4'})
 });

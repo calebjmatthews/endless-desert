@@ -10,25 +10,35 @@ import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { displayModalValue } from '../actions/ui';
 import { consumeResources } from '../actions/vault';
+import { payQuestTaskCost, setQuestReadyToComplete } from '../actions/quest_status';
 
 import Resource from '../models/resource';
 import Vault from '../models/vault';
+import Quest from '../models/quest';
+import QuestTask from '../models/quest_task';
+import QuestProgress from '../models/quest_progress';
 import Positioner from '../models/positioner';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { TABS } from '../enums/tabs';
 
 export default function ResourceSelectComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
-  const modalValue: {type?: string,
+  const modalValue: {
+    type?: string,
     aCost: {specificity: string, type: string, quantity: number},
     resources?: {type: string, quantity: number}[],
-    optionName?: string} = useTypedSelector(state => state.ui.modalValue);
+    optionName?: string,
+    quest?: Quest,
+    questProgress?: QuestProgress
+  } = useTypedSelector(state => state.ui.modalValue);
+  const { type, aCost, quest, questProgress } = modalValue;
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
   const [resourcesSelected, resourcesSelect] =
-    useState(setStartingSelected(resourcesArray, modalValue.aCost));
+    useState(setStartingSelected(resourcesArray, aCost));
 
   return (
     <View style={styles.container}>
@@ -61,7 +71,7 @@ export default function ResourceSelectComponent() {
     setResourcesSelected: Function) {
     return resourceArray.map((resource) => {
       return <ResourceSelector key={`${resource.type}|${resource.quality}`}
-        resource={resource} aCost={modalValue.aCost}
+        resource={resource} aCost={aCost}
         resourcesSelected={resourcesSelected} vault={vault}
         setResourcesSelected={setResourcesSelected} positioner={positioner} />;
     });
@@ -97,7 +107,7 @@ export default function ResourceSelectComponent() {
     Object.keys(resourcesSelected).map((typeQuality) => {
       resourceSum += resourcesSelected[typeQuality];
     })
-    if (resourceSum < modalValue.aCost.quantity) {
+    if (resourceSum < aCost.quantity) {
       isDisabled = true;
       buttonStyle = StyleSheet.flatten([styles.buttonLarge,
         styles.buttonRowItem, styles.buttonDisabled]);
@@ -127,12 +137,34 @@ export default function ResourceSelectComponent() {
     });
     dispatch(consumeResources(vault, rs));
 
-    if (modalValue.type) {
-      switch (modalValue.type) {
+    if (type) {
+      switch (type) {
         case 'Building detail':
         case 'Build detail':
-        modalValue.resources = rs;
-        dispatch(displayModalValue(null, ('resolving ' + modalValue.type), modalValue));
+        dispatch(displayModalValue(null, ('resolving ' + type), modalValue));
+        break;
+
+        case TABS.QUESTS:
+          if (quest && questProgress) {
+            const resourcesToConsume = Object.keys(resourcesSelected).map((typeQuality) => {
+              const quantity = resourcesSelected[typeQuality];
+              const [type, quality] = typeQuality.split('|');
+              return new Resource({type, quality: parseInt(quality), quantity});
+            });
+            // const { type, aCost, resources, optionName, questTask, questProgress } = modalValue;
+            dispatch(consumeResources(vault, resourcesToConsume));
+            dispatch(payQuestTaskCost(questProgress, aCost));
+            const tempQuest = new Quest(quest);
+            tempQuest.progress[questProgress.index].resourcesConsumed = true;
+            let readyToComplete = true;
+            tempQuest.progress.forEach((questProgress) => {
+              if (!questProgress.resourcesConsumed) { readyToComplete = false; }
+            });
+            console.log('readyToComplete');
+            console.log(readyToComplete);
+            if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
+            dispatch(displayModalValue(null, 'closed', null));
+          }
         break;
       }
     }
@@ -142,15 +174,15 @@ export default function ResourceSelectComponent() {
   }
 
   function getResourcesArray() {
-    switch (modalValue.aCost.specificity) {
+    switch (aCost.specificity) {
       case RESOURCE_SPECIFICITY.TAG:
-      return rSort(filterOutZero(vault.getTagResources(modalValue.aCost.type)));
+      return rSort(filterOutZero(vault.getTagResources(aCost.type)));
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      return rSort(filterOutZero(vault.getSubcategoryResources(modalValue.aCost.type)));
+      return rSort(filterOutZero(vault.getSubcategoryResources(aCost.type)));
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      return rSort(filterOutZero(vault.getCategoryResources(modalValue.aCost.type)));
+      return rSort(filterOutZero(vault.getCategoryResources(aCost.type)));
 
       default:
       return [];
