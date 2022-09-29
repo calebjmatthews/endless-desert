@@ -151,7 +151,6 @@ export default function ResourceSelectComponent() {
               const [type, quality] = typeQuality.split('|');
               return new Resource({type, quality: parseInt(quality), quantity});
             });
-            // const { type, aCost, resources, optionName, questTask, questProgress } = modalValue;
             dispatch(consumeResources(vault, resourcesToConsume));
             dispatch(payQuestTaskCost(questProgress, aCost));
             const tempQuest = new Quest(quest);

@@ -191,6 +191,23 @@ export default function ResearchingComponent() {
           break;
         }
       });
+
+      if (option.gain) {
+        const resources = option.gain.map((aGain) => new Resource({
+          type: aGain.type,
+          quality: 0,
+          quantity: aGain.quantity
+        }));
+        const resourceType = utils.getResourceType(resources[0]);
+        dispatch(increaseResources(vault, resources));
+        dispatch(addMessage(new Message({
+          text: `You gained ${utils.getResourceName(resources[0])}${(resources.length > 1) ? ' and more' : ''}!`,
+          type: '',
+          timestamp: new Date(Date.now()),
+          icon: resourceType.icon
+        })));
+      }
+
       newRod.finishOption(optionName);
     }
     dispatch(updateResearchOptionDeck(newRod));

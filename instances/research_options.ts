@@ -19,7 +19,7 @@ let researchOptions: { [name: string] : ResearchOption } = {};
 researchOptions[RESEARCH_OPTIONS.FRUSTRUATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.FRUSTRUATION,
   appliesTo: RESEARCH_OPTIONS.SECONDARY,
-  difficulty: 0,
+  difficulty: 1,
   description: (`Everything is difficult today; your notes are a mess, the lighting is terrible, and you feel like pulling out your hair. Sometimes its better to throw away potential avenues and start over. *This will remove all current research options and replace them with new ones*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 200}],
   actions: [ ROA.DISCARD_OPTIONS ],
@@ -29,7 +29,7 @@ researchOptions[RESEARCH_OPTIONS.FRUSTRUATION] = new ResearchOption({
 researchOptions[RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES] = new ResearchOption({
   name: RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES,
   appliesTo: RESEARCH_OPTIONS.SECONDARY,
-  difficulty: 0,
+  difficulty: 1,
   description: (`Time to slow down, ennumerate a list of strategies, and write out a set of approaches. *This will add an extra option slot for the rest of this research*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 100},
     {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10},
@@ -41,7 +41,7 @@ researchOptions[RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES] = new ResearchOption({
 researchOptions[RESEARCH_OPTIONS.RECKLESS_CONCENTRATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.RECKLESS_CONCENTRATION,
   appliesTo: RESEARCH_OPTIONS.SECONDARY,
-  difficulty: 0,
+  difficulty: 1,
   description: (`Select a possible solution and burn away all other options. Is this incautious? Don't stop to think about that. *This will give research progress, but will both remove all current options and give one fewer slot for the rest of this research*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 50}],
   actions: [ ROA.COMPLETE_STEP, ROA.DISCARD_OPTIONS, ROA.DECREASE_OPTION_SLOTS ],
@@ -51,7 +51,7 @@ researchOptions[RESEARCH_OPTIONS.RECKLESS_CONCENTRATION] = new ResearchOption({
 researchOptions[RESEARCH_OPTIONS.AGGRIVATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.AGGRIVATION,
   appliesTo: RESEARCH_OPTIONS.SECONDARY,
-  difficulty: 1,
+  difficulty: 2,
   description: (`Prototype after prototype fails, theory after theory goes nowhere. But you'll pull this research back together, even if it means writing and cursing all night long. *This will remove all current research options and replace them with new ones*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 500},
     { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 80 },
@@ -63,7 +63,7 @@ researchOptions[RESEARCH_OPTIONS.AGGRIVATION] = new ResearchOption({
 researchOptions[RESEARCH_OPTIONS.A_WORTHWHILE_DISTRACTION] = new ResearchOption({
   name: RESEARCH_OPTIONS.A_WORTHWHILE_DISTRACTION,
   appliesTo: RESEARCH_OPTIONS.SECONDARY,
-  difficulty: 1,
+  difficulty: 2,
   description: (`You've found a compelling idea that isn't connected at all to the topic at hand. Exploring it would set you back significantly, but the temptation... *This will give a rare item, but will both remove all current options and give one fewer slot for the rest of this research*`),
   cost: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
     { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
@@ -197,7 +197,7 @@ researchOptions[RESEARCH_OPTIONS.WOOD_VARIETY] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION,
-  appliesTo: RESEARCHES.SCHOLARSHIP,
+  appliesTo: RESEARCHES.EXAMINATION_WEIGHTY,
   difficulty: 1,
   description: `Reading notes on phenomena of a cosmic scale has made you reconsider things. Maybe the research methods you've been using aren't as effecient or as effective as you'd thought.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_STAR, quantity: 1}]
@@ -205,7 +205,7 @@ researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION,
-  appliesTo: RESEARCHES.SCHOLARSHIP,
+  appliesTo: RESEARCHES.EXAMINATION_MERCURIAL,
   difficulty: 2,
   description: `You've learned how to grind precision lenses for magnification. It might be time to slow down and see if these can be used to assist you in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
@@ -214,7 +214,7 @@ researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.ASSISTED_EXAMINATION,
-  appliesTo: RESEARCHES.SCHOLARSHIP,
+  appliesTo: RESEARCHES.EXAMINATION_POTENT,
   difficulty: 2,
   description: `You've learned how to make basic gear-driven mechanisms. It might be time to slow down and see if these can be used to assist you in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 3},
@@ -223,7 +223,7 @@ researchOptions[RESEARCH_OPTIONS.ASSISTED_EXAMINATION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.EXPANDED_EXAMINATION,
-  appliesTo: RESEARCHES.SCHOLARSHIP,
+  appliesTo: RESEARCHES.EXAMINATION_ALACRITOUS,
   difficulty: 2,
   description: `You've learned how to create far more powerful lenses. You're certain there's some way these can be used in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
@@ -232,7 +232,7 @@ researchOptions[RESEARCH_OPTIONS.EXPANDED_EXAMINATION] = new ResearchOption({
 
 researchOptions[RESEARCH_OPTIONS.AUGMENTED_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.AUGMENTED_EXAMINATION,
-  appliesTo: RESEARCHES.SCHOLARSHIP,
+  appliesTo: RESEARCHES.EXAMINATION_VISIONARY,
   difficulty: 2,
   description: `You've learned how to create durable, intricate gearwork mechanisms. You're certain there's some way these can be used in your studies.`,
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 7},
