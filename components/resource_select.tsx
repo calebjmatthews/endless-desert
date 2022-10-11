@@ -15,7 +15,6 @@ import { payQuestTaskCost, setQuestReadyToComplete } from '../actions/quest_stat
 import Resource from '../models/resource';
 import Vault from '../models/vault';
 import Quest from '../models/quest';
-import QuestTask from '../models/quest_task';
 import QuestProgress from '../models/quest_progress';
 import Positioner from '../models/positioner';
 import { utils } from '../utils';
@@ -147,9 +146,9 @@ export default function ResourceSelectComponent() {
         case TABS.QUESTS:
           if (quest && questProgress) {
             const resourcesToConsume = Object.keys(resourcesSelected).map((typeQuality) => {
+              const resource = vault.resources[typeQuality];
               const quantity = resourcesSelected[typeQuality];
-              const [type, quality] = typeQuality.split('|');
-              return new Resource({type, quality: parseInt(quality), quantity});
+              return new Resource({...resource, quantity});
             });
             dispatch(consumeResources(vault, resourcesToConsume));
             dispatch(payQuestTaskCost(questProgress, aCost));
@@ -159,8 +158,6 @@ export default function ResourceSelectComponent() {
             tempQuest.progress.forEach((questProgress) => {
               if (!questProgress.resourcesConsumed) { readyToComplete = false; }
             });
-            console.log('readyToComplete');
-            console.log(readyToComplete);
             if (readyToComplete) { dispatch(setQuestReadyToComplete(quest.id)); }
             dispatch(displayModalValue(null, 'closed', null));
           }
@@ -174,6 +171,9 @@ export default function ResourceSelectComponent() {
 
   function getResourcesArray() {
     switch (aCost.specificity) {
+      case RESOURCE_SPECIFICITY.EXACT:
+      return rSort(filterOutZero(vault.getExactResources(aCost.type)));
+
       case RESOURCE_SPECIFICITY.TAG:
       return rSort(filterOutZero(vault.getTagResources(aCost.type)));
 

@@ -199,8 +199,8 @@ researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION,
   appliesTo: RESEARCHES.EXAMINATION_WEIGHTY,
   difficulty: 1,
-  description: `Reading notes on phenomena of a cosmic scale has made you reconsider things. Maybe the research methods you've been using aren't as effecient or as effective as you'd thought.`,
-  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_STAR, quantity: 1}]
+  description: `To devise an effective improvement to your own research methods, you'll need potentially dizzying notes on your own process. You have a hunch that these could be found while researching, after upgrading the Study.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}]
 });
 
 researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({

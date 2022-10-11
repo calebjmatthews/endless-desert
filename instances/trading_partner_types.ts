@@ -509,13 +509,13 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
-    {specificity: RSP.EXACT, type: RTA.TEA, weight: 200}
+    {specificity: RSP.TAG, type: RTA.TEA, weight: 200}
   ], [
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 400},
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
-    {specificity: RSP.EXACT, type: RTA.TEA, weight: 200},
+    {specificity: RSP.TAG, type: RTA.TEA, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95}
@@ -524,7 +524,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
-    {specificity: RSP.EXACT, type: RTA.TEA, weight: 200},
+    {specificity: RSP.TAG, type: RTA.TEA, weight: 200},
     {specificity: RSP.EXACT, type: RTY.LAPIS_LAZULI, weight: 169},
     {specificity: RSP.EXACT, type: RTY.ONYX_HUSK, weight: 127},
     {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95},

@@ -192,7 +192,7 @@ export default function ResearchingComponent() {
         }
       });
 
-      if (option.gain) {
+      if (option.gain?.length > 0) {
         const resources = option.gain.map((aGain) => new Resource({
           type: aGain.type,
           quality: 0,

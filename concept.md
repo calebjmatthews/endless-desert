@@ -446,15 +446,27 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Gather rumors from wanderers
   - Traveling auctioneering caravan
 - Expedition method:
-  - Pick a cardinal direction, a previously visited region (if map making has been learned), or previously visited destination (also if map making has been leared),
+  - Pick a cardinal direction, a previously visited region or previously visited destination
   - For every area that is traversed through, various random events can occur. This could:
     - Change the direction the expedition is heading (the party gets lost)
     - Delay the party unless food, drink, or a specific implement is used up, or unless the leader is a certain personality type
     - Give an opportunity to plant special seeds (e.g. date) for later retrieval
-    - Capture an animal with rope
+    - Capture animals with rope
     - Meet with a special trading partner
     - Start a special repeatable quest
     - Unexpected expedition destination (mirage castle?)
+- Expedition research:
+  - ... towards the leftmost star in The Plunging Eagle as it rises from the horizon ...
+  - ... five hundred fathoms toward the third of seven basalt cliffs ...
+  - ... up the stair-like rise that spirals around the smaller of the two hills ...
+  - ... then, in the direction of The Follower when the night is at its deepest ...
+  - ... forty fathoms more, and turning toward Little Abundant One in the early evening sky ...
+  - ... walk a course evenly between The Spread Hands and Ghoul, as the morning comes ...
+  - ... turn your path here, through through dried riverbed, caked with white alkali ...
+  - ... marks like talons are carved on the pillars here, and walk in the direction they point ...
+  - ... with The Sisters at your back, continue on two hundred and twenty fathoms ...
+  - ... past an ancient basin, taking care not to fall down its perilous edge ...
+  - ... and now quickly, towards the highest star of The Dancer, before the sun rises ...
 
 ## Exploration:
 - Implements give points in the following categories:
@@ -584,7 +596,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/landscapes-collection/
     https://www.svgrepo.com/collection/landscapes-22/
     https://www.svgrepo.com/collection/landscapes-18/
+    https://www.svgrepo.com/collection/landscapes-16/
+    https://www.svgrepo.com/collection/landscapes-7/
+    https://www.svgrepo.com/collection/landscapes-4/
     https://www.svgrepo.com/collection/landmarks-6/
+    https://www.svgrepo.com/collection/building-landmark-vectors/
+    https://www.svgrepo.com/collection/scenery-2/
+    https://www.svgrepo.com/collection/travel-and-adventure/
     https://www.svgrepo.com/collection/italy-4/
     https://www.svgrepo.com/collection/japan-13/
     https://www.svgrepo.com/collection/japan-10/
@@ -632,11 +650,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/holidays-2/
     https://www.svgrepo.com/collection/valentines-day-6/
     https://www.svgrepo.com/collection/beauty-30/
-    https://www.shareicon.net/pack/landscapes?p=4
-    https://www.shareicon.net/pack/landscapes-collection?p=2
-    https://www.svgrepo.com/collection/landscapes-22/
     https://www.svgrepo.com/collection/stationery-elements/
     https://www.svgrepo.com/collection/weapons-5/
+    https://www.shareicon.net/pack/landscapes?p=4
+    https://www.shareicon.net/pack/landscapes-collection?p=2
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -966,15 +983,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
+  [ ] Fix missing resource for one building stops multiple
 
+  [ ] Starchart production
+  [ ] Expeditions! (without exploration)
+  [ ] Revamp field notes (select from three possibilities)
+  [ ] Storing an occupied house kicks out the leader
+  [ ] Storing an assigned to building removes leader
   [ ] Handle custom food quality
   [ ] Trader conversations
-  [ ] Flashy display for rare trades
   [ ] Ingredient-specific cooking recipes
-  [ ] Expeditions! (without exploration)
   [ ] Revamp Thrice Locked Tome
   [ ] Firefly mother quests?
-  [ ] Fix `built` issue in BuildingDetail
   [ ] Add images to memos
   [ ] Mass deconstruct option in Equipment tab
   [ ] Store memo/ui state in reducer
@@ -982,23 +1002,20 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Autoselect first resource
   [ ] Add animations to memos
   [ ] Rich text rendering
-  [ ] Storing an occupied house kicks out the leader
-  [ ] Storing an assigned to building removes leader
   [ ] Conversations can be repeatable, but not daily
   [ ] Store conversation state in reducer
   [ ] Compressed resource view
   [ ] Fix for stuck without sand/knowledge before trading unlocked
   [ ] More repeatable fortuities
-  [ ] Leaders running out of consumed food/drink begin foraging
   [ ] Resource production/consumption breakdown in resource detail
-  [ ] Select non-exact resources in conversations
-  [ ] Hide recipes missing ingredients
   [ ] Handle number parsing within ResourceSelectOne
   [ ] Study and analysis consume resources at start, can be cancelled
   [ ] Hide leader assignment buttons until there are leaders
   [ ] Restyle completed quests
   [ ] Only show most recent completed quests, with "Show more" button
-  [ ] Fix quest completion resource display (Mattock x0)
+  [ ] Flashy display for rare trades
+  [ ] Hide recipes missing ingredients
+  [ ] Select non-exact resources in conversations
 
 ## Commands
 ### Delete all records from all tables:

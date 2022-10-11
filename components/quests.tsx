@@ -291,25 +291,26 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
       || task.resourceToProduce?.specType.split('|')[0] || '';
     const type = task.resourceToGain?.type
       || task.resourceToProduce?.specType.split('|')[1] || '';
-    const quantity = task.resourceToGain?.quantity
+    const taskQuantity = task.resourceToGain?.quantity
       || task.resourceToProduce?.quantity || 0;
-    const progressLabel = task.getProgressLabel(progress);
+    const resourceQuantity = vault.getSpecificityQuantity(specificity, type);
+    const quantityLabel = `${(resourceQuantity > taskQuantity) ? utils.formatNumberShort(taskQuantity) : utils.formatNumberShort(resourceQuantity)}/${utils.formatNumberShort(taskQuantity)}`;
     const completed = task.isCompleted(progress);
-    const buttonStyle: any[] = [styles.buttonRowItemSmall];
-    if (completed) {
+    const buttonStyle: any[] = [styles.buttonRowItemSmall, {justifyContent: 'flex-start'}];
+    if (completed || (resourceQuantity < taskQuantity)) {
       buttonStyle.push(styles.buttonDisabled);
     }
     return (
       <TouchableOpacity key={`${task.parentId}|${task.index}`} style={buttonStyle}
         disabled={completed} onPress={() => { applyCost({progress, 
-          aCost: { specificity, type, quantity }}) }} >
+          aCost: { specificity, type, quantity: taskQuantity }}) }} >
         <View style={{width: 15, marginRight: 3}}>
           {completed ?
           <IconComponent provider="FontAwesome" name="check-square-o" color={'#fff'} size={16} /> :
           <IconComponent provider="FontAwesome" name="square-o" color={'#fff'} size={16} />}
         </View>
         <Text style={styles.buttonTextSmall}>
-          {`${task.label} ${!completed ? progressLabel : ''}`}
+          {`${task.label} ${!completed ? quantityLabel : ''}`}
         </Text>
       </TouchableOpacity>
     )
@@ -318,38 +319,23 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
   function applyCost(args: {progress: QuestProgress,
     aCost: {specificity: string, type: string, quantity: number}}) {
     const { progress, aCost } = args;
-    let rTypePool: string[] = [];
+    let rAvaiablePool: Resource[] = [];
     switch(aCost.specificity) {
       case RESOURCE_SPECIFICITY.EXACT:
-      rTypePool = [(aCost.type + '|0')];
-      break;
+      rAvaiablePool = vault.getExactResources(aCost.type); break;
 
       case RESOURCE_SPECIFICITY.TAG:
-      let tagPool = vault.getTagResources(aCost.type);
-      rTypePool = tagPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
-      });
-      break;
+      rAvaiablePool = vault.getTagResources(aCost.type); break;
 
       case RESOURCE_SPECIFICITY.SUBCATEGORY:
-      let scPool = vault.getSubcategoryResources(aCost.type);
-      rTypePool = scPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
-      });
-      break;
+      rAvaiablePool = vault.getSubcategoryResources(aCost.type); break;
 
       case RESOURCE_SPECIFICITY.CATEGORY:
-      let catPool = vault.getCategoryResources(aCost.type);
-      rTypePool = catPool.map((resource) => {
-        return (resource.type + '|' + resource.quality);
-      });
-      break;
+      rAvaiablePool = vault.getCategoryResources(aCost.type); break;
     }
 
-    if (rTypePool.length === 1) {
-      const qtSplit = rTypePool[0].split('|');
-      dispatch(consumeResources(vault, [new Resource({type: qtSplit[0],
-        quality: parseInt(qtSplit[1]), quantity: aCost.quantity})]));
+    if (rAvaiablePool.length === 1) {
+      dispatch(consumeResources(vault, rAvaiablePool));
       dispatch(payQuestTaskCost(progress, aCost));
       const tempQuest = new Quest(quest);
       tempQuest.progress[progress.index].resourcesConsumed = true;
@@ -376,7 +362,7 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
       const gain = quest.gainResources[0];
       const kind = utils.getMatchingResourceKind(gain.specificity, gain.type);
       icon = kind.icon;
-      let quantity = Math.floor(gain.value / (kind.value || 1)).toString();
+      let quantity = utils.formatNumberShort(gain.value / (kind.value || 1));
       (gain.specificity == RESOURCE_SPECIFICITY.EXACT) ? (quantity = 'x' + quantity) :
         (quantity = '~' + quantity);
       subjectLabel = `${kind.name} ${quantity}`;

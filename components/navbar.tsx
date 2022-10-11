@@ -98,7 +98,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(addQuest(quests[QUESTS.SIMPLE_TOOLS_CLAY_SPADE_BROAD]));
+      dispatch(addQuest(quests[QUESTS.TESTING]));
     }
     else {
       dispatch(selectTab(tabName));

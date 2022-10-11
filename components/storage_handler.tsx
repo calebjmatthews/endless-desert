@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
+import { TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -40,7 +40,6 @@ import EquipmentEffect from '../models/equipment_effect';
 import { genStartingBuildings } from '../instances/buildings';
 import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
   FADE_IN_DELAY } from '../constants';
-import { utils } from '../utils';
 
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
@@ -65,7 +64,6 @@ export default function StorageHandlerComponent() {
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
-  const rates = useTypedSelector(state => state.rates);
   const buildings = useTypedSelector(state => state.buildings);
   const buildingsConstruction = useTypedSelector(state => state.buildingsConstruction);
   const buildingsStorage = useTypedSelector(state => state.buildingsStorage);

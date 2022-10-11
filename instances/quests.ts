@@ -945,11 +945,11 @@ You find something strange in the perfumed box this time... And someone even str
     finishText: `Turns out, neither Water nor Lentils are an inside job.`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.TESTING,
-        label: `Produce 100 Water.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WATER}`, quantity: 100 }}),
+        label: `Deliver 100 Water.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.WATER}`, quantity: 100, consumed: true }}),
       new QuestTask({ index: 1, parentId: QUESTS.TESTING,
-        label: `Produce 10 Lentil.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LENTIL}`, quantity: 10 }})
+        label: `Deliver 100000 Lentil.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.LENTIL}`, quantity: 100000, consumed: true }})
     ],
     gainResources: [{ specificity: RSP.EXACT, type: RTY.JADE_TOKEN, value: 2000 }],
     conversationBegins: conversations[CONVERSATIONS.FIF_INTRODUCTION]
