@@ -1508,6 +1508,15 @@ resourceTypes[RTY.CHITENOUS_PINS] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.CHITENOUS_PINS})
 });
 
+resourceTypes[RTY.STARCHART] = new ResourceType({
+  name: RTY.STARCHART,
+  category: RCA.ETHERIAL,
+  tags: [RTA.MIND],
+  value: 100,
+  description: `An in-depth catalogue depicting one slice of the heavens`,
+  icon: new Icon({provider: 'svg', name: SVGS.STARCHART})
+});
+
 resourceTypes[RTY.TEA_CELADON] = new ResourceType({
   name: RTY.TEA_CELADON,
   category: RCA.DISH,

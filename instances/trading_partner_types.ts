@@ -506,12 +506,16 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
   ]],
   receivesPool: [[
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, weight: 200},
+    {specificity: RSP.EXACT, type: RTY.IVORY_SHARD, weight: 200},
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
     {specificity: RSP.TAG, type: RTA.TEA, weight: 200}
   ], [
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, weight: 100},
+    {specificity: RSP.EXACT, type: RTY.IVORY_SHARD, weight: 100},
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
@@ -521,6 +525,8 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.RUBY_CURSED, weight: 95}
   ], [
     {specificity: RSP.TAG, type: RTA.PRECIOUS, weight: 400},
+    {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.IVORY_SHARD, weight: 50},
     {specificity: RSP.EXACT, type: RTY.JADE_TOKEN, weight: 400},
     {specificity: RSP.EXACT, type: RTY.AMETHYST_DUSKY, weight: 300},
     {specificity: RSP.EXACT, type: RTY.TOPAZ_SLATE, weight: 225},
@@ -538,7 +544,7 @@ tradingPartnerTypes[TRADING_PARTNERS.TOURMALINE_JEWELERS] = new TradingPartnerTy
     return defaultGetTier(trust, [200, 600, 1800]);
   },
   getAcceptQuantity(trust) {
-    return Math.floor(10 + (trust * 0.1));
+    return Math.floor(50 + (trust * 0.5));
   }
 });
 

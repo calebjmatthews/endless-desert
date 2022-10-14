@@ -411,10 +411,23 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Bedrooms with luxury clothing
   - Servant's quarters with working tools and clothes
 - Explorations:
-  - Thieves' Hideout
-  - Under-Reservoir
-  - Hall of Silken Mirrors
-  - Painted Ravine
+  - Rumors of Larcenous Activity:
+    - Thieves' Safehouse (Bandit Queen)
+    - Thieves' Cache (Bandit Queen)
+    - Thieves' Study (Bandit Queen)
+  - Rumors of Long Antiquity
+    - Pearlescent Pyre (Hint of Dani's location)
+    - Tomb of the Porcelain Soldiers
+    - Cascade of Prismatic Sand
+  - Rumors of the All River Delta
+    - Hall of Silken Mirrors 
+    - Twin Moons' Grotto
+    - Sprawling Ice House
+  - Rumors of the Near Desert
+    - Under-Reservoir
+    - Painted Ravine (Clay)
+    - Cave of Vines and Dew (Rare seeds)
+
 - Expedition treasures:
   - Shell from something mythical
   - Resin from something mythical
@@ -445,6 +458,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Chase a falling star: Change destinations to track it down, or make a vow on it
   - Gather rumors from wanderers
   - Traveling auctioneering caravan
+  - Contract with Sandstone Artificiers to bring home large amount of sand
 - Expedition method:
   - Pick a cardinal direction, a previously visited region or previously visited destination
   - For every area that is traversed through, various random events can occur. This could:
@@ -456,17 +470,27 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Start a special repeatable quest
     - Unexpected expedition destination (mirage castle?)
 - Expedition research:
+  - Referencing stars:
   - ... towards the leftmost star in The Plunging Eagle as it rises from the horizon ...
-  - ... five hundred fathoms toward the third of seven basalt cliffs ...
-  - ... up the stair-like rise that spirals around the smaller of the two hills ...
   - ... then, in the direction of The Follower when the night is at its deepest ...
   - ... forty fathoms more, and turning toward Little Abundant One in the early evening sky ...
-  - ... walk a course evenly between The Spread Hands and Ghoul, as the morning comes ...
+  - ... walk a course evenly between The Spread Hands and The Ghost, as the morning comes ...
+  - ... with The Sisters at your back, continue on two hundred and twenty fathoms ...
+  - ... and now quickly, towards the highest star of The Dancer, before the sun rises ...
+  - ... as the bluest of the movers, the planets, crests the sky above your course ...
+  - ... turn from your path toward The Drawn Bow as it reaches its evening peak ...
+  - Only directions:
+  - ... five hundred fathoms toward the third of seven basalt cliffs ...
+  - ... up the stair-like rise that spirals around the smaller of the two hills ...
   - ... turn your path here, through through dried riverbed, caked with white alkali ...
   - ... marks like talons are carved on the pillars here, and walk in the direction they point ...
-  - ... with The Sisters at your back, continue on two hundred and twenty fathoms ...
   - ... past an ancient basin, taking care not to fall down its perilous edge ...
-  - ... and now quickly, towards the highest star of The Dancer, before the sun rises ...
+  - ... the ruins of a watchtower, made of some exotic rose-colored wood, can be seen ahead ...
+  - ... across deep furrows digging into the limestone, as if worn down by massive wheels ...
+  - ... continue through the pass as curves between the red triplets ...
+  - Academic reference:
+  - ... certain other academic texts refer to a "cleft between stones" visible ahead ...
+  - ... and an astute observer can infer, from a compilation of observations, the geography ...
 
 ## Exploration:
 - Implements give points in the following categories:
@@ -980,12 +1004,12 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix static width in coversation result flex panel
   [X] Combine messages in "While you were away" memos
   [X] Select non-exact resources in quest completion
+  [ ] Research can have costs other than Knowledge
+  [ ] Astronomy!
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
-  [ ] Fix missing resource for one building stops multiple
 
-  [ ] Starchart production
   [ ] Expeditions! (without exploration)
   [ ] Revamp field notes (select from three possibilities)
   [ ] Storing an occupied house kicks out the leader
@@ -1016,6 +1040,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Flashy display for rare trades
   [ ] Hide recipes missing ingredients
   [ ] Select non-exact resources in conversations
+  [ ] Fix missing resource for one building stops multiple
 
 ## Commands
 ### Delete all records from all tables:

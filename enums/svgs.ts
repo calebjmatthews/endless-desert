@@ -124,6 +124,7 @@ export enum SVGS {
   CASTING_PLASTER = "Casting Plaster",
   MERCURY_DROPS = "Mercury Drops",
   CHITENOUS_PINS = "Chitenous Pins",
+  STARCHART = "Starchart",
 
   EDGE = "Edge",
   SLAB = "Slab",

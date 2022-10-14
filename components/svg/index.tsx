@@ -127,6 +127,7 @@ import WolframPebblesSvgComponent from './resources/wolfram_pebbles';
 import CastingPlasterSvgComponent from './resources/casting_plaster';
 import MercuryDropsSvgComponent from './resources/mercury_drops';
 import ChitinousPinsSvgComponent from './resources/chitinous_pins';
+import StarchartSvgComponent from './resources/starchart';
 
 import ScrollSvgComponent from './treasures/scroll';
 import CarpetSvgComponent from './treasures/carpet';
@@ -505,6 +506,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <MercuryDropsSvgComponent icon={props.icon} />;
     case SVGS.CHITENOUS_PINS:
     return <ChitinousPinsSvgComponent icon={props.icon} />;
+    case SVGS.STARCHART:
+    return <StarchartSvgComponent icon={props.icon} />;
 
     case SVGS.SCROLL:
     return <ScrollSvgComponent icon={props.icon} />;

@@ -26,6 +26,7 @@ export enum RESEARCH_OPTIONS {
   METAL_VARIETY = "Metal Variety",
   WOOD_VARIETY = "Wood Variety",
   SYSTEMS_OF_EXAMINATION = "Systems of Examination",
+  METHODS_OF_EXAMINATION = "Methods of Examination",
 
   // Scholarship Lv 2
   BRACHYGRAPHIC_SYMBOLS = "Brachiographic Symbols",
@@ -86,6 +87,29 @@ export enum RESEARCH_OPTIONS {
   VENTILATION_OF_FLAME = "Ventilation of Flame",
   BITTER_FUMES = "Bitter Fumes",
   CHEMICAL_FIXATION = "Chemical Fixation",
+
+  // Astrology Lv 1
+  NAVIGATION_BY_STARS = "Navigation by Stars",
+
+  // Astrology Lv 2
+  BEARING_EAGLES_TALON = "Bearing: Eagle's Talon",
+  BEARING_TRAILING_BEHIND = "Bearing: Trailing Behind",
+  BEARING_GLIMMERING_CLUSTER = "Bearing: Glimmering Cluster",
+  BEARING_RIGHT_OF_HANDS = "Bearing: Right of Hands",
+  BEARING_TWO_BEHIND = "Bearing: Two Behind",
+  BEARING_DANCERS_CREST = "Bearing: Dancer's Crest",
+  BEARING_AZURE_BODY = "Bearing: Azure Body",
+  BEARING_THE_ARCHER = "Bearing: The Archer",
+  BEARING_WHITE_HEIGHTS = "Bearing: White Heights",
+  BEARING_SPIRAL_STAIRS = "Bearing: Spiral Stairs",
+  BEARING_DESSICATED_RIVER = "Bearing: Dessicated River",
+  BEARING_MARKED_COLUMNS = "Bearing: Marked Columns",
+  BEARING_ANCIENT_BASIN = "Bearing: Ancient Basin",
+  BEARING_RUINED_WATCHTOWER = "Bearing: Ruined Watchtower",
+  BEARING_GIANTS_FURROWS = "Bearing: Giant's Furrows",
+  BEARING_SCARLET_TRIO = "Bearing: Scarlet Trio",
+  BEARING_REFERENCED_TEXTS = "Bearing: Referenced Texts",
+  BEARING_COMBINED_REFERENCES = "Bearing: Combined References",
 
   // Mysticism Lv 0
   WRITERS_UPON_WRITERS = "Writers Upon Writers",

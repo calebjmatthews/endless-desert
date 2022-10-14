@@ -153,6 +153,7 @@ export enum RESOURCE_TYPES {
   CASTING_PLASTER = "Casting Plaster",
   MERCURY_DROPS = "Mercury Drops",
   CHITENOUS_PINS = "Chitenous Pins",
+  STARCHART = "Starchart",
 
   TEA_CELADON = "Celadon Tea",
   TEA_VIRIDIAN = "Veridian Tea",

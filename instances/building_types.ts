@@ -224,10 +224,18 @@ const buildingTypes: { [name: string] : BuildingType } = {
     name: BTY.OBSERVATORY,
     description: 'The deepest desert can only be navigated by star',
     order: 7,
-    category: BCA.GENERAL,
+    category: BCA.ARTISAN_GOOD,
     icon: new Icon({provider: 'svg', name: SVGS.OBSERVATORY}),
     cost: null,
-    recipes: null,
+    recipes: [ new BuildingRecipe({index: 0, produces:
+      [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 1}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 100}]}),
+    new BuildingRecipe({index: 1, produces:
+      [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 100}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 1}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 1}],
+      consumes: null}) ],
     givesNote: RTY.NOTES_SKY,
     noteCost: defaultNoteCost,
     cannotStore: true
@@ -690,6 +698,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.WOOD_ALDER, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 20}],
+    upgradesInto: BTY.AUROCH_PADDOCK,
     recipes: [ new BuildingRecipe({index: 0, produces:
       [{specificity: RSP.EXACT, type: RTY.AUROCH, quantity: 2}],
       consumes: [{specificity: RSP.EXACT, type: RTY.WATER, quantity: 16},
@@ -932,38 +941,36 @@ const buildingTypes: { [name: string] : BuildingType } = {
       {specificity: RSP.EXACT, type: RTY.REEDCLOTH, quantity: 400},
       {specificity: RSP.EXACT, type: RTY.BINDING, quantity: 20}],
     recipes: [ new BuildingRecipe({index: 0, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 98},
-        {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 2}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 96},
+        {specificity: RSP.EXACT, type: RTY.CLAY_RICH, quantity: 4}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_YELLOW, quantity: 100}]}),
     new BuildingRecipe({index: 1, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 0.6}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 94},
+        {specificity: RSP.EXACT, type: RTY.RUST_ORE, quantity: 6}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_DUNE, quantity: 100}]}),
     new BuildingRecipe({index: 2, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.PALE_ORE, quantity: 0.3}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 97},
+        {specificity: RSP.EXACT, type: RTY.PALE_ORE, quantity: 3}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_PALE, quantity: 100}]}),
     new BuildingRecipe({index: 3, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 0.3}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 97},
+        {specificity: RSP.EXACT, type: RTY.DUSTY_ORE, quantity: 3}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_VOLCANIC, quantity: 100}]}),
     new BuildingRecipe({index: 4, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 90},
-        {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, quantity: 10}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 80},
+        {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, quantity: 20}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_CORAL, quantity: 100}]}),
     new BuildingRecipe({index: 5, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, quantity: 0.2,
-          probability: 1}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 98},
+        {specificity: RSP.EXACT, type: RTY.GREENISH_ORE, quantity: 2, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_OLIVINE, quantity: 100}]}),
     new BuildingRecipe({index: 6, produces:
-      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.CHARCOAL, quantity: 2}],
+      [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 88},
+        {specificity: RSP.EXACT, type: RTY.CARBON, quantity: 12}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_BLACK, quantity: 100}]}),
     new BuildingRecipe({index: 7, produces:
       [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100},
-        {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 0.4,
-          probability: 1}],
+        {specificity: RSP.EXACT, type: RTY.SEEDS_GRAIN, quantity: 0.4, probability: 1}],
       consumes: [{specificity: RSP.EXACT, type: RTY.SAND_OCHRE, quantity: 100}]}) ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,

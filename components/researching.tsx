@@ -328,7 +328,7 @@ function CompletedDescription(props: { research: Research, positioner: Positione
       {treasureGiven && (
         <View style={[styles.rows, {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
           <BadgeComponent icon={treasureGiven.icon} />
-          <Text>{`Your town gained ${treasureGiven.name}!`}</Text>
+          <Text>{`Your town gained a treasure: ${treasureGiven.name}!`}</Text>
           <View style={styles.breakSmall} />
         </View>
       )}

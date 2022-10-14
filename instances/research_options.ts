@@ -203,6 +203,14 @@ researchOptions[RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}]
 });
 
+researchOptions[RESEARCH_OPTIONS.METHODS_OF_EXAMINATION] = new ResearchOption({
+  name: RESEARCH_OPTIONS.METHODS_OF_EXAMINATION,
+  appliesTo: RESEARCHES.EXAMINATION_SWIFT,
+  difficulty: 1,
+  description: `To devise an effective improvement to your own research methods, you'll need potentially dizzying notes on your own process. You have a hunch that these could be found while researching, after upgrading the Study.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1}]
+});
+
 researchOptions[RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION] = new ResearchOption({
   name: RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION,
   appliesTo: RESEARCHES.EXAMINATION_MERCURIAL,
@@ -615,6 +623,177 @@ researchOptions[RESEARCH_OPTIONS.CHEMICAL_FIXATION] = new ResearchOption({
   cost: [{specificity: RSP.EXACT, type: RTY.NOTES_EARTH, quantity: 1},
     {specificity: RSP.SUBCATEGORY, type: RSC.METAL_INGOT, quantity: 20},
     {specificity: RSP.EXACT, type: RSC.GLASS, quantity: 200}]
+});
+
+researchOptions[RESEARCH_OPTIONS.NAVIGATION_BY_STARS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.NAVIGATION_BY_STARS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 1,
+  description: `Landmarks are continually uncovered and again disappearing beneath shifting sands. You must look to the stars and find your bearings, or else navigation through the desert is impossible.`,
+  cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 10000},
+    {specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 100}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_EAGLES_TALON] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_EAGLES_TALON,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... towards the leftmost star in The Plunging Eagle as it rises from the horizon ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 380},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LARCENOUS_ACTIVITY, quantity: 22}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_TRAILING_BEHIND] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_TRAILING_BEHIND,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... then, in the direction of The Follower when the night is at its deepest ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 450},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LARCENOUS_ACTIVITY, quantity: 15}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_GLIMMERING_CLUSTER] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_GLIMMERING_CLUSTER,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... forty fathoms more, and turning toward Little Abundant One in the early evening sky ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 370},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LONG_ANTIQUITY, quantity: 23}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_RIGHT_OF_HANDS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_RIGHT_OF_HANDS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... walk a course evenly between The Spread Hands and The Ghost, as the morning comes ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 460},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LONG_ANTIQUITY, quantity: 14}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_TWO_BEHIND] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_TWO_BEHIND,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... with The Sisters at your back, continue on two hundred and twenty fathoms ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 390},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_ALL_RIVER_DELTA, quantity: 21}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_DANCERS_CREST] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_DANCERS_CREST,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... and now quickly, towards the highest star of The Dancer, before the sun rises ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 430},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_ALL_RIVER_DELTA, quantity: 17}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_AZURE_BODY] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_AZURE_BODY,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... as the bluest of the movers, the planets, crests the sky above your course ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 400},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, quantity: 20}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_THE_ARCHER] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_THE_ARCHER,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... turn from your path toward The Drawn Bow as it reaches its evening peak ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 380},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, quantity: 22}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_WHITE_HEIGHTS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_WHITE_HEIGHTS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... five hundred fathoms toward the third of seven basalt cliffs ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 190},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LARCENOUS_ACTIVITY, quantity: 41}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_SPIRAL_STAIRS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_SPIRAL_STAIRS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... up the stair-like rise that spirals around the smaller of the two hills ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 240},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LARCENOUS_ACTIVITY, quantity: 36}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_DESSICATED_RIVER] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_DESSICATED_RIVER,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... turn your path here, through through dried riverbed, caked with white alkali ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 170},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LONG_ANTIQUITY, quantity: 43}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_MARKED_COLUMNS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_MARKED_COLUMNS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... marks like talons are carved on the pillars here, and walk in the direction they point ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 250},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_LONG_ANTIQUITY, quantity: 35}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_ANCIENT_BASIN] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_ANCIENT_BASIN,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... past an ancient basin, taking care not to fall down its perilous edge ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 200},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_ALL_RIVER_DELTA, quantity: 40}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_RUINED_WATCHTOWER] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_RUINED_WATCHTOWER,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... the ruins of a watchtower, made of some exotic rose-colored wood, can be seen ahead ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 210},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_ALL_RIVER_DELTA, quantity: 39}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_GIANTS_FURROWS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_GIANTS_FURROWS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... across deep furrows digging into the limestone, as if worn down by massive wheels ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 180},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, quantity: 42}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_SCARLET_TRIO] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_SCARLET_TRIO,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... continue through the pass as curves between the red triplets ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 240},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, quantity: 36}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... certain other academic texts refer to a "cleft between stones" visible ahead ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 290},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 3100}]
+});
+
+researchOptions[RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES] = new ResearchOption({
+  name: RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES,
+  appliesTo: RESEARCHES.ASTRONOMY,
+  difficulty: 2,
+  description: `... and an astute observer can infer, from a compilation of observations, the geography ....`,
+  cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 310},
+    {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 2900}]
 });
 
 researchOptions[RESEARCH_OPTIONS.WRITERS_UPON_WRITERS] = new ResearchOption({

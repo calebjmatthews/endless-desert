@@ -188,7 +188,7 @@ researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
   knowledgeReq: 8000,
-  options: [RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION],
+  options: [RESEARCH_OPTIONS.METHODS_OF_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION
 });
 
@@ -221,7 +221,7 @@ researches[RESEARCHES.EXAMINATION_MERCURIAL] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_SWIFT, RESEARCHES.GLASS_SHAPING],
-  knowledgeReq: 22000,
+  knowledgeReq: 48000,
   options: [RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION
 });
@@ -542,7 +542,7 @@ researches[RESEARCHES.ROTATIONAL_GRAZING] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.AUROCH_HUSBANDRY],
   knowledgeReq: 18000,
-  unlocksBuilding: [BUILDING_TYPES.AUROCH_PASTURE]
+  unlocksUpgrade: [BUILDING_TYPES.AUROCH_PADDOCK]
 });
 
 // researches[RESEARCHES.HERB_FARMING] = new Research({
@@ -883,7 +883,7 @@ researches[RESEARCHES.ADVANCED_IMPLEMENTS] = new Research({
   prereq: [RESEARCHES.PHYSICS_ADVANCED, RESEARCHES.COMBUSTION_VENTILATED,
     RESEARCHES.IMPLEMENT_ASSEMBLY],
   knowledgeReq: 32000,
-  unlocksBuilding: [BUILDING_TYPES.ATELIER]
+  unlocksUpgrade: [BUILDING_TYPES.ATELIER_ADEPT]
 });
 
 researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
@@ -1021,7 +1021,6 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
   unlocksBuilding: [BUILDING_TYPES.DRYING_YARD]
 });
 
-///
 researches[RESEARCHES.DEHYDRATION_ORGANIZED] = new Research({
   name: RESEARCHES.DEHYDRATION_ORGANIZED,
   unlocks: ('Allows Drying Yards to be run without a leader.'),
@@ -1141,8 +1140,7 @@ researches[RESEARCHES.GLASS_SHAPING] = new Research({
 researches[RESEARCHES.SOLVENTS] = new Research({
   name: RESEARCHES.SOLVENTS,
   unlocks: ('Unlocks Laboratories.'),
-  description: ('There are powers and properties that are hidden in substances, and '
-    + 'to control them you\'ll have to dissolve them.'),
+  description: `There are powers and properties that are hidden in substances, and dissolving them is one way to control them.`,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#dbea00',
     shadow: '#c6d400', secondaryColor: '#f8ff9c'}),
   category: RESEARCHES.CHEMISTRY,
@@ -1187,6 +1185,22 @@ researches[RESEARCHES.FERMENTATION] = new Research({
   prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
   knowledgeReq: 17000,
   unlocksBuilding: [BUILDING_TYPES.BREWERY]
+});
+
+researches[RESEARCHES.ASTRONOMY] = new Research({
+  name: RESEARCHES.ASTRONOMY,
+  unlocks: 'Researching this opens up celestial areas of study.',
+  description: ``,
+  icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'weather-night',
+    color: '#fff', backgroundColor: '#071f56' }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: true,
+  difficulty: 1,
+  stepsNeeded: 1,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.GLASS_SHAPING, RESEARCHES.COMBUSTION_VENTILATED],
+  options: [RESEARCH_OPTIONS.NAVIGATION_BY_STARS],
+  knowledgeReq: 15000
 });
 
 researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({
