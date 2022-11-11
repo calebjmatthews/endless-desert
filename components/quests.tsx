@@ -204,16 +204,14 @@ function QuestDescription(props: { quest: Quest, vault: Vault,
     || quest.type == QUEST_TYPES.OBLIGATORY);
   return (
     <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: positioner.majorWidth,
-        maxWidth: positioner.majorWidth}])} >
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])} >
       <BadgeComponent icon={icon} size={29} />
       <View style={styles.containerSpacedColumn}>
         <View style={styles.buttonTextRow}>
           <Text>{quest.name}</Text>
           {!mandatoryQuest && renderQuitButton()}
         </View>
-        <Text style={{fontSize: 12, fontStyle: 'italic',
-          maxWidth: positioner.bodyMedWidth}}>
+        <Text style={{fontSize: 12, fontStyle: 'italic', maxWidth: positioner.bodyMedWidth}}>
           {quest.description}
         </Text>
         {renderTasks(quest)}

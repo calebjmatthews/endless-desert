@@ -147,6 +147,9 @@ export function questGen(gState: GameState) : Quest|null {
           } });
       });
     }
+    if (!resourceTypes[resources[0].type]) {
+      console.log(`Missing daily quest gen type: ${resources[0].type}`);
+    }
     return new Quest({
       id: questId,
       name: name,

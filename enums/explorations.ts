@@ -1,0 +1,17 @@
+export enum EXPLORATIONS {
+  CLIFFSIDE_CARTOGRAPHERS_TOWER = "Cliffside Cartographer's Tower",
+  MOONLIT_POTTERS_STUDIO = "Moonlit Potter's Studio",
+  INEXPLICABLE_SCULLERY = "Inexplicable Scullery",
+  PEARLESCENT_PYRE = "Pearlescent Pyre",
+  THIEVES_CAMP = "Thieves' Camp",
+  THIEVES_GROTTO = "Thieves' Grotto",
+  THIEVES_STUDY = "Thieves' Study",
+  CASCASE_OF_PRIMSMATIC_SAND = "Cascade of Prismatic Sand",
+  TOMB_OF_PORCELAIN_SOLDIERS = "Tomb of the Porcelain Soldiers",
+  TWIN_MOONS_GROTTO = "Twin Moons' Grotto",
+  SPRAWLING_ICE_HOUSE = "Sprawling Ice House",
+  HALL_OF_SILKEN_MIRRORS = "Hall of Silken Mirrors",
+  ABANDONED_ALABASTER_MINE = "Abandoned Alabaster Mine",
+  PAINTER_RAVINE = "Painted Ravine",
+  CAVE_OF_VINES_AND_DEW = "Cave of Vines and Dew",
+}

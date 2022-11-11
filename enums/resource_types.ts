@@ -202,5 +202,7 @@ export enum RESOURCE_TYPES {
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   BROKEN_RED_KEY = "Broken Red Key",
   RED_KEY = "Red Key",
+  HINT_FRATERNAL_FATE = "Hint Regarding Fraternal Fate",
+  HINT_BANDIT_QUEENS_MOVEMENTS = "Hint Regarding a Bandit Queen's Movements",
   DROMEDARY_PLAINS = "Plains Dromedary"
 }

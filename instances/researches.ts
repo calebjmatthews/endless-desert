@@ -22,7 +22,7 @@ researches[RESEARCHES.SCHOLARSHIP] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: null,
-  knowledgeReq: 0
+  knowledgeCost: 0
 });
 
 researches[RESEARCHES.STUDY] = new Research({
@@ -38,7 +38,7 @@ researches[RESEARCHES.STUDY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 0,
+  knowledgeCost: 0,
   actionCategory: TABS.RESEARCH
 });
 
@@ -56,7 +56,7 @@ researches[RESEARCHES.ANALYSIS] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
-  knowledgeReq: 0,
+  knowledgeCost: 0,
   actionCategory: TABS.RESEARCH
 });
 
@@ -72,7 +72,7 @@ researches[RESEARCHES.GATE_EXPANSION] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP, RESEARCHES.BIOLOGY, RESEARCHES.ANTHROPOLOGY,
     RESEARCHES.PHYSICS, RESEARCHES.CHEMISTRY],
-  knowledgeReq: 400,
+  knowledgeCost: 400,
   options: [RESEARCH_OPTIONS.SAND_VARIETY, RESEARCH_OPTIONS.CLAY_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_BAKED_CLAY]
 });
@@ -88,7 +88,7 @@ researches[RESEARCHES.GATE_EXPANSION_BRICKWORK] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.GATE_EXPANSION, RESEARCHES.TRADING, RESEARCHES.DEHYDRATION],
-  knowledgeReq: 1600,
+  knowledgeCost: 1600,
   options: [RESEARCH_OPTIONS.BRICK_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_BRICKWORK]
 });
@@ -105,7 +105,7 @@ researches[RESEARCHES.GATE_EXPANSION_METAL_CLAD] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GATE_EXPANSION_BRICKWORK, RESEARCHES.FIELD_NOTES,
     RESEARCHES.COMBUSTION],
-  knowledgeReq: 6400,
+  knowledgeCost: 6400,
   options: [RESEARCH_OPTIONS.METAL_VARIETY, RESEARCH_OPTIONS.WOOD_VARIETY],
   unlocksUpgrade: [BUILDING_TYPES.GATE_METAL_CLAD]
 });
@@ -121,7 +121,7 @@ researches[RESEARCHES.ANALYSIS_OF_VARIANCE] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANALYSIS],
-  knowledgeReq: 400,
+  knowledgeCost: 400,
   givesTreasure: RESOURCE_TYPES.MEMORANDA_ON_A_GROWING_PANOPLY
 });
 
@@ -136,7 +136,7 @@ researches[RESEARCHES.STUDY_PORTENTOUS] = new Research({
   stepsNeeded: 5,
   beginsCompleted: false,
   prereq: [RESEARCHES.STUDY],
-  knowledgeReq: 2000,
+  knowledgeCost: 2000,
   unlocksUpgrade: [BUILDING_TYPES.STUDY_PORTENTOUS]
 });
 
@@ -153,7 +153,7 @@ researches[RESEARCHES.FIELD_NOTES] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANALYSIS],
-  knowledgeReq: 1000,
+  knowledgeCost: 1000,
   options: [RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING],
   actionCategory: TABS.RESEARCH
 });
@@ -170,7 +170,7 @@ researches[RESEARCHES.EXAMINATION_WEIGHTY] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 8000,
+  knowledgeCost: 8000,
   options: [RESEARCH_OPTIONS.SYSTEMS_OF_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_WEIGHTY_EXAMINATION
 });
@@ -187,7 +187,7 @@ researches[RESEARCHES.EXAMINATION_SWIFT] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 8000,
+  knowledgeCost: 8000,
   options: [RESEARCH_OPTIONS.METHODS_OF_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION
 });
@@ -204,7 +204,7 @@ researches[RESEARCHES.EXAMINATION_POTENT] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_WEIGHTY, RESEARCHES.IMPLEMENT_ASSEMBLY],
-  knowledgeReq: 22000,
+  knowledgeCost: 22000,
   options: [RESEARCH_OPTIONS.ASSISTED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_POTENT_EXAMINATION
 });
@@ -221,7 +221,7 @@ researches[RESEARCHES.EXAMINATION_MERCURIAL] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_SWIFT, RESEARCHES.GLASS_SHAPING],
-  knowledgeReq: 48000,
+  knowledgeCost: 48000,
   options: [RESEARCH_OPTIONS.MAGNIFIED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION
 });
@@ -238,7 +238,7 @@ researches[RESEARCHES.EXAMINATION_VISIONARY] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_POTENT, RESEARCHES.ADVANCED_IMPLEMENTS],
-  knowledgeReq: 48000,
+  knowledgeCost: 48000,
   options: [RESEARCH_OPTIONS.AUGMENTED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_VISIONARY_EXAMINATION
 });
@@ -255,7 +255,7 @@ researches[RESEARCHES.EXAMINATION_ALACRITOUS] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.EXAMINATION_MERCURIAL, RESEARCHES.ADVANCED_IMPLEMENTS],
-  knowledgeReq: 48000,
+  knowledgeCost: 48000,
   options: [RESEARCH_OPTIONS.EXPANDED_EXAMINATION],
   givesTreasure: RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION
 });
@@ -271,7 +271,7 @@ researches[RESEARCHES.BRACHYGRAPHY] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 10000,
+  knowledgeCost: 10000,
   givesTreasure: RESOURCE_TYPES.SYSTEM_OF_ABBREVIATED_BRACHYGRAPHY
 });
 
@@ -288,7 +288,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 0
+  knowledgeCost: 0
 });
 
 researches[RESEARCHES.BIOLOGY] = new Research({
@@ -304,7 +304,7 @@ researches[RESEARCHES.BIOLOGY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 0
+  knowledgeCost: 0
 });
 
 researches[RESEARCHES.BIOLOGY_ADVANCED] = new Research({
@@ -319,7 +319,7 @@ researches[RESEARCHES.BIOLOGY_ADVANCED] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 4000
+  knowledgeCost: 4000
 });
 
 researches[RESEARCHES.REED_CULTIVATION] = new Research({
@@ -335,7 +335,7 @@ researches[RESEARCHES.REED_CULTIVATION] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 0,
+  knowledgeCost: 0,
   unlocksBuilding: [BUILDING_TYPES.REED_DELTA]
 });
 
@@ -350,7 +350,7 @@ researches[RESEARCHES.REED_CULTIVATION_CHANNELED] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.REED_CULTIVATION],
-  knowledgeReq: 350,
+  knowledgeCost: 350,
   unlocksUpgrade: [BUILDING_TYPES.REED_DELTA_CHANNELED]
 });
 
@@ -366,7 +366,7 @@ researches[RESEARCHES.LENTIL_FARMING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 25,
+  knowledgeCost: 25,
   unlocksBuilding: [BUILDING_TYPES.LENTIL_FIELD]
 });
 
@@ -382,7 +382,7 @@ researches[RESEARCHES.LENTIL_FARMING_HEARTY] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.LENTIL_FARMING],
-  knowledgeReq: 400,
+  knowledgeCost: 400,
   unlocksUpgrade: [BUILDING_TYPES.LENTIL_FIELD_HEARTY]
 });
 
@@ -399,7 +399,7 @@ researches[RESEARCHES.OLIVE_FARMING] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 100,
+  knowledgeCost: 100,
   unlocksBuilding: [BUILDING_TYPES.OLIVE_GROVE]
 });
 
@@ -416,7 +416,7 @@ researches[RESEARCHES.OLIVE_FARMING_FORMALIZED] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.OLIVE_FARMING, RESEARCHES.BIOLOGY_ADVANCED],
-  knowledgeReq: 8000,
+  knowledgeCost: 8000,
   unlocksUpgrade: [BUILDING_TYPES.OLIVE_ORCHARD]
 });
 
@@ -432,7 +432,7 @@ researches[RESEARCHES.GRAIN_FARMING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.OLIVE_FARMING],
-  knowledgeReq: 200,
+  knowledgeCost: 200,
   unlocksBuilding: [BUILDING_TYPES.GRAIN_FIELD]
 });
 
@@ -448,7 +448,7 @@ researches[RESEARCHES.GRAIN_FARMING_FURROWED] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.GRAIN_FARMING],
-  knowledgeReq: 400,
+  knowledgeCost: 400,
   unlocksUpgrade: [BUILDING_TYPES.GRAIN_FIELD_FURROWED]
 });
 
@@ -463,7 +463,7 @@ researches[RESEARCHES.LIMNOLOGY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY],
-  knowledgeReq: 100,
+  knowledgeCost: 100,
   unlocksBuilding: [BUILDING_TYPES.FISHING_POND]
 });
 
@@ -478,7 +478,7 @@ researches[RESEARCHES.LIMNOLOGICAL_ENGINEERING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.LIMNOLOGY],
-  knowledgeReq: 400,
+  knowledgeCost: 400,
   unlocksUpgrade: [BUILDING_TYPES.FISHING_POND_DREDGED]
 });
 
@@ -493,7 +493,7 @@ researches[RESEARCHES.LIMNOLOGICAL_ARBOROLOGY] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.LIMNOLOGICAL_ENGINEERING],
-  knowledgeReq: 1200,
+  knowledgeCost: 1200,
   unlocksUpgrade: [BUILDING_TYPES.FISHING_POND_OLIVE_SHADED]
 });
 
@@ -510,7 +510,7 @@ researches[RESEARCHES.QUAIL_HUSBANDRY] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.LIMNOLOGY],
-  knowledgeReq: 200,
+  knowledgeCost: 200,
   unlocksBuilding: [BUILDING_TYPES.QUAIL_PASTURE]
 });
 
@@ -526,7 +526,7 @@ researches[RESEARCHES.AUROCH_HUSBANDRY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY_ADVANCED],
-  knowledgeReq: 6000,
+  knowledgeCost: 6000,
   unlocksBuilding: [BUILDING_TYPES.AUROCH_PASTURE]
 });
 
@@ -541,7 +541,7 @@ researches[RESEARCHES.ROTATIONAL_GRAZING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.AUROCH_HUSBANDRY],
-  knowledgeReq: 18000,
+  knowledgeCost: 18000,
   unlocksUpgrade: [BUILDING_TYPES.AUROCH_PADDOCK]
 });
 
@@ -557,7 +557,7 @@ researches[RESEARCHES.ROTATIONAL_GRAZING] = new Research({
 //   stepsNeeded: 2,
 //   beginsCompleted: false,
 //   prereq: [RESEARCHES.BIOLOGY_ADVANCED],
-//   knowledgeReq: 10000,
+//   knowledgeCost: 10000,
 //   unlocksBuilding: [BUILDING_TYPES.SPICE_FIELD]
 // });
 
@@ -574,7 +574,7 @@ researches[RESEARCHES.ANTHROPOLOGY] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 20,
+  knowledgeCost: 20,
 });
 
 researches[RESEARCHES.TRADING] = new Research({
@@ -589,7 +589,7 @@ researches[RESEARCHES.TRADING] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY],
-  knowledgeReq: 20,
+  knowledgeCost: 20,
   unlocksTab: TABS.TRADING
 });
 
@@ -606,7 +606,7 @@ researches[RESEARCHES.BASIC_EDUCATION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY],
-  knowledgeReq: 200
+  knowledgeCost: 200
 });
 
 researches[RESEARCHES.ANTHROPOLOGY_ADVANCED] = new Research({
@@ -621,7 +621,7 @@ researches[RESEARCHES.ANTHROPOLOGY_ADVANCED] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY, RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 5000
+  knowledgeCost: 5000
 });
 
 researches[RESEARCHES.TRANSLATION_OF_VERSE] = new Research({
@@ -635,7 +635,7 @@ researches[RESEARCHES.TRANSLATION_OF_VERSE] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY_ADVANCED],
-  knowledgeReq: 10000,
+  knowledgeCost: 10000,
   repeatable: true,
   options: [RESEARCH_OPTIONS.REASSEMBLING_METER, RESEARCH_OPTIONS.POETIC_CONTEXT,
     RESEARCH_OPTIONS.FORGOTTEN_IMAGERY],
@@ -653,7 +653,7 @@ researches[RESEARCHES.TRADING_IMPROVED] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.ANTHROPOLOGY_ADVANCED],
-  knowledgeReq: 17000,
+  knowledgeCost: 17000,
   unlocksUpgrade: [BUILDING_TYPES.MARKET_GRAND]
 });
 
@@ -670,7 +670,7 @@ researches[RESEARCHES.PHYSICS] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SCHOLARSHIP],
-  knowledgeReq: 50,
+  knowledgeCost: 50,
 });
 
 researches[RESEARCHES.PHYSICS_ADVANCED] = new Research({
@@ -685,7 +685,7 @@ researches[RESEARCHES.PHYSICS_ADVANCED] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 7000,
+  knowledgeCost: 7000,
 });
 
 researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
@@ -702,7 +702,7 @@ researches[RESEARCHES.CLAY_EXCAVATION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
-  knowledgeReq: 100,
+  knowledgeCost: 100,
   unlocksBuilding: [BUILDING_TYPES.CLAY_PIT]
 });
 
@@ -718,7 +718,7 @@ researches[RESEARCHES.CLAY_EXCAVATION_RAPID] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.CLAY_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 10000,
+  knowledgeCost: 10000,
   unlocksUpgrade: [BUILDING_TYPES.CLAY_PIT_RAPID]
 });
 
@@ -736,7 +736,7 @@ researches[RESEARCHES.SAND_EXCAVATION] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
-  knowledgeReq: 180,
+  knowledgeCost: 180,
   unlocksBuilding: [BUILDING_TYPES.SAND_PIT]
 });
 
@@ -754,7 +754,7 @@ researches[RESEARCHES.SAND_EXCAVATION_RAPID] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.SAND_EXCAVATION, RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 13000,
+  knowledgeCost: 13000,
   unlocksUpgrade: [BUILDING_TYPES.SAND_PIT_RAPID]
 });
 
@@ -770,7 +770,7 @@ researches[RESEARCHES.HUT_CONSTRUCTION] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
-  knowledgeReq: 200,
+  knowledgeCost: 200,
   unlocksBuilding: [BUILDING_TYPES.HUTS]
 });
 
@@ -785,7 +785,7 @@ researches[RESEARCHES.COTTAGE_CONSTRUCTION] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.HUT_CONSTRUCTION],
-  knowledgeReq: 600,
+  knowledgeCost: 600,
   unlocksUpgrade: [BUILDING_TYPES.COTTAGES]
 });
 
@@ -800,7 +800,7 @@ researches[RESEARCHES.HOUSE_CONSTRUCTION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.HUT_CONSTRUCTION, RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 16000,
+  knowledgeCost: 16000,
   unlocksUpgrade: [BUILDING_TYPES.HOUSES]
 });
 
@@ -818,7 +818,7 @@ researches[RESEARCHES.COMPACTION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
-  knowledgeReq: 250,
+  knowledgeCost: 250,
   unlocksBuilding: [BUILDING_TYPES.PRESS]
 });
 
@@ -834,7 +834,7 @@ researches[RESEARCHES.COMPACTION_COORDINATED] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 12500,
+  knowledgeCost: 12500,
   unlocksUpgrade: [BUILDING_TYPES.PRESS_COORDINATED]
 });
 
@@ -851,7 +851,7 @@ researches[RESEARCHES.GRINDING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS],
-  knowledgeReq: 450,
+  knowledgeCost: 450,
   unlocksBuilding: [BUILDING_TYPES.GRINDING_MILL]
 });
 
@@ -866,7 +866,7 @@ researches[RESEARCHES.IMPLEMENT_ASSEMBLY] = new Research({
   stepsNeeded: 5,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMPACTION, RESEARCHES.GRINDING, RESEARCHES.COMBUSTION],
-  knowledgeReq: 1600,
+  knowledgeCost: 1600,
   unlocksBuilding: [BUILDING_TYPES.ATELIER]
 });
 
@@ -882,7 +882,7 @@ researches[RESEARCHES.ADVANCED_IMPLEMENTS] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS_ADVANCED, RESEARCHES.COMBUSTION_VENTILATED,
     RESEARCHES.IMPLEMENT_ASSEMBLY],
-  knowledgeReq: 32000,
+  knowledgeCost: 32000,
   unlocksUpgrade: [BUILDING_TYPES.ATELIER_ADEPT]
 });
 
@@ -899,7 +899,7 @@ researches[RESEARCHES.GRINDING_SIMPLIFIED] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.GRINDING, RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 14500,
+  knowledgeCost: 14500,
   unlocksUpgrade: [BUILDING_TYPES.GRINDING_MILL_SIMPLIFIED]
 });
 
@@ -916,7 +916,7 @@ researches[RESEARCHES.WEAVING] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.PHYSICS_ADVANCED],
-  knowledgeReq: 8500,
+  knowledgeCost: 8500,
   unlocksBuilding: [BUILDING_TYPES.WEAVERY]
 });
 
@@ -934,7 +934,7 @@ researches[RESEARCHES.SAND_PURIFICATION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 18000,
+  knowledgeCost: 18000,
   unlocksBuilding: [BUILDING_TYPES.SAND_CASCADE]
 });
 
@@ -951,7 +951,7 @@ researches[RESEARCHES.TAILORING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 16000,
+  knowledgeCost: 16000,
   unlocksBuilding: [BUILDING_TYPES.TAILORS]
 });
 
@@ -967,7 +967,7 @@ researches[RESEARCHES.OUTFITTING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.WEAVING],
-  knowledgeReq: 18000,
+  knowledgeCost: 18000,
   unlocksBuilding: [BUILDING_TYPES.OUTFITTERS]
 });
 
@@ -986,7 +986,7 @@ researches[RESEARCHES.CHEMISTRY] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.BIOLOGY, RESEARCHES.PHYSICS],
-  knowledgeReq: 80,
+  knowledgeCost: 80,
 });
 
 researches[RESEARCHES.CHEMISTRY_ADVANCED] = new Research({
@@ -1001,7 +1001,7 @@ researches[RESEARCHES.CHEMISTRY_ADVANCED] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: [RESEARCHES.FIELD_NOTES],
-  knowledgeReq: 9000,
+  knowledgeCost: 9000,
 });
 
 researches[RESEARCHES.DEHYDRATION] = new Research({
@@ -1017,7 +1017,7 @@ researches[RESEARCHES.DEHYDRATION] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY],
-  knowledgeReq: 180,
+  knowledgeCost: 180,
   unlocksBuilding: [BUILDING_TYPES.DRYING_YARD]
 });
 
@@ -1032,7 +1032,7 @@ researches[RESEARCHES.DEHYDRATION_ORGANIZED] = new Research({
   stepsNeeded: 2,
   beginsCompleted: false,
   prereq: [RESEARCHES.DEHYDRATION, RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 11000,
+  knowledgeCost: 11000,
   unlocksUpgrade: [BUILDING_TYPES.DRYING_YARD_ORGANIZED]
 });
 
@@ -1049,7 +1049,7 @@ researches[RESEARCHES.COMBUSTION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY],
-  knowledgeReq: 320,
+  knowledgeCost: 320,
   unlocksBuilding: [BUILDING_TYPES.FURNACE]
 });
 
@@ -1067,7 +1067,7 @@ researches[RESEARCHES.COMBUSTION_VENTILATED] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMBUSTION, RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 18000,
+  knowledgeCost: 18000,
   unlocksUpgrade: [BUILDING_TYPES.FURNACE_BLAST]
 });
 
@@ -1084,7 +1084,7 @@ researches[RESEARCHES.TOOL_FABRICATION] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMBUSTION_VENTILATED],
-  knowledgeReq: 22000,
+  knowledgeCost: 22000,
   unlocksBuilding: [BUILDING_TYPES.FABRICATORY]
 });
 
@@ -1101,7 +1101,7 @@ researches[RESEARCHES.COOKING] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.COMBUSTION],
-  knowledgeReq: 320,
+  knowledgeCost: 320,
   unlocksBuilding: [BUILDING_TYPES.KITCHEN]
 });
 
@@ -1117,7 +1117,7 @@ researches[RESEARCHES.COOKING_BOUNTIFUL] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.COOKING, RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 13000,
+  knowledgeCost: 13000,
   unlocksUpgrade: [BUILDING_TYPES.KITCHEN_BOUNTIFUL]
 });
 
@@ -1133,7 +1133,7 @@ researches[RESEARCHES.GLASS_SHAPING] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 24000,
+  knowledgeCost: 24000,
   unlocksBuilding: [BUILDING_TYPES.GLASSWORKS]
 });
 
@@ -1149,7 +1149,7 @@ researches[RESEARCHES.SOLVENTS] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.GLASS_SHAPING],
-  knowledgeReq: 33000,
+  knowledgeCost: 33000,
   unlocksBuilding: [BUILDING_TYPES.LABORATORY]
 });
 
@@ -1166,7 +1166,7 @@ researches[RESEARCHES.POTTERY] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 16000,
+  knowledgeCost: 16000,
   unlocksBuilding: [BUILDING_TYPES.POTTERY_KILN]
 });
 
@@ -1183,14 +1183,14 @@ researches[RESEARCHES.FERMENTATION] = new Research({
   stepsNeeded: 4,
   beginsCompleted: false,
   prereq: [RESEARCHES.CHEMISTRY_ADVANCED],
-  knowledgeReq: 17000,
+  knowledgeCost: 17000,
   unlocksBuilding: [BUILDING_TYPES.BREWERY]
 });
 
 researches[RESEARCHES.ASTRONOMY] = new Research({
   name: RESEARCHES.ASTRONOMY,
   unlocks: 'Researching this opens up celestial areas of study.',
-  description: ``,
+  description: `Rumors of activity, treasure, and mystery, plotted against your best calculations of the movement of the stars.`,
   icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'weather-night',
     color: '#fff', backgroundColor: '#071f56' }),
   category: RESEARCHES.ASTRONOMY,
@@ -1200,7 +1200,25 @@ researches[RESEARCHES.ASTRONOMY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GLASS_SHAPING, RESEARCHES.COMBUSTION_VENTILATED],
   options: [RESEARCH_OPTIONS.NAVIGATION_BY_STARS],
-  knowledgeReq: 15000
+  knowledgeCost: 15000
+});
+
+researches[RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER] = new Research({
+  name: RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER,
+  unlocks: 'Researching this grants a new expedition destination.',
+  description: `Finally, you can truly begin the search for Dani's whereabouts. Time to build bits of rumor and conjecture into a path forward.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.CARTOGRAPHERS_TOWER }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 3,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ASTRONOMY],
+  options: [RESEARCH_OPTIONS.BEARING_AZURE_BODY, RESEARCH_OPTIONS.BEARING_THE_ARCHER, 
+    RESEARCH_OPTIONS.BEARING_GIANTS_FURROWS, RESEARCH_OPTIONS.BEARING_SCARLET_TRIO,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1}
 });
 
 researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({
@@ -1214,7 +1232,7 @@ researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({
   stepsNeeded: 1,
   beginsCompleted: false,
   prereq: ['No prerequisite'],
-  knowledgeReq: 0,
+  knowledgeCost: 0,
   hidden: true
 });
 
@@ -1230,7 +1248,7 @@ researches[RESEARCHES.MYSTICISM] = new Research({
   stepsNeeded: 3,
   beginsCompleted: false,
   prereq: [RESEARCHES.THRICE_LOCKED_TOME],
-  knowledgeReq: 555
+  knowledgeCost: 555
 });
 
 researches[RESEARCHES.EXPLORATION_OF_RITUALS] = new Research({
@@ -1244,7 +1262,7 @@ researches[RESEARCHES.EXPLORATION_OF_RITUALS] = new Research({
   stepsNeeded: 10,
   beginsCompleted: false,
   prereq: [RESEARCHES.MYSTICISM],
-  knowledgeReq: 5555,
+  knowledgeCost: 5555,
   unlocksBuilding: [BUILDING_TYPES.PYRE]
 });
 

@@ -11,12 +11,14 @@ export default class Research {
   stepsNeeded: number = 1;
   beginsCompleted: boolean = false;
   prereq: string[]|null = null;
-  knowledgeReq: number = 0;
+  knowledgeCost: number = 0;
+  otherCost?: { type: string, quantity: number };
   options?: string[];
   repeatable?: boolean = false;
   unlocksBuilding?: string[];
   unlocksUpgrade?: string[];
   unlocksTab?: string;
+  unlocksDestination?: string;
   actionCategory?: string;
   hidden?: boolean;
   givesTreasure?: string;

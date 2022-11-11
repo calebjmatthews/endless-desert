@@ -316,6 +316,7 @@ tradingPartnerTypes[TRADING_PARTNERS.SANDSTONE_EDIFICERS] = new TradingPartnerTy
     {specificity: RSP.EXACT, type: RTY.RUST_ORE, weight: 200},
     {specificity: RSP.EXACT, type: RTY.INK_FERROUS, weight: 75},
     {specificity: RSP.EXACT, type: RTY.AUROCH, weight: 50},
+    {specificity: RSP.EXACT, type: RTY.RUMORS_NEAR_DESERT, weight: 100},
     {specificity: RSP.EXACT, type: RTY.FLAX, weight: 75},
     {specificity: RSP.EXACT, type: RTY.CORAL_BRANCH, weight: 50},
     {specificity: RSP.EXACT, type: RTY.SORREL, weight: 50},

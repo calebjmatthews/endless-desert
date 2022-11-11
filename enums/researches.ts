@@ -72,6 +72,7 @@ export enum RESEARCHES {
   POTTERY = "Pottery",
   FERMENTATION = "Fermentation",
   ASTRONOMY = "Astronomy",
+  DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER = "Destination: Cliffside Cartographer's Tower",
   THRICE_LOCKED_TOME = "Thrice Locked Tome",
   MYSTICISM = "Mysticism",
   EXPLORATION_OF_RITUALS = "Exploration of Rituals",

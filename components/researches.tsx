@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, Button, TouchableOpacity, StyleSheet, ScrollView }
-  from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -18,13 +17,17 @@ import Vault from '../models/vault';
 import Resource from '../models/resource';
 import ResearchOptionDeck from '../models/research_option_deck';
 import Timer from '../models/timer';
+import Icon from '../models/icon';
 import Positioner from '../models/positioner';
 import { researches } from '../instances/researches';
 import { utils } from '../utils';
 import { RESOURCE_TYPES } from '../enums/resource_types';
+const RTY = RESOURCE_TYPES;
 import { MODALS } from '../enums/modals';
 import { RESEARCHES } from '../enums/researches';
 import { TABS } from '../enums/tabs';
+import { resourceTypes } from '../instances/resource_types';
+import SvgComponent from './svg';
 
 export default function ResearchesComponent() {
   const dispatch = useDispatch();
@@ -62,6 +65,8 @@ export default function ResearchesComponent() {
       });
     }
   });
+  const knowledgeIcon = new Icon({provider: 'FontAwesome5', name: 'graduation-cap',
+    color: '#fff', size: 16});
 
   return (
     <View style={styles.container}>
@@ -70,11 +75,12 @@ export default function ResearchesComponent() {
           style={styles.headingIcon} />
         <Text style={styles.heading1}>{' Research'}</Text>
       </View>
-      <View>
+      <View style={styles.rows}>
         <Text style={styles.bareText}>
-          {utils.formatNumberShort(vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0']
-          .quantity) + ' available knowledge'}
+          {`${utils.formatNumberShort(vault.resources[RTY.KNOWLEDGE + '|0'].quantity)} available `}
         </Text>
+        <IconComponent {...knowledgeIcon} />
+        <Text style={styles.bareText}>{`Knowledge`}</Text>
       </View>
       <FlatList
         data={uiArray}
@@ -178,22 +184,20 @@ export default function ResearchesComponent() {
   function startClick(researchStatus: {name: string, status: string}, vault: Vault,
     milestones: { [name: string] : boolean }, resume: boolean = false) {
     let research = researches[researchStatus.name];
-    let quantity = vault.resources[RESOURCE_TYPES.KNOWLEDGE + '|0'].quantity;
+    const costType = (research.otherCost ? research.otherCost.type : RTY.KNOWLEDGE);
+    const costResource = new Resource({
+      type: costType,
+      quality: 0,
+      quantity: (research.otherCost ? research.otherCost.quantity : research.knowledgeCost)
+    });
     if (resume) {
       dispatch(selectTab("Researching", researchStatus.name));
     }
-    else if (quantity >= research.knowledgeReq) {
-      dispatch(consumeResources(vault, [new Resource({
-        type: RESOURCE_TYPES.KNOWLEDGE,
-        quality: 0,
-        quantity: research.knowledgeReq
-      })]));
+    else if (costResource.quantity >= vault.resources[`${costResource.type}|0`]?.quantity) {
+      dispatch(consumeResources(vault, [costResource]));
       dispatch(startResearch(researchStatus.name,
         utils.getResearchOptionSlots(milestones)));
       dispatch(selectTab("Researching", researchStatus.name));
-    }
-    else {
-      console.log('Not enough knowledge!');
     }
   }
 
@@ -215,91 +219,71 @@ function ResearchDescription(props: {branch: ResearchBranch, vault: Vault,
   startClick: Function, showCompletedResearches: boolean,
   rods: { [researchName: string] : ResearchOptionDeck},
   milestones: { [name: string] : boolean }, positioner: Positioner}) {
-  const research = researches[props.branch.name];
+  const {branch, vault, startClick, showCompletedResearches, rods, milestones, positioner} = props;
+  const research = researches[branch.name];
+  const resume = (rods[branch.name] !== undefined);
 
-  if ((!props.showCompletedResearches && (props.branch.status != 'visible'
-    && props.branch.status != 'repeatable')) || research.hidden) {
+  if ((!showCompletedResearches && (branch.status != 'visible'
+    && branch.status != 'repeatable')) || research.hidden) {
     return null;
   }
-
+  
   return (
-    <View style={StyleSheet.flatten([styles.panelFlex,
-      {minWidth: props.positioner.majorWidth,
-        maxWidth: props.positioner.majorWidth}])} >
+    <TouchableOpacity style={StyleSheet.flatten([styles.panelFlex,
+      {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])} 
+        onPress={() => {startClick(branch, vault, milestones, resume)}}>
       <BadgeComponent icon={research.icon} size={29} />
       <View style={styles.containerStretchColumn}>
         <Text>{research.name}</Text>
-        <Text>{renderCost(props.branch)}</Text>
-        <View style={styles.buttonRow}>
-          {renderStart()}
-          <TouchableOpacity style={StyleSheet.flatten([styles.buttonRowItem,
-            styles.buttonLight])}>
-            <IconComponent provider="FontAwesome5" name="angle-down"
-              color="#17265d" size={16} />
-            <Text style={styles.buttonTextDark}>{' Info'}</Text>
-          </TouchableOpacity>
-        </View>
+        <View style={styles.breakSmall} />
+        <Text style={{fontSize: 12, fontStyle: 'italic', minWidth: positioner.bodyMedWidth, 
+          maxWidth: positioner.bodyMedWidth}}>
+          {research.unlocks}
+        </Text>
+        <View style={styles.breakSmall} />
+        <Text>{renderCost(branch)}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   function renderCost(researchStatus: {name: string, status: string}) {
     const research = researches[researchStatus.name];
+    const costType = (research.otherCost ? research.otherCost.type : RTY.KNOWLEDGE);
+    const costResource = new Resource({
+      type: costType,
+      quality: 0,
+      quantity: (research.otherCost ? research.otherCost.quantity : research.knowledgeCost)
+    });
+    const costIcon = new Icon({...resourceTypes[costType].icon, size: 20});
+    if (rods[branch.name]) {
+      let rod = rods[branch.name];
+      if (rod.stepsCompleted < rod.stepsNeeded) {
+        return (
+          <Text>
+            {`Resume: ${Math.round((rod.stepsCompleted / rod.stepsNeeded) * 100)}% completed`}
+          </Text>
+        )
+      }
+    }
     if (researchStatus.status == 'visible' || researchStatus.status == 'repeatable') {
+      const prefix = researchStatus.status == 'visible' ? 'To start' : 'To repeat';
+      let labelStyle: any[] = [styles.rows, {minWidth: positioner.bodyMedTextWidth, 
+        maxWidth: positioner.bodyMedTextWidth}];
+      const vaultQuantity = vault.resources[`${costResource.type}|0`]?.quantity || 0;
+      if (vaultQuantity < costResource.quantity) {
+        labelStyle.push({opacity: 0.5});
+      }
       return (
-        <View>
-          <Text>{'To start: ' + utils.formatNumberShort(research.knowledgeReq)
-            + ' knowledge'}</Text>
+        <View style={styles.rows}>
+          <Text>{`${prefix}: `}</Text>
+          <View style={labelStyle}>
+            <Text>{`${utils.formatNumberShort(costResource.quantity)} `}</Text>
+            <SvgComponent icon={costIcon} />
+            <Text style={{marginLeft: 2}}>{`${costResource.type} (of ${utils.formatNumberShort(vaultQuantity)})`}</Text>
+          </View>
         </View>);
     }
     return null;
-  }
-
-  function renderStart() {
-    if (props.rods[props.branch.name]) {
-      let rod = props.rods[props.branch.name];
-      if (rod.stepsCompleted < rod.stepsNeeded) {
-        return (
-          <TouchableOpacity style={styles.buttonRowItem}
-            onPress={() => {props.startClick(props.branch, props.vault,
-              props.milestones, true)}} >
-            <IconComponent provider="MaterialCommunityIcons" name="feather"
-              color="#fff" size={16} />
-            <Text style={styles.buttonText}>{' Resume'}</Text>
-          </TouchableOpacity>
-        );
-      }
-    }
-    if (props.branch.status == 'visible') {
-      return (
-        <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => {props.startClick(props.branch, props.vault,
-            props.milestones)}} >
-          <IconComponent provider="MaterialCommunityIcons" name="feather"
-            color="#fff" size={16} />
-          <Text style={styles.buttonText}>{' Start'}</Text>
-        </TouchableOpacity>
-      );
-    }
-    if (props.branch.status == 'repeatable') {
-      return (
-        <TouchableOpacity style={styles.buttonRowItem}
-          onPress={() => {props.startClick(props.branch, props.vault,
-            props.milestones)}} >
-          <IconComponent provider="FontAwesome" name="refresh"
-            color="#fff" size={16} />
-          <Text style={styles.buttonText}>{' Repeat'}</Text>
-        </TouchableOpacity>
-      );
-    }
-    let buttonStyle = StyleSheet.compose(styles.buttonRowItem, styles.buttonDisabled);
-    return (
-      <TouchableOpacity style={buttonStyle} disabled >
-        <IconComponent provider="FontAwesome5" name="check"
-          color="#fff" size={16} />
-        <Text style={styles.buttonText}>{' Done'}</Text>
-      </TouchableOpacity>
-    );
   }
 }
 

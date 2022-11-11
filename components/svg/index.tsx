@@ -239,6 +239,7 @@ import RoadSignSvgComponent from './symbols/road_sign';
 import MysticismSvgComponent from './symbols/mysticism';
 import HammersSvgComponent from './symbols/hammers';
 import EpauletteSvgComponent from './symbols/epaulette';
+import MapSvgComponent from './symbols/map';
 import StarSvgComponent from './symbols/star';
 import StarsTwoSvgComponent from './symbols/stars_two';
 import StarsThreeSvgComponent from './symbols/stars_three';
@@ -251,6 +252,12 @@ import TerrainRiverbankSvgComponent from './backgrounds/terrain_riverbank';
 import TerrainWaterSvgComponent from './backgrounds/terrain_water';
 
 import DesertSunsetSvgComponent from './illustrations/desert_sunset';
+import CartographersTowerSvgComponent from './illustrations/cartographers_tower';
+import ThievesCampSvgComponent from './illustrations/thieves_camp';
+import MoonlitStudioSvgComponent from './illustrations/moonlit_studio';
+import PrismaticSandSvgComponent from './illustrations/prismatic_sand';
+import TwinMoonsSvgComponent from './illustrations/twin_moons';
+import PaintedCanyonSvgComponent from './illustrations/painted_canyon';
 
 import Icon from '../../models/icon';
 import { SVGS } from '../../enums/svgs';
@@ -722,6 +729,11 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <HammersSvgComponent icon={props.icon} />;
     case SVGS.EPAULETTE:
     return <EpauletteSvgComponent icon={props.icon} />;
+    // icon: new Icon({provider: 'svg', name: SVGS.MAP, color: '#ffc240', shadow: '$ff984c', 
+    //   secondaryColor: '#fcf274', secondaryShadow: '#eee032', tertiaryColor: '#82b0ec', 
+    //   tertiaryShadow: '#5492e4'})
+    case SVGS.MAP:
+    return <MapSvgComponent icon={props.icon} />;
     case SVGS.STAR:
     return <StarSvgComponent icon={props.icon} />;
     case SVGS.STARS_TWO:
@@ -744,6 +756,18 @@ export default function SvgComponent(props: { icon: Icon }) {
 
     case SVGS.DESERT_SUNSET:
     return <DesertSunsetSvgComponent icon={props.icon} />;
+    case SVGS.CARTOGRAPHERS_TOWER:
+    return <CartographersTowerSvgComponent icon={props.icon} />;
+    case SVGS.THIEVES_CAMP:
+    return <ThievesCampSvgComponent icon={props.icon} />;
+    case SVGS.MOONLIT_STUDIO:
+    return <MoonlitStudioSvgComponent icon={props.icon} />;
+    case SVGS.PRISMATIC_SAND:
+    return <PrismaticSandSvgComponent icon={props.icon} />;
+    case SVGS.TWIN_MOONS:
+    return <TwinMoonsSvgComponent icon={props.icon} />;
+    case SVGS.PAINTED_CANYON:
+    return <PaintedCanyonSvgComponent icon={props.icon} />;
   }
   return null;
 }

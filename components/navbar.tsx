@@ -6,15 +6,15 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import { selectTab, removeGlowingTab } from '../actions/ui';
-import { addQuest } from '../actions/quest_status';
+import { increaseResources } from '../actions/vault';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
+import Resource from '../models/resource';
 import { tabs } from '../instances/tabs';
-import { quests } from '../instances/quests';
 import { utils } from '../utils'
-import { QUESTS } from '../enums/quests';
 import { PULSE_DURATION } from '../constants';
+import { RESOURCE_TYPES } from '../enums/resource_types';
 
 enum AP {
   START_RISING = 'start rising',
@@ -38,6 +38,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   tabsGlowing: { [tabName: string] : boolean } }) {
   const { tabsUnlocked, tabSelected, tabsGlowing } = props;
   const dispatch = useDispatch();
+  const vault = useTypedSelector(state => state.vault);
 
   const [animationPhase, setAnimationPhase] = useState(AP.START_RISING);
 
@@ -98,7 +99,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(addQuest(quests[QUESTS.TESTING]));
+      dispatch(increaseResources(vault, [new Resource({type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1})]))
     }
     else {
       dispatch(selectTab(tabName));

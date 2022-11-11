@@ -236,6 +236,7 @@ export enum SVGS {
   MYSTICISM = "Mysticism",
   HAMMERS = "Hammers",
   EPAULETTE = "Epaulette",
+  MAP = "Map",
   STAR = "Star",
   STARS_TWO = "Stars Two",
   STARS_THREE = "Stars Three",
@@ -247,5 +248,11 @@ export enum SVGS {
   TERRAIN_RIVERBANK = "Terrain: Riverbank",
   TERRAIN_WATER = "Terrain: Water",
 
-  DESERT_SUNSET = "Desert Sunset"
+  DESERT_SUNSET = "Desert Sunset",
+  CARTOGRAPHERS_TOWER = "Cartographer's Tower",
+  MOONLIT_STUDIO = "Moonlit Studio",
+  THIEVES_CAMP = "Thieves' Camp",
+  PRISMATIC_SAND = "Prismatic Sand",
+  PAINTED_CANYON = "Painted Canyon",
+  TWIN_MOONS = "Twin Moons"
 }

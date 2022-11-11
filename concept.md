@@ -420,11 +420,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Tomb of the Porcelain Soldiers
     - Cascade of Prismatic Sand
   - Rumors of the All River Delta
-    - Hall of Silken Mirrors 
+    - Hall of Silken Mirrors
     - Twin Moons' Grotto
     - Sprawling Ice House
   - Rumors of the Near Desert
-    - Under-Reservoir
+    - Abandoned Alabaster Mine (Greenish ore)
     - Painted Ravine (Clay)
     - Cave of Vines and Dew (Rare seeds)
 
@@ -494,7 +494,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Exploration:
 - Implements give points in the following categories:
-  - Seek (Torch): Spotting treasure, traps, and enemies
+  - Seek (Torch): Spotting treasure, traps, and foes
   - Break (Slab): Breaking through containers and walls
   - Trap (Gearwork): Immobilizing foes
   - Loose (Edge): Escaping immobilization
@@ -538,13 +538,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Kingdoms:
   ### North
-    - Relatively safe traveling before sea, where many travelers come from. A huge Arabian kingdom (Alabaster) govered by the five faction sultanate: Tourmaline Jewelers (Sultanate of Gems), Sandstone Edificers (Sultanate of Pillars), Wet-Wax Chandlers (Sultanate of Candles), Cochineal Scribes (Sultanate of Scrolls), and Keepers of the Hanging Gardens (Sultanate of Vines).
+    - Relatively safe traveling before sea, where many travelers come from. A huge Arabian kingdom (Alabaster) govered by the five faction sultanate: Tourmaline Jewelers (Sultanate of Gems), Sandstone Edificers (Sultanate of Pillars), Porcelain Commissars (Sultanate of Cups), Cochineal Scribes (Sultanate of Scrolls), and Keepers of the Hanging Gardens (Sultanate of Vines).
     - God of detroying creation: wild, rebirth-from-death. Burying beetle that inters itself and is reborn from the tomb.
     - Understanding of Rhapsodic Auto-Exhumation
-    - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Wet-Wax Chandlers, Cochineal Scribes, and Keepers of the Hanging Gardens
+    - Trading partners: Tourmaline Jewelers, Sandstone Edificers, Porcelain Commissars, Cochineal Scribes, and Keepers of the Hanging Gardens
       - Tourmaline Jewelers are pretentious, but have keen eyes
       - Sandstone Edificers are impressive engineers, practical and competent
-      - Wet-Wax Chandlers are mysterious, and have unexpected influence
+      - Porcelain Commissars are beer brewers, butlers, and managers with a paradoxically low-high relationship to power
       - Cochineal Scribes are very learned in theory and languages, but vague
       - Keepers of the Hanging Gardens are idealistic and concerned with the beauty of tradition and growing things
     - People: You (Gardens), Samannoud (Gardens), Kubra (Tourmaline), Najran (Tourmaline), Asyut (Sandstone)
@@ -611,12 +611,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     lemon, meteor, monument, mortar-pestle, mug, om, otter, pastafarianism, pepper,
     spa, stroopwafel, theater, torii-gate, vihara (building)
   Flaticon:
-    https://www.flaticon.com/packs/carpenter-27?k=1619116521843
-    https://www.flaticon.com/packs/outdoor-landscape-2
-    https://www.flaticon.com/packs/mandalas-5
-    https://www.flaticon.com/packs/japan-52
-    https://www.flaticon.com/packs/prehistoric-age
-    https://www.flaticon.com/packs/morocco-16\
     https://www.svgrepo.com/collection/landscapes-collection/
     https://www.svgrepo.com/collection/landscapes-22/
     https://www.svgrepo.com/collection/landscapes-18/
@@ -625,6 +619,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/landscapes-4/
     https://www.svgrepo.com/collection/landmarks-6/
     https://www.svgrepo.com/collection/building-landmark-vectors/
+    https://www.svgrepo.com/collection/travel-icon-compilation/
     https://www.svgrepo.com/collection/scenery-2/
     https://www.svgrepo.com/collection/travel-and-adventure/
     https://www.svgrepo.com/collection/italy-4/
@@ -638,11 +633,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/meals-3/
     https://www.svgrepo.com/collection/circle-color-food/
     https://www.svgrepo.com/collection/food-set-2/1
+    https://www.svgrepo.com/collection/thanksgiving-6/
     https://www.svgrepo.com/collection/knowledge-4/
     https://www.svgrepo.com/collection/science-10/
     https://www.svgrepo.com/collection/scientific-study-2/
     https://www.svgrepo.com/collection/design-tools-6/
     https://www.svgrepo.com/collection/gym-and-fitness-2/
+    https://www.svgrepo.com/collection/beauty-19/
     https://www.svgrepo.com/collection/labour-day/
     https://www.svgrepo.com/collection/crafting-3/
     https://www.svgrepo.com/collection/real-assets-5/
@@ -657,7 +654,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/clothes-13/
     https://www.svgrepo.com/collection/clothes-18/
     https://www.svgrepo.com/collection/clothes-24/
+    https://www.svgrepo.com/collection/hippies-6/
     https://www.svgrepo.com/collection/animals-26/
+    https://www.svgrepo.com/collection/halloween-7/
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
     https://www.svgrepo.com/collection/saint-patrick-day-5/
@@ -666,6 +665,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/jewelry-3/
     https://www.svgrepo.com/collection/gardening-9/
     https://www.svgrepo.com/collection/spring-4/
+    https://www.svgrepo.com/collection/spring-7/
     https://www.svgrepo.com/collection/autumn-2/
     https://www.svgrepo.com/collection/symbol-set/
     https://www.svgrepo.com/collection/symbol/
@@ -678,6 +678,8 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/weapons-5/
     https://www.shareicon.net/pack/landscapes?p=4
     https://www.shareicon.net/pack/landscapes-collection?p=2
+    https://www.svgrepo.com/collection/game-skills-vectors/1
+    https://www.vecteezy.com/free-vector/desert?license-free=true
 
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -686,12 +688,13 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     <div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <a href="https://www.vecteezy.com/free-vector/desert">Vectors by Vecteezy</a>
   Value symbol options: ѵ, ұ,
 
 ## Time cycle:
   - The desert transitions from day to night over the course of an hour.
   - Morning is from :00 - :15, day from :15 - :30, evening from :30 - :45, and night from :45 - :00
-  - Twenty four days consitute a month, and twenty eight to thirty one days consistute a year.
+  - Twenty four days consitute a month, and twenty eight to thirty one months consistute a year.
 
 ## Example game state:
   - Buildings: one town center, four houses, one cistern, one lentil field, two grain field, one oxen pasture, one fish pond, three reed deltas, one clay pit, two sand pits, one dairy, three kitchens, two drying yards, one furnace, one glassblower, one amphitheatre
@@ -1004,11 +1007,18 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Fix static width in coversation result flex panel
   [X] Combine messages in "While you were away" memos
   [X] Select non-exact resources in quest completion
-  [ ] Research can have costs other than Knowledge
-  [ ] Astronomy!
+  [X] Research can have costs other than Knowledge
+  [ ] Basic Astronomy!
+  [ ] Fix stuck Dromedarian quests
+  [ ] Valuable applied to Tourmaline Jewelers
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
+  [ ] Scarab pressed for ink
+  [ ] Another Gate upgrade
+  [ ] Two (?) more Fishing Pond upgrades
+  [ ] House upgrade
+  [ ] Research to increase analytics quantity again
 
   [ ] Expeditions! (without exploration)
   [ ] Revamp field notes (select from three possibilities)

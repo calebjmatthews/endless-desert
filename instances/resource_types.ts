@@ -888,7 +888,7 @@ resourceTypes[RTY.SAND_PURE] = new ResourceType({
   category: RCA.MATERIAL,
   subcategory: RSC.SAND,
   tags: [RTA.EARTH],
-  value: 20,
+  value: 8,
   icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#fff0c6',
     shadow: '#f5d698'})
 });
@@ -2099,6 +2099,24 @@ resourceTypes[RESOURCE_TYPES.RED_KEY] = new ResourceType({
   tags: [RESOURCE_TAGS.MIND],
   value: 13000,
   icon: new Icon({provider: 'svg', name: SVGS.KEY})
+});
+
+resourceTypes[RESOURCE_TYPES.HINT_FRATERNAL_FATE] = new ResourceType({
+  name: (RESOURCE_TYPES.HINT_FRATERNAL_FATE),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 55555,
+  description: `A dearly-bought clue leading to information about your lost brother, Dani`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_TRANSLOCATED_HALL})
+});
+
+resourceTypes[RESOURCE_TYPES.HINT_BANDIT_QUEENS_MOVEMENTS] = new ResourceType({
+  name: (RESOURCE_TYPES.HINT_FRATERNAL_FATE),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.MIND],
+  value: 55555,
+  description: `If you were foolish enough to seek out an infamous bandit queen, this is how you might go about it`,
+  icon: new Icon({provider: 'svg', name: SVGS.RUMORS_LARCENOUS_ACTIVITY})
 });
 
 resourceTypes[RESOURCE_TYPES.DROMEDARY_PLAINS] = new ResourceType({
