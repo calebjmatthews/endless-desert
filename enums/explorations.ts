@@ -12,6 +12,6 @@ export enum EXPLORATIONS {
   SPRAWLING_ICE_HOUSE = "Sprawling Ice House",
   HALL_OF_SILKEN_MIRRORS = "Hall of Silken Mirrors",
   ABANDONED_ALABASTER_MINE = "Abandoned Alabaster Mine",
-  PAINTER_RAVINE = "Painted Ravine",
+  PAINTED_RAVINE = "Painted Ravine",
   CAVE_OF_VINES_AND_DEW = "Cave of Vines and Dew",
 }

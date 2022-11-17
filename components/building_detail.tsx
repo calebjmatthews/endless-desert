@@ -712,12 +712,15 @@ export default function BuildDetailComponent() {
   function renderKitchenButton() {
     if (building.buildingType.includes(BTY.KITCHEN)) {
       return (
-        <TouchableOpacity style={styles.buttonLarge}
-          onPress={() => openDishSelection()} >
-          <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
-            color="#fff" size={16} style={styles.headingIcon} />
-          <Text style={styles.buttonTextLarge}>{' Cook something new'}</Text>
-        </TouchableOpacity>
+        <>
+          <TouchableOpacity style={styles.buttonLarge}
+            onPress={() => openDishSelection()} >
+            <IconComponent provider="MaterialCommunityIcons" name="silverware-fork-knife"
+              color="#fff" size={16} style={styles.headingIcon} />
+            <Text style={styles.buttonTextLarge}>{' Cook something new'}</Text>
+          </TouchableOpacity>
+          <View style={styles.break} />
+        </>
       );
     }
     return null;

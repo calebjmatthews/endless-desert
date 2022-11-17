@@ -1205,7 +1205,7 @@ researches[RESEARCHES.ASTRONOMY] = new Research({
 
 researches[RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER] = new Research({
   name: RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER,
-  unlocks: 'Researching this grants a new expedition destination.',
+  unlocks: `Grants a new expedition destination related to your brother Dani.`,
   description: `Finally, you can truly begin the search for Dani's whereabouts. Time to build bits of rumor and conjecture into a path forward.`,
   icon: new Icon({ provider: 'svg', name: SVGS.CARTOGRAPHERS_TOWER }),
   category: RESEARCHES.ASTRONOMY,
@@ -1219,6 +1219,96 @@ researches[RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER] = new Research(
     RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
   knowledgeCost: 0,
   otherCost: {type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1}
+});
+
+researches[RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO] = new Research({
+  name: RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO,
+  unlocks: 'Grants a new expedition destination related to your brother Dani.',
+  description: `The information you gained from the Cliffside Cartographer's Tower suggests some kind of workshop to the northeast; now to piece together a more exact location.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.MOONLIT_STUDIO }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 6,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER],
+  options: [RESEARCH_OPTIONS.BEARING_TWO_BEHIND, RESEARCH_OPTIONS.BEARING_DANCERS_CREST, 
+    RESEARCH_OPTIONS.BEARING_ANCIENT_BASIN, RESEARCH_OPTIONS.BEARING_RUINED_WATCHTOWER,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1}
+});
+
+researches[RESEARCHES.DESTINATION_THIEVES_CAMP] = new Research({
+  name: RESEARCHES.DESTINATION_THIEVES_CAMP,
+  unlocks: `Grants a new expedition destination related to banditry.`,
+  description: `Parts of the Endless Desert are thick with thieves. Perhaps someone ought to steal from them, for a change.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.THIEVES_CAMP }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 4,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ASTRONOMY],
+  options: [RESEARCH_OPTIONS.BEARING_EAGLES_TALON, RESEARCH_OPTIONS.BEARING_TRAILING_BEHIND, 
+    RESEARCH_OPTIONS.BEARING_WHITE_HEIGHTS, RESEARCH_OPTIONS.BEARING_SPIRAL_STAIRS,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.RUMORS_LARCENOUS_ACTIVITY, quantity: 40}
+});
+
+researches[RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND] = new Research({
+  name: RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND,
+  unlocks: `Grants a new expedition destination related to the distant past.`,
+  description: `You're putting together the location of one of the (possibly mythical) ancient wonders of the Endless Desert. It's rumoured to be a constantly swirling pit of sand, somehow of every color and kind.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.PRISMATIC_SAND }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ASTRONOMY],
+  options: [RESEARCH_OPTIONS.BEARING_GLIMMERING_CLUSTER, RESEARCH_OPTIONS.BEARING_RIGHT_OF_HANDS, 
+    RESEARCH_OPTIONS.BEARING_DESSICATED_RIVER, RESEARCH_OPTIONS.BEARING_MARKED_COLUMNS,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.RUMORS_LONG_ANTIQUITY, quantity: 60}
+});
+
+researches[RESEARCHES.DESTINATION_TWIN_MOONS_GROTTO] = new Research({
+  name: RESEARCHES.DESTINATION_TWIN_MOONS_GROTTO,
+  unlocks: `Grants a new expedition destination related to unusual lunar activity.`,
+  description: `Two moons hover over Alabaster, but only one over everywhere else in the known world. That what you assumed at least, until you heard of a hidden grotto that has its own second moon.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.TWIN_MOONS }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 6,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ASTRONOMY],
+  options: [RESEARCH_OPTIONS.BEARING_TWO_BEHIND, RESEARCH_OPTIONS.BEARING_DANCERS_CREST, 
+    RESEARCH_OPTIONS.BEARING_ANCIENT_BASIN, RESEARCH_OPTIONS.BEARING_RUINED_WATCHTOWER,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.RUMORS_ALL_RIVER_DELTA, quantity: 90}
+});
+
+researches[RESEARCHES.DESTINATION_PAINTED_RAVINE] = new Research({
+  name: RESEARCHES.DESTINATION_PAINTED_RAVINE,
+  unlocks: `Grants a new expedition destination related to earthy beauty.`,
+  description: `You've heard rumours of a secret canyon that was once used by Alabaster as a quarry for clay of the highest quality. You've no idea what made them abandon it, but it can't have been anything good.`,
+  icon: new Icon({ provider: 'svg', name: SVGS.PAINTED_CANYON }),
+  category: RESEARCHES.ASTRONOMY,
+  isCategory: false,
+  difficulty: 2,
+  stepsNeeded: 5,
+  beginsCompleted: false,
+  prereq: [RESEARCHES.ASTRONOMY],
+  options: [RESEARCH_OPTIONS.BEARING_AZURE_BODY, RESEARCH_OPTIONS.BEARING_THE_ARCHER, 
+    RESEARCH_OPTIONS.BEARING_GIANTS_FURROWS, RESEARCH_OPTIONS.BEARING_SCARLET_TRIO,
+    RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
+  knowledgeCost: 0,
+  otherCost: {type: RESOURCE_TYPES.RUMORS_NEAR_DESERT, quantity: 75}
 });
 
 researches[RESEARCHES.THRICE_LOCKED_TOME] = new Research({

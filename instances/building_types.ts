@@ -1146,7 +1146,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1},
-          {specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 10}]}) ],
+          {specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -1193,7 +1193,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
           probability: 1}],
         consumes: [{specificity: RSP.EXACT, type: RTY.CLAY_KAOLIN, quantity: 10},
           {specificity: RSP.EXACT, type: RTY.THATCH, quantity: 1},
-          {specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 10}]}) ],
+          {specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 100}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -1258,9 +1258,9 @@ const buildingTypes: { [name: string] : BuildingType } = {
         {specificity: RSP.TAG, type: RTA.FUEL, quantity: 80}]}),
     new BuildingRecipe({index: 2, produces:
       [{specificity: RSP.EXACT, type: RTY.GLASS_FLOAT, quantity: 10}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 30},
+      consumes: [{specificity: RSP.EXACT, type: RTY.SAND_PURE, quantity: 120},
         {specificity: RSP.EXACT, type: RTY.TIN_POWDER, quantity: 5},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 600}]}),
+        {specificity: RSP.TAG, type: RTA.FUEL_POTENT, quantity: 600}]}),
     new BuildingRecipe({index: 3, produces:
       [{specificity: RSP.EXACT, type: RTY.CRUDE_IRON, quantity: 10}],
       consumes: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 10},
@@ -1279,7 +1279,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
       [{specificity: RSP.EXACT, type: RTY.STEEL, quantity: 10}],
       consumes: [{specificity: RSP.EXACT, type: RTY.IRON_POWDER, quantity: 40},
         {specificity: RSP.EXACT, type: RTY.CARBON, quantity: 40},
-        {specificity: RSP.TAG, type: RTA.FUEL, quantity: 800}]}) ],
+        {specificity: RSP.TAG, type: RTA.FUEL_POTENT, quantity: 800}]}) ],
     givesNote: RTY.NOTES_HEAT,
     noteCost: defaultNoteCost,
     requiresLeader: true

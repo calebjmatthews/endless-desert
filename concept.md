@@ -506,6 +506,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Curious: Seek out all treasures
   - Reckless: Seek out and trap enemies
 
+## Towns and Cities
+- Alabaster, the Shining City
+  - SomeName, Lapidary Initiate: Tourmaline Jewelers, Creates jewelry Treasures, beginning with simple ones from beads, and developing to others over time
+  - OtherName, Factious Ontologist: Cochlineal Scribes, Constantly getting kicked out of things, requires no payment but uses up time, in exchange for specialization into schools of thought
+  - Asyut, Archetect (1st Class): Sandstone Artificers, Will build and improve road between Alabaster and your town, can be paid to send a crew to an Oasis, Herd, or Trading Post for improvement
+  - FourthName, Sober Commissar: Porcelain Commissars, Exchanges legal documents (?) for booze
+  - FifthName, Feline Advocate: Keepers of the Hanging Gardens, Begins questline to discover, raise, and breed cats. Once completed, will buy 
+- Lac, the Dessicated Town
+  - Can be rebuilt to provide Olibanum Resin, Dates, and Water
+  - Lac, the Recovering Town (Water)
+  - Lac, the Rising Town (Dates)
+  - Lac, the Flourishing Town (Olibanum Resin)
+
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
   - You can gain some Field Notes from observing buildings or the sky. These take 1000 knowledge, 400 papyrus, 80 ink, and 1 hour of study to produce
@@ -659,6 +672,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/halloween-7/
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
+    https://www.svgrepo.com/collection/flowers-2/£™
     https://www.svgrepo.com/collection/saint-patrick-day-5/
     https://www.svgrepo.com/collection/prehistoric-age/
     https://www.svgrepo.com/collection/medieval-3/
@@ -1008,9 +1022,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Combine messages in "While you were away" memos
   [X] Select non-exact resources in quest completion
   [X] Research can have costs other than Knowledge
-  [ ] Basic Astronomy!
+  [X] Valuable applied to Tourmaline Jewelers
+  [X] Basic Astronomy!
   [ ] Fix stuck Dromedarian quests
-  [ ] Valuable applied to Tourmaline Jewelers
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
@@ -1019,6 +1033,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Two (?) more Fishing Pond upgrades
   [ ] House upgrade
   [ ] Research to increase analytics quantity again
+  [ ] Study upgrade
 
   [ ] Expeditions! (without exploration)
   [ ] Revamp field notes (select from three possibilities)

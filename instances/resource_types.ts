@@ -2119,6 +2119,16 @@ resourceTypes[RESOURCE_TYPES.HINT_BANDIT_QUEENS_MOVEMENTS] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.RUMORS_LARCENOUS_ACTIVITY})
 });
 
+resourceTypes[RESOURCE_TYPES.PORTAGE_BOX_SAND] = new ResourceType({
+  name: (RESOURCE_TYPES.PORTAGE_BOX_SAND),
+  category: RCA.SPECIAL,
+  tags: [RESOURCE_TAGS.EARTH],
+  value: 5000,
+  description: `A stupendous amount of sand has been somehow compressed into this unassuming box`,
+  icon: new Icon({provider: 'svg', name: SVGS.SAND, color: '#f3d98f',
+    shadow: '#e6a960'})
+});
+
 resourceTypes[RESOURCE_TYPES.DROMEDARY_PLAINS] = new ResourceType({
   name: (RESOURCE_TYPES.DROMEDARY_PLAINS),
   category: RCA.SPECIAL,
