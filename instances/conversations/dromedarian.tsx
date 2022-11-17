@@ -106,7 +106,7 @@ droConversations[CVS.DRO_BARTERING_DROMEDARY] = new Conversation({
 });
 droConvoNarrations[CVS.DRO_BARTERING_DROMEDARY + ' - n0'] = new ConversationNarration({
   name: CVS.DRO_BARTERING_DROMEDARY + ' - n0',
-  text: `The Dromedarian return again, alone but for the long procession of animals.`,
+  text: `The Dromedarian returns again, alone but for the long procession of animals.`,
   statementName: CVS.DRO_BARTERING_DROMEDARY + ' - s0'
 });
 droConvoStatements[CVS.DRO_BARTERING_DROMEDARY + ' - s0'] = new ConversationStatement({

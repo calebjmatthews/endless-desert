@@ -1024,7 +1024,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Research can have costs other than Knowledge
   [X] Valuable applied to Tourmaline Jewelers
   [X] Basic Astronomy!
-  [ ] Fix stuck Dromedarian quests
+  [X] Fix stuck Dromedarian quests
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -27,6 +27,7 @@ export default function FortuityComponent() {
   const fortuityCurrent = useTypedSelector(state => state.account.fortuityCurrent);
   const vault = useTypedSelector(state => state.vault);
   const researchStatus = useTypedSelector(state => state.researchStatus);
+  const positioner = useTypedSelector(state => state.ui.positioner);
 
   if (!fortuityCurrent) { return null; }
   return (
@@ -36,8 +37,9 @@ export default function FortuityComponent() {
           onPress={() => { fortuityPress() }}>
           <IconComponent provider="FontAwesome5" name="exclamation-circle"
             color="#fff" size={16} style={styles.headingIcon} />
-          <Text style={styles.buttonText}>
-            {` ${fortuityCurrent.openLine}`}
+          <Text style={[styles.buttonText, {marginLeft: 10, textAlign: 'left', 
+            minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
+            {fortuityCurrent.openLine}
           </Text>
         </TouchableOpacity>
       </View>

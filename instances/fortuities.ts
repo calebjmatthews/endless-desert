@@ -201,9 +201,9 @@ fortuities[FORTUITIES.BARTERING_DROMEDARY] = new Fortuity({
   weight: 1000,
   available: (fState: GameState) => {
     const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
-      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedaries:'));
     const currentDromedarianQuest = Object.keys(fState.questStatus?.
-      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+      quests || {}).filter((questName) => questName.includes('Dromedaries:'));
     return (dromedarianQuestsCompleted.length >= 1
       && currentDromedarianQuest.length === 0);
   }
@@ -224,9 +224,9 @@ fortuities[FORTUITIES.A_SUSPICION_DROMEDARIAN] = new Fortuity({
   weight: 1000,
   available: (fState: GameState) => {
     const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
-      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedaries: '));
     const currentDromedarianQuest = Object.keys(fState.questStatus?.
-      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+      quests || {}).filter((questName) => questName.includes('Dromedaries: '));
     return (dromedarianQuestsCompleted.length >= 3
       && currentDromedarianQuest.length === 0);
   }
@@ -247,9 +247,9 @@ fortuities[FORTUITIES.SOUTHERN_WADI] = new Fortuity({
   weight: 1000,
   available: (fState: GameState) => {
     const dromedarianQuestsCompleted = Object.keys(fState.questStatus?.
-      questsCompleted || {}).filter((questName) => questName.includes('Dromedarian:'));
+      questsCompleted || {}).filter((questName) => questName.includes('Dromedaries: '));
     const currentDromedarianQuest = Object.keys(fState.questStatus?.
-      quests || {}).filter((questName) => questName.includes('Dromedarian:'));
+      quests || {}).filter((questName) => questName.includes('Dromedaries: '));
     return (dromedarianQuestsCompleted.length >= 6
       && currentDromedarianQuest.length === 0);
   }

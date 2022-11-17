@@ -6,15 +6,14 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import { selectTab, removeGlowingTab } from '../actions/ui';
-import { increaseResources } from '../actions/vault';
+import { addTimer } from '../actions/timers';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
-import Resource from '../models/resource';
+import Timer from '../models/timer';
 import { tabs } from '../instances/tabs';
 import { utils } from '../utils'
 import { PULSE_DURATION } from '../constants';
-import { RESOURCE_TYPES } from '../enums/resource_types';
 
 enum AP {
   START_RISING = 'start rising',
@@ -99,7 +98,11 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(increaseResources(vault, [new Resource({type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1})]))
+      dispatch(addTimer(new Timer({
+        name: 'Fortuity',
+        endsAt: (new Date(Date.now()).valueOf() + 100),
+        fortuityCheck: true
+      })));
     }
     else {
       dispatch(selectTab(tabName));

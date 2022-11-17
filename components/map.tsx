@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../models/root_state';
@@ -12,7 +12,6 @@ import BadgeComponent from './badge';
 import FortuityComponent from './fortuity';
 import { displayModalValue } from '../actions/ui';
 
-import Terrain from '../models/terrain';
 import Building from '../models/building';
 import Icon from '../models/icon';
 import Timer from '../models/timer';
@@ -23,7 +22,6 @@ import { MODALS } from '../enums/modals';
 import { SVGS } from '../enums/svgs';
 
 export default function MapComponent() {
-  const dispatch = useDispatch();
   const terrain = useTypedSelector(state => state.terrain);
   const buildings = useTypedSelector(state => state.buildings);
   const buildTimer = useTypedSelector(state => state.timers['Build']);
@@ -37,7 +35,6 @@ export default function MapComponent() {
     if (leader.livingAt) { leaderMap[leader.livingAt] = leader; }
   });
   const problems = useTypedSelector(state => state.rates.problems);
-  const positioner = useTypedSelector(state => state.ui.positioner);
   const buildingsCoords: Building[][] = [];
   terrain.spots.forEach((spotColumn, col) => {
     buildingsCoords[col] = [];
