@@ -509,8 +509,7 @@ resourceTypes[RTY.HIBRI_BEETLE] = new ResourceType({
   subcategory: RSC.ANIMAL,
   tags: [RTA.ANIMAL],
   value: 90,
-  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
-    shadow: '#111', secondaryColor: '#a2a2a2'})
+  icon: new Icon({provider: 'svg', name: SVGS.BEETLE})
 });
 
 resourceTypes[RTY.INK_HIBRI] = new ResourceType({
