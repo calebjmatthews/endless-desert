@@ -1,11 +1,11 @@
 export enum TABS {
   TOWN = "Town",
   RESOURCES = "Resources",
+  QUESTS = "Quests",
   RESEARCH = "Research",
   RESEARCHING = "Researching",
   TRADING = "Trading",
   LEADERS = "Leaders",
-  FORTUITY = "Fortuity",
   EQUIPMENT = "Equipment",
-  QUESTS = "Quests"
+  EXPEDITIONS = "Expeditions"
 }

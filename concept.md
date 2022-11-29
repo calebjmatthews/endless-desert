@@ -632,6 +632,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/landscapes-4/
     https://www.svgrepo.com/collection/landmarks-6/
     https://www.svgrepo.com/collection/building-landmark-vectors/
+    https://www.svgrepo.com/collection/coloured-buildings/
     https://www.svgrepo.com/collection/travel-icon-compilation/
     https://www.svgrepo.com/collection/scenery-2/
     https://www.svgrepo.com/collection/travel-and-adventure/
@@ -669,6 +670,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/clothes-24/
     https://www.svgrepo.com/collection/hippies-6/
     https://www.svgrepo.com/collection/animals-26/
+    https://www.svgrepo.com/collection/dinosaur-collection/
     https://www.svgrepo.com/collection/halloween-7/
     https://www.svgrepo.com/collection/halloween-19/
     https://www.svgrepo.com/collection/feathers-set-2/
@@ -1025,6 +1027,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Valuable applied to Tourmaline Jewelers
   [X] Basic Astronomy!
   [X] Fix stuck Dromedarian quests
+  [ ] Expeditions! (without exploration)
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of equipment in half
@@ -1035,7 +1038,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Research to increase analytics quantity again
   [ ] Study upgrade
 
-  [ ] Expeditions! (without exploration)
   [ ] Revamp field notes (select from three possibilities)
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
@@ -1062,6 +1064,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Hide leader assignment buttons until there are leaders
   [ ] Restyle completed quests
   [ ] Only show most recent completed quests, with "Show more" button
+  
   [ ] Flashy display for rare trades
   [ ] Hide recipes missing ingredients
   [ ] Select non-exact resources in conversations

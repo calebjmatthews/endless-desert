@@ -6,6 +6,7 @@ import { TABS } from '../enums/tabs';
 import { SVGS } from '../enums/svgs';
 import { RESOURCE_TYPES } from '../enums/resource_types';
 import { RESEARCH_OPTIONS } from '../enums/research_options';
+import { DESTINATION_TYPES } from '../enums/destination_types';
 
 let researches: { [name: string] : Research } = {};
 researches[RESEARCHES.SCHOLARSHIP] = new Research({
@@ -1189,7 +1190,7 @@ researches[RESEARCHES.FERMENTATION] = new Research({
 
 researches[RESEARCHES.ASTRONOMY] = new Research({
   name: RESEARCHES.ASTRONOMY,
-  unlocks: 'Researching this opens up celestial areas of study.',
+  unlocks: 'Researching this opens up expeditions across the sands.',
   description: `Rumors of activity, treasure, and mystery, plotted against your best calculations of the movement of the stars.`,
   icon: new Icon({ provider: 'MaterialCommunityIcons', name: 'weather-night',
     color: '#fff', backgroundColor: '#071f56' }),
@@ -1200,7 +1201,8 @@ researches[RESEARCHES.ASTRONOMY] = new Research({
   beginsCompleted: false,
   prereq: [RESEARCHES.GLASS_SHAPING, RESEARCHES.COMBUSTION_VENTILATED],
   options: [RESEARCH_OPTIONS.NAVIGATION_BY_STARS],
-  knowledgeCost: 15000
+  knowledgeCost: 15000,
+  unlocksTab: TABS.EXPEDITIONS
 });
 
 researches[RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER] = new Research({
@@ -1218,7 +1220,8 @@ researches[RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER] = new Research(
     RESEARCH_OPTIONS.BEARING_GIANTS_FURROWS, RESEARCH_OPTIONS.BEARING_SCARLET_TRIO,
     RESEARCH_OPTIONS.BEARING_REFERENCED_TEXTS, RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES ],
   knowledgeCost: 0,
-  otherCost: {type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1}
+  otherCost: {type: RESOURCE_TYPES.HINT_FRATERNAL_FATE, quantity: 1},
+  unlocksDestination: RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER
 });
 
 researches[RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO] = new Research({

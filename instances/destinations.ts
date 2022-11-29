@@ -17,8 +17,8 @@ const destinations: { [name: string] : Destination } = {
     icon: new Icon({provider: 'svg', name: SVGS.CARTOGRAPHERS_TOWER})
   }),
   [RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO]: new Destination({
-    id: EXPLORATIONS.MOONLIT_POTTERS_STUDIO,
-    name: `Moonlit Potter's Studio`,
+    id: RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO,
+    name: EXPLORATIONS.MOONLIT_POTTERS_STUDIO,
     coordinates: [140, 80], // 161
     atFinish: {
       id: EXPLORATIONS.MOONLIT_POTTERS_STUDIO,

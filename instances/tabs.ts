@@ -17,9 +17,16 @@ tabs[TABS.RESOURCES] = new Tab({
   settings: []
 });
 
+tabs[TABS.QUESTS] = new Tab({
+  name: TABS.QUESTS,
+  order: 2,
+  icon: {provider: "FontAwesome5", name: "medal"},
+  settings: []
+});
+
 tabs[TABS.RESEARCH] = new Tab({
   name: TABS.RESEARCH,
-  order: 2,
+  order: 3,
   icon: {provider: "FontAwesome", name: "book"},
   settings: [{
     name: 'showCompletedResearches',
@@ -31,29 +38,29 @@ tabs[TABS.RESEARCH] = new Tab({
 
 tabs[TABS.TRADING] = new Tab({
   name: TABS.TRADING,
-  order: 3,
+  order: 4,
   icon: {provider: "Entypo", name: "address"},
   settings: []
 });
 
 tabs[TABS.LEADERS] = new Tab({
   name: TABS.LEADERS,
-  order: 4,
+  order: 5,
   icon: {provider: "FontAwesome5", name: "user-circle"},
   settings: []
 });
 
 tabs[TABS.EQUIPMENT] = new Tab({
   name: TABS.EQUIPMENT,
-  order: 5,
+  order: 6,
   icon: {provider: "FontAwesome5", name: "hammer"},
   settings: []
 });
 
-tabs[TABS.QUESTS] = new Tab({
-  name: TABS.QUESTS,
-  order: 6,
-  icon: {provider: "FontAwesome5", name: "medal"},
+tabs[TABS.EXPEDITIONS] = new Tab({
+  name: TABS.EXPEDITIONS,
+  order: 7,
+  icon: {provider: "FontAwesome5", name: "route"},
   settings: []
 });
 

@@ -11,6 +11,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
   resourcesStudied: { [typeQuality: string] : boolean } = {};
   buildingsAvailable: { [buildingName: string] : boolean } = {};
   upgradesAvailable: { [buildingName: string] : boolean } = {};
+  destinationsAvailable: { [destinationName: string] : boolean } = {};
 
   constructor(researchStatus: ResearchStatusInterface|null) {
     if (researchStatus) { Object.assign(this, researchStatus); }
@@ -30,8 +31,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     });
     this.checkAndSetVisible();
     this.setResearchedActions();
-    this.setBuildingsAvailable();
-    this.setUpgradesAvailable();
+    this.setBuildingsAndDestinationsAvailable();
   }
 
   // Set the visibility of researches based on whether all of their prerequisites
@@ -75,8 +75,7 @@ export default class ResearchStatus implements ResearchStatusInterface {
     
     this.checkAndSetVisible();
     this.setResearchedActions();
-    this.setBuildingsAvailable();
-    this.setUpgradesAvailable();
+    this.setBuildingsAndDestinationsAvailable();
   }
 
   setResearchedActions() {
@@ -110,30 +109,22 @@ export default class ResearchStatus implements ResearchStatusInterface {
     return rts;
   }
 
-  setBuildingsAvailable() {
+  setBuildingsAndDestinationsAvailable() {
     Object.keys(this.status).forEach((researchName) => {
       let research = researches[researchName];
       if (!research) {
         console.log(`Missing research instance: ${researchName}`); return;
       }
-      if (research.unlocksBuilding && this.status[researchName] === 'completed') {
-        research.unlocksBuilding.map((buildingName) => {
+      if (this.status[researchName] === 'completed') {
+        (research.unlocksBuilding || []).forEach((buildingName) => {
           this.buildingsAvailable[buildingName] = true;
         });
-      }
-    });
-  }
-
-  setUpgradesAvailable() {
-    Object.keys(this.status).map((researchName) => {
-      let research = researches[researchName];
-      if (!research) {
-        console.log(`Missing research instance: ${researchName}`); return;
-      }
-      if (research.unlocksUpgrade && this.status[researchName] === 'completed') {
-        research.unlocksUpgrade.map((buildingName) => {
+        (research.unlocksUpgrade || []).forEach((buildingName) => {
           this.upgradesAvailable[buildingName] = true;
         });
+        if (research.unlocksDestination) {
+          this.destinationsAvailable[research.unlocksDestination] = true;
+        }
       }
     });
   }

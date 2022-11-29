@@ -228,8 +228,7 @@ export default function StorageHandlerComponent() {
               let researchStatus = new ResearchStatus(tableValue);
               researchStatus.checkAndSetVisible();
               researchStatus.setResearchedActions();
-              researchStatus.setBuildingsAvailable();
-              researchStatus.setUpgradesAvailable();
+              researchStatus.setBuildingsAndDestinationsAvailable();
               dispatch(setResearchStatus(researchStatus));
             }
             else if (tableName == 'buildings' && tableValue) {

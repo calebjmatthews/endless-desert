@@ -6,13 +6,13 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import { selectTab, removeGlowingTab } from '../actions/ui';
-import { addTimer } from '../actions/timers';
+import { unlockTab, UNLOCK_TAB } from '../actions/account';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
-import Timer from '../models/timer';
 import { tabs } from '../instances/tabs';
 import { utils } from '../utils'
+import { TABS } from '../enums/tabs';
 import { PULSE_DURATION } from '../constants';
 
 enum AP {
@@ -98,11 +98,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(addTimer(new Timer({
-        name: 'Fortuity',
-        endsAt: (new Date(Date.now()).valueOf() + 100),
-        fortuityCheck: true
-      })));
+      dispatch(unlockTab(TABS.EXPEDITIONS));
     }
     else {
       dispatch(selectTab(tabName));
