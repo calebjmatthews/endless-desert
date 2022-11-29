@@ -100,6 +100,14 @@ resourceTags[RESOURCE_TAGS.EARTH] = new ResourceTag({
   icon: new Icon({provider: 'FontAwesome5', name: 'globe-africa',
     color:'#986127'})});
 
+resourceTags[RESOURCE_TAGS.INK] = new ResourceTag({
+  name: RESOURCE_TAGS.INK,
+  plural: 'Inks',
+  value: 300,
+  extract: false,
+  icon: new Icon({provider: 'FontAwesome5', name: 'water',
+    color:'#222'})});
+
 resourceTags[RESOURCE_TAGS.PRECIOUS] = new ResourceTag({
   name: RESOURCE_TAGS.PRECIOUS,
   plural: 'Precious Material',

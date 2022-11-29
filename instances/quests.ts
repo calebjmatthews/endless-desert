@@ -754,8 +754,8 @@ You find something strange in the perfumed box this time... And someone even str
     finishText: `After sending off the supplies a small herd of Plains Dromedaries arrives more quickly than you would have expected. The desert is yours!`,
     tasks: [
       new QuestTask({ index: 0, parentId: QUESTS.DROMEDARIES_INK,
-        label: `Requested: 340 Ferrous Ink.`,
-        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.INK_FERROUS}`,
+        label: `Requested: 340 Hibri Ink.`,
+        resourceToProduce: { specType: `${RSP.EXACT}|${RTY.INK_HIBRI}`,
           quantity: 340, consumed: true, includeExisting: true } }),
       new QuestTask({ index: 1, parentId: QUESTS.DROMEDARIES_INK,
         label: `Requested: 34 Faience`,

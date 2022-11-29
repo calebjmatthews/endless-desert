@@ -33,7 +33,7 @@ researchOptions[RESEARCH_OPTIONS.EXPLORING_POSSIBILITIES] = new ResearchOption({
   description: (`Time to slow down, ennumerate a list of strategies, and write out a set of approaches. *This will add an extra option slot for the rest of this research*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 100},
     {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 10},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 1}],
+    {specificity: RSP.TAG, type: RTA.INK, quantity: 1}],
   actions: [ ROA.INCREASE_OPTION_SLOTS ],
   weight: 25
 });
@@ -55,7 +55,7 @@ researchOptions[RESEARCH_OPTIONS.AGGRIVATION] = new ResearchOption({
   description: (`Prototype after prototype fails, theory after theory goes nowhere. But you'll pull this research back together, even if it means writing and cursing all night long. *This will remove all current research options and replace them with new ones*`),
   cost: [{specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 500},
     { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 80 },
-    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 4 }],
+    { specificity: RSP.TAG, type: RTA.INK, quantity: 4 }],
   actions: [ ROA.DISCARD_OPTIONS ],
   weight: 25
 });
@@ -67,7 +67,7 @@ researchOptions[RESEARCH_OPTIONS.A_WORTHWHILE_DISTRACTION] = new ResearchOption(
   description: (`You've found a compelling idea that isn't connected at all to the topic at hand. Exploring it would set you back significantly, but the temptation... *This will give a rare item, but will both remove all current options and give one fewer slot for the rest of this research*`),
   cost: [{ specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
     { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
-    { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20 }],
+    { specificity: RSP.TAG, type: RTA.INK, quantity: 20 }],
   gain: [{ specificity: RSP.EXACT, type: RTY.NOTES_DIALECTIC, quantity: 1 }],
   actions: [ ROA.DISCARD_OPTIONS, ROA.DECREASE_OPTION_SLOTS ],
   weight: 25
@@ -170,7 +170,7 @@ researchOptions[RESEARCH_OPTIONS.EXCESSIVE_NOTE_TAKING] = new ResearchOption({
     + 'know your letters, although it\'s been a long time since you\'ve written. '
     + 'Better practice, and practice a lot.'),
   cost: [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20}]
+    {specificity: RSP.TAG, type: RTA.INK, quantity: 20}]
 });
 
 researchOptions[RESEARCH_OPTIONS.METAL_VARIETY] = new ResearchOption({
@@ -254,7 +254,7 @@ researchOptions[RESEARCH_OPTIONS.BRACHYGRAPHIC_SYMBOLS] = new ResearchOption({
   description: `Your system of representative shortened sylables will need to be easily distinguished and intuitive.`,
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 2},
     {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40}]
+    {specificity: RSP.TAG, type: RTA.INK, quantity: 40}]
 });
 
 researchOptions[RESEARCH_OPTIONS.LEGUME_DISSECTION] = new ResearchOption({
@@ -417,7 +417,7 @@ researchOptions[RESEARCH_OPTIONS.LINGUISTIC_PROGRESSION] = new ResearchOption({
   description: `You've made some progress in learning the myriad languages of the desert. But the sheer amount of regional dialects, colloquialisms, and differences in pronunciation is eye-watering. You've still got a lot of work to do.`,
   cost: [{specificity: RSP.CATEGORY, type: RCA.FIELD_NOTES, quantity: 1},
     {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200},
-    {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10}]
+    {specificity: RSP.TAG, type: RTA.INK, quantity: 10}]
 });
 
 researchOptions[RESEARCH_OPTIONS.REASSEMBLING_METER] = new ResearchOption({

@@ -11,6 +11,7 @@ export enum RESOURCE_TAGS {
   CONSTRUCTION = "Construction",
   FUEL = "Fuel",
   FUEL_POTENT = "Potent Fuel",
+  INK = "Ink",
   PRECIOUS = "Precious",
   TRADE_GOOD = "Trade Good",
   PRESSED = "Pressed",

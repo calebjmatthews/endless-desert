@@ -25,12 +25,12 @@ import { TABS } from '../enums/tabs';
 const defaultNoteCost = [
   { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 4000 },
   { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 400 },
-  { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 20 }
+  { specificity: RSP.EXACT, type: RTY.INK_HIBRI, quantity: 20 }
 ];
 const dialecticNoteCost = [
   { specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 12000 },
   { specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800 },
-  { specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40 }
+  { specificity: RSP.EXACT, type: RTY.INK_HIBRI, quantity: 40 }
 ];
 
 const buildingTypes: { [name: string] : BuildingType } = {
@@ -250,7 +250,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: null,
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 800},
       {specificity: RSP.EXACT, type: RTY.WOOD_ASH, quantity: 200},
-      {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 40},
+      {specificity: RSP.TAG, type: RTA.INK, quantity: 12000},
       {specificity: RSP.EXACT, type: RTY.TORCH, quantity: 20}],
     recipes: null,
     givesNote: RTY.NOTES_EARTH,
@@ -790,7 +790,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.INK_HIBRI, quantity: 4}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.HIBRI_BEETLE, quantity: 12}]}) ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: true
@@ -807,7 +810,10 @@ const buildingTypes: { [name: string] : BuildingType } = {
       consumes: [{specificity: RSP.EXACT, type: RTY.PULP, quantity: 10}]}),
     new BuildingRecipe({index: 1, produces:
       [{specificity: RSP.EXACT, type: RTY.OLIVE_OIL, quantity: 10}],
-      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}), ],
+      consumes: [{specificity: RSP.EXACT, type: RTY.OLIVE, quantity: 10}]}),
+    new BuildingRecipe({index: 2, produces:
+      [{specificity: RSP.EXACT, type: RTY.INK_HIBRI, quantity: 4}],
+      consumes: [{specificity: RSP.EXACT, type: RTY.HIBRI_BEETLE, quantity: 12}]}) ],
     givesNote: RTY.NOTES_EARTH,
     noteCost: defaultNoteCost,
     requiresLeader: false
@@ -1108,7 +1114,7 @@ const buildingTypes: { [name: string] : BuildingType } = {
     cost: [{specificity: RSP.SUBCATEGORY, type: RSC.WOOD, quantity: 50}],
     upgradeCost: [{specificity: RSP.EXACT, type: RTY.WOOD_ASH, quantity: 200},
       {specificity: RSP.EXACT, type: RTY.PAPYRUS, quantity: 200},
-      {specificity: RSP.EXACT, type: RTY.INK_FERROUS, quantity: 10},
+      {specificity: RSP.TAG, type: RTA.INK, quantity: 3000},
       {specificity: RSP.EXACT, type: RTY.ROUGH_ROPE, quantity: 10}],
     upgradesInto: BTY.DRYING_YARD_ORGANIZED,
     recipes: [new BuildingRecipe({index: 0, produces:

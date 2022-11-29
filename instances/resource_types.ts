@@ -503,6 +503,26 @@ resourceTypes[RTY.BARRAMUNDI] = new ResourceType({
     shadow: '#4881c2'})
 });
 
+resourceTypes[RTY.HIBRI_BEETLE] = new ResourceType({
+  name: RTY.HIBRI_BEETLE,
+  category: RCA.MATERIAL,
+  subcategory: RSC.ANIMAL,
+  tags: [RTA.ANIMAL],
+  value: 90,
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
+    shadow: '#111', secondaryColor: '#a2a2a2'})
+});
+
+resourceTypes[RTY.INK_HIBRI] = new ResourceType({
+  name: RTY.INK_HIBRI,
+  category: RCA.MATERIAL,
+  subcategory: RSC.ANIMAL,
+  tags: [RTA.ANIMAL],
+  value: 300,
+  icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#6d5a4e',
+    shadow: '#534338', secondaryColor: '#999'})
+});
+
 resourceTypes[RTY.QUAIL] = new ResourceType({
   name: RTY.QUAIL,
   category: RCA.MATERIAL,

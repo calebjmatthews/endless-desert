@@ -41,6 +41,7 @@ export enum SVGS {
   MINNOW = "Minnow",
   CARP = "Carp",
   BARRAMUNDI = "Barramundi",
+  BEETLE = "Beetle",
   QUAIL = "Quail",
   QUAIL_MEAT = "Quail Meat",
   EGG = "Egg",

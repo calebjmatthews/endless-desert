@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
 
 import KnowledgeSvgComponent from './resources/knowledge';
 import GloamingLightSvgComponent from './resources/gloaming_light';
@@ -44,6 +43,7 @@ import MussellSvgComponent from './resources/mussel';
 import CarpSvgComponent from './resources/carp';
 import MinnowSvgComponent from './resources/minnow';
 import BarramundiSvgComponent from './resources/barramundi';
+import BeetleSvgComponent from './resources/beetle';
 import QuailSvgComponent from './resources/quail';
 import QuailMeatSvgComponent from './resources/quail_meat';
 import EggSvgComponent from './resources/egg';
@@ -346,6 +346,8 @@ export default function SvgComponent(props: { icon: Icon }) {
     return <CarpSvgComponent icon={props.icon} />;
     case SVGS.BARRAMUNDI:
     return <BarramundiSvgComponent icon={props.icon} />;
+    case SVGS.BEETLE:
+    return <BeetleSvgComponent icon={props.icon} />;
     case SVGS.QUAIL:
     return <QuailSvgComponent icon={props.icon} />;
     case SVGS.QUAIL_MEAT:

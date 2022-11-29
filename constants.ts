@@ -57,7 +57,7 @@ export const ANALYSIS_TREASURES_KNOWLEDGE = [
 
 export const ANALYSIS_TREASURES_SPEED = [
   { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_SWIFT_EXAMINATION, multiplier: 0.5,
-    cost: new Resource({ type: RESOURCE_TYPES.INK_FERROUS, quality: 0, quantity: 0.3 }) },
+    cost: new Resource({ type: RESOURCE_TYPES.INK_HIBRI, quality: 0, quantity: 0.3 }) },
   { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_MERCURIAL_EXAMINATION, multiplier: 0.5,
     cost: new Resource({ type: RESOURCE_TYPES.LENS, quality: 0, quantity: 0.25 }) },
   { typeName: RESOURCE_TYPES.TECHNIQUES_FOR_ALACRITOUS_EXAMINATION, multiplier: 0.5,

@@ -48,6 +48,8 @@ export enum RESOURCE_TYPES {
   MINNOW = "Minnow",
   BARRAMUNDI = "Barramundi",
   CARP = "Carp",
+  HIBRI_BEETLE = "Hibri Beetle",
+  INK_HIBRI = "Hibri Ink",
   QUAIL = "Quail",
   QUAIL_MEAT = "Quail Meat",
   EGG = "Egg",

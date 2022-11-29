@@ -1027,11 +1027,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [X] Valuable applied to Tourmaline Jewelers
   [X] Basic Astronomy!
   [X] Fix stuck Dromedarian quests
+  [X] Scarab pressed for ink
   [ ] Expeditions! (without exploration)
   [ ] "Trading" research allows update to Abandoned Market
   [ ] Guangzhou available after one Gate upgrade
-  [ ] Cut value of equipment in half
-  [ ] Scarab pressed for ink
+  [ ] Cut value of basic equipment in half
   [ ] Another Gate upgrade
   [ ] Two (?) more Fishing Pond upgrades
   [ ] House upgrade
