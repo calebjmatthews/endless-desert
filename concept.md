@@ -428,7 +428,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Painted Ravine (Clay)
     - Cave of Vines and Dew (Rare seeds)
 
-- Expedition treasures:
+- Exploration treasures:
   - Shell from something mythical
   - Resin from something mythical
   - Maps to find other expeditions
@@ -436,17 +436,22 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Petrtified wood tablets containing poetry, dice, masks
   - Stone figurines in the shape of many different animals
   - Instruments made from various woods
-- More specific expedition treasures:
+- More specific exploration treasures:
   - Ancient wine
   - Daruma doll: lucky
   - Ancient weapons
   - Cultural items: fan, mask, badge
   - Tablet depicting disasterous event
+  - Camel comb
+  - Camel lead rope
+  - Camel saddle
+  - Camel pannier
+  - Camel calling horn
 - Locations while traveling:
   - Oases: Grow figs, dates, lemons, herbs
   - Empty well: Pull strange things up from it
   - Groups of animals: Can be hunted for meat or captured with traps
-  - Crevice: Mysteries at the bottom, can be crossed with rope
+  - Crevice: Mysteries at the bottom, can be descended with rope
   - Door to Hall, Home to All
   - Prison colony
 - Events while traveling:
@@ -454,11 +459,15 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Intense sun: Use up excess water, Rhapsodic Auto-Exhumation
   - Swarm of scorpions: Trap them, Athanastic Catalepsy
   - Sinkhole: Break out, Inflorencent Fission
+  - Ruins of a hut: Use Hardened Slab and Iron Edge to gain Provisions
+  - Singing Pit: Cross with Rough Rope, go around
   - Run into trader: Far better exchange rates than normal
   - Chase a falling star: Change destinations to track it down, or make a vow on it
   - Gather rumors from wanderers
   - Traveling auctioneering caravan
-  - Contract with Sandstone Artificiers to bring home large amount of sand
+  - Contract with Sandstone Artificers to bring home large amount of sand
+  - Rare event to pay a large amount of food/water for a camel
+  - Rare event to run into "Locations while traveling" above and abandon destination
 - Expedition method:
   - Pick a cardinal direction, a previously visited region or previously visited destination
   - For every area that is traversed through, various random events can occur. This could:
@@ -491,8 +500,20 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Academic reference:
   - ... certain other academic texts refer to a "cleft between stones" visible ahead ...
   - ... and an astute observer can infer, from a compilation of observations, the geography ...
+- Process:
+  - Select destination
+  - Select leader, display expedition/exploration related effects
+  - Select camels, display speed and carrying capacity
+  - Select food, drink, and implements
+  - Go!
 
 ## Exploration:
+- Stats:
+  - Health, Sandstone Artificers, Red heart
+  - Swiftness, Keepers of the Hanging Gardens, Green wind
+  - Bounty, Tourmaline Jewelers, Purple gem
+  - Vision, Porcelain Commissars, Yellow eye
+  - Thrift, Cochineal Scribes, Blue coins
 - Implements give points in the following categories:
   - Seek (Torch): Spotting treasure, traps, and foes
   - Break (Slab): Breaking through containers and walls
@@ -502,7 +523,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 - Leaders learn techniques from codexes, each technique uses a combination of points from implements
 - Attitudes determine how a leader moves through the site
   - Cautious: Avoid enemies
-  - Swift: Leave after finding grand treasure
+  - Quick: Leave after finding grand treasure
   - Curious: Seek out all treasures
   - Reckless: Seek out and trap enemies
 
@@ -781,13 +802,6 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Different housing types that can hold more than one leader (and crew)
   - Moving fortress that runs on waterwheels turned by golden oil, surplus leaders can work there for ocational non-scaling benefits (more leaders give more reward options, but not a higher quantity)
 
-## Expeditions
-  - Select starchart
-  - Select leader, display expedition/exploration related effects
-  - Select camels, display speed and carrying capacity
-  - Select food, drink, and implements
-  - Go!
-
 ## Tips
   - Dishes make excellent trade goods. It can be useful to build a Kitchen, even before the town is producing enough ingredients to run it continuously.
   - As trading partners come to trust you, they will set aside a larger part of their caravan's capacity for you. This means larger trades are possible.
@@ -1033,7 +1047,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Guangzhou available after one Gate upgrade
   [ ] Cut value of basic equipment in half
   [ ] Another Gate upgrade
-  [ ] Two (?) more Fishing Pond upgrades
+  [ ] Two (?) more Fishing Pond upgrades: Coral Branch, Voltaic Eel
   [ ] House upgrade
   [ ] Research to increase analytics quantity again
   [ ] Study upgrade
