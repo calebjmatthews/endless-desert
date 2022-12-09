@@ -2155,7 +2155,30 @@ resourceTypes[RESOURCE_TYPES.DROMEDARY_PLAINS] = new ResourceType({
   tags: [RESOURCE_TAGS.ANIMAL],
   value: 20000,
   description: `The "Plains" breed is a hybrid; it can both travel relatively fast and carry a respectable amount of weight`,
-  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY})
+  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY, color: '#f6d76f', shadow: '#fbb071',
+    secondaryColor: '#c97e67', secondaryShadow: '#8f5543'})
+});
+
+resourceTypes[RESOURCE_TYPES.DROMEDARY_HILL] = new ResourceType({
+  name: (RESOURCE_TYPES.DROMEDARY_PLAINS),
+  category: RCA.SPECIAL,
+  subcategory: RSC.DROMEDARY,
+  tags: [RESOURCE_TAGS.ANIMAL],
+  value: 20000,
+  description: `The "Hill" breed is smaller; fast-moving but not as strong as others`,
+  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY, color: '#f6cd6f', shadow: '#fb9171',
+    secondaryColor: '#c97e67', secondaryShadow: '#8f5543'})
+});
+
+resourceTypes[RESOURCE_TYPES.DROMEDARY_RIVERINE] = new ResourceType({
+  name: (RESOURCE_TYPES.DROMEDARY_RIVERINE),
+  category: RCA.SPECIAL,
+  subcategory: RSC.DROMEDARY,
+  tags: [RESOURCE_TAGS.ANIMAL],
+  value: 20000,
+  description: `The "Riverine" breed is heavily built; slow moving, but strong and solid`,
+  icon: new Icon({provider: 'svg', name: SVGS.DROMEDARY, color: '#ffee98', shadow: '#fbd271',
+    secondaryColor: '#b76c8b', secondaryShadow: '#8f434f'})
 });
 
 export { resourceTypes }

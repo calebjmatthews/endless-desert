@@ -207,5 +207,7 @@ export enum RESOURCE_TYPES {
   HINT_FRATERNAL_FATE = "Hint Regarding Fraternal Fate",
   HINT_BANDIT_QUEENS_MOVEMENTS = "Hint Regarding a Bandit Queen's Movements",
   PORTAGE_BOX_SAND = "Sand Portage Box",
-  DROMEDARY_PLAINS = "Plains Dromedary"
+  DROMEDARY_PLAINS = "Plains Dromedary",
+  DROMEDARY_HILL = "Hill Dromedary",
+  DROMEDARY_RIVERINE = "Riverine Dromedary"
 }
