@@ -38,7 +38,7 @@ export default function FortuityComponent() {
           <IconComponent provider="FontAwesome5" name="exclamation-circle"
             color="#fff" size={16} style={styles.headingIcon} />
           <Text style={[styles.buttonText, {marginLeft: 10, textAlign: 'left', 
-            minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}]}>
+            maxWidth: positioner.majorWidth}]}>
             {fortuityCurrent.openLine}
           </Text>
         </TouchableOpacity>
