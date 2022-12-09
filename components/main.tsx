@@ -24,7 +24,7 @@ import ValueCheckComponent from '../components/value_check';
 import QuestsComponent from '../components/quests';
 import MapComponent from '../components/map';
 import NavbarComponent from '../components/navbar';
-import ExpeditionsComponent from './expeditions';
+import ExpeditionsComponent from './expeditions/index';
 import { styles } from '../styles';
 
 import Positioner from '../models/positioner';
