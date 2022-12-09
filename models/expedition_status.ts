@@ -8,7 +8,7 @@ export default class ExpeditionStatus {
   constructor(expeditionStatus: ExpeditionStatusInterface|null) {
     if (expeditionStatus) {
       Object.keys(expeditionStatus.expeditions).forEach((id) => {
-        this.expeditions[id] = expeditionStatus.expeditions[id];
+        this.expeditions[id] = new Expedition({...expeditionStatus.expeditions[id]});
       });
       Object.keys(expeditionStatus.expeditionHistories).forEach((id) => {
         this.expeditionHistories[id] = expeditionStatus.expeditionHistories[id];

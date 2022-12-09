@@ -25,6 +25,21 @@ export default class Expedition {
     }
   }
 
+  getCurrentDromedaryCount(exclude?: string) {
+    let count = 0;
+    Object.keys(this.dromedaries).forEach((typeQuality) => {
+      if (typeQuality !== exclude) {
+        count += this.dromedaries[typeQuality].quantity;
+      }
+    });
+    return count;
+  }
+
+  getRemainingDromedarySpace(exclude?: string) {
+    const maximum = 100;
+    return maximum - this.getCurrentDromedaryCount(exclude);
+  }
+
   getSpeed(dromedaryTypes: { [name: string] : DromedaryType }) {
     let totalSpeed = 0;
     let count = 0;

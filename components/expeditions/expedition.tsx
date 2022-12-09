@@ -12,7 +12,7 @@ export default function ExpeditionComponent(props: { expedition: Expedition, fir
   }
   
   if (expedition.state === 'preparing') {
-    return <ExpeditionPreparationComponent expedition={expedition} />;
+    return <ExpeditionPreparationComponent expeditionId={expedition.id} />;
   }
 
   return null;

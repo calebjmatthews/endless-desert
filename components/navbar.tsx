@@ -17,7 +17,7 @@ import { PULSE_DURATION } from '../constants';
 
 import Resource from '../models/resource';
 import { resourceTypes } from '../instances/resource_types';
-import { increaseResources } from '../actions/vault';
+import { consumeResources, increaseResources } from '../actions/vault';
 
 enum AP {
   START_RISING = 'start rising',
@@ -102,10 +102,15 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      dispatch(unlockTab(TABS.EXPEDITIONS));
+      let resources: Resource[] = [];
+      Object.keys(vault.resources).map((typeQuality) => {
+        resources.push(vault.resources[typeQuality]);
+      });
+      dispatch(consumeResources(vault, resources));
+
       let allResources: Resource[] = [];
       Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100000 }));
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100 }));
       });
       dispatch(increaseResources(vault, allResources));
     }

@@ -14,24 +14,39 @@ import Resource from '../../models/resource';
 import Icon from '../../models/icon';
 import { resourceTypes } from '../../instances/resource_types';
 import { MODALS } from '../../enums/modals';
-
+import { increaseResources } from '../../actions/vault';
 
 export default function DromedariesComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
   const dispatch = useDispatch();
   const pos = useTypedSelector(state => state.ui.positioner);
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
+  const vault = useTypedSelector(state => state.vault);
   const dromedariesArrray = Object.keys(expedition.dromedaries).map((id) => {
     return expedition.dromedaries[id];
   });
   if (dromedariesArrray.length === 0) { return null; }
 
-  const editDromedariesPress = () => {
-    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
-      {type: UPSERT_DROMEDARIES, expeditionId, excludes: [], maximum: 100}));
+  const editDromedariesPress = (dromedaries: Resource) => {
+    const exclude = Object.keys(expedition.dromedaries).filter((expeditionDromedaries) => {
+      if (expeditionDromedaries !== `${dromedaries.type}|${dromedaries.quality}`) {
+        return true;
+      }
+    });
+    dispatch(increaseResources(vault, [new Resource(dromedaries)]));
+    dispatch(removeDromedaries({
+      expeditionId, 
+      dromedariesTypeQuality: `${dromedaries.type}|${dromedaries.quality}`
+    }));
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open', {
+      type: UPSERT_DROMEDARIES,
+      expeditionId, exclude,
+      maximum: expedition.getRemainingDromedarySpace(`${dromedaries.type}|${dromedaries.quality}`)
+    }));
   };
 
   const removeDromedariesPress = (dromedaries: Resource) => {
+    dispatch(increaseResources(vault, [new Resource(dromedaries)]));
     dispatch(removeDromedaries({
       expeditionId, 
       dromedariesTypeQuality: `${dromedaries.type}|${dromedaries.quality}`
@@ -46,7 +61,7 @@ export default function DromedariesComponent(props: { expeditionId: string }) {
           <View key={dromedaries.type} style={styles.rows}>
             <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start',
               minWidth: pos.buttonWithCancelOnSide, maxWidth: pos.buttonWithCancelOnSide}]}
-              onPress={() => editDromedariesPress()}>
+              onPress={() => editDromedariesPress(dromedaries)}>
               <SvgComponent icon={new Icon({...dromedaryResourceType.icon, size: 20})} />
               <Text>
                 {` ${dromedaries.type} x${dromedaries.quantity}`}

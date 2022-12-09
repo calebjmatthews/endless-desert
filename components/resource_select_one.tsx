@@ -433,7 +433,7 @@ export default function ResourceSelectOneComponent() {
       break;
 
       case UPSERT_DROMEDARIES:
-      actionSelectDromedaries();
+      actionUpsertDromedaries();
     }
   }
 
@@ -614,7 +614,7 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
-  function actionSelectDromedaries() {
+  function actionUpsertDromedaries() {
     if (resourceSelected != null) {
       dispatch(consumeResources(vault, [new Resource({
         ...resourceSelected, quantity: parseInt(quantitySelected)})]));
@@ -670,7 +670,9 @@ export default function ResourceSelectOneComponent() {
 
       case UPSERT_DROMEDARIES:
       const dromedaries = vault.getSubcategoryResources(RESOURCE_SUBCATEGORIES.DROMEDARY);
-      return dromedaries.filter((dromedary) => (!modalValue.exclude?.includes(`${dromedary.type}|${dromedary.quality}`)));
+      return dromedaries.filter((dromedary) => (
+        !utils.arrayIncludes(modalValue.exclude,`${dromedary.type}|${dromedary.quality}`)
+      ));
 
       default:
       return [];

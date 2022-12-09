@@ -13,14 +13,20 @@ import { MODALS } from '../../enums/modals';
 
 export default function AddDromedariesButton(props: { expeditionId: string }) {
   const { expeditionId } = props;
+  const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const pos = useTypedSelector(state => state.ui.positioner);
   const dispatch = useDispatch();
 
   const upsertDromedaries = () => {
-    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open',
-      {type: UPSERT_DROMEDARIES, expeditionId, excludes: [], maximum: 100}));
+    dispatch(displayModalValue(MODALS.RESOURCE_SELECT_ONE, 'open', {
+      type: UPSERT_DROMEDARIES, 
+      expeditionId, 
+      exclude: Object.keys(expedition.dromedaries), 
+      maximum: expedition.getRemainingDromedarySpace()
+    }));
   };
 
+  if (expedition.getRemainingDromedarySpace() === 0) { return null; }
   return (
     <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start',
       minWidth: pos.buttonInEmbedded,  maxWidth: pos.buttonInEmbedded, opacity: 0.9, marginBottom: 6}]}

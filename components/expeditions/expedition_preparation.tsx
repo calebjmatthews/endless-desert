@@ -15,10 +15,12 @@ import DromedariesComponent from './dromedaries';
 
 import { destinations } from '../../instances/destinations';
 
-export default function ExpeditionPreparationComponent(props: { expedition: Expedition }) {
-  const { expedition } = props;
+export default function ExpeditionPreparationComponent(props: { expeditionId: string }) {
+  const { expeditionId } = props;
+  const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const destination = expedition.customDestination || destinations[expedition.destinationId || ''];
   const pos = useTypedSelector(state => state.ui.positioner);
+
   if (!destination) { return null; }
   return (
     <View style={[styles.panelFlex, {overflow: 'hidden', minHeight: 300, 
@@ -51,7 +53,7 @@ export default function ExpeditionPreparationComponent(props: { expedition: Expe
               <IconComponent provider='FontAwesome5' name='horse-head'
                 color={'#444'} size={16} />
               <Text style={styles.heading3}>{` Dromedaries`}</Text>
-              <Text style={styles.mutedText}>{` (max 100):`}</Text>
+              <Text style={styles.mutedText}>{` (${expedition.getCurrentDromedaryCount()}/100):`}</Text>
             </View>
 
             <DromedariesComponent expeditionId={expedition.id} />
