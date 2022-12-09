@@ -15,6 +15,7 @@ import Rates from './rates';
 import ConversationStatus from './conversation_status';
 import QuestStatus from './quest_status';
 import Terrain from './terrain';
+import ExpeditionStatus from './expedition_status';
 
 export interface RootState extends DBRootState {
   rates: Rates;
@@ -41,4 +42,5 @@ export interface DBRootState {
   questStatus: QuestStatus;
   messages: Message[];
   terrain: Terrain;
+  expeditionStatus: ExpeditionStatus;
 }

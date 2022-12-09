@@ -36,7 +36,7 @@ etcConversations[FTU.A_SOILED_YET_SHINING_GOWN] = new Conversation({
 etcConvoStatements[FTU.A_SOILED_YET_SHINING_GOWN + ' - s0'] = new ConversationStatement({
   name: FTU.A_SOILED_YET_SHINING_GOWN + ' - s0',
   partnerKind: 'person', partnerType: PEOPLE.TOURMALINE_JEWELER,
-  text: `I've been journeying through this area, seeking a rumoured town rising in popularity. I've had no luck finding it whatsoever, and to sour my day further my camel took a poor turn and dropped me, ruining my fourth-finest riding dress.`,
+  text: `I've been journeying through this area, seeking a rumoured town rising in popularity. I've had no luck finding it whatsoever, and to sour my day further my dromedary took a poor turn and dropped me, ruining my fourth-finest riding dress.`,
   responseNames: [FTU.A_SOILED_YET_SHINING_GOWN + ' - r0c', FTU.A_SOILED_YET_SHINING_GOWN + ' - r0a',
     FTU.A_SOILED_YET_SHINING_GOWN + ' - r0h']
 });

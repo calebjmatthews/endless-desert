@@ -105,7 +105,7 @@ resourceTags[RESOURCE_TAGS.INK] = new ResourceTag({
   plural: 'Inks',
   value: 300,
   extract: false,
-  icon: new Icon({provider: 'FontAwesome5', name: 'water',
+  icon: new Icon({provider: 'MaterialCommunityIcons', name: 'water',
     color:'#222'})});
 
 resourceTags[RESOURCE_TAGS.PRECIOUS] = new ResourceTag({

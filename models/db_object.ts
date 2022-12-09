@@ -13,6 +13,7 @@ import QuestStatus, { DBQuestStatus } from './quest_status';
 import Message, { DBMessage } from './message';
 import Terrain from './terrain';
 import Icon from './icon';
+import ExpeditionStatus from './expedition_status';
 
 export default class DBObject {
   vault?: DBVault;
@@ -30,6 +31,7 @@ export default class DBObject {
   quest_status?: DBQuestStatus;
   messages?: DBMessage[];
   terrain?: Terrain;
+  expedition_status?: ExpeditionStatus;
   sessionId?: string;
   userId?: string;
 
@@ -50,6 +52,7 @@ export default class DBObject {
         conversation_status: obj.conversationStatus,
         quest_status: (obj.questStatus ? obj.questStatus.export() : null),
         terrain: obj.terrain,
+        expedition_status: obj.expeditionStatus,
         sessionId,
         userId
       });
@@ -110,6 +113,9 @@ export default class DBObject {
     }
     if (rawDbObj.terrain) {
       dbObj.terrain = JSON.parse(rawDbObj.terrain?.[0]?.value);
+    }
+    if (rawDbObj.expedition_status) {
+      dbObj.expedition_status = JSON.parse(rawDbObj.expedition_status?.[0]?.value);
     }
 
     const impObj: any = {};
@@ -204,6 +210,9 @@ export default class DBObject {
     if (dbObj.terrain) {
       impObj.terrain = new Terrain(dbObj.terrain);
     }
+    if (dbObj.expedition_status) {
+      impObj.expedition_status = new ExpeditionStatus(dbObj.expedition_status);
+    }
     return impObj;
   }
 }
@@ -223,7 +232,8 @@ interface RawDBObject {
   conversation_status: [{ value: string }],
   quest_status: [{ value: string }],
   messages: [{ timestamp: number, text: string, type: string, icon: string }],
-  terrain: [{ value: string }]
+  terrain: [{ value: string }],
+  expedition_status: [{ value: string }]
 }
 
 const exportBuildings = (buildings: { [id: string] : Building }) => {

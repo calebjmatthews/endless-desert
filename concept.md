@@ -1,7 +1,7 @@
 # Endless Desert
 Incremental idle game about exploration and discovery in an endless desert
 
-ssh -i newsummer cmatthews@64.225.48.128
+
 scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@64.225.48.128:/home/cmatthews/
 
 ## Ideas:
@@ -513,7 +513,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Swiftness, Keepers of the Hanging Gardens, Green wind
   - Bounty, Tourmaline Jewelers, Purple gem
   - Vision, Porcelain Commissars, Yellow eye
-  - Thrift, Cochineal Scribes, Blue coins
+  - Precision, Cochineal Scribes, Blue coins
 - Implements give points in the following categories:
   - Seek (Torch): Spotting treasure, traps, and foes
   - Break (Slab): Breaking through containers and walls
@@ -521,6 +521,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Loose (Edge): Escaping immobilization
   - Heal (Binding): Undoing damage
 - Leaders learn techniques from codexes, each technique uses a combination of points from implements
+  - Seek: 0.25pts Seek to lvI light any dark space around.
+  - Break: 1pt Break to lvI break a space in front.
+  - Trap: 4pts Trap to drop lvI trap when being chased.
+  - Loose: 4pts Loose to lvI loose when trapped.
+  - Heal: 1pt Heal to heal 4 health when below 25% and not chased.
 - Attitudes determine how a leader moves through the site
   - Cautious: Avoid enemies
   - Quick: Leave after finding grand treasure
@@ -532,9 +537,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - SomeName, Lapidary Initiate: Tourmaline Jewelers, Creates jewelry Treasures, beginning with simple ones from beads, and developing to others over time
   - OtherName, Factious Ontologist: Cochlineal Scribes, Constantly getting kicked out of things, requires no payment but uses up time, in exchange for specialization into schools of thought
   - Asyut, Archetect (1st Class): Sandstone Artificers, Will build and improve road between Alabaster and your town, can be paid to send a crew to an Oasis, Herd, or Trading Post for improvement
-  - FourthName, Sober Commissar: Porcelain Commissars, Exchanges legal documents (?) for booze
-  - FifthName, Feline Advocate: Keepers of the Hanging Gardens, Begins questline to discover, raise, and breed cats. Once completed, will buy 
-- Lac, the Dessicated Town
+  - FourthName, Sober Commissar: Porcelain Commissars, Exchanges huge quantities of resources (esp. food and booze) for special treasures
+  - FifthName, Feline Advocate: Keepers of the Hanging Gardens, Begins questline to discover, raise, and breed cats. Once completed, will buy existing cats
+- Lac, the Forgotten Town
   - Can be rebuilt to provide Olibanum Resin, Dates, and Water
   - Lac, the Recovering Town (Water)
   - Lac, the Rising Town (Dates)
@@ -666,6 +671,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/india-6/
     https://www.svgrepo.com/collection/bugs-insects/
     https://www.svgrepo.com/collection/meals-3/
+    https://www.svgrepo.com/collection/food-and-restaurant-8/
     https://www.svgrepo.com/collection/circle-color-food/
     https://www.svgrepo.com/collection/food-set-2/1
     https://www.svgrepo.com/collection/thanksgiving-6/
@@ -1114,7 +1120,7 @@ CREATE TABLE `endless_desert`.`sessions` (
   `expires_at` BIGINT(32) NOT NULL,
   PRIMARY KEY (`id`));
 
-CREATE TABLE `equipment_marked` (
+CREATE TABLE `expedition_status` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` varchar(16) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1301,9 +1307,3 @@ dispatch(setTerrain(eightTerrain));
 `expo upgrade`
 `The following packages were not updated. You should check the READMEs for those repositories to determine what version is compatible with your new set of packages:
 @types/react-redux, react-native-vector-icons, react-redux, redux, @types/random, @types/react-native-vector-icons, @types/redux`
-
-border: 2px solid #fff;
-border-bottom: none;
-border-radius: 10px 10px 0 0;
-padding: 0 10px;
-background: #0434a9;

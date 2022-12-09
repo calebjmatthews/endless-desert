@@ -1,7 +1,7 @@
 import Resource from './resource';
 import Destination from './destination';
 import ExpeditionEventHistory from './expedition_event_history';
-import CamelType from './camel_type';
+import DromedaryType from './dromedary_type';
 
 // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
 
@@ -9,37 +9,40 @@ export default class Expedition {
   id: string = '';
   name: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
   endCoordinates: [number, number] = [0, 0]; // These can change
+  destinationId?: string;
   customDestination?: Destination;
   leader: string = '';
-  camels: { [typeQuality: string] : Resource } = {};
+  dromedaries: { [typeQuality: string] : Resource } = {};
   resources: { [typeQuality: string] : Resource } = {};
   state: 'preparing'|'embarking'|'exploring'|'returning' = 'preparing';
   beganAt?: number;
   endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory } = {};
 
-  constructor(expedition: ExpeditionInterface) {
-    Object.assign(this, expedition);
+  constructor(expedition: ExpeditionInterface|null) {
+    if (expedition) {
+      Object.assign(this, expedition);
+    }
   }
 
-  getSpeed(camelTypes: { [name: string] : CamelType }) {
+  getSpeed(dromedaryTypes: { [name: string] : DromedaryType }) {
     let totalSpeed = 0;
     let count = 0;
-    Object.keys(this.camels).forEach((typeQuality) => {
-      const camelResource = this.camels[typeQuality];
-      const camelType = camelTypes[camelResource.type];
-      totalSpeed += (camelType.speed * camelResource.quantity);
-      count += camelResource.quantity;
+    Object.keys(this.dromedaries).forEach((typeQuality) => {
+      const dromedaryResource = this.dromedaries[typeQuality];
+      const dromedaryType = dromedaryTypes[dromedaryResource.type];
+      totalSpeed += (dromedaryType.speed * dromedaryResource.quantity);
+      count += dromedaryResource.quantity;
     });
     return (totalSpeed / count);
   }
 
-  getCapacity(camelTypes: { [name: string] : CamelType }) {
+  getCapacity(dromedaryTypes: { [name: string] : DromedaryType }) {
     let capacity = 0;
-    Object.keys(this.camels).forEach((typeQuality) => {
-      const camelResource = this.camels[typeQuality];
-      const camelType = camelTypes[camelResource.type];
-      capacity += (camelType.capacity * camelResource.quantity);
+    Object.keys(this.dromedaries).forEach((typeQuality) => {
+      const dromedaryResource = this.dromedaries[typeQuality];
+      const dromedaryType = dromedaryTypes[dromedaryResource.type];
+      capacity += (dromedaryType.capacity * dromedaryResource.quantity);
     });
     return capacity;
   }
@@ -49,9 +52,10 @@ interface ExpeditionInterface {
   id: string;
   name: string;
   endCoordinates: [number, number]; // These can change
+  destinationId?: string;
   customDestination?: Destination;
   leader: string;
-  camels: { [typeQuality: string] : Resource };
+  dromedaries: { [typeQuality: string] : Resource };
   resources: { [typeQuality: string] : Resource };
   state: 'preparing'|'embarking'|'exploring'|'returning';
   beganAt?: number;

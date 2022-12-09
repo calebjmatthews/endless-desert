@@ -6,7 +6,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
 import { selectTab, removeGlowingTab } from '../actions/ui';
-import { unlockTab, UNLOCK_TAB } from '../actions/account';
+import { unlockTab } from '../actions/account';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
@@ -14,6 +14,10 @@ import { tabs } from '../instances/tabs';
 import { utils } from '../utils'
 import { TABS } from '../enums/tabs';
 import { PULSE_DURATION } from '../constants';
+
+import Resource from '../models/resource';
+import { resourceTypes } from '../instances/resource_types';
+import { increaseResources } from '../actions/vault';
 
 enum AP {
   START_RISING = 'start rising',
@@ -99,6 +103,11 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
       dispatch(unlockTab(TABS.EXPEDITIONS));
+      let allResources: Resource[] = [];
+      Object.keys(resourceTypes).map((typeName) => {
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100000 }));
+      });
+      dispatch(increaseResources(vault, allResources));
     }
     else {
       dispatch(selectTab(tabName));

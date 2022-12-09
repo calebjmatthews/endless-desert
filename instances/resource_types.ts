@@ -516,7 +516,7 @@ resourceTypes[RTY.INK_HIBRI] = new ResourceType({
   name: RTY.INK_HIBRI,
   category: RCA.MATERIAL,
   subcategory: RSC.ANIMAL,
-  tags: [RTA.ANIMAL],
+  tags: [RTA.ANIMAL, RTA.INK],
   value: 300,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#6d5a4e',
     shadow: '#534338', secondaryColor: '#999'})
@@ -1296,7 +1296,7 @@ resourceTypes[RTY.PAPYRUS] = new ResourceType({
 resourceTypes[RTY.INK_FERROUS] = new ResourceType({
   name: RTY.INK_FERROUS,
   category: RCA.MATERIAL_REFINED,
-  tags: [RTA.SYNTHESIZED],
+  tags: [RTA.SYNTHESIZED, RTA.INK],
   value: 300,
   icon: new Icon({provider: 'svg', name: SVGS.DROP, color: '#333',
     shadow: '#111', secondaryColor: '#a2a2a2'})

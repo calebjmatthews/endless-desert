@@ -18,6 +18,7 @@ import { SET_EATING, SET_DRINKING, setLeader } from '../actions/leaders';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setRates } from '../actions/rates';
 import { DISPLAY_TREASURE, displayTreasure } from '../actions/account';
+import { UPSERT_DROMEDARIES, upsertDromedaries } from '../actions/expedition_status';
 
 import Resource from '../models/resource';
 import Vault from '../models/vault';
@@ -41,7 +42,7 @@ import { QUALITY_VALUES, ANALYSIS_TREASURES_KNOWLEDGE, ANALYSIS_TREASURES_SPEED 
 const QV = QUALITY_VALUES;
 import { EQUIPMENT_SLOTS } from '../enums/equipment_slots';
 import { RESOURCE_CATEGORIES } from '../enums/resource_categories';
-import { RESEARCH_OPTION_ACTIONS } from '../enums/research_option_actions';
+import { RESOURCE_SUBCATEGORIES } from '../enums/resource_subcategories';
 
 export default function ResourceSelectOneComponent() {
   const dispatch = useDispatch();
@@ -59,13 +60,14 @@ export default function ResourceSelectOneComponent() {
 
   const [resourceSelected, setResourceSelected] = useState(setStartingSelected());
   function setStartingSelected(): Resource|null {
-    if (resourcesArray.length == 1) { return resourcesArray[0]; }
+    if (resourcesArray.length > 0) { return resourcesArray[0]; }
     return null;
   }
-  function setStartingQuantityS(): string {
-    if (modalValue.type == 'Trading') {
+  function setStartingQuantitySelected(): string {
+    if (!resourcesArray.length) { return '0'; }
+    if (modalValue.type === 'Trading') {
       const visit = tradingStatus.visits[modalValue.slot];
-      if (resourcesArray.length == 1 && visit) {
+      if (visit) {
         let tInt = visit.acceptQuantity;
         const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
         if (tInt > vault.resources[key].quantity) {
@@ -74,11 +76,21 @@ export default function ResourceSelectOneComponent() {
         return tInt.toString();
       }
     }
+    else if (modalValue.type == RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+      let quantitySelected = 0;
+      const maximum = (modalValue.type === RESEARCHES.ANALYSIS)
+        ? (researchStatus.getAnalysisMax(treasuresDisplayed))
+        : modalValue.maximum;
+      quantitySelected = (resourcesArray[0].quantity > maximum)
+        ? maximum
+        : resourcesArray[0].quantity;
+      return quantitySelected.toString();
+    }
     return '0';
   }
-  const [quantitySelected, setQuantitySelected] = useState(setStartingQuantityS());
+  const [quantitySelected, setQuantitySelected] = useState(setStartingQuantitySelected());
   function setStartingQuantityG(): number {
-    const selectedQuantity = setStartingQuantityS();
+    const selectedQuantity = setStartingQuantitySelected();
     const visit = tradingStatus.visits[modalValue.slot];
     if (visit !== null) {
       return calcQuantityGiven(selectedQuantity, modalValue, resourceSelected, visit);
@@ -130,8 +142,7 @@ export default function ResourceSelectOneComponent() {
         </View>
       </ScrollView>
       <View style={StyleSheet.flatten([styles.panelFlexColumn,
-        {minWidth: positioner.majorWidth,
-          maxWidth: positioner.majorWidth}])}>
+        {minWidth: positioner.majorWidth, maxWidth: positioner.majorWidth}])}>
         {renderQuantityInput()}
         <View style={styles.buttonRow}>
           {renderSubmitButton()}
@@ -146,10 +157,13 @@ export default function ResourceSelectOneComponent() {
     setQuantityGiven: (quantity: number) => void) {
     const visit = tradingStatus.visits[modalValue.slot];
     if (visit === null) { return null; }
+    const maximum = (modalValue.type === RESEARCHES.ANALYSIS)
+        ? (researchStatus.getAnalysisMax(treasuresDisplayed))
+        : modalValue.maximum;
     return resourceArray.map((resource) => {
       return <ResourceSelector key={(resource.type + '|' + resource.quality)}
         resource={resource} resourceSelected={resourceSelected} vault={vault}
-        analysisMax={researchStatus.getAnalysisMax(treasuresDisplayed)}
+        maximum={maximum}
         setResourceSelected={setResourceSelected} 
         setQuantitySelected={setQuantitySelected} setQuantityGiven={setQuantityGiven} 
         visit={visit} modalValue={modalValue} positioner={positioner} />;
@@ -157,22 +171,25 @@ export default function ResourceSelectOneComponent() {
   }
 
   function renderQuantityInput() {
-    if (modalValue.type == RESEARCHES.STUDY) {
+    if (modalValue.type === RESEARCHES.STUDY) {
       return (
         <View style={styles.spacedRows}>
           {renderQuantitySelected()}
         </View>
       );
     }
-    else if (modalValue.type == RESEARCHES.ANALYSIS) {
+    else if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+      const maximum = (modalValue.type === RESEARCHES.ANALYSIS)
+        ? (researchStatus.getAnalysisMax(treasuresDisplayed))
+        : modalValue.maximum;
       return (
         <View style={styles.columns}>
           <View style={styles.rows}>
           <Text>{'Selecting: '}</Text>
           <TextInput style={styles.inputBox} value={quantitySelected}
             editable={(resourceSelected != null)}
-            onChangeText={ (text) => setQuantitySelected(text) } />
-          <Text>{` (Max ${researchStatus.getAnalysisMax(treasuresDisplayed)})`}</Text>
+            onChangeText={ (text) => changeCappedQuantity(text, maximum) } />
+          <Text>{` (Max ${maximum})`}</Text>
           </View>
           <View style={styles.spacedRows}>
             {renderQuantitySelected()}
@@ -286,7 +303,18 @@ export default function ResourceSelectOneComponent() {
         </>
       );
     }
-    else if (modalValue.type == 'Trading' && parseInt(quantitySelected) > 0) {
+    else if (modalValue.type === 'Trading' && parseInt(quantitySelected) > 0) {
+      const resourceType = utils.getResourceType(resourceSelected);
+      return (
+        <View style={styles.rows}>
+          <BadgeComponent icon={resourceType.icon} quality={resourceSelected.quality}
+            size={21} />
+          <Text>{' ' + utils.getResourceName(resourceSelected) + ' x'
+            + utils.formatNumberShort(parseInt(quantitySelected))}</Text>
+        </View>
+      );
+    }
+    else if (modalValue.type === UPSERT_DROMEDARIES) {
       const resourceType = utils.getResourceType(resourceSelected);
       return (
         <View style={styles.rows}>
@@ -314,6 +342,11 @@ export default function ResourceSelectOneComponent() {
         <Text>{' ' + name + ' x' + utils.formatNumberShort(quantityGiven)}</Text>
       </View>
     );
+  }
+
+  function changeCappedQuantity(text: string, maximum: number) {
+    let quantity = parseInt(text) || 0;
+    setQuantitySelected((quantity <= maximum) ? quantity.toString() : maximum.toString());
   }
 
   function changeTradeQuantity(text: string) {
@@ -398,6 +431,9 @@ export default function ResourceSelectOneComponent() {
       case DISPLAY_TREASURE:
       actionDisplayTreasure();
       break;
+
+      case UPSERT_DROMEDARIES:
+      actionSelectDromedaries();
     }
   }
 
@@ -578,6 +614,19 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
+  function actionSelectDromedaries() {
+    if (resourceSelected != null) {
+      dispatch(consumeResources(vault, [new Resource({
+        ...resourceSelected, quantity: parseInt(quantitySelected)})]));
+      dispatch(upsertDromedaries({
+        expeditionId: modalValue.expeditionId,
+        dromedaries: new Resource({
+          ...resourceSelected, quantity: parseInt(quantitySelected)})
+      }));
+      dispatch(displayModalValue(null, 'closed', null));
+    }
+  }
+
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
@@ -619,6 +668,10 @@ export default function ResourceSelectOneComponent() {
       return tr.filter((resource) => (!utils.arrayIncludes(Object.keys(treasuresDisplayed),
         resource.type) ));
 
+      case UPSERT_DROMEDARIES:
+      const dromedaries = vault.getSubcategoryResources(RESOURCE_SUBCATEGORIES.DROMEDARY);
+      return dromedaries.filter((dromedary) => (!modalValue.exclude?.includes(`${dromedary.type}|${dromedary.quality}`)));
+
       default:
       return [];
     }
@@ -655,7 +708,7 @@ function calcQuantityGiven(qSelected: string, modalValue: any,
 }
 
 function ResourceSelector(props: {resource: Resource, resourceSelected: Resource|null,
-  vault: Vault, modalValue: any,  visit: TradingPartnerVisit, analysisMax: number,
+  vault: Vault, modalValue: any,  visit: TradingPartnerVisit, maximum: number,
   setResourceSelected: (resourceSelected: Resource|null) => void,
   setQuantitySelected: (quantity: string) => void,
   setQuantityGiven: (quantity: number) => void,
@@ -743,8 +796,8 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
       setQuantityGiven(calcQuantityGiven(quantity.toString(), modalValue, resource,
         visit));
     }
-    if (modalValue.type == RESEARCHES.ANALYSIS) {
-      if (quantity > props.analysisMax) { quantity = props.analysisMax; }
+    if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+      if (quantity > props.maximum) { quantity = props.maximum; }
       setQuantitySelected(quantity.toString());
     }
   }

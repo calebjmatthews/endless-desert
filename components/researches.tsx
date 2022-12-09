@@ -193,7 +193,7 @@ export default function ResearchesComponent() {
     if (resume) {
       dispatch(selectTab("Researching", researchStatus.name));
     }
-    else if (costResource.quantity >= vault.resources[`${costResource.type}|0`]?.quantity) {
+    else if (costResource.quantity <= vault.resources[`${costResource.type}|0`]?.quantity) {
       dispatch(consumeResources(vault, [costResource]));
       dispatch(startResearch(researchStatus.name,
         utils.getResearchOptionSlots(milestones)));

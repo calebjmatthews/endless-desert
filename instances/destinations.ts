@@ -14,7 +14,7 @@ const destinations: { [name: string] : Destination } = {
       id: EXPLORATIONS.CLIFFSIDE_CARTOGRAPHERS_TOWER,
       type: DESTINATION_TYPES.EXPLORATION
     },
-    icon: new Icon({provider: 'svg', name: SVGS.CARTOGRAPHERS_TOWER})
+    icon: new Icon({provider: 'svg', name: SVGS.CARTOGRAPHERS_TOWER, backgroundColor: '#404b85'})
   }),
   [RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO]: new Destination({
     id: RESEARCHES.DESTINATION_MOONLIT_POTTERS_STUDIO,
@@ -34,7 +34,7 @@ const destinations: { [name: string] : Destination } = {
       id: EXPLORATIONS.THIEVES_CAMP,
       type: DESTINATION_TYPES.EXPLORATION
     },
-    icon: new Icon({provider: 'svg', name: SVGS.THIEVES_CAMP})
+    icon: new Icon({provider: 'svg', name: SVGS.THIEVES_CAMP, backgroundColor: '#67bcdd'})
   }),
   [RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND]: new Destination({
     id: RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND,

@@ -354,6 +354,19 @@ export const styles = StyleSheet.create({
     borderColor: '#73799f',
     borderRadius: 2
   },
+  buttonSubtleAway: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 2,
+    paddingVertical: 4,
+    paddingHorizontal: 6,
+    borderRadius: 2,
+    backgroundColor: '#5a201e',
+    borderColor: '#5a201e'
+  },
   buttonAway: {
     paddingVertical: 2,
     paddingHorizontal: 6,
@@ -676,5 +689,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center', 
     paddingHorizontal: 5
+  },
+
+  landscapeWrapper: {
+    zIndex: -1,
+    position: 'absolute',
+    bottom: -60,
+    right: -40
   }
 });

@@ -18,6 +18,7 @@ export default class Positioner {
   bodyMedTextWidth: number = 220;
   buildingBarWidth: number = 208;
   leaderEffectWidth: number = 203;
+  embeddedWidth: number = 240;
   modalWidth: number = 300;
   modalMajor: number = 260;
   modalMinor: number = 240;
@@ -33,6 +34,8 @@ export default class Positioner {
   confirmationRowHeight: number = 108;
   recipeButtonIconWidth: number = 90;
   recipeTextWidth: number = 160;
+  buttonWithCancelOnSide: number = 220;
+  buttonInEmbedded: number = 243;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {
@@ -55,6 +58,7 @@ export default class Positioner {
         - (this.minorPadding * 2);
       this.leaderEffectWidth = this.majorWidth - this.buildingButtonSpacer
       - (this.minorPadding * 2.5);
+      this.embeddedWidth = screenWidth - (this.minorPadding * 6);
       this.modalWidth = screenWidth - (this.minorPadding * 2);
       this.modalMajor = screenWidth - (this.minorPadding * 4);
       this.modalMinor = screenWidth - (this.minorPadding * 8);
@@ -70,6 +74,9 @@ export default class Positioner {
       this.speechButtonWidth = this.modalMajor - this.majorPadding;
       this.mapHeight = this.bodyHeight - (this.majorPadding * 2.5);
       this.recipeTextWidth = this.modalMinor - this.recipeButtonIconWidth;
+      this.buttonWithCancelOnSide = this.screenWidth - (this.iconSpacer + (this.majorPadding * 2)
+        + (this.minorPadding * 1.5));
+      this.buttonInEmbedded = this.screenWidth - ((this.majorPadding * 3) + (this.minorPadding * 1.75));
     }
   }
 }

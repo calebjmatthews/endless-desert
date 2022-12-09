@@ -17,6 +17,7 @@ import QuestStatusReducer from './quest_status';
 import UIReducer from './ui';
 import MessageReducer from './messages';
 import TerrainReducer from './terrain';
+import ExpeditionStatusReducer from './expedition_status';
 
 const rootReducer = combineReducers({
   vault: VaultReducer,
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
   questStatus: QuestStatusReducer,
   ui: UIReducer,
   messages: MessageReducer,
-  terrain: TerrainReducer
+  terrain: TerrainReducer,
+  expeditionStatus: ExpeditionStatusReducer
 });
 
 export default rootReducer;

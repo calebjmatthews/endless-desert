@@ -34,7 +34,7 @@ export const CHANGE_MULTIPLIERS = {
 export const DEFAULT_DISH_COST = 20;
 export const DEFAULT_SPICE_COST = 4;
 export const STUDY_CATEGORY_BLACKLIST = [RESOURCE_CATEGORIES.SPECIAL];
-export const STUDY_TAG_BLACKLIST = [RESOURCE_TAGS.MIND];
+export const STUDY_TAG_BLACKLIST = [RESOURCE_TAGS.MIND, RESOURCE_TAGS.ONE_OF_A_KIND];
 
 export const EQUIPMENT_TIER_DATA: { label: string, headingColor: string, color?: string, 
   altColor?: string, iconName?: string }[] = [

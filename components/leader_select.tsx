@@ -13,6 +13,7 @@ import { ASSIGN_TO_BUILDING, assignToBuilding, LIVE_AT_BUILDING, DON_EQUIPMENT, 
   from '../actions/leaders';
 import { setRates } from '../actions/rates';
 import { displayModalValue } from '../actions/ui';
+import { upsertExpedition, UPSERT_EXPEDITION } from '../actions/expedition_status';
 
 import Leader from '../models/leader';
 import Building from '../models/building';
@@ -32,10 +33,10 @@ export default function LeaderSelectComponent() {
   const equipment = useTypedSelector(state => state.equipment);
   const vault = useTypedSelector(state => state.vault);
   const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
+  const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const modalValue: {type: string, subType: string, building: Building, fromBuildingDetail?: boolean, 
-    anEquipment? : Equipment} = useTypedSelector(state => state.ui.modalValue);
-  const { subType, building, fromBuildingDetail, anEquipment } = modalValue;
-  const equipmentType = anEquipment ? equipmentTypes[anEquipment?.typeName] : null;
+    anEquipment? : Equipment, expeditionId: string} = useTypedSelector(state => state.ui.modalValue);
+  const { subType, building, fromBuildingDetail, anEquipment, expeditionId } = modalValue;
   const positioner = useTypedSelector(state => state.ui.positioner);
 
   let leadersArray = Object.keys(leaders).map((leaderId) => {
@@ -192,6 +193,12 @@ export default function LeaderSelectComponent() {
         dispatch(setLeaders(newLeaders));
         const newRates = new Hourglass().calcRates(buildings, newLeaders, treasureEffects, vault);
         dispatch(setRates(newRates));
+      }
+      if (subType === UPSERT_EXPEDITION) {
+        const expedition = expeditionStatus.expeditions[expeditionId];
+        expedition.leader =  leaderSelected;
+        dispatch(upsertExpedition(expedition));
+        dispatch(displayModalValue(null, 'closed', null));
       }
       if (fromBuildingDetail) {
         dispatch(displayModalValue(MODALS.BUILDING_DETAIL, 'open', building));

@@ -26,6 +26,7 @@ import { setQuestStatus } from '../actions/quest_status';
 import { setGlobalState } from '../actions/ui';
 import { setMessages, setMessagesNotNew } from '../actions/messages';
 import { setTerrain } from '../actions/terrain';
+import { setExpeditionStatus } from '../actions/expedition_status';
 
 import Hourglass from '../models/hourglass';
 const hourglass = new Hourglass();
@@ -40,6 +41,7 @@ import EquipmentEffect from '../models/equipment_effect';
 import { genStartingBuildings } from '../instances/buildings';
 import { SAVE_INTERVAL, STORAGE_GET_URL, STORAGE_UPSERT_URL, SESSION_URL,
   FADE_IN_DELAY } from '../constants';
+import expedition_status from '../reducers/expedition_status';
 
 const TABLE_SETTERS : { [tableName: string] : Function} = {
   'vault': setVault,
@@ -57,7 +59,8 @@ const TABLE_SETTERS : { [tableName: string] : Function} = {
   'conversation_status': setConversationStatus,
   'quest_status': setQuestStatus,
   'messages': setMessages,
-  'terrain': setTerrain
+  'terrain': setTerrain,
+  'expedition_status': setExpeditionStatus
 }
 
 export default function StorageHandlerComponent() {
@@ -79,6 +82,7 @@ export default function StorageHandlerComponent() {
   const globalState = useTypedSelector(state => state.ui.globalState);
   const messages = useTypedSelector(state => state.messages);
   const terrain = useTypedSelector(state => state.terrain);
+  const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const [lastTimestamp, setLastTimestamp] = useState(new Date(Date.now()).valueOf());
   const [callSave, setCallSave] = useState(false);
 
@@ -324,7 +328,8 @@ export default function StorageHandlerComponent() {
         conversationStatus: conversationStatus,
         questStatus: questStatus,
         messages: messages,
-        terrain: terrain
+        terrain: terrain,
+        expeditionStatus: expeditionStatus
       }, account.sessionId, account.userId);
       const body = JSON.stringify(dbObject);
       fetch((STORAGE_UPSERT_URL), {
