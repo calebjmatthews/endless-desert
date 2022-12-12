@@ -48,3 +48,21 @@ export function removeDromedaries(props: {expeditionId: string, dromedariesTypeQ
     dromedariesTypeQuality: props.dromedariesTypeQuality
   }
 }
+
+export const UPSERT_RESOURCE = 'UPSERT_RESOURCE';
+export function upsertResource(props: {expeditionId: string, resource: Resource}) {
+  return {
+    type: UPSERT_RESOURCE,
+    expeditionId: props.expeditionId,
+    resource: props.resource
+  }
+}
+
+export const REMOVE_RESOURCE = 'REMOVE_RESOURCE';
+export function removeResource(props: {expeditionId: string, typeQuality: string}) {
+  return {
+    type: REMOVE_RESOURCE,
+    expeditionId: props.expeditionId,
+    typeQuality: props.typeQuality
+  }
+}

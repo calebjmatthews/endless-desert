@@ -2,6 +2,7 @@ import Resource from './resource';
 import Destination from './destination';
 import ExpeditionEventHistory from './expedition_event_history';
 import DromedaryType from './dromedary_type';
+import { dromedaryTypes } from '../instances/dromedary_types';
 
 // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
 
@@ -38,6 +39,31 @@ export default class Expedition {
   getRemainingDromedarySpace(exclude?: string) {
     const maximum = 100;
     return maximum - this.getCurrentDromedaryCount(exclude);
+  }
+
+  getTotalResourceSpace(dromedaryTypes: { [name: string] : DromedaryType }) {
+    let capacity = 0;
+    Object.keys(this.dromedaries).forEach((typeQuality) => {
+      const dromedaryResource = this.dromedaries[typeQuality];
+      const dromedaryType = dromedaryTypes[dromedaryResource.type];
+      capacity += (dromedaryType.capacity * dromedaryResource.quantity);
+    });
+    return capacity;
+  }
+
+  getCurrentResourceCount(exclude?: string) {
+    let count = 0;
+    Object.keys(this.resources).forEach((typeQuality) => {
+      if (typeQuality !== exclude) {
+        count += this.resources[typeQuality].quantity;
+      }
+    });
+    return count;
+  }
+
+  getRemainingResourceSpace(dromedaryTypes: { [name: string] : DromedaryType }, exclude?: string) {
+    const maximum = this.getTotalResourceSpace(dromedaryTypes);
+    return maximum - this.getCurrentResourceCount(exclude);
   }
 
   getSpeed(dromedaryTypes: { [name: string] : DromedaryType }) {

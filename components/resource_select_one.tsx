@@ -18,7 +18,8 @@ import { SET_EATING, SET_DRINKING, setLeader } from '../actions/leaders';
 import { addToActivityQueue } from '../actions/quest_status';
 import { setRates } from '../actions/rates';
 import { DISPLAY_TREASURE, displayTreasure } from '../actions/account';
-import { UPSERT_DROMEDARIES, upsertDromedaries } from '../actions/expedition_status';
+import { UPSERT_DROMEDARIES, upsertDromedaries, UPSERT_RESOURCE, upsertResource }
+  from '../actions/expedition_status';
 
 import Resource from '../models/resource';
 import Vault from '../models/vault';
@@ -76,7 +77,8 @@ export default function ResourceSelectOneComponent() {
         return tInt.toString();
       }
     }
-    else if (modalValue.type == RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+    else if (modalValue.type == RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES
+    || modalValue.type === UPSERT_RESOURCE) {
       let quantitySelected = 0;
       const maximum = (modalValue.type === RESEARCHES.ANALYSIS)
         ? (researchStatus.getAnalysisMax(treasuresDisplayed))
@@ -178,7 +180,8 @@ export default function ResourceSelectOneComponent() {
         </View>
       );
     }
-    else if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+    else if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES
+      || modalValue.type === UPSERT_RESOURCE) {
       const maximum = (modalValue.type === RESEARCHES.ANALYSIS)
         ? (researchStatus.getAnalysisMax(treasuresDisplayed))
         : modalValue.maximum;
@@ -314,7 +317,7 @@ export default function ResourceSelectOneComponent() {
         </View>
       );
     }
-    else if (modalValue.type === UPSERT_DROMEDARIES) {
+    else if (modalValue.type === UPSERT_DROMEDARIES || modalValue.type === UPSERT_RESOURCE) {
       const resourceType = utils.getResourceType(resourceSelected);
       return (
         <View style={styles.rows}>
@@ -346,7 +349,9 @@ export default function ResourceSelectOneComponent() {
 
   function changeCappedQuantity(text: string, maximum: number) {
     let quantity = parseInt(text) || 0;
-    setQuantitySelected((quantity <= maximum) ? quantity.toString() : maximum.toString());
+    if (quantity > maximum) { quantity = maximum; }
+    if (quantity > (resourceSelected?.quantity || 0)) { quantity = (resourceSelected?.quantity || 0); }
+    setQuantitySelected(quantity.toString());
   }
 
   function changeTradeQuantity(text: string) {
@@ -434,6 +439,9 @@ export default function ResourceSelectOneComponent() {
 
       case UPSERT_DROMEDARIES:
       actionUpsertDromedaries();
+
+      case UPSERT_RESOURCE:
+      actionUpsertResource();
     }
   }
 
@@ -627,6 +635,19 @@ export default function ResourceSelectOneComponent() {
     }
   }
 
+  function actionUpsertResource() {
+    if (resourceSelected != null) {
+      dispatch(consumeResources(vault, [new Resource({
+        ...resourceSelected, quantity: parseInt(quantitySelected)})]));
+      dispatch(upsertResource({
+        expeditionId: modalValue.expeditionId,
+        resource: new Resource({
+          ...resourceSelected, quantity: parseInt(quantitySelected)})
+      }));
+      dispatch(displayModalValue(null, 'closed', null));
+    }
+  }
+
   function getResourcesArray() {
     switch(modalValue.type) {
       case RESEARCHES.STUDY:
@@ -673,6 +694,16 @@ export default function ResourceSelectOneComponent() {
       return dromedaries.filter((dromedary) => (
         !utils.arrayIncludes(modalValue.exclude,`${dromedary.type}|${dromedary.quality}`)
       ));
+
+      case UPSERT_RESOURCE:
+      const resources = utils.filterOutZero([
+        ...vault.getTagResources(RESOURCE_TAGS.FOOD),
+        ...vault.getTagResources(RESOURCE_TAGS.DRINK),
+        ...vault.getCategoryResources(RESOURCE_CATEGORIES.IMPLEMENT)
+      ]);
+      return rSort(resources.filter((resource) => (
+        !utils.arrayIncludes(modalValue.exclude,`${resource.type}|${resource.quality}`)
+      )));
 
       default:
       return [];
@@ -798,8 +829,10 @@ function ResourceSelector(props: {resource: Resource, resourceSelected: Resource
       setQuantityGiven(calcQuantityGiven(quantity.toString(), modalValue, resource,
         visit));
     }
-    if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES) {
+    if (modalValue.type === RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES
+      || modalValue.type === UPSERT_RESOURCE) {
       if (quantity > props.maximum) { quantity = props.maximum; }
+      if (quantity > resource.quantity) { quantity = resource.quantity; }
       setQuantitySelected(quantity.toString());
     }
   }

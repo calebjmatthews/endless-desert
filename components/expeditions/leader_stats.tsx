@@ -7,40 +7,18 @@ import { styles } from '../../styles';
 
 import IconComponent from '../icon';
 
-import Resource from '../../models/resource';
 import Icon from '../../models/icon';
-import { dromedaryTypes } from '../../instances/dromedary_types';
+import Resource from '../../models/resource';
+import { leaderTypes } from '../../instances/leader_types';
 import { utils } from '../../utils';
 
-export default function DromedaryStatsComponent(props: { expeditionId: string }) {
+export default function LeaderStatsComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const pos = useTypedSelector(state => state.ui.positioner);
 
-  const getStats = (dromedaries: { [typeQuality: string] : Resource }) : Stat[] => {
-    let speedTotal = 0;
-    let capacity = 0;
-    let count = 0;
-    Object.keys(dromedaries).forEach((typeQuality) => {
-      const dromedaryResource = dromedaries[typeQuality];
-      const dromedaryType = dromedaryTypes[dromedaryResource.type];
-      count += dromedaryResource.quantity;
-      speedTotal += dromedaryType.speed * dromedaryResource.quantity;
-      capacity += dromedaryType.capacity * dromedaryResource.quantity;
-    });
-    const speed = speedTotal / count;
-    return [
-      {
-        label: 'Speed',
-        extent: `${speed} L/hr`,
-        icon: new Icon({ provider: 'FontAwesome', name: 'clock-o', color: '#444'})
-      },
-      {
-        label: 'Capacity',
-        extent: `${utils.formatNumberShort(capacity)}`,
-        icon: new Icon({ provider: 'FontAwesome5', name: 'shopping-bag', color: '#444'})
-      },
-    ];
+  const getStats = (leaders: { [typeQuality: string] : Resource }) : Stat[] => {
+    return [];
   }
   const stats = getStats(expedition?.dromedaries || {});
 
