@@ -503,7 +503,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 - Process:
   - Select destination
   - Select leader, display expedition/exploration related effects
-  - Select camels, display speed and carrying capacity
+  - Select dromedaries, display speed and carrying capacity
   - Select food, drink, and implements
   - Go!
 

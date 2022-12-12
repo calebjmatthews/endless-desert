@@ -40,7 +40,6 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		case REMOVE_DROMEDARIES:
 		const rdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		delete rdExpeditionStatus.expeditions[action.expeditionId].dromedaries[action.dromedariesTypeQuality];
-		console.log(`rdExpeditionStatus`, rdExpeditionStatus);
 		return rdExpeditionStatus;
 
 		default:

@@ -5,13 +5,13 @@ import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../../styles';
 
-import Expedition from '../../models/expedition';
 import Icon from '../../models/icon';
 import IconComponent from '../icon';
 import SvgComponent from '../svg';
 import LeaderButton from './leader_button';
 import AddDromedariesButton from './add_dromedaries';
 import DromedariesComponent from './dromedaries';
+import DromedaryStatusComponent from './dromedary_stats';
 
 import { destinations } from '../../instances/destinations';
 
@@ -58,6 +58,12 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
 
             <DromedariesComponent expeditionId={expedition.id} />
             <AddDromedariesButton expeditionId={expedition.id} />
+            {Object.keys(expedition.dromedaries).length > 0 && (
+              <>
+                <View style={styles.breakSmall} />
+                <DromedaryStatusComponent expeditionId={expedition.id} />
+              </>
+            )}
           </View>
         </>
       </View>
