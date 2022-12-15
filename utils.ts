@@ -280,7 +280,7 @@ class Utils {
   }
 
   // 1234567890 -> 1.23B
-  formatNumberShort(number: number): string {
+  formatNumberShort(number: number, toFixed: boolean = false): string {
     const exponents: {[power: number] : string} = {
       3: 'K',
       6: 'M',
@@ -299,6 +299,12 @@ class Utils {
     }
     if (Math.abs(number) < 1) {
       return number.toFixed(2);
+    }
+    if (number < 10 && toFixed) {
+      return number.toFixed(2);
+    }
+    if (number < 100 && toFixed) {
+      return number.toFixed(1);
     }
     if (number < 1000) {
       return Math.round(number).toString();
@@ -781,6 +787,12 @@ class Utils {
     return resources.filter((resource) => {
       if (Math.floor(resource.quantity) >= 1) { return resource; }
     });
+  }
+
+  // d=√((x2 – x1)² + (y2 – y1)²)
+  distanceBetweenPoints(origin: [number, number], destination: [number, number]) {
+    return Math.sqrt(Math.pow((destination[0] - origin[0]), 2)
+      + Math.pow((destination[1] - origin[1]), 2));
   }
 }
 

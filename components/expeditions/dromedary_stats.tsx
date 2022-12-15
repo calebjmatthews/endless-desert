@@ -32,7 +32,7 @@ export default function DromedaryStatsComponent(props: { expeditionId: string })
     return [
       {
         label: 'Speed',
-        extent: `${speed} L/hr`,
+        extent: `${utils.formatNumberShort(speed, true)} le/hr`,
         icon: new Icon({ provider: 'FontAwesome', name: 'clock-o', color: '#444'})
       },
       {

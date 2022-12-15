@@ -1768,15 +1768,6 @@ resourceTypes[RTY.GEARWORK] = new ResourceType({
   icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
 });
 
-resourceTypes[RTY.GEARWORK] = new ResourceType({
-  name: RTY.GEARWORK,
-  category: RCA.IMPLEMENT,
-  tags: [RTA.ACTION_TRAP, RTA.ACTION_BREAK],
-  value: 3060,
-  description: `A simple gear-driven component; used in everything from dart-traps to bomb-triggers`,
-  icon: new Icon({provider: 'svg', name: SVGS.GEARWORK})
-});
-
 resourceTypes[RTY.PRECISE_GEARWORK] = new ResourceType({
   name: RTY.PRECISE_GEARWORK,
   category: RCA.IMPLEMENT,

@@ -439,9 +439,11 @@ export default function ResourceSelectOneComponent() {
 
       case UPSERT_DROMEDARIES:
       actionUpsertDromedaries();
+      break;
 
       case UPSERT_RESOURCE:
       actionUpsertResource();
+      break;
     }
   }
 

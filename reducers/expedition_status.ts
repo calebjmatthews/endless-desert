@@ -1,7 +1,9 @@
 import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPSERT_DROMEDARIES,
-	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE } from '../actions/expedition_status';
+	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE }
+	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
+import ExpeditionComponent from '../components/expeditions/expedition';
 
 export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStatus(null),
   action: any = null) {
@@ -56,6 +58,12 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		const rrExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		delete rrExpeditionStatus.expeditions[action.expeditionId].resources[action.typeQuality];
 		return rrExpeditionStatus;
+
+		case UPDATE_ADVICE_AND_SUB_STATE:
+		const uaassExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		uaassExpeditionStatus.expeditions[action.expeditionId].advice = action.advice;
+		uaassExpeditionStatus.expeditions[action.expeditionId].subState = action.subState;
+		return uaassExpeditionStatus;
 
 		default:
 		return expeditionStatus;

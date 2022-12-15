@@ -15,6 +15,7 @@ import DromedaryStatsComponent from './dromedary_stats';
 import LeaderStatsComponent from './leader_stats';
 import AddResourceButton from './add_resource';
 import ResourcesComponent from './resources';
+import AdviceComponent from './advice';
 
 import { destinations } from '../../instances/destinations';
 import { dromedaryTypes } from '../../instances/dromedary_types';
@@ -89,6 +90,15 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
                 
               </>
             )}
+          </View>
+
+          <View style={[styles.panelFlexColumn, {alignItems: 'flex-start',
+            minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
+            <View style={styles.rows}>
+              <IconComponent provider="FontAwesome5" name="info-circle" color={'#444'} size={16} />
+              <Text style={styles.heading3}>{` Advice:`}</Text>
+            </View>
+            <AdviceComponent expeditionId={expedition.id} />
           </View>
         </>
       </View>

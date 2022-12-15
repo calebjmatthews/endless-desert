@@ -18,6 +18,8 @@ import { PULSE_DURATION } from '../constants';
 import Resource from '../models/resource';
 import { resourceTypes } from '../instances/resource_types';
 import { consumeResources, increaseResources } from '../actions/vault';
+import { setExpeditionStatus } from '../actions/expedition_status';
+import ExpeditionStatus from '../models/expedition_status';
 
 enum AP {
   START_RISING = 'start rising',
@@ -113,6 +115,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
         allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100 }));
       });
       dispatch(increaseResources(vault, allResources));
+      dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
     }
     else {
       dispatch(selectTab(tabName));

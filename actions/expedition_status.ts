@@ -2,6 +2,7 @@ import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
 import Destination from '../models/destination';
 import Resource from '../models/resource';
+import Icon from '../models/icon';
 
 export const SET_EXPEDITION_STATUS = 'SET_EXPEDITION_STATUS';
 export function setExpeditionStatus(expeditionStatus: ExpeditionStatus) {
@@ -64,5 +65,16 @@ export function removeResource(props: {expeditionId: string, typeQuality: string
     type: REMOVE_RESOURCE,
     expeditionId: props.expeditionId,
     typeQuality: props.typeQuality
+  }
+}
+
+export const UPDATE_ADVICE_AND_SUB_STATE = 'UPDATE_ADVICE_AND_SUB_STATE';
+export function updateAdviceAndSubState(props: {expeditionId: string, 
+  advice: {icon: Icon, text: string}[], subState: number}) {
+  return {
+    type: UPDATE_ADVICE_AND_SUB_STATE,
+    expeditionId: props.expeditionId,
+    advice: props.advice,
+    subState: props.subState
   }
 }
