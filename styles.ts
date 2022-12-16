@@ -69,6 +69,12 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 2}
   },
+  iconContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 14
+  },
   tileContainer: {
     display: 'flex',
     flexDirection: 'row',

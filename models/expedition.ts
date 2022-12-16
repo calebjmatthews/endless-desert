@@ -5,7 +5,10 @@ import DromedaryType from './dromedary_type';
 import ResourceType from './resource_type';
 import ImplementType from './implement_type';
 import Icon from './icon';
-import { implementTypes } from '../instances/implement_types';
+import ExpeditionHistory from './expedition_history';
+import Exploration from './exploration';
+import ExplorationChallenge from './exploration_challenge';
+import ResourceTag from './resource_tag';
 import { utils } from '../utils';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
@@ -23,7 +26,7 @@ export default class Expedition {
   resources: { [typeQuality: string] : Resource } = {};
   state: 'preparing'|'embarking'|'exploring'|'returning' = 'preparing';
   subState: number = 0;
-  advice: { icon: Icon, text: string }[] = [];
+  advice: { icon: Icon, text: string, textColor?: string }[] = [];
   beganAt?: number;
   endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory } = {};
@@ -141,15 +144,20 @@ export default class Expedition {
 
   calcSubStateAndAdvice(props:{
     resourceTypes: { [name: string] : ResourceType },
-    dromedaryTypes: { [name: string] : DromedaryType }
+    destinations: { [name: string] : Destination },
+    explorations: { [id: string] : Exploration },
+    explorationChallenges: { [name: string] : ExplorationChallenge },
+    implementTypes: { [typeName: string] : ImplementType },
+    resourceTags: { [name: string] : ResourceTag },
+    expeditionHistory: ExpeditionHistory
   }) {
-    console.log(`calcSubStateAndAdvice called, this:`, this);
-    const { resourceTypes, dromedaryTypes } = props;
+    const { resourceTypes, destinations, explorations, explorationChallenges, implementTypes,
+      resourceTags, expeditionHistory } = props;
     const bullet = new Icon({ provider: 'FontAwesome', name: 'circle', color: '#444', size: 8 });
     const warning = new Icon({ provider: 'FontAwesome', name: 'exclamation-triangle', color: '#ffc104',
-      size: 14});
+      size: 12});
     const problem = new Icon({ provider: 'FontAwesome', name: 'exclamation-circle', color: '#ff2222',
-      size: 14});
+      size: 12});
 
     if (!this.leader) {
       return {
@@ -174,19 +182,19 @@ export default class Expedition {
       const drinkDistance = this.getDrinkDistance(resourceTypes);
       if (foodDistance === 0 && drinkDistance === 0) {
         return {
-          advice: [{ icon: warning, text: `You'll need both food and drink.` }],
+          advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need both food and drink.` }],
           subState: 2
         };
       }
       if (foodDistance === 0) {
         return {
-          advice: [{ icon: warning, text: `You'll need food for the journey.` }],
+          advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need food for the journey.` }],
           subState: 2
         };
       }
-      if (foodDistance === 0) {
+      if (drinkDistance === 0) {
         return {
-          advice: [{ icon: warning, text: `You'll need drink for the journey.` }],
+          advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need drink for the journey.` }],
           subState: 2
         };
       }
@@ -196,9 +204,9 @@ export default class Expedition {
         : (drinkDistance / 10);
       const tripDistance = utils.distanceBetweenPoints([0, 0], this.endCoordinates) * 2;
       const ratio = Math.round((leastDistance / tripDistance) * 100);
-      let foodAndDrinkAdvice = { icon: bullet, text: `You have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip. This is a great deal of provisions, probably more than you'll need.` };
+      let foodAndDrinkAdvice : { icon: Icon, text: string, textColor?: string } = { icon: bullet, text: `You have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip. This is a great deal of provisions, probably more than you'll need.` };
       if (tripDistance > leastDistance) {
-        foodAndDrinkAdvice = { icon: warning, text: `You only have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip.` };
+        foodAndDrinkAdvice = { icon: warning, textColor: '#ac7200', text: `You only have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip.` };
       }
       else if (ratio < 120) {
         foodAndDrinkAdvice = { icon: bullet, text: `You have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip. This should be enough, as long as nothing goes wrong.` };
@@ -208,26 +216,70 @@ export default class Expedition {
       }
 
       const implementCounts = this.getImplementCounts(implementTypes);
+      let hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've never been to your destination and unknown dangers await you.` }];
+      const destination = destinations[this.destinationId || ''];
+      const exploration = explorations["Cascade of Prismatic Sand"];
+      // const exploration = explorations[destination?.atFinish.id || ''];
+      // if (expeditionHistory && destination && Object.keys(exploration?.challenges || {}).length > 0) {
+      if (destination && Object.keys(exploration?.challenges || {}).length > 0) {
+        hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've been to ${destination.name} before, so you know:` }];
+        exploration?.challenges.forEach((challenge) => {
+          const challengeType = explorationChallenges[challenge.type];
+          let color = '#ffc104', textColor = '#ac7200';
+          let mitigated = false;
+          challengeType.mitigatedBy.forEach((mitigation) => {
+            if (implementCounts[mitigation]) { mitigated = true; }
+          })
+          if (mitigated) { color = '#444'; textColor = '#222'; }
+          hazardAdvice.push({
+            icon: new Icon({ ...challengeType.icon, color, size: 14 }),
+            textColor,
+            text: `${challengeType.precedingText} ${challengeType.getLabels(challenge)}.`
+          }) ;
+        });
+      }
+      else if (expeditionHistory && destination) {
+        hazardAdvice = [{ icon: bullet, textColor: '#222', text: `You've been to ${destination.name} before, and you know it's relatively safe.` }];
+      }
+      
+      if (Object.keys(implementCounts).length > 0) {
+        hazardAdvice.push({ icon: bullet, textColor: '#222', text: `However, you'll have some tools at your disposal, meaning:` });
+      }
       const implementAdvice: { icon: Icon, text: string }[] = []; 
       if (implementCounts[RTA.ACTION_SEEK]) {
-        implementAdvice.push({ icon: bullet, text: `You can light your way in dark places.`});
+        implementAdvice.push({
+          icon: new Icon({ ...resourceTags[RTA.ACTION_SEEK].icon, color: '#444', size: 12 }),
+          text: `You can light your way in dark places.`
+        });
       }
       if (implementCounts[RTA.ACTION_BREAK]) {
-        implementAdvice.push({ icon: bullet, text: `You can break through what stands in your way.`});
+        implementAdvice.push({
+          icon: new Icon({ ...resourceTags[RTA.ACTION_BREAK].icon, color: '#444', size: 12 }),
+          text: `You can break through what stands in your path.`
+        });
       }
       if (implementCounts[RTA.ACTION_TRAP]) {
-        implementAdvice.push({ icon: bullet, text: `You can hinder and hamper your foes.`});
+        implementAdvice.push({
+          icon: new Icon({ ...resourceTags[RTA.ACTION_TRAP].icon, color: '#444', size: 12 }),
+          text: `You can hinder and hamper your foes.`
+        });
       }
       if (implementCounts[RTA.ACTION_LOOSE]) {
-        implementAdvice.push({ icon: bullet, text: `You can set yourself free from traps.`});
+        implementAdvice.push({
+          icon: new Icon({ ...resourceTags[RTA.ACTION_LOOSE].icon, color: '#444', size: 14 }),
+          text: `You can set yourself free from traps.`
+        });
       }
       if (implementCounts[RTA.ACTION_HEAL]) {
-        implementAdvice.push({ icon: bullet, text: `You can heal wounds.`});
+        implementAdvice.push({
+          icon: new Icon({ ...resourceTags[RTA.ACTION_HEAL].icon, color: '#444', size: 12 }),
+          text: `You can heal wounds.`
+        });
       }
       console.log(`implementAdvice`, implementAdvice);
 
       return {
-        advice: [foodAndDrinkAdvice, ...implementAdvice],
+        advice: [foodAndDrinkAdvice, ...hazardAdvice, ...implementAdvice],
         subState: 3
       };
     }
@@ -244,6 +296,8 @@ interface ExpeditionInterface {
   dromedaries: { [typeQuality: string] : Resource };
   resources: { [typeQuality: string] : Resource };
   state: 'preparing'|'embarking'|'exploring'|'returning';
+  subState: number;
+  advice: { icon: Icon, text: string, textColor?: string }[];
   beganAt?: number;
   endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory };

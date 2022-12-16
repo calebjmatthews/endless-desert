@@ -23,7 +23,7 @@ const explorations: { [id: string] : Exploration } = {
     name: EXPLORATIONS.CLIFFSIDE_CARTOGRAPHERS_TOWER,
     size: [[10, 16], [8, 13], [6, 10]],
     challenges: [
-      { type: EXC.BREAKABLES, difficulty: 1, frequency: 20 } 
+      { type: EXC.OBSTACLES, difficulty: 1, frequency: 20 } 
     ],
     treasuresInitial: [
       { specificity: RSP.EXACT, type: RTY.HINT_FRATERNAL_FATE }
@@ -53,7 +53,7 @@ const explorations: { [id: string] : Exploration } = {
     name: EXPLORATIONS.THIEVES_CAMP,
     size: [[20, 30]],
     challenges: [
-      { type: EXC.DARK, difficulty: 1 } ,
+      { type: EXC.DARKNESS, difficulty: 1 } ,
       { type: EXC.TRAPS, difficulty: 1, frequency: 5 }
     ],
     treasuresInitial: [
@@ -84,8 +84,8 @@ const explorations: { [id: string] : Exploration } = {
     name: EXPLORATIONS.CASCASE_OF_PRIMSMATIC_SAND,
     size: [[10, 14], [20, 36]],
     challenges: [
-      { type: EXC.DARK, difficulty: 1 },
-      { type: EXC.BREAKABLES, difficulty: 1, frequency: 15 },
+      { type: EXC.DARKNESS, difficulty: 1 },
+      { type: EXC.OBSTACLES, difficulty: 1, frequency: 15 },
       { type: EXC.HAZARDS, difficulty: 1, frequency: 4 }
     ],
     treasuresInitial: [
@@ -116,8 +116,8 @@ const explorations: { [id: string] : Exploration } = {
     name: EXPLORATIONS.TWIN_MOONS_GROTTO,
     size: [[18, 26], [18, 26]],
     challenges: [
-      { type: EXC.DARK, difficulty: 1 },
-      { type: EXC.BREAKABLES, difficulty: 1, frequency: 25 },
+      { type: EXC.DARKNESS, difficulty: 1 },
+      { type: EXC.OBSTACLES, difficulty: 1, frequency: 25 },
     ],
     treasuresInitial: [
       // { specificity: RSP.EXACT, type: RTY. } ITTAR???

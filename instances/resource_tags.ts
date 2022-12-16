@@ -273,7 +273,7 @@ resourceTags[RESOURCE_TAGS.ACTION_SEEK] = new ResourceTag({
   plural: 'Implements for Seeking',
   value: 200,
   extract: false,
-  icon: new Icon({provider: 'FontAwesome5', name: 'sun',
+  icon: new Icon({provider: 'FontAwesome5', name: 'fire',
     color:'#efbd03'})});
 
 resourceTags[RESOURCE_TAGS.ACTION_BREAK] = new ResourceTag({
@@ -289,7 +289,7 @@ resourceTags[RESOURCE_TAGS.ACTION_TRAP] = new ResourceTag({
   plural: 'Implements for Trapping',
   value: 200,
   extract: false,
-  icon: new Icon({provider: 'FontAwesome', name: 'gears',
+  icon: new Icon({provider: 'FontAwesome5', name: 'link',
     color:'#9b6a03'})});
 
 resourceTags[RESOURCE_TAGS.ACTION_LOOSE] = new ResourceTag({

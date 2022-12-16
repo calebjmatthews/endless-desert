@@ -15,11 +15,16 @@ export default function AdviceComponent(props: { expeditionId: string }) {
 
   return (
     <View style={styles.columns}>
+      <View style={styles.breakSmall} />
       {(expedition.advice || []).map((anAdvice) => (
-        <View key={anAdvice.text} style={[styles.rows, {paddingHorizontal: 6, 
+        <View key={anAdvice.text} style={[styles.rows, {paddingHorizontal: 6, marginBottom: 4,
           minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
-          <IconComponent {...anAdvice.icon} />
-          <Text style={{marginLeft: 4, fontSize: 12}}>{anAdvice.text}</Text>
+          <View style={styles.iconContainer}>
+            <IconComponent {...anAdvice.icon} />
+          </View>
+          <Text style={{marginLeft: 4, fontSize: 12, color: (anAdvice.textColor || '#222')}}>
+            {anAdvice.text}
+            </Text>
         </View>
       ))}
     </View>

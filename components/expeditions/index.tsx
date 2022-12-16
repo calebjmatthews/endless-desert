@@ -53,7 +53,7 @@ export default function ExpeditionsComponent() {
       </View>
       <ScrollView>
         {expeditionArray.map((expedition) => (
-          <ExpeditionComponent key={expedition.id} expedition={expedition}
+          <ExpeditionComponent key={expedition.id} expeditionId={expedition.id}
             firstPreparing={firstPreparing} destinationsOpen={destinationsOpen}
             setDestinationsOpen={setDestinationsOpen} />
         ))}

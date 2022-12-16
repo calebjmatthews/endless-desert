@@ -331,6 +331,16 @@ class Utils {
     return strNumber;
   }
 
+  formatListWithCommasAnd(list: string[]) {
+    if (list?.length <= 1) { return list?.[0] || ''; }
+    if (list.length === 2) { return `${list[0]} and ${list[1]}`}
+    return list.map((item, index) => {
+      if (index < list.length-2) { return `${item}, `; }
+      else if (index === list.length-2) { return `${item}, and `; }
+      return item;
+    }).join('');
+  }
+
   numberToRoman(num: number): string {
     let roman: { [roman: string] : number } = {
       M: 1000,

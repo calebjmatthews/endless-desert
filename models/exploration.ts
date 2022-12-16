@@ -7,7 +7,7 @@ export default class Exploration {
   id: string = '';
   name: string = '';
   size: [number, number][] = [[0, 0]];
-  challenges: { type: EXPLORATION_CHALLENGES, difficulty: number, frequency?: number }[] = [];
+  challenges: { type: string, difficulty: number, frequency?: number }[] = [];
   treasuresInitial: { specificity: RESOURCE_SPECIFICITY, type: string, weight?: number, 
     quality?: number }[] = [];
   treasures: { specificity: RESOURCE_SPECIFICITY, type: string, weight?: number, quality?: number }[]
