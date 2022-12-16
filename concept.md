@@ -535,9 +535,9 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 ## Towns and Cities
 - Alabaster, the Shining City
   - SomeName, Lapidary Initiate: Tourmaline Jewelers, Creates jewelry Treasures, beginning with simple ones from beads, and developing to others over time
-  - OtherName, Factious Ontologist: Cochlineal Scribes, Constantly getting kicked out of things, requires no payment but uses up time, in exchange for specialization into schools of thought
+  - OtherName, Factious Ontologist: Cochlineal Scribes, Constantly getting kicked out of things, requires knowledge or field notes in exchange for specialization into schools of thought
   - Asyut, Archetect (1st Class): Sandstone Artificers, Will build and improve road between Alabaster and your town, can be paid to send a crew to an Oasis, Herd, or Trading Post for improvement
-  - FourthName, Sober Commissar: Porcelain Commissars, Exchanges huge quantities of resources (esp. food and booze) for special treasures
+  - FourthName, Sober Commissar: Porcelain Commissars, Exchanges huge quantities of resources (esp. food and booze) for special treasures and equipment 
   - FifthName, Feline Advocate: Keepers of the Hanging Gardens, Begins questline to discover, raise, and breed cats. Once completed, will buy existing cats
 - Lac, the Forgotten Town
   - Can be rebuilt to provide Olibanum Resin, Dates, and Water
@@ -554,6 +554,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     -  Notes on the Reluctant Earth (Clay Pit, Sand Pit, Press, etc)
     -  Notes on Scintillating Heat (Drying Yard, Furnace, etc)
     -  Notes on Gentle Cultivation (Lentil Field, Quail Pen, etc)
+  - Not certain about this, but could add Aspects, which correspond to a given tag and would result from analyzing or studying something with that tag. This could be coupled with an alternate Field Note system, which would only show three buildings as options for field note writing, and each would require a different mix of knowledge and aspects.
 
 ## Quests:
   - Introduction of concepts:

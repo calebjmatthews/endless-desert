@@ -11,6 +11,7 @@ import ExplorationChallenge from './exploration_challenge';
 import ResourceTag from './resource_tag';
 import { utils } from '../utils';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
+import { dromedaryTypes } from '../instances/dromedary_types';
 const RTA = RESOURCE_TAGS;
 
 // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
@@ -154,10 +155,17 @@ export default class Expedition {
     const { resourceTypes, destinations, explorations, explorationChallenges, implementTypes,
       resourceTags, expeditionHistory } = props;
     const bullet = new Icon({ provider: 'FontAwesome', name: 'circle', color: '#444', size: 8 });
-    const warning = new Icon({ provider: 'FontAwesome', name: 'exclamation-triangle', color: '#ffc104',
+    const warning = new Icon({ provider: 'FontAwesome5', name: 'exclamation-triangle', color: '#ffc104',
       size: 12});
-    const problem = new Icon({ provider: 'FontAwesome', name: 'exclamation-circle', color: '#ff2222',
+    const problem = new Icon({ provider: 'FontAwesome5', name: 'exclamation-circle', color: '#ff2222',
       size: 12});
+
+    if (this.getTotalResourceSpace(dromedaryTypes) < this.getCurrentResourceCount()) {
+      return {
+        advice: [{ icon: problem, textColor: '#a21116', text: `You have more resources selected than your dromedaries can hold. You'll need to choose different dromedaries, or leave some supplies behind.` }],
+        subState: 2
+      };
+    }
 
     if (!this.leader) {
       return {
