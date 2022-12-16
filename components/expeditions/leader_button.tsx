@@ -33,9 +33,10 @@ export default function LeaderButton(props: { leaderId: string, expeditionId: st
     );
   }
   return (
-    <TouchableOpacity style={[styles.buttonSubtle,
-      {opacity: 0.9, marginBottom: 6}]} onPress={() => leaderAssign()}>
-      <IconComponent provider='FontAwesome5' name='minus-circle' color='#cec3e4'
+    <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start', opacity: 0.9,
+      minWidth: pos.buttonInEmbedded,  maxWidth: pos.buttonInEmbedded, marginBottom: 6}]} 
+      onPress={() => leaderAssign()}>
+      <IconComponent provider='FontAwesome5' name='minus-circle' color='#444'
         size={14} />
       <Text>
         {` No leader`}

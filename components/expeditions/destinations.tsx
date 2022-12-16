@@ -26,8 +26,8 @@ export default function DestinationsComponent(props: { expedition: Expedition,
   const destinationPress = (destination: Destination) => {
     dispatch(setDestination({
       expeditionId: expedition.id,
-      destinationId: destination.id,
-      endCoordinates: destination.coordinates
+      mainDestinationId: destination.id,
+      targetCoordinates: destination.coordinates
     }));
     setDestinationsOpen(false);
   }

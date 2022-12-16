@@ -18,8 +18,10 @@ const RTA = RESOURCE_TAGS;
 export default class Expedition {
   id: string = '';
   subTitle: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
-  endCoordinates: [number, number] = [0, 0]; // These can change
-  destinationId?: string;
+  targetCoordinates: [number, number] = [0, 0]; // These can change
+  mainDestinationId?: string;
+  embarkingStopIds: string[] = [];
+  returningStopIds: string[] = [];
   customDestination?: Destination;
   leader: string = '';
   dromedaries: { [typeQuality: string] : Resource } = {};
@@ -54,7 +56,7 @@ export default class Expedition {
 
     // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
     let nounText = 'journey';
-    if (this.endCoordinates) {
+    if (this.targetCoordinates) {
       const nouns = [
         { threshold: [0, 40], text: 'jaunt' },
         { threshold: [0, 50], text: 'trip' },
@@ -66,7 +68,7 @@ export default class Expedition {
         { threshold: [300, 800], text: 'quest' }
       ];
       let matchingNouns: string[] = [];
-      const distance = utils.distanceBetweenPoints([0, 0], this.endCoordinates);
+      const distance = utils.distanceBetweenPoints([0, 0], this.targetCoordinates);
       nouns.forEach((noun) => {
         if (distance > noun.threshold[0] && distance < noun.threshold[1]) {
           matchingNouns.push(noun.text);
@@ -209,7 +211,7 @@ export default class Expedition {
 
     if (!this.leader) {
       return {
-        advice: [{ icon: bullet, text: `Begin by choosing a leader.` }],
+        advice: [{ icon: bullet, text: `Begin by adding stops to your route or choosing a leader.` }],
         subState: 1
       };
     }
@@ -221,7 +223,7 @@ export default class Expedition {
     }
     if (Object.keys(this.resources).length === 0) {
       return {
-        advice: [{ icon: bullet, text: `Now, select supplies to bring with you.` }],
+        advice: [{ icon: bullet, text: `Select food, drink, and implements to bring with you.` }],
         subState: 2
       };
     }
@@ -250,7 +252,7 @@ export default class Expedition {
       const leastDistance = (foodDistance < drinkDistance)
         ? (foodDistance / 10)
         : (drinkDistance / 10);
-      const tripDistance = utils.distanceBetweenPoints([0, 0], this.endCoordinates) * 2;
+      const tripDistance = utils.distanceBetweenPoints([0, 0], this.targetCoordinates) * 2;
       const ratio = Math.round((leastDistance / tripDistance) * 100);
       let foodAndDrinkAdvice : { icon: Icon, text: string, textColor?: string } = { icon: bullet, text: `You have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip. This is a great deal of provisions, probably more than you'll need.` };
       if (tripDistance > leastDistance) {
@@ -264,8 +266,8 @@ export default class Expedition {
       }
 
       const implementCounts = this.getImplementCounts(implementTypes);
-      let hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've never been to your destination, and don't know what dangers await you.` }];
-      const destination = destinations[this.destinationId || ''];
+      let hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've never been to your destination,] and don't know what dangers await you.` }];
+      const destination = destinations[this.mainDestinationId || ''];
       const exploration = explorations[destination?.atFinish.id || ''];
       if (expeditionHistory && destination && Object.keys(exploration?.challenges || {}).length > 0) {
         hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've been to ${destination.name} before, so you know:` }];
@@ -335,8 +337,8 @@ export default class Expedition {
 interface ExpeditionInterface {
   id: string;
   name: string;
-  endCoordinates: [number, number]; // These can change
-  destinationId?: string;
+  targetCoordinates: [number, number]; // These can change
+  mainDestinationId?: string;
   customDestination?: Destination;
   leader: string;
   dromedaries: { [typeQuality: string] : Resource };

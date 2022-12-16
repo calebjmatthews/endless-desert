@@ -20,7 +20,7 @@ export default function ExpeditionComponent(props: { expeditionId: string, first
   const dispatch = useDispatch();
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const expeditionHistory = useTypedSelector(state => state.expeditionStatus
-    .expeditionHistories[expedition.destinationId || '']);
+    .expeditionHistories[expedition.mainDestinationId || '']);
   const leaders = useTypedSelector(state => state.leaders);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function ExpeditionComponent(props: { expeditionId: string, first
       expeditionId: expedition.id,
       subTitle
     }))
-  }, [expedition.destinationId, expedition.leader])
+  }, [expedition.mainDestinationId, expedition.leader])
 
   if (destinationsOpen && firstPreparing === expedition.id) {
     return <DestinationsComponent expedition={expedition} setDestinationsOpen={setDestinationsOpen} />;

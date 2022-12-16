@@ -17,11 +17,11 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 
 		case SET_DESTINATION:
 		const sdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
-		if (action.destinationId) {
-			sdExpeditionStatus.expeditions[action.expeditionId].destinationId = action.destinationId;
+		if (action.mainDestinationId) {
+			sdExpeditionStatus.expeditions[action.expeditionId].mainDestinationId = action.mainDestinationId;
 		}
-		if (action.endCoordinates) {
-			sdExpeditionStatus.expeditions[action.expeditionId].endCoordinates = action.endCoordinates;
+		if (action.targetCoordinates) {
+			sdExpeditionStatus.expeditions[action.expeditionId].targetCoordinates = action.targetCoordinates;
 		}
 		if (action.customDestination) {
 			sdExpeditionStatus.expeditions[action.expeditionId].customDestination = action.customDestination;

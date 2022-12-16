@@ -5,9 +5,9 @@ import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../../styles';
 
-import Icon from '../../models/icon';
 import IconComponent from '../icon';
 import SvgComponent from '../svg';
+import RouteComponent from './route';
 import LeaderButton from './leader_button';
 import AddDromedariesButton from './add_dromedaries';
 import DromedariesComponent from './dromedaries';
@@ -17,6 +17,7 @@ import AddResourceButton from './add_resource';
 import ResourcesComponent from './resources';
 import AdviceComponent from './advice';
 
+import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
 import { dromedaryTypes } from '../../instances/dromedary_types';
 import { utils } from '../../utils';
@@ -24,14 +25,14 @@ import { utils } from '../../utils';
 export default function ExpeditionPreparationComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
-  const destination = expedition.customDestination || destinations[expedition.destinationId || ''];
+  const destination = expedition.customDestination || destinations[expedition.mainDestinationId || ''];
   const pos = useTypedSelector(state => state.ui.positioner);
 
   if (!destination) { return null; }
   return (
     <View style={[styles.panelFlex, {overflow: 'hidden', alignItems: 'flex-start',
       backgroundColor: (destination.icon.backgroundColor || '#fff'), 
-      minHeight: (pos.bodyHeight * 0.8), minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
+      minHeight: (pos.bodyHeight * 0.85), minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
       <View style={styles.landscapeWrapper}>
         <SvgComponent icon={new Icon({ ...destination.icon, size: 300 })} />
       </View>
@@ -43,13 +44,24 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
           <Text style={styles.heading1}>{destination.name}</Text>
         </>
         <>
-          {(expedition.destinationId) && (
+          <View style={[styles.panelFlexColumn, {alignItems: 'flex-start',
+            minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
+            <View style={styles.rows}>
+              <IconComponent provider="FontAwesome5" name="route" color={'#444'} size={16} />
+              <Text style={styles.heading3}>{` Route:`}</Text>
+            </View>
+            <View style={styles.breakSmall} />
+            <RouteComponent expeditionId={expeditionId} />
+          </View>
+
+          {(expedition.mainDestinationId) && (
             <View style={[styles.panelFlexColumn, {alignItems: 'flex-start',
               minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
               <View style={styles.rows}>
                 <IconComponent provider='FontAwesome5' name='user-circle' color={'#444'} size={16} />
                 <Text style={styles.heading3}>{` Leader:`}</Text>
               </View>
+              <View style={styles.breakSmall} />
               <LeaderButton leaderId={expedition.leader} expeditionId={expedition.id} />
               {expedition.leader?.length > 0 && (
                 <>

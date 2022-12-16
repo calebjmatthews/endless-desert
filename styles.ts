@@ -702,5 +702,22 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -60,
     right: -40
+  },
+
+  routeLine: {
+    position: 'absolute',
+    width: 20,
+    height: 37,
+    borderRightWidth: 3,
+    borderColor: '#fff',
+    borderRightColor: '#bbb',
+    borderStyle: 'dotted'
+  },
+  routeIconWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 37,
+    maxWidth: 37
   }
 });
