@@ -264,12 +264,10 @@ export default class Expedition {
       }
 
       const implementCounts = this.getImplementCounts(implementTypes);
-      let hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've never been to your destination and unknown dangers await you.` }];
+      let hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've never been to your destination, and don't know what dangers await you.` }];
       const destination = destinations[this.destinationId || ''];
-      const exploration = explorations["Cascade of Prismatic Sand"];
-      // const exploration = explorations[destination?.atFinish.id || ''];
-      // if (expeditionHistory && destination && Object.keys(exploration?.challenges || {}).length > 0) {
-      if (destination && Object.keys(exploration?.challenges || {}).length > 0) {
+      const exploration = explorations[destination?.atFinish.id || ''];
+      if (expeditionHistory && destination && Object.keys(exploration?.challenges || {}).length > 0) {
         hazardAdvice = [{ icon: warning, textColor: '#ac7200', text: `You've been to ${destination.name} before, so you know:` }];
         exploration?.challenges.forEach((challenge) => {
           const challengeType = explorationChallenges[challenge.type];
