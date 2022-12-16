@@ -791,7 +791,7 @@ researchOptions[RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES] = new ResearchOpti
   name: RESEARCH_OPTIONS.BEARING_COMBINED_REFERENCES,
   appliesTo: RESEARCHES.ASTRONOMY,
   difficulty: 2,
-  description: `... and an astute observer can infer, from a compilation of observations, the geography ....`,
+  description: `... and an astute observer can infer, from a compilation of accounts, the geography 's shift ....`,
   cost: [{specificity: RSP.EXACT, type: RTY.STARCHART, quantity: 310},
     {specificity: RSP.EXACT, type: RTY.KNOWLEDGE, quantity: 2900}]
 });

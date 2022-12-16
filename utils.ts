@@ -223,6 +223,10 @@ class Utils {
     return null;
   }
 
+  makePossessive(aString: string) {
+    return (aString.slice(-1) !== 's') ? `${aString}'s` : `${aString}'`;
+  }
+
   // Returns a maximum of two units of time, e.g. '1d 4h ' or '3m 45s ', with
   //  seconds being the smallest unit
   formatDuration(milliseconds: number, units: number = 0, long: boolean = false):

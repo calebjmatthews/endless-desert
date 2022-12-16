@@ -5,7 +5,7 @@ const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import DestinationsComponent from "./destinations";
 import ExpeditionPreparationComponent from "./expedition_preparation";
-import { updateAdviceAndSubState } from "../../actions/expedition_status";
+import { updateAdviceAndSubState, updateSubTitle } from "../../actions/expedition_status";
 
 import { resourceTypes } from "../../instances/resource_types";
 import { destinations } from '../../instances/destinations';
@@ -21,6 +21,7 @@ export default function ExpeditionComponent(props: { expeditionId: string, first
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const expeditionHistory = useTypedSelector(state => state.expeditionStatus
     .expeditionHistories[expedition.destinationId || '']);
+  const leaders = useTypedSelector(state => state.leaders);
 
   useEffect(() => {
     const { advice, subState } = expedition.calcSubStateAndAdvice({
@@ -42,6 +43,14 @@ export default function ExpeditionComponent(props: { expeditionId: string, first
       }));
     }
   }, [expedition.leader, JSON.stringify(expedition.dromedaries), JSON.stringify(expedition.resources)]);
+
+  useEffect(() => {
+    const subTitle = expedition.calcSubTitle({leaders, destinations});
+    dispatch(updateSubTitle({
+      expeditionId: expedition.id,
+      subTitle
+    }))
+  }, [expedition.destinationId, expedition.leader])
 
   if (destinationsOpen && firstPreparing === expedition.id) {
     return <DestinationsComponent expedition={expedition} setDestinationsOpen={setDestinationsOpen} />;

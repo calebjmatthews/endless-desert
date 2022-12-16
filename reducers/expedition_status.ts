@@ -1,9 +1,8 @@
-import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPSERT_DROMEDARIES,
+import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPDATE_SUB_TITLE, UPSERT_DROMEDARIES,
 	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE }
 	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
-import ExpeditionComponent from '../components/expeditions/expedition';
 
 export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStatus(null),
   action: any = null) {
@@ -28,6 +27,11 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 			sdExpeditionStatus.expeditions[action.expeditionId].customDestination = action.customDestination;
 		}
 		return sdExpeditionStatus;
+
+		case UPDATE_SUB_TITLE:
+		const snExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		snExpeditionStatus.expeditions[action.expeditionId].subTitle = action.subTitle;
+		return snExpeditionStatus;
 
 		case UPSERT_DROMEDARIES:
 		const udExpeditionStatus = new ExpeditionStatus(expeditionStatus);

@@ -34,7 +34,7 @@ const destinations: { [name: string] : Destination } = {
       id: EXPLORATIONS.THIEVES_CAMP,
       type: DESTINATION_TYPES.EXPLORATION
     },
-    icon: new Icon({provider: 'svg', name: SVGS.THIEVES_CAMP, backgroundColor: '#67bcdd'})
+    icon: new Icon({provider: 'svg', name: SVGS.THIEVES_CAMP, backgroundColor: '#2c88ac'})
   }),
   [RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND]: new Destination({
     id: RESEARCHES.DESTINATION_CASCASE_OF_PRIMSMATIC_SAND,

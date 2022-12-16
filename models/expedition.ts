@@ -9,16 +9,15 @@ import ExpeditionHistory from './expedition_history';
 import Exploration from './exploration';
 import ExplorationChallenge from './exploration_challenge';
 import ResourceTag from './resource_tag';
+import Leader from './leader';
 import { utils } from '../utils';
 import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { dromedaryTypes } from '../instances/dromedary_types';
 const RTA = RESOURCE_TAGS;
 
-// Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
-
 export default class Expedition {
   id: string = '';
-  name: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
+  subTitle: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
   endCoordinates: [number, number] = [0, 0]; // These can change
   destinationId?: string;
   customDestination?: Destination;
@@ -31,11 +30,52 @@ export default class Expedition {
   beganAt?: number;
   endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory } = {};
+  storedTime: number = 0;
 
   constructor(expedition: ExpeditionInterface|null) {
     if (expedition) {
       Object.assign(this, expedition);
     }
+  }
+
+  calcSubTitle(props: {
+    leaders: { [id: string] : Leader },
+    destinations: { [subTitle: string] : Destination }
+  }) {
+    const { leaders, destinations } = props;
+    let subTitle = '';
+    const leader = leaders[this.leader];
+    if (leader) {
+      subTitle = `${utils.makePossessive(leader.name)} `;
+    }
+    else {
+      subTitle = `A `;
+    }
+
+    // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
+    let nounText = 'journey';
+    if (this.endCoordinates) {
+      const nouns = [
+        { threshold: [0, 40], text: 'jaunt' },
+        { threshold: [0, 50], text: 'trip' },
+        { threshold: [40, 200], text: 'road' },
+        { threshold: [50, 300], text: 'foray' },
+        { threshold: [100, 400], text: 'travels' },
+        { threshold: [200, 500], text: 'course' },
+        { threshold: [250, 600], text: 'journey' },
+        { threshold: [300, 800], text: 'quest' }
+      ];
+      let matchingNouns: string[] = [];
+      const distance = utils.distanceBetweenPoints([0, 0], this.endCoordinates);
+      nouns.forEach((noun) => {
+        if (distance > noun.threshold[0] && distance < noun.threshold[1]) {
+          matchingNouns.push(noun.text);
+        }
+      });
+      nounText = utils.randomSelect(matchingNouns);
+    }
+    subTitle = `${subTitle}${nounText} to the`;
+    return subTitle;
   }
 
   getCurrentDromedaryCount(exclude?: string) {
@@ -309,4 +349,5 @@ interface ExpeditionInterface {
   beganAt?: number;
   endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory };
+  storedTime: number;
 }

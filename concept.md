@@ -499,21 +499,31 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - ... continue through the pass as curves between the red triplets ...
   - Academic reference:
   - ... certain other academic texts refer to a "cleft between stones" visible ahead ...
-  - ... and an astute observer can infer, from a compilation of observations, the geography ...
+  - ... and an astute observer can infer, from a compilation of accounts, the geography's shift ...
 - Process:
-  - Select destination
-  - Select leader, display expedition/exploration related effects
-  - Select dromedaries, display speed and carrying capacity
-  - Select food, drink, and implements
-  - Go!
+  - Select main destination.
+  - Can add to/change route.
+  - Select leader, display expedition/exploration related effects.
+  - Select dromedaries, display speed and carrying capacity.
+  - Select food, drink, and implements, display related advice.
+  - If valid, go!
+- Data handling:
+  - After preparing an expedition, change state to 'embarking' and subState to 0.
+  - Calculate next expedition event; very short trips should have one, short trips should have one or two, medium length should have around three, etc.
+  - Create a hidden timer for this event.
+  - Once the timer expires, trigger a message+flashing nav tab for the event, and change subState to 1. While subState is 1, each elapsed 100ms adds 100 to the expedition's storedTime.
+  - If the timer occurs during a whileAway calculation, the remainder post-expiration is added to the expedition's storedTime.
+  - After the expedition event's scene is resolved, storedTime is used to continue the expedition (at 100x speed?). Allow the user to optionally used the storedTime?
+  - User can decide to change the destination (including returning home) at any time.
+  - Separate expedition rates for using food and drink.
 
 ## Exploration:
 - Stats:
   - Health, Sandstone Artificers, Red heart
   - Swiftness, Keepers of the Hanging Gardens, Green wind
   - Bounty, Tourmaline Jewelers, Purple gem
-  - Vision, Porcelain Commissars, Yellow eye
-  - Precision, Cochineal Scribes, Blue coins
+  - Vision, Cochineal Scribes, Yellow eye
+  - Precision, Porcelain Commissars, Blue coins
 - Implements give points in the following categories:
   - Seek (Torch): Spotting treasure, traps, and foes
   - Break (Slab): Breaking through containers and walls

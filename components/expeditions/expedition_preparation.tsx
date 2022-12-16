@@ -38,8 +38,8 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
       <View style={[styles.columns, {justifyContent: 'space-between'}]}>
         <>
           <Text style={[styles.bareText, styles.emphasis, {fontSize: 12}]}>
-            {`Samannoud's journey to the`}
-            </Text>
+            {expedition.subTitle}
+          </Text>
           <Text style={styles.heading1}>{destination.name}</Text>
         </>
         <>
@@ -90,6 +90,9 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
                 
               </>
             )}
+            <Text style={{fontStyle: 'italic', fontSize: 12, color: '#222'}}>
+              * The most valuable supplies are used up first.
+            </Text>
           </View>
 
           <View style={[styles.panelFlexColumn, {alignItems: 'flex-start',

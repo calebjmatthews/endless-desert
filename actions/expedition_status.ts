@@ -32,6 +32,15 @@ export function setDestination(props: {expeditionId: string, destinationId?: str
   }
 }
 
+export const UPDATE_SUB_TITLE = 'UPDATE_SUB_TITLE';
+export function updateSubTitle(props: {expeditionId: string, subTitle: string}) {
+  return {
+    type: UPDATE_SUB_TITLE,
+    expeditionId: props.expeditionId,
+    subTitle: props.subTitle
+  }
+}
+
 export const UPSERT_DROMEDARIES = 'UPSERT_DROMEDARIES';
 export function upsertDromedaries(props: {expeditionId: string, dromedaries: Resource}) {
   return {
