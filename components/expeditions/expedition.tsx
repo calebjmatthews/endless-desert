@@ -3,7 +3,6 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-import DestinationsComponent from "./destinations";
 import ExpeditionPreparationComponent from "./expedition_preparation";
 import { updateAdviceAndSubState, updateSubTitle } from "../../actions/expedition_status";
 
@@ -14,9 +13,8 @@ import { explorationChallenges } from '../../instances/exploration_challenges';
 import { implementTypes } from '../../instances/implement_types';
 import { resourceTags } from '../../instances/resource_tags';
 
-export default function ExpeditionComponent(props: { expeditionId: string, firstPreparing: string,
-  destinationsOpen: boolean, setDestinationsOpen: (destinationsOpen: boolean) => void }) {
-  const { expeditionId, firstPreparing, destinationsOpen, setDestinationsOpen } = props;
+export default function ExpeditionComponent(props: { expeditionId: string  }) {
+  const { expeditionId } = props;
   const dispatch = useDispatch();
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const expeditionHistory = useTypedSelector(state => state.expeditionStatus
@@ -50,11 +48,7 @@ export default function ExpeditionComponent(props: { expeditionId: string, first
       expeditionId: expedition.id,
       subTitle
     }))
-  }, [expedition.mainDestinationId, expedition.leader])
-
-  if (destinationsOpen && firstPreparing === expedition.id) {
-    return <DestinationsComponent expedition={expedition} setDestinationsOpen={setDestinationsOpen} />;
-  }
+  }, [expedition.mainDestinationId, expedition.leader]);
   
   if (expedition.state === 'preparing') {
     return <ExpeditionPreparationComponent expeditionId={expedition.id} />;

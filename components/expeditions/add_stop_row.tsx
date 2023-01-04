@@ -10,7 +10,7 @@ import { displayModalValue } from '../../actions/ui';
 import IconComponent from '../icon';
 import { MODALS } from '../../enums/modals';
 
-export default function AddStopRow(props: { expeditionId: string, position: 'before'|'after' }) {
+export default function AddStopRow(props: { expeditionId: string, position: 'embarking'|'returning' }) {
   const { expeditionId, position } = props;
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const pos = useTypedSelector(state => state.ui.positioner);
@@ -25,7 +25,8 @@ export default function AddStopRow(props: { expeditionId: string, position: 'bef
       <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start', marginLeft: 0,
         minWidth: pos.buttonWithCancelOnSide,  maxWidth: pos.buttonWithCancelOnSide, opacity: 0.9}]}
         onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open',
-        { expeditionId: expedition.id, exclude: expedition.getDestinationIdsToExclude(position) }))}>
+        { expeditionId: expedition.id, position,
+          exclude: expedition.getDestinationIdsToExclude(position) }))}>
         <IconComponent provider='FontAwesome5' name='plus-circle' color='#888'
           size={12} />
         <Text style={[styles.mutedText, { fontSize: 12 }]}>

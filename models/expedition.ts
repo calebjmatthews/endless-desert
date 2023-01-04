@@ -332,15 +332,15 @@ export default class Expedition {
     }
   }
 
-  getDestinationIdsToExclude(position: 'before'|'main'|'after'): string[] {
+  getDestinationIdsToExclude(position: 'embarking'|'main'|'returning'): string[] {
     const currentDestinationIds: string[] = [];
-    if (position === 'before') {
+    if (position === 'embarking') {
       currentDestinationIds.push(...this.embarkingDestinationIds);
     }
     if (this.mainDestinationId) {
       currentDestinationIds.push(this.mainDestinationId);
     }
-    if (position === 'after') {
+    if (position === 'returning') {
       currentDestinationIds.push(...this.returningDestinationIds);
     }
     return currentDestinationIds;

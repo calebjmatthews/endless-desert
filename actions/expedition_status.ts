@@ -21,7 +21,7 @@ export function upsertExpedition(expedition: Expedition) {
 }
 
 export const SET_DESTINATION = 'SET_DESTINATION';
-export function setDestination(props: {expeditionId: string, position: 'before'|'main'|'after',
+export function setDestination(props: {expeditionId: string, position: 'embarking'|'main'|'returning',
   destinationId?: string, targetCoordinates?: [number, number], customDestination?: Destination}) {
   return {
     type: SET_DESTINATION,

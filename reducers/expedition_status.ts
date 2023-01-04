@@ -16,15 +16,24 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		return aeExpeditionStatus;
 
 		case SET_DESTINATION:
+		const {expeditionId, position, destinationId, targetCoordinates, customDestination} = action;
 		const sdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
-		if (action.mainDestinationId) {
-			sdExpeditionStatus.expeditions[action.expeditionId].mainDestinationId = action.mainDestinationId;
+		if (destinationId) {
+			if (position === 'embarking') {
+				sdExpeditionStatus.expeditions[expeditionId].embarkingDestinationIds.unshift(destinationId);
+			}
+			if (position === 'main') {
+				sdExpeditionStatus.expeditions[expeditionId].mainDestinationId = destinationId;
+			}
+			if (position === 'returning') {
+				sdExpeditionStatus.expeditions[expeditionId].returningDestinationIds.push(destinationId);
+			}
 		}
-		if (action.targetCoordinates) {
-			sdExpeditionStatus.expeditions[action.expeditionId].targetCoordinates = action.targetCoordinates;
+		if (targetCoordinates) {
+			sdExpeditionStatus.expeditions[expeditionId].targetCoordinates = targetCoordinates;
 		}
-		if (action.customDestination) {
-			sdExpeditionStatus.expeditions[action.expeditionId].customDestination = action.customDestination;
+		if (customDestination) {
+			sdExpeditionStatus.expeditions[expeditionId].customDestination = customDestination;
 		}
 		return sdExpeditionStatus;
 

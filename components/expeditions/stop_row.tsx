@@ -16,7 +16,7 @@ import { MODALS } from '../../enums/modals';
 export default function StopRow(props: {
   expeditionId: string,
   destination: Destination,
-  position: 'before'|'main'|'after'
+  position: 'embarking'|'main'|'returning'
 }) {
   const dispatch = useDispatch();
   const { expeditionId, destination, position } = props;
@@ -24,7 +24,7 @@ export default function StopRow(props: {
 
   return (
     <View key={destination.id} style={styles.rows}>
-      {(position === 'before' || position === 'after') && (
+      {(position === 'embarking' || position === 'returning') && (
         <TouchableOpacity style={[styles.buttonSubtle, styles.routeIconWrapper]}
           onPress={() => {}}>
           <IconComponent provider="Entypo" name="dots-three-vertical" color="#444"
@@ -44,7 +44,8 @@ export default function StopRow(props: {
       <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start',
         minWidth: pos.buttonWithCancelOnSide, maxWidth: pos.buttonWithCancelOnSide,
         marginLeft: 0}]}
-        onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { exclude: [] }))}>
+        onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
+          position, exclude: [] }))}>
         <SvgComponent icon={new Icon(destination.icon)} />
         <Text style={{marginLeft: 4}}>
           {destination.name}

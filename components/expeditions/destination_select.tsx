@@ -12,17 +12,20 @@ import { setDestination } from '../../actions/expedition_status';
 import { destinations } from '../../instances/destinations';
 import { explorations } from '../../instances/explorations';
 import { utils } from '../../utils';
+import { displayModalValue } from '../../actions/ui';
 
 export default function DestinationSelectComponent() {
   const dispatch = useDispatch();
   const positioner = useTypedSelector(state => state.ui.positioner);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
-  const { exclude } = modalValue;
+  const { expeditionId, position, exclude } = modalValue;
 
   const destinationPress = (destinationId: string) => {
-    console.log(`Destination presss for: ${destinationId}`);
-    return null;
+    const destination = destinations[destinationId];
+    dispatch(setDestination({ expeditionId, position, destinationId,
+      targetCoordinates: destination.coordinates }));
+    dispatch(displayModalValue(null, 'closed', null));
   }
 
   return (
