@@ -17,9 +17,17 @@ export default function RouteComponent(props: { expeditionId: string }) {
 
   return (
     <View style={styles.columns}>
-      <AddStopRow expeditionId={expeditionId} position="before" />
+      <AddStopRow expeditionId={expeditionId} position="embarking" />
+      {expedition.embarkingDestinationIds.map((destinationId) => (
+        <StopRow key={`embarking-${destinationId}`} expeditionId={expeditionId} 
+          destination={destinations[destinationId]} position="embarking" />
+      ))}
       <StopRow expeditionId={expeditionId} destination={destination} position="main" />
-      <AddStopRow expeditionId={expeditionId} position="after" />
+      {expedition.returningDestinationIds.map((destinationId) => (
+        <StopRow key={`returning-${destinationId}`} expeditionId={expeditionId} 
+          destination={destinations[destinationId]} position="returning" />
+      ))}
+      <AddStopRow expeditionId={expeditionId} position="returning" />
       <View style={styles.breakSmall} />
     </View>
   )

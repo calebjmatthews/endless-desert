@@ -48,7 +48,7 @@ export default function ExpeditionsComponent() {
       expedition.id = expeditionId;
       dispatch(upsertExpedition(expedition));
       dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open',
-        { expeditionId: expedition.id, position: 'main', exclude: [] }))
+        { expeditionId: expedition.id, position: 'main', exclude: [] }));
     }
   }
 

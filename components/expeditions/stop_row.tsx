@@ -25,11 +25,13 @@ export default function StopRow(props: {
   return (
     <View key={destination.id} style={styles.rows}>
       {(position === 'embarking' || position === 'returning') && (
-        <TouchableOpacity style={[styles.buttonSubtle, styles.routeIconWrapper]}
-          onPress={() => {}}>
-          <IconComponent provider="Entypo" name="dots-three-vertical" color="#444"
-            size={18} />
-        </TouchableOpacity>
+        <>
+          <View style={styles.routeLine} />
+          <View style={styles.routeIconWrapper}>
+            <IconComponent provider="FontAwesome" name="circle-o" color="#888888" size={14}
+              style={{textShadowColor: '#fff', textShadowRadius: 5}} />
+          </View>
+        </>
       )}
       {(position === 'main') && (
         <>

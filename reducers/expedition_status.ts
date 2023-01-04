@@ -17,6 +17,7 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 
 		case SET_DESTINATION:
 		const {expeditionId, position, destinationId, targetCoordinates, customDestination} = action;
+		console.log(`{expeditionId, position, destinationId, targetCoordinates, customDestination}`, {expeditionId, position, destinationId, targetCoordinates, customDestination})
 		const sdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		if (destinationId) {
 			if (position === 'embarking') {
@@ -35,6 +36,7 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		if (customDestination) {
 			sdExpeditionStatus.expeditions[expeditionId].customDestination = customDestination;
 		}
+
 		return sdExpeditionStatus;
 
 		case UPDATE_SUB_TITLE:
