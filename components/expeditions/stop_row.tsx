@@ -7,17 +7,19 @@ import { styles } from '../../styles';
 
 import IconComponent from '../icon';
 import SvgComponent from '../svg';
+import { displayModalValue } from '../../actions/ui';
 
 import Destination from '../../models/destination';
 import Icon from '../../models/icon';
+import { MODALS } from '../../enums/modals';
 
 export default function StopRow(props: {
   expeditionId: string,
   destination: Destination,
-  position: 'before'|'main'|'after',
-  index?: number
+  position: 'before'|'main'|'after'
 }) {
-  const { destination, position, index } = props;
+  const dispatch = useDispatch();
+  const { expeditionId, destination, position } = props;
   const pos = useTypedSelector(state => state.ui.positioner);
 
   return (
@@ -42,7 +44,7 @@ export default function StopRow(props: {
       <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start',
         minWidth: pos.buttonWithCancelOnSide, maxWidth: pos.buttonWithCancelOnSide,
         marginLeft: 0}]}
-        onPress={() => {}}>
+        onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { exclude: [] }))}>
         <SvgComponent icon={new Icon(destination.icon)} />
         <Text style={{marginLeft: 4}}>
           {destination.name}

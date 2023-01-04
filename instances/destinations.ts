@@ -5,7 +5,7 @@ import { EXPLORATIONS } from '../enums/explorations';
 import { DESTINATION_TYPES } from '../enums/destination_types';
 import { SVGS } from '../enums/svgs';
 
-const destinations: { [name: string] : Destination } = {
+const destinations: { [id: string] : Destination } = {
   [RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER]: new Destination({
     id: RESEARCHES.DESTINATION_CLIFFSIDE_CARTOGRAPHERS_TOWER,
     name: EXPLORATIONS.CLIFFSIDE_CARTOGRAPHERS_TOWER,

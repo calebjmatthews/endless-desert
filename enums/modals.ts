@@ -11,6 +11,7 @@ export enum MODALS {
   LEADER_SELECT = "Leader Select",
   BUILDING_SELECT = "Building Select",
   EQUIPMENT_SELECT = "Equipment Select",
+  DESTINATION_SELECT = "Destination Select",
   EQUIPMENT_MARKED_ONE = "Equipment Marked One",
   EQUIPMENT_MARKED_ALL = "Equipment Marked All",
   EQUIPMENT_DETAIL = "Equipment Detail",

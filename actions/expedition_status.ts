@@ -21,12 +21,13 @@ export function upsertExpedition(expedition: Expedition) {
 }
 
 export const SET_DESTINATION = 'SET_DESTINATION';
-export function setDestination(props: {expeditionId: string, mainDestinationId?: string, 
-  targetCoordinates?: [number, number], customDestination?: Destination}) {
+export function setDestination(props: {expeditionId: string, position: 'before'|'main'|'after',
+  destinationId?: string, targetCoordinates?: [number, number], customDestination?: Destination}) {
   return {
     type: SET_DESTINATION,
     expeditionId: props.expeditionId,
-    mainDestinationId: props.mainDestinationId,
+    position: props.position,
+    destinationId: props.destinationId,
     targetCoordinates: props.targetCoordinates,
     customDestination: props.customDestination
   }

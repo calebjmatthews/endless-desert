@@ -26,6 +26,8 @@ import LoginComponent from './login';
 import SignupComponent from './signup';
 import QuestQuitConfirmComponent from './quest_quit_confirm';
 import MessagesComponent from './messages';
+import DestinationSelectComponent from './expeditions/destination_select';
+
 import { MODALS } from '../enums/modals';
 
 const MODAL_HEIGHT_MAP: { [modalType: string] : string } = {
@@ -139,6 +141,9 @@ function renderModal(modalType: string) {
 
     case MODALS.MESSAGES:
     return <MessagesComponent />;
+
+    case MODALS.DESTINATION_SELECT:
+    return <DestinationSelectComponent />;
 
     default:
     return null;

@@ -436,6 +436,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Petrtified wood tablets containing poetry, dice, masks
   - Stone figurines in the shape of many different animals
   - Instruments made from various woods
+  - Skylamp, `contains` prop with specificity, kind, value
 - More specific exploration treasures:
   - Ancient wine
   - Daruma doll: lucky

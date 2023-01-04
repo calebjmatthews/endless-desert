@@ -19,9 +19,9 @@ export default class Expedition {
   id: string = '';
   subTitle: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
   targetCoordinates: [number, number] = [0, 0]; // These can change
+  embarkingDestinationIds: string[] = [];
   mainDestinationId?: string;
-  embarkingStopIds: string[] = [];
-  returningStopIds: string[] = [];
+  returningDestinationIds: string[] = [];
   customDestination?: Destination;
   leader: string = '';
   dromedaries: { [typeQuality: string] : Resource } = {};
@@ -324,7 +324,6 @@ export default class Expedition {
           text: `You can heal wounds.`
         });
       }
-      console.log(`implementAdvice`, implementAdvice);
 
       return {
         advice: [foodAndDrinkAdvice, ...hazardAdvice, ...implementAdvice],
@@ -332,13 +331,29 @@ export default class Expedition {
       };
     }
   }
+
+  getDestinationIdsToExclude(position: 'before'|'main'|'after'): string[] {
+    const currentDestinationIds: string[] = [];
+    if (position === 'before') {
+      currentDestinationIds.push(...this.embarkingDestinationIds);
+    }
+    if (this.mainDestinationId) {
+      currentDestinationIds.push(this.mainDestinationId);
+    }
+    if (position === 'after') {
+      currentDestinationIds.push(...this.returningDestinationIds);
+    }
+    return currentDestinationIds;
+  }
 }
 
 interface ExpeditionInterface {
   id: string;
   name: string;
   targetCoordinates: [number, number]; // These can change
+  embarkingDestinationIds: string[];
   mainDestinationId?: string;
+  returningDestinationIds: string[];
   customDestination?: Destination;
   leader: string;
   dromedaries: { [typeQuality: string] : Resource };
