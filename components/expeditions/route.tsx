@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;

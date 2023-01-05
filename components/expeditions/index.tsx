@@ -38,6 +38,7 @@ export default function ExpeditionsComponent() {
     });
     setStartExpeditionId(startExpId);
     if (cannotStartCount < MAX_EXPEDITION_COUNT) { setCanStartExpedition(true); }
+    else { setCanStartExpedition(false); }
   }, [JSON.stringify(expeditionStatus.expeditions)]);
 
   const startExpeditionPress = () => {
@@ -47,9 +48,9 @@ export default function ExpeditionsComponent() {
       const expeditionId = utils.randHex(8);
       expedition.id = expeditionId;
       dispatch(upsertExpedition(expedition));
-      dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open',
-        { expeditionId: expedition.id, position: 'main', exclude: [] }));
     }
+    dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open',
+      { expeditionId: expedition.id, position: 'main', exclude: [] }));
   }
 
   return (
