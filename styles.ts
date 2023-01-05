@@ -707,7 +707,7 @@ export const styles = StyleSheet.create({
   routeLine: {
     position: 'absolute',
     width: 20,
-    height: 37,
+    height: '90%',
     borderRightWidth: 3,
     borderColor: '#fff',
     borderRightColor: '#bbb',

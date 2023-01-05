@@ -49,8 +49,11 @@ export default function StopRow(props: {
         onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
           position, exclude: [] }))}>
         <SvgComponent icon={new Icon(destination.icon)} />
-        <Text style={{marginLeft: 4}}>
-          {destination.name}
+        <Text style={{display: 'flex', flexDirection: 'column', marginLeft: 4}}>
+          <Text>{destination.name}</Text>
+          <Text style={[styles.mutedText, {fontSize: 12}]}>
+            {`(${destination.getFriendlyCoordinates()})`}
+          </Text>
         </Text>
       </TouchableOpacity>
     </View>

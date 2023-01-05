@@ -19,7 +19,7 @@ export default function AddStopRow(props: { expeditionId: string, position: 'emb
   return (
     <View style={styles.rows}>
       <>
-        <View style={[styles.routeLine, {height: 18}]} />
+        <View style={styles.routeLine} />
         <View style={styles.routeIconWrapper} />
       </>
       <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start', marginLeft: 0,
