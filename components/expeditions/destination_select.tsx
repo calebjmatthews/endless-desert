@@ -7,7 +7,7 @@ import { styles } from '../../styles';
 
 import IconComponent from '../icon';
 import DestinationComponent from './destination';
-import { setDestination } from '../../actions/expedition_status';
+import { removeFromDestinations, setDestination } from '../../actions/expedition_status';
 
 import { destinations } from '../../instances/destinations';
 import { explorations } from '../../instances/explorations';
@@ -20,11 +20,21 @@ export default function DestinationSelectComponent() {
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const modalValue = useTypedSelector(state => state.ui.modalValue);
   const { expeditionId, position, exclude } = modalValue;
+  const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
 
   const destinationPress = (destinationId: string) => {
     const destination = destinations[destinationId];
-    dispatch(setDestination({ expeditionId, position, destinationId,
-      targetCoordinates: destination.coordinates }));
+    if (position === 'main') {
+      dispatch(removeFromDestinations({ expeditionId, destinationId }));
+    }
+    if (position === 'embarking'
+      || (position === 'main' && expedition.embarkingDestinationIds.length === 0)) {
+      dispatch(setDestination({ expeditionId, position, destinationId,
+        targetCoordinates: destination.coordinates }));
+    }
+    else {
+      dispatch(setDestination({ expeditionId, position, destinationId }));
+    }
     dispatch(displayModalValue(null, 'closed', null));
   }
 

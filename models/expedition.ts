@@ -333,6 +333,7 @@ export default class Expedition {
   }
 
   getDestinationIdsToExclude(position: 'embarking'|'main'|'returning'): string[] {
+    if (position === 'main') { return []; }
     const currentDestinationIds: string[] = [];
     if (position === 'embarking') {
       currentDestinationIds.push(...this.embarkingDestinationIds);

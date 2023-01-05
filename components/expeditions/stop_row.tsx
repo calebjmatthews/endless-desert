@@ -21,6 +21,8 @@ export default function StopRow(props: {
   const dispatch = useDispatch();
   const { expeditionId, destination, position } = props;
   const pos = useTypedSelector(state => state.ui.positioner);
+  const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
+  const exclude = expedition.getDestinationIdsToExclude(position);
 
   return (
     <View key={destination.id} style={styles.rows}>
@@ -47,7 +49,7 @@ export default function StopRow(props: {
         minWidth: pos.buttonWithCancelOnSide, maxWidth: pos.buttonWithCancelOnSide,
         marginLeft: 0}]}
         onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
-          position, exclude: [] }))}>
+          position, exclude }))}>
         <SvgComponent icon={new Icon(destination.icon)} />
         <Text style={{display: 'flex', flexDirection: 'column', marginLeft: 4}}>
           <Text>{destination.name}</Text>

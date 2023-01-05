@@ -169,6 +169,14 @@ class Utils {
     return included;
   }
 
+  removeFromArray(anArray: any[], anItem: any) {
+    const index = anArray.indexOf(anItem);
+    if (index !== -1) {
+      anArray.splice(index, 1);
+    }
+    return anArray;
+  }
+
   arrayGaussianTruncate(anArray: any[], min?: number, max?: number) {
     let initialLength = (max && anArray.length > max) ? max : anArray.length;
     let newLength = Math.ceil(this.randomGaussian() * initialLength);

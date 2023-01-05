@@ -33,6 +33,15 @@ export function setDestination(props: {expeditionId: string, position: 'embarkin
   }
 }
 
+export const REMOVE_FROM_DESTINATIONS = 'REMOVE_FROM_DESTINATIONS';
+export function removeFromDestinations(props: {expeditionId: string, destinationId?: string}) {
+  return {
+    type: REMOVE_FROM_DESTINATIONS,
+    expeditionId: props.expeditionId,
+    destinationId: props.destinationId
+  }
+}
+
 export const UPDATE_SUB_TITLE = 'UPDATE_SUB_TITLE';
 export function updateSubTitle(props: {expeditionId: string, subTitle: string}) {
   return {

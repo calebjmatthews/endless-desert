@@ -1,8 +1,9 @@
 import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPDATE_SUB_TITLE, UPSERT_DROMEDARIES,
-	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE }
+	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS }
 	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
+import { utils } from '../utils';
 
 export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStatus(null),
   action: any = null) {
@@ -17,7 +18,6 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 
 		case SET_DESTINATION:
 		const {expeditionId, position, destinationId, targetCoordinates, customDestination} = action;
-		console.log(`{expeditionId, position, destinationId, targetCoordinates, customDestination}`, {expeditionId, position, destinationId, targetCoordinates, customDestination})
 		const sdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		if (destinationId) {
 			if (position === 'embarking') {
@@ -36,8 +36,17 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		if (customDestination) {
 			sdExpeditionStatus.expeditions[expeditionId].customDestination = customDestination;
 		}
-
 		return sdExpeditionStatus;
+
+		case REMOVE_FROM_DESTINATIONS:
+		const rfdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		rfdExpeditionStatus.expeditions[action.expeditionId].embarkingDestinationIds = 
+			utils.removeFromArray(rfdExpeditionStatus.expeditions[action.expeditionId].embarkingDestinationIds,
+			action.destinationId);
+		rfdExpeditionStatus.expeditions[action.expeditionId].returningDestinationIds = 
+			utils.removeFromArray(rfdExpeditionStatus.expeditions[action.expeditionId].returningDestinationIds,
+			action.destinationId);
+		return rfdExpeditionStatus;
 
 		case UPDATE_SUB_TITLE:
 		const snExpeditionStatus = new ExpeditionStatus(expeditionStatus);
