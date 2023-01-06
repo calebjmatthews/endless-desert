@@ -112,7 +112,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
 
       let allResources: Resource[] = [];
       Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 100 }));
+        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 10000 }));
       });
       dispatch(increaseResources(vault, allResources));
       dispatch(setExpeditionStatus(new ExpeditionStatus(null)));

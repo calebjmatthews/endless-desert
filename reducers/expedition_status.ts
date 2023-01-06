@@ -1,5 +1,5 @@
 import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPDATE_SUB_TITLE, UPSERT_DROMEDARIES,
-	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS }
+	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION }
 	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
@@ -37,6 +37,20 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 			sdExpeditionStatus.expeditions[expeditionId].customDestination = customDestination;
 		}
 		return sdExpeditionStatus;
+
+		case REMOVE_DESTINATION:
+		const rdeExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		if (action.position === 'embarking') {
+			rdeExpeditionStatus.expeditions[action.expeditionId].embarkingDestinationIds = 
+				utils.removeFromArray(rdeExpeditionStatus.expeditions[action.expeditionId].
+				embarkingDestinationIds, action.destinationId);
+		}
+		if (action.position === 'returning') {
+			rdeExpeditionStatus.expeditions[action.expeditionId].returningDestinationIds = 
+				utils.removeFromArray(rdeExpeditionStatus.expeditions[action.expeditionId].
+				returningDestinationIds, action.destinationId);
+		}
+		return rdeExpeditionStatus;
 
 		case REMOVE_FROM_DESTINATIONS:
 		const rfdExpeditionStatus = new ExpeditionStatus(expeditionStatus);

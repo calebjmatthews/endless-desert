@@ -33,6 +33,17 @@ export function setDestination(props: {expeditionId: string, position: 'embarkin
   }
 }
 
+export const REMOVE_DESTINATION = 'REMOVE_DESTINATION';
+export function removeDestination(props: {expeditionId: string,
+  position: 'embarking'|'main'|'returning', destinationId: string}) {
+  return {
+    type: REMOVE_DESTINATION,
+    expeditionId: props.expeditionId,
+    position: props.position,
+    destinationId: props.destinationId
+  }
+}
+
 export const REMOVE_FROM_DESTINATIONS = 'REMOVE_FROM_DESTINATIONS';
 export function removeFromDestinations(props: {expeditionId: string, destinationId?: string}) {
   return {

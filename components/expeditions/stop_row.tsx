@@ -24,6 +24,17 @@ export default function StopRow(props: {
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const exclude = expedition.getDestinationIdsToExclude(position);
 
+  const rowPress = () => {
+    if (position === 'embarking' || position === 'returning') {
+      dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
+        position, exclude, originatingId: destination.id, showRemove: true }));
+    }
+    else {
+      dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
+        position, exclude }));
+    }
+  }
+
   return (
     <View key={destination.id} style={styles.rows}>
       {(position === 'embarking' || position === 'returning') && (
@@ -48,8 +59,7 @@ export default function StopRow(props: {
       <TouchableOpacity style={[styles.buttonSubtle, {justifyContent: 'flex-start',
         minWidth: pos.buttonWithCancelOnSide, maxWidth: pos.buttonWithCancelOnSide,
         marginLeft: 0}]}
-        onPress={() => dispatch(displayModalValue(MODALS.DESTINATION_SELECT, 'open', { expeditionId, 
-          position, exclude }))}>
+        onPress={() => rowPress()}>
         <SvgComponent icon={new Icon(destination.icon)} />
         <Text style={{display: 'flex', flexDirection: 'column', marginLeft: 4}}>
           <Text>{destination.name}</Text>
