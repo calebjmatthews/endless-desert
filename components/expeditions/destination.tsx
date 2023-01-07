@@ -13,8 +13,8 @@ import { utils } from '../../utils';
 
 export default function DestinationComponent(props: { destination: Destination,
   exploration: Exploration, destinationPress: (destinationId: string) => void,
-  positioner: Positioner }) {
-  const { destination, exploration, destinationPress, positioner: pos } = props;
+  addedLength: number, positioner: Positioner }) {
+  const { destination, exploration, destinationPress, addedLength, positioner: pos } = props;
 
   return (
     <TouchableOpacity key={destination.name} style={[styles.panelFlex,
@@ -23,6 +23,18 @@ export default function DestinationComponent(props: { destination: Destination,
       <SvgComponent icon={new Icon({ ...destination.icon, size: 40 })} />
       <View style={[styles.containerStretchColumn, { marginLeft: 5 }]}>
         <Text>{destination.name}</Text>
+        <View style={styles.breakSmall} />
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
+          minWidth: pos.bodyMedWidth, maxWidth: pos.bodyMedWidth }}>
+          <Text style={[styles.mutedText, {fontSize: 12}]}>
+            {`(${destination.getFriendlyCoordinates()})`}
+          </Text>
+          {addedLength ? (
+            <Text style={[styles.mutedText, {fontSize: 12}]}>
+              {`+${utils.formatNumberShort(addedLength)} le`}
+            </Text>
+          ) : null}
+        </View>
         <View style={styles.breakSmall} />
         <Text style={{fontSize: 12, fontStyle: 'italic', minWidth: pos.bodyMedWidth, 
           maxWidth: pos.bodyMedWidth}}>

@@ -346,6 +346,29 @@ export default class Expedition {
     }
     return currentDestinationIds;
   }
+
+  getExpeditionLength(props: { destinations: { [id: string] : Destination },
+    newDestinationId?: string, newPosition?: 'embarking'|'returning' }) {
+    const { destinations, newDestinationId, newPosition } = props;
+    const coordinates: [number, number][] = [[0, 0]];
+    if (newDestinationId && newPosition === 'embarking') {
+      coordinates.push(destinations[newDestinationId].coordinates);
+    }
+    this.embarkingDestinationIds.forEach((destinationId) => {
+      coordinates.push(destinations[destinationId].coordinates);
+    });
+    if (this.mainDestinationId) {
+      coordinates.push(destinations[this.mainDestinationId].coordinates);
+    }
+    this.returningDestinationIds.forEach((destinationId) => {
+      coordinates.push(destinations[destinationId].coordinates);
+    });
+    if (newDestinationId && newPosition === 'returning') {
+      coordinates.push(destinations[newDestinationId].coordinates);
+    }
+    coordinates.push([0, 0]);
+    return utils.distanceBetweenManyPoints(coordinates);
+  }
 }
 
 interface ExpeditionInterface {

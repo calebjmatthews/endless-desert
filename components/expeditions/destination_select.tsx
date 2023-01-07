@@ -59,9 +59,13 @@ export default function DestinationSelectComponent() {
             if (utils.arrayIncludes(exclude, id)) { return null; }
             const destination = destinations[id];
             const exploration = explorations[destination.atFinish.id];
+            const addedLength = expedition.getExpeditionLength({ destinations,
+              newDestinationId: id, newPosition: position })
+              - expedition.getExpeditionLength({ destinations });
             if (!researchStatus.destinationsAvailable[id] || !exploration) { return null; }
             return <DestinationComponent key={destination.name} destination={destination}
-              exploration={exploration} destinationPress={destinationPress} positioner={positioner} />
+              exploration={exploration} destinationPress={destinationPress} addedLength={addedLength} 
+              positioner={positioner} />
           })}
           {(showRemove && originatingDestination) && (
             <TouchableOpacity style={[styles.panelFlex,

@@ -816,6 +816,14 @@ class Utils {
     return Math.sqrt(Math.pow((destination[0] - origin[0]), 2)
       + Math.pow((destination[1] - origin[1]), 2));
   }
+
+  distanceBetweenManyPoints(manyPoints: [number, number][]) {
+    let distance = 0;
+    for (let index = 0; index < (manyPoints.length-1); index++) {
+      distance += this.distanceBetweenPoints(manyPoints[index], manyPoints[index+1]);
+    }
+    return distance;
+  }
 }
 
 export let utils = new Utils();

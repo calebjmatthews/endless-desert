@@ -48,7 +48,10 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
             minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
             <View style={styles.rows}>
               <IconComponent provider="FontAwesome5" name="route" color={'#444'} size={16} />
-              <Text style={styles.heading3}>{` Route:`}</Text>
+              <Text style={styles.heading3}>{` Route`}</Text>
+              <Text style={styles.mutedText}>
+                {` (${utils.formatNumberShort(expedition.getExpeditionLength({destinations}))} leagues):`}
+              </Text>
             </View>
             <View style={styles.breakSmall} />
             <RouteComponent expeditionId={expeditionId} />
