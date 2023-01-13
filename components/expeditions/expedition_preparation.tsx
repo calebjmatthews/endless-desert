@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -124,6 +124,17 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
             </View>
             <AdviceComponent expeditionId={expedition.id} />
           </View>
+
+          {(expedition.subState === 3) && (
+            <TouchableOpacity style={[styles.buttonLarge, {alignSelf: 'center', marginTop: 5}]}
+              onPress={() => expedition.beginExpedition(dromedaryTypes)} >
+              <IconComponent provider="FontAwesome" color="#fff" size={16} style={styles.headingIcon}
+                name="arrow-right" />
+              <Text style={styles.buttonTextLarge}>
+                {` Begin!`}
+              </Text>
+            </TouchableOpacity>
+          )}
         </>
       </View>
     </View>

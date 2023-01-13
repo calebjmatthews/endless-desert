@@ -43,7 +43,7 @@ export default function ExpeditionComponent(props: { expeditionId: string  }) {
   }, [expedition.leader, JSON.stringify(expedition.dromedaries), JSON.stringify(expedition.resources)]);
 
   useEffect(() => {
-    const subTitle = expedition.calcSubTitle({leaders, destinations});
+    const subTitle = expedition.calcSubTitle({ leaders });
     dispatch(updateSubTitle({
       expeditionId: expedition.id,
       subTitle

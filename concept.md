@@ -512,11 +512,19 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - After preparing an expedition, change state to 'embarking' and subState to 0.
   - Calculate next expedition event; very short trips should have one, short trips should have one or two, medium length should have around three, etc.
   - Create a hidden timer for this event.
-  - Once the timer expires, trigger a message+flashing nav tab for the event, and change subState to 1. While subState is 1, each elapsed 100ms adds 100 to the expedition's storedTime.
+  - Once the timer expires, trigger a message+flashing nav tab for the event, and change subState to -1. While subState is 1, each elapsed 100ms adds 100 to the expedition's storedTime.
   - If the timer occurs during a whileAway calculation, the remainder post-expiration is added to the expedition's storedTime.
   - After the expedition event's scene is resolved, storedTime is used to continue the expedition (at 100x speed?). Allow the user to optionally used the storedTime?
   - User can decide to change the destination (including returning home) at any time.
   - Separate expedition rates for using food and drink.
+- Interface:
+  - Title, e.g. "Samnnoud's Journey to Alabaster, the Shining City"
+  - Icons of dromedaries moving up and down?
+  - Loading bar until next destination reached
+  - Remaining time label, with "Pause" indicator
+  - White bar with current status
+  - Action button, "Go in", "You're surrounded", "You see something in the distance"
+  - Icons for current resources
 
 ## Exploration:
 - Stats:
@@ -726,6 +734,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     https://www.svgrepo.com/collection/symbol/
     https://www.svgrepo.com/collection/kitchenware-2/
     https://www.svgrepo.com/collection/ice-cream-icon-collection/
+    https://www.svgrepo.com/collection/flat-tropical-fruit-vectors/
     https://www.svgrepo.com/collection/holidays-2/
     https://www.svgrepo.com/collection/valentines-day-6/
     https://www.svgrepo.com/collection/beauty-30/

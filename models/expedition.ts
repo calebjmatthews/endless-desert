@@ -10,18 +10,27 @@ import Exploration from './exploration';
 import ExplorationChallenge from './exploration_challenge';
 import ResourceTag from './resource_tag';
 import Leader from './leader';
+import Rate from './rate';
+import Timer from './timer';
 import { utils } from '../utils';
-import { RESOURCE_TAGS } from '../enums/resource_tags';
 import { dromedaryTypes } from '../instances/dromedary_types';
+import { RESOURCE_TAGS } from '../enums/resource_tags';
 const RTA = RESOURCE_TAGS;
+import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+const RSP = RESOURCE_SPECIFICITY;
+import { EXPEDITION_EVENTS } from '../enums/expedition_events';
+
+const MS_IN_MIN = 1000 * 60;
 
 export default class Expedition {
   id: string = '';
   subTitle: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
+  currentCoordinates: [number, number] = [0, 0];
   targetCoordinates: [number, number] = [0, 0]; // These can change
   embarkingDestinationIds: string[] = [];
   mainDestinationId?: string;
   returningDestinationIds: string[] = [];
+  currentDestinationId?: string;
   customDestination?: Destination;
   leader: string = '';
   dromedaries: { [typeQuality: string] : Resource } = {};
@@ -30,8 +39,11 @@ export default class Expedition {
   subState: number = 0;
   advice: { icon: Icon, text: string, textColor?: string }[] = [];
   beganAt?: number;
-  endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory } = {};
+  eating: string = '';
+  drinking: string = '';
+  rates: Rate = {};
+  timers: { [name: string] : Timer } = {};
   storedTime: number = 0;
 
   constructor(expedition: ExpeditionInterface|null) {
@@ -40,11 +52,147 @@ export default class Expedition {
     }
   }
 
-  calcSubTitle(props: {
-    leaders: { [id: string] : Leader },
-    destinations: { [subTitle: string] : Destination }
-  }) {
-    const { leaders, destinations } = props;
+  beginExpedition(dromedaryTypes: { [name: string] : DromedaryType }) {
+    this.state = 'embarking';
+
+    this.calculateAndSetEatingAndTimer();
+    this.calculateAndSetDrinkingAndTimer();
+
+    this.calculateAndSetNextEventTimer(dromedaryTypes);
+
+    this.calculateAndSetArrivalTimer(dromedaryTypes);
+    console.log(`this`, this);
+  }
+
+  calculateAndSetEatingAndTimer() {
+    const fResource = this.getMostValuableResource({ specificity: RSP.TAG, kind: RTA.FOOD });
+    if (fResource) {
+      this.eating = `${fResource.type}|${fResource.quality}`;
+      const fResourceType = utils.getResourceType(fResource);
+      const fRate = (utils.arrayIncludes(fResourceType.tags, RTA.PROVISION)) ? -5 : -10;
+      this.rates[`${fResource.type}|${fResource.quality}`] = fRate;
+      this.timers = this.removeTimer('eating');
+      const timerName = `eating-${utils.randHex(8)}`;
+      this.timers[timerName] = new Timer({
+        name: timerName,
+        endsAt: (new Date(Date.now()).valueOf() + ((fResource.quantity / (fRate*-1)) * MS_IN_MIN)),
+        eventId: EXPEDITION_EVENTS.OUT_OF_FOOD
+      });
+    }
+  }
+
+  calculateAndSetDrinkingAndTimer() {
+    const dResource = this.getMostValuableResource({ specificity: RSP.TAG, kind: RTA.DRINK });
+    if (dResource) {
+      this.drinking = `${dResource.type}|${dResource.quality}`;
+      const dResourceType = utils.getResourceType(dResource);
+      const dRate = (utils.arrayIncludes(dResourceType.tags, RTA.PROVISION)) ? -5 : -10;
+      this.rates[`${dResource.type}|${dResource.quality}`] = dRate;
+      this.timers = this.removeTimer('drinking');
+      const timerName = `drinking-${utils.randHex(8)}`;
+      this.timers[timerName] = new Timer({
+        name: timerName,
+        endsAt: (new Date(Date.now()).valueOf() + ((dResource.quantity / (dRate*-1)) * MS_IN_MIN)),
+        eventId: EXPEDITION_EVENTS.OUT_OF_DRINK
+      });
+    }
+  }
+
+  getMostValuableResource(props: { specificity: string, kind: string }): Resource|null {
+    const { specificity, kind } = props;
+
+    const matches: ResourceType[] = [];
+    Object.keys(this.resources).forEach((typeQuality) => {
+      const resource = this.resources[typeQuality];
+      if (resource.quantity <= 0) { return null; }
+      const resourceType = utils.getResourceType(resource);
+      switch(specificity) {
+        case RSP.CATEGORY:
+        if (resourceType.category === kind) {
+          matches.push(resourceType);
+        } break;
+        case RSP.SUBCATEGORY:
+        if (resourceType.subcategory === kind) {
+          matches.push(resourceType);
+        } break;
+        case RSP.TAG:
+        if (utils.arrayIncludes(resourceType.tags, kind)) {
+          matches.push(resourceType);
+        } break;
+        case RSP.EXACT:
+        if (resourceType.name === kind) {
+          matches.push(resourceType);
+        } break;
+      }
+    });
+
+    if (matches.length === 0) { return null; }
+
+    matches.sort((a, b) => {
+      return a.value = b.value;
+    });
+
+    const resource = this.resources[`${matches[0].name}|2`]
+      || this.resources[`${matches[0].name}|1`]
+      || this.resources[`${matches[0].name}|0`]
+    
+    return resource;
+  }
+
+  removeTimer(prefix: string) {
+    let match: string|null = null;
+    Object.keys(this.timers).forEach((timerName) => {
+      if (timerName.split('-')[0] === prefix) { match = timerName; }
+    });
+    if (match) { delete this.timers[match]; }
+    return this.timers;
+  }
+
+  calculateAndSetNextEventTimer(dromedaryTypes: { [name: string] : DromedaryType }) {
+    const thresholds = [
+      { remainingDistance: 0, distanceUntilNext: 40 },
+      { remainingDistance: 20, distanceUntilNext: 10 },
+      { remainingDistance: 50, distanceUntilNext: 20 },
+      { remainingDistance: 100, distanceUntilNext: 40 },
+      { remainingDistance: 500, distanceUntilNext: 180 },
+      { remainingDistance: 1000, distanceUntilNext: 300 }
+    ];
+    
+    let highestThreshold = thresholds[0];
+    thresholds.slice(1).forEach((threshold) => {
+      if (threshold.remainingDistance <= remainingDistance) {
+        highestThreshold = threshold;
+      }
+    });
+    const distanceUntilNext = Math.floor(highestThreshold.distanceUntilNext
+      * (utils.randomGaussian() + 0.5));
+    const remainingDistance = utils.distanceBetweenPoints(this.currentCoordinates,
+      this.targetCoordinates);
+    if (distanceUntilNext < remainingDistance) {
+      const speed = this.getSpeed(dromedaryTypes);
+      const timerName = `event-${utils.randHex(8)}`;
+      this.timers[timerName] = new Timer({
+        name: timerName,
+        endsAt: (new Date(Date.now()).valueOf() + ((distanceUntilNext / speed) * MS_IN_MIN)),
+        eventCheck: true
+      });
+    }
+  }
+
+  calculateAndSetArrivalTimer(dromedaryTypes: { [name: string] : DromedaryType }) {
+    const speed = this.getSpeed(dromedaryTypes);
+    const remainingDistance = utils.distanceBetweenPoints(this.currentCoordinates,
+      this.targetCoordinates);
+    const timerName = `arrival-${utils.randHex(8)}`;
+    this.timers[timerName] = new Timer({
+      name: timerName,
+      endsAt: (new Date(Date.now()).valueOf() + ((remainingDistance / speed) * MS_IN_MIN)),
+      eventId: EXPEDITION_EVENTS.ARRIVAL
+    });
+  }
+
+  calcSubTitle(props: { leaders: { [id: string] : Leader } }) {
+    const { leaders } = props;
     let subTitle = '';
     const leader = leaders[this.leader];
     if (leader) {
@@ -373,11 +521,13 @@ export default class Expedition {
 
 interface ExpeditionInterface {
   id: string;
-  name: string;
+  subTitle: string;
+  currentCoordinates: [number, number];
   targetCoordinates: [number, number]; // These can change
   embarkingDestinationIds: string[];
   mainDestinationId?: string;
   returningDestinationIds: string[];
+  currentDestinationId?: string;
   customDestination?: Destination;
   leader: string;
   dromedaries: { [typeQuality: string] : Resource };
@@ -386,7 +536,8 @@ interface ExpeditionInterface {
   subState: number;
   advice: { icon: Icon, text: string, textColor?: string }[];
   beganAt?: number;
-  endedAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory };
+  rates: { [typeQuality: string] : Rate };
+  timers: { [name: string] : Timer }
   storedTime: number;
 }

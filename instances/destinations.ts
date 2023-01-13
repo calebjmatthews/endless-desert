@@ -44,7 +44,7 @@ const destinations: { [id: string] : Destination } = {
       id: EXPLORATIONS.CASCASE_OF_PRIMSMATIC_SAND,
       type: DESTINATION_TYPES.EXPLORATION
     },
-    icon: new Icon({provider: 'svg', name: SVGS.PRISMATIC_SAND})
+    icon: new Icon({provider: 'svg', name: SVGS.PRISMATIC_SAND, backgroundColor: '#905b16'})
   }),
   [RESEARCHES.DESTINATION_TWIN_MOONS_GROTTO]: new Destination({
     id: RESEARCHES.DESTINATION_TWIN_MOONS_GROTTO,
