@@ -43,7 +43,7 @@ export default function DromedaryProgressIcons(props: {
   return (
     <View style={styles.rows}>
       {(!paused) && icons.map((icon, index) => (
-        <AnimatedDromedaryIcon key={index} index={index} icon={icon} />)
+        <AnimatedDromedaryIcon key={index} icon={icon} index={index} count={icons.length} />)
       )}
       {(paused) && icons.map((icon, index) => (
         <SvgComponent key={index} icon={icon} />
@@ -52,26 +52,26 @@ export default function DromedaryProgressIcons(props: {
   )
 }
 
-function AnimatedDromedaryIcon(props: { icon: Icon, index: number }) {
-  const { icon, index } = props;
+function AnimatedDromedaryIcon(props: { icon: Icon, index: number, count: number }) {
+  const { icon, index, count } = props;
   const yAnim = useRef(new Animated.Value(0)).current;
 
   const moveDown = () => {
     Animated.timing(yAnim,
-      { toValue: 5, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
+      { toValue: 3, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
     ).start(moveUp);
   }
 
   const moveUp = () => {
     Animated.timing(yAnim,
-      { toValue: -5, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
+      { toValue: -3, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
     ).start(moveDown);
   }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       moveDown()
-    }, ((DROMEDARY_ICON_SPEED / 4) * index));
+    }, ((DROMEDARY_ICON_SPEED / 4) * (count-1 - index)));
     
     return (() => clearTimeout(timeout));
   }, []);

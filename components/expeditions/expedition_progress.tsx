@@ -36,7 +36,7 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
           <Text style={styles.heading1}>{destination.name}</Text>
         </>
         
-        <View style={styles.breakLarge} />
+        <View style={styles.break} />
         <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false} />
       </View>
     </View>

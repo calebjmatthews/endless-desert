@@ -12,7 +12,7 @@ export const FADE_IN_DELAY = 400;
 export const FADE_CHAR_DELAY = 30;
 export const FADE_CHAR_MULT = 8;
 export const PULSE_DURATION = 1200;
-export const DROMEDARY_ICON_SPEED = 1600;
+export const DROMEDARY_ICON_SPEED = 800;
 
 // export const BASE_URL = 'http://localhost:8080/';
 export const BASE_URL = 'https://endlessdesert.app/';
