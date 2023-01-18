@@ -719,5 +719,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     minWidth: 37,
     maxWidth: 37
+  },
+
+  dromedaryIconContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+    paddingRight: 10
   }
 });

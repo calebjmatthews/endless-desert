@@ -8,6 +8,7 @@ import { styles } from '../../styles';
 import IconComponent from '../icon';
 import SvgComponent from '../svg';
 import DromedaryProgressIcons from './dromedary_progress_icons';
+import ProgressBarComponent from '../progress_bar';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
@@ -19,6 +20,7 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const destination = expedition.customDestination || destinations[expedition.mainDestinationId || ''];
   const pos = useTypedSelector(state => state.ui.positioner);
+  const timer = expedition.timers[expedition.getTimerId('arrival') || ''];
 
   if (!destination) { return null; }
   return (
@@ -37,7 +39,17 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         </>
         
         <View style={styles.break} />
-        <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false} />
+        <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false}
+          width={pos.majorWidth} />
+
+        {timer && (
+          <ProgressBarComponent staticDuration={true}
+            width={pos.majorWidth - pos.minorPadding}
+            startingProgress={timer.progress} endingProgress={1}
+            duration={timer.endsAt - new Date(Date.now()).valueOf()}
+            label={timer.remainingLabel} />
+        )}
+
       </View>
     </View>
   )

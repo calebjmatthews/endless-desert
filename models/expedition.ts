@@ -140,11 +140,16 @@ export default class Expedition {
     return resource;
   }
 
-  removeTimer(prefix: string) {
+  getTimerId(prefix: string): string|null {
     let match: string|null = null;
     Object.keys(this.timers).forEach((timerName) => {
       if (timerName.split('-')[0] === prefix) { match = timerName; }
     });
+    return match;
+  }
+
+  removeTimer(prefix: string) {
+    let match: string|null = this.getTimerId(prefix);
     if (match) { delete this.timers[match]; }
     return this.timers;
   }

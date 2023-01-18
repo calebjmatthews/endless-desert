@@ -12,9 +12,10 @@ import { DROMEDARY_ICON_SPEED } from '../../constants';
 
 export default function DromedaryProgressIcons(props: {
   dromedaries: { [typeQuality: string] : Resource },
-  paused: boolean
+  paused: boolean,
+  width: number
 }) {
-  const { dromedaries, paused } = props;
+  const { dromedaries, paused, width } = props;
 
   // Round up for each dromedary kind, round down for the remaining
   // so that the total number of icons is correct.
@@ -41,7 +42,7 @@ export default function DromedaryProgressIcons(props: {
   });
 
   return (
-    <View style={styles.rows}>
+    <View style={[styles.dromedaryIconContainer, {minWidth: width, maxWidth: width}]}>
       {(!paused) && icons.map((icon, index) => (
         <AnimatedDromedaryIcon key={index} icon={icon} index={index} count={icons.length} />)
       )}
