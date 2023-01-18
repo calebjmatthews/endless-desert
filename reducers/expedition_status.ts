@@ -1,5 +1,5 @@
-import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATION, UPDATE_SUB_TITLE, UPSERT_DROMEDARIES,
-	REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION }
+import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATIONS, UPDATE_SUB_TITLE, 
+	UPSERT_DROMEDARIES, REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION }
 	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
@@ -16,27 +16,28 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		aeExpeditionStatus.expeditions[action.expedition.id] = new Expedition(action.expedition);
 		return aeExpeditionStatus;
 
-		case SET_DESTINATION:
-		const {expeditionId, position, destinationId, targetCoordinates, customDestination} = action;
-		const sdExpeditionStatus = new ExpeditionStatus(expeditionStatus);
-		if (destinationId) {
-			if (position === 'embarking') {
-				sdExpeditionStatus.expeditions[expeditionId].embarkingDestinationIds.unshift(destinationId);
+		case SET_DESTINATIONS:
+			const sdsExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+			const expedition = sdsExpeditionStatus.expeditions[action.expeditionId];
+			if (action.embarkingDestinationIds) {
+				expedition.embarkingDestinationIds = action.embarkingDestinationIds
 			}
-			if (position === 'main') {
-				sdExpeditionStatus.expeditions[expeditionId].mainDestinationId = destinationId;
+			if (action.mainDestinationId)	{
+				expedition.mainDestinationId = action.mainDestinationId;
 			}
-			if (position === 'returning') {
-				sdExpeditionStatus.expeditions[expeditionId].returningDestinationIds.push(destinationId);
+			if (action.returningDestinationIds) {
+				expedition.returningDestinationIds = action.returningDestinationIds;
 			}
-		}
-		if (targetCoordinates) {
-			sdExpeditionStatus.expeditions[expeditionId].targetCoordinates = targetCoordinates;
-		}
-		if (customDestination) {
-			sdExpeditionStatus.expeditions[expeditionId].customDestination = customDestination;
-		}
-		return sdExpeditionStatus;
+			if (action.currentDestinationId) {
+				expedition.currentDestinationId = action.currentDestinationId;
+			}
+			if (action.targetCoordinates) {
+				expedition.targetCoordinates = action.targetCoordinates;
+			}
+			if (action.customDestination) {
+				expedition.customDestination = action.customDestination;
+			}
+			return sdsExpeditionStatus;
 
 		case REMOVE_DESTINATION:
 		const rdeExpeditionStatus = new ExpeditionStatus(expeditionStatus);

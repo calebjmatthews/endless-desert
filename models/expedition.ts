@@ -191,6 +191,39 @@ export default class Expedition {
     });
   }
 
+  setOrAddDestination(props: { destinations: { [name: string] : Destination }, destinationId: string, 
+    position: 'embarking'|'main'|'returning' }) {
+    const { destinations, destinationId, position } = props;
+    let returnedObject: { expeditionId: string, embarkingDestinationIds?: string[],
+      mainDestinationId?: string, returningDestinationIds?: string[], currentDestinationId?: string,
+      targetCoordinates?: [number, number], customDestination?: Destination } = {
+      expeditionId: this.id };
+    if (position === 'embarking') {
+      this.embarkingDestinationIds.unshift(destinationId);
+      returnedObject.embarkingDestinationIds = this.embarkingDestinationIds;
+    }
+    if (position === 'main') {
+      this.mainDestinationId = destinationId;
+      returnedObject.mainDestinationId = this.mainDestinationId;
+      this.embarkingDestinationIds = utils.removeFromArray(this.embarkingDestinationIds, destinationId);
+      returnedObject.embarkingDestinationIds = this.embarkingDestinationIds;
+      this.returningDestinationIds = utils.removeFromArray(this.returningDestinationIds, destinationId);
+      returnedObject.returningDestinationIds = this.returningDestinationIds;
+    }
+    if (position === 'returning') {
+      this.returningDestinationIds.push(destinationId);
+      returnedObject.returningDestinationIds = this.returningDestinationIds;
+    }
+    if (position === 'embarking'
+      || (position === 'main' && this.embarkingDestinationIds.length === 0)) {
+      this.targetCoordinates = destinations[destinationId].coordinates;
+      returnedObject.targetCoordinates = this.targetCoordinates;
+      this.currentDestinationId = destinationId;
+      returnedObject.currentDestinationId = this.currentDestinationId;
+    }
+    return returnedObject;
+  }
+
   calcSubTitle(props: { leaders: { [id: string] : Leader } }) {
     const { leaders } = props;
     let subTitle = '';
@@ -537,7 +570,7 @@ interface ExpeditionInterface {
   advice: { icon: Icon, text: string, textColor?: string }[];
   beganAt?: number;
   eventHistory: { [id: string] : ExpeditionEventHistory };
-  rates: { [typeQuality: string] : Rate };
+  rates: Rate;
   timers: { [name: string] : Timer }
   storedTime: number;
 }

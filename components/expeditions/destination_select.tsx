@@ -7,9 +7,10 @@ import { styles } from '../../styles';
 
 import IconComponent from '../icon';
 import DestinationComponent from './destination';
-import { removeDestination, removeFromDestinations, setDestination }
+import { removeDestination, removeFromDestinations, setDestination, setDestinations }
 from '../../actions/expedition_status';
 
+import Expedition from '../../models/expedition';
 import { destinations } from '../../instances/destinations';
 import { explorations } from '../../instances/explorations';
 import { utils } from '../../utils';
@@ -26,18 +27,12 @@ export default function DestinationSelectComponent() {
   const originatingDestination = destinations[originatingId];
 
   const destinationPress = (destinationId: string) => {
-    const destination = destinations[destinationId];
-    if (position === 'main') {
-      dispatch(removeFromDestinations({ expeditionId, destinationId }));
-    }
-    if (position === 'embarking'
-      || (position === 'main' && expedition.embarkingDestinationIds.length === 0)) {
-      dispatch(setDestination({ expeditionId, position, destinationId,
-        targetCoordinates: destination.coordinates }));
-    }
-    else {
-      dispatch(setDestination({ expeditionId, position, destinationId }));
-    }
+    const pressedExpedition = new Expedition(expedition);
+    const { embarkingDestinationIds, mainDestinationId, returningDestinationIds, currentDestinationId,
+      targetCoordinates } = pressedExpedition.setOrAddDestination({ destinations, destinationId, 
+      position });
+    dispatch(setDestinations({ expeditionId, embarkingDestinationIds, mainDestinationId,
+      returningDestinationIds, currentDestinationId, targetCoordinates }))
     dispatch(displayModalValue(null, 'closed', null));
   }
 

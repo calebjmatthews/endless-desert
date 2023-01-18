@@ -20,16 +20,19 @@ export function upsertExpedition(expedition: Expedition) {
   }
 }
 
-export const SET_DESTINATION = 'SET_DESTINATION';
-export function setDestination(props: {expeditionId: string, position: 'embarking'|'main'|'returning',
-  destinationId?: string, targetCoordinates?: [number, number], customDestination?: Destination}) {
+export const SET_DESTINATIONS = 'SET_DESTINATIONS';
+export function setDestinations(props: { expeditionId: string, embarkingDestinationIds?: string[],
+  mainDestinationId?: string, returningDestinationIds?: string[], currentDestinationId?: string,
+  targetCoordinates?: [number, number], customDestination?: Destination }) {
   return {
-    type: SET_DESTINATION,
+    type: SET_DESTINATIONS,
     expeditionId: props.expeditionId,
-    position: props.position,
-    destinationId: props.destinationId,
+    embarkingDestinationIds: props.embarkingDestinationIds,
+    mainDestinationId: props.mainDestinationId,
+    returningDestinationIds: props.returningDestinationIds,
+    currentDestinationId: props.currentDestinationId,
     targetCoordinates: props.targetCoordinates,
-    customDestination: props.customDestination
+    customDestination: props.customDestination,
   }
 }
 
