@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Animated } from 'react-native';
 import { styles } from '../../styles';
 
@@ -55,25 +55,43 @@ export default function DromedaryProgressIcons(props: {
 function AnimatedDromedaryIcon(props: { icon: Icon, index: number, count: number }) {
   const { icon, index, count } = props;
   const yAnim = useRef(new Animated.Value(0)).current;
+  const [intervals, setIntervals] = useState<NodeJS.Timer[]>([]);
 
   const moveDown = () => {
     Animated.timing(yAnim,
       { toValue: 3, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
-    ).start(moveUp);
+    ).start();
+  }
+  const startMovingDown = () => {
+    moveDown();
+    const interval = setInterval(() => moveDown(), (DROMEDARY_ICON_SPEED * 2));
+    setIntervals([...intervals, interval]);
   }
 
   const moveUp = () => {
     Animated.timing(yAnim,
       { toValue: -3, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
-    ).start(moveDown);
+    ).start();
+  }
+  const startMovingUp = () => {
+    moveUp();
+    const interval = setInterval(() => moveUp(), (DROMEDARY_ICON_SPEED * 2));
+    setIntervals([...intervals, interval]);
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      moveDown()
+    const timeoutDown = setTimeout(() => {
+      startMovingDown()
     }, ((DROMEDARY_ICON_SPEED / 4) * (count-1 - index)));
+    const timeoutUp = setTimeout(() => {
+      startMovingUp()
+    }, ((DROMEDARY_ICON_SPEED / 4) * (count-1 - index) + (DROMEDARY_ICON_SPEED)));
     
-    return (() => clearTimeout(timeout));
+    return (() => {
+      clearTimeout(timeoutDown);
+      clearTimeout(timeoutUp);
+      intervals.forEach((interval) => clearInterval(interval));
+    });
   }, []);
 
   return (
