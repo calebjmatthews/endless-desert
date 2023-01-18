@@ -1,5 +1,5 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Animated } from 'react-native';
 import { styles } from '../../styles';
 
 import SvgComponent from '../svg';
@@ -8,11 +8,13 @@ import Resource from '../../models/resource';
 import Icon from '../../models/icon';
 import { resourceTypes } from '../../instances/resource_types'; 
 import { utils } from '../../utils';
+import { DROMEDARY_ICON_SPEED } from '../../constants';
 
 export default function DromedaryProgressIcons(props: {
-  dromedaries: { [typeQuality: string] : Resource }
+  dromedaries: { [typeQuality: string] : Resource },
+  paused: boolean
 }) {
-  const { dromedaries } = props;
+  const { dromedaries, paused } = props;
 
   // Round up for each dromedary kind, round down for the remaining
   // so that the total number of icons is correct.
@@ -40,7 +42,43 @@ export default function DromedaryProgressIcons(props: {
 
   return (
     <View style={styles.rows}>
-      {icons.map((icon, index) => <SvgComponent key={index} icon={icon} />)}
+      {(!paused) && icons.map((icon, index) => (
+        <AnimatedDromedaryIcon key={index} index={index} icon={icon} />)
+      )}
+      {(paused) && icons.map((icon, index) => (
+        <SvgComponent key={index} icon={icon} />
+      ))}
     </View>
   )
+}
+
+function AnimatedDromedaryIcon(props: { icon: Icon, index: number }) {
+  const { icon, index } = props;
+  const yAnim = useRef(new Animated.Value(0)).current;
+
+  const moveDown = () => {
+    Animated.timing(yAnim,
+      { toValue: 5, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
+    ).start(moveUp);
+  }
+
+  const moveUp = () => {
+    Animated.timing(yAnim,
+      { toValue: -5, duration: DROMEDARY_ICON_SPEED, useNativeDriver: true }
+    ).start(moveDown);
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      moveDown()
+    }, ((DROMEDARY_ICON_SPEED / 4) * index));
+    
+    return (() => clearTimeout(timeout));
+  }, []);
+
+  return (
+    <Animated.View style={{ transform: [{translateY: yAnim}] }} >
+      <SvgComponent icon={icon} />
+    </Animated.View>
+  ) 
 }
