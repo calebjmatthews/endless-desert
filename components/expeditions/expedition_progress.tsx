@@ -7,6 +7,7 @@ import { styles } from '../../styles';
 
 import IconComponent from '../icon';
 import SvgComponent from '../svg';
+import DromedaryProgressIcons from './dromedary_progress_icons';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
@@ -21,6 +22,22 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
 
   if (!destination) { return null; }
   return (
-
+    <View style={[styles.panelFlex, {overflow: 'hidden', alignItems: 'flex-start',
+      backgroundColor: (destination.icon.backgroundColor || '#fff'), 
+      minHeight: (pos.bodyHeight * 0.85), minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
+      <View style={styles.landscapeWrapper}>
+        <SvgComponent icon={new Icon({ ...destination.icon, size: 300 })} />
+      </View>
+      <View style={styles.columns}>
+        <>
+          <Text style={[styles.bareText, styles.emphasis, {fontSize: 12}]}>
+            {expedition.subTitle}
+          </Text>
+          <Text style={styles.heading1}>{destination.name}</Text>
+        </>
+        
+        <DromedaryProgressIcons dromedaries={expedition.dromedaries} />
+      </View>
+    </View>
   )
 }

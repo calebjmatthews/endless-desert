@@ -4,6 +4,7 @@ import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import ExpeditionPreparationComponent from "./expedition_preparation";
+import ExpeditionProgressComponent from './expedition_progress';
 import { updateAdviceAndSubState, updateSubTitle } from "../../actions/expedition_status";
 
 import { resourceTypes } from "../../instances/resource_types";
@@ -52,6 +53,9 @@ export default function ExpeditionComponent(props: { expeditionId: string  }) {
   
   if (expedition.state === 'preparing') {
     return <ExpeditionPreparationComponent expeditionId={expedition.id} />;
+  }
+  else if (expedition.state === 'embarking' || expedition.state === 'returning') {
+    return <ExpeditionProgressComponent expeditionId={expedition.id} />;
   }
 
   return null;

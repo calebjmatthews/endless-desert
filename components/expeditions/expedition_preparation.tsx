@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../../styles';
@@ -16,6 +16,7 @@ import LeaderStatsComponent from './leader_stats';
 import AddResourceButton from './add_resource';
 import ResourcesComponent from './resources';
 import AdviceComponent from './advice';
+import { upsertExpedition } from '../../actions/expedition_status';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
@@ -24,9 +25,15 @@ import { utils } from '../../utils';
 
 export default function ExpeditionPreparationComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
+  const dispatch = useDispatch();
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const destination = expedition.customDestination || destinations[expedition.mainDestinationId || ''];
   const pos = useTypedSelector(state => state.ui.positioner);
+
+  function beginPress() {
+    const newExpedition = expedition.beginExpedition(dromedaryTypes);
+    dispatch(upsertExpedition(newExpedition));
+  }
 
   if (!destination) { return null; }
   return (
@@ -127,7 +134,7 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
 
           {(expedition.subState === 3) && (
             <TouchableOpacity style={[styles.buttonLarge, {alignSelf: 'center', marginTop: 5}]}
-              onPress={() => expedition.beginExpedition(dromedaryTypes)} >
+              onPress={() => beginPress()} >
               <IconComponent provider="FontAwesome" color="#fff" size={16} style={styles.headingIcon}
                 name="arrow-right" />
               <Text style={styles.buttonTextLarge}>

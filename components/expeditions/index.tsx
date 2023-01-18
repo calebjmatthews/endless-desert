@@ -21,7 +21,6 @@ export default function ExpeditionsComponent() {
   const dispatch = useDispatch();
   const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const expeditionArray = expeditionStatus.getExpeditionsArray();
-  console.log(`expeditionArray`, expeditionArray);
 
   const [canStartExpedition, setCanStartExpedition] = useState(false);
   const [startExpeditionId, setStartExpeditionId] = useState<string|null>(null);

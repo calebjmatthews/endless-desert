@@ -62,6 +62,7 @@ export default class Expedition {
 
     this.calculateAndSetArrivalTimer(dromedaryTypes);
     console.log(`this`, this);
+    return this;
   }
 
   calculateAndSetEatingAndTimer() {
