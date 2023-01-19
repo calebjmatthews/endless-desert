@@ -728,5 +728,29 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
     paddingRight: 10
+  },
+
+  resourceTile: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    opacity: 0.9,
+    minHeight: 50,
+    padding: 5,
+    margin: 5,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    shadowColor: '#00000080',
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 2}
+  },
+  resourceTileText: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 4
   }
 });

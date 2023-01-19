@@ -14,6 +14,7 @@ export default class Positioner {
   bodyHeight: number = 470;
   majorWidth: number = 280;
   minorWidth: number = 130;
+  thirdWidth: number = 65;
   bodyMedWidth: number = 225;
   bodyMedTextWidth: number = 220;
   buildingBarWidth: number = 208;
@@ -51,6 +52,7 @@ export default class Positioner {
       }
       this.majorWidth = screenWidth - (this.majorPadding * 2);
       this.minorWidth = (this.majorWidth / 2) - this.minorPadding;
+      this.thirdWidth = (this.majorWidth / 3) - this.minorPadding;
       this.bodyMedWidth = this.majorWidth - this.iconSpacer;
       this.bodyMedTextWidth = this.majorWidth - this.iconSpacer - (this.majorPadding * 2)
         - (this.minorPadding * 2); // 190

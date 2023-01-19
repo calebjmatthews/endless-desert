@@ -10,6 +10,7 @@ import SvgComponent from '../svg';
 import DromedaryProgressIcons from './dromedary_progress_icons';
 import ProgressBarComponent from '../progress_bar';
 import EventHistoryComponent from './event_history';
+import ResourceTileComponent from '../resource_tile';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
@@ -54,6 +55,15 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         <View style={[styles.descriptionBand,
           {marginLeft: -5, minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
           <EventHistoryComponent expeditionId={expedition.id} index={0} />
+        </View>
+
+        <View style={styles.breakLarge} />
+        <View style={styles.tileContainer}>
+          {Object.keys(expedition.resources).map((typeQuality) => {
+            const resource = expedition.resources[typeQuality];
+            const rate = expedition.rates[typeQuality];
+            return <ResourceTileComponent key={typeQuality} resource={resource} rate={rate} pos={pos} />;
+          })}
         </View>
 
       </View>
