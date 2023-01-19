@@ -9,10 +9,10 @@ import IconComponent from '../icon';
 import SvgComponent from '../svg';
 import DromedaryProgressIcons from './dromedary_progress_icons';
 import ProgressBarComponent from '../progress_bar';
+import EventHistoryComponent from './event_history';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
-import { dromedaryTypes } from '../../instances/dromedary_types';
 import { utils } from '../../utils';
 
 export default function ExpeditionProgressComponent(props: { expeditionId: string }) {
@@ -26,7 +26,7 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
   return (
     <View style={[styles.panelFlex, {overflow: 'hidden', alignItems: 'flex-start',
       backgroundColor: (destination.icon.backgroundColor || '#fff'), 
-      minHeight: (pos.bodyHeight * 0.85), minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
+      minHeight: (pos.bodyHeight * 0.6), minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
       <View style={styles.landscapeWrapper}>
         <SvgComponent icon={new Icon({ ...destination.icon, size: 300 })} />
       </View>
@@ -38,7 +38,7 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
           <Text style={styles.heading1}>{destination.name}</Text>
         </>
         
-        <View style={styles.break} />
+        <View style={styles.breakLarge} />
         <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false}
           width={pos.majorWidth} />
 
@@ -49,6 +49,12 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
             duration={timer.endsAt - new Date(Date.now()).valueOf()}
             label={timer.remainingLabel} />
         )}
+
+        <View style={styles.breakLarge} />
+        <View style={[styles.descriptionBand,
+          {marginLeft: -5, minWidth: pos.majorWidth, maxWidth: pos.majorWidth}]}>
+          <EventHistoryComponent expeditionId={expedition.id} index={0} />
+        </View>
 
       </View>
     </View>

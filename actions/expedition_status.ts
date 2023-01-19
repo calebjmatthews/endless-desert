@@ -57,11 +57,12 @@ export function removeFromDestinations(props: {expeditionId: string, destination
 }
 
 export const UPDATE_SUB_TITLE = 'UPDATE_SUB_TITLE';
-export function updateSubTitle(props: {expeditionId: string, subTitle: string}) {
+export function updateSubTitle(props: {expeditionId: string, subTitle: string, subTitleNoun: string}) {
   return {
     type: UPDATE_SUB_TITLE,
     expeditionId: props.expeditionId,
-    subTitle: props.subTitle
+    subTitle: props.subTitle,
+    subTitleNoun: props.subTitleNoun
   }
 }
 

@@ -94,7 +94,8 @@ class Utils {
     return `${this.getDateString(date)} ${this.getTimeString(date)}`;
   }
 
-  getDateString(date: Date) {
+  getDateString(rawDate: Date|number) {
+    const date: Date = (typeof rawDate === 'number') ? new Date(rawDate) : rawDate;
     let dateString = '';
     dateString += date.getFullYear() + '-';
     if (date.getMonth()+1 >= 10) {
@@ -113,7 +114,8 @@ class Utils {
     return dateString;
   }
 
-  getTimeString(date: Date) {
+  getTimeString(rawDate: Date|number) {
+    const date: Date = (typeof rawDate === 'number') ? new Date(rawDate) : rawDate;
     let timeString = '';
     let ampm = 'am';
     if (date.getHours() > 12) {

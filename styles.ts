@@ -540,7 +540,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#071f56'
   },
   descriptionBand: {
-    width: 280,
     padding: 10,
     marginBottom: 10,
     backgroundColor: '#fff',

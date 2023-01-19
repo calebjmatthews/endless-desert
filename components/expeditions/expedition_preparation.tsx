@@ -28,10 +28,11 @@ export default function ExpeditionPreparationComponent(props: { expeditionId: st
   const dispatch = useDispatch();
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const destination = expedition.customDestination || destinations[expedition.mainDestinationId || ''];
+  const leaders = useTypedSelector(state => state.leaders);
   const pos = useTypedSelector(state => state.ui.positioner);
 
   function beginPress() {
-    const newExpedition = expedition.beginExpedition(dromedaryTypes);
+    const newExpedition = expedition.beginExpedition({ dromedaryTypes, leaders, destinations });
     dispatch(upsertExpedition(newExpedition));
   }
 

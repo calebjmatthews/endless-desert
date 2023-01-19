@@ -24,7 +24,8 @@ const MS_IN_MIN = 1000 * 60;
 
 export default class Expedition {
   id: string = '';
-  subTitle: string = ''; // E.g. Samannoud's Journey to the Cliffside Cartographer's Tower
+  subTitle: string = ''; // E.g. Samannoud's Journey to the
+  subTitleNoun: string = ''; // E.g. Journey
   currentCoordinates: [number, number] = [0, 0];
   targetCoordinates: [number, number] = [0, 0]; // These can change
   embarkingDestinationIds: string[] = [];
@@ -38,8 +39,8 @@ export default class Expedition {
   state: 'preparing'|'embarking'|'exploring'|'returning' = 'preparing';
   subState: number = 0;
   advice: { icon: Icon, text: string, textColor?: string }[] = [];
-  beganAt?: number;
-  eventHistory: { [id: string] : ExpeditionEventHistory } = {};
+  beganAt: number = new Date(Date.now()).valueOf();
+  eventHistory: ExpeditionEventHistory[] = [];
   eating: string = '';
   drinking: string = '';
   rates: Rate = {};
@@ -52,7 +53,12 @@ export default class Expedition {
     }
   }
 
-  beginExpedition(dromedaryTypes: { [name: string] : DromedaryType }) {
+  beginExpedition(props: {
+    dromedaryTypes: { [name: string] : DromedaryType },
+    leaders: { [id: string] : Leader },
+    destinations: { [id: string] : Destination }
+  }) {
+    const { dromedaryTypes, leaders, destinations } = props;
     this.state = 'embarking';
 
     this.calculateAndSetEatingAndTimer();
@@ -61,6 +67,9 @@ export default class Expedition {
     this.calculateAndSetNextEventTimer(dromedaryTypes);
 
     this.calculateAndSetArrivalTimer(dromedaryTypes);
+
+    this.addEmbarkingEventHistory({ leaders, destinations });
+
     console.log(`this`, this);
     return this;
   }
@@ -197,6 +206,27 @@ export default class Expedition {
     });
   }
 
+  addEmbarkingEventHistory(props: {
+    leaders: { [id: string] : Leader },
+    destinations: { [id: string] : Destination }
+  }) {
+    const { leaders, destinations } = props;
+
+    let description = `${leaders[this.leader].name} and crew embarked on a ${this.subTitleNoun} to the ${destinations[this.mainDestinationId || ''].name}`;
+    if (this.embarkingDestinationIds.length > 0) {
+      description = `${description} by way of the ${destinations[this.embarkingDestinationIds[0]].name}.`;
+    }
+    else {
+      description = `${description}.`;
+    }
+
+    this.eventHistory.push(new ExpeditionEventHistory({
+      index: this.eventHistory.length,
+      eventId: EXPEDITION_EVENTS.ARRIVAL,
+      description
+    })); 
+  }
+
   setOrAddDestination(props: { destinations: { [name: string] : Destination }, destinationId: string, 
     position: 'embarking'|'main'|'returning' }) {
     const { destinations, destinationId, position } = props;
@@ -242,7 +272,7 @@ export default class Expedition {
     }
 
     // Possible name nouns, in order of length: Jaunt, Trip, Road, Foray, Travels, Course, Journey, Quest, Excursion, Campaign, Endeavour, Expedition, Voyage, Pilgrimage, Odyssey, Peregrination
-    let nounText = 'journey';
+    let subTitleNoun = 'journey';
     if (this.targetCoordinates) {
       const nouns = [
         { threshold: [0, 40], text: 'jaunt' },
@@ -261,10 +291,10 @@ export default class Expedition {
           matchingNouns.push(noun.text);
         }
       });
-      nounText = utils.randomSelect(matchingNouns);
+      subTitleNoun = utils.randomSelect(matchingNouns);
     }
-    subTitle = `${subTitle}${nounText} to the`;
-    return subTitle;
+    subTitle = `${subTitle}${subTitleNoun} to the`;
+    return { subTitle, subTitleNoun };
   }
 
   getCurrentDromedaryCount(exclude?: string) {
@@ -575,7 +605,7 @@ interface ExpeditionInterface {
   subState: number;
   advice: { icon: Icon, text: string, textColor?: string }[];
   beganAt?: number;
-  eventHistory: { [id: string] : ExpeditionEventHistory };
+  eventHistory: ExpeditionEventHistory[];
   rates: Rate;
   timers: { [name: string] : Timer }
   storedTime: number;

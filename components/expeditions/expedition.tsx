@@ -43,11 +43,13 @@ export default function ExpeditionComponent(props: { expeditionId: string  }) {
     }
   }, [expedition.leader, JSON.stringify(expedition.dromedaries), JSON.stringify(expedition.resources)]);
 
+  // Todo: Only trigger this when main destination or leader changes, not on load
   useEffect(() => {
-    const subTitle = expedition.calcSubTitle({ leaders });
+    const { subTitle, subTitleNoun } = expedition.calcSubTitle({ leaders });
     dispatch(updateSubTitle({
       expeditionId: expedition.id,
-      subTitle
+      subTitle,
+      subTitleNoun
     }))
   }, [expedition.mainDestinationId, expedition.leader]);
   

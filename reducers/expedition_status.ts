@@ -66,6 +66,7 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		case UPDATE_SUB_TITLE:
 		const snExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		snExpeditionStatus.expeditions[action.expeditionId].subTitle = action.subTitle;
+		snExpeditionStatus.expeditions[action.expeditionId].subTitleNoun = action.subTitleNoun;
 		return snExpeditionStatus;
 
 		case UPSERT_DROMEDARIES:
