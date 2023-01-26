@@ -7,6 +7,7 @@ import Resource from './models/resource';
 
 export const SAVE_INTERVAL = 60000;
 export const CHECK_INTERVAL = 60000;
+export const HOURGLASS_INTERVAL = 100;
 export const FORTUITY_BASE = 600000;
 export const FADE_IN_DELAY = 400;
 export const FADE_CHAR_DELAY = 30;

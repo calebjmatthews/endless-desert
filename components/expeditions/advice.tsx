@@ -11,7 +11,6 @@ export default function AdviceComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
   const pos = useTypedSelector(state => state.ui.positioner);
-  console.log(`expedition.advice`, expedition.advice);
 
   return (
     <View style={styles.columns}>

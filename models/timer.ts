@@ -20,6 +20,7 @@ export default class Timer implements TimerInterface {
   tradingPartnerToArrive?: string|null = null;
   fortuityCheck?: boolean = false;
   eventId?: string;
+  eventCheck?: boolean;
   dailyQuestCheck?: boolean = false;
   questActivity?: QuestActivity|null = null;
   messageToDisplay: string|null = null;

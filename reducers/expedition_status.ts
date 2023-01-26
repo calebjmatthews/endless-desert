@@ -1,8 +1,10 @@
 import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATIONS, UPDATE_SUB_TITLE, 
-	UPSERT_DROMEDARIES, REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION }
-	from '../actions/expedition_status';
+	UPSERT_DROMEDARIES, REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION, UPDATE_EXPEDITION_TIMERS, ADD_STORED_TIME,
+	SET_LAST_TIMESTAMP, INCREASE_RESOURCES, CONSUME_RESOURCES } from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
+import Timer from '../models/timer';
+import Resource from '../models/resource';
 import { utils } from '../utils';
 
 export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStatus(null),
@@ -104,6 +106,47 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		uaassExpeditionStatus.expeditions[action.expeditionId].advice = action.advice;
 		uaassExpeditionStatus.expeditions[action.expeditionId].subState = action.subState;
 		return uaassExpeditionStatus;
+
+		case UPDATE_EXPEDITION_TIMERS:
+		const uetExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		Object.keys(action.timers).forEach((id) => {
+			uetExpeditionStatus.expeditions[action.expeditionId].timers[id] = new Timer(action.timers[id]);
+		});
+		return uetExpeditionStatus;
+
+		case ADD_STORED_TIME:
+		const astExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		astExpeditionStatus.expeditions[action.expeditionId].storedTime += action.storedTimeToAdd;
+		return astExpeditionStatus;
+
+		case SET_LAST_TIMESTAMP:
+		return new ExpeditionStatus({ ...expeditionStatus, lastTimestamp: action.lastTimestamp });
+
+		case INCREASE_RESOURCES:
+		const irExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		const irE = irExpeditionStatus.expeditions[action.expeditionId];
+		action.rti.forEach((resource: Resource) => {
+			if (irE.resources[`${resource.type}|${resource.quality}`]) {
+				irE.resources[`${resource.type}|${resource.quality}`].quantity += resource.quantity;
+			}
+			else {
+				irE.resources[`${resource.type}|${resource.quality}`] = new Resource(resource);
+			}
+		});
+		return irExpeditionStatus;
+
+		case CONSUME_RESOURCES:
+		const crExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		const crE = crExpeditionStatus.expeditions[action.expeditionId];
+		action.rtc.forEach((resource: Resource) => {
+			if (crE.resources[`${resource.type}|${resource.quality}`]) {
+				crE.resources[`${resource.type}|${resource.quality}`].quantity -= resource.quantity;
+			}
+			else {
+				crE.resources[`${resource.type}|${resource.quality}`] = new Resource(resource);
+			}
+		});
+		return crExpeditionStatus;
 
 		default:
 		return expeditionStatus;

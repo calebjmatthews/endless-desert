@@ -45,7 +45,7 @@ import { MILESTONES } from '../enums/milestones';
 import { MESSAGE_TYPES } from '../enums/message_types';
 import { MODALS } from '../enums/modals';
 import { SVGS } from '../enums/svgs';
-import { CHECK_INTERVAL, FORTUITY_BASE } from '../constants';
+import { CHECK_INTERVAL, FORTUITY_BASE, HOURGLASS_INTERVAL } from '../constants';
 
 export default function HourglassComponent() {
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ export default function HourglassComponent() {
     const timeout = setTimeout(() => {
       setState('callTick');
       setLocalTimestamp(new Date(Date.now()).valueOf());
-    }, 100);
+    }, HOURGLASS_INTERVAL);
 
     return () => { clearTimeout(timeout); }
   }, [localTimestamp]);

@@ -3,6 +3,7 @@ import Expedition from '../models/expedition';
 import Destination from '../models/destination';
 import Resource from '../models/resource';
 import Icon from '../models/icon';
+import Timer from '../models/timer';
 
 export const SET_EXPEDITION_STATUS = 'SET_EXPEDITION_STATUS';
 export function setExpeditionStatus(expeditionStatus: ExpeditionStatus) {
@@ -110,5 +111,50 @@ export function updateAdviceAndSubState(props: {expeditionId: string,
     expeditionId: props.expeditionId,
     advice: props.advice,
     subState: props.subState
+  }
+}
+
+export const UPDATE_EXPEDITION_TIMERS = 'UPDATE_EXPEDITION_TIMERS';
+export function updateExpeditionTimers(props: {expeditionId: string,
+  timers: { [name: string] : Timer }}) {
+  return {
+    type: UPDATE_EXPEDITION_TIMERS,
+    expeditionId: props.expeditionId,
+    timers: props.timers
+  }
+}
+
+export const ADD_STORED_TIME = 'ADD_STORED_TIME';
+export function addStoredTime(props: {expeditionId: string, storedTimeToAdd: number}) {
+  return {
+    type: ADD_STORED_TIME,
+    expeditionId: props.expeditionId,
+    storedTimeToAdd: props.storedTimeToAdd
+  }
+}
+
+export const SET_LAST_TIMESTAMP = 'SET_LAST_TIMESTAMP';
+export function setLastTimestamp(lastTimestamp: number) {
+  return {
+    type: SET_LAST_TIMESTAMP,
+    lastTimestamp
+  }
+}
+
+export const INCREASE_RESOURCES = 'INCREASE_RESOURCES';
+export function increaseResources(props: { expeditionId: string, rti: Resource[] }) {
+  return {
+    type: INCREASE_RESOURCES,
+    expeditionId: props.expeditionId,
+    rti: props.rti
+  }
+}
+
+export const CONSUME_RESOURCES = 'CONSUME_RESOURCES';
+export function consumeResources(props: { expeditionId: string, rtc: Resource[] }) {
+  return {
+    type: CONSUME_RESOURCES,
+    expeditionId: props.expeditionId,
+    rtc: props.rtc
   }
 }

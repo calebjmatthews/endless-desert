@@ -4,6 +4,7 @@ import ExpeditionHistory from './expedition_history';
 export default class ExpeditionStatus {
   expeditions: { [id: string] : Expedition } = {};
   expeditionHistories: { [id: string] : ExpeditionHistory } = {};
+  lastTimestamp: number = new Date(Date.now()).valueOf();
 
   constructor(expeditionStatus: ExpeditionStatusInterface|null) {
     if (expeditionStatus) {
@@ -25,4 +26,5 @@ export default class ExpeditionStatus {
 interface ExpeditionStatusInterface {
   expeditions: { [id: string] : Expedition };
   expeditionHistories: { [id: string] : ExpeditionHistory };
+  lastTimestamp: number;
 }

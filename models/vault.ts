@@ -15,7 +15,7 @@ export default class Vault {
     if (vault) {
       let newResources: { [typeQuality: string] : Resource } = {};
       Object.keys(vault.resources).map((key) => {
-        const resource = vault.resources[key];
+        const resource = vault.resources[key] || 0;
         if (typeof resource !== 'number') {
           if (resourceTypes[resource.type] || resource.id) {
             newResources[key] = new Resource(resource);

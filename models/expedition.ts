@@ -50,6 +50,9 @@ export default class Expedition {
   constructor(expedition: ExpeditionInterface|null) {
     if (expedition) {
       Object.assign(this, expedition);
+      Object.keys(expedition.timers).forEach((id) => (
+        this.timers[id] = new Timer(expedition.timers[id])
+      ));
     }
   }
 
@@ -60,6 +63,7 @@ export default class Expedition {
   }) {
     const { dromedaryTypes, leaders, destinations } = props;
     this.state = 'embarking';
+    this.subState = 0;
 
     this.calculateAndSetEatingAndTimer();
     this.calculateAndSetDrinkingAndTimer();
@@ -585,6 +589,26 @@ export default class Expedition {
     }
     coordinates.push([0, 0]);
     return utils.distanceBetweenManyPoints(coordinates);
+  }
+
+  getRates() {
+    const rates: { productionRates: Rate; consumptionRates: Rate; netRates: Rate } = {
+      productionRates: {},
+      consumptionRates: {},
+      netRates: {}
+    };
+    Object.keys(this.rates).forEach((typeQuality) => {
+      const rate = this.rates[typeQuality];
+      if (rate > 0) {
+        rates.productionRates[typeQuality] = rate;
+        rates.netRates[typeQuality] = rate;
+      }
+      else if (rate < 0) {
+        rates.consumptionRates[typeQuality] = rate * -1;
+        rates.netRates[typeQuality] = rate;
+      }
+    });
+    return rates;
   }
 }
 

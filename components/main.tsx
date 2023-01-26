@@ -8,6 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { setPositioner } from '../actions/ui';
 import HourglassComponent from '../components/hourglass';
+import ExpeditionHourglassComponent from '../components/expeditions/expedition_hourglass';
 import ResourcesComponent from '../components/resources';
 import ResearchesComponent from '../components/researches';
 import ResearchingComponent from '../components/researching';
@@ -117,6 +118,7 @@ export default function MainComponent() {
       colors={["#0034aa", "#6a41b4", "#f58f7d"]}
       style={styles.mainContainer}>
       <HourglassComponent />
+      <ExpeditionHourglassComponent />
       <QuestHandlerComponent />
       <StatusBar style="auto" />
       <View style={styles.statusBarSpacer}></View>

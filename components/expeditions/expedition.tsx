@@ -32,9 +32,9 @@ export default function ExpeditionComponent(props: { expeditionId: string  }) {
       resourceTags,
       expeditionHistory
     });
-    if (advice.map((anAdvice) => anAdvice.text).join()
+    if (expedition.state === 'preparing' && (advice.map((anAdvice) => anAdvice.text).join()
       !== expedition.advice.map((anAdvice) => anAdvice.text).join()
-      || subState !== expedition.subState) {
+      || subState !== expedition.subState)) {
       dispatch(updateAdviceAndSubState({
         expeditionId: expedition.id,
         advice,

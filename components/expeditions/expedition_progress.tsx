@@ -58,7 +58,7 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         </View>
 
         <View style={styles.breakLarge} />
-        <View style={styles.tileContainer}>
+        <View style={[styles.tileContainer, {minWidth: pos.embeddedWidth, maxWidth: pos.embeddedWidth}]}>
           {Object.keys(expedition.resources).map((typeQuality) => {
             const resource = expedition.resources[typeQuality];
             const rate = expedition.rates[typeQuality];
