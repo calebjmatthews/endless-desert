@@ -3,8 +3,8 @@ import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-import { addStoredTime, updateExpeditionTimers, setLastTimestamp, increaseResources, consumeResources } 
-  from '../../actions/expedition_status';
+import { addStoredTime, updateExpeditionTimers, setLastExpeditionTimestamp, increaseExpeditionResources, 
+  consumeExpeditionResources } from '../../actions/expedition_status';
 
 import Hourglass from '../../models/hourglass';
 import Expedition from '../../models/expedition';
@@ -43,7 +43,7 @@ export default function ExpeditionHourglassComponent() {
           handleTravelingExpedition(expedition);
         }
       });
-      dispatch(setLastTimestamp(new Date(Date.now()).valueOf()));
+      dispatch(setLastExpeditionTimestamp(new Date(Date.now()).valueOf()));
     }
   }, [hourglassState]);
 
@@ -87,11 +87,11 @@ export default function ExpeditionHourglassComponent() {
       expeditionStatus.lastTimestamp, endingTimestamp);
     if (Object.keys(productionSum).length > 0) {
       const rti = utils.sumToResources(vault, productionSum);
-      dispatch(increaseResources({ expeditionId: expedition.id, rti }));
+      dispatch(increaseExpeditionResources({ expeditionId: expedition.id, rti }));
     }
     if (Object.keys(consumptionSum).length > 0) {
       const rtc = utils.sumToResources(vault, consumptionSum);
-      dispatch(consumeResources({ expeditionId: expedition.id, rtc }));
+      dispatch(consumeExpeditionResources({ expeditionId: expedition.id, rtc }));
     }
   }
 

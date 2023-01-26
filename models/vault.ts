@@ -27,7 +27,7 @@ export default class Vault {
         }
       });
       Object.assign(this, {
-        lastTimestamp: vault.lastTimestamp,
+        lastTimestamp: (vault.lastTimestamp || new Date(Date.now()).valueOf()),
         resources: newResources
       });
     }

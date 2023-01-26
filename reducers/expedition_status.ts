@@ -1,6 +1,7 @@
 import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, SET_DESTINATIONS, UPDATE_SUB_TITLE, 
 	UPSERT_DROMEDARIES, REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION, UPDATE_EXPEDITION_TIMERS, ADD_STORED_TIME,
-	SET_LAST_TIMESTAMP, INCREASE_RESOURCES, CONSUME_RESOURCES } from '../actions/expedition_status';
+	SET_LAST_EXPEDITION_TIMESTAMP, INCREASE_EXPEDITION_RESOURCES, CONSUME_EXPEDITION_RESOURCES }
+	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
 import Timer from '../models/timer';
@@ -119,10 +120,10 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		astExpeditionStatus.expeditions[action.expeditionId].storedTime += action.storedTimeToAdd;
 		return astExpeditionStatus;
 
-		case SET_LAST_TIMESTAMP:
+		case SET_LAST_EXPEDITION_TIMESTAMP:
 		return new ExpeditionStatus({ ...expeditionStatus, lastTimestamp: action.lastTimestamp });
 
-		case INCREASE_RESOURCES:
+		case INCREASE_EXPEDITION_RESOURCES:
 		const irExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		const irE = irExpeditionStatus.expeditions[action.expeditionId];
 		action.rti.forEach((resource: Resource) => {
@@ -135,7 +136,7 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		});
 		return irExpeditionStatus;
 
-		case CONSUME_RESOURCES:
+		case CONSUME_EXPEDITION_RESOURCES:
 		const crExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		const crE = crExpeditionStatus.expeditions[action.expeditionId];
 		action.rtc.forEach((resource: Resource) => {

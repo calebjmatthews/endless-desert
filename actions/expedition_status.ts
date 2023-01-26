@@ -133,27 +133,27 @@ export function addStoredTime(props: {expeditionId: string, storedTimeToAdd: num
   }
 }
 
-export const SET_LAST_TIMESTAMP = 'SET_LAST_TIMESTAMP';
-export function setLastTimestamp(lastTimestamp: number) {
+export const SET_LAST_EXPEDITION_TIMESTAMP = 'SET_LAST_EXPEDITION_TIMESTAMP';
+export function setLastExpeditionTimestamp(lastTimestamp: number) {
   return {
-    type: SET_LAST_TIMESTAMP,
+    type: SET_LAST_EXPEDITION_TIMESTAMP,
     lastTimestamp
   }
 }
 
-export const INCREASE_RESOURCES = 'INCREASE_RESOURCES';
-export function increaseResources(props: { expeditionId: string, rti: Resource[] }) {
+export const INCREASE_EXPEDITION_RESOURCES = 'INCREASE_EXPEDITION_RESOURCES';
+export function increaseExpeditionResources(props: { expeditionId: string, rti: Resource[] }) {
   return {
-    type: INCREASE_RESOURCES,
+    type: INCREASE_EXPEDITION_RESOURCES,
     expeditionId: props.expeditionId,
     rti: props.rti
   }
 }
 
-export const CONSUME_RESOURCES = 'CONSUME_RESOURCES';
-export function consumeResources(props: { expeditionId: string, rtc: Resource[] }) {
+export const CONSUME_EXPEDITION_RESOURCES = 'CONSUME_EXPEDITION_RESOURCES';
+export function consumeExpeditionResources(props: { expeditionId: string, rtc: Resource[] }) {
   return {
-    type: CONSUME_RESOURCES,
+    type: CONSUME_EXPEDITION_RESOURCES,
     expeditionId: props.expeditionId,
     rtc: props.rtc
   }
