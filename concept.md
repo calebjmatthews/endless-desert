@@ -565,6 +565,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Lac, the Rising Town (Dates)
   - Lac, the Flourishing Town (Olibanum Resin)
 
+## Scenes
+- A more flexible form of conversation?
+- Class types:
+  - Scene, begins the tree
+
 ## Field Notes:
   - Required for many research options of difficulty 2 and higher
   - You can gain some Field Notes from observing buildings or the sky. These take 1000 knowledge, 400 papyrus, 80 ink, and 1 hour of study to produce
