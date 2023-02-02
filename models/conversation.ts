@@ -104,7 +104,6 @@ export class ConversationNarration {
 
 export function dailyConversationUsed(gState: GameState, conversation: Conversation) {
   if (!gState.leaders || !gState.conversationStatus) { return false; }
-  let leader: Leader|null = null;
   for (let index = 0; index < Object.keys(gState.leaders).length; index++) {
     const leader = gState.leaders[Object.keys(gState.leaders)[index]];
     if (leader.name == conversation.partnerType) {
