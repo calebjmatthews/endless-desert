@@ -18,6 +18,7 @@ import UIReducer from './ui';
 import MessageReducer from './messages';
 import TerrainReducer from './terrain';
 import ExpeditionStatusReducer from './expedition_status';
+import SceneStatusReducer from './scene_status';
 
 const rootReducer = combineReducers({
   vault: VaultReducer,
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
   ui: UIReducer,
   messages: MessageReducer,
   terrain: TerrainReducer,
-  expeditionStatus: ExpeditionStatusReducer
+  expeditionStatus: ExpeditionStatusReducer,
+  sceneStatus: SceneStatusReducer
 });
 
 export default rootReducer;
