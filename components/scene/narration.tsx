@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Animated } from 'react-native';
+import { View, TouchableOpacity, Animated } from 'react-native';
 import { styles } from '../../styles';
+
+import RichTextRenderer from '../rich_text_renderer';
 
 import { SceneText } from '../../models/scene';
 import Positioner from '../../models/positioner';
@@ -42,7 +44,7 @@ const SceneNarrationAnimatedComponent = (props: SceneNarrationAnimatedProps) => 
       style={styles.columns}>
       <Animated.View style={[styles.panelFlex,
         { minWidth: pos.modalMajor, maxWidth: pos.modalMajor, padding: 10, opacity: textOpacity }]}>
-        <Text>{JSON.stringify(sceneText.text)}</Text>
+        <RichTextRenderer richText={sceneText.text} />
       </Animated.View>
     </TouchableOpacity>
   );
@@ -54,7 +56,7 @@ const SceneNarrationStaticComponent = (props: SceneNarrationStaticProps) => {
     <View key={sceneText.id} style={styles.columns}>
       <View style={[styles.panelFlex,
         { minWidth: pos.modalMajor, maxWidth: pos.modalMajor, padding: 10 }]}>
-        <Text>{JSON.stringify(sceneText.text)}</Text>
+        <RichTextRenderer richText={sceneText.text} />
       </View>
     </View>
   )

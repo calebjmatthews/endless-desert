@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { styles } from '../styles';
 
 import IconComponent from './icon';
@@ -7,8 +7,6 @@ import IconComponent from './icon';
 import Icon from '../models/icon';
 import { utils } from '../utils';
 
-// When the duration is expected to change every tick (staticDuration == false),
-//  only use the initially given props and ignore future updates
 export default function RatingComponent(props: RatingComponentProps) {
   return (
     <View style={StyleSheet.flatten([styles.spacedRows,
