@@ -1324,6 +1324,22 @@ const eightTerrain = sevenTerrain.flowRiver(sevenTerrain);
 dispatch(setTerrain(eightTerrain));
 ```
 
+### Expedition clear
+```
+let resources: Resource[] = [];
+Object.keys(vault.resources).map((typeQuality) => {
+  resources.push(vault.resources[typeQuality]);
+});
+dispatch(consumeResources(vault, resources));
+
+let allResources: Resource[] = [];
+Object.keys(resourceTypes).map((typeName) => {
+  allResources.push(new Resource({ type: typeName, quality: 0, quantity: 10000 }));
+});
+dispatch(increaseResources(vault, allResources));
+dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
+```
+
 ## Infrastructure
 ### 2022-02-23 Updates
 `expo upgrade`

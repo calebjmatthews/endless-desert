@@ -21,7 +21,7 @@ nnScenes[EXPEDITION_EVENTS.SCORPIONS] = new Scene({
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 0`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 0`,
-  type: 'narration',
+  subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`At first there's just a scuttering, a sound barely recognizable over wind and shifting sands. Then one moving form, then ten- highest heavens, there are scorpions everywhere!`] }),
   next: [`${EXPEDITION_EVENTS.SCORPIONS} - 1a`, `${EXPEDITION_EVENTS.SCORPIONS} - 1d`]
 });
@@ -37,7 +37,7 @@ nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1a`] = new SceneAction({
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2a`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 2a`,
-  type: 'narration',
+  subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`Afterwards, the traps are sprung and can't be salvaged. But, you may be able to make something of these scorpion parts.`] }),
   outcome: new SceneOutcome({
     gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [1, 2399] }]
@@ -66,7 +66,7 @@ nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1d`] = new SceneAction({
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2d`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 2d`,
-  type: 'narration',
+  subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`Well, that could have gone better. You and your people are covered in stings, and you've traveled quite a ways off your original route. But you're all still alive.`] }),
   outcome: new SceneOutcome({
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
@@ -74,4 +74,4 @@ nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2d`] = new SceneText({
   })
 });
 
-export { nnScenes, nnSceneTexts };
+export { nnScenes, nnSceneTexts, nnSceneActions };

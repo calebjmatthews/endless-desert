@@ -27,6 +27,7 @@ import SignupComponent from './signup';
 import QuestQuitConfirmComponent from './quest_quit_confirm';
 import MessagesComponent from './messages';
 import DestinationSelectComponent from './expeditions/destination_select';
+import SceneComponent from './scene';
 
 import { MODALS } from '../enums/modals';
 
@@ -144,6 +145,9 @@ function renderModal(modalType: string) {
 
     case MODALS.DESTINATION_SELECT:
     return <DestinationSelectComponent />;
+
+    case MODALS.SCENE:
+    return <SceneComponent />;
 
     default:
     return null;

@@ -19,3 +19,5 @@ export const paySceneCost = (args: {sceneActionId: string, costIndex: number, re
   costIndex: args.costIndex,
   resource: args.resource
 });
+
+// Todo: Add END_SCENE

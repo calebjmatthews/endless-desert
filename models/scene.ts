@@ -66,7 +66,7 @@ export class SceneOutcome {
 
 export class SceneText {
   id: string = '';
-  type: 'speech'|'narration' = 'speech';
+  subType: 'speech'|'narration' = 'speech';
   speakerId?: string;
   text: RichText = new RichText({ type: 'Text' });
   next?: string[];

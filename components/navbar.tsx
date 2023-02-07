@@ -5,14 +5,16 @@ import { RootState } from '../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../styles';
 
-import { selectTab, removeGlowingTab } from '../actions/ui';
+import { selectTab, removeGlowingTab, displayModal } from '../actions/ui';
 import { unlockTab } from '../actions/account';
+import { setScene } from '../actions/scene_status';
 import IconComponent from './icon';
 
 import Tab from '../models/tab';
 import { tabs } from '../instances/tabs';
 import { utils } from '../utils'
 import { TABS } from '../enums/tabs';
+import { EXPEDITION_EVENTS } from '../enums/expedition_events';
 import { PULSE_DURATION } from '../constants';
 
 import Resource from '../models/resource';
@@ -20,6 +22,7 @@ import { resourceTypes } from '../instances/resource_types';
 import { consumeResources, increaseResources } from '../actions/vault';
 import { setExpeditionStatus } from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
+import { MODALS } from '../enums/modals';
 
 enum AP {
   START_RISING = 'start rising',
@@ -104,18 +107,8 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   function dropdownPress(tabName: string) {
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
-      let resources: Resource[] = [];
-      Object.keys(vault.resources).map((typeQuality) => {
-        resources.push(vault.resources[typeQuality]);
-      });
-      dispatch(consumeResources(vault, resources));
-
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 10000 }));
-      });
-      dispatch(increaseResources(vault, allResources));
-      dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
+      dispatch(setScene(EXPEDITION_EVENTS.SCORPIONS));
+      dispatch(displayModal(MODALS.SCENE));
     }
     else {
       dispatch(selectTab(tabName));
