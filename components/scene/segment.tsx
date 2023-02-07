@@ -38,7 +38,7 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
 
 export interface SceneSegmentProps {
   id: string;
-  type: string;
+  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'FinalButton'|'SceneOutcome';
   animate: boolean;
   doneAnimating: (args: { id: string, type: string }) => void;
   handlePress: (args: { id: string, type: string }) => void;

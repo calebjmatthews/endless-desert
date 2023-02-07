@@ -6,8 +6,8 @@ import { GameState } from './game_state';
 export class Scene {
   id: string = '';
   name: string = '';
-  next?: string[];
-
+  next?: {ids: string[], type: string};
+  
   constructor(scene: Scene) {
     Object.assign(this, scene);
   }
@@ -15,14 +15,14 @@ export class Scene {
 
 export class SceneAction implements SceneActionInterface {
   id: string = '';
-  type: 'action'|'speech' = 'action';
+  subType: 'action'|'speech' = 'action';
   speechType?: 'Calm'|'Aggressive'|'Humorous';
   label: string = '';
   description?: RichText;
   requirementIcon?: Icon;
   requirementLabel?: string;
   invisible?: boolean;
-  next?: string[];
+  next?: {ids: string[], type: string};
 
   constructor(sceneAction: SceneActionInterface) {
     Object.assign(this, sceneAction);
@@ -39,13 +39,13 @@ export class SceneAction implements SceneActionInterface {
 
 interface SceneActionInterface {
   id: string;
-  type: 'action'|'speech';
+  subType: 'action'|'speech';
   speechType?: 'Calm'|'Aggressive'|'Humorous';
   label: string;
   description?: RichText;
   requirementIcon?: Icon;
   requirementLabel?: string;
-  next?: string[];
+  next?: {ids: string[], type: string};
 
   available?: (args: { expedition?: Expedition, gState?: GameState }) => boolean;
   getCost?: (difficulty: number) => {specificity: string, kind: string, value: number}[];
@@ -69,7 +69,7 @@ export class SceneText {
   subType: 'speech'|'narration' = 'speech';
   speakerId?: string;
   text: RichText = new RichText({ type: 'Text' });
-  next?: string[];
+  next?: {ids: string[], type: string};
   outcome?: SceneOutcome;
 
   constructor(sceneText: SceneText) {

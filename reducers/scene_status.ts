@@ -1,4 +1,4 @@
-import { SET_SCENE, CHOOSE_SCENE_STEP, PAY_SCENE_COST } from '../actions/scene_status';
+import { SET_SCENE, ADD_SCENE_STEP, PAY_SCENE_COST } from '../actions/scene_status';
 import SceneStatus from '../models/scene_status';
 
 export default function (sceneStatus: SceneStatus = new SceneStatus(null),
@@ -11,7 +11,7 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
       costsPaid: {}
     });
 
-    case CHOOSE_SCENE_STEP:
+    case ADD_SCENE_STEP:
     return new SceneStatus({
       ...sceneStatus,
       steps: [...sceneStatus.steps, action.stepId]

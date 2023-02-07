@@ -6,11 +6,12 @@ import { ScrollView } from 'react-native';
 import { styles } from '../../styles';
 
 import SceneSegmentComponent from './segment';
+import { addSceneStep } from '../../actions/scene_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
 import Positioner from '../../models/positioner';
-import { scenes, sceneTexts } from '../../instances/scenes';
+import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
 
 const SceneComponent = () => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -24,6 +25,7 @@ const SceneComponent = () => {
 
 const SceneStatic = (props: SceneProps) => {
   const { sceneStatus } = props;
+  const dispatch = useDispatch();
   let scrollView : React.RefObject<ScrollView> = useRef(null);
   const [initialized, setInitialized] = useState(false);
   const [segments, setSegments] = useState<Segment[]>([]);
@@ -33,21 +35,42 @@ const SceneStatic = (props: SceneProps) => {
       setInitialized(true);
       if (sceneStatus.steps.length === 0) {
         const scene = scenes[sceneStatus.sceneId];
-        setSegments([{ id: scene.next?.[0] || '', type: 'SceneText', animate: true }]);
+        setSegments([{ id: scene.next?.ids[0] || '', type: 'SceneText', animate: true }]);
       }
       // setSegments from sceneState here
     }
   }, [initialized]);
 
   const doneAnimating = (args: { id: string, type: string }) => {
-    // SceneText => add to sceneStatus.steps, render SceneActions, SceneOutcome, or NextButton
+    const { id, type } = args;
+    const newSegments: Segment[] = [...segments];
+    let segmentsChanged: boolean = false;
+    switch(type) {
+      case 'SceneText':
+      const sceneText = sceneTexts[id];
+      dispatch(addSceneStep(id));
 
-    // SceneOutcome => render NextButton
+      sceneText.next?.ids.forEach((nextId) => {
+        newSegments.push({ id: nextId, type: 'SceneAction', animate: true });
+        segmentsChanged = true;
+      });
+
+      if (!sceneText.next && sceneText.outcome) {
+        // render SceneOutcome
+      }
+
+      if (!sceneText.next && !sceneText.outcome) {
+        // render FinalButton
+      }
+      break;
+
+      case 'SceneOutcome':
+      // render NextButton
+      break;
+    }
   };
 
   const handlePress = (args: { id: string, type: string }) => {
-    // SceneText => skip animation, perform doneAnimating
-
     // SceneAction => add to sceneStatus.steps, remove SceneActions, 
     // add SceneActed, render .next SceneText
 
@@ -80,7 +103,7 @@ interface SceneProps {
 
 interface Segment {
   id: string;
-  type: string;
+  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'FinalButton'|'SceneOutcome';
   animate: boolean;
 }
 

@@ -6,9 +6,9 @@ export const setScene = (sceneId: string) => ({
   sceneId
 });
 
-export const CHOOSE_SCENE_STEP = "CHOOSE_SCENE_STEP";
-export const chooseStep = (stepId: string) => ({
-  type: CHOOSE_SCENE_STEP,
+export const ADD_SCENE_STEP = "ADD_SCENE_STEP";
+export const addSceneStep = (stepId: string) => ({
+  type: ADD_SCENE_STEP,
   stepId
 });
 

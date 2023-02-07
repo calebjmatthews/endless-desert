@@ -8,27 +8,33 @@ import Positioner from '../../models/positioner';
 import { FADE_IN_DELAY } from '../../constants';
 
 const SceneNarrationComponent = (props: SceneNarrationProps) => {
-  const { id, type, animate, sceneText, handlePress, doneAnimating, pos } = props;
+  const { id, type, animate, sceneText, doneAnimating, pos } = props;
 
   const [shouldAnimate, setShouldAnimate] = useState(animate);
   const handleInnerPress = () => {
+    console.log(`inside handleInnerPress`);
     setShouldAnimate(false);
-    handlePress({ id, type });
+    // handlePress({ id, type });
+  }
+  const innerDoneAnimating = () => {
+    console.log(`inside innerDoneAnimating`);
+    setShouldAnimate(false);
+    doneAnimating({ id, type });
   }
 
   return (shouldAnimate)
-    ? <SceneNarrationAnimatedComponent id={id} type={type} sceneText={sceneText}
-      handleInnerPress={handleInnerPress} doneAnimating={doneAnimating} pos={pos} />
+    ? <SceneNarrationAnimatedComponent sceneText={sceneText} innerDoneAnimating={innerDoneAnimating}
+      handleInnerPress={handleInnerPress} pos={pos} />
     : <SceneNarrationStaticComponent sceneText={sceneText} pos={pos} />;
 }
 
 const SceneNarrationAnimatedComponent = (props: SceneNarrationAnimatedProps) => {
-  const { id, type, sceneText, handleInnerPress, doneAnimating, pos } = props;
+  const { sceneText, handleInnerPress, innerDoneAnimating, pos } = props;
   const textOpacity = useRef(new Animated.Value(0)).current;
   useEffect(() => { Animated.timing(textOpacity,
     { toValue: 0.9, duration: FADE_IN_DELAY*4, useNativeDriver: true }
   ).start(() => {
-    doneAnimating({ id, type });
+    innerDoneAnimating();
   }); }, []);
 
   return (
@@ -60,17 +66,14 @@ interface SceneNarrationProps {
   animate: boolean;
   sceneText: SceneText;
   doneAnimating: (args: { id: string, type: string }) => void;
-  handlePress: (args: { id: string, type: string }) => void;
 
   pos: Positioner;
 }
 
 interface SceneNarrationAnimatedProps {
-  id: string;
-  type: string;
   sceneText: SceneText;
   handleInnerPress: () => void;
-  doneAnimating: (args: { id: string, type: string }) => void;
+  innerDoneAnimating: () => void;
 
   pos: Positioner;
 }
