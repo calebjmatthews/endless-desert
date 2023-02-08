@@ -14,12 +14,9 @@ const SceneNarrationComponent = (props: SceneNarrationProps) => {
 
   const [shouldAnimate, setShouldAnimate] = useState(animate);
   const handleInnerPress = () => {
-    console.log(`inside handleInnerPress`);
     setShouldAnimate(false);
-    // handlePress({ id, type });
   }
   const innerDoneAnimating = () => {
-    console.log(`inside innerDoneAnimating`);
     setShouldAnimate(false);
     doneAnimating({ id, type });
   }

@@ -10,21 +10,29 @@ import { addSceneStep } from '../../actions/scene_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
+import Vault from '../../models/vault';
+import QuestStatus from '../../models/quest_status';
+import ExpeditionStatus from '../../models/expedition_status';
 import Positioner from '../../models/positioner';
 import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
+import expedition_status from '../../reducers/expedition_status';
 
 const SceneComponent = () => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
   const leaders = useTypedSelector(state => state.leaders);
+  const vault = useTypedSelector(state => state.vault);
+  const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
+  const questStatus = useTypedSelector(state => state.questStatus);
   const pos = useTypedSelector(state => state.ui.positioner);
 
   return useMemo(() => (
-    <SceneStatic sceneStatus={sceneStatus} leaders={leaders} pos={pos} />
+    <SceneStatic sceneStatus={sceneStatus} leaders={leaders} vault={vault}
+      expeditionStatus={expeditionStatus} questStatus={questStatus} pos={pos} />
   ), [pos]);
 }
 
 const SceneStatic = (props: SceneProps) => {
-  const { sceneStatus } = props;
+  const { sceneStatus, leaders, vault, expeditionStatus, questStatus } = props;
   const dispatch = useDispatch();
   let scrollView : React.RefObject<ScrollView> = useRef(null);
   const [initialized, setInitialized] = useState(false);
@@ -68,6 +76,11 @@ const SceneStatic = (props: SceneProps) => {
       // render NextButton
       break;
     }
+
+    if (segmentsChanged) {
+      console.log(`newSegments`, newSegments);
+      setSegments(newSegments);
+    }
   };
 
   const handlePress = (args: { id: string, type: string }) => {
@@ -87,7 +100,8 @@ const SceneStatic = (props: SceneProps) => {
       }}>
       {segments.map((segment) => (
         <SceneSegmentComponent key={segment.id} {...props} id={segment.id} type={segment.type}
-        animate={segment.animate} doneAnimating={doneAnimating} handlePress={handlePress} />
+        animate={segment.animate} doneAnimating={doneAnimating} handlePress={handlePress}
+        sceneStatus={sceneStatus} leaders={leaders} vault={vault} expeditionStatus={expeditionStatus} />
       ))}
     </ScrollView>
   );
@@ -98,6 +112,9 @@ const SceneStatic = (props: SceneProps) => {
 interface SceneProps {
   sceneStatus: SceneStatus;
   leaders: { [id: string] : Leader };
+  vault: Vault;
+  questStatus: QuestStatus;
+  expeditionStatus: ExpeditionStatus;
   pos: Positioner;
 }
 

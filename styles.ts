@@ -752,5 +752,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 4
+  },
+
+  sceneActionButton: {
+    marginTop: 10,
+    paddingHorizontal: 10, 
+    justifyContent: 'flex-start'
   }
 });

@@ -30,7 +30,6 @@ nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1a`] = new SceneAction({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 1a`,
   subType: 'action',
   label: `Surround yourself with traps`,
-  description: new RichText({ type: 'Text', contents: [`The scorpions are already swarming around you, so you have to set the traps quickly and precisely. Soon you're surrounded by much more pleasant sounds: mechanisms snapping and carapaces cracking.`] }),
   next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 2a`], type: 'SceneText'},
   getCost: (difficulty: number) => (
     [ {specificity: RSP.TAG, kind: RTA.ACTION_TRAP, value: (7500 * difficulty) } ]
@@ -38,6 +37,12 @@ nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1a`] = new SceneAction({
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2a`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 2a`,
+  subType: 'narration',
+  text: new RichText({ type: 'Text', contents: [`The scorpions are already swarming around you, so you have to set the traps quickly and precisely. Soon you're surrounded by much more pleasant sounds: mechanisms snapping and carapaces cracking.`] }),
+  next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 3a`], type: 'SceneText'},
+});
+nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3a`] = new SceneText({
+  id: `${EXPEDITION_EVENTS.SCORPIONS} - 3a`,
   subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`Afterwards, the traps are sprung and can't be salvaged. But, you may be able to make something of these scorpion parts.`] }),
   outcome: new SceneOutcome({
@@ -62,11 +67,16 @@ nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1d`] = new SceneAction({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 1d`,
   subType: 'action',
   label: `Run away and hope for the best`,
-  description: new RichText({ type: 'Text', contents: [`There's no clear route to escape, stinging tails bristle everywhere you look. Kicking them away and stomping as you go is the best you can do.`] }),
-  next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 2d`], type: 'SceneText'}
+  next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 2d`], type: 'SceneText'},
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2d`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 2d`,
+  subType: 'narration',
+  text: new RichText({ type: 'Text', contents: [`There's no clear route to escape, stinging tails bristle everywhere you look. Running while kicking and stomping is the best you can do.`] }),
+  next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 3d`], type: 'SceneText'}
+});
+nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3d`] = new SceneText({
+  id: `${EXPEDITION_EVENTS.SCORPIONS} - 3d`,
   subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`Well, that could have gone better. You and your people are covered in stings, and you've traveled quite a ways off your original route. But you're all still alive.`] }),
   outcome: new SceneOutcome({

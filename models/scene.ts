@@ -15,7 +15,7 @@ export class Scene {
 
 export class SceneAction implements SceneActionInterface {
   id: string = '';
-  subType: 'action'|'speech' = 'action';
+  subType: 'action'|'dialogue' = 'action';
   speechType?: 'Calm'|'Aggressive'|'Humorous';
   label: string = '';
   description?: RichText;
@@ -39,10 +39,9 @@ export class SceneAction implements SceneActionInterface {
 
 interface SceneActionInterface {
   id: string;
-  subType: 'action'|'speech';
+  subType: 'action'|'dialogue';
   speechType?: 'Calm'|'Aggressive'|'Humorous';
   label: string;
-  description?: RichText;
   requirementIcon?: Icon;
   requirementLabel?: string;
   next?: {ids: string[], type: string};
@@ -66,7 +65,7 @@ export class SceneOutcome {
 
 export class SceneText {
   id: string = '';
-  subType: 'speech'|'narration' = 'speech';
+  subType: 'dialogue'|'narration' = 'dialogue';
   speakerId?: string;
   text: RichText = new RichText({ type: 'Text' });
   next?: {ids: string[], type: string};

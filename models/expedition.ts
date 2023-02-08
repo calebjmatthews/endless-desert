@@ -609,6 +609,11 @@ export default class Expedition {
       }
     });
     return rates;
+  } 
+
+  getDifficulty() {
+    const distance = utils.distanceBetweenPoints([0, 0], this.currentCoordinates);
+    return Math.ceil(distance / 400);
   }
 }
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import SceneNarrationComponent from './narration';
+import SceneActionComponent from './action';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
+import Vault from '../../models/vault';
+import QuestStatus from '../../models/quest_status';
+import ExpeditionStatus from '../../models/expedition_status';
 import Positioner from '../../models/positioner';
-import { sceneTexts } from '../../instances/scenes/index';
+import { sceneTexts, sceneActions } from '../../instances/scenes/index';
 
 const SceneSegmentComponent = (props: SceneSegmentProps) => {
   const { id, type } = props;
@@ -15,11 +19,12 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
       return <SceneNarrationComponent {...props} sceneText={sceneText} />;
     }
     else {
-
+      // render SceneDialogueComponent
     }
     
     case 'SceneAction':
-    return null;
+    const sceneAction = sceneActions[id];
+    return <SceneActionComponent {...props} sceneAction={sceneAction} />;
 
     case 'SceneActed':
     return null;
@@ -45,6 +50,9 @@ export interface SceneSegmentProps {
 
   sceneStatus: SceneStatus;
   leaders: { [id: string] : Leader };
+  vault: Vault;
+  questStatus: QuestStatus;
+  expeditionStatus: ExpeditionStatus;
   pos: Positioner;
 }
 
