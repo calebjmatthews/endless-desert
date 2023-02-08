@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
-import { ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { styles } from '../../styles';
 
 import SceneSegmentComponent from './segment';
@@ -38,11 +38,12 @@ const SceneStatic = (props: SceneProps) => {
   const [initialized, setInitialized] = useState(false);
   const [segments, setSegments] = useState<Segment[]>([]);
 
+  const scene = scenes[sceneStatus.sceneId];
+
   useEffect(() => {
     if (!initialized) {
       setInitialized(true);
       if (sceneStatus.steps.length === 0) {
-        const scene = scenes[sceneStatus.sceneId];
         setSegments([{ id: scene.next?.ids[0] || '', type: 'SceneText', animate: true }]);
       }
       // setSegments from sceneState here
@@ -93,17 +94,22 @@ const SceneStatic = (props: SceneProps) => {
   }
 
   return (
-    <ScrollView style={styles.columns}
-      ref={scrollView}
-      onContentSizeChange={() => {
-        if (scrollView.current) { scrollView.current.scrollToEnd({animated: true}); }
-      }}>
-      {segments.map((segment) => (
-        <SceneSegmentComponent key={segment.id} {...props} id={segment.id} type={segment.type}
-        animate={segment.animate} doneAnimating={doneAnimating} handlePress={handlePress}
-        sceneStatus={sceneStatus} leaders={leaders} vault={vault} expeditionStatus={expeditionStatus} />
-      ))}
-    </ScrollView>
+    <View style={styles.modalContent}>
+      <View style={styles.headingWrapper}>
+        <Text style={styles.heading1}>{scene.name}</Text>
+      </View>
+      <ScrollView style={styles.columns}
+        ref={scrollView}
+        onContentSizeChange={() => {
+          if (scrollView.current) { scrollView.current.scrollToEnd({animated: true}); }
+        }}>
+        {segments.map((segment) => (
+          <SceneSegmentComponent key={segment.id} {...props} id={segment.id} type={segment.type}
+          animate={segment.animate} doneAnimating={doneAnimating} handlePress={handlePress}
+          sceneStatus={sceneStatus} leaders={leaders} vault={vault} expeditionStatus={expeditionStatus} />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
