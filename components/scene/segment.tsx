@@ -1,6 +1,7 @@
 import React from 'react';
 import SceneNarrationComponent from './narration';
 import SceneActionComponent from './action';
+import SceneActedComponent from './acted';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -9,9 +10,11 @@ import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
 import Positioner from '../../models/positioner';
 import { sceneTexts, sceneActions } from '../../instances/scenes/index';
+import { SceneAction } from '../../models/scene';
+import { utils } from '../../utils';
 
 const SceneSegmentComponent = (props: SceneSegmentProps) => {
-  const { id, type } = props;
+  const { id, type, pos } = props;
   switch(type) {
     case 'SceneText':
     const sceneText = sceneTexts[id];
@@ -27,9 +30,12 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
     return <SceneActionComponent {...props} sceneAction={sceneAction} />;
 
     case 'SceneActed':
-    return null;
+    const sceneActed = sceneActions[id]
+      || new SceneAction({ id: utils.randHex(8), subType: 'action', label: '...' });
+    return <SceneActedComponent sceneAction={sceneActed} pos={pos} />
 
     case 'NextButton':
+    case 'WaitButton':
     case 'FinalButton':
     return null;
 
@@ -43,7 +49,7 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
 
 export interface SceneSegmentProps {
   id: string;
-  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'FinalButton'|'SceneOutcome';
+  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'WaitButton'|'FinalButton'|'SceneOutcome';
   animate: boolean;
   doneAnimating: (args: { id: string, type: string }) => void;
   handlePress: (args: { id: string, type: string }) => void;

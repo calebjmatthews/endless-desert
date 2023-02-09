@@ -54,14 +54,26 @@ const SceneStatic = (props: SceneProps) => {
     const { id, type } = args;
     const newSegments: Segment[] = [...segments];
     let segmentsChanged: boolean = false;
+
     switch(type) {
       case 'SceneText':
       const sceneText = sceneTexts[id];
       dispatch(addSceneStep(id));
 
       sceneText.next?.ids.forEach((nextId) => {
-        newSegments.push({ id: nextId, type: 'SceneAction', animate: true });
-        segmentsChanged = true;
+        if (sceneText.next?.type === 'SceneAction') {
+          newSegments.push({ id: nextId, type: 'SceneAction', animate: true });
+          segmentsChanged = true;
+        }
+        else if (sceneText.next?.type === 'SceneText') {
+          const nextSceneText = sceneTexts[sceneText.next?.ids[0]];
+          // If two narrations in a row, a WaitButton should be used
+          // to leave a "..." SceneActed behind
+          const type = (sceneText.subType !== 'narration' || nextSceneText.subType !== 'narration')
+            ? 'NextButton' : 'WaitButton';
+          newSegments.push({ id: nextId, type, animate: true });
+          segmentsChanged = true;
+        }
       });
 
       if (!sceneText.next && sceneText.outcome) {
@@ -79,18 +91,47 @@ const SceneStatic = (props: SceneProps) => {
     }
 
     if (segmentsChanged) {
-      console.log(`newSegments`, newSegments);
       setSegments(newSegments);
     }
   };
 
   const handlePress = (args: { id: string, type: string }) => {
-    // SceneAction => add to sceneStatus.steps, remove SceneActions, 
-    // add SceneActed, render .next SceneText
+    const { id, type } = args;
+    console.log(`handlePress { id, type }`, { id, type });
+    let newSegments: Segment[] = [...segments];
+    let segmentsChanged: boolean = false;
 
-    // NextButton => remove NextButton, render .next SceneText, using previous' id
+    switch(type) {
+      case 'SceneAction':
+      // SceneAction => add to sceneStatus.steps, remove SceneActions, add SceneActed, 
+      // render .next SceneText
+      const sceneAction = sceneActions[id];
+      dispatch(addSceneStep(id));
+      newSegments = newSegments.filter((segment) => (segment.type !== 'SceneAction'));
+      newSegments.push({ id, type: 'SceneActed', animate: false });
+      sceneAction.next?.ids.forEach((nextId) => {
+        newSegments.push({ id: nextId, type: sceneAction.next?.type || 'SceneText', animate: true });
+        segmentsChanged = true;
+      });
+      segmentsChanged = true;
+      break;
 
-    // FinalButton => perform endScene()
+      case 'NextButton':
+      // NextButton => remove NextButton, render .next SceneText using previous' id
+      break;
+
+      case 'WaitButton':
+      // WaitButton => remove WaitButton, add "..." SceneActed, render .next SceneText using previous' id
+      break;
+
+      case 'FinalButton':
+      // FinalButton => perform endScene()
+      break;
+    }
+
+    if (segmentsChanged) {
+      setSegments(newSegments);
+    }
   }
 
   return (
@@ -126,7 +167,7 @@ interface SceneProps {
 
 interface Segment {
   id: string;
-  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'FinalButton'|'SceneOutcome';
+  type: 'SceneText'|'SceneAction'|'SceneActed'|'NextButton'|'WaitButton'|'FinalButton'|'SceneOutcome';
   animate: boolean;
 }
 

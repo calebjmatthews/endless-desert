@@ -758,5 +758,5 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 10, 
     justifyContent: 'flex-start'
-  }
+  },
 });

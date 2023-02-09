@@ -88,7 +88,7 @@ const SceneActionButtonSimple = (props: SceneActionProps) => {
       </View>
       {requirement}
     </TouchableOpacity>
-  )
+  );
 }
 
 const SceneActionButtonCost = (props: SceneActionCostProps) => {
