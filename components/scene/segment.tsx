@@ -2,6 +2,7 @@ import React from 'react';
 import SceneNarrationComponent from './narration';
 import SceneActionComponent from './action';
 import SceneActedComponent from './acted';
+import NextButtonComponent from './next_button';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -37,7 +38,7 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
     case 'NextButton':
     case 'WaitButton':
     case 'FinalButton':
-    return null;
+    return <NextButtonComponent {...props} />;
 
     case 'SceneOutcome':
     return null;

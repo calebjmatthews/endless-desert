@@ -31,7 +31,7 @@ const SceneNarrationAnimatedComponent = (props: SceneNarrationAnimatedProps) => 
   const { sceneText, handleInnerPress, innerDoneAnimating, pos } = props;
   const textOpacity = useRef(new Animated.Value(0)).current;
   useEffect(() => { Animated.timing(textOpacity,
-    { toValue: 0.9, duration: FADE_IN_DELAY*4, useNativeDriver: true }
+    { toValue: 0.9, duration: FADE_IN_DELAY*6, useNativeDriver: true }
   ).start(() => {
     innerDoneAnimating();
   }); }, []);

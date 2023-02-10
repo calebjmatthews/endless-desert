@@ -78,7 +78,9 @@ nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 2d`] = new SceneText({
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3d`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 3d`,
   subType: 'narration',
-  text: new RichText({ type: 'Text', contents: [`Well, that could have gone better. You and your people are covered in stings, and you've traveled quite a ways off your original route. But you're all still alive.`] }),
+  text: new RichText({ type: 'Text', contents: [`Well, that could have gone better. You and your people are covered in stings, and you've traveled quite a ways off your original route.
+
+But you're all still alive.`] }),
   outcome: new SceneOutcome({
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
     changeLocation: { percentage: 10 }

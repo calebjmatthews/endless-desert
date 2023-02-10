@@ -71,7 +71,7 @@ const SceneStatic = (props: SceneProps) => {
           // to leave a "..." SceneActed behind
           const type = (sceneText.subType !== 'narration' || nextSceneText.subType !== 'narration')
             ? 'NextButton' : 'WaitButton';
-          newSegments.push({ id: nextId, type, animate: true });
+          newSegments.push({ id, type, animate: true });
           segmentsChanged = true;
         }
       });
@@ -109,19 +109,31 @@ const SceneStatic = (props: SceneProps) => {
       dispatch(addSceneStep(id));
       newSegments = newSegments.filter((segment) => (segment.type !== 'SceneAction'));
       newSegments.push({ id, type: 'SceneActed', animate: false });
+      segmentsChanged = true;
       sceneAction.next?.ids.forEach((nextId) => {
         newSegments.push({ id: nextId, type: sceneAction.next?.type || 'SceneText', animate: true });
-        segmentsChanged = true;
       });
-      segmentsChanged = true;
       break;
 
       case 'NextButton':
       // NextButton => remove NextButton, render .next SceneText using previous' id
+      newSegments = newSegments.filter((segment) => (segment.type !== 'NextButton'));
+      segmentsChanged = true;
+      const sceneTextNB = sceneTexts[id];
+      sceneTextNB.next?.ids.forEach((nextId) => {
+        newSegments.push({ id: nextId, type: sceneAction.next?.type || 'SceneText', animate: true });
+      });
       break;
 
       case 'WaitButton':
       // WaitButton => remove WaitButton, add "..." SceneActed, render .next SceneText using previous' id
+      newSegments = newSegments.filter((segment) => (segment.type !== 'WaitButton'));
+      segmentsChanged = true;
+      newSegments.push({ id, type: 'SceneActed', animate: false });
+      const sceneTextWB = sceneTexts[id];
+      sceneTextWB.next?.ids.forEach((nextId) => {
+        newSegments.push({ id: nextId, type: sceneTextWB.next?.type || 'SceneText', animate: true });
+      });
       break;
 
       case 'FinalButton':
@@ -145,9 +157,10 @@ const SceneStatic = (props: SceneProps) => {
           if (scrollView.current) { scrollView.current.scrollToEnd({animated: true}); }
         }}>
         {segments.map((segment) => (
-          <SceneSegmentComponent key={segment.id} {...props} id={segment.id} type={segment.type}
-          animate={segment.animate} doneAnimating={doneAnimating} handlePress={handlePress}
-          sceneStatus={sceneStatus} leaders={leaders} vault={vault} expeditionStatus={expeditionStatus} />
+          <SceneSegmentComponent key={`${segment.type}-${segment.id}`} {...props} id={segment.id}
+          type={segment.type} animate={segment.animate} doneAnimating={doneAnimating}
+          handlePress={handlePress} sceneStatus={sceneStatus} leaders={leaders} vault={vault} 
+          expeditionStatus={expeditionStatus} />
         ))}
       </ScrollView>
     </View>

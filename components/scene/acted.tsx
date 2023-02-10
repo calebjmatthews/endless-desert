@@ -16,11 +16,15 @@ const SceneActedComponent = (props: SceneActedProps) => {
   const resourceKind = cost?.[0] ? utils.getMatchingResourceKind(cost?.[0].specificity, cost?.[0].kind)
     : null;
   const icon = sceneAction.requirementIcon || resourceKind?.icon;
+  let buttonStyle: any = [styles.button, styles.sceneActionButton, {minWidth: pos.speechButtonWidth, 
+    maxWidth: pos.speechButtonWidth, backgroundColor: '#5e77b0', borderColor: '#5e77b0' }];
+  if (sceneAction.label === '...') {
+    buttonStyle = [...buttonStyle, { minWidth: 60, maxWidth: 60, justifyContent: 'center' }];
+  }
 
   return (
     <View style={[styles.container, { marginBottom: 10 }]}>
-      <View style={[styles.button, styles.sceneActionButton, {minWidth: pos.speechButtonWidth, 
-        maxWidth: pos.speechButtonWidth, backgroundColor: '#5e77b0', borderColor: '#5e77b0' }]} >
+      <View style={buttonStyle} >
         <View style={[styles.rows, { paddingVertical: 5 }]}>
           {icon && (
             <View style={{marginRight: 3}}>
