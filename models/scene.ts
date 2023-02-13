@@ -54,7 +54,8 @@ interface SceneActionInterface {
 }
 
 export class SceneOutcome {
-  gainResources?: {specificity: string, kind: string, value: number|[number, number]}[];
+  gainResources?: {specificity: string, kind: string, value: number|[number, number],
+    qualityRange  ?: [number, number]}[];
   affectLeader?: {quality: string, change?: number, percentage?: number}[];
   changeLocation?: {towardsDestination?: boolean, distance?: number, percentage?: number};
   leaderJoins?: string;

@@ -15,7 +15,6 @@ import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
 import Positioner from '../../models/positioner';
 import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
-import expedition_status from '../../reducers/expedition_status';
 
 const SceneComponent = () => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -67,21 +66,26 @@ const SceneStatic = (props: SceneProps) => {
         }
         else if (sceneText.next?.type === 'SceneText') {
           const nextSceneText = sceneTexts[sceneText.next?.ids[0]];
-          // If two narrations in a row, a WaitButton should be used
-          // to leave a "..." SceneActed behind
-          const type = (sceneText.subType !== 'narration' || nextSceneText.subType !== 'narration')
-            ? 'NextButton' : 'WaitButton';
-          newSegments.push({ id, type, animate: true });
-          segmentsChanged = true;
+          if (nextSceneText) {
+            // If two narrations in a row, a WaitButton should be used
+            // to leave a "..." SceneActed behind
+            const type = (sceneText.subType !== 'narration' || nextSceneText.subType !== 'narration')
+              ? 'NextButton' : 'WaitButton';
+            newSegments.push({ id, type, animate: true });
+            segmentsChanged = true;
+          }
         }
       });
 
-      if (!sceneText.next && sceneText.outcome) {
-        // render SceneOutcome
+      if (sceneText.outcome) {
+        // Todo: calculate gainResources
+        newSegments.push({ id, type: 'SceneOutcome', animate: true });
+        segmentsChanged = true;
       }
 
-      if (!sceneText.next && !sceneText.outcome) {
-        // render FinalButton
+      if (!sceneText.next) {
+        newSegments.push({ id, type: 'FinalButton', animate: true });
+        segmentsChanged = true;
       }
       break;
 

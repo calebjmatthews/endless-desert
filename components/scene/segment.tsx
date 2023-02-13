@@ -3,6 +3,7 @@ import SceneNarrationComponent from './narration';
 import SceneActionComponent from './action';
 import SceneActedComponent from './acted';
 import NextButtonComponent from './next_button';
+import SceneOutcomeComponent from './outcome';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -41,7 +42,11 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
     return <NextButtonComponent {...props} />;
 
     case 'SceneOutcome':
-    return null;
+    const sceneOutcome = sceneTexts[id].outcome;
+    console.log(`sceneOutcome`, sceneOutcome);
+    if (sceneOutcome) {
+      return <SceneOutcomeComponent {...props} sceneOutcome={sceneOutcome} />;
+    }
 
     default:
     return null;

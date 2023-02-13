@@ -1,6 +1,9 @@
 import { SceneText, SceneAction } from '../models/scene';
 import { scenes, sceneTexts, sceneActions } from '../instances/scenes';
 
+// Todo: Check for sceneActions with no .next
+// Todo: Check for .nexts with more than one sceneText
+// Todo: Check for orphan sceneActions and sceneTexts
 const testScenes = () => {
   let sceneCounts: SceneCounts = {
     scenes: 0,

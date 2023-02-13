@@ -16,7 +16,7 @@ const nnSceneActions: { [id: string] : SceneAction } = {};
 
 nnScenes[EXPEDITION_EVENTS.SCORPIONS] = new Scene({
   id: EXPEDITION_EVENTS.SCORPIONS,
-  name: 'Scorpions',
+  name: 'Black Shapes From the Ground',
   next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 0`], type: 'SceneText'}
 });
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 0`] = new SceneText({
