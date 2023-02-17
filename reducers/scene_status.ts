@@ -28,7 +28,6 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
     });
 
     case GAIN_SCENE_RESOURCES:
-    console.log(`action`, action);
     return new SceneStatus({
       ...sceneStatus,
       resourcesGained: {

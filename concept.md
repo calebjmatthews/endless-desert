@@ -84,6 +84,10 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
     - Herbs!
     - Field Notes
     - Honey, wax
+  - Bells, which have one-time uses
+    - Big dull sound, turns things to wood
+    - Single resonating chime that increases in volume, connects disperate ideas
+    - Loose, slow chime like waves crashing, opens up path to River of Pearls
 
 ## Resource Subcategories:
   - Sand

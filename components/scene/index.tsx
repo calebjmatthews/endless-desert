@@ -7,6 +7,7 @@ import { styles } from '../../styles';
 
 import SceneSegmentComponent from './segment';
 import { addSceneStep, gainSceneResources } from '../../actions/scene_status';
+import { increaseResources } from '../../actions/vault';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -87,8 +88,8 @@ const SceneStatic = (props: SceneProps) => {
           else { console.log(`No matching resource found for: `, gainResource); }
         });
         if (gainedResources.length > 0) {
-          console.log(`gainResources`, gainedResources);
           dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
+          dispatch(increaseResources(vault, gainedResources));
         }
         newSegments.push({ id, type: 'SceneOutcome', animate: true });
         segmentsChanged = true;
@@ -112,7 +113,6 @@ const SceneStatic = (props: SceneProps) => {
 
   const handlePress = (args: { id: string, type: string }) => {
     const { id, type } = args;
-    console.log(`handlePress { id, type }`, { id, type });
     let newSegments: Segment[] = [...segments];
     let segmentsChanged: boolean = false;
 

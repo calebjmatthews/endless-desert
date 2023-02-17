@@ -46,7 +46,7 @@ nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3a`] = new SceneText({
   subType: 'narration',
   text: new RichText({ type: 'Text', contents: [`Afterwards, the traps are sprung and can't be salvaged. But, you may be able to make something of these scorpion parts.`] }),
   outcome: new SceneOutcome({
-    gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 2399] }]
+    gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 239900000] }]
   })
 });
 // nnSceneActions[`${EXPEDITION_EVENTS.SCORPIONS} - 1b`] = new SceneAction({

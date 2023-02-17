@@ -14,7 +14,6 @@ import { utils } from '../../utils';
 import { FADE_IN_DELAY } from '../../constants';
 
 const SceneActionComponent = (props: SceneActionProps) => {
-  console.log(`props`, props);
   const { animate } = props;
 
   return (animate)

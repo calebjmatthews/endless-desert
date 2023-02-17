@@ -569,7 +569,6 @@ class Utils {
     else if (typeof valueRange === 'object') {
       value = this.randomInRange(valueRange);
     }
-    console.log(`value`, value);
 
     let resourceOptions: Resource[] = [];
     switch(specificity) {
