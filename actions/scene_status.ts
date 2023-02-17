@@ -20,4 +20,11 @@ export const paySceneCost = (args: {sceneActionId: string, costIndex: number, re
   resource: args.resource
 });
 
+export const GAIN_SCENE_RESOURCES = "GAIN_SCENE_RESOURCES";
+export const gainSceneResources = (args: {sceneActionId: string, resources: Resource[]}) => ({
+  type: GAIN_SCENE_RESOURCES,
+  sceneActionId: args.sceneActionId,
+  resources: args.resources
+})
+
 // Todo: Add END_SCENE

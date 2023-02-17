@@ -10,6 +10,7 @@ import Leader from '../../models/leader';
 import Vault from '../../models/vault';
 import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
+import Resource from '../../models/resource';
 import Positioner from '../../models/positioner';
 import { sceneTexts, sceneActions } from '../../instances/scenes/index';
 import { SceneAction } from '../../models/scene';
@@ -43,7 +44,6 @@ const SceneSegmentComponent = (props: SceneSegmentProps) => {
 
     case 'SceneOutcome':
     const sceneOutcome = sceneTexts[id].outcome;
-    console.log(`sceneOutcome`, sceneOutcome);
     if (sceneOutcome) {
       return <SceneOutcomeComponent {...props} sceneOutcome={sceneOutcome} />;
     }
@@ -60,7 +60,6 @@ export interface SceneSegmentProps {
   doneAnimating: (args: { id: string, type: string }) => void;
   handlePress: (args: { id: string, type: string }) => void;
 
-  sceneStatus: SceneStatus;
   leaders: { [id: string] : Leader };
   vault: Vault;
   questStatus: QuestStatus;

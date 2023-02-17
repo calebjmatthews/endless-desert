@@ -1,4 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { RootState } from '../../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, Animated } from 'react-native';
 import { styles } from '../../styles';
 
@@ -17,8 +20,10 @@ import { utils } from '../../utils';
 import { FADE_IN_DELAY } from '../../constants';
 
 const SceneOutcomeComponent = (props: SceneOutcomeProps) => {
-  const { sceneOutcome, resourcesGained, animate, sceneStatus, expeditionStatus, leaders, pos } = props;
-  const { affectLeader, changeLocation, leaderJoins, questsBegin, completeResearch } = sceneOutcome;
+  const sceneStatus = useTypedSelector(state => state.sceneStatus);
+  const { id, sceneOutcome, animate, expeditionStatus, leaders, pos } = props;
+  const { affectLeader, changeLocation, gainResources, leaderJoins, questsBegin, completeResearch }
+    = sceneOutcome;
 
   let outcomes: React.ReactFragment[] = [];
 
@@ -54,11 +59,12 @@ const SceneOutcomeComponent = (props: SceneOutcomeProps) => {
       </View>
     );
   }
-  if (resourcesGained) {
+  if (gainResources) {
+    const resourcesGained = sceneStatus.resourcesGained?.[id];
     outcomes.push(
       <View style={[styles.panelFlexColumn, {minWidth: pos.modalMajor, maxWidth: pos.modalMajor}]}>
         <Text style={styles.heading3}>{"You gained:"}</Text>
-        {resourcesGained.map((resource) => {
+        {resourcesGained?.map((resource) => {
           const resourceType = utils.getResourceType(resource);
           return (
             <View key={`${resource.type}|${resource.quality}`}
@@ -147,11 +153,9 @@ interface SceneOutcomeProps {
   id: string;
   type: string;
   sceneOutcome: SceneOutcome;
-  resourcesGained?: Resource[];
   animate: boolean;
   doneAnimating: (args: { id: string, type: string }) => void;
 
-  sceneStatus: SceneStatus;
   expeditionStatus: ExpeditionStatus;
   leaders: { [id: string] : Leader };
   pos: Positioner;

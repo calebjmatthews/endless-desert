@@ -61,6 +61,10 @@ class Utils {
     return (Math.abs(a - 0.5) < Math.abs(b - 0.5)) ? a : b;
   }
 
+  randomInRange(range: [number, number]) {
+    return range[0] + (this.random() * (range[1] - range[0]));
+  }
+
   randomSelect(anArray: any[]) {
     return anArray[Math.floor(this.random() * anArray.length)];
   }
@@ -534,6 +538,72 @@ class Utils {
       quantity = Math.ceil(resReq.value / rtSel.value);
     }
     return { type: rtSel.name, quality: 0, quantity: quantity };
+  }
+
+  getResourceMatchingSelector(selector: {specificity: string, kind: string,
+    value: number|[number, number], qualityRange?: number|[number, number]}): Resource {
+    const { specificity, kind, value: valueRange, qualityRange } = selector;
+
+    let quality = 0;
+    if (typeof qualityRange === 'string') {
+      quality = qualityRange;
+    }
+    else if (typeof qualityRange === 'object') {
+      const qualityOptions: number[] = [];
+      qualityRange?.forEach((aQualityRange) => {
+        let rangeMax = 0;
+        switch(aQualityRange) {
+          case 0: rangeMax = 16; break;
+          case 1: rangeMax = 4; break;
+          case 2: rangeMax = 1; break;
+        }
+        this.range(0, rangeMax).forEach(() => qualityOptions.push(aQualityRange));
+      });
+      quality = this.randomSelect(qualityOptions);
+    }
+    
+    let value = 1;
+    if (typeof valueRange === 'number') {
+      value = valueRange;
+    }
+    else if (typeof valueRange === 'object') {
+      value = this.randomInRange(valueRange);
+    }
+    console.log(`value`, value);
+
+    let resourceOptions: Resource[] = [];
+    switch(specificity) {
+      case RESOURCE_SPECIFICITY.CATEGORY:
+      Object.keys(resourceTypes).forEach((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (resourceType.category === kind) {
+          resourceOptions.push(new Resource({ type: resourceType.name, quality,
+            quantity: Math.ceil(value / resourceType.value) }));
+        }
+      }); break;
+      case RESOURCE_SPECIFICITY.SUBCATEGORY:
+      Object.keys(resourceTypes).forEach((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (resourceType.subcategory === kind) {
+          resourceOptions.push(new Resource({ type: resourceType.name, quality,
+            quantity: Math.ceil(value / resourceType.value) }));
+        }
+      }); break;
+      case RESOURCE_SPECIFICITY.TAG:
+      Object.keys(resourceTypes).forEach((typeName) => {
+        const resourceType = resourceTypes[typeName];
+        if (utils.arrayIncludes(resourceType.tags, kind)) {
+          resourceOptions.push(new Resource({ type: resourceType.name, quality,
+            quantity: Math.ceil(value / resourceType.value) }));
+        }
+      }); break;
+      case RESOURCE_SPECIFICITY.EXACT:
+      const resourceType = resourceTypes[kind];
+      resourceOptions.push(new Resource({ type: kind, quality,
+        quantity: Math.ceil(value / resourceType.value) })); break;
+    }
+
+    return utils.randomSelect(resourceOptions);
   }
 
   typeQualityName(typeQuality: string|null) {

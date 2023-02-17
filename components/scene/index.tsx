@@ -6,15 +6,17 @@ import { View, Text, ScrollView } from 'react-native';
 import { styles } from '../../styles';
 
 import SceneSegmentComponent from './segment';
-import { addSceneStep } from '../../actions/scene_status';
+import { addSceneStep, gainSceneResources } from '../../actions/scene_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
 import Vault from '../../models/vault';
 import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
+import Resource from '../../models/resource';
 import Positioner from '../../models/positioner';
 import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
+import { utils } from '../../utils';
 
 const SceneComponent = () => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -78,7 +80,16 @@ const SceneStatic = (props: SceneProps) => {
       });
 
       if (sceneText.outcome) {
-        // Todo: calculate gainResources
+        let gainedResources: Resource[] = [];
+        sceneText.outcome.gainResources?.map((gainResource) => {
+          const gainedResource = utils.getResourceMatchingSelector(gainResource);
+          if (gainedResource) { gainedResources.push(gainedResource); }
+          else { console.log(`No matching resource found for: `, gainResource); }
+        });
+        if (gainedResources.length > 0) {
+          console.log(`gainResources`, gainedResources);
+          dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
+        }
         newSegments.push({ id, type: 'SceneOutcome', animate: true });
         segmentsChanged = true;
       }
@@ -163,7 +174,7 @@ const SceneStatic = (props: SceneProps) => {
         {segments.map((segment) => (
           <SceneSegmentComponent key={`${segment.type}-${segment.id}`} {...props} id={segment.id}
           type={segment.type} animate={segment.animate} doneAnimating={doneAnimating}
-          handlePress={handlePress} sceneStatus={sceneStatus} leaders={leaders} vault={vault} 
+          handlePress={handlePress} leaders={leaders} vault={vault} 
           expeditionStatus={expeditionStatus} />
         ))}
       </ScrollView>

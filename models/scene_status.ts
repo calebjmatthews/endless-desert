@@ -5,6 +5,7 @@ export default class SceneStatus {
   // Corresponds to the IDs of SceneTexts viewed and SceneActions chosen
   steps: string[] = [];
   costsPaid: { [sceneActionId: string]: Resource[] } = {};
+  resourcesGained: { [sceneActionId: string]: Resource[] } = {};
   expeditionId?: string;
 
   constructor(sceneStatus: SceneStatus|null) {

@@ -1,4 +1,5 @@
-import { SET_SCENE, ADD_SCENE_STEP, PAY_SCENE_COST } from '../actions/scene_status';
+import { SET_SCENE, ADD_SCENE_STEP, PAY_SCENE_COST, GAIN_SCENE_RESOURCES }
+  from '../actions/scene_status';
 import SceneStatus from '../models/scene_status';
 
 export default function (sceneStatus: SceneStatus = new SceneStatus(null),
@@ -8,7 +9,8 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
     return new SceneStatus({
       sceneId: action.sceneId,
       steps: [],
-      costsPaid: {}
+      costsPaid: {},
+      resourcesGained: {}
     });
 
     case ADD_SCENE_STEP:
@@ -23,7 +25,17 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
     return new SceneStatus({
       ...sceneStatus,
       costsPaid: pscCostsPaid
-    })
+    });
+
+    case GAIN_SCENE_RESOURCES:
+    console.log(`action`, action);
+    return new SceneStatus({
+      ...sceneStatus,
+      resourcesGained: {
+        ...sceneStatus.resourcesGained,
+        [action.sceneActionId]: action.resources
+      }
+    });
 
 		default:
 		return sceneStatus;
