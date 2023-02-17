@@ -18,6 +18,7 @@ import { researches } from '../../instances/researches';
 import { quests } from '../../instances/quests';
 import { utils } from '../../utils';
 import { FADE_IN_DELAY } from '../../constants';
+import { scenes } from '../../instances/scenes';
 
 const SceneOutcomeComponent = (props: SceneOutcomeProps) => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -61,9 +62,12 @@ const SceneOutcomeComponent = (props: SceneOutcomeProps) => {
   }
   if (gainResources) {
     const resourcesGained = sceneStatus.resourcesGained?.[id];
+    const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
     outcomes.push(
       <View style={[styles.panelFlexColumn, {minWidth: pos.modalMajor, maxWidth: pos.modalMajor}]}>
-        <Text style={styles.heading3}>{"You gained:"}</Text>
+        <Text style={styles.heading3}>
+          {(expedition) ? "The expedition gained:" : "Your town gained:"}
+          </Text>
         {resourcesGained?.map((resource) => {
           const resourceType = utils.getResourceType(resource);
           return (
@@ -110,6 +114,19 @@ const SceneOutcomeComponent = (props: SceneOutcomeProps) => {
             </View>
           )
         })}
+      </View>
+    );
+  }
+  if (changeLocation) {
+    const { towardsDestination, distance, percentage } = changeLocation;
+    const extent = changeLocation.distance || changeLocation.percentage || 1;
+    let label = (extent > 0) ? 'increased by' : 'decreased by';
+    label = `${label} ${Math.abs(extent)}${(anEffect.percentage) ? '%' : ''}`;
+    outcomes.push(
+      <View style={[styles.panelFlexColumn, {minWidth: pos.modalMajor, maxWidth: pos.modalMajor}]}>
+        <View style={styles.rows}>
+              <Text>{`${leaderLabel} ${anEffect.quality} ${label}`}</Text>
+            </View>
       </View>
     );
   }

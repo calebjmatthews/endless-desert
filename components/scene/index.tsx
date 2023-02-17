@@ -8,6 +8,7 @@ import { styles } from '../../styles';
 import SceneSegmentComponent from './segment';
 import { addSceneStep, gainSceneResources } from '../../actions/scene_status';
 import { increaseResources } from '../../actions/vault';
+import { increaseExpeditionResources } from '../../actions/expedition_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -89,7 +90,16 @@ const SceneStatic = (props: SceneProps) => {
         });
         if (gainedResources.length > 0) {
           dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
-          dispatch(increaseResources(vault, gainedResources));
+          const expedition = props.expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+          if (expedition) {
+            dispatch(increaseExpeditionResources({
+              expeditionId: (sceneStatus.expeditionId || ''),
+              rti: gainedResources
+            }));
+          }
+          else {
+            dispatch(increaseResources(vault, gainedResources));
+          }
         }
         newSegments.push({ id, type: 'SceneOutcome', animate: true });
         segmentsChanged = true;
