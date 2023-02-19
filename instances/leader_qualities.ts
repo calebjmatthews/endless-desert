@@ -32,5 +32,25 @@ leaderQualities[LEADER_QUALITIES.EFFICIENCY] = new LeaderQuality({
   name: LEADER_QUALITIES.EFFICIENCY,
   icon: new Icon({provider: 'FontAwesome5', name: 'cog', color: '#6d6d6d'})
 });
+leaderQualities[LEADER_QUALITIES.LIFE] = new LeaderQuality({
+  name: LEADER_QUALITIES.LIFE,
+  icon: new Icon({provider: 'FontAwesome5', name: 'heart', color: '#da031a'})
+});
+leaderQualities[LEADER_QUALITIES.AGILITY] = new LeaderQuality({
+  name: LEADER_QUALITIES.AGILITY,
+  icon: new Icon({provider: 'FontAwesome5', name: 'wind', color: '#3ea80c'})
+});
+leaderQualities[LEADER_QUALITIES.BOUNTY] = new LeaderQuality({
+  name: LEADER_QUALITIES.BOUNTY,
+  icon: new Icon({provider: 'FontAwesome5', name: 'gem', color: '#5000a6'})
+});
+leaderQualities[LEADER_QUALITIES.VISION] = new LeaderQuality({
+  name: LEADER_QUALITIES.VISION,
+  icon: new Icon({provider: 'FontAwesome', name: 'eye', color: '#ffd107'})
+});
+leaderQualities[LEADER_QUALITIES.PRECISION] = new LeaderQuality({
+  name: LEADER_QUALITIES.PRECISION,
+  icon: new Icon({provider: 'FontAwesome5', name: 'balance-scale', color: '#0715d0'})
+});
 
 export { leaderQualities };

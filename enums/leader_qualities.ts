@@ -6,5 +6,9 @@ export enum LEADER_QUALITIES {
   HAPPINESS_TO_QUALITY = "Happiness applies to quality",
   EFFICIENCY = "Efficiency",
   HAPPINESS_TO_EFFICIENCY = "Happiness applies to efficiency",
-  LIFE = "Life"
+  LIFE = "Life",
+  AGILITY = "Agility",
+  BOUNTY = "Bounty",
+  VISION = "Vision",
+  PRECISION = "Precision"
 }

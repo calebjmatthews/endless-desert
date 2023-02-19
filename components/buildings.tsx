@@ -234,7 +234,7 @@ function BuildingDescription(props: any) {
     }
     return (
       <TouchableOpacity style={buttonStyle} onPress={() => props.morePress(building)}>
-        <IconComponent provider="FontAwesome5" name="angle-down"
+        <IconComponent provider="FontAwesome5" name={iconName}
           color={iconColor} size={14} />
         <Text style={textStyle}>
           {' More'}

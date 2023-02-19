@@ -533,11 +533,11 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
 
 ## Exploration:
 - Stats:
-  - Health, Sandstone Artificers, Red heart
+  - Life, Sandstone Artificers, Red heart
   - Swiftness, Keepers of the Hanging Gardens, Green wind
   - Bounty, Tourmaline Jewelers, Purple gem
   - Vision, Cochineal Scribes, Yellow eye
-  - Precision, Porcelain Commissars, Blue coins
+  - Precision, Porcelain Commissars, Blue scale
 - Implements give points in the following categories:
   - Seek (Torch): Spotting treasure, traps, and foes
   - Break (Slab): Breaking through containers and walls
@@ -1081,15 +1081,16 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Another Gate upgrade
   [ ] Two (?) more Fishing Pond upgrades: Coral Branch, Voltaic Eel
   [ ] House upgrade
+  [ ] Flophouse upgrade
   [ ] Research to increase analytics quantity again
   [ ] Study upgrade
-
   [ ] Revamp field notes (select from three possibilities)
   [ ] Storing an occupied house kicks out the leader
   [ ] Storing an assigned to building removes leader
   [ ] Handle custom food quality
-  [ ] Trader conversations
+  [ ] Trader conversations for rumors
   [ ] Ingredient-specific cooking recipes
+
   [ ] Revamp Thrice Locked Tome
   [ ] Firefly mother quests?
   [ ] Add images to memos
@@ -1110,6 +1111,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   [ ] Hide leader assignment buttons until there are leaders
   [ ] Restyle completed quests
   [ ] Only show most recent completed quests, with "Show more" button
+  [ ] Search bars in Resources (once over 10?), Building Recipes (for over 5?)
   
   [ ] Flashy display for rare trades
   [ ] Hide recipes missing ingredients
