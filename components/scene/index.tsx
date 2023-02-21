@@ -82,25 +82,6 @@ const SceneStatic = (props: SceneProps) => {
       });
 
       if (sceneText.outcome) {
-        let gainedResources: Resource[] = [];
-        sceneText.outcome.gainResources?.map((gainResource) => {
-          const gainedResource = utils.getResourceMatchingSelector(gainResource);
-          if (gainedResource) { gainedResources.push(gainedResource); }
-          else { console.log(`No matching resource found for: `, gainResource); }
-        });
-        if (gainedResources.length > 0) {
-          dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
-          const expedition = props.expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
-          if (expedition) {
-            dispatch(increaseExpeditionResources({
-              expeditionId: (sceneStatus.expeditionId || ''),
-              rti: gainedResources
-            }));
-          }
-          else {
-            dispatch(increaseResources(vault, gainedResources));
-          }
-        }
         newSegments.push({ id, type: 'SceneOutcome', animate: true });
         segmentsChanged = true;
       }
@@ -112,7 +93,7 @@ const SceneStatic = (props: SceneProps) => {
       break;
 
       case 'SceneOutcome':
-      // render NextButton
+      // render NextButton?
       break;
     }
 
@@ -123,6 +104,7 @@ const SceneStatic = (props: SceneProps) => {
 
   const handlePress = (args: { id: string, type: string }) => {
     const { id, type } = args;
+    console.log(`{ id, type }`, { id, type });
     let newSegments: Segment[] = [...segments];
     let segmentsChanged: boolean = false;
 
@@ -166,6 +148,60 @@ const SceneStatic = (props: SceneProps) => {
       break;
     }
 
+    let nextId = (type === 'SceneAction') ? sceneActions[id].next?.ids[0] : sceneTexts[id].next?.ids[0];
+    console.log(`nextId`, nextId);
+    const sceneText = sceneTexts[nextId || id || ''];
+    if (sceneText?.outcome) {
+      console.log(`sceneText`, sceneText);
+      const { gainResources, affectLeader, changeLocation, leaderJoins, questsBegin,
+        completeResearch } = sceneText.outcome;
+      const expedition = props.expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+      let gainedResources: Resource[] = [];
+      gainResources?.map((gainResource) => {
+        const gainedResource = utils.getResourceMatchingSelector(gainResource);
+        if (gainedResource) { gainedResources.push(gainedResource); }
+        else { console.log(`No matching resource found for: `, gainResource); }
+      });
+      if (gainedResources.length > 0) {
+        dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
+        if (expedition) {
+          dispatch(increaseExpeditionResources({
+            expeditionId: (sceneStatus.expeditionId || ''),
+            rti: gainedResources
+          }));
+        }
+        else {
+          dispatch(increaseResources(vault, gainedResources));
+        }
+      }
+
+      // Todo: affectLeader
+      if (affectLeader) {
+
+      }
+
+      if (changeLocation && expedition) {
+        console.log(`expedition.currentCoordinates`, expedition.currentCoordinates);
+        const { towardsDestination, distance, percentage } = changeLocation;
+        let extent = distance || percentage || 1;
+        if (percentage && expedition) {
+          extent = utils.distanceBetweenPoints([0, 0], expedition.targetCoordinates);
+        }
+      }
+
+      if (leaderJoins) {
+
+      }
+
+      if (questsBegin) {
+
+      }
+
+      if (completeResearch) {
+
+      }  
+    }
+
     if (segmentsChanged) {
       setSegments(newSegments);
     }
@@ -183,16 +219,14 @@ const SceneStatic = (props: SceneProps) => {
         }}>
         {segments.map((segment) => (
           <SceneSegmentComponent key={`${segment.type}-${segment.id}`} {...props} id={segment.id}
-          type={segment.type} animate={segment.animate} doneAnimating={doneAnimating}
-          handlePress={handlePress} leaders={leaders} vault={vault} 
-          expeditionStatus={expeditionStatus} />
+            type={segment.type} animate={segment.animate} doneAnimating={doneAnimating}
+            handlePress={handlePress} leaders={leaders} vault={vault} 
+            expeditionStatus={expeditionStatus} />
         ))}
       </ScrollView>
     </View>
   );
 }
-
-
 
 interface SceneProps {
   sceneStatus: SceneStatus;

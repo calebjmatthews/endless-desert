@@ -86,7 +86,7 @@ nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3d`] = new SceneText({
 
 But you're all still alive.`] }),
   outcome: new SceneOutcome({
-    gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 2399] }],
+    gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 239900000000] }],
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
     changeLocation: { percentage: 10 },
     leaderJoins: 'Samannoud',
