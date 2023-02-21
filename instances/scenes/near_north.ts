@@ -90,7 +90,7 @@ But you're all still alive.`] }),
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
     changeLocation: { percentage: 10 },
     leaderJoins: LEADER_TYPES.EXILED_AMBASSADOR,
-    // questsBegin: [QUESTS.DROMEDARIES_BEER],
+    questsBegin: [QUESTS.DROMEDARIES_BEER],
     // completeResearch: [RESEARCHES.TOOL_FABRICATION]
   })
 });

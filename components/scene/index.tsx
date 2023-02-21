@@ -11,7 +11,7 @@ import { increaseResources } from '../../actions/vault';
 import { increaseExpeditionResources, updateExpeditionCurrentCoordinates }
   from '../../actions/expedition_status';
 import { unlockTab } from '../../actions/account';
-import { addQuest } from '../../actions/quest_status';
+import { addQuest, addToActivityQueue } from '../../actions/quest_status';
 import { addGlowingTab } from '../../actions/ui';
 import { addMessage } from '../../actions/messages';
 import { addEquipment } from '../../actions/equipment';
@@ -26,6 +26,7 @@ import Account from '../../models/account';
 import QuestStatus from '../../models/quest_status';
 import Message from '../../models/message';
 import Equipment from '../../models/equipment';
+import ResearchStatus from '../../models/research_status';
 import Positioner from '../../models/positioner';
 import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
 import { quests } from '../../instances/quests';
@@ -42,16 +43,18 @@ const SceneComponent = () => {
   const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const questStatus = useTypedSelector(state => state.questStatus);
   const account = useTypedSelector(state => state.account);
+  const researchStatus = useTypedSelector(state => state.researchStatus);
   const pos = useTypedSelector(state => state.ui.positioner);
 
   return useMemo(() => (
     <SceneStatic sceneStatus={sceneStatus} leaders={leaders} vault={vault}
-      expeditionStatus={expeditionStatus} account={account} questStatus={questStatus} pos={pos} />
+      expeditionStatus={expeditionStatus} account={account} questStatus={questStatus}
+      researchStatus={researchStatus} pos={pos} />
   ), [pos]);
 }
 
-const SceneStatic = (props: SceneProps) => {
-  const { sceneStatus, leaders, vault, expeditionStatus, account, questStatus } = props;
+const SceneStatic = (props: SceneStaticProps) => {
+  const { sceneStatus, leaders, vault, expeditionStatus, account, questStatus, researchStatus } = props;
   const dispatch = useDispatch();
   let scrollView : React.RefObject<ScrollView> = useRef(null);
   const [initialized, setInitialized] = useState(false);
@@ -237,7 +240,13 @@ const SceneStatic = (props: SceneProps) => {
       }
 
       if (questsBegin) {
-
+        questsBegin.forEach((questName) => {
+          dispatch(addQuest(quests[questName]));
+          const rtgExisting = quests[questName].taskCheckExisting(vault, researchStatus);
+          rtgExisting.forEach((questActivity) => {
+            dispatch(addToActivityQueue(questActivity));
+          });
+        });
       }
 
       if (completeResearch) {
@@ -271,13 +280,14 @@ const SceneStatic = (props: SceneProps) => {
   );
 }
 
-interface SceneProps {
+interface SceneStaticProps {
   sceneStatus: SceneStatus;
   leaders: { [id: string] : Leader };
   vault: Vault;
   expeditionStatus: ExpeditionStatus;
   account: Account;
   questStatus: QuestStatus;
+  researchStatus: ResearchStatus;
   pos: Positioner;
 }
 
