@@ -5,7 +5,7 @@ import Resource from '../models/resource';
 import Icon from '../models/icon';
 import Timer from '../models/timer';
 
-export const SET_EXPEDITION_STATUS = 'SET_EXPEDITION_STATUS';
+export const SET_EXPEDITION_STATUS = "SET_EXPEDITION_STATUS";
 export function setExpeditionStatus(expeditionStatus: ExpeditionStatus) {
   return {
     type: SET_EXPEDITION_STATUS,
@@ -13,7 +13,7 @@ export function setExpeditionStatus(expeditionStatus: ExpeditionStatus) {
   }
 }
 
-export const UPSERT_EXPEDITION = 'UPSERT_EXPEDITION';
+export const UPSERT_EXPEDITION = "UPSERT_EXPEDITION";
 export function upsertExpedition(expedition: Expedition) {
   return {
     type: UPSERT_EXPEDITION,
@@ -21,7 +21,7 @@ export function upsertExpedition(expedition: Expedition) {
   }
 }
 
-export const SET_DESTINATIONS = 'SET_DESTINATIONS';
+export const SET_DESTINATIONS = "SET_DESTINATIONS";
 export function setDestinations(props: { expeditionId: string, embarkingDestinationIds?: string[],
   mainDestinationId?: string, returningDestinationIds?: string[], currentDestinationId?: string,
   targetCoordinates?: [number, number], customDestination?: Destination }) {
@@ -37,7 +37,7 @@ export function setDestinations(props: { expeditionId: string, embarkingDestinat
   }
 }
 
-export const REMOVE_DESTINATION = 'REMOVE_DESTINATION';
+export const REMOVE_DESTINATION = "REMOVE_DESTINATION";
 export function removeDestination(props: {expeditionId: string,
   position: 'embarking'|'main'|'returning', destinationId: string}) {
   return {
@@ -48,7 +48,7 @@ export function removeDestination(props: {expeditionId: string,
   }
 }
 
-export const REMOVE_FROM_DESTINATIONS = 'REMOVE_FROM_DESTINATIONS';
+export const REMOVE_FROM_DESTINATIONS = "REMOVE_FROM_DESTINATIONS";
 export function removeFromDestinations(props: {expeditionId: string, destinationId?: string}) {
   return {
     type: REMOVE_FROM_DESTINATIONS,
@@ -57,7 +57,7 @@ export function removeFromDestinations(props: {expeditionId: string, destination
   }
 }
 
-export const UPDATE_SUB_TITLE = 'UPDATE_SUB_TITLE';
+export const UPDATE_SUB_TITLE = "UPDATE_SUB_TITLE";
 export function updateSubTitle(props: {expeditionId: string, subTitle: string, subTitleNoun: string}) {
   return {
     type: UPDATE_SUB_TITLE,
@@ -67,7 +67,7 @@ export function updateSubTitle(props: {expeditionId: string, subTitle: string, s
   }
 }
 
-export const UPSERT_DROMEDARIES = 'UPSERT_DROMEDARIES';
+export const UPSERT_DROMEDARIES = "UPSERT_DROMEDARIES";
 export function upsertDromedaries(props: {expeditionId: string, dromedaries: Resource}) {
   return {
     type: UPSERT_DROMEDARIES,
@@ -76,7 +76,7 @@ export function upsertDromedaries(props: {expeditionId: string, dromedaries: Res
   }
 }
 
-export const REMOVE_DROMEDARIES = 'REMOVE_DROMEDARIES';
+export const REMOVE_DROMEDARIES = "REMOVE_DROMEDARIES";
 export function removeDromedaries(props: {expeditionId: string, dromedariesTypeQuality: string}) {
   return {
     type: REMOVE_DROMEDARIES,
@@ -85,7 +85,7 @@ export function removeDromedaries(props: {expeditionId: string, dromedariesTypeQ
   }
 }
 
-export const UPSERT_RESOURCE = 'UPSERT_RESOURCE';
+export const UPSERT_RESOURCE = "UPSERT_RESOURCE";
 export function upsertResource(props: {expeditionId: string, resource: Resource}) {
   return {
     type: UPSERT_RESOURCE,
@@ -94,7 +94,7 @@ export function upsertResource(props: {expeditionId: string, resource: Resource}
   }
 }
 
-export const REMOVE_RESOURCE = 'REMOVE_RESOURCE';
+export const REMOVE_RESOURCE = "REMOVE_RESOURCE";
 export function removeResource(props: {expeditionId: string, typeQuality: string}) {
   return {
     type: REMOVE_RESOURCE,
@@ -103,7 +103,7 @@ export function removeResource(props: {expeditionId: string, typeQuality: string
   }
 }
 
-export const UPDATE_ADVICE_AND_SUB_STATE = 'UPDATE_ADVICE_AND_SUB_STATE';
+export const UPDATE_ADVICE_AND_SUB_STATE = "UPDATE_ADVICE_AND_SUB_STATE";
 export function updateAdviceAndSubState(props: {expeditionId: string, 
   advice: {icon: Icon, text: string}[], subState: number}) {
   return {
@@ -114,7 +114,7 @@ export function updateAdviceAndSubState(props: {expeditionId: string,
   }
 }
 
-export const UPDATE_EXPEDITION_TIMERS = 'UPDATE_EXPEDITION_TIMERS';
+export const UPDATE_EXPEDITION_TIMERS = "UPDATE_EXPEDITION_TIMERS";
 export function updateExpeditionTimers(props: {expeditionId: string,
   timers: { [name: string] : Timer }}) {
   return {
@@ -124,7 +124,7 @@ export function updateExpeditionTimers(props: {expeditionId: string,
   }
 }
 
-export const ADD_STORED_TIME = 'ADD_STORED_TIME';
+export const ADD_STORED_TIME = "ADD_STORED_TIME";
 export function addStoredTime(props: {expeditionId: string, storedTimeToAdd: number}) {
   return {
     type: ADD_STORED_TIME,
@@ -133,7 +133,7 @@ export function addStoredTime(props: {expeditionId: string, storedTimeToAdd: num
   }
 }
 
-export const SET_LAST_EXPEDITION_TIMESTAMP = 'SET_LAST_EXPEDITION_TIMESTAMP';
+export const SET_LAST_EXPEDITION_TIMESTAMP = "SET_LAST_EXPEDITION_TIMESTAMP";
 export function setLastExpeditionTimestamp(lastTimestamp: number) {
   return {
     type: SET_LAST_EXPEDITION_TIMESTAMP,
@@ -141,7 +141,7 @@ export function setLastExpeditionTimestamp(lastTimestamp: number) {
   }
 }
 
-export const INCREASE_EXPEDITION_RESOURCES = 'INCREASE_EXPEDITION_RESOURCES';
+export const INCREASE_EXPEDITION_RESOURCES = "INCREASE_EXPEDITION_RESOURCES";
 export function increaseExpeditionResources(props: { expeditionId: string, rti: Resource[] }) {
   return {
     type: INCREASE_EXPEDITION_RESOURCES,
@@ -150,11 +150,21 @@ export function increaseExpeditionResources(props: { expeditionId: string, rti: 
   }
 }
 
-export const CONSUME_EXPEDITION_RESOURCES = 'CONSUME_EXPEDITION_RESOURCES';
+export const CONSUME_EXPEDITION_RESOURCES = "CONSUME_EXPEDITION_RESOURCES";
 export function consumeExpeditionResources(props: { expeditionId: string, rtc: Resource[] }) {
   return {
     type: CONSUME_EXPEDITION_RESOURCES,
     expeditionId: props.expeditionId,
     rtc: props.rtc
+  }
+}
+
+export const UPDATE_EXPEDITION_CURRENT_COORDINATES = "UPDATE_EXPEDITION_CURRENT_COORDINATES";
+export function updateExpeditionCurrentCoordinates(props: { expeditionId: string,
+  newCoordinates: [number, number]}) {
+  return {
+    type: UPDATE_EXPEDITION_CURRENT_COORDINATES,
+    expeditionId: props.expeditionId,
+    newCoordinates: props.newCoordinates
   }
 }

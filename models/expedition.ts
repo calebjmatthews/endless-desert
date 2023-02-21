@@ -27,6 +27,7 @@ export default class Expedition {
   subTitle: string = ''; // E.g. Samannoud's Journey to the
   subTitleNoun: string = ''; // E.g. Journey
   currentCoordinates: [number, number] = [0, 0];
+  originCoordinates: [number, number] = [0, 0];
   targetCoordinates: [number, number] = [0, 0]; // These can change
   embarkingDestinationIds: string[] = [];
   mainDestinationId?: string;
@@ -621,6 +622,7 @@ interface ExpeditionInterface {
   id: string;
   subTitle: string;
   currentCoordinates: [number, number];
+  originCoordinates: [number, number];
   targetCoordinates: [number, number]; // These can change
   embarkingDestinationIds: string[];
   mainDestinationId?: string;

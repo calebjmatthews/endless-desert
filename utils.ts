@@ -895,6 +895,19 @@ class Utils {
     }
     return distance;
   }
+
+  // m=(y2 – y1) / (x2 – x1)
+  // Ø=tan⁻¹(m)
+  // sin(Ø)=opp/hyp
+  // cos(Ø)=adj/hyp
+  travelAlongPoints(origin: [number, number], destination: [number, number], distance: number)
+    : [number, number] {
+    const slope = (destination[1] - origin[1]) / (destination[0] - origin[0]);
+    const angle = Math.atan(slope);
+    const horizontal = Math.cos(angle) * distance;
+    const vertical = Math.sin(angle) * distance;
+    return [(origin[0] + horizontal), (origin[1] + vertical)];
+  }
 }
 
 export let utils = new Utils();

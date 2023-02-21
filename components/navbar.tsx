@@ -108,8 +108,22 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
     if (tabsGlowing[tabSelected]) { dispatch(removeGlowingTab(tabSelected)); }
     if (tabName === 'debug') {
       testScenes();
+
       dispatch(setScene(EXPEDITION_EVENTS.SCORPIONS));
       dispatch(displayModal(MODALS.SCENE));
+
+      // let resources: Resource[] = [];
+      // Object.keys(vault.resources).map((typeQuality) => {
+      //   resources.push(vault.resources[typeQuality]);
+      // });
+      // dispatch(consumeResources(vault, resources));
+
+      // let allResources: Resource[] = [];
+      // Object.keys(resourceTypes).map((typeName) => {
+      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 10000 }));
+      // });
+      // dispatch(increaseResources(vault, allResources));
+      // dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
     }
     else {
       dispatch(selectTab(tabName));

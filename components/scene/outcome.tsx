@@ -188,7 +188,7 @@ const ChangeLocationComponent = (props: {
   let extent = distance || percentage || 1;
   const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
   if (percentage && expedition) {
-    extent = utils.distanceBetweenPoints([0, 0], expedition.targetCoordinates);
+    extent = utils.distanceBetweenPoints([0, 0], expedition.targetCoordinates) * (percentage/100);
   }
   switch (true) {
     case extent <= 200:

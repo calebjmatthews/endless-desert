@@ -42,6 +42,11 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         <View style={styles.breakLarge} />
         <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false}
           width={pos.majorWidth} />
+        <View style={styles.rows}>
+          <Text style={{fontSize: 11, fontStyle: 'italic', color: '#fff'}}>
+            {`Traveling normally (at ${utils.formatNumberShort(expedition.currentCoordinates[0], true)}, ${utils.formatNumberShort(expedition.currentCoordinates[1], true)})`}
+          </Text>
+        </View>
 
         {timer && (
           <ProgressBarComponent staticDuration={true}

@@ -8,7 +8,8 @@ import { styles } from '../../styles';
 import SceneSegmentComponent from './segment';
 import { addSceneStep, gainSceneResources } from '../../actions/scene_status';
 import { increaseResources } from '../../actions/vault';
-import { increaseExpeditionResources } from '../../actions/expedition_status';
+import { increaseExpeditionResources, updateExpeditionCurrentCoordinates }
+  from '../../actions/expedition_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -109,9 +110,9 @@ const SceneStatic = (props: SceneProps) => {
     let segmentsChanged: boolean = false;
 
     switch(type) {
-      case 'SceneAction':
       // SceneAction => add to sceneStatus.steps, remove SceneActions, add SceneActed, 
       // render .next SceneText
+      case 'SceneAction':
       const sceneAction = sceneActions[id];
       dispatch(addSceneStep(id));
       newSegments = newSegments.filter((segment) => (segment.type !== 'SceneAction'));
@@ -122,8 +123,8 @@ const SceneStatic = (props: SceneProps) => {
       });
       break;
 
-      case 'NextButton':
       // NextButton => remove NextButton, render .next SceneText using previous' id
+      case 'NextButton':
       newSegments = newSegments.filter((segment) => (segment.type !== 'NextButton'));
       segmentsChanged = true;
       const sceneTextNB = sceneTexts[id];
@@ -132,8 +133,8 @@ const SceneStatic = (props: SceneProps) => {
       });
       break;
 
-      case 'WaitButton':
       // WaitButton => remove WaitButton, add "..." SceneActed, render .next SceneText using previous' id
+      case 'WaitButton':
       newSegments = newSegments.filter((segment) => (segment.type !== 'WaitButton'));
       segmentsChanged = true;
       newSegments.push({ id, type: 'SceneActed', animate: false });
@@ -143,19 +144,19 @@ const SceneStatic = (props: SceneProps) => {
       });
       break;
 
-      case 'FinalButton':
       // FinalButton => perform endScene()
+      case 'FinalButton':
       break;
     }
 
     let nextId = (type === 'SceneAction') ? sceneActions[id].next?.ids[0] : sceneTexts[id].next?.ids[0];
-    console.log(`nextId`, nextId);
     const sceneText = sceneTexts[nextId || id || ''];
-    if (sceneText?.outcome) {
-      console.log(`sceneText`, sceneText);
+    if (sceneText?.outcome && type !== 'FinalButton') {
       const { gainResources, affectLeader, changeLocation, leaderJoins, questsBegin,
         completeResearch } = sceneText.outcome;
       const expedition = props.expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+      // const expeditions = props.expeditionStatus.expeditions;
+      // const expedition = expeditions[Object.keys(expeditions)[0]];
       let gainedResources: Resource[] = [];
       gainResources?.map((gainResource) => {
         const gainedResource = utils.getResourceMatchingSelector(gainResource);
@@ -166,7 +167,7 @@ const SceneStatic = (props: SceneProps) => {
         dispatch(gainSceneResources({ sceneActionId: sceneText.id, resources: gainedResources }));
         if (expedition) {
           dispatch(increaseExpeditionResources({
-            expeditionId: (sceneStatus.expeditionId || ''),
+            expeditionId: expedition.id,
             rti: gainedResources
           }));
         }
@@ -181,12 +182,15 @@ const SceneStatic = (props: SceneProps) => {
       }
 
       if (changeLocation && expedition) {
-        console.log(`expedition.currentCoordinates`, expedition.currentCoordinates);
         const { towardsDestination, distance, percentage } = changeLocation;
         let extent = distance || percentage || 1;
         if (percentage && expedition) {
-          extent = utils.distanceBetweenPoints([0, 0], expedition.targetCoordinates);
+          extent = utils.distanceBetweenPoints([0, 0], expedition.targetCoordinates) * (percentage/100);
         }
+        if (!towardsDestination) { extent *= -1; }
+        const newCoordinates = utils.travelAlongPoints(expedition.originCoordinates,
+          expedition.targetCoordinates, extent);
+        dispatch(updateExpeditionCurrentCoordinates({ expeditionId: expedition.id, newCoordinates }));
       }
 
       if (leaderJoins) {
