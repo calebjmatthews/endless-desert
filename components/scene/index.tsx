@@ -16,6 +16,7 @@ import { addGlowingTab } from '../../actions/ui';
 import { addMessage } from '../../actions/messages';
 import { addEquipment } from '../../actions/equipment';
 import { addLeader } from '../../actions/leaders';
+import { completeResearch } from '../../actions/research_status';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
@@ -170,8 +171,7 @@ const SceneStatic = (props: SceneStaticProps) => {
     let nextId = (type === 'SceneAction') ? sceneActions[id].next?.ids[0] : sceneTexts[id].next?.ids[0];
     const sceneText = sceneTexts[nextId || id || ''];
     if (sceneText?.outcome && type !== 'FinalButton') {
-      const { gainResources, affectLeader, changeLocation, leaderJoins, questsBegin,
-        completeResearch } = sceneText.outcome;
+      const { gainResources, affectLeader, changeLocation, leaderJoins, questsBegin } = sceneText.outcome;
       const expedition = props.expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
       // const expeditions = props.expeditionStatus.expeditions;
       // const expedition = expeditions[Object.keys(expeditions)[0]];
@@ -249,8 +249,11 @@ const SceneStatic = (props: SceneStaticProps) => {
         });
       }
 
-      if (completeResearch) {
-
+      // Two things named completeResearch!
+      if (sceneText.outcome.completeResearch) {
+        sceneText.outcome.completeResearch.forEach((researchName) => {
+          dispatch(completeResearch(researchName));
+        });
       }  
     }
 
