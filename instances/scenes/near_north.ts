@@ -10,6 +10,10 @@ const RTY = RESOURCE_TYPES;
 import { LEADER_QUALITIES } from '../../enums/leader_qualities';
 const LEQ = LEADER_QUALITIES;
 
+import { LEADER_TYPES } from '../../enums/leader_types';
+import { QUESTS } from '../../enums/quests';
+import { RESEARCHES } from '../../enums/researches';
+
 const nnScenes: { [id: string]: Scene } = {};
 const nnSceneTexts: { [id: string]: SceneText } = {};
 const nnSceneActions: { [id: string] : SceneAction } = {};
@@ -82,8 +86,12 @@ nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 3d`] = new SceneText({
 
 But you're all still alive.`] }),
   outcome: new SceneOutcome({
+    gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 2399] }],
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
-    changeLocation: { percentage: 10 }
+    changeLocation: { percentage: 10 },
+    leaderJoins: 'Samannoud',
+    questsBegin: [QUESTS.DROMEDARIES_BEER],
+    completeResearch: [RESEARCHES.ANALYSIS_OF_VARIANCE]
   })
 });
 

@@ -5,12 +5,10 @@ import SceneActedComponent from './acted';
 import NextButtonComponent from './next_button';
 import SceneOutcomeComponent from './outcome';
 
-import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
 import Vault from '../../models/vault';
 import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
-import Resource from '../../models/resource';
 import Positioner from '../../models/positioner';
 import { sceneTexts, sceneActions } from '../../instances/scenes/index';
 import { SceneAction } from '../../models/scene';

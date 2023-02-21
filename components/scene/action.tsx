@@ -1,16 +1,17 @@
 import React, { useRef, useEffect, ReactElement } from 'react';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { RootState } from '../../models/root_state';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import { styles } from '../../styles';
 
 import BadgeComponent from '../badge';
 
 import { SceneAction } from '../../models/scene';
-import SceneStatus from '../../models/scene_status';
 import Vault from '../../models/vault';
 import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
 import Positioner from '../../models/positioner';
-import { utils } from '../../utils';
 import { FADE_IN_DELAY } from '../../constants';
 
 const SceneActionComponent = (props: SceneActionProps) => {
@@ -36,7 +37,8 @@ const SceneActionAnimatedComponent = (props: SceneActionProps) => {
 }
 
 const SceneActionButton = (props: SceneActionProps) => {
-  const { sceneAction, sceneStatus, expeditionStatus } = props;
+  const { sceneAction, expeditionStatus } = props;
+  const sceneStatus = useTypedSelector(state => state.sceneStatus);
   const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
   const difficulty = expedition ? expedition.getDifficulty() : 1;
   const cost = sceneAction.getCost(difficulty);
@@ -107,7 +109,6 @@ interface SceneActionProps {
   sceneAction: SceneAction;
   handlePress: (args: { id: string, type: string }) => void;
 
-  sceneStatus: SceneStatus;
   vault: Vault;
   questStatus: QuestStatus;
   expeditionStatus: ExpeditionStatus;
