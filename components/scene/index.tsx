@@ -10,16 +10,30 @@ import { addSceneStep, gainSceneResources } from '../../actions/scene_status';
 import { increaseResources } from '../../actions/vault';
 import { increaseExpeditionResources, updateExpeditionCurrentCoordinates }
   from '../../actions/expedition_status';
+import { unlockTab } from '../../actions/account';
+import { addQuest } from '../../actions/quest_status';
+import { addGlowingTab } from '../../actions/ui';
+import { addMessage } from '../../actions/messages';
+import { addEquipment } from '../../actions/equipment';
+import { addLeader } from '../../actions/leaders';
 
 import SceneStatus from '../../models/scene_status';
 import Leader from '../../models/leader';
 import Vault from '../../models/vault';
-import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
 import Resource from '../../models/resource';
+import Account from '../../models/account';
+import QuestStatus from '../../models/quest_status';
+import Message from '../../models/message';
+import Equipment from '../../models/equipment';
 import Positioner from '../../models/positioner';
 import { scenes, sceneTexts, sceneActions } from '../../instances/scenes';
+import { quests } from '../../instances/quests';
+import { leaderTypes } from '../../instances/leader_types';
+import { resourceTypes } from '../../instances/resource_types';
 import { utils } from '../../utils';
+import { TABS } from '../../enums/tabs';
+import { QUESTS } from '../../enums/quests';
 
 const SceneComponent = () => {
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -27,16 +41,17 @@ const SceneComponent = () => {
   const vault = useTypedSelector(state => state.vault);
   const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const questStatus = useTypedSelector(state => state.questStatus);
+  const account = useTypedSelector(state => state.account);
   const pos = useTypedSelector(state => state.ui.positioner);
 
   return useMemo(() => (
     <SceneStatic sceneStatus={sceneStatus} leaders={leaders} vault={vault}
-      expeditionStatus={expeditionStatus} questStatus={questStatus} pos={pos} />
+      expeditionStatus={expeditionStatus} account={account} questStatus={questStatus} pos={pos} />
   ), [pos]);
 }
 
 const SceneStatic = (props: SceneProps) => {
-  const { sceneStatus, leaders, vault, expeditionStatus, questStatus } = props;
+  const { sceneStatus, leaders, vault, expeditionStatus, account, questStatus } = props;
   const dispatch = useDispatch();
   let scrollView : React.RefObject<ScrollView> = useRef(null);
   const [initialized, setInitialized] = useState(false);
@@ -194,7 +209,31 @@ const SceneStatic = (props: SceneProps) => {
       }
 
       if (leaderJoins) {
-
+        if (!utils.arrayIncludes(account.tabsUnlocked, TABS.LEADERS)) {
+          dispatch(unlockTab(TABS.LEADERS));
+          dispatch(unlockTab(TABS.EQUIPMENT));
+          dispatch(addQuest(quests[QUESTS.EARLY_DAYS_LEADER_SETUP]));
+          const quest = quests[QUESTS.EARLY_DAYS_LEADER_SETUP];
+          dispatch(addGlowingTab(TABS.QUESTS));
+          dispatch(addMessage(new Message({
+            text: `You began the quest ${quest.name}.`,
+            type: '',
+            icon: quest.icon
+          })));
+        }
+        const leaderCreateRes = leaderTypes[leaderJoins].createLeader(vault, resourceTypes);
+        let tempEquipment: { [id: string] : Equipment } = {};
+        let equipmentArray: Equipment[] = [];
+        leaderCreateRes.equipment.map((anEquipment) => {
+          if (anEquipment) {
+            tempEquipment[anEquipment.id] = anEquipment;
+            equipmentArray.push(anEquipment);
+          }
+        });
+        dispatch(addEquipment(equipmentArray));
+        let leader = new Leader(leaderCreateRes.leader);
+        leader.calcEffects(tempEquipment, {}, new Vault(null), []);
+        dispatch(addLeader(leader));
       }
 
       if (questsBegin) {
@@ -224,7 +263,7 @@ const SceneStatic = (props: SceneProps) => {
         {segments.map((segment) => (
           <SceneSegmentComponent key={`${segment.type}-${segment.id}`} {...props} id={segment.id}
             type={segment.type} animate={segment.animate} doneAnimating={doneAnimating}
-            handlePress={handlePress} leaders={leaders} vault={vault} 
+            handlePress={handlePress} leaders={leaders} vault={vault}  questStatus={questStatus}
             expeditionStatus={expeditionStatus} />
         ))}
       </ScrollView>
@@ -236,8 +275,9 @@ interface SceneProps {
   sceneStatus: SceneStatus;
   leaders: { [id: string] : Leader };
   vault: Vault;
-  questStatus: QuestStatus;
   expeditionStatus: ExpeditionStatus;
+  account: Account;
+  questStatus: QuestStatus;
   pos: Positioner;
 }
 

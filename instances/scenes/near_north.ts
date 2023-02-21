@@ -89,9 +89,9 @@ But you're all still alive.`] }),
     gainResources: [{ specificity: RSP.EXACT, kind: RTY.CHITENOUS_PINS, value: [801, 239900000000] }],
     affectLeader: [{ quality: LEQ.LIFE, change: -10 }],
     changeLocation: { percentage: 10 },
-    leaderJoins: 'Samannoud',
-    questsBegin: [QUESTS.DROMEDARIES_BEER],
-    completeResearch: [RESEARCHES.ANALYSIS_OF_VARIANCE]
+    leaderJoins: LEADER_TYPES.EXILED_AMBASSADOR,
+    // questsBegin: [QUESTS.DROMEDARIES_BEER],
+    // completeResearch: [RESEARCHES.TOOL_FABRICATION]
   })
 });
 
