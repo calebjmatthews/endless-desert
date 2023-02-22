@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { RootState } from '../../models/root_state';
 import { Text, View } from 'react-native';
 import { styles } from '../../styles';
 
@@ -11,11 +14,11 @@ import { utils } from '../../utils';
 
 const SceneActedComponent = (props: SceneActedProps) => {
   const { sceneAction, pos } = props;
+  const sceneStatus = useTypedSelector(state => state.sceneStatus);
 
-  const cost = sceneAction.getCost(1);
-  const resourceKind = cost?.[0] ? utils.getMatchingResourceKind(cost?.[0].specificity, cost?.[0].kind)
-    : null;
-  const icon = sceneAction.requirementIcon || resourceKind?.icon;
+  const resourcesPaid = sceneStatus.costsPaid[sceneAction.id];
+  const resourceType = utils.getResourceType(resourcesPaid[0]);
+  const icon = sceneAction.requirementIcon || resourceType?.icon;
   let buttonStyle: any = [styles.button, styles.sceneActionButton, {minWidth: pos.speechButtonWidth, 
     maxWidth: pos.speechButtonWidth, backgroundColor: '#5e77b0', borderColor: '#5e77b0' }];
   if (sceneAction.label === '...') {
