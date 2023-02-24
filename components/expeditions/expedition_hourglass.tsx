@@ -3,12 +3,14 @@ import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-import { addStoredTime, updateExpeditionTimers, setLastExpeditionTimestamp, increaseExpeditionResources, 
-  consumeExpeditionResources } from '../../actions/expedition_status';
+import { updateExpeditionSubState, addStoredTime, updateExpeditionTimers, setLastExpeditionTimestamp, 
+  increaseExpeditionResources, consumeExpeditionResources, updateExpeditionCurrentCoordinates }
+  from '../../actions/expedition_status';
 
 import Hourglass from '../../models/hourglass';
 import Expedition from '../../models/expedition';
 import Rates from '../../models/rates';
+import { dromedaryTypes } from '../../instances/dromedary_types';
 import { utils } from '../../utils';
 import { HOURGLASS_INTERVAL } from '../../constants';
 
@@ -77,11 +79,21 @@ export default function ExpeditionHourglassComponent() {
     if (earliestTimerTimestamp !== null) {
       endingTimestamp = earliestTimerTimestamp;
 
+      dispatch(updateExpeditionSubState({
+        expeditionId: expedition.id,
+        subState: -1
+      }));
       dispatch(addStoredTime({
         expeditionId: expedition.id,
-        storedTimeToAdd: HOURGLASS_INTERVAL
+        storedTimeToAdd: HOURGLASS_INTERVAL,
       }));
     }
+    // 24le / hr = 0.4le / min = 0.0067le / sec = 0.00067le / interval
+    const distanceTraveled = expedition.getSpeed(dromedaryTypes) * ((endingTimestamp
+      - expeditionStatus.lastTimestamp) / (1000 * 60 * 60));
+    const newCoordinates = utils.travelAlongPoints(expedition.currentCoordinates,
+      expedition.targetCoordinates, distanceTraveled);
+    dispatch(updateExpeditionCurrentCoordinates({ expeditionId: expedition.id, newCoordinates }));
     const rates = expedition.getRates();
     const { productionSum, consumptionSum } = hourglass.calculate(new Rates(rates),
       expeditionStatus.lastTimestamp, endingTimestamp);

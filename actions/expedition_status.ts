@@ -21,115 +21,125 @@ export function upsertExpedition(expedition: Expedition) {
   }
 }
 
+export const UPDATE_EXPEDITION_SUB_STATE = "UPDATE_EXPEDITION_SUB_STATE";
+export function updateExpeditionSubState(args: { expeditionId: string, subState: number }) {
+  return {
+    type: UPDATE_EXPEDITION_SUB_STATE,
+    expeditionId: args.expeditionId,
+    subState: args.subState
+  }
+}
+
 export const SET_DESTINATIONS = "SET_DESTINATIONS";
-export function setDestinations(props: { expeditionId: string, embarkingDestinationIds?: string[],
+export function setDestinations(args: { expeditionId: string, embarkingDestinationIds?: string[],
   mainDestinationId?: string, returningDestinationIds?: string[], currentDestinationId?: string,
   targetCoordinates?: [number, number], customDestination?: Destination }) {
   return {
     type: SET_DESTINATIONS,
-    expeditionId: props.expeditionId,
-    embarkingDestinationIds: props.embarkingDestinationIds,
-    mainDestinationId: props.mainDestinationId,
-    returningDestinationIds: props.returningDestinationIds,
-    currentDestinationId: props.currentDestinationId,
-    targetCoordinates: props.targetCoordinates,
-    customDestination: props.customDestination,
+    expeditionId: args.expeditionId,
+    embarkingDestinationIds: args.embarkingDestinationIds,
+    mainDestinationId: args.mainDestinationId,
+    returningDestinationIds: args.returningDestinationIds,
+    currentDestinationId: args.currentDestinationId,
+    targetCoordinates: args.targetCoordinates,
+    customDestination: args.customDestination,
   }
 }
 
 export const REMOVE_DESTINATION = "REMOVE_DESTINATION";
-export function removeDestination(props: {expeditionId: string,
+export function removeDestination(args: {expeditionId: string,
   position: 'embarking'|'main'|'returning', destinationId: string}) {
   return {
     type: REMOVE_DESTINATION,
-    expeditionId: props.expeditionId,
-    position: props.position,
-    destinationId: props.destinationId
+    expeditionId: args.expeditionId,
+    position: args.position,
+    destinationId: args.destinationId
   }
 }
 
 export const REMOVE_FROM_DESTINATIONS = "REMOVE_FROM_DESTINATIONS";
-export function removeFromDestinations(props: {expeditionId: string, destinationId?: string}) {
+export function removeFromDestinations(args: {expeditionId: string, destinationId?: string}) {
   return {
     type: REMOVE_FROM_DESTINATIONS,
-    expeditionId: props.expeditionId,
-    destinationId: props.destinationId
+    expeditionId: args.expeditionId,
+    destinationId: args.destinationId
   }
 }
 
 export const UPDATE_SUB_TITLE = "UPDATE_SUB_TITLE";
-export function updateSubTitle(props: {expeditionId: string, subTitle: string, subTitleNoun: string}) {
+export function updateSubTitle(args: {expeditionId: string, subTitle: string, subTitleNoun: string}) {
   return {
     type: UPDATE_SUB_TITLE,
-    expeditionId: props.expeditionId,
-    subTitle: props.subTitle,
-    subTitleNoun: props.subTitleNoun
+    expeditionId: args.expeditionId,
+    subTitle: args.subTitle,
+    subTitleNoun: args.subTitleNoun
   }
 }
 
 export const UPSERT_DROMEDARIES = "UPSERT_DROMEDARIES";
-export function upsertDromedaries(props: {expeditionId: string, dromedaries: Resource}) {
+export function upsertDromedaries(args: {expeditionId: string, dromedaries: Resource}) {
   return {
     type: UPSERT_DROMEDARIES,
-    expeditionId: props.expeditionId,
-    dromedaries: props.dromedaries
+    expeditionId: args.expeditionId,
+    dromedaries: args.dromedaries
   }
 }
 
 export const REMOVE_DROMEDARIES = "REMOVE_DROMEDARIES";
-export function removeDromedaries(props: {expeditionId: string, dromedariesTypeQuality: string}) {
+export function removeDromedaries(args: {expeditionId: string, dromedariesTypeQuality: string}) {
   return {
     type: REMOVE_DROMEDARIES,
-    expeditionId: props.expeditionId,
-    dromedariesTypeQuality: props.dromedariesTypeQuality
+    expeditionId: args.expeditionId,
+    dromedariesTypeQuality: args.dromedariesTypeQuality
   }
 }
 
 export const UPSERT_RESOURCE = "UPSERT_RESOURCE";
-export function upsertResource(props: {expeditionId: string, resource: Resource}) {
+export function upsertResource(args: {expeditionId: string, resource: Resource}) {
   return {
     type: UPSERT_RESOURCE,
-    expeditionId: props.expeditionId,
-    resource: props.resource
+    expeditionId: args.expeditionId,
+    resource: args.resource
   }
 }
 
 export const REMOVE_RESOURCE = "REMOVE_RESOURCE";
-export function removeResource(props: {expeditionId: string, typeQuality: string}) {
+export function removeResource(args: {expeditionId: string, typeQuality: string}) {
   return {
     type: REMOVE_RESOURCE,
-    expeditionId: props.expeditionId,
-    typeQuality: props.typeQuality
+    expeditionId: args.expeditionId,
+    typeQuality: args.typeQuality
   }
 }
 
 export const UPDATE_ADVICE_AND_SUB_STATE = "UPDATE_ADVICE_AND_SUB_STATE";
-export function updateAdviceAndSubState(props: {expeditionId: string, 
+export function updateAdviceAndSubState(args: {expeditionId: string, 
   advice: {icon: Icon, text: string}[], subState: number}) {
   return {
     type: UPDATE_ADVICE_AND_SUB_STATE,
-    expeditionId: props.expeditionId,
-    advice: props.advice,
-    subState: props.subState
+    expeditionId: args.expeditionId,
+    advice: args.advice,
+    subState: args.subState
   }
 }
 
 export const UPDATE_EXPEDITION_TIMERS = "UPDATE_EXPEDITION_TIMERS";
-export function updateExpeditionTimers(props: {expeditionId: string,
+export function updateExpeditionTimers(args: {expeditionId: string,
   timers: { [name: string] : Timer }}) {
   return {
     type: UPDATE_EXPEDITION_TIMERS,
-    expeditionId: props.expeditionId,
-    timers: props.timers
+    expeditionId: args.expeditionId,
+    timers: args.timers
   }
 }
 
 export const ADD_STORED_TIME = "ADD_STORED_TIME";
-export function addStoredTime(props: {expeditionId: string, storedTimeToAdd: number}) {
+export function addStoredTime(args: {expeditionId: string, storedTimeToAdd: number}) {
   return {
     type: ADD_STORED_TIME,
-    expeditionId: props.expeditionId,
-    storedTimeToAdd: props.storedTimeToAdd
+    expeditionId: args.expeditionId,
+    storedTimeToAdd: args.storedTimeToAdd,
+
   }
 }
 
@@ -142,29 +152,29 @@ export function setLastExpeditionTimestamp(lastTimestamp: number) {
 }
 
 export const INCREASE_EXPEDITION_RESOURCES = "INCREASE_EXPEDITION_RESOURCES";
-export function increaseExpeditionResources(props: { expeditionId: string, rti: Resource[] }) {
+export function increaseExpeditionResources(args: { expeditionId: string, rti: Resource[] }) {
   return {
     type: INCREASE_EXPEDITION_RESOURCES,
-    expeditionId: props.expeditionId,
-    rti: props.rti
+    expeditionId: args.expeditionId,
+    rti: args.rti
   }
 }
 
 export const CONSUME_EXPEDITION_RESOURCES = "CONSUME_EXPEDITION_RESOURCES";
-export function consumeExpeditionResources(props: { expeditionId: string, rtc: Resource[] }) {
+export function consumeExpeditionResources(args: { expeditionId: string, rtc: Resource[] }) {
   return {
     type: CONSUME_EXPEDITION_RESOURCES,
-    expeditionId: props.expeditionId,
-    rtc: props.rtc
+    expeditionId: args.expeditionId,
+    rtc: args.rtc
   }
 }
 
 export const UPDATE_EXPEDITION_CURRENT_COORDINATES = "UPDATE_EXPEDITION_CURRENT_COORDINATES";
-export function updateExpeditionCurrentCoordinates(props: { expeditionId: string,
+export function updateExpeditionCurrentCoordinates(args: { expeditionId: string,
   newCoordinates: [number, number]}) {
   return {
     type: UPDATE_EXPEDITION_CURRENT_COORDINATES,
-    expeditionId: props.expeditionId,
-    newCoordinates: props.newCoordinates
+    expeditionId: args.expeditionId,
+    newCoordinates: args.newCoordinates
   }
 }

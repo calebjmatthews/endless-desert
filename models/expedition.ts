@@ -21,6 +21,7 @@ const RSP = RESOURCE_SPECIFICITY;
 import { EXPEDITION_EVENTS } from '../enums/expedition_events';
 
 const MS_IN_MIN = 1000 * 60;
+const MS_IN_HR = 1000 * 60 * 60;
 
 export default class Expedition {
   id: string = '';
@@ -193,7 +194,7 @@ export default class Expedition {
       const timerName = `event-${utils.randHex(8)}`;
       this.timers[timerName] = new Timer({
         name: timerName,
-        endsAt: (new Date(Date.now()).valueOf() + ((distanceUntilNext / speed) * MS_IN_MIN)),
+        endsAt: (new Date(Date.now()).valueOf() + ((distanceUntilNext / speed) * MS_IN_HR)),
         eventCheck: true
       });
     }
@@ -206,7 +207,7 @@ export default class Expedition {
     const timerName = `arrival-${utils.randHex(8)}`;
     this.timers[timerName] = new Timer({
       name: timerName,
-      endsAt: (new Date(Date.now()).valueOf() + ((remainingDistance / speed) * MS_IN_MIN)),
+      endsAt: (new Date(Date.now()).valueOf() + ((remainingDistance / speed) * MS_IN_HR)),
       eventId: EXPEDITION_EVENTS.ARRIVAL
     });
   }
@@ -364,33 +365,33 @@ export default class Expedition {
     return capacity;
   }
 
-  getFoodDistance(resourceTypes: { [name: string] : ResourceType }) {
-    let foodDistance = 0;
+  getFoodTime(resourceTypes: { [name: string] : ResourceType }) {
+    let foodQuantity = 0;
     Object.keys(this.resources).forEach((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = resourceTypes[resource.type];
       if (utils.arrayIncludes(resourceType.tags, RTA.FOOD)) {
         if (utils.arrayIncludes(resourceType.tags, RTA.PROVISION)) {
-          foodDistance += (resource.quantity * 2);
+          foodQuantity += (resource.quantity * 2);
         }
         else {
-          foodDistance += resource.quantity;
+          foodQuantity += resource.quantity;
         }
       }
     });
-    return foodDistance;
+    return (foodQuantity / 10);
   }
 
-  getDrinkDistance(resourceTypes: { [name: string] : ResourceType }) {
-    let drinkDistance = 0;
+  getDrinkTime(resourceTypes: { [name: string] : ResourceType }) {
+    let drinkQuantity = 0;
     Object.keys(this.resources).forEach((typeQuality) => {
       const resource = this.resources[typeQuality];
       const resourceType = resourceTypes[resource.type];
       if (utils.arrayIncludes(resourceType.tags, RTA.DRINK)) {
-        drinkDistance += resource.quantity;
+        drinkQuantity += resource.quantity;
       }
     });
-    return drinkDistance;
+    return (drinkQuantity / 10);
   }
 
   getImplementCounts(implementTypes: { [typeName: string] : ImplementType }) {
@@ -450,31 +451,30 @@ export default class Expedition {
       };
     }
     else {
-      const foodDistance = this.getFoodDistance(resourceTypes);
-      const drinkDistance = this.getDrinkDistance(resourceTypes);
-      if (foodDistance === 0 && drinkDistance === 0) {
+      const foodTime = this.getFoodTime(resourceTypes);
+      const drinkTime = this.getDrinkTime(resourceTypes);
+      if (foodTime === 0 && drinkTime === 0) {
         return {
           advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need both food and drink.` }],
           subState: 2
         };
       }
-      if (foodDistance === 0) {
+      if (foodTime === 0) {
         return {
           advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need food for the journey.` }],
           subState: 2
         };
       }
-      if (drinkDistance === 0) {
+      if (drinkTime === 0) {
         return {
           advice: [{ icon: warning, textColor: '#ac7200', text: `You'll need drink for the journey.` }],
           subState: 2
         };
       }
 
-      const leastDistance = (foodDistance < drinkDistance)
-        ? (foodDistance / 10)
-        : (drinkDistance / 10);
-      const tripDistance = utils.distanceBetweenPoints([0, 0], this.targetCoordinates) * 2;
+      const leastTime = (foodTime < drinkTime) ? foodTime : drinkTime;
+      const leastDistance = leastTime * this.getSpeed(dromedaryTypes) / 60;
+      const tripDistance = this.getExpeditionLength({ destinations });
       const ratio = Math.round((leastDistance / tripDistance) * 100);
       let foodAndDrinkAdvice : { icon: Icon, text: string, textColor?: string } = { icon: bullet, text: `You have enough food and drink for ${utils.formatNumberShort(leastDistance)} leagues, ${ratio}% of the round trip. This is a great deal of provisions, probably more than you'll need.` };
       if (tripDistance > leastDistance) {

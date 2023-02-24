@@ -1344,6 +1344,15 @@ dispatch(increaseResources(vault, allResources));
 dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
 ```
 
+### Test scene
+```
+dispatch(setScene({
+  sceneId: EXPEDITION_EVENTS.SCORPIONS,
+  expeditionId: expedition.id
+}));
+dispatch(displayModal(MODALS.SCENE));
+```
+
 ## Infrastructure
 ### 2022-02-23 Updates
 `expo upgrade`

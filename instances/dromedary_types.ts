@@ -4,17 +4,17 @@ import { RESOURCE_TYPES } from '../enums/resource_types';
 const dromedaryTypes: { [typeName: string] : DromedaryType } = {
   [RESOURCE_TYPES.DROMEDARY_PLAINS] : new DromedaryType({
     typeName: RESOURCE_TYPES.DROMEDARY_PLAINS,
-    speed: 1,
+    speed: 2400,
     capacity: 100
   }),
   [RESOURCE_TYPES.DROMEDARY_HILL] : new DromedaryType({
     typeName: RESOURCE_TYPES.DROMEDARY_HILL,
-    speed: 2,
-    capacity: 40
+    speed: 48,
+    capacity: 42
   }),
   [RESOURCE_TYPES.DROMEDARY_RIVERINE] : new DromedaryType({
     typeName: RESOURCE_TYPES.DROMEDARY_RIVERINE,
-    speed: 0.4,
+    speed: 10,
     capacity: 200
   }),
 };

@@ -299,6 +299,11 @@ class Utils {
 
   // 1234567890 -> 1.23B
   formatNumberShort(number: number, toFixed: boolean = false): string {
+    const isNegative = number < 0;
+    return `${isNegative ? '-' : ''}${this.compressNumber(Math.abs(number), toFixed)}`;
+  }
+
+  compressNumber(number: number, toFixed: boolean = false): string {
     const exponents: {[power: number] : string} = {
       3: 'K',
       6: 'M',
@@ -895,8 +900,8 @@ class Utils {
 
   // d=√((x2 – x1)² + (y2 – y1)²)
   distanceBetweenPoints(origin: [number, number], destination: [number, number]) {
-    return Math.abs(Math.sqrt(Math.pow((destination[0] - origin[0]), 2))
-      + Math.abs(Math.pow((destination[1] - origin[1]), 2)));
+    return Math.abs(Math.sqrt(Math.pow((destination[0] - origin[0]), 2)
+      + (Math.pow((destination[1] - origin[1]), 2))));
   }
 
   distanceBetweenManyPoints(manyPoints: [number, number][]) {
