@@ -16,8 +16,10 @@ const SceneActedComponent = (props: SceneActedProps) => {
   const { sceneAction, pos } = props;
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
 
+  console.log(`sceneStatus`, sceneStatus);
+  console.log(`sceneAction`, sceneAction);
   const resourcesPaid = sceneStatus.costsPaid[sceneAction.id];
-  const resourceType = utils.getResourceType(resourcesPaid[0]);
+  const resourceType = resourcesPaid ? utils.getResourceType(resourcesPaid[0]) : null;
   const icon = sceneAction.requirementIcon || resourceType?.icon;
   let buttonStyle: any = [styles.button, styles.sceneActionButton, {minWidth: pos.speechButtonWidth, 
     maxWidth: pos.speechButtonWidth, backgroundColor: '#5e77b0', borderColor: '#5e77b0' }];

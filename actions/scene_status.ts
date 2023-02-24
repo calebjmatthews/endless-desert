@@ -8,9 +8,9 @@ export const setScene = (args: {sceneId: string, expeditionId?: string}) => ({
 });
 
 export const ADD_SCENE_STEP = "ADD_SCENE_STEP";
-export const addSceneStep = (stepId: string) => ({
+export const addSceneStep = (step: { id: string, type: string }) => ({
   type: ADD_SCENE_STEP,
-  stepId
+  step
 });
 
 export const PAY_SCENE_COST = "PAY_SCENE_COST";

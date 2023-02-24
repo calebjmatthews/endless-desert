@@ -69,19 +69,32 @@ const SceneStatic = (props: SceneStaticProps) => {
       if (sceneStatus.steps.length === 0) {
         setSegments([{ id: scene.next?.ids[0] || '', type: 'SceneText', animate: true }]);
       }
-      // setSegments from sceneState here
+      else {
+        let newSegments: Segment[] = [];
+        sceneStatus.steps.map((step, index) => {
+          const isLast = (index === sceneStatus.steps.length-1);
+          newSegments.push({ ...step, animate: false });
+          if (isLast) {
+            const { newSegments: finishedSegments } = handleFinishedSegment({ ...step,
+              segments: newSegments });
+            newSegments = [...finishedSegments];
+          }
+        });
+        newSegments = handlePaidCost(newSegments);
+        setSegments(newSegments);
+      }
     }
   }, [initialized]);
 
-  const doneAnimating = (args: { id: string, type: string }) => {
-    const { id, type } = args;
+  const handleFinishedSegment = (args: { segments: Segment[], id: string, type: string }) => {
+    const { segments, id, type } = args;
     const newSegments: Segment[] = [...segments];
     let segmentsChanged: boolean = false;
 
     switch(type) {
       case 'SceneText':
       const sceneText = sceneTexts[id];
-      dispatch(addSceneStep(id));
+      dispatch(addSceneStep(args));
 
       sceneText.next?.ids.forEach((nextId) => {
         if (sceneText.next?.type === 'SceneAction') {
@@ -117,14 +130,41 @@ const SceneStatic = (props: SceneStaticProps) => {
       break;
     }
 
+    return { newSegments, segmentsChanged };
+  }
+
+  const doneAnimating = (args: { id: string, type: string }) => {
+    const { newSegments, segmentsChanged } = handleFinishedSegment({ ...args, segments });
     if (segmentsChanged) {
       setSegments(newSegments);
     }
   };
 
-  const handlePress = (args: { id: string, type: string }) => {
-    const { id, type } = args;
-    console.log(`{ id, type }`, { id, type });
+  const handlePaidCost = (segments: Segment[]) => {
+    let newSegments = [...segments];
+    segments.forEach((segment) => {
+      if (segment.type === 'SceneAction') {
+        const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+        const difficulty = expedition ? expedition.getDifficulty() : 1;
+        const sceneAction = sceneActions[segment.id];
+        const costs = sceneAction ? sceneAction.getCost(difficulty) : null;
+        let thisCostPaid = ((costs || []).length > 0);
+        costs?.forEach((aCost, index) => {
+          if (!sceneStatus.costsPaid[segment.id]?.[index]) { thisCostPaid = false; }
+        });
+        if (thisCostPaid) {
+          newSegments = newSegments.map((segment) => ({ ...segment, animate: false }));
+          const { newSegments: segmentsAfterChosen } = handleSegmentChosen({ segments, id: segment.id, 
+            type: segment.type });
+          newSegments = [...segmentsAfterChosen];
+        }
+      }
+    });
+    return newSegments;
+  }
+
+  const handleSegmentChosen = (args: { segments: Segment[], id: string, type: string }) => {
+    const { segments, id, type } = args;
     let newSegments: Segment[] = [...segments];
     let segmentsChanged: boolean = false;
 
@@ -133,7 +173,7 @@ const SceneStatic = (props: SceneStaticProps) => {
       // render .next SceneText
       case 'SceneAction':
       const sceneAction = sceneActions[id];
-      dispatch(addSceneStep(id));
+      dispatch(addSceneStep(args));
       newSegments = newSegments.filter((segment) => (segment.type !== 'SceneAction'));
       newSegments.push({ id, type: 'SceneActed', animate: false });
       segmentsChanged = true;
@@ -257,6 +297,11 @@ const SceneStatic = (props: SceneStaticProps) => {
       }  
     }
 
+    return { segmentsChanged, newSegments };
+  }
+
+  const handlePress = (args: { id: string, type: string }) => {
+    const { segmentsChanged, newSegments } = handleSegmentChosen({...args, segments});
     if (segmentsChanged) {
       setSegments(newSegments);
     }

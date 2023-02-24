@@ -8,6 +8,8 @@ import { styles } from '../styles';
 import IconComponent from './icon';
 import BadgeComponent from './badge';
 import { paySceneCost, PAY_SCENE_COST } from '../actions/scene_status';
+import { consumeExpeditionResources } from '../actions/expedition_status';
+import { consumeResources } from '../actions/vault';
 import { displayModal } from '../actions/ui';
 import { renderValue } from './utils_react';
 
@@ -142,10 +144,20 @@ export default function ResourceSelectValueComponent() {
 
   const submit = () => {
     if (resource) {
+      const quantity = parseInt(quantitySelected);
+      if (expedition) {
+        dispatch(consumeExpeditionResources({
+          expeditionId: expedition.id,
+          rtc: [new Resource({ ...resource, quantity })]
+        }))
+      }
+      else {
+        dispatch(consumeResources(vault, [new Resource({ ...resource, quantity })]));
+      }
       dispatch(paySceneCost({
         sceneActionId: modalValue.sceneActionId,
         costIndex: modalValue.costIndex,
-        resource
+        resource: new Resource({ ...resource, quantity })
       }));
       dispatch(displayModal(MODALS.SCENE));
     }

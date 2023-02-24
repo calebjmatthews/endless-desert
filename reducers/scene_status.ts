@@ -17,7 +17,7 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
     case ADD_SCENE_STEP:
     return new SceneStatus({
       ...sceneStatus,
-      steps: [...sceneStatus.steps, action.stepId]
+      steps: [...sceneStatus.steps, action.step]
     });
 
     case PAY_SCENE_COST:
