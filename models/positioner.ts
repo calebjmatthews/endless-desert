@@ -30,6 +30,7 @@ export default class Positioner {
   modalHeightMinor: number = 140;
   speechPartnerWidth: number = 55;
   speechBubbleWidth: number = 200;
+  speechBubbleEmbeddedWidth: number = 220;
   speechButtonWidth: number = 270;
   mapHeight: number = 460;
   confirmationRowHeight: number = 108;
@@ -73,6 +74,7 @@ export default class Positioner {
         - this.minorPadding;
       this.speechBubbleWidth = this.modalWidth - this.speechPartnerWidth
         - (this.majorPadding * 2);
+      this.speechBubbleEmbeddedWidth = this.modalMajor - this.majorPadding * 2;
       this.speechButtonWidth = this.modalMajor - this.majorPadding;
       this.mapHeight = this.bodyHeight - (this.majorPadding * 2.5);
       this.recipeTextWidth = this.modalMinor - this.recipeButtonIconWidth;

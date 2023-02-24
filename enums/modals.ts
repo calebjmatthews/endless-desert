@@ -8,6 +8,7 @@ export enum MODALS {
   RESOURCE_SELECT_ONE = "Resource Select One",
   RESOURCE_SELECT_DISH = "Resource Select Dish",
   RESOURCE_SELECT_RATE = "Resource Select Rate",
+  RESOURCE_SELECT_VALUE = "Resource Select Value",
   LEADER_SELECT = "Leader Select",
   BUILDING_SELECT = "Building Select",
   EQUIPMENT_SELECT = "Equipment Select",

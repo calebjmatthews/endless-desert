@@ -755,8 +755,20 @@ export const styles = StyleSheet.create({
   },
 
   sceneActionButton: {
-    marginTop: 10,
     paddingHorizontal: 10, 
-    justifyContent: 'flex-start'
+    marginBottom: 5,
+    alignItems: 'flex-start',
+    flexDirection: 'column'
   },
+
+  sceneActionButtonCost: {
+    backgroundColor: '#5e77b0'
+  },
+
+  sceneActionButtonSubcost: {
+    justifyContent: 'flex-start',
+    paddingHorizontal: 2,
+    paddingVertical: 2,
+    marginVertical: 2
+  }
 });

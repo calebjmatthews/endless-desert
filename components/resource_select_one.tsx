@@ -20,6 +20,7 @@ import { setRates } from '../actions/rates';
 import { DISPLAY_TREASURE, displayTreasure } from '../actions/account';
 import { UPSERT_DROMEDARIES, upsertDromedaries, UPSERT_RESOURCE, upsertResource }
   from '../actions/expedition_status';
+import { PAY_SCENE_COST } from '../actions/scene_status';
 
 import Resource from '../models/resource';
 import Vault from '../models/vault';
@@ -29,8 +30,10 @@ import Trade from '../models/trade';
 import Icon from '../models/icon';
 import QuestActivity from '../models/quest_activity';
 import Hourglass from '../models/hourglass';
+import Leader from '../models/leader';
 import Positioner from '../models/positioner';
 import { resourceTypes } from '../instances/resource_types';
+import { sceneActions } from '../instances/scenes';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
 import { RESOURCE_TYPES } from '../enums/resource_types';
@@ -51,11 +54,15 @@ export default function ResourceSelectOneComponent() {
   const leaders = useTypedSelector(state => state.leaders);
   const equipment = useTypedSelector(state => state.equipment);
   const buildings = useTypedSelector(state => state.buildings);
-  const modalValue: any = useTypedSelector(state => state.ui.modalValue);
+  const modalValue: { type: string, subType: string, slot: number, maximum: number, tradeId: string, 
+    leader: Leader, buildingId: string, expeditionId: string, exclude: string[], sceneActionId: string, 
+    costIndex: number } = useTypedSelector(state => state.ui.modalValue);
   const researchStatus = useTypedSelector(state => state.researchStatus);
   const tradingStatus = useTypedSelector(state => state.tradingStatus);
   const treasuresDisplayed = useTypedSelector(state => state.account.treasuresDisplayed);
   const treasureEffects = useTypedSelector(state => state.account.treasureEffects);
+  const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
+  const sceneStatus = useTypedSelector(state => state.sceneStatus);
   const positioner = useTypedSelector(state => state.ui.positioner);
   let resourcesArray = getResourcesArray();
 
@@ -67,15 +74,33 @@ export default function ResourceSelectOneComponent() {
   function setStartingQuantitySelected(): string {
     if (!resourcesArray.length) { return '0'; }
     if (modalValue.type === 'Trading') {
-      const visit = tradingStatus.visits[modalValue.slot];
+      const visit = tradingStatus.visits[modalValue.slot || 0];
       if (visit) {
         let tInt = visit.acceptQuantity;
-        const key = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
-        if (tInt > vault.resources[key].quantity) {
-          tInt = Math.floor(vault.resources[key].quantity);
+        const typeQuality = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
+        if (tInt > vault.resources[typeQuality].quantity) {
+          tInt = Math.floor(vault.resources[typeQuality].quantity);
         }
         return tInt.toString();
       }
+    }
+    else if (modalValue.type === PAY_SCENE_COST) {
+      const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+      const difficulty = expedition ? expedition.getDifficulty() : 1;
+      const costs = sceneActions[modalValue.sceneActionId].getCost(difficulty);
+      const aCost = costs[modalValue.costIndex];
+
+      let tInt = 0;
+      if (aCost && resourcesArray?.length > 0) {
+        const resourceType = resourceTypes[resourcesArray[0].type]
+        tInt = aCost.value / (resourceType.value * QUALITY_VALUES[resourcesArray[0].quality]);
+        const typeQuality = (resourcesArray[0].type + '|' + resourcesArray[0].quality);
+        if (tInt > vault.resources[typeQuality].quantity) {
+          tInt = Math.floor(vault.resources[typeQuality].quantity);
+        }
+      }
+
+      return tInt.toString();
     }
     else if (modalValue.type == RESEARCHES.ANALYSIS || modalValue.type === UPSERT_DROMEDARIES
     || modalValue.type === UPSERT_RESOURCE) {
@@ -163,12 +188,11 @@ export default function ResourceSelectOneComponent() {
         ? (researchStatus.getAnalysisMax(treasuresDisplayed))
         : modalValue.maximum;
     return resourceArray.map((resource) => {
-      return <ResourceSelector key={(resource.type + '|' + resource.quality)}
-        resource={resource} resourceSelected={resourceSelected} vault={vault}
-        maximum={maximum}
-        setResourceSelected={setResourceSelected} 
-        setQuantitySelected={setQuantitySelected} setQuantityGiven={setQuantityGiven} 
-        visit={visit} modalValue={modalValue} positioner={positioner} />;
+      return <ResourceSelector key={(resource.type + '|' + resource.quality)} resource={resource} 
+        resourceSelected={resourceSelected} vault={vault} maximum={maximum}
+        setResourceSelected={setResourceSelected} setQuantitySelected={setQuantitySelected} 
+        setQuantityGiven={setQuantityGiven}  visit={visit} modalValue={modalValue}
+        positioner={positioner} />;
     });
   }
 
@@ -706,6 +730,25 @@ export default function ResourceSelectOneComponent() {
       return rSort(resources.filter((resource) => (
         !utils.arrayIncludes(modalValue.exclude,`${resource.type}|${resource.quality}`)
       )));
+
+      case PAY_SCENE_COST:
+      const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+      const difficulty = expedition ? expedition.getDifficulty() : 1;
+      const costs = sceneActions[modalValue.sceneActionId].getCost(difficulty);
+      const aCost = costs[modalValue.costIndex];
+      switch(aCost.specificity) {
+        case RESOURCE_SPECIFICITY.EXACT:
+        return rSort(utils.filterOutZero(vault.getExactResources(aCost.kind)));
+
+        case RESOURCE_SPECIFICITY.TAG:
+        return rSort(utils.filterOutZero(vault.getTagResources(aCost.kind)));
+
+        case RESOURCE_SPECIFICITY.SUBCATEGORY:
+        return rSort(utils.filterOutZero(vault.getSubcategoryResources(aCost.kind)));
+
+        case RESOURCE_SPECIFICITY.CATEGORY:
+        return rSort(utils.filterOutZero(vault.getCategoryResources(aCost.kind)));
+      }
 
       default:
       return [];

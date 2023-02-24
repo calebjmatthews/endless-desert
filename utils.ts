@@ -876,6 +876,17 @@ class Utils {
     return p.explanations;
   }
 
+  rSort(resources: Resource[]) {
+    return resources.sort((a, b) => {
+      if (Math.floor(a.quantity) != Math.floor(b.quantity)) {
+        return b.quantity - a.quantity;
+      }
+      const aType = utils.getResourceType(a);
+      const bType = utils.getResourceType(b);
+      return aType.value - bType.value;
+    });
+  }
+
   filterOutZero(resources: Resource[]) {
     return resources.filter((resource) => {
       if (Math.floor(resource.quantity) >= 1) { return resource; }
@@ -907,6 +918,14 @@ class Utils {
     const horizontal = Math.cos(angle) * distance;
     const vertical = Math.sin(angle) * distance;
     return [(origin[0] + horizontal), (origin[1] + vertical)];
+  }
+
+  getQualityText(quality: number) {
+    const qualityTextStyles = [
+      {},
+      { color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 }
+    ];
+    return qualityTextStyles[0];
   }
 }
 

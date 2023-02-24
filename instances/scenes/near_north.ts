@@ -1,5 +1,6 @@
 import RichText from '../../models/rich_text';
 import { Scene, SceneAction, SceneOutcome, SceneText } from '../../models/scene';
+import Icon from '../../models/icon';
 import { EXPEDITION_EVENTS } from '../../enums/expedition_events';
 import { RESOURCE_SPECIFICITY } from '../../enums/resource_specificity';
 const RSP = RESOURCE_SPECIFICITY;
@@ -9,10 +10,6 @@ import { RESOURCE_TYPES } from '../../enums/resource_types';
 const RTY = RESOURCE_TYPES;
 import { LEADER_QUALITIES } from '../../enums/leader_qualities';
 const LEQ = LEADER_QUALITIES;
-
-import { LEADER_TYPES } from '../../enums/leader_types';
-import { QUESTS } from '../../enums/quests';
-import { RESEARCHES } from '../../enums/researches';
 
 const nnScenes: { [id: string]: Scene } = {};
 const nnSceneTexts: { [id: string]: SceneText } = {};
@@ -26,7 +23,7 @@ nnScenes[EXPEDITION_EVENTS.SCORPIONS] = new Scene({
 nnSceneTexts[`${EXPEDITION_EVENTS.SCORPIONS} - 0`] = new SceneText({
   id: `${EXPEDITION_EVENTS.SCORPIONS} - 0`,
   subType: 'narration',
-  text: new RichText({ type: 'Text', contents: [`At first there's just a scuttering, a sound barely recognizable over wind and shifting sands. Then one moving form, then ten- highest heavens, there are scorpions everywhere!`] }),
+  text: new RichText({ type: 'Text', contents: [`At first there's just a scuttering, a sound barely recognizable over wind and shifting sands. There's one moving form, then ten... highest heavens, there are scorpions everywhere!`] }),
   next: {ids: [`${EXPEDITION_EVENTS.SCORPIONS} - 1a`, `${EXPEDITION_EVENTS.SCORPIONS} - 1d`],
     type: 'SceneAction'}
 });

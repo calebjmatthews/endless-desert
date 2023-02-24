@@ -472,6 +472,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Gather rumors from wanderers
   - Traveling auctioneering caravan
   - Contract with Sandstone Artificers to bring home large amount of sand
+  - Wanderer who will exchange rumors for food/drink
   - Rare event to pay a large amount of food/water for a camel
   - Rare event to run into "Locations while traveling" above and abandon destination
 - Expedition method:
@@ -479,7 +480,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - For every area that is traversed through, various random events can occur. This could:
     - Change the direction the expedition is heading (the party gets lost)
     - Delay the party unless food, drink, or a specific implement is used up, or unless the leader is a certain personality type
-    - Give an opportunity to plant special seeds (e.g. date) for later retrieval
+    - Give an opportunity to plant special seeds (e.g. dates) for later retrieval
     - Capture animals with rope
     - Meet with a special trading partner
     - Start a special repeatable quest
@@ -519,7 +520,7 @@ scp -i newsummer -r /Users/calebmatthews/endless-desert-server-deploy cmatthews@
   - Create a hidden timer for this event.
   - Once the timer expires, trigger a message+flashing nav tab for the event, and change subState to -1. While subState is 1, each elapsed 100ms adds 100 to the expedition's storedTime.
   - If the timer occurs during a whileAway calculation, the remainder post-expiration is added to the expedition's storedTime.
-  - After the expedition event's scene is resolved, storedTime is used to continue the expedition (at 100x speed?). Allow the user to optionally used the storedTime?
+  - After the expedition event's scene is resolved, storedTime is used to continue the expedition (at 100x speed?). Allow the user to optionally use the storedTime?
   - User can decide to change the destination (including returning home) at any time.
   - Separate expedition rates for using food and drink.
 - Interface:
