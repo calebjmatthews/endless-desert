@@ -22,7 +22,7 @@ export default function (ui: { globalState: string, tabSelected: string,
       valueSelected: action.valueSelected});
 
     case DISPLAY_MODAL:
-    return Object.assign({}, ui, {modalDisplayed: action.modalType});
+    return Object.assign({}, ui, {modalDisplayed: action.modalType, modalValue: {}});
 
     case DISPLAY_MODAL_VALUE:
     return Object.assign({}, ui, {modalDisplayed: action.modalType,

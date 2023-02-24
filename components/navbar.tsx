@@ -47,6 +47,7 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
   const { tabsUnlocked, tabSelected, tabsGlowing } = props;
   const dispatch = useDispatch();
   const vault = useTypedSelector(state => state.vault);
+  const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
 
   const [animationPhase, setAnimationPhase] = useState(AP.START_RISING);
 
@@ -109,20 +110,25 @@ function  NavbarStaticComponent(props: { tabsUnlocked: string[], tabSelected: st
     if (tabName === 'debug') {
       testScenes();
 
-      let resources: Resource[] = [];
-      Object.keys(vault.resources).map((typeQuality) => {
-        resources.push(vault.resources[typeQuality]);
-      });
-      dispatch(consumeResources(vault, resources));
+      // let resources: Resource[] = [];
+      // Object.keys(vault.resources).map((typeQuality) => {
+      //   resources.push(vault.resources[typeQuality]);
+      // });
+      // dispatch(consumeResources(vault, resources));
 
-      let allResources: Resource[] = [];
-      Object.keys(resourceTypes).map((typeName) => {
-        allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1 }));
-      });
-      dispatch(increaseResources(vault, allResources));
-      dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
+      // let allResources: Resource[] = [];
+      // Object.keys(resourceTypes).map((typeName) => {
+      //   allResources.push(new Resource({ type: typeName, quality: 0, quantity: 1000 }));
+      // });
+      // dispatch(increaseResources(vault, allResources));
+      // dispatch(setExpeditionStatus(new ExpeditionStatus(null)));
 
-      dispatch(setScene(EXPEDITION_EVENTS.SCORPIONS));
+      const expeditions = expeditionStatus.expeditions;
+      const expedition = expeditions[Object.keys(expeditions)[0]];
+      dispatch(setScene({
+        sceneId: EXPEDITION_EVENTS.SCORPIONS,
+        expeditionId: expedition.id
+      }));
       dispatch(displayModal(MODALS.SCENE));
     }
     else {

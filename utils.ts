@@ -895,8 +895,8 @@ class Utils {
 
   // d=√((x2 – x1)² + (y2 – y1)²)
   distanceBetweenPoints(origin: [number, number], destination: [number, number]) {
-    return Math.sqrt(Math.pow((destination[0] - origin[0]), 2)
-      + Math.pow((destination[1] - origin[1]), 2));
+    return Math.abs(Math.sqrt(Math.pow((destination[0] - origin[0]), 2))
+      + Math.abs(Math.pow((destination[1] - origin[1]), 2)));
   }
 
   distanceBetweenManyPoints(manyPoints: [number, number][]) {
@@ -925,7 +925,71 @@ class Utils {
       {},
       { color: '#6a7791', textShadowColor: '#a3bcdb', textShadowRadius: 1 }
     ];
-    return qualityTextStyles[0];
+    return qualityTextStyles[quality];
+  }
+
+  getExactResources(args: {resources: { [typeQuality: string] : Resource }, typeName: string}) {
+    const { resources, typeName } = args;
+    let exactResources: Resource[] = [];
+    Object.keys(resources).forEach((typeQuality) => {
+      const resource = resources[typeQuality];
+      const resourceTypeName = typeQuality.split('|')[0];
+      if (!resourceTypeName.includes('-')) {
+        if (typeQuality.split('|')[0] == typeName) {
+          exactResources.push(resource);
+        }
+      }
+      else if (resourceTypeName.split('-')[0] == typeName) {
+        exactResources.push(resource);
+      }
+    });
+    return exactResources;
+  }
+
+  getTagResources(args: { resources: { [typeQuality: string] : Resource }, tagName: string,
+    forbiddenRT?: string[], forbiddenRS?: string[], forbiddenRC?: string[]}) {
+    const { resources, tagName, forbiddenRT, forbiddenRS, forbiddenRC } = args;
+    let tagResources: Resource[] = [];
+    Object.keys(resources).map((typeQuality) => {
+      const resource = resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.tags.includes(tagName)
+        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
+          tagResources.push(resources[typeQuality]);
+      }
+    });
+    return tagResources;
+  }
+
+  getSubcategoryResources(args: { resources: { [typeQuality: string] : Resource }, subcatName: string, 
+    forbiddenRT?: string[], forbiddenRS?: string[], forbiddenRC?: string[]}) {
+    const { resources, subcatName, forbiddenRT, forbiddenRS, forbiddenRC } = args;
+    let subcatResources: Resource[] = [];
+    Object.keys(resources).map((typeQuality) => {
+      const resource = resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (resourceType.subcategory == subcatName
+        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
+          subcatResources.push(resources[typeQuality]);
+      }
+    });
+    return subcatResources;
+  }
+
+  getCategoryResources(args: { resources: { [typeQuality: string] : Resource }, catName: string, 
+    forbiddenRT?: string[], forbiddenRS?: string[], forbiddenRC?: string[]}) {
+    const { resources, catName, forbiddenRT, forbiddenRS, forbiddenRC } = args;
+    let catResources: Resource[] = [];
+    Object.keys(resources).map((typeQuality) => {
+      const resource = resources[typeQuality];
+      const resourceType = utils.getResourceType(resource);
+      if (!resourceType) { console.log('resourceType missing for:', resource); }
+      if (resourceType.category == catName
+        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
+          catResources.push(resources[typeQuality]);
+      }
+    });
+    return catResources;
   }
 }
 

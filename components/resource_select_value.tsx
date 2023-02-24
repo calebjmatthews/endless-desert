@@ -7,7 +7,8 @@ import { styles } from '../styles';
 
 import IconComponent from './icon';
 import BadgeComponent from './badge';
-import { PAY_SCENE_COST } from '../actions/scene_status';
+import { paySceneCost, PAY_SCENE_COST } from '../actions/scene_status';
+import { displayModal } from '../actions/ui';
 import { renderValue } from './utils_react';
 
 import Resource from '../models/resource';
@@ -16,9 +17,11 @@ import { sceneActions } from '../instances/scenes';
 import { resourceTypes } from '../instances/resource_types';
 import { utils } from '../utils';
 import { RESOURCE_SPECIFICITY } from '../enums/resource_specificity';
+import { MODALS } from '../enums/modals';
 import { QUALITY_VALUES, MAX_QUANTITY_GUESS } from '../constants';
 
 export default function ResourceSelectValueComponent() {
+  const dispatch = useDispatch();
   const modalValue: ModalValue = useTypedSelector(state => state.ui.modalValue);
   const expeditionStatus = useTypedSelector(state => state.expeditionStatus);
   const sceneStatus = useTypedSelector(state => state.sceneStatus);
@@ -43,21 +46,30 @@ export default function ResourceSelectValueComponent() {
     switch(modalValue.type) {
       case PAY_SCENE_COST:
       const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
+      const resources = (expedition) ? expedition.resources : vault.resources;
       const difficulty = expedition ? expedition.getDifficulty() : 1;
       const costs = sceneActions[modalValue.sceneActionId].getCost(difficulty);
       const aCost = costs[modalValue.costIndex];
       switch(aCost.specificity) {
         case RESOURCE_SPECIFICITY.EXACT:
-        return utils.rSort(utils.filterOutZero(vault.getExactResources(aCost.kind)));
+        return utils.rSort(utils.filterOutZero(
+          utils.getExactResources({ resources, typeName: aCost.kind })
+        ));
 
         case RESOURCE_SPECIFICITY.TAG:
-        return utils.rSort(utils.filterOutZero(vault.getTagResources(aCost.kind)));
+        return utils.rSort(utils.filterOutZero(
+          utils.getTagResources({ resources, tagName: aCost.kind })
+        ));
 
         case RESOURCE_SPECIFICITY.SUBCATEGORY:
-        return utils.rSort(utils.filterOutZero(vault.getSubcategoryResources(aCost.kind)));
+        return utils.rSort(utils.filterOutZero(
+          utils.getSubcategoryResources({ resources, subcatName: aCost.kind })
+        ));
 
         case RESOURCE_SPECIFICITY.CATEGORY:
-        return utils.rSort(utils.filterOutZero(vault.getCategoryResources(aCost.kind)));
+        return utils.rSort(utils.filterOutZero(
+          utils.getCategoryResources({ resources, catName: aCost.kind })
+        ));
       }
       break;
     }
@@ -73,8 +85,9 @@ export default function ResourceSelectValueComponent() {
       newQuantity = aCost.value
         / (resourceType.value * QUALITY_VALUES[resource.quality]);
       const typeQuality = (resource.type + '|' + resource.quality);
-      if (newQuantity > vault.resources[typeQuality].quantity) {
-        newQuantity = vault.resources[typeQuality].quantity;
+      const resources = (expedition) ? expedition.resources : vault.resources;
+      if (newQuantity > resources[typeQuality].quantity) {
+        newQuantity = resources[typeQuality].quantity;
       }
     }
     return Math.ceil(newQuantity);
@@ -128,7 +141,14 @@ export default function ResourceSelectValueComponent() {
   }
 
   const submit = () => {
-    
+    if (resource) {
+      dispatch(paySceneCost({
+        sceneActionId: modalValue.sceneActionId,
+        costIndex: modalValue.costIndex,
+        resource
+      }));
+      dispatch(displayModal(MODALS.SCENE));
+    }
   }
 
   return (
@@ -216,6 +236,7 @@ const ResourceSelectorComponent = (props: ResourceSelectorComponentInterface) =>
 
 interface ModalValue {
   type: string;
+  expeditionId: string;
   sceneActionId: string;
   costIndex: number;
 }

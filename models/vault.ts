@@ -153,20 +153,7 @@ export default class Vault {
   }
 
   getExactResources(typeName: string) {
-    let resources: Resource[] = [];
-    Object.keys(this.resources).forEach((typeQuality) => {
-      const resource = this.resources[typeQuality];
-      const resourceTypeName = typeQuality.split('|')[0];
-      if (!resourceTypeName.includes('-')) {
-        if (typeQuality.split('|')[0] == typeName) {
-          resources.push(resource);
-        }
-      }
-      else if (resourceTypeName.split('-')[0] == typeName) {
-        resources.push(resource);
-      }
-    });
-    return resources;
+    return utils.getExactResources({ resources: this.resources, typeName });
   }
 
   getAllTagsCount(forbiddenRT: string[] = [], forbiddenRS: string[] = [],
@@ -183,18 +170,10 @@ export default class Vault {
     return count;
   }
 
-  getTagResources(tagName: string, forbiddenRT: string[] = [],
-    forbiddenRS: string[] = [], forbiddenRC: string[] = []) {
-    let resources: Resource[] = [];
-    Object.keys(this.resources).map((typeQuality) => {
-      const resource = this.resources[typeQuality];
-      const resourceType = utils.getResourceType(resource);
-      if (resourceType.tags.includes(tagName)
-        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
-        resources.push(this.resources[typeQuality]);
-      }
-    });
-    return resources;
+  getTagResources(tagName: string, forbiddenRT: string[] = [], forbiddenRS: string[] = [], 
+    forbiddenRC: string[] = []) {
+    return utils.getTagResources({ resources: this.resources, tagName, forbiddenRT, forbiddenRS, 
+      forbiddenRC });
   }
 
   getAllSubcategoriesCount(forbiddenRT: string[] = [], forbiddenRS: string[] = [],
@@ -211,18 +190,10 @@ export default class Vault {
     return count;
   }
 
-  getSubcategoryResources(subcatName: string, forbiddenRT: string[] = [],
-    forbiddenRS: string[] = [], forbiddenRC: string[] = []) {
-    let resources: Resource[] = [];
-    Object.keys(this.resources).map((typeQuality) => {
-      const resource = this.resources[typeQuality];
-      const resourceType = utils.getResourceType(resource);
-      if (resourceType.subcategory == subcatName
-        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
-        resources.push(this.resources[typeQuality]);
-      }
-    });
-    return resources;
+  getSubcategoryResources(subcatName: string, forbiddenRT: string[] = [], forbiddenRS: string[] = [], 
+    forbiddenRC: string[] = []) {
+    return utils.getSubcategoryResources({ resources: this.resources, subcatName, forbiddenRT, 
+      forbiddenRS, forbiddenRC });
   }
 
   getAllCategoriesCount(forbiddenRT: string[] = [], forbiddenRS: string[] = [],
@@ -237,22 +208,10 @@ export default class Vault {
     return count;
   }
 
-  getCategoryResources(catName: string, forbiddenRT: string[] = [],
-    forbiddenRS: string[] = [], forbiddenRC: string[] = []) {
-    let resources: Resource[] = [];
-    Object.keys(this.resources).map((typeQuality) => {
-      const resource = this.resources[typeQuality];
-      const resourceType = utils.getResourceType(resource);
-      if (!resourceType) {
-        console.log('resourceType missing for:');
-        console.log(resource);
-      }
-      if (resourceType.category == catName
-        && !utils.isForbidden(resourceType, forbiddenRT, forbiddenRS, forbiddenRC)) {
-        resources.push(this.resources[typeQuality]);
-      }
-    });
-    return resources;
+  getCategoryResources(catName: string, forbiddenRT: string[] = [], forbiddenRS: string[] = [], 
+    forbiddenRC: string[] = []) {
+    return utils.getCategoryResources({ resources: this.resources, catName, forbiddenRT, 
+      forbiddenRS, forbiddenRC });
   }
 
   getSpecificityQuantity(specificity: string, kind: string) {

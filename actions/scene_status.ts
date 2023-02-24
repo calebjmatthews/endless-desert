@@ -1,9 +1,10 @@
 import Resource from "../models/resource";
 
 export const SET_SCENE = "SET_SCENE";
-export const setScene = (sceneId: string) => ({
+export const setScene = (args: {sceneId: string, expeditionId?: string}) => ({
   type: SET_SCENE,
-  sceneId
+  sceneId: args.sceneId,
+  expeditionId: args.expeditionId
 });
 
 export const ADD_SCENE_STEP = "ADD_SCENE_STEP";

@@ -13,6 +13,7 @@ import { SceneAction } from '../../models/scene';
 import Vault from '../../models/vault';
 import QuestStatus from '../../models/quest_status';
 import ExpeditionStatus from '../../models/expedition_status';
+import SceneStatus from '../../models/scene_status';
 import Positioner from '../../models/positioner';
 import { utils } from '../../utils';
 import { FADE_IN_DELAY } from '../../constants';
@@ -20,17 +21,20 @@ import { MODALS } from '../../enums/modals';
 
 const SceneActionComponent = (props: SceneActionProps) => {
   const dispatch = useDispatch();
+  const sceneStatus = useTypedSelector(state => state.sceneStatus);
   const { animate } = props;
 
   const pressCost = (args: { sceneActionId: string, costIndex: number }) => {
     const { sceneActionId, costIndex } = args;
     dispatch(displayModalValue(MODALS.RESOURCE_SELECT_VALUE, 'open',
-      { type: PAY_SCENE_COST, sceneActionId, costIndex }));
+      { type: PAY_SCENE_COST, expeditionId: sceneStatus.expeditionId, sceneActionId, costIndex }));
   }
 
   return (animate)
-    ? <SceneActionAnimatedComponent {...props} pressCost={pressCost} />
-    : <View style={styles.container}><SceneActionButton {...props} pressCost={pressCost} /></View>;
+    ? <SceneActionAnimatedComponent {...props} pressCost={pressCost} sceneStatus={sceneStatus} />
+    : <View style={styles.container}>
+      <SceneActionButton {...props} pressCost={pressCost} sceneStatus={sceneStatus} />
+    </View>;
 }
 
 const SceneActionAnimatedComponent = (props: SceneActionSubProps) => {
@@ -49,8 +53,7 @@ const SceneActionAnimatedComponent = (props: SceneActionSubProps) => {
 }
 
 const SceneActionButton = (props: SceneActionSubProps) => {
-  const { sceneAction, expeditionStatus } = props;
-  const sceneStatus = useTypedSelector(state => state.sceneStatus);
+  const { sceneAction, expeditionStatus, sceneStatus } = props;
   const expedition = expeditionStatus.expeditions[sceneStatus.expeditionId || ''];
   const difficulty = expedition ? expedition.getDifficulty() : 1;
   const cost = sceneAction.getCost(difficulty);
@@ -193,6 +196,7 @@ interface SceneActionProps {
 
 interface SceneActionSubProps extends SceneActionProps {
   pressCost: (args: { sceneActionId: string, costIndex: number }) => void;
+  sceneStatus: SceneStatus;
 }
 
 interface SceneActionCostProps extends SceneActionSubProps {

@@ -10,7 +10,8 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
       sceneId: action.sceneId,
       steps: [],
       costsPaid: {},
-      resourcesGained: {}
+      resourcesGained: {},
+      expeditionId: action.expeditionId
     });
 
     case ADD_SCENE_STEP:
@@ -21,6 +22,7 @@ export default function (sceneStatus: SceneStatus = new SceneStatus(null),
 
     case PAY_SCENE_COST:
     const pscCostsPaid = { ...sceneStatus.costsPaid };
+    if (!pscCostsPaid[action.sceneActionId]) { pscCostsPaid[action.sceneActionId] = []; }
     pscCostsPaid[action.sceneActionId][action.costIndex] = action.resource;
     return new SceneStatus({
       ...sceneStatus,

@@ -614,7 +614,7 @@ export default class Expedition {
 
   getDifficulty() {
     const distance = utils.distanceBetweenPoints([0, 0], this.currentCoordinates);
-    return Math.ceil(distance / 400);
+    return Math.ceil((distance / 400) || 1);
   }
 }
 
