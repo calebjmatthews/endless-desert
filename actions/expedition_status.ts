@@ -178,3 +178,13 @@ export function updateExpeditionCurrentCoordinates(args: { expeditionId: string,
     newCoordinates: args.newCoordinates
   }
 }
+
+export const UPDATE_EXPEDITION_EVENT = "UPDATE_EXPEDITION_EVENT";
+export function updateExpeditionEvent(args: { expeditionId: string, eventId: string }) {
+  console.log(`args`, args);
+  return {
+    type: UPDATE_EXPEDITION_EVENT,
+    expeditionId: args.expeditionId,
+    eventId: args.eventId
+  }
+}

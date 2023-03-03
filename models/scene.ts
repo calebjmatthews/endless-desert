@@ -12,6 +12,10 @@ export class Scene {
   constructor(scene: Scene) {
     Object.assign(this, scene);
   }
+
+  availableForExpedition(args: { expedition?: Expedition, gState?: GameState }) {
+    return 100;
+  }
 }
 
 export class SceneAction implements SceneActionInterface {

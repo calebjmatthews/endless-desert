@@ -2,7 +2,7 @@ import { SET_EXPEDITION_STATUS, UPSERT_EXPEDITION, UPDATE_EXPEDITION_SUB_STATE, 
 	UPDATE_SUB_TITLE, UPSERT_DROMEDARIES, REMOVE_DROMEDARIES, UPSERT_RESOURCE, REMOVE_RESOURCE, 
 	UPDATE_ADVICE_AND_SUB_STATE, REMOVE_FROM_DESTINATIONS, REMOVE_DESTINATION, UPDATE_EXPEDITION_TIMERS, 
 	ADD_STORED_TIME, SET_LAST_EXPEDITION_TIMESTAMP, INCREASE_EXPEDITION_RESOURCES, 
-	CONSUME_EXPEDITION_RESOURCES, UPDATE_EXPEDITION_CURRENT_COORDINATES }
+	CONSUME_EXPEDITION_RESOURCES, UPDATE_EXPEDITION_CURRENT_COORDINATES, UPDATE_EXPEDITION_EVENT }
 	from '../actions/expedition_status';
 import ExpeditionStatus from '../models/expedition_status';
 import Expedition from '../models/expedition';
@@ -150,8 +150,8 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 			if (crE.resources[`${resource.type}|${resource.quality}`]) {
 				crE.resources[`${resource.type}|${resource.quality}`].quantity -= resource.quantity;
 			}
-			else {
-				crE.resources[`${resource.type}|${resource.quality}`] = new Resource(resource);
+			if (crE.resources[`${resource.type}|${resource.quality}`]?.quantity < 0) {
+				crE.resources[`${resource.type}|${resource.quality}`].quantity = 0;
 			}
 		});
 		return crExpeditionStatus;
@@ -160,6 +160,13 @@ export default function (expeditionStatus: ExpeditionStatus = new ExpeditionStat
 		const ueccExpeditionStatus = new ExpeditionStatus(expeditionStatus);
 		ueccExpeditionStatus.expeditions[action.expeditionId].currentCoordinates = action.newCoordinates;
 		return ueccExpeditionStatus;
+
+		case UPDATE_EXPEDITION_EVENT:
+		console.log(`action`, action);
+		const ueeExpeditionStatus = new ExpeditionStatus(expeditionStatus);
+		ueeExpeditionStatus.expeditions[action.expeditionId].currentEvent = action.eventId;
+		console.log(`ueeExpeditionStatus`, ueeExpeditionStatus);
+		return ueeExpeditionStatus;
 
 		default:
 		return expeditionStatus;

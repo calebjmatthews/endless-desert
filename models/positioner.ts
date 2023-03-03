@@ -38,6 +38,7 @@ export default class Positioner {
   recipeTextWidth: number = 160;
   buttonWithCancelOnSide: number = 220;
   buttonInEmbedded: number = 243;
+  embeddedMajor: number = 270;
 
   constructor(screenWidth?: number, screenHeight?: number, os?: string) {
     if (screenWidth && screenHeight) {
@@ -81,6 +82,7 @@ export default class Positioner {
       this.buttonWithCancelOnSide = this.screenWidth - (this.iconSpacer + (this.majorPadding * 2)
         + (this.minorPadding * 1.5));
       this.buttonInEmbedded = this.screenWidth - ((this.majorPadding * 3) + (this.minorPadding * 1.75));
+      this.embeddedMajor = this.majorWidth - this.minorPadding;
     }
   }
 }

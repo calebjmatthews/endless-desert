@@ -14,11 +14,13 @@ import ResourceTileComponent from '../resource_tile';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
+import { scenes } from '../../instances/scenes';
 import { utils } from '../../utils';
 
 export default function ExpeditionProgressComponent(props: { expeditionId: string }) {
   const { expeditionId } = props;
   const expedition = useTypedSelector(state => state.expeditionStatus.expeditions[expeditionId]);
+  const currentEvent = scenes[expedition.currentEvent || ''];
   const destination = expedition.customDestination || destinations[expedition.mainDestinationId || ''];
   const pos = useTypedSelector(state => state.ui.positioner);
   const timer = expedition.timers[expedition.getTimerId('arrival') || ''];
@@ -40,21 +42,32 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         </>
         
         <View style={styles.breakLarge} />
-        <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={false}
+        <DromedaryProgressIcons dromedaries={expedition.dromedaries} paused={currentEvent !== undefined}
           width={pos.majorWidth} />
         <View style={styles.rows}>
           <Text style={{fontSize: 11, fontStyle: 'italic', color: '#fff'}}>
-            {`Traveling normally (at ${utils.formatNumberShort(expedition.currentCoordinates[0], true)}, ${utils.formatNumberShort(expedition.currentCoordinates[1], true)})`}
+            {`at ${utils.formatNumberShort(expedition.currentCoordinates[0], true)}, ${utils.formatNumberShort(expedition.currentCoordinates[1], true)}`}
           </Text>
         </View>
 
         {timer && (
           <ProgressBarComponent staticDuration={true}
-            width={pos.majorWidth - pos.minorPadding}
+            width={pos.embeddedMajor}
             startingProgress={timer.progress} endingProgress={1}
             duration={timer.endsAt - new Date(Date.now()).valueOf()}
             label={timer.remainingLabel} />
         )}
+
+        <View style={styles.break} />
+        <TouchableOpacity style={[styles.buttonLarge, {justifyContent: 'center',
+          maxWidth: pos.embeddedMajor}]}
+          onPress={() => {  }}>
+          <IconComponent provider="FontAwesome5" name="exclamation-circle"
+            color="#fff" size={16} style={styles.headingIcon} />
+          <Text style={[styles.buttonText, {marginLeft: 5, maxWidth: pos.majorWidth}]}>
+            {(currentEvent) ? currentEvent.name : 'Waiting'}
+          </Text>
+        </TouchableOpacity>
 
         <View style={styles.breakLarge} />
         <View style={[styles.descriptionBand,

@@ -4,15 +4,19 @@ import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 import { updateExpeditionSubState, addStoredTime, updateExpeditionTimers, setLastExpeditionTimestamp, 
-  increaseExpeditionResources, consumeExpeditionResources, updateExpeditionCurrentCoordinates }
+  increaseExpeditionResources, consumeExpeditionResources, updateExpeditionCurrentCoordinates,
+  updateExpeditionEvent }
   from '../../actions/expedition_status';
 
 import Hourglass from '../../models/hourglass';
 import Expedition from '../../models/expedition';
 import Rates from '../../models/rates';
+import { Scene } from '../../models/scene';
 import { dromedaryTypes } from '../../instances/dromedary_types';
+import { scenes } from '../../instances/scenes';
 import { utils } from '../../utils';
 import { HOURGLASS_INTERVAL } from '../../constants';
+import { EXPEDITION_EVENTS } from '../../enums/expedition_events';
 
 export default function ExpeditionHourglassComponent() {
   const dispatch = useDispatch();
@@ -62,15 +66,33 @@ export default function ExpeditionHourglassComponent() {
     let earliestTimerTimestamp: number|null = null;
     // Todo: Don't resolve timers that happen after earliest timestamp
     resolvedTimers.forEach((timer) => {
+      console.log(`resolvedTimer`, timer);
       if (earliestTimerTimestamp === null || timer.endsAt < earliestTimerTimestamp) {
         earliestTimerTimestamp = timer.endsAt;
       }
 
       if (timer.eventCheck) {
-
+        const expeditionScenes = Object.keys(scenes).map((sceneId) => scenes[sceneId]);
+        const eventOptions: { scene: Scene, weight: number }[] = [];
+        expeditionScenes.forEach((scene) => {
+          const weight = scene.availableForExpedition({ expedition, gState: {} });
+          if (weight) { eventOptions.push({ scene, weight }); }
+        });
+        const optionSelected: { scene: Scene, weight: number } = 
+          utils.randomWeightedSelect(eventOptions);
+        dispatch(updateExpeditionEvent({
+          expeditionId: expedition.id,
+          eventId: optionSelected.scene.id
+        }));
       }
-      if (timer.eventId) {
+
+      if (timer.eventId === EXPEDITION_EVENTS.OUT_OF_FOOD
+        || timer.eventId === EXPEDITION_EVENTS.OUT_OF_DRINK) {
         
+      }
+
+      if (timer.eventId === EXPEDITION_EVENTS.ARRIVAL) {
+
       }
     });
     dispatch(updateExpeditionTimers({ expeditionId: expedition.id, timers: nTimers }));

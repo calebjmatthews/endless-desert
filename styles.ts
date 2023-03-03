@@ -700,7 +700,8 @@ export const styles = StyleSheet.create({
     zIndex: -1,
     position: 'absolute',
     bottom: -60,
-    right: -40
+    right: -40,
+    opacity: 0.75
   },
 
   routeLine: {
