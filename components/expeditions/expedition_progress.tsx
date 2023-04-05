@@ -5,12 +5,12 @@ import { RootState } from '../../models/root_state';
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 import { styles } from '../../styles';
 
-import IconComponent from '../icon';
 import SvgComponent from '../svg';
 import DromedaryProgressIcons from './dromedary_progress_icons';
 import ProgressBarComponent from '../progress_bar';
 import EventHistoryComponent from './event_history';
 import ResourceTileComponent from '../resource_tile';
+import ExpeditionProgressButtonComponent from './expedition_progress_button';
 
 import Icon from '../../models/icon';
 import { destinations } from '../../instances/destinations';
@@ -51,23 +51,14 @@ export default function ExpeditionProgressComponent(props: { expeditionId: strin
         </View>
 
         {timer && (
-          <ProgressBarComponent staticDuration={true}
+          <ProgressBarComponent staticDuration={true} animated={!currentEvent}
             width={pos.embeddedMajor}
-            startingProgress={timer.progress} endingProgress={1}
+            startingProgress={timer.progress/100} endingProgress={1}
             duration={timer.endsAt - new Date(Date.now()).valueOf()}
             label={timer.remainingLabel} />
         )}
 
-        <View style={styles.break} />
-        <TouchableOpacity style={[styles.buttonLarge, {justifyContent: 'center',
-          maxWidth: pos.embeddedMajor}]}
-          onPress={() => {  }}>
-          <IconComponent provider="FontAwesome5" name="exclamation-circle"
-            color="#fff" size={16} style={styles.headingIcon} />
-          <Text style={[styles.buttonText, {marginLeft: 5, maxWidth: pos.majorWidth}]}>
-            {(currentEvent) ? currentEvent.name : 'Waiting'}
-          </Text>
-        </TouchableOpacity>
+        <ExpeditionProgressButtonComponent expeditionId={expedition.id} />
 
         <View style={styles.breakLarge} />
         <View style={[styles.descriptionBand,

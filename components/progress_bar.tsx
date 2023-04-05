@@ -15,10 +15,16 @@ export default function ProgressBarComponent(props: ProgressBarProps) {
     <View style={styles.progressBarContainer}>
       <View style={StyleSheet.flatten([styles.progressBarWrapper,
         { minWidth: maxWidth, maxWidth: maxWidth }])}>
-        <Bar staticDuration={props.staticDuration} width={props.width}
+        {props.animated
+        ? <Bar staticDuration={props.staticDuration} width={props.width}
           startingProgress={props.startingProgress}
           endingProgress={props.endingProgress} duration={props.duration}
           color={props.color} labelStyle={props.labelStyle} />
+        : <StaticBar staticDuration={props.staticDuration} width={props.width}
+            startingProgress={props.startingProgress}
+            endingProgress={props.endingProgress} duration={props.duration}
+            color={props.color} labelStyle={props.labelStyle} />
+        }
       </View>
       <View style={styles.progressBarLabel}>
         <Text style={labelStyle}>{props.label}</Text>
@@ -66,11 +72,24 @@ function Bar(props: BarProps) {
   );
 }
 
-interface ProgressBarProps {
-  startingProgress: number;
-  endingProgress: number;
-  duration: number;
-  label: string;
+function StaticBar(props: BarProps) {
+  const maxWidth = props.width ? props.width - 4 : DEFAULT_WIDTH;
+  let color = '#071f56';
+  if (props.color) { color = props.color; }
+
+  return (
+    <View style={StyleSheet.flatten([styles.progressBar,
+      {minWidth: maxWidth, maxWidth: maxWidth, backgroundColor: color,
+        marginLeft: (-0.5 * maxWidth), transform: [{ scaleX: (props.startingProgress * 2) }] }])} />
+  )
+}
+
+class ProgressBarProps {
+  startingProgress: number = 0;
+  endingProgress: number = 1;
+  duration: number = 1000;
+  label: string = '';
+  animated?: boolean = true;
   width?: number;
   color?: string;
   labelStyle?: any;

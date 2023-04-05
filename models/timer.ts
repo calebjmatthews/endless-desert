@@ -9,10 +9,12 @@ export default class Timer implements TimerInterface {
   startedAt: number = 0;
   // Millisecond timestamp when timer will end
   endsAt: number = 0;
-  // Progress as a number between 0 and 1
+  // Progress as a number between 0 and 100
   progress: number = 0;
   // Human readable amount of time remaining
   remainingLabel: string = '';
+  duration: number = 0;
+  frozen?: boolean;
   resourcesToIncrease?: Resource[] = [];
   resourcesToConsume?: Resource[] = [];
   buildingToBuild?: { type: string, coords: [number, number] }|null = null;
@@ -29,13 +31,20 @@ export default class Timer implements TimerInterface {
   constructor(timer: TimerInterface) {
     Object.assign(this, timer);
     if (!timer.startedAt) { this.startedAt = new Date(Date.now()).valueOf(); }
+    if (!timer.duration) { this.duration = this.endsAt - this.startedAt; }
     if (!timer.resourcesToIncrease) { this.resourcesToIncrease = []; }
     if (!timer.resourcesToConsume) { this.resourcesToConsume = []; }
     this.setProgress();
     this.setRemainingLabel();
   }
 
+  recalcEndsAt() {
+    const remainingDuration = this.duration * (this.progress / 100);
+    this.endsAt = new Date(Date.now()).valueOf() + remainingDuration;
+  }
+
   setProgress() {
+    if (this.frozen) { this.recalcEndsAt(); }
     let diff = this.endsAt - new Date(Date.now()).valueOf();
     if (diff > 0) {
       let oDiff = this.endsAt - this.startedAt;
@@ -47,6 +56,7 @@ export default class Timer implements TimerInterface {
   }
 
   setRemainingLabel() {
+    if (this.frozen) { this.recalcEndsAt(); }
     let diff = this.endsAt - new Date(Date.now()).valueOf();
     if (diff > 0) {
       this.remainingLabel = utils.formatDuration(diff);
@@ -64,6 +74,8 @@ export default class Timer implements TimerInterface {
     if (this.startedAt) { expTimer.startedAt = this.startedAt; }
     if (this.progress) { expTimer.progress = this.progress; }
     if (this.remainingLabel) { expTimer.remainingLabel = this.remainingLabel; }
+    if (this.duration) { expTimer.duration = this.duration; }
+    if (this.frozen) { expTimer.frozen = this.frozen; }
     if ((this.resourcesToIncrease?.length || 0) > 0) {
       expTimer.resourcesToIncrease = this.resourcesToIncrease;
     }
@@ -93,6 +105,8 @@ interface TimerInterface {
   endsAt: number;
   progress?: number;
   remainingLabel?: string;
+  duration?: number;
+  frozen?: boolean;
   resourcesToIncrease?: Resource[];
   resourcesToConsume?: Resource[];
   buildingToBuild?: { type: string, coords: [number, number] }|null;

@@ -62,15 +62,16 @@ export default function ExpeditionHourglassComponent() {
 
   const handleTravelingExpedition = (expedition: Expedition) => {
     let nTimers = Object.assign({}, expedition.timers);
-    let resolvedTimers = hourglass.timerTick(nTimers);
-    let earliestTimerTimestamp: number|null = null;
-    // Todo: Don't resolve timers that happen after earliest timestamp
-    resolvedTimers.forEach((timer) => {
-      console.log(`resolvedTimer`, timer);
-      if (earliestTimerTimestamp === null || timer.endsAt < earliestTimerTimestamp) {
-        earliestTimerTimestamp = timer.endsAt;
+    let earliestResolvingTimestamp: number|null = null;
+    Object.keys(expedition.timers).forEach((timerId) => {
+      const timer = expedition.timers[timerId];
+      if (timer.endsAt < new Date(Date.now()).valueOf()
+        && (earliestResolvingTimestamp === null || timer.endsAt < earliestResolvingTimestamp)) {
+        earliestResolvingTimestamp = timer.endsAt;
       }
-
+    });
+    let resolvedTimers = hourglass.timerTick(nTimers, earliestResolvingTimestamp);
+    resolvedTimers.forEach((timer) => {
       if (timer.eventCheck) {
         const expeditionScenes = Object.keys(scenes).map((sceneId) => scenes[sceneId]);
         const eventOptions: { scene: Scene, weight: number }[] = [];
@@ -95,12 +96,14 @@ export default function ExpeditionHourglassComponent() {
 
       }
     });
-    dispatch(updateExpeditionTimers({ expeditionId: expedition.id, timers: nTimers }));
-
     let endingTimestamp = new Date(Date.now()).valueOf();
-    if (earliestTimerTimestamp !== null) {
-      endingTimestamp = earliestTimerTimestamp;
-
+    if (earliestResolvingTimestamp) {
+      console.log(`Freezing timers!`);
+      Object.keys(expedition.timers).forEach((timerId) => {
+        const timer = nTimers[timerId];
+        timer.frozen = true;
+      });
+      endingTimestamp = earliestResolvingTimestamp;
       dispatch(updateExpeditionSubState({
         expeditionId: expedition.id,
         subState: -1
@@ -110,6 +113,8 @@ export default function ExpeditionHourglassComponent() {
         storedTimeToAdd: HOURGLASS_INTERVAL,
       }));
     }
+    dispatch(updateExpeditionTimers({ expeditionId: expedition.id, timers: nTimers }));
+
     // 24le / hr = 0.4le / min = 0.0067le / sec = 0.00067le / interval
     const distanceTraveled = expedition.getSpeed(dromedaryTypes) * ((endingTimestamp
       - expeditionStatus.lastTimestamp) / (1000 * 60 * 60));

@@ -387,6 +387,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#5a201e'
   },
+  buttonOutline: {
+    backgroundColor: '#404c7d99'
+  },
   sideButtonContainer: {
     display: 'flex',
     flexDirection: 'row',

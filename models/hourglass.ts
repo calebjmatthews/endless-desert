@@ -46,11 +46,11 @@ export default class Hourglass {
 
   // Set the progress and text labels for each timer, check whether a timer has
   // finished, and return an array of all finished timers
-  timerTick(timers: { [name: string] : Timer }) {
+  timerTick(timers: { [name: string] : Timer }, endingTimestamp?: number|null) {
     let resolvedTimers: Timer[] = [];
     Object.keys(timers).map((timerName) => {
       let timer = timers[timerName];
-      if (timer.endsAt <= new Date(Date.now()).valueOf()) {
+      if (timer.endsAt <= (endingTimestamp || new Date(Date.now()).valueOf())) {
         resolvedTimers.push(timer);
       }
       else {

@@ -133,6 +133,14 @@ export function updateExpeditionTimers(args: {expeditionId: string,
   }
 }
 
+export const UNFREEZE_EXPEDITION_TIMERS = "UNFREEZE_EXPEDITION_TIMERS";
+export function unfreezeExpeditionTimers(expeditionId: string) {
+  return {
+    type: UNFREEZE_EXPEDITION_TIMERS,
+    expeditionId: expeditionId
+  }
+}
+
 export const ADD_STORED_TIME = "ADD_STORED_TIME";
 export function addStoredTime(args: {expeditionId: string, storedTimeToAdd: number}) {
   return {
